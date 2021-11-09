@@ -1,0 +1,72 @@
+<div class="se-page-list">
+    <se-toolbar
+        css-class="se-toolbar--shell"
+        image-root="imageRoot"
+        toolbar-name="smartEditHeaderToolbar"
+    ></se-toolbar>
+    <se-toolbar
+        css-class="se-toolbar--shell se-toolbar--shortcut"
+        image-root="imageRoot"
+        toolbar-name="smartEditPagesToolbar"
+    ></se-toolbar>
+
+    <div data-ng-if="pageListCtl.isReady">
+        <div class="se-page-list__header">
+            <span class="se-page-list__catalog-name" data-translate="se.cms.pagelist.title"></span>
+            <p class="se-page-list__sub-title">
+                {{pageListCtl.catalogName | l10n}} - {{pageListCtl.catalogVersion}}
+            </p>
+        </div>
+
+        <div class="se-page-list__body">
+            <div class="se-page-list__table-header">
+                <span class="se-paged-list__page-count-wrapper">
+                    <span
+                        class="span-page-list__page-count-text"
+                        data-translate="se.pagelist.countsearchresult"
+                    ></span>
+                    <span class="se-page-list__page-count"> ({{ pageListCtl.count }}) </span>
+                </span>
+                <div class="se-page-list__table-header--right">
+                    <div class="fd-form__group se-page-list__search">
+                        <div class="se-input-group">
+                            <input
+                                type="search"
+                                class="se-input-group__input-area ySEPage-list-search-input "
+                                placeholder="{{ 'se.cms.pagelist.searchplaceholder' | translate }}"
+                                data-ng-model="pageListCtl.query.value"
+                                maxlength="255"
+                                data-ng-model-options="pageListCtl.searchOptions"
+                                name="query"
+                            />
+                            <span class="sap-icon--search se-input-group__addon"></span>
+                            <div
+                                data-ng-show="pageListCtl.query.value"
+                                aria-label="clear"
+                                class="se-input-group__addon se-input-group__clear-btn"
+                                data-ng-click="pageListCtl.reset()"
+                            >
+                                <span class="sap-icon--decline"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <button
+                        class="fd-button se-page-list__add"
+                        data-ng-click="pageListCtl.openAddPageWizard()"
+                    >
+                        {{'se.cms.addpagewizard.addpage' | translate}}
+                    </button>
+                </div>
+            </div>
+            <div class="se-page-list__table-body">
+                <se-dynamic-paged-list
+                    [config]="pageListCtl.pageListConfig"
+                    [mask]="pageListCtl.query.value"
+                    (get-api)="pageListCtl.getApi($event);"
+                    (on-items-update)="pageListCtl.onPageItemsUpdate($event.pagination)"
+                >
+                </se-dynamic-paged-list>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<action-definition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				   id="com.hybris.backoffice.widgets.actions.excel.export"
+				   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/action-definition.xsd">
+	<name>Excel Export Action</name>
+	<description>Action providing exporting data to Excel file</description>
+	<author>hybris</author>
+	<version>1.0</version>
+	<actionClassName>com.hybris.backoffice.widgets.actions.excel.ExcelExportAction</actionClassName>
+	<sockets>
+		<output id="itemsToExport" type="com.hybris.cockpitng.search.data.pageable.Pageable"/>
+	</sockets>
+
+	<iconUri>icons/icon_action_export_excel_default.png</iconUri>
+	<iconDisabledUri>icons/icon_action_export_excel_disabled.png</iconDisabledUri>
+	<iconHoverUri>icons/icon_action_export_excel_hover.png</iconHoverUri>
+
+	<settings>
+		<setting key="confirmation.threshold" default-value="500" type="java.lang.Integer"/>
+	</settings>
+
+</action-definition>

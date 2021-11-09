@@ -1,0 +1,33 @@
+// SAP Fiori UX Consistency
+@import '~fiori-fundamentals/scss/_settings.scss';
+@import '~fiori-fundamentals/scss/core.scss';
+@import '~fiori-fundamentals/scss/helpers.scss';
+@import '~fiori-fundamentals/scss/layout.scss';
+@import '~fiori-fundamentals/scss/icons.scss';
+@import '~fiori-fundamentals/scss/components/alert.scss';
+@import '~fiori-fundamentals/scss/components/button.scss';
+@import '~fiori-fundamentals/scss/components/shellbar.scss';
+@import '~fiori-fundamentals/scss/components/popover.scss';
+@import '~fiori-fundamentals/scss/components/menu.scss';
+@import '~fiori-fundamentals/scss/components/contextual-menu.scss';
+@import '~fiori-fundamentals/scss/components/counter.scss';
+@import '~fiori-fundamentals/scss/components/modal.scss';
+@import '~fiori-fundamentals/scss/components/list-group.scss';
+@import '~fiori-fundamentals/scss/components/spinner.scss';
+@import '~fiori-fundamentals/scss/components/status-label.scss';
+@import '~fiori-fundamentals/scss/components/form.scss';
+@import '~fiori-fundamentals/scss/components/tile.scss';
+@import '~fiori-fundamentals/scss/components/link.scss';
+@import '~fiori-fundamentals/scss/components/table.scss';
+@import '~fiori-fundamentals/scss/components/toggle.scss';
+@import '~fiori-fundamentals/scss/components/token.scss';
+@import '~fiori-fundamentals/scss/components/alert.scss';
+@import '~fiori-fundamentals/scss/components/tree.scss';
+@import '~fiori-fundamentals/scss/layout/panel.scss';
+
+/****************************************************
+                Fonts and Icons
+****************************************************/
+$fd-fonts-path: '~fiori-fundamentals/scss/fonts/';
+@import '~fiori-fundamentals/scss/fonts.scss';
+@import '~@sap-theming/theming-base-content/content/Base/baseLib/sap_fiori_3/css_variables.css';

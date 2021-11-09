@@ -1,0 +1,9 @@
+<div [ngClass]="dropDownContainerClass"
+    persoInfiniteScroll
+    (onScrollAction)="nextPage()"
+    [scrollPercent]="distance"
+    *ngIf="initiated">
+    <div [ngClass]="dropDownClass">
+        <ng-content></ng-content>
+    </div>
+</div>

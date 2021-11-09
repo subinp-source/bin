@@ -1,0 +1,15 @@
+{
+  "code": "Test_code",
+  "catalogVersion": {
+    "version": "Test_version",
+    "catalog": {
+      "id": "Test_id",
+      "integrationKey": "TEST_KEY"
+    },
+    "integrationKey": "TEST_KEY"
+  },
+  "height": "123.0",
+  "depth": "123.0",
+  "width": "123.0",
+  "integrationKey": "TEST_KEY"
+}

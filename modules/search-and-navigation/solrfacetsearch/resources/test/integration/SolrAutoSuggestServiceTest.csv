@@ -1,0 +1,5 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+INSERT_UPDATE SolrIndex;facetSearchConfig(name)[unique=true];indexedType(identifier)[unique=true];qualifier[unique=true];active
+;testFacetSearchConfig${testId};testIndexedType${testId};1;true

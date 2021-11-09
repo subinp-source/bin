@@ -1,0 +1,44 @@
+<div
+    class="se-component-item"
+    data-ng-class="{
+        &quot;se-component-item--disabled&quot;: $ctrl.componentDisabled,
+        &quot;smartEditComponent&quot;: !$ctrl.componentDisabled }"
+    data-smartedit-component-id="{{$ctrl.componentInfo.uid}}"
+    data-smartedit-component-uuid="{{$ctrl.componentInfo.uuid}}"
+    data-smartedit-component-type="{{$ctrl.componentInfo.typeCode}}"
+>
+    <div
+        class="se-component-item--disabled-overlay"
+        data-ng-if="$ctrl.componentDisabled"
+        data-y-popover
+        data-trigger="'hover'"
+        data-placement="'bottom'"
+        data-template="$ctrl.getTemplateInfoForNonCloneableComponent()"
+    ></div>
+    <div class="se-component-item--image">
+        <span class="sap-icon--card"></span>
+        <div data-ng-if="$ctrl.isSharedComponent">
+            <span class="se-component-item--image-shared--background"></span>
+            <span class="glyphicon glyphicon-link se-component-item--image-shared"></span>
+        </div>
+    </div>
+    <div class="se-component-item--details-container">
+        <div
+            class="se-component-item--details"
+            title="{{$ctrl.componentInfo.name}} - {{$ctrl.componentInfo.typeCode}}"
+        >
+            <div class="se-component-item--details-name">{{$ctrl.componentInfo.name}}</div>
+            <div class="se-component-item--details-type">{{$ctrl.componentInfo.typeCode}}</div>
+        </div>
+        <div
+            data-ng-if="!$ctrl.componentInfo.visible"
+            class="se-component-item--visibility"
+            data-y-popover
+            data-trigger="'hover'"
+            data-placement="'bottom'"
+            data-template-url="'componentInfoPopoverTemplate.html'"
+        >
+            <span class="hyicon hyicon-unpowered"></span>
+        </div>
+    </div>
+</div>

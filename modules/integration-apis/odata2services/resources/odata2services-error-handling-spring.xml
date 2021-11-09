@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+  -->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <alias name="defaultODataErrorCallback" alias="odataErrorCallback"/>
+    <bean id="defaultODataErrorCallback"
+          class="de.hybris.platform.odata2services.odata.errors.CustomODataExceptionAwareErrorCallback">
+        <property name="errorContextPopulators">
+            <list>
+                <bean class="de.hybris.platform.odata2services.odata.errors.ODataRuntimeApplicationExceptionContextPopulator"/>
+                <bean class="de.hybris.platform.odata2services.odata.errors.VirtualAttributeExecutionExceptionContextPopulator"/>
+                <bean class="de.hybris.platform.odata2services.odata.errors.IntegrationAttributeExceptionContextPopulator"/>
+                <bean class="de.hybris.platform.odata2services.odata.errors.PersistenceRuntimeApplicationExceptionContextPopulator"/>
+                <bean class="de.hybris.platform.odata2services.odata.errors.ODataExceptionContextPopulator">
+                    <property name="runtimeExceptionContextPopulator" ref="odataErrorCallback"/>
+                </bean>
+                <bean class="de.hybris.platform.odata2services.odata.errors.CannotCreateReferenceItemExceptionContextPopulator"/>
+                <bean class="de.hybris.platform.odata2services.odata.errors.ItemCreationExceptionContextPopulator"/>
+                <bean class="de.hybris.platform.odata2services.odata.errors.UnmodifiableAttributeExceptionContextPopulator"/>
+                <bean class="de.hybris.platform.odata2services.odata.errors.NonUniqueItemFoundExceptionContextPopulator"/>
+                <bean class="de.hybris.platform.odata2services.odata.errors.PathPayloadMismatchExceptionPopulator"/>
+                <bean class="de.hybris.platform.odata2services.odata.errors.MissingRequiredAttributeValueExceptionContextPopulator"/>
+                <bean class="de.hybris.platform.odata2services.odata.errors.MissingKeyReferencedAttributeValueExceptionContextPopulator" />
+                <bean class="de.hybris.platform.odata2services.odata.errors.MissingRequiredMapKeyValueExceptionContextPopulator"/>
+                <bean class="de.hybris.platform.odata2services.odata.errors.IntegrationKeyNestedFilteringNotSupportedExceptionPopulator" />
+                <bean class="de.hybris.platform.odata2services.odata.errors.FilterByVirtualAttributeNotSupportedExceptionContextPopulator"/>
+                <bean class="de.hybris.platform.odata2services.odata.errors.FilterByClassificationAttributeNotSupportedExceptionContextPopulator"/>
+                <bean class="de.hybris.platform.odata2services.odata.errors.LocaleNotSupportedExceptionContextPopulator"/>
+                <bean class="de.hybris.platform.odata2services.odata.errors.AttributeNotInIntegrationObjectExceptionContextPopulator"/>
+                <bean class="de.hybris.platform.odata2services.odata.errors.TypeAttributeDescriptorNotFoundExceptionContextPopulator"/>
+                <bean class="de.hybris.platform.odata2services.odata.errors.MissingRequiredKeyAttributeValueExceptionContextPopulator"/>
+                <bean class="de.hybris.platform.odata2services.odata.errors.MissingRequiredMapKeyValueExceptionContextPopulator"/>
+                <bean class="de.hybris.platform.odata2services.odata.errors.LocaleNotSupportedExceptionContextPopulator"/>
+                <bean class="de.hybris.platform.odata2services.odata.errors.OrderByIntegrationKeyNotSupportedExceptionContextPopulator"/>
+                <bean class="de.hybris.platform.odata2services.odata.errors.OrderByNestedAttributeNotSupportedExceptionContextPopulator"/>
+                <bean class="de.hybris.platform.odata2services.odata.errors.OrderByVirtualAttributeNotSupportedExceptionContextPopulator"/>
+                <bean class="de.hybris.platform.odata2services.odata.errors.TypeAccessPermissionExceptionErrorPopulator" />
+                <bean class="de.hybris.platform.odata2services.odata.errors.InstanceCreationOfAbstractTypeExceptionContextPopulator"/>
+                <bean class="de.hybris.platform.odata2services.odata.errors.ModelRemovalExceptionContextPopulator"/>
+            </list>
+        </property>
+    </bean>
+</beans>

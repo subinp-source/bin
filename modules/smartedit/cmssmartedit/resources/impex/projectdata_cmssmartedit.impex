@@ -1,0 +1,18 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+INSERT_UPDATE ComponentTypeGroups2ComponentType;source(code)[unique=true];target(code)[unique=true]
+;wide;SimpleResponsiveBannerComponent
+;wide;CMSLinkComponent
+;wide;SimpleBannerComponent
+;wide;BannerComponent
+;narrow;SimpleResponsiveBannerComponent
+;narrow;CMSLinkComponent
+;narrow;SimpleBannerComponent
+;narrow;BannerComponent
+;minicart;NavigationComponent
+;headerlinks;NavigationComponent
+;navigation;CategoryNavigationComponent
+;navigation;BreadcrumbComponent
+;footer;FooterNavigationComponent

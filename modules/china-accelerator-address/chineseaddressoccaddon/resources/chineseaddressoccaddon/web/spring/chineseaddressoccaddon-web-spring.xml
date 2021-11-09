@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+           
+    <context:component-scan base-package="de.hybris.platform.chineseaddressoccaddon.controllers"/>
+
+	<!-- Cache manager for addon -->
+
+	<alias name="defaultChineseaddressoccaddonCacheManager" alias="chineseaddressoccaddonCacheManager"/>
+	<bean id="defaultChineseaddressoccaddonCacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+		<property name="cacheManager" ref="chineseaddressoccaddonEhcache"/>
+	</bean>
+
+	<alias name="defaultChineseaddressoccaddonEhcache" alias="chineseaddressoccaddonEhcache"/>
+	<bean id="defaultChineseaddressoccaddonEhcache" class="de.hybris.platform.webservicescommons.cache.TenantAwareEhCacheManagerFactoryBean">
+		<property name="cacheNamePrefix" value="chineseaddressoccaddonCache_"/>
+		<property name="configLocation" value="/WEB-INF/cache/addons/chineseaddressoccaddon/ehcache.xml"/>
+	</bean>
+
+	<bean depends-on="wsCacheManagerList" parent="listMergeDirective">
+		<property name="add" ref="chineseaddressoccaddonCacheManager"/>
+	</bean>
+	
+	<bean parent="fieldMapper">
+		<property name="sourceClass" value="de.hybris.platform.addressfacades.data.CityData" />
+		<property name="destClass" value="de.hybris.platform.chinesecommercewebservicescommons.dto.CityWsDTO"/>
+		<property name="fieldMapping">
+			<map>
+				<entry key="code" value="isocode"/>
+				<entry key="name" value="name"/>
+			</map>
+		</property>
+	</bean>
+	
+	
+	<bean parent="fieldMapper">
+		<property name="sourceClass" value="de.hybris.platform.addressfacades.data.DistrictData" />
+		<property name="destClass" value="de.hybris.platform.chinesecommercewebservicescommons.dto.DistrictWsDTO"/>
+		<property name="fieldMapping">
+			<map>
+				<entry key="code" value="isocode"/>
+				<entry key="name" value="name"/>
+			</map>
+		</property>
+	</bean>
+	
+
+	<bean parent="fieldSetLevelMapping" >
+		<property name="dtoClass"
+		          value="de.hybris.platform.commercewebservicescommons.dto.user.AddressWsDTO"/>
+		<property name="levelMapping">
+			<map>
+				<entry key="DEFAULT"
+				       value="city,cityDistrict"/>
+				<entry key="FULL"
+				       value="city,cityDistrict" />
+			</map>
+		</property>
+	</bean>
+
+	<!-- Validators -->
+	<alias name="chineseCellphoneValidator" alias="cellphoneValidator"/>
+	<bean id="chineseCellphoneValidator" class="de.hybris.platform.chineseaddressoccaddon.validator.ChineseCellphoneValidator" >
+		<constructor-arg ref="chineseAddressFacade" />
+	</bean>
+
+	<alias name="defaultChineseAddressValidator" alias="chineseAddressValidator"/>
+	<bean id="defaultChineseAddressValidator" class="de.hybris.platform.webservicescommons.validators.CompositeValidator">
+		<property name="validators">
+			<list>
+				<ref bean="commonAddressValidator"/>
+				<bean class="de.hybris.platform.webservicescommons.validators.FieldNotEmptyOrTooLongValidator">
+					<property name="fieldPath" value="region.isocode"/>
+					<property name="maxLength" value="7"/>
+				</bean>
+				<bean class="de.hybris.platform.webservicescommons.validators.FieldNotEmptyOrTooLongValidator">
+					<property name="fieldPath" value="district"/>
+					<property name="maxLength" value="255"/>
+				</bean>
+				<ref bean="cellphoneValidator"/>
+			</list>
+		</property>
+	</bean>
+</beans>

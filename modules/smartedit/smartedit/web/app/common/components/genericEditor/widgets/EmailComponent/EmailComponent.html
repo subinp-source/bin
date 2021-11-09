@@ -1,0 +1,11 @@
+<input
+    [ngClass]="{ 'is-invalid': widget.field.hasErrors, 'is-warning': widget.field.hasWarnings }"
+    [placeholder]="(widget.field.tooltip || '') | translate"
+    [attr.name]="widget.field.qualifier"
+    [disabled]="widget.isFieldDisabled()"
+    [(ngModel)]="widget.model[widget.qualifier]"
+    [max]="255"
+    type="email"
+    id="{{widget.field.qualifier}}-shortstring"
+    class="fd-form-control"
+/>

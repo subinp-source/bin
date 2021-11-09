@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="OOTB" importedAsReadOnly="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/b2bpunchout/lib" recursive="true" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="b2bacceleratorfacades" exported="" />
+    <orderEntry type="module" module-name="platform" exported="" />
+  </component>
+</module>

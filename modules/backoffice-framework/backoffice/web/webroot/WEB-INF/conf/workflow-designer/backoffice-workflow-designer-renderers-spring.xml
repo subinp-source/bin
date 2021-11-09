@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<alias name="defaultLinkCreator" alias="linkCreator"/>
+	<bean id="defaultLinkCreator" class="com.hybris.backoffice.workflow.designer.persistence.LinkCreator"/>
+
+	<alias name="defaultInitialElementLocationProvider" alias="initialElementLocationProvider"/>
+	<bean id="defaultInitialElementLocationProvider"
+		  class="com.hybris.backoffice.workflow.designer.handler.create.DefaultInitialElementLocationProvider"/>
+
+	<alias name="defaultWorkflowDesignerNetworkPopulator" alias="workflowDesignerNetworkPopulator"/>
+	<bean id="defaultWorkflowDesignerNetworkPopulator"
+		  class="com.hybris.backoffice.workflow.designer.WorkflowDesignerNetworkPopulator">
+		<property name="initialElementLocationProvider" ref="initialElementLocationProvider"/>
+		<property name="modelService" ref="modelService"/>
+		<property name="workflowNetworkEntitiesFactory" ref="workflowNetworkEntitiesFactory"/>
+	</bean>
+
+	<alias name="defaultWorkflowNetworkEntitiesFactory" alias="workflowNetworkEntitiesFactory"/>
+	<bean id="defaultWorkflowNetworkEntitiesFactory"
+		  class="com.hybris.backoffice.workflow.designer.DefaultWorkflowNetworkEntitiesFactory">
+		<property name="networkEntityRenderers" ref="networkEntityRenderers"/>
+	</bean>
+
+	<alias name="defaultNetworkEntityRenderers" alias="networkEntityRenderers"/>
+	<util:list id="defaultNetworkEntityRenderers"
+			   value-type="com.hybris.backoffice.workflow.designer.renderer.NetworkEntityRenderer">
+		<ref bean="actionStartRenderer"/>
+		<ref bean="actionNormalRenderer"/>
+		<ref bean="actionEndRenderer"/>
+		<ref bean="decisionRenderer"/>
+		<ref bean="andRenderer"/>
+	</util:list>
+
+	<!-- DTO renderers -->
+	<alias name="defaultShapesVelocityEngine" alias="shapesVelocityEngine"/>
+	<bean id="defaultShapesVelocityEngine"
+		  class="com.hybris.backoffice.workflow.designer.renderer.VelocityEngineProvider"
+		  factory-method="provideVelocityEngine"/>
+
+	<alias name="defaultSvgShapesRenderer" alias="svgShapesRenderer"/>
+	<bean id="defaultSvgShapesRenderer"
+		  class="com.hybris.backoffice.workflow.designer.renderer.SvgShapesRenderer">
+		<property name="velocityEngine" ref="shapesVelocityEngine"/>
+	</bean>
+
+	<alias name="defaultBase64ImageEncoder" alias="base64ImageEncoder"/>
+	<bean id="defaultBase64ImageEncoder"
+		  class="com.hybris.backoffice.workflow.designer.renderer.Base64ImageEncoder"/>
+
+	<alias name="defaultAbstractActionRenderer" alias="abstractActionRenderer"/>
+	<bean id="defaultAbstractActionRenderer" abstract="true"
+		  class="com.hybris.backoffice.workflow.designer.renderer.AbstractActionRenderer">
+		<property name="keyGenerator" ref="networkEntityKeyGenerator"/>
+		<property name="nodeTypeService" ref="workflowDesignerNodeTypeService"/>
+		<property name="workflowEntityImageCreator" ref="workflowEntityImageCreator"/>
+		<property name="labelService" ref="labelService" />
+	</bean>
+
+	<alias name="defaultActionStartRenderer" alias="actionStartRenderer"/>
+	<bean id="defaultActionStartRenderer"
+		  class="com.hybris.backoffice.workflow.designer.renderer.ActionStartRenderer" parent="abstractActionRenderer">
+	</bean>
+
+	<alias name="defaultActionEndRenderer" alias="actionEndRenderer"/>
+	<bean id="defaultActionEndRenderer" class="com.hybris.backoffice.workflow.designer.renderer.ActionEndRenderer" parent="abstractActionRenderer">
+	</bean>
+
+	<alias name="defaultWorkflowEntityImageCreator" alias="workflowEntityImageCreator"/>
+	<bean id="defaultWorkflowEntityImageCreator"
+		  class="com.hybris.backoffice.workflow.designer.renderer.DefaultWorkflowEntityImageCreator">
+		<property name="base64ImageEncoder" ref="base64ImageEncoder"/>
+		<property name="svgShapesRenderer" ref="svgShapesRenderer"/>
+	</bean>
+
+	<alias name="defaultActionNormalRenderer" alias="actionNormalRenderer"/>
+	<bean id="defaultActionNormalRenderer"
+		  class="com.hybris.backoffice.workflow.designer.renderer.ActionNormalRenderer" parent="abstractActionRenderer">
+		<property name="nodeLabelMapper" ref="cutNodeLabelMapper"/>
+	</bean>
+
+	<alias name="defaultDecisionRenderer" alias="decisionRenderer"/>
+	<bean id="defaultDecisionRenderer"
+		  class="com.hybris.backoffice.workflow.designer.renderer.DecisionRenderer">
+		<property name="keyGenerator" ref="networkEntityKeyGenerator"/>
+		<property name="nodeTypeService" ref="workflowDesignerNodeTypeService"/>
+		<property name="workflowEntityImageCreator" ref="workflowEntityImageCreator"/>
+	</bean>
+
+	<alias name="defaultAndRenderer" alias="andRenderer"/>
+	<bean id="defaultAndRenderer"
+		  class="com.hybris.backoffice.workflow.designer.renderer.AndRenderer">
+		<property name="keyGenerator" ref="networkEntityKeyGenerator"/>
+	</bean>
+
+	<alias name="defaultCutNodeLabelMapper" alias="cutNodeLabelMapper"/>
+	<bean id="defaultCutNodeLabelMapper"
+		  class="com.hybris.backoffice.workflow.designer.renderer.CutNodeLabelMapper"/>
+</beans>

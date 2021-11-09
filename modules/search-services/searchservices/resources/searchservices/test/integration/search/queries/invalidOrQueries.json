@@ -1,0 +1,40 @@
+[
+	{
+		"testId": 1,
+		"description": "'or' query without queries",
+		"data": {
+			"type": "or"
+		}
+	},
+	{
+		"testId": 2,
+		"description": "'or' query with empty queries",
+		"data": {
+			"type": "or",
+			"queries": []
+		}
+	},
+	{
+		"testId": 3,
+		"description": "'or' query with null query",
+		"data": {
+			"type": "or",
+			"queries": [
+				null
+			]
+		}
+	},
+	{
+		"testId": 4,
+		"description": "'or' query with invalid query",
+		"data": {
+			"type": "or",
+			"queries": [
+				{
+					"type": "matchTerm",
+					"value": "GREEN"
+				}
+			]
+		}
+	}
+]

@@ -1,0 +1,251 @@
+/*
+ * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ */
+package de.hybris.platform.acceleratorservices.storefront.util;
+
+import de.hybris.platform.category.model.CategoryModel;
+import de.hybris.platform.cms2.model.site.CMSSiteModel;
+import de.hybris.platform.cms2.servicelayer.services.CMSSiteService;
+import de.hybris.platform.commerceservices.category.CommerceCategoryService;
+import de.hybris.platform.commerceservices.helper.ProductAndCategoryHelper;
+import de.hybris.platform.commerceservices.search.facetdata.BreadcrumbData;
+import de.hybris.platform.core.model.product.ProductModel;
+import de.hybris.platform.product.ProductService;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Required;
+
+
+/**
+ * Resolves page title according to page, search text, current category or product
+ */
+public class PageTitleResolver
+{
+	protected static final String TITLE_WORD_SEPARATOR = " | ";
+
+	private ProductService productService;
+	private CommerceCategoryService commerceCategoryService;
+	private CMSSiteService cmsSiteService;
+	private ProductAndCategoryHelper productAndCategoryHelper;
+
+	protected CommerceCategoryService getCommerceCategoryService()
+	{
+		return commerceCategoryService;
+	}
+
+	@Required
+	public void setCommerceCategoryService(final CommerceCategoryService commerceCategoryService)
+	{
+		this.commerceCategoryService = commerceCategoryService;
+	}
+
+	protected ProductService getProductService()
+	{
+		return productService;
+	}
+
+	@Required
+	public void setProductService(final ProductService productService)
+	{
+		this.productService = productService;
+	}
+
+	protected CMSSiteService getCmsSiteService()
+	{
+		return cmsSiteService;
+	}
+
+	@Required
+	public void setCmsSiteService(final CMSSiteService cmsSiteService)
+	{
+		this.cmsSiteService = cmsSiteService;
+	}
+
+	protected ProductAndCategoryHelper getProductAndCategoryHelper()
+	{
+		return productAndCategoryHelper;
+	}
+
+	@Required
+	public void setProductAndCategoryHelper(final ProductAndCategoryHelper productAndCategoryHelper)
+	{
+		this.productAndCategoryHelper = productAndCategoryHelper;
+	}
+
+	public String resolveContentPageTitle(final String title)
+	{
+		final CMSSiteModel currentSite = getCmsSiteService().getCurrentSite();
+
+		final StringBuilder builder = new StringBuilder();
+		if (!StringUtils.isEmpty(title))
+		{
+			builder.append(title).append(TITLE_WORD_SEPARATOR);
+		}
+		builder.append(currentSite.getName());
+		return StringEscapeUtils.escapeHtml(builder.toString());
+	}
+
+	public String resolveHomePageTitle(final String title)
+	{
+		final CMSSiteModel currentSite = getCmsSiteService().getCurrentSite();
+		final StringBuilder builder = new StringBuilder();
+		builder.append(currentSite.getName());
+
+		if (!StringUtils.isEmpty(title))
+		{
+			builder.append(TITLE_WORD_SEPARATOR).append(title);
+		}
+
+		return StringEscapeUtils.escapeHtml(builder.toString());
+	}
+
+	public <STATE> String resolveSearchPageTitle(final String searchText, final List<BreadcrumbData<STATE>> appliedFacets)
+	{
+		final CMSSiteModel currentSite = getCmsSiteService().getCurrentSite();
+
+		final StringBuilder builder = new StringBuilder();
+		if (!StringUtils.isEmpty(searchText))
+		{
+			builder.append(searchText).append(TITLE_WORD_SEPARATOR);
+		}
+		for (final BreadcrumbData pathElement : appliedFacets)
+		{
+			builder.append(pathElement.getFacetValueName()).append(TITLE_WORD_SEPARATOR);
+		}
+		builder.append(currentSite.getName());
+		return StringEscapeUtils.escapeHtml(builder.toString());
+	}
+
+	public String resolveCategoryPageTitle(final CategoryModel category)
+	{
+		final StringBuilder stringBuilder = new StringBuilder();
+		final List<CategoryModel> categories = this.getCategoryPath(category);
+		for (final CategoryModel c : categories)
+		{
+			stringBuilder.append(c.getName()).append(TITLE_WORD_SEPARATOR);
+		}
+
+		final CMSSiteModel currentSite = getCmsSiteService().getCurrentSite();
+		if (currentSite != null)
+		{
+			stringBuilder.append(currentSite.getName());
+		}
+
+		return StringEscapeUtils.escapeHtml(stringBuilder.toString());
+	}
+
+	/**
+	 * creates page title for given code and facets
+	 */
+	public <STATE> String resolveCategoryPageTitle(final CategoryModel category, final List<BreadcrumbData<STATE>> appliedFacets)
+	{
+		final CMSSiteModel currentSite = getCmsSiteService().getCurrentSite();
+
+		final String name = category.getName();
+		final StringBuilder builder = new StringBuilder();
+		if (CollectionUtils.isEmpty(appliedFacets))
+		{
+			if (!StringUtils.isEmpty(name))
+			{
+				builder.append(name).append(TITLE_WORD_SEPARATOR);
+			}
+			builder.append(currentSite.getName());
+		}
+		else
+		{
+			for (final BreadcrumbData pathElement : appliedFacets)
+			{
+				builder.append(pathElement.getFacetValueName()).append(TITLE_WORD_SEPARATOR);
+			}
+			builder.append(currentSite.getName());
+		}
+
+		return StringEscapeUtils.escapeHtml(builder.toString());
+	}
+
+	/**
+	 * creates page title for given code and facets
+	 */
+	public <STATE> String resolveCategoryPageTitle(final String categoryCode, final List<BreadcrumbData<STATE>> appliedFacets)
+	{
+		final CategoryModel category = getCommerceCategoryService().getCategoryForCode(categoryCode);
+		return resolveCategoryPageTitle(category, appliedFacets);
+	}
+
+	/**
+	 * creates page title for given code
+	 */
+	public String resolveProductPageTitle(final ProductModel product)
+	{
+		// Lookup categories
+		final List<CategoryModel> path = getCategoryPath(getProductAndCategoryHelper().getBaseProduct(product));
+		// Lookup site (or store)
+		final CMSSiteModel currentSite = getCmsSiteService().getCurrentSite();
+
+		// Construct page title
+		final String identifier = product.getName();
+		final String articleNumber = product.getCode();
+		final String productName = StringUtils.isEmpty(identifier) ? articleNumber : identifier;
+		final StringBuilder builder = new StringBuilder(productName);
+
+		for (final CategoryModel pathElement : path)
+		{
+			builder.append(TITLE_WORD_SEPARATOR).append(pathElement.getName());
+		}
+
+		if (currentSite != null)
+		{
+			builder.append(TITLE_WORD_SEPARATOR).append(currentSite.getName());
+		}
+
+		return StringEscapeUtils.escapeHtml(builder.toString());
+	}
+
+	public String resolveProductPageTitle(final String productCode)
+	{
+		// Lookup the product
+		final ProductModel product = getProductService().getProductForCode(productCode);
+		return resolveProductPageTitle(product);
+	}
+
+	protected List<CategoryModel> getCategoryPath(final ProductModel product)
+	{
+		final CategoryModel category = getPrimaryCategoryForProduct(product);
+		if (category != null)
+		{
+			return getCategoryPath(category);
+		}
+		return Collections.emptyList();
+	}
+
+	protected List<CategoryModel> getCategoryPath(final CategoryModel category)
+	{
+		final Collection<List<CategoryModel>> paths = getCommerceCategoryService().getPathsForCategory(category);
+		// Return first - there will always be at least 1
+		final List<CategoryModel> cat2ret = paths.iterator().next();
+		Collections.reverse(cat2ret);
+		return cat2ret;
+	}
+
+	protected CategoryModel getPrimaryCategoryForProduct(final ProductModel product)
+	{
+		// Get the first super-category from the product that isn't a classification category
+		for (final CategoryModel category : product.getSupercategories())
+		{
+			if (getProductAndCategoryHelper().isValidProductCategory(category))
+			{
+				return category;
+			}
+		}
+		return null;
+	}
+
+
+
+}

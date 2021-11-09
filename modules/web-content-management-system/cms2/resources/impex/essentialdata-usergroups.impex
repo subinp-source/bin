@@ -1,0 +1,30 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+INSERT_UPDATE Language;isocode[unique=true];active
+;en;true
+
+INSERT_UPDATE UserGroup;UID[unique=true];groups(uid)[mode=append];locname[lang=en];description
+;basecmsmanagergroup;employeegroup;Base CMS Manager Group;Provides read access to product catalog
+;cmsmanagergroup;basecmsmanagergroup;CMS Manager Group;
+;cmsworkflowgroup;basecmsmanagergroup;CMS Workflow Group;
+;cmseditorgroup;cmsworkflowgroup;CMS Editor Group;
+;cmsreviewergroup;cmsworkflowgroup;CMS Reviewer Group;
+;cmspublishergroup;cmsworkflowgroup;CMS Publisher Group;
+;basecmstranslatorgroup;cmsworkflowgroup;Base CMS Translator Group
+;cmstranslatorgroup;cmsworkflowgroup;CMS Translator Group
+;cmstranslatorgroup-DE;cmsworkflowgroup;CMS German Tanslator Group;
+;cmstranslatorgroup-ZH;cmsworkflowgroup;CMS Chinese Translator Group;
+;cmstranslatorgroup-JP;cmsworkflowgroup;CMS Japanese Translator Group;
+;cmsworkflowreadonlygroup;cmsworkflowgroup;CMS Workflow Read Only Group
+
+INSERT_UPDATE Employee;UID[unique=true];name;description;groups(uid)[mode=append];sessionLanguage(isocode);
+;cmsmanager;CMS Manager;CMS Manager;cmsmanagergroup;en;
+;cmseditor;CMS Editor;CMS Editor;;en;
+;cmspublisher;CMS Publisher;CMS Publisher;;en;
+;cmsreviewer;CMS Reviewer;CMS Reviewer;;en;
+;cmstranslator;CMS Translator;CMS Translator;;en;
+;cmstranslator-Annette;CMS Translator;CMS Translator;;en;
+;cmstranslator-Seb;CMS Translator;CMS Translator;;en;
+

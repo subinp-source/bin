@@ -1,0 +1,734 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widgets.xsd">
+
+    <widget-extension widgetId="backofficeMainSlot">
+        <widget id="integrationBackofficeToolPerspective" widgetDefinitionId="com.hybris.cockpitng.borderlayout"
+                slotId="perspectives" title="integrationUITool.name" template="false"
+                access="backofficeintegrationadministrator, backofficeintegrationagent">
+            <widget id="integrationBackofficeExplorerTree"
+                    widgetDefinitionId="com.hybris.cockpitng.widgets.common.explorertree"
+                    slotId="leftSlot" template="false">
+                <widget id="integrationTypeCodeExtractor"
+                        widgetDefinitionId="com.hybris.cockpitng.widgets.common.propextractor"
+                        slotId="cockpitWidgetChildrenInvisible">
+                    <widget id="integrationTypeCodeRouter"
+                            widgetDefinitionId="com.hybris.cockpitng.widgets.common.multiplexer"
+                            slotId="cockpitWidgetChildrenInvisible">
+                        <setting key="editMode_expression" type="String">#root eq 'Modeling'</setting>
+                        <setting key="inboundChannelConfiguration_expression" type="String">#root eq
+                            'InboundChannelConfiguration'
+                        </setting>
+                        <setting key="accessRights_expression" type="String">#root eq 'AccessRights'</setting>
+                        <virtual-sockets>
+                            <output id="editMode" type="java.lang.String"/>
+                            <output id="inboundChannelConfiguration" type="java.lang.String"/>
+                            <output id="accessRights" type="java.lang.String"/>
+                        </virtual-sockets>
+                    </widget>
+                    <setting key="expression" type="String">#this instanceof T(com.hybris.cockpitng.tree.node.TypeNode)
+                        ? #this.code : #this.id
+                    </setting>
+                    <setting key="socketDataType_$T" type="String">java.lang.String</setting>
+                    <virtual-sockets/>
+                </widget>
+                <setting key="explorerTreeConfigCtx" type="String">integrationbackoffice-explorer-tree</setting>
+                <setting key="widgetStyleClass" type="String">integrationbackoffice-explorer-tree</setting>
+                <setting key="allowFilteringEntries" type="Boolean">true</setting>
+                <virtual-sockets/>
+            </widget>
+
+            <widget id="integrationBackofficeViewSwitcher" widgetDefinitionId="com.hybris.backoffice.viewswitcher"
+                    slotId="centerSlot" template="false">
+                <widget id="integrationBackofficeModelingModeContainer"
+                        widgetDefinitionId="com.hybris.cockpitng.borderlayout"
+                        slotId="views" template="false" title="Edit Mode">
+                    <widget id="integrationBackofficeModelingToolbar"
+                            widgetDefinitionId="com.hybris.backoffice.widgets.toolbar"
+                            slotId="headerSlot" template="false">
+                        <widget id="integrationBackofficeModelingToolbarDropDown"
+                                widgetDefinitionId="de.hybris.platform.integrationbackoffice.widgets.IntegrationObjectSelector"
+                                slotId="toolbarBeforeSlot" template="false">
+                            <setting key="actions" type="String">integrationbackoffice-modeling-actions</setting>
+                            <setting key="configuration.authority.enabled" type="Boolean">true</setting>
+                            <virtual-sockets>
+                                <output id="integrationbackoffice.actions.addClassificationClassAction.success"
+                                        type="java.lang.String"/>
+                            </virtual-sockets>
+                        </widget>
+                        <widget id="integrationBackofficeClassificationFlowContextCreator"
+                                widgetDefinitionId="com.hybris.cockpitng.widgets.common.propextractor"
+                                slotId="cockpitWidgetChildrenInvisible">
+                            <setting key="expression" type="String">{
+                                TYPE_CODE:#root
+                                , configurableFlowConfigCtx:'integration-object-add-classification-class-wizard'
+                                }
+                            </setting>
+                            <setting key="socketDataType_$T" type="String">java.util.Map</setting>
+                            <virtual-sockets/>
+                            <virtual-sockets/>
+                        </widget>
+                        <widget id="integrationBackofficeModelingToolbarButtonPanel"
+                                widgetDefinitionId="de.hybris.platform.integrationbackoffice.widgets.IntegrationObjectButtonPanel"
+                                slotId="toolbarAfterSlot" template="false">
+                            <virtual-sockets/>
+                        </widget>
+                        <widget id="createIntegrationObjectModal"
+                                widgetDefinitionId="de.hybris.platform.integrationbackoffice.widgets.CreateIntegrationObjectModal"
+                                slotId="cockpitWidgetChildrenInvisible" template="true"
+                                title="Create Integration Object">
+                            <instance-settings socketEventRoutingMode="LAST_USED">
+                                <create onInit="false" reuseExisting="true">
+                                    <all-incoming-events/>
+                                </create>
+                                <close>
+                                    <outgoing-events>
+                                        <socket-event id="createButtonClick"/>
+                                    </outgoing-events>
+                                </close>
+                                <select onInit="false">
+                                    <all-incoming-events/>
+                                </select>
+                            </instance-settings>
+                            <virtual-sockets/>
+                        </widget>
+                        <widget id="integrationBackofficeMetadataViewerModal"
+                                widgetDefinitionId="de.hybris.platform.integrationbackoffice.widgets.MetadataViewerModal"
+                                slotId="cockpitWidgetChildrenInvisible" template="true"
+                                title="Integration Object Metadata">
+                            <instance-settings socketEventRoutingMode="LAST_USED">
+                                <create onInit="false" reuseExisting="true">
+                                    <all-incoming-events/>
+                                </create>
+                                <close/>
+                                <select onInit="false">
+                                    <all-incoming-events/>
+                                </select>
+                            </instance-settings>
+                            <virtual-sockets/>
+                        </widget>
+                        <widget id="cloneIntegrationObjectModal"
+                                widgetDefinitionId="de.hybris.platform.integrationbackoffice.widgets.CloneIntegrationObjectModal"
+                                slotId="cockpitWidgetChildrenInvisible" template="true"
+                                title="Clone Integration Object">
+                            <instance-settings socketEventRoutingMode="LAST_USED">
+                                <create onInit="false" reuseExisting="true">
+                                    <all-incoming-events/>
+                                </create>
+                                <close>
+                                    <outgoing-events>
+                                        <socket-event id="confirmButtonClick"/>
+                                    </outgoing-events>
+                                </close>
+                                <select onInit="false">
+                                    <all-incoming-events/>
+                                </select>
+                            </instance-settings>
+                            <virtual-sockets/>
+                        </widget>
+                        <widget id="itemTypeMatchIOIModal"
+                                widgetDefinitionId="de.hybris.platform.integrationbackoffice.widgets.ItemTypeMatchIOIModal"
+                                slotId="cockpitWidgetChildrenInvisible" template="true"
+                                title="Item Type Match Restriction">
+                            <instance-settings socketEventRoutingMode="LAST_USED">
+                                <create onInit="false" reuseExisting="true">
+                                    <all-incoming-events/>
+                                </create>
+                                <close>
+                                    <outgoing-events>
+                                        <socket-event id="saveButtonItemTypeMatch"/>
+                                    </outgoing-events>
+                                </close>
+                                <select onInit="false">
+                                    <all-incoming-events/>
+                                </select>
+                            </instance-settings>
+                            <virtual-sockets/>
+                        </widget>
+                        <widget id="createVirtualAttributeModal"
+                                widgetDefinitionId="de.hybris.platform.integrationbackoffice.widgets.CreateVirtualAttributeModal"
+                                slotId="cockpitWidgetChildrenInvisible" template="true"
+                                title="Create Virtual Attribute">
+                            <instance-settings socketEventRoutingMode="LAST_USED">
+                                <create onInit="false" reuseExisting="true">
+                                    <all-incoming-events/>
+                                </create>
+                                <close>
+                                    <outgoing-events>
+                                        <socket-event id="createButtonClick"/>
+                                    </outgoing-events>
+                                </close>
+                                <select onInit="false">
+                                    <all-incoming-events/>
+                                </select>
+                            </instance-settings>
+                            <virtual-sockets/>
+                        </widget>
+                        <setting key="widgetStyleClass" type="String">y-toolbar yw-integrationbackoffice-toolbar
+                        </setting>
+                        <setting key="widgetStyleAttribute" type="String">background-color:white;</setting>
+                        <virtual-sockets/>
+                    </widget>
+                    <widget id="integrationBackofficeModelingModeWidget"
+                            widgetDefinitionId="de.hybris.platform.integrationbackoffice.widgets.IntegrationObjectEditorContainer"
+                            slotId="centerSlot" template="false">
+                        <virtual-sockets/>
+                        <widget id="integrationBackofficeModelingTree"
+                                widgetDefinitionId="de.hybris.platform.integrationbackoffice.widgets.IntegrationObjectEditorTree"
+                                slotId="treeSlot" template="false"/>
+                        <widget id="integrationBackofficeModelingListbox"
+                                widgetDefinitionId="de.hybris.platform.integrationbackoffice.widgets.IntegrationObjectEditorListbox"
+                                slotId="listboxSlot" template="false"/>
+                        <widget id="integrationObjectItemAttributeDetailsModal"
+                                widgetDefinitionId="de.hybris.platform.integrationbackoffice.widgets.AttributeDetailsModal"
+                                slotId="cockpitWidgetChildrenInvisible" template="true"
+                                title="Attribute Details">
+                            <instance-settings socketEventRoutingMode="LAST_USED">
+                                <create onInit="false" reuseExisting="true">
+                                    <all-incoming-events/>
+                                </create>
+                                <select onInit="false">
+                                    <all-incoming-events/>
+                                </select>
+                            </instance-settings>
+                            <virtual-sockets/>
+                        </widget>
+                        <widget id="integrationObjectItemClassificationAttributeDetailsModal"
+                                widgetDefinitionId="de.hybris.platform.integrationbackoffice.widgets.ClassificationAttributeDetailsModal"
+                                slotId="cockpitWidgetChildrenInvisible" template="true"
+                                title="Classification Attribute Details">
+                            <instance-settings socketEventRoutingMode="LAST_USED">
+                                <create onInit="false" reuseExisting="true">
+                                    <all-incoming-events/>
+                                </create>
+                                <select onInit="false">
+                                    <all-incoming-events/>
+                                </select>
+                            </instance-settings>
+                            <virtual-sockets/>
+                        </widget>
+                        <widget id="integrationObjectItemVirtualAttributeDetailsModal"
+                                widgetDefinitionId="de.hybris.platform.integrationbackoffice.widgets.VirtualAttributeDetailsModal"
+                                slotId="cockpitWidgetChildrenInvisible" template="true"
+                                title="Virtual Attribute Details">
+                            <instance-settings socketEventRoutingMode="LAST_USED">
+                                <create onInit="false" reuseExisting="true">
+                                    <all-incoming-events/>
+                                </create>
+                                <select onInit="false">
+                                    <all-incoming-events/>
+                                </select>
+                            </instance-settings>
+                            <virtual-sockets/>
+                        </widget>
+                    </widget>
+                    <widget id="integrationObjectItemRenameAttributeModal"
+                            widgetDefinitionId="de.hybris.platform.integrationbackoffice.widgets.RenameAttributeModal"
+                            slotId="cockpitWidgetChildrenInvisible" template="true"
+                            title="Rename Attribute">
+                        <instance-settings socketEventRoutingMode="LAST_USED">
+                            <create onInit="false" reuseExisting="true">
+                                <all-incoming-events/>
+                            </create>
+                            <close>
+                                <outgoing-events>
+                                    <socket-event id="confirmButtonClick"/>
+                                </outgoing-events>
+                            </close>
+                            <select onInit="false">
+                                <all-incoming-events/>
+                            </select>
+                        </instance-settings>
+                        <virtual-sockets/>
+                    </widget>
+                    <widget id="integrationObjectItemRetypeAttributeModal"
+                            widgetDefinitionId="de.hybris.platform.integrationbackoffice.widgets.RetypeAttributeModal"
+                            slotId="cockpitWidgetChildrenInvisible" template="true"
+                            title="Change Attribute Type">
+                        <instance-settings socketEventRoutingMode="LAST_USED">
+                            <create onInit="false" reuseExisting="true">
+                                <all-incoming-events/>
+                            </create>
+                            <close>
+                                <outgoing-events>
+                                    <socket-event id="confirmButtonClick"/>
+                                </outgoing-events>
+                            </close>
+                            <select onInit="false">
+                                <all-incoming-events/>
+                            </select>
+                        </instance-settings>
+                        <virtual-sockets/>
+                    </widget>
+                    <setting key="northCollapsible" type="Boolean">false</setting>
+                    <setting key="northSplittable" type="Boolean">false</setting>
+                    <setting key="northHeight" type="String">60px</setting>
+                    <setting key="westDisabled" type="Boolean">true</setting>
+                    <setting key="northDisabled" type="Boolean">false</setting>
+                    <setting key="eastDisabled" type="Boolean">true</setting>
+                    <virtual-sockets/>
+                </widget>
+                <widget id="inboundChannelConfigurationContainer"
+                        widgetDefinitionId="com.hybris.cockpitng.collapsiblecontainer"
+                        slotId="views">
+                    <widget id="inboundChannelConfigurationSearchEngine"
+                            widgetDefinitionId="com.hybris.cockpitng.widgets.common.advancedsearchengine"
+                            slotId="cockpitWidgetChildrenInvisible">
+                        <virtual-sockets/>
+                    </widget>
+                    <widget id="inboundChannelConfigurationSearchCondition"
+                            widgetDefinitionId="com.hybris.cockpitng.advancedsearch"
+                            slotId="top">
+                        <setting key="disableSubtypesCheckbox" type="Boolean">true</setting>
+                        <setting key="disableAdvancedSearchToolbar" type="Boolean">true</setting>
+                        <setting key="isNestedObjectCreationDisabled" type="Boolean">true</setting>
+                        <setting key="disableSimpleSearch" type="Boolean">true</setting>
+                        <virtual-sockets/>
+                    </widget>
+                    <widget id="inboundChannelConfigurationSearchResult"
+                            widgetDefinitionId="com.hybris.cockpitng.collectionBrowser"
+                            slotId="center">
+                        <setting key="maxCharsInCell" type="Integer">80</setting>
+                        <setting key="socketDataType_$T" type="String">de.hybris.platform.inboundservices.model.InboundChannelConfigurationModel</setting>
+                    </widget>
+                    <widget id="inboundChannelConfigurationDetails"
+                            widgetDefinitionId="com.hybris.cockpitng.backoffice.defaultEditorArea"
+                            slotId="bottom">
+                        <setting key="socketDataType_$T" type="String">de.hybris.platform.inboundservices.model.InboundChannelConfigurationModel</setting>
+                        <setting key="editorAreaConfigCtx" type="String">integration-editor-area</setting>
+                    </widget>
+                    <setting key="topPanelCollapsed">true</setting>
+                </widget>
+                <widget id="integrationBackofficeAccessRightsContainer"
+                        widgetDefinitionId="com.hybris.cockpitng.borderlayout"
+                        slotId="views" template="false" title="Access Rights">
+                    access="backofficeintegrationadministrator">
+                    <widget id="integrationBackofficeAccessRightsToolbar"
+                            widgetDefinitionId="com.hybris.backoffice.widgets.toolbar"
+                            slotId="headerSlot" template="false">
+                        <widget id="integrationBackofficeAccessRightsToolbarDropDown"
+                                widgetDefinitionId="de.hybris.platform.integrationbackoffice.widgets.IntegrationObjectSelector"
+                                slotId="toolbarBeforeSlot" template="false">
+                            <setting key="configuration.authority.enabled" type="Boolean">true</setting>
+                            <virtual-sockets>
+                            </virtual-sockets>
+                        </widget>
+                        <setting key="widgetStyleClass" type="String">y-toolbar yw-integrationbackoffice-toolbar
+                        </setting>
+                        <setting key="widgetStyleAttribute" type="String">background-color:white;</setting>
+                        <virtual-sockets/>
+                    </widget>
+                    <widget id="integrationBackofficeAccessRightsWidget"
+                            widgetDefinitionId="de.hybris.platform.integrationbackoffice.widgets.IntegrationObjectAccessRights"
+                            slotId="centerSlot" template="false">
+                        <widget id="integrationBackofficeAccessRightsMatrixWidget"
+                                widgetDefinitionId="com.hybris.cockpitng.borderlayout"
+                                slotId="detailsPane" template="false">
+                            <widget id="integrationBackofficeAccessRightsMatrixWidget_permissionManager"
+                                    widgetDefinitionId="com.hybris.backoffice.widgets.permissionmanagement"
+                                    slotId="cockpitWidgetChildrenInvisible" template="false">
+                                <setting key="widgetStyleAttribute" value="" type="String"/>
+                                <setting key="widgetStyleClass" value="" type="String"/>
+                                <setting key="principal_id_attribute" value="uid" type="String"/>
+                                <setting key="type_typeCode" type="String">ComposedType</setting>
+                                <setting key="principal_typeCode" type="String">Principal</setting>
+                                <setting key="type_id_attribute" type="String">code</setting>
+                                <virtual-sockets/>
+                            </widget>
+                            <widget id="integrationBackofficeAccessRightsMatrixWidget_centerSlotContent"
+                                    widgetDefinitionId="com.hybris.cockpitng.collapsiblecontainer" slotId="centerSlot"
+                                    template="false">
+                                <setting key="centerHeight" value="120px" type="java.lang.String"/>
+                                <setting key="topCaption"
+                                         value="com.hybris.cockpitng.backoffice.permissionmanagementgroup.filter.context"
+                                         type="java.lang.String"/>
+                                <setting key="thirdSectionDisabled" type="Boolean" value="true"/>
+                                <widget id="integrationBackofficeAccessRightsMatrixWidget_widgetFilterTypeOrPrincipal"
+                                        widgetDefinitionId="com.hybris.cockpitng.textsearch" slotId="center"
+                                        template="false"/>
+                                <widget id="integrationBackofficeAccessRightsMatrixWidget_typePermissions"
+                                        widgetDefinitionId="com.hybris.cockpitng.collectionBrowser" slotId="bottom"
+                                        template="false">
+                                    <setting key="widgetStyleAttribute" value="" type="String"/>
+                                    <setting key="colConfigCtxCode" value="permissionManagementTypes" type="String"/>
+                                    <setting key="collectionBrowserConfigCtx"
+                                             value="permissionManagementTypesCollectionBrowser" type="String"/>
+                                    <setting key="actionSlotComponentId" value="permissionManagementlistviewActions"
+                                             type="String"/>
+                                    <setting key="itemRenderer" value="permissionManagementListViewRenderer"
+                                             type="String"/>
+                                    <setting key="widgetStyleClass" value="" type="String"/>
+                                    <setting key="socketDataType_$T" type="String">
+                                        com.hybris.cockpitng.dataaccess.facades.permissions.impl.DefaultPermissionInfo
+                                    </setting>
+                                    <virtual-sockets>
+                                        <output id="com.hybris.cockpitng.action.create.permission.success"
+                                                type="java.lang.Object" visibility="default"/>
+                                        <output id="com.hybris.cockpitng.action.delete.permission.success"
+                                                type="java.util.Collection" visibility="default"/>
+                                        <input id="permissionInfoType" type="java.lang.String" visibility="default"/>
+                                    </virtual-sockets>
+                                </widget>
+                            </widget>
+                            <setting key="widgetStyleAttribute" value="" type="String"/>
+                            <setting key="eastDisabled" value="true" type="Boolean"/>
+                            <setting key="southDisabled" value="true" type="Boolean"/>
+                            <setting key="widgetStyleClass" value="" type="String"/>
+                            <setting key="southCollapsible" value="false" type="Boolean"/>
+                            <setting key="westDisabled" value="true" type="Boolean"/>
+                            <virtual-sockets/>
+                        </widget>
+                        <setting key="socketDataType_$T" type="String">
+                            de.hybris.platform.core.model.type.ComposedTypeModel
+                        </setting>
+                        <virtual-sockets/>
+                    </widget>
+                    <setting key="northCollapsible" type="Boolean">false</setting>
+                    <setting key="northSplittable" type="Boolean">false</setting>
+                    <setting key="northHeight" type="String">60px</setting>
+                    <setting key="westDisabled" type="Boolean">true</setting>
+                    <setting key="northDisabled" type="Boolean">false</setting>
+                    <setting key="eastDisabled" type="Boolean">true</setting>
+                    <virtual-sockets/>
+                </widget>
+                <setting key="defaultView" type="String">integrationBackofficeModelingModeContainer</setting>
+                <setting key="initialView" type="String">integrationBackofficeModelingModeContainer</setting>
+                <setting key="selectEditModeContainer_eval" type="String"
+                         value="'integrationBackofficeModelingModeContainer'"/>
+                <setting key="selectInboundChannelConfigurationContainer_eval" type="String"
+                         value="'inboundChannelConfigurationContainer'"/>
+                <setting key="selectIntegrationBackofficeAccessRightsContainer_eval" type="String"
+                         value="'integrationBackofficeAccessRightsContainer'"/>
+                <setting key="widgetStyleClass" type="String"/>
+                <virtual-sockets>
+                    <input id="selectEditModeContainer" type="java.lang.Object"/>
+                    <input id="selectInboundChannelConfigurationContainer" type="java.lang.Object"/>
+                    <input id="selectIntegrationBackofficeAccessRightsContainer" type="java.lang.Object"/>
+                </virtual-sockets>
+            </widget>
+
+            <setting key="perspectiveImageUrl" value="cng/images/integrationbackoffice_perspective_icon.svg"
+                     type="String"/>
+            <setting key="eastDisabled" type="Boolean">true</setting>
+        </widget>
+
+    </widget-extension>
+
+    <widget-extension widgetId="configurableFlow">
+        <virtual-sockets>
+            <output id="selectedClassificationAttributes" type="java.lang.Object"/>
+        </virtual-sockets>
+    </widget-extension>
+
+    <widget-extension widgetId="backofficePerspectiveChooser">
+        <!-- OAuth registration action button widget -->
+        <widget id="RegisterIOWithOAuthCredential"
+                widgetDefinitionId="de.hybris.platform.integrationbackoffice.widgets.RegisterIOWithOAuthCredential"
+                slotId="cockpitWidgetChildrenInvisible"
+                template="true"
+                title="de.hybris.platform.integrationbackoffice.widgets.RegisterIOWithOAuthCredential.title">
+
+            <instance-settings socketEventRoutingMode="LAST_USED">
+                <create onInit="false" reuseExisting="true">
+                    <all-incoming-events/>
+                </create>
+                <close>
+                    <all-outgoing-events/>
+                </close>
+                <select onInit="false">
+                    <all-incoming-events/>
+                </select>
+            </instance-settings>
+            <virtual-sockets>
+                <input id="iccOAuth" type="de.hybris.platform.inboundservices.model.InboundChannelConfigurationModel"/>
+                <output id="iccOAuthOutput" type="java.lang.Object"/>
+            </virtual-sockets>
+        </widget>
+
+        <!-- Basic registration action button widget -->
+        <widget id="RegisterIOWithBasicCredential"
+                widgetDefinitionId="de.hybris.platform.integrationbackoffice.widgets.RegisterIOWithBasicCredential"
+                slotId="cockpitWidgetChildrenInvisible"
+                template="true"
+                title="de.hybris.platform.integrationbackoffice.widgets.RegisterIOWithBasicCredential.title">
+
+            <instance-settings socketEventRoutingMode="LAST_USED">
+                <create onInit="false" reuseExisting="true">
+                    <all-incoming-events/>
+                </create>
+                <close>
+                    <outgoing-events>
+                        <socket-event id="cancel"/>
+                        <socket-event id="iccBasicOutput"/>
+                    </outgoing-events>
+                </close>
+                <select onInit="false">
+                    <all-incoming-events/>
+                </select>
+            </instance-settings>
+            <virtual-sockets>
+                <input id="iccBasic" type="de.hybris.platform.inboundservices.model.InboundChannelConfigurationModel"/>
+                <output id="iccBasicOutput" type="java.lang.Object"/>
+            </virtual-sockets>
+        </widget>
+    </widget-extension>
+
+    <!-- register ICC with OAuth credential -->
+    <widget-connection sourceWidgetId="STUB_com.hybris.backoffice.widgets.actions.RegisterIntegrationObjectAction"
+                       outputId="iccOAuth"
+                       targetWidgetId="RegisterIOWithOAuthCredential"
+                       inputId="iccOAuth"/>
+
+    <!-- register ICC with Basic credential -->
+    <widget-connection sourceWidgetId="STUB_com.hybris.backoffice.widgets.actions.RegisterIntegrationObjectAction"
+                       outputId="iccBasic"
+                       targetWidgetId="RegisterIOWithBasicCredential"
+                       inputId="iccBasic"/>
+
+    <!--View switcher related-->
+    <widget-connection sourceWidgetId="integrationBackofficeExplorerTree" outputId="nodeSelected"
+                       targetWidgetId="integrationTypeCodeExtractor" inputId="genericInput"/>
+    <widget-connection sourceWidgetId="integrationTypeCodeExtractor" outputId="genericOutput"
+                       targetWidgetId="integrationTypeCodeRouter" inputId="element"/>
+
+    <widget-connection sourceWidgetId="integrationTypeCodeRouter" outputId="editMode"
+                       targetWidgetId="integrationBackofficeViewSwitcher" inputId="selectEditModeContainer"/>
+
+    <widget-connection sourceWidgetId="integrationTypeCodeRouter" outputId="inboundChannelConfiguration"
+                       targetWidgetId="integrationBackofficeViewSwitcher"
+                       inputId="selectInboundChannelConfigurationContainer"/>
+    <widget-connection sourceWidgetId="integrationTypeCodeRouter" outputId="inboundChannelConfiguration"
+                       targetWidgetId="inboundChannelConfigurationContainer" inputId="activate"/>
+
+    <widget-connection sourceWidgetId="integrationTypeCodeRouter" outputId="accessRights"
+                       targetWidgetId="integrationBackofficeViewSwitcher"
+                       inputId="selectIntegrationBackofficeAccessRightsContainer"/>
+    <widget-connection sourceWidgetId="integrationTypeCodeRouter" outputId="integrationBackofficeAccessRights"
+                       targetWidgetId="integrationBackofficeAccessRightsContainer" inputId="activate"/>
+
+    <!--Population-->
+    <widget-connection sourceWidgetId="integrationBackofficeModelingModeWidget" outputId="loadIO"
+                       targetWidgetId="integrationBackofficeModelingTree" inputId="loadIO"/>
+    <widget-connection sourceWidgetId="integrationBackofficeModelingTree" outputId="selectedItem"
+                       targetWidgetId="integrationBackofficeModelingListbox" inputId="selectedItem"/>
+    <widget-connection sourceWidgetId="integrationBackofficeModelingListbox" outputId="checkForStructuredType"
+                       targetWidgetId="integrationBackofficeModelingTree" inputId="checkForStructuredType"/>
+    <widget-connection sourceWidgetId="integrationBackofficeModelingModeWidget" outputId="selectedItem"
+                       targetWidgetId="integrationBackofficeModelingListbox" inputId="selectedItem"/>
+
+    <!--Create Tree-->
+    <widget-connection sourceWidgetId="integrationBackofficeModelingModeWidget" outputId="createTree"
+                       targetWidgetId="integrationBackofficeModelingTree" inputId="createTree"/>
+
+    <!--Create Dynamic Tree Node-->
+    <widget-connection sourceWidgetId="integrationBackofficeModelingModeWidget" outputId="createDynamicTreeNode"
+                       targetWidgetId="integrationBackofficeModelingTree" inputId="createDynamicTreeNode"/>
+
+    <!--Refresh button-->
+    <widget-connection sourceWidgetId="integrationBackofficeModelingToolbarButtonPanel" outputId="refreshButtonClick"
+                       targetWidgetId="integrationBackofficeModelingToolbarDropDown" inputId="receiveRefresh"/>
+
+    <!--Save button-->
+    <widget-connection sourceWidgetId="integrationBackofficeModelingToolbarButtonPanel" outputId="saveButtonClick"
+                       targetWidgetId="integrationBackofficeModelingModeWidget" inputId="saveEvent"/>
+    <widget-connection sourceWidgetId="integrationBackofficeModelingModeWidget" outputId="enableSaveButton"
+                       targetWidgetId="integrationBackofficeModelingToolbarButtonPanel"
+                       inputId="enableSaveButtonEvent"/>
+    <widget-connection sourceWidgetId="integrationBackofficeModelingListbox" outputId="enableSaveButton"
+                       targetWidgetId="integrationBackofficeModelingToolbarButtonPanel"
+                       inputId="enableSaveButtonEvent"/>
+
+    <!--Filter State-->
+    <widget-connection sourceWidgetId="integrationBackofficeModelingToolbarButtonPanel" outputId="filterStateOutput"
+                       targetWidgetId="integrationBackofficeModelingModeWidget" inputId="filterStateChangeInput"/>
+    <widget-connection sourceWidgetId="integrationBackofficeModelingModeWidget" outputId="filterStateChangeOutput"
+                       targetWidgetId="integrationBackofficeModelingToolbarButtonPanel" inputId="filterStateInput"/>
+
+    <!--Integration object selector-->
+    <widget-connection sourceWidgetId="integrationBackofficeModelingToolbarDropDown" outputId="comboBoxOnChange"
+                       targetWidgetId="integrationBackofficeModelingModeWidget"
+                       inputId="receiveIntegrationObjectComboBox"/>
+    <widget-connection sourceWidgetId="integrationBackofficeModelingToolbarDropDown" outputId="comboBoxOnChange"
+                       targetWidgetId="integrationBackofficeAccessRightsWidget"
+                       inputId="receiveIntegrationObjectComboBox"/>
+    <widget-connection sourceWidgetId="integrationBackofficeModelingToolbarDropDown" outputId="comboBoxOnChange"
+                       targetWidgetId="integrationBackofficeModelingToolbarButtonPanel"
+                       inputId="receiveIntegrationObjectComboBox"/>
+
+    <widget-connection sourceWidgetId="integrationBackofficeModelingTree" outputId="selectedItem"
+                       targetWidgetId="integrationBackofficeModelingToolbarDropDown" inputId="selectedItem"/>
+
+    <widget-connection sourceWidgetId="integrationBackofficeAccessRightsToolbarDropDown" outputId="comboBoxOnChange"
+                       targetWidgetId="integrationBackofficeModelingToolbarDropDown" inputId="receiveSyncNotice"/>
+    <widget-connection sourceWidgetId="integrationBackofficeModelingToolbarDropDown" outputId="comboBoxOnChange"
+                       targetWidgetId="integrationBackofficeAccessRightsToolbarDropDown" inputId="receiveSyncNotice"/>
+
+    <!--Delete action-->
+    <widget-connection sourceWidgetId="STUB_integrationbackoffice.actions.deleteIntegrationObjectAction"
+                       outputId="requestDelete"
+                       targetWidgetId="integrationBackofficeModelingModeWidget" inputId="receiveDelete"/>
+
+    <!--Create action-->
+    <widget-connection sourceWidgetId="STUB_integrationbackoffice.actions.createIntegrationObjectAction"
+                       outputId="createIntegrationObjectPerform"
+                       targetWidgetId="createIntegrationObjectModal" inputId="showModal"/>
+
+    <!--Metadata action-->
+    <widget-connection sourceWidgetId="STUB_integrationbackoffice.actions.integrationObjectMetadataViewerAction"
+                       outputId="openMetadataModal"
+                       targetWidgetId="integrationBackofficeModelingModeWidget" inputId="metadataModalEvent"/>
+
+    <!--Create Virtual Attribute action-->
+    <widget-connection sourceWidgetId="STUB_integrationbackoffice.actions.createVirtualAttributeAction"
+                       outputId="createVirtualAttributePerform"
+                       targetWidgetId="integrationBackofficeModelingModeWidget" inputId="openVirtualAttributeModelEvent"/>
+    <widget-connection sourceWidgetId="integrationBackofficeModelingModeWidget"
+                       outputId="openVirtualAttributeModelEvent"
+                       targetWidgetId="createVirtualAttributeModal" inputId="openVirtualAttributeModelEvent"/>
+    <widget-connection sourceWidgetId="createVirtualAttributeModal"
+                       outputId="createButtonClick"
+                       targetWidgetId="integrationBackofficeModelingModeWidget" inputId="addVirtualAttributeEvent"/>
+
+    <!--ItemType action-->
+    <widget-connection sourceWidgetId="STUB_integrationbackoffice.actions.itemTypeMatchIOIAction"
+                       outputId="openItemTypeIOIModal"
+                       targetWidgetId="integrationBackofficeModelingModeWidget" inputId="openItemTypeIOIModalEvent"/>
+
+    <!--ItemType (modal)-->
+    <widget-connection sourceWidgetId="integrationBackofficeModelingModeWidget" outputId="openItemTypeIOIModal"
+                       targetWidgetId="itemTypeMatchIOIModal" inputId="openItemTypeIOIModal"/>
+
+    <!--ItemTypeMatch (Save)-->
+    <widget-connection sourceWidgetId="itemTypeMatchIOIModal" outputId="saveButtonItemTypeMatch"
+                       targetWidgetId="integrationBackofficeModelingModeWidget" inputId="saveButtonItemTypeMatch"/>
+
+    <!--Clone action-->
+    <widget-connection sourceWidgetId="STUB_integrationbackoffice.actions.cloneIntegrationObjectAction"
+                       outputId="cloneIntegrationObjectPerform"
+                       targetWidgetId="integrationBackofficeModelingModeWidget" inputId="receiveClone"/>
+    <widget-connection sourceWidgetId="integrationBackofficeModelingModeWidget" outputId="openCloneModal"
+                       targetWidgetId="cloneIntegrationObjectModal" inputId="showModal"/>
+
+    <!--Audit Report action-->
+    <widget-connection sourceWidgetId="STUB_integrationbackoffice.actions.integrationObjectAuditReportDownloadAction"
+                       outputId="requestAuditReport"
+                       targetWidgetId="integrationBackofficeModelingModeWidget" inputId="auditReportEvent"/>
+
+    <!--Create button click (in modal)-->
+    <widget-connection sourceWidgetId="createIntegrationObjectModal" outputId="createButtonClick"
+                       targetWidgetId="integrationBackofficeModelingModeWidget" inputId="createIntegrationObjectEvent"/>
+
+    <!--Clone confirm button click (in modal)-->
+    <widget-connection sourceWidgetId="cloneIntegrationObjectModal" outputId="confirmButtonClick"
+                       targetWidgetId="integrationBackofficeModelingModeWidget" inputId="cloneIntegrationObjectEvent"/>
+
+    <!--Metadata viewer (modal)-->
+    <widget-connection sourceWidgetId="integrationBackofficeModelingModeWidget" outputId="openMetadataViewer"
+                       targetWidgetId="integrationBackofficeMetadataViewerModal" inputId="showModal"/>
+    <widget-connection sourceWidgetId="integrationBackofficeModelingModeWidget" outputId="sendActionState"
+                       targetWidgetId="STUB_integrationbackoffice.actions.integrationObjectMetadataViewerAction"
+                       inputId="actionState"/>
+
+    <!--Attribute details-->
+    <widget-connection sourceWidgetId="integrationBackofficeModelingListbox" outputId="openAttributeDetails"
+                       targetWidgetId="integrationObjectItemAttributeDetailsModal" inputId="showModal"/>
+
+    <!--Classification Attribute details-->
+    <widget-connection sourceWidgetId="integrationBackofficeModelingListbox"
+                       outputId="openClassificationAttributeDetails"
+                       targetWidgetId="integrationObjectItemClassificationAttributeDetailsModal" inputId="showModal"/>
+
+    <!--Virtual Attribute details-->
+    <widget-connection sourceWidgetId="integrationBackofficeModelingListbox" outputId="openVirtualAttributeDetails"
+                       targetWidgetId="integrationObjectItemVirtualAttributeDetailsModal" inputId="showModal"/>
+
+    <!--Rename attribute-->
+    <widget-connection sourceWidgetId="integrationBackofficeModelingListbox" outputId="openRenameAttribute"
+                       targetWidgetId="integrationObjectItemRenameAttributeModal" inputId="showModal"/>
+    <widget-connection sourceWidgetId="integrationObjectItemRenameAttributeModal" outputId="confirmButtonClick"
+                       targetWidgetId="integrationBackofficeModelingListbox" inputId="renameAttributeEvent"/>
+    <widget-connection sourceWidgetId="integrationBackofficeModelingListbox" outputId="renameTreeNodes"
+                       targetWidgetId="integrationBackofficeModelingTree" inputId="renameTreeNodes"/>
+    <widget-connection sourceWidgetId="integrationBackofficeModelingListbox" outputId="autoSelectAttributeRelation"
+                       targetWidgetId="integrationBackofficeModelingTree" inputId="autoSelectAttributeRelation"/>
+
+    <!--Retype attribute-->
+    <widget-connection sourceWidgetId="integrationBackofficeModelingListbox" outputId="openRetypeAttribute"
+                       targetWidgetId="integrationObjectItemRetypeAttributeModal" inputId="showModal"/>
+    <widget-connection sourceWidgetId="integrationObjectItemRetypeAttributeModal" outputId="confirmButtonClick"
+                       targetWidgetId="integrationBackofficeModelingListbox" inputId="retypeAttributeEvent"/>
+    <widget-connection sourceWidgetId="integrationBackofficeModelingListbox" outputId="retypeTreeNodes"
+                       targetWidgetId="integrationBackofficeModelingTree" inputId="retypeTreeNodes"/>
+
+    <!--Add classification class action-->
+    <widget-connection sourceWidgetId="integrationBackofficeModelingToolbarDropDown"
+                       outputId="integrationbackoffice.actions.addClassificationClassAction.success"
+                       targetWidgetId="integrationBackofficeClassificationFlowContextCreator" inputId="genericInput"/>
+    <widget-connection sourceWidgetId="integrationBackofficeClassificationFlowContextCreator"
+                       outputId="genericOutput" targetWidgetId="configurableFlow" inputId="context"/>
+    <widget-connection sourceWidgetId="configurableFlow" outputId="selectedClassificationAttributes"
+                       targetWidgetId="integrationBackofficeModelingModeWidget"
+                       inputId="addClassificationAttributesEvent"/>
+
+    <!-- Inbound Channel Configuration -->
+    <widget-connection sourceWidgetId="integrationTypeCodeRouter" outputId="inboundChannelConfiguration"
+                       targetWidgetId="inboundChannelConfigurationSearchCondition" inputId="type"/>
+    <widget-connection sourceWidgetId="inboundChannelConfigurationSearchCondition" outputId="searchData"
+                       targetWidgetId="inboundChannelConfigurationSearchEngine" inputId="searchData"/>
+    <widget-connection sourceWidgetId="inboundChannelConfigurationSearchEngine" outputId="pageable"
+                       targetWidgetId="inboundChannelConfigurationSearchResult" inputId="pageable"/>
+    <widget-connection sourceWidgetId="inboundChannelConfigurationSearchResult" outputId="selectedItem"
+                       targetWidgetId="inboundChannelConfigurationDetails" inputId="inputObject"/>
+
+    <!-- Access Rights  -->
+    <widget-connection sourceWidgetId="integrationBackofficeAccessRightsToolbarDropDown" outputId="comboBoxOnChange"
+                       targetWidgetId="integrationBackofficeAccessRightsWidget"
+                       inputId="receiveIntegrationObjectComboBox"/>
+    <widget-connection sourceWidgetId="integrationBackofficeAccessRightsToolbarDropDown" outputId="comboBoxOnChange"
+                       targetWidgetId="integrationBackofficeModelingModeWidget"
+                       inputId="receiveIntegrationObjectComboBox"/>
+    <widget-connection sourceWidgetId="integrationBackofficeAccessRightsWidget" outputId="sendClickedItem"
+                       targetWidgetId="integrationBackofficeAccessRightsMatrixWidget_permissionManager"
+                       inputId="inputObject"/>
+    <widget-connection sourceWidgetId="integrationBackofficeAccessRightsWidget" outputId="principalPermissionInfos"
+                       targetWidgetId="integrationBackofficeAccessRightsMatrixWidget_typePermissions"
+                       inputId="reset"/>
+    <widget-connection sourceWidgetId="integrationBackofficeAccessRightsMatrixWidget" outputId="inputObjectInputForward"
+                       targetWidgetId="integrationBackofficeAccessRightsMatrixWidget_permissionManager"
+                       inputId="inputObject"/>
+    <widget-connection sourceWidgetId="integrationBackofficeAccessRightsMatrixWidget_permissionManager"
+                       outputId="typePermissionInfos"
+                       targetWidgetId="integrationBackofficeAccessRightsMatrixWidget_typePermissions"
+                       inputId="pageable"/>
+    <widget-connection sourceWidgetId="integrationBackofficeAccessRightsMatrixWidget_permissionManager"
+                       outputId="principalPermissionInfos"
+                       targetWidgetId="integrationBackofficeAccessRightsMatrixWidget_typePermissions"
+                       inputId="pageable"/>
+    <widget-connection sourceWidgetId="integrationBackofficeAccessRightsMatrixWidget_typePermissions"
+                       outputId="selectedItem"
+                       targetWidgetId="integrationBackofficeAccessRightsMatrixWidget_permissionManager"
+                       inputId="permissionInfo"/>
+    <widget-connection sourceWidgetId="integrationBackofficeAccessRightsMatrixWidget_typePermissions"
+                       outputId="com.hybris.cockpitng.action.create.permission.success"
+                       targetWidgetId="integrationBackofficeAccessRightsMatrixWidget_permissionManager"
+                       inputId="createPermission"/>
+    <widget-connection sourceWidgetId="integrationBackofficeAccessRightsMatrixWidget_typePermissions"
+                       outputId="com.hybris.cockpitng.action.delete.permission.success"
+                       targetWidgetId="integrationBackofficeAccessRightsMatrixWidget_permissionManager"
+                       inputId="removePermissions"/>
+    <widget-connection sourceWidgetId="integrationBackofficeAccessRightsMatrixWidget_permissionManager"
+                       outputId="permissionInfoType"
+                       targetWidgetId="integrationBackofficeAccessRightsMatrixWidget_typePermissions"
+                       inputId="permissionInfoType"/>
+    <widget-connection sourceWidgetId="integrationBackofficeAccessRightsMatrixWidget_widgetFilterTypeOrPrincipal"
+                       outputId="query" targetWidgetId="integrationBackofficeAccessRightsWidget"
+                       inputId="queryFromSearchBar"/>
+    <widget-connection sourceWidgetId="integrationBackofficeAccessRightsWidget"
+                       outputId="queryToPermissionManager"
+                       targetWidgetId="integrationBackofficeAccessRightsMatrixWidget_permissionManager"
+                       inputId="typeOrPrincipalFilter"/>
+
+</widgets>

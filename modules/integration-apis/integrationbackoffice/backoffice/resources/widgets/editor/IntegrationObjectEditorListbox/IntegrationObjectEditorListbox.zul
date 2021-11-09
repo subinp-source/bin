@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<widget xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.zkoss.org/2005/zul"
+        xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.hybris.com/schema/cockpitng/zul/zul.xsd"
+        height="100%"
+        width="100%">
+
+    <style src="${wr}/IntegrationObjectEditorListbox.css"/>
+
+    <listbox id="attributesListBox" multiple="true" checkmark="true" vflex="1"
+             sclass="yw-integrationbackoffice-generic-listbox yw-integrationbackoffice-editor-listbox"
+             emptyMessage="${labels.integrationbackoffice.editMode.columnFormat.noData}">
+        <listhead sizable="true">
+            <listheader width="30%" id="attributeNameListheader"
+                        label="${labels.integrationbackoffice.editMode.header.attributeName}" sort="auto"
+                        sortDirection="ascending"/>
+            <listheader width="30%" id="descriptionListheader"
+                        label="${labels.integrationbackoffice.editMode.header.description}" sort="auto"/>
+            <listheader width="15%" id="attributeStatus"
+                        label="${labels.integrationbackoffice.editMode.header.status}"/>
+            <listheader width="10%" label="${labels.integrationbackoffice.editMode.header.unique}"/>
+            <listheader width="10%" label="${labels.integrationbackoffice.editMode.header.autocreate}"/>
+            <listheader width="5%" label=""/>
+        </listhead>
+    </listbox>
+
+</widget>

@@ -1,0 +1,13 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+UPDATE Vendor;code[unique=true];name[lang=en]
+;vendor1;Powerful Computers
+;vendor2;Super Gadgets
+;vendor3;Better Home
+;vendor4;Your Beauties
+;vendor5;Mens Fashion
+;vendor6;Ladies Fashion
+;vendor7;Photo Gears
+;vendor8;Digital Life

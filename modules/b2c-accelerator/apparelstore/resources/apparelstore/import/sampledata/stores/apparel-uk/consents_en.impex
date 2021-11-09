@@ -1,0 +1,15 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+#
+# ImpEx for Consents for Electronics Store
+#
+
+# Language
+$lang=en
+
+$siteUid=apparel-uk
+
+UPDATE ConsentTemplate;id[unique=true];name[lang=$lang];description[lang=$lang];version[unique=true];baseSite(uid)[unique=true,default=$siteUid]
+;MARKETING_NEWSLETTER;"I approve to this sample consent";"This is a sample consent description that will need to be updated or replaced, based on the valid registration consent required.";0;;
+

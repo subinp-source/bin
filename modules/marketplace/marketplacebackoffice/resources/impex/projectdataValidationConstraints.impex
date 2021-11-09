@@ -1,0 +1,7 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+INSERT_UPDATE PatternConstraint;active[allownull=true];descriptor(enclosingType(code),qualifier);id[unique=true,allownull=true];message[lang=en];qualifier;severity(code,itemtype(code));target;type(code);regexp;flags(code);constraintGroups(id)
+;true;Vendor:code;vendorCodePattern;{type}.code is illegal: Only letters and numbers are allowed and no more than 50 characters long;code;ERROR:Severity;de.hybris.platform.ordersplitting.model.VendorModel;Vendor;^[A-Za-z0-9]{1,50}$;CASE_INSENSITIVE;defaultBackofficeValidationGroup
+$de.hybris.platform.core.Registry.getApplicationContext().getBean(de.hybris.platform.validation.services.ValidationService.class).reloadValidationEngine()

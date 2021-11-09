@@ -1,0 +1,35 @@
+/*
+ * Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+ */
+package de.hybris.platform.integrationbackoffice.widgets.actions;
+
+import com.hybris.cockpitng.actions.ActionContext;
+import com.hybris.cockpitng.actions.ActionResult;
+import com.hybris.cockpitng.actions.CockpitAction;
+import com.hybris.cockpitng.engine.impl.AbstractComponentWidgetAdapterAware;
+
+import de.hybris.platform.integrationbackoffice.widgets.editor.utility.EditorAccessRights;
+
+import javax.annotation.Resource;
+
+public final class CreateIntegrationObjectAction extends AbstractComponentWidgetAdapterAware
+		implements CockpitAction<String, String>
+{
+
+	@Resource
+	private EditorAccessRights editorAccessRights;
+
+	@Override
+	public ActionResult<String> perform(final ActionContext<String> ctx)
+	{
+		sendOutput("createIntegrationObjectPerform", "");
+		return new ActionResult<>(ActionResult.SUCCESS, "");
+	}
+
+	@Override
+	public boolean canPerform(ActionContext<String> ctx)
+	{
+		return editorAccessRights.isUserAdmin();
+	}
+
+}

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="OOTB" importedAsReadOnly="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/customer-interest/customerinterestsservices/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="acceleratorservices" exported="" />
+    <orderEntry type="module" module-name="notificationservices" exported="" />
+    <orderEntry type="module" module-name="platform" exported="" />
+  </component>
+</module>

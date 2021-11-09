@@ -1,0 +1,126 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+# -----------------------------------------------------------------------
+
+$preparedInstanceName = WorkflowInPreparedState
+$runningInstanceName = WorkflowInRunningState
+$abortedInstanceName = WorkflowInAbortedState
+$adhocStepName = Adhoc step;
+$adhocApprovalStepName = Approval;
+$adhocEndStepName = End
+$adhocTempateName = adhoctemplate
+$userName = userName
+
+INSERT_UPDATE Employee; UID[unique = true]; groups(uid)[default = 'admingroup'];
+                      ; $userName         ;
+
+INSERT_UPDATE WorkflowTemplate; code[unique = true]; owner(uid);
+                              ; adhoctemplate      ; $userName ;
+
+INSERT_UPDATE WorkflowActionTemplate; code[unique = true]    ; name[lang = en]; principalAssigned(User.uid); owner(User.uid); workflow(WorkflowTemplate.code); actionType(code);
+                                    ; $adhocStepName         ; Start          ; $userName                  ; $userName      ; $adhocTempateName              ; start           ;
+                                    ; $adhocApprovalStepName ; Approval       ; $userName                  ; $userName      ; $adhocTempateName              ; normal          ;
+                                    ; $adhocEndStepName      ; End            ; $userName                  ; $userName      ; $adhocTempateName              ; end             ;
+
+# Workflow in prepared state
+INSERT_UPDATE Workflow; code[unique = true]; job(code)     ; owner(uid); status(code); name[lang = en]       ; description[lang = en];
+                      ; yatfPreparedTest1  ; adhoctemplate ; $userName ; PAUSED     ; $preparedInstanceName ; Simple task           ;
+                      ; yatfPreparedTest2  ; adhoctemplate ; $userName ; PAUSED     ; $preparedInstanceName ; Simple task           ;
+                      ; yatfPreparedTest3  ; adhoctemplate ; $userName ; PAUSED     ; $preparedInstanceName ; Simple task           ;
+                      ; yatfPreparedTest4  ; adhoctemplate ; $userName ; PAUSED     ; $preparedInstanceName ; Simple task           ;
+                      ; yatfPreparedTest5  ; adhoctemplate ; $userName ; PAUSED     ; $preparedInstanceName ; Simple task           ;
+                      ; yatfPreparedTest6  ; adhoctemplate ; $userName ; PAUSED     ; $preparedInstanceName ; Simple task           ;
+
+INSERT_UPDATE WorkflowAction; code[unique = true]       ; status(code); actionType(code); principalAssigned(uid); workflow(code)    ; template(code); name[lang = en];
+                            ; yatfPreparedTestStart1    ; pending     ; start           ; $userName             ; yatfPreparedTest1 ; Adhoc step    ; Start          ;
+                            ; yatfPreparedTestApproval1 ; pending     ; normal          ; $userName             ; yatfPreparedTest1 ; Approval      ; Approval       ;
+                            ; yatfPreparedTestEnd1      ; pending     ; end             ; $userName             ; yatfPreparedTest1 ; End           ; End            ;
+
+                            ; yatfPreparedTestStart2    ; pending     ; start           ; $userName             ; yatfPreparedTest2 ; Adhoc step    ; Start          ;
+                            ; yatfPreparedTestApproval2 ; pending     ; normal          ; $userName             ; yatfPreparedTest2 ; Approval      ; Approval       ;
+                            ; yatfPreparedTestEnd2      ; pending     ; end             ; $userName             ; yatfPreparedTest2 ; End           ; End            ;
+
+                            ; yatfPreparedTestStart3    ; pending     ; start           ; $userName             ; yatfPreparedTest3 ; Adhoc step    ; Start          ;
+                            ; yatfPreparedTestApproval3 ; pending     ; normal          ; $userName             ; yatfPreparedTest3 ; Approval      ; Approval       ;
+                            ; yatfPreparedTestEnd3      ; pending     ; end             ; $userName             ; yatfPreparedTest3 ; End           ; End            ;
+
+                            ; yatfPreparedTestStart4    ; pending     ; start           ; $userName             ; yatfPreparedTest4 ; Adhoc step    ; Start          ;
+                            ; yatfPreparedTestApproval4 ; pending     ; normal          ; $userName             ; yatfPreparedTest4 ; Approval      ; Approval       ;
+                            ; yatfPreparedTestEnd4      ; pending     ; end             ; $userName             ; yatfPreparedTest4 ; End           ; End            ;
+
+                            ; yatfPreparedTestStart5    ; pending     ; start           ; $userName             ; yatfPreparedTest5 ; Adhoc step    ; Start          ;
+                            ; yatfPreparedTestApproval5 ; pending     ; normal          ; $userName             ; yatfPreparedTest5 ; Approval      ; Approval       ;
+                            ; yatfPreparedTestEnd5      ; pending     ; end             ; $userName             ; yatfPreparedTest5 ; End           ; End            ;
+
+                            ; yatfPreparedTestStart6    ; pending     ; start           ; $userName             ; yatfPreparedTest6 ; Adhoc step    ; Start          ;
+                            ; yatfPreparedTestApproval6 ; pending     ; normal          ; $userName             ; yatfPreparedTest6 ; Approval      ; Approval       ;
+                            ; yatfPreparedTestEnd6      ; pending     ; end             ; $userName             ; yatfPreparedTest6 ; End           ; End            ;
+
+# Workflow in running state
+INSERT_UPDATE Workflow; code[unique = true]; job(code)     ; owner(uid); status(code); name[lang = en]      ; description[lang = en];
+                      ; yatfRunningTest1   ; adhoctemplate ; $userName ; PAUSED     ; $runningInstanceName ; Simple task           ;
+                      ; yatfRunningTest2   ; adhoctemplate ; $userName ; PAUSED     ; $runningInstanceName ; Simple task           ;
+                      ; yatfRunningTest3   ; adhoctemplate ; $userName ; PAUSED     ; $runningInstanceName ; Simple task           ;
+                      ; yatfRunningTest4   ; adhoctemplate ; $userName ; PAUSED     ; $runningInstanceName ; Simple task           ;
+                      ; yatfRunningTest5   ; adhoctemplate ; $userName ; PAUSED     ; $runningInstanceName ; Simple task           ;
+                      ; yatfRunningTest6   ; adhoctemplate ; $userName ; PAUSED     ; $runningInstanceName ; Simple task           ;
+
+
+INSERT_UPDATE WorkflowAction; code[unique = true]      ; status(code); actionType(code); principalAssigned(uid); workflow(code)   ; template(code); name[lang = en];
+                            ; yatfRunningTestStart1    ; in_progress ; start           ; $userName             ; yatfRunningTest1 ; Adhoc step    ; Start          ;
+                            ; yatfRunningTestApproval1 ; pending     ; normal          ; $userName             ; yatfRunningTest1 ; Approval      ; Approval       ;
+                            ; yatfRunningTestEnd1      ; pending     ; end             ; $userName             ; yatfRunningTest1 ; End           ; End            ;
+
+                            ; yatfRunningTestStart2    ; in_progress ; start           ; $userName             ; yatfRunningTest2 ; Adhoc step    ; Start          ;
+                            ; yatfRunningTestApproval2 ; pending     ; normal          ; $userName             ; yatfRunningTest2 ; Approval      ; Approval       ;
+                            ; yatfRunningTestEnd2      ; pending     ; end             ; $userName             ; yatfRunningTest2 ; End           ; End            ;
+
+                            ; yatfRunningTestStart3    ; in_progress ; start           ; $userName             ; yatfRunningTest3 ; Adhoc step    ; Start          ;
+                            ; yatfRunningTestApproval3 ; pending     ; normal          ; $userName             ; yatfRunningTest3 ; Approval      ; Approval       ;
+                            ; yatfRunningTestEnd3      ; pending     ; end             ; $userName             ; yatfRunningTest3 ; End           ; End            ;
+
+                            ; yatfRunningTestStart4    ; in_progress ; start           ; $userName             ; yatfRunningTest4 ; Adhoc step    ; Start          ;
+                            ; yatfRunningTestApproval4 ; pending     ; normal          ; $userName             ; yatfRunningTest4 ; Approval      ; Approval       ;
+                            ; yatfRunningTestEnd4      ; pending     ; end             ; $userName             ; yatfRunningTest4 ; End           ; End            ;
+
+                            ; yatfRunningTestStart5    ; in_progress ; start           ; $userName             ; yatfRunningTest5 ; Adhoc step    ; Start          ;
+                            ; yatfRunningTestApproval5 ; pending     ; normal          ; $userName             ; yatfRunningTest5 ; Approval      ; Approval       ;
+                            ; yatfRunningTestEnd5      ; pending     ; end             ; $userName             ; yatfRunningTest5 ; End           ; End            ;
+
+                            ; yatfRunningTestStart6    ; in_progress ; start           ; $userName             ; yatfRunningTest6 ; Adhoc step    ; Start          ;
+                            ; yatfRunningTestApproval6 ; pending     ; normal          ; $userName             ; yatfRunningTest6 ; Approval      ; Approval       ;
+                            ; yatfRunningTestEnd6      ; pending     ; end             ; $userName             ; yatfRunningTest6 ; End           ; End            ;
+
+# Workflow in aborted state
+INSERT_UPDATE Workflow; code[unique = true]; job(code)     ; owner(uid); status(code); name[lang = en]      ; description[lang = en];
+                      ; yatfAbortedTest1   ; adhoctemplate ; $userName ; PAUSED     ; $abortedInstanceName ; Simple task           ;
+                      ; yatfAbortedTest2   ; adhoctemplate ; $userName ; PAUSED     ; $abortedInstanceName ; Simple task           ;
+                      ; yatfAbortedTest3   ; adhoctemplate ; $userName ; PAUSED     ; $abortedInstanceName ; Simple task           ;
+                      ; yatfAbortedTest4   ; adhoctemplate ; $userName ; PAUSED     ; $abortedInstanceName ; Simple task           ;
+                      ; yatfAbortedTest5   ; adhoctemplate ; $userName ; PAUSED     ; $abortedInstanceName ; Simple task           ;
+                      ; yatfAbortedTest6   ; adhoctemplate ; $userName ; PAUSED     ; $abortedInstanceName ; Simple task           ;
+
+INSERT_UPDATE WorkflowAction; code[unique = true]      ; status(code); actionType(code); principalAssigned(uid); workflow(code)   ; template(code); name[lang = en];
+                            ; yatfAbortedTestStart1    ; terminated  ; start           ; $userName             ; yatfAbortedTest1 ; Adhoc step    ; Start          ;
+                            ; yatfAbortedTestApproval1 ; terminated  ; normal          ; $userName             ; yatfAbortedTest1 ; Approval      ; Approval       ;
+                            ; yatfAbortedTestEnd1      ; terminated  ; end             ; $userName             ; yatfAbortedTest1 ; End           ; End            ;
+
+                            ; yatfAbortedTestStart2    ; terminated  ; start           ; $userName             ; yatfAbortedTest2 ; Adhoc step    ; Start          ;
+                            ; yatfAbortedTestApproval2 ; terminated  ; normal          ; $userName             ; yatfAbortedTest2 ; Approval      ; Approval       ;
+                            ; yatfAbortedTestEnd2      ; terminated  ; end             ; $userName             ; yatfAbortedTest2 ; End           ; End            ;
+
+                            ; yatfAbortedTestStart3    ; terminated  ; start           ; $userName             ; yatfAbortedTest3 ; Adhoc step    ; Start          ;
+                            ; yatfAbortedTestApproval3 ; terminated  ; normal          ; $userName             ; yatfAbortedTest3 ; Approval      ; Approval       ;
+                            ; yatfAbortedTestEnd3      ; terminated  ; end             ; $userName             ; yatfAbortedTest3 ; End           ; End            ;
+
+                            ; yatfAbortedTestStart4    ; terminated  ; start           ; $userName             ; yatfAbortedTest4 ; Adhoc step    ; Start          ;
+                            ; yatfAbortedTestApproval4 ; terminated  ; normal          ; $userName             ; yatfAbortedTest4 ; Approval      ; Approval       ;
+                            ; yatfAbortedTestEnd4      ; terminated  ; end             ; $userName             ; yatfAbortedTest4 ; End           ; End            ;
+
+                            ; yatfAbortedTestStart5    ; terminated  ; start           ; $userName             ; yatfAbortedTest5 ; Adhoc step    ; Start          ;
+                            ; yatfAbortedTestApproval5 ; terminated  ; normal          ; $userName             ; yatfAbortedTest5 ; Approval      ; Approval       ;
+                            ; yatfAbortedTestEnd5      ; terminated  ; end             ; $userName             ; yatfAbortedTest5 ; End           ; End            ;
+
+                            ; yatfAbortedTestStart6    ; terminated  ; start           ; $userName             ; yatfAbortedTest6 ; Adhoc step    ; Start          ;
+                            ; yatfAbortedTestApproval6 ; terminated  ; normal          ; $userName             ; yatfAbortedTest6 ; Approval      ; Approval       ;
+                            ; yatfAbortedTestEnd6      ; terminated  ; end             ; $userName             ; yatfAbortedTest6 ; End           ; End            ;

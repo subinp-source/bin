@@ -1,0 +1,19 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+# -----------------------------------------------------------------------
+
+$hidden_catalog_id = _boconfig
+$hidden_catalog_version = hidden
+
+
+INSERT_UPDATE Catalog;id[unique=true]     ;name[lang=en]
+                     ; $hidden_catalog_id ; Backoffice Configuraiton Catalog (do not use)
+
+INSERT_UPDATE CatalogVersion;version[unique=true];catalog(id)[unique=true];active;
+                            ;$hidden_catalog_version; $hidden_catalog_id ; false ;
+
+
+INSERT_UPDATE SearchRestriction;code[unique=true];active;generate;restrictedType(code);principal(uid);query
+                               ;Backoffice_Media_Catalog; true; false; Catalog; employeegroup; "{id} not in ('_boconfig')"
+                               ;Backoffice_Media_Catalog_Version; true; false; CatalogVersion; employeegroup; "{catalog} not in ({{SELECT {pk} FROM {Catalog*} where {id}='_boconfig'}})"
+                               ;Backoffice_Configuration_Media; true; false; Media; employeegroup; "{code} not in ('cockpitng-config', 'cockpitng-widgets-config')"

@@ -1,0 +1,11 @@
+<div class="se-breadcrumb">
+    <div data-ng-repeat="node in bc.breadcrumb" class="se-breadcrumb__node">
+        <div class="se-breadcrumb__info" data-ng-class="{'se-breadcrumb__info--last':$last}">
+            <span class="se-breadcrumb__info--level">{{node.formattedLevel | translate:node}}</span>
+            <span class="se-breadcrumb__info--name">{{node.name}}</span>
+        </div>
+        <div class="se-breadcrumb__divider" data-ng-if="$index < bc.breadcrumb.length - 1">
+            <span class="sap-icon--navigation-right-arrow"></span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+consignmenttrackingaddon.key=value
+
+# Specifies the location of the spring context file added automatically to the global platform application context.
+consignmenttrackingaddon.application-context=consignmenttrackingaddon-spring.xml
+
+yacceleratorstorefront.additionalWebSpringConfigs.consignmenttrackingaddon=classpath:/consignmenttrackingaddon/web/spring/consignmenttrackingaddon-web-spring.xml
+
+
+
+consignmenttrackingaddon.javascript.paths.responsive=/responsive/common/js/consignmenttrackingaddon.js
+consignmenttrackingaddon.css.paths.responsive=/responsive/common/css/consignmenttrackingaddon.css
+
+consignmenttrackingaddon.awareof.addons=b2bacceleratoraddon,chineseaddressaddon

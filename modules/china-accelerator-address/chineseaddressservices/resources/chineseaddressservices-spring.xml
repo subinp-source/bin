@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<alias name="defaultChineseAddressDao" alias="chineseAddressDao"/>
+	<bean id="defaultChineseAddressDao" class="de.hybris.platform.addressservices.address.daos.impl.ChineseAddressDao" parent="addressDao" />
+
+	<alias name="defaultChineseAddressService" alias="chineseAddressService"/>
+	<bean id="defaultChineseAddressService" class="de.hybris.platform.addressservices.address.impl.ChineseAddressService"
+		parent="addressService">
+		<constructor-arg ref="chineseAddressDao" />
+		<constructor-arg ref="cityDao" />
+		<constructor-arg ref="districtDao" />
+	</bean>
+	
+	<alias name="chinesePostcodeValidateStrategy" alias="postcodeValidateStrategy"/>
+	<bean id="chinesePostcodeValidateStrategy" class="de.hybris.platform.addressservices.strategies.impl.ChinesePostcodeValidateStrategy">
+		<property name="regex" value="${post.code.validate.regex}"/>
+	</bean>
+	
+	<!-- ************ name with title format ************ -->
+	<bean id="nameWithTitleFormatStrategy" class="de.hybris.platform.addressservices.strategies.impl.ChineseNameWithTitleFormatStrategy">
+		<property name="userService" ref="userService" />
+		<property name="commonI18NService" ref="commonI18NService" />
+	</bean>
+	
+	<alias name="chineseCellphoneValidateStrategy" alias="cellphoneValidateStrategy"/>
+	<bean id="chineseCellphoneValidateStrategy" class="de.hybris.platform.addressservices.strategies.impl.ChineseCellphoneValidateStrategy">
+		<property name="configurationService" ref="configurationService" />
+	</bean>
+	
+	<bean id="chineseAddressPrepareInterceptor" class="de.hybris.platform.addressservices.interceptors.ChineseAddressPrepareInterceptor"/>
+	<bean class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="chineseAddressPrepareInterceptor"/>
+		<property name="typeCode" value="Address"/>
+	</bean>
+
+	<alias name="defaultCityDao" alias="cityDao"/>
+	<bean id="defaultCityDao" class="de.hybris.platform.addressservices.address.daos.impl.DefaultCityDao" />
+
+	<alias name="defaultDistrictDao" alias="districtDao"/>
+	<bean id="defaultDistrictDao" class="de.hybris.platform.addressservices.address.daos.impl.DefaultDistrictDao" />
+</beans>

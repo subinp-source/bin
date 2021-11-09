@@ -1,0 +1,19 @@
+{
+  "catalogVersion": {
+    "catalog": {
+      "id": "Test_id",
+      "integrationKey": "TEST_KEY"
+    },
+    "version": "Test_version",
+    "integrationKey": "TEST_KEY"
+  },
+  "code": "Test_code",
+  "deliveryTime": "123.0",
+  "localizedAttributes": [
+    {
+      "language": "en",
+      "description": "Test_description"
+    }
+  ],
+  "integrationKey": "TEST_KEY"
+}

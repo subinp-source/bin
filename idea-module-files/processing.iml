@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="EXT" importedAsReadOnly="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../platform/ext/processing/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../platform/ext/processing/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../platform/ext/processing">
+      <sourceFolder url="file://$MODULE_DIR$/../platform/ext/processing/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../platform/ext/processing/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../platform/ext/processing/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../platform/ext/processing/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../platform/ext/processing/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../platform/ext/processing/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../platform/ext/processing/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../platform/ext/processing/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../platform/ext/processing/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../platform/ext/processing/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../platform/ext/processing/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../platform/ext/processing/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../platform/ext/processing/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../platform/ext/processing/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../platform/ext/processing/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../platform/ext/processing/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../platform/ext/processing/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../platform/ext/processing/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../platform/ext/processing/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../platform/ext/processing/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../platform/ext/processing/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../platform/ext/processing/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../platform/ext/processing/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../platform/ext/processing/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../platform/ext/processing/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../platform/ext/processing/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../platform/ext/processing/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../platform/ext/processing/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../platform/ext/processing/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../platform/ext/processing/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../platform/ext/processing/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../platform/ext/processing/web/webroot/WEB-INF/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../platform/ext/processing/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../platform/ext/processing/bin/processingserver.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../platform/ext/processing/bin/processingserver.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../platform/ext/processing/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../platform/ext/processing/lib" recursive="true" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../platform/ext/processing/web/webroot/WEB-INF/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../platform/ext/processing/web/webroot/WEB-INF/lib" recursive="true" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="commons" exported="" />
+    <orderEntry type="module" module-name="scripting" exported="" />
+  </component>
+</module>

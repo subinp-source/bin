@@ -1,0 +1,12 @@
+<div [ngClass]="{ 'y-editable-list-disabled': !editable, 'se-editable-list-disabled': !editable }">
+    <se-tree
+        (onTreeUpdated)="handleTreeUpdated($event)"
+        [removeDefaultTemplate]="true"
+        [rootNodeUid]="rootId"
+        [nodeTemplateUrl]="itemTemplateUrl"
+        [nodeComponent]="itemComponent"
+        [nodeActions]="actions"
+        [dragOptions]="dragOptions"
+        [showAsList]="true"
+    ></se-tree>
+</div>

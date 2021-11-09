@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="timedaccesspromotionenginebackofficeLabelLocator" class="com.hybris.cockpitng.util.labels.ResourcesLabelLocator" scope="singleton" init-method="init" lazy-init="false">
+  		<property name="location" value="/timedaccesspromotionenginebackoffice-backoffice-labels/"/>
+  		<property name="name" value="labels"/>
+  	</bean>
+  	
+  	<bean id="flashBuyCouponEditorAreaLogicHandler" class="de.hybris.platform.timedaccesspromotionenginebackoffice.widgets.FlashBuyCouponEditorAreaLogicHandler" parent="defaultEditorAreaLogicHandler">
+		<property name="flashBuyService" ref="flashBuyService"/>
+		<property name="ruleConditionsRegistry" ref="ruleConditionsRegistry"/>
+		<property name="ruleConditionsService" ref="ruleConditionsService"/>
+	</bean>
+	
+	 <bean id="flashBuyCouponUnboundSectionRenderer" class="de.hybris.platform.timedaccesspromotionenginebackoffice.renderer.FlashBuyCouponUnboundSectionRenderer" parent="unboundSectionRenderer">
+		<property name="unDisplayedFlashBuyCouponAttrList">
+			<list value-type="java.lang.String">
+				<value>product</value>
+				<value>originalMaxOrderQuantity</value>
+			</list> 
+		</property>
+	 </bean>
+
+</beans>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<!--
+	ATTENTION: This is just an example file. You have to edit it according to your needs.
+-->
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
+
+	<bean class="de.hybris.platform.notificationoccaddon.dto.conversation.NotificationPreferenceWsDTO">
+		<description>Notification preference</description>
+		<hints>
+		    <hint name="wsRelated"/>
+		    <hint name="alias">notificationPreference</hint>
+		</hints>
+		<property name="channel" type="java.lang.String">
+			<description>preference channel</description>
+			<hints> 			
+    			<hint name="example">email, sms, site_message</hint>
+            </hints>
+		</property>
+		<property name="value" type="java.lang.String">
+			<description>the corresponding value of current channel, for example, for SMS it should be a mobile number; for email it should be an email address</description>
+		</property>
+		<property name="enabled" type="java.lang.Boolean">
+			<description>if true, the channel is on; if false, the channel is off</description>
+		</property>
+		<property name="visible" type="java.lang.Boolean">
+			<description>if true, the channel is visible; if false, the channel is invisible</description>
+		</property>
+	</bean>
+	<bean class="de.hybris.platform.notificationoccaddon.dto.conversation.BasicNotificationPreferenceWsDTO">
+		<description>Basic notification preference</description>
+		<hints>
+		    <hint name="wsRelated"/>
+		    <hint name="alias">BasicnotificationPreference</hint>
+		</hints>
+		<property name="channel" type="java.lang.String">
+			<description>preference channel</description>
+			<hints> 			
+    			<hint name="example">email, sms, site_message</hint>
+            </hints>
+		</property>
+		<property name="enabled" type="java.lang.Boolean">
+			<description>if true, the channel is on; if false, the channel is off</description>
+		</property>
+	</bean>
+	
+	<bean class="de.hybris.platform.notificationoccaddon.dto.conversation.NotificationPreferenceListWsDTO">
+		<description>Notification preference list</description>
+		<hints>
+		    <hint name="wsRelated"/>
+		    <hint name="alias">notificationPreferenceList</hint>
+		</hints>
+		<property name="preferences" type="java.util.List&lt;de.hybris.platform.notificationoccaddon.dto.conversation.NotificationPreferenceWsDTO>">
+			<description>notification preferences</description>
+		</property>
+	</bean>
+	<bean class="de.hybris.platform.notificationoccaddon.dto.conversation.BasicNotificationPreferenceListWsDTO">
+		<description>Basic notification preference list</description>
+		<hints>
+		    <hint name="wsRelated"/>
+		    <hint name="alias">BasicnotificationPreferenceList</hint>
+		</hints>
+		<property name="preferences" type="java.util.List&lt;de.hybris.platform.notificationoccaddon.dto.conversation.BasicNotificationPreferenceWsDTO>">
+			<description>Basic notification preferences</description>
+		</property>
+	</bean>
+	
+	<bean class="de.hybris.platform.notificationoccaddon.dto.SiteMessageWsDTO">
+		<description>Site message</description>
+		<hints>
+		    <hint name="wsRelated"/>
+		    <hint name="alias">siteMessage</hint>
+		</hints>
+		<property name="uid" type="java.lang.String">
+			<description>message uid</description>
+		</property>
+		<property name="subject" type="java.lang.String">
+			<description>message subject</description>
+		</property>
+		<property name="body" type="java.lang.String">
+			<description>message body</description>
+		</property>
+		<property name="notificationType" type="de.hybris.platform.notificationservices.enums.NotificationType">
+				<description>notification type used for this message</description>
+		</property>
+		<property name="sentDate" type="java.util.Date">
+			  <description>sent date</description>
+		</property>
+		
+	</bean>
+	
+	<bean class="de.hybris.platform.notificationoccaddon.dto.SiteMessageSearchPageWsDTO">
+		<description>Site message search page</description>
+		<hints>
+		    <hint name="wsRelated"/>
+		    <hint name="alias">siteMessageSearchPage</hint>
+		</hints>
+		<property name="messages" type="java.util.List&lt;de.hybris.platform.notificationoccaddon.dto.SiteMessageWsDTO>">
+			<description>site messages</description>
+		</property>
+		<property name="sorts" type="java.util.List&lt;de.hybris.platform.webservicescommons.dto.SortWsDTO>">
+				<description>sorting information</description>
+		</property>
+		<property name="pagination" type="de.hybris.platform.webservicescommons.dto.PaginationWsDTO">
+				<description>pagination information</description>
+		</property>
+	</bean>
+	
+	<bean class="de.hybris.platform.notificationoccaddon.dto.SiteMessageSearchResultWsDTO">
+		<description>Site message search result</description>
+		<hints>
+		    <hint name="wsRelated"/>
+		    <hint name="alias">siteMessageSearchResult</hint>
+		</hints>
+		<property name="messages" type="java.util.List&lt;de.hybris.platform.notificationoccaddon.dto.SiteMessageWsDTO>">
+			<description>site messages</description>
+		</property>
+		<property name="sorts" type="java.util.List&lt;de.hybris.platform.webservicescommons.dto.SortWsDTO>">
+				<description>sorting information</description>
+		</property>
+		<property name="pagination" type="de.hybris.platform.webservicescommons.dto.PaginationWsDTO">
+				<description>pagination information</description>
+		</property>
+	</bean>
+	
+
+</beans>

@@ -1,0 +1,18 @@
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<action-definition id="integrationbackoffice.actions.addClassificationClassAction"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/action-definition.xsd">
+
+    <name>Add Classification Attribute</name>
+    <description>Prompts a wizard that allows adding classification attributes to an Integration Object</description>
+    <version>1.0</version>
+
+    <actionClassName>de.hybris.platform.integrationbackoffice.widgets.actions.AddClassificationClassAction</actionClassName>
+
+    <iconUri>/icons/icon_add_classification_default.png</iconUri>
+    <iconHoverUri>/icons/icon_add_classification_hover.png</iconHoverUri>
+    <iconDisabledUri>/icons/icon_add_classification_disabled.png</iconDisabledUri>
+
+</action-definition>

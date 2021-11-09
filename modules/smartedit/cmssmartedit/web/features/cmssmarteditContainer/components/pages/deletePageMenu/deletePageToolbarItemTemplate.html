@@ -1,0 +1,20 @@
+<div class="toolbar-action" data-ng-if="$ctrl.ready" data-item-key="{{ $ctrl.toolbarItem.key }}">
+    <button
+        type="button"
+        class="btn toolbar-action--button"
+        data-ng-disabled="!$ctrl.isDeletePageEnabled"
+        data-ng-class="{'toolbar-action__disabled': !$ctrl.isDeletePageEnabled}"
+        data-ng-click="$ctrl.isDeletePageEnabled && $ctrl.onClickOnDeletePage()"
+    >
+        <span class="icon-delete se-toolbar-menu-ddlb--button__icon"></span>
+        <div class="toolbar-action-button__txt" data-translate="se.cms.actionitem.page.trash"></div>
+    </button>
+    <div
+        class="se-toolbar-popover"
+        data-ng-if="!$ctrl.isDeletePageEnabled"
+        data-y-popover
+        data-placement="'bottom'"
+        data-template="$ctrl.getTooltipTemplate()"
+        data-trigger="'hover'"
+    ></div>
+</div>

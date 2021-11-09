@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<editor-definition id="com.hybris.cockpitng.editor.undefinedtype"
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/editor-definition.xsd">
+
+	<name>Undefined Type Editor</name>
+	<description>Undefined Type Editor</description>
+	<type>java.lang.String</type>
+	<editorClassName>de.hybris.platform.platformbackoffice.classification.editor.UndefinedTypeEditor</editorClassName>
+
+</editor-definition>

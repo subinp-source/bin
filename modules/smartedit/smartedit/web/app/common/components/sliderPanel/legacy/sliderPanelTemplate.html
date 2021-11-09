@@ -1,0 +1,45 @@
+<div class="se-slider-panel-wrapper" data-ng-if="$ctrl.isShown">
+    <div class="se-slider-panel-container slide-in">
+        <div class="se-slider-panel__header" data-ng-show="$ctrl.sliderPanelConfiguration.modal">
+            <span
+                class="se-slider-panel__title"
+                data-ng-if="$ctrl.sliderPanelConfiguration.modal.title"
+            >
+                {{ $ctrl.sliderPanelConfiguration.modal.title | translate }}</span
+            >
+            <button
+                type="button"
+                class="se-slider-panel__close-btn fd-button--light fd-modal__close"
+                aria-label="close"
+                data-ng-if="$ctrl.sliderPanelConfiguration.modal.showDismissButton"
+                data-ng-click="$ctrl.sliderPanelDismissAction()"
+            ></button>
+        </div>
+
+        <div class="se-slider-panel__body" data-ng-transclude></div>
+
+        <div
+            class="se-slider-panel__footer"
+            data-ng-if="($ctrl.sliderPanelConfiguration.modal.cancel || $ctrl.sliderPanelConfiguration.modal.save)"
+        >
+            <button
+                type="button"
+                class="fd-button--light se-slider-panel__footer-btn se-slider-panel__footer-btn--cancel"
+                data-ng-if="$ctrl.sliderPanelConfiguration.modal.cancel"
+                data-ng-click="$ctrl.sliderPanelConfiguration.modal.cancel.onClick()"
+            >
+                {{ $ctrl.sliderPanelConfiguration.modal.cancel.label | translate }}
+            </button>
+
+            <button
+                type="button"
+                class="fd-button--emphasized se-slider-panel__footer-btn se-slider-panel__footer-btn--save"
+                data-ng-if="$ctrl.sliderPanelConfiguration.modal.save"
+                data-ng-click="$ctrl.sliderPanelConfiguration.modal.save.onClick()"
+                data-ng-disabled="$ctrl.isSaveDisabled()"
+            >
+                {{ $ctrl.sliderPanelConfiguration.modal.save.label | translate }}
+            </button>
+        </div>
+    </div>
+</div>

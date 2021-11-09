@@ -1,0 +1,8 @@
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<content-elements>
+	<content-element type="RotatingImagesComponent" name="type.rotatingimageelement.name" description="type.rotatingimageelement.description"
+		image="cmscockpit/images/ContentElementRotatingImages.gif" refImage="cmscockpit/images/ContentElementRotatingImagesReference.gif"
+		imageSmall="cmscockpit/images/ContentElementRotatingImagesSmall.gif" />
+</content-elements>	

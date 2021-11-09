@@ -1,0 +1,345 @@
+[
+	{
+		"testId": 1,
+		"description": "'ne' query with true value matches with BOOLEAN expression",
+		"data": {
+			"type": "ne",
+			"expression": "field_boolean",
+			"value": true
+		},
+		"matchingDocuments": [
+			"doc2",
+			"doc4"
+		]
+	},
+	{
+		"testId": 2,
+		"description": "'ne' query with false value matches with BOOLEAN expression",
+		"data": {
+			"type": "ne",
+			"expression": "field_boolean",
+			"value": false
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc3",
+			"doc4"
+		]
+	},
+	{
+		"testId": 3,
+		"description": "'ne' query with true value matches with multi-valued BOOLEAN expression",
+		"data": {
+			"type": "ne",
+			"expression": "field_boolean_mv",
+			"value": true
+		},
+		"matchingDocuments": [
+			"doc3",
+			"doc4"
+		]
+	},
+	{
+		"testId": 4,
+		"description": "'ne' query with false value matches with multi-valued BOOLEAN expression",
+		"data": {
+			"type": "ne",
+			"expression": "field_boolean_mv",
+			"value": false
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc4"
+		]
+	},
+	{
+		"testId": 5,
+		"description": "'ne' query matches with INTEGER expression, no document excluded",
+		"data": {
+			"type": "ne",
+			"expression": "field_integer",
+			"value": 0
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2",
+			"doc3",
+			"doc4"
+		]
+	},
+	{
+		"testId": 6,
+		"description": "'ne' query matches with INTEGER expression, document excluded",
+		"data": {
+			"type": "ne",
+			"expression": "field_integer",
+			"value": 20
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc3",
+			"doc4"
+		]
+	},
+	{
+		"testId": 7,
+		"description": "'ne' query matches with multi-valued INTEGER expression, no document excluded",
+		"data": {
+			"type": "ne",
+			"expression": "field_integer_mv",
+			"value": 0
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2",
+			"doc3",
+			"doc4"
+		]
+	},
+	{
+		"testId": 8,
+		"description": "'eq' query matches with multi-valued INTEGER expression, document excluded",
+		"data": {
+			"type": "ne",
+			"expression": "field_integer_mv",
+			"value": 20
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc3",
+			"doc4"
+		]
+	},
+	{
+		"testId": 9,
+		"description": "'ne' query matches with LONG expression, no document excluded",
+		"data": {
+			"type": "ne",
+			"expression": "field_long",
+			"value": 0
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2",
+			"doc3",
+			"doc4"
+		]
+	},
+	{
+		"testId": 10,
+		"description": "'ne' query matches with LONG expression, document excluded",
+		"data": {
+			"type": "ne",
+			"expression": "field_long",
+			"value": 20
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc3",
+			"doc4"
+		]
+	},
+	{
+		"testId": 11,
+		"description": "'ne' query matches with multi-valued LONG expression, no document excluded",
+		"data": {
+			"type": "ne",
+			"expression": "field_long_mv",
+			"value": 0
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2",
+			"doc3",
+			"doc4"
+		]
+	},
+	{
+		"testId": 12,
+		"description": "'eq' query matches with multi-valued LONG expression, document excluded",
+		"data": {
+			"type": "ne",
+			"expression": "field_long_mv",
+			"value": 20
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc3",
+			"doc4"
+		]
+	},
+	{
+		"testId": 13,
+		"description": "'ne' query matches with FLOAT expression, no document excluded",
+		"data": {
+			"type": "ne",
+			"expression": "field_float",
+			"value": 0
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2",
+			"doc3",
+			"doc4"
+		]
+	},
+	{
+		"testId": 14,
+		"description": "'ne' query matches with FLOAT expression, document excluded",
+		"data": {
+			"type": "ne",
+			"expression": "field_float",
+			"value": 20
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc3",
+			"doc4"
+		]
+	},
+	{
+		"testId": 15,
+		"description": "'ne' query matches with multi-valued FLOAT expression, no document excluded",
+		"data": {
+			"type": "ne",
+			"expression": "field_float_mv",
+			"value": 0
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2",
+			"doc3",
+			"doc4"
+		]
+	},
+	{
+		"testId": 16,
+		"description": "'eq' query matches with multi-valued FLOAT expression, document excluded",
+		"data": {
+			"type": "ne",
+			"expression": "field_float_mv",
+			"value": 20
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc3",
+			"doc4"
+		]
+	},
+	{
+		"testId": 17,
+		"description": "'ne' query matches with DOUBLE expression, no document excluded",
+		"data": {
+			"type": "ne",
+			"expression": "field_double",
+			"value": 0
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2",
+			"doc3",
+			"doc4"
+		]
+	},
+	{
+		"testId": 18,
+		"description": "'ne' query matches with DOUBLE expression, document excluded",
+		"data": {
+			"type": "ne",
+			"expression": "field_double",
+			"value": 20
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc3",
+			"doc4"
+		]
+	},
+	{
+		"testId": 19,
+		"description": "'ne' query matches with multi-valued DOUBLE expression, no document excluded",
+		"data": {
+			"type": "ne",
+			"expression": "field_double_mv",
+			"value": 0
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2",
+			"doc3",
+			"doc4"
+		]
+	},
+	{
+		"testId": 20,
+		"description": "'eq' query matches with multi-valued DOUBLE expression, document excluded",
+		"data": {
+			"type": "ne",
+			"expression": "field_double_mv",
+			"value": 20
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc3",
+			"doc4"
+		]
+	},
+	{
+		"testId": 21,
+		"description": "'ne' query matches with DATE_TIME expression, no document excluded",
+		"data": {
+			"type": "ne",
+			"expression": "field_date_time",
+			"value": "2000-01-01T00:00:00.000+00:00"
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2",
+			"doc3",
+			"doc4"
+		]
+	},
+	{
+		"testId": 22,
+		"description": "'ne' query matches with DATE_TIME expression, document excluded",
+		"data": {
+			"type": "ne",
+			"expression": "field_date_time",
+			"value": "2020-01-01T00:00:00.000+00:00"
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc3",
+			"doc4"
+		]
+	},
+	{
+		"testId": 23,
+		"description": "'ne' query matches with multi-valued DATE_TIME expression, no document excluded",
+		"data": {
+			"type": "ne",
+			"expression": "field_date_time_mv",
+			"value": "2000-01-01T00:00:00.000+00:00"
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2",
+			"doc3",
+			"doc4"
+		]
+	},
+	{
+		"testId": 24,
+		"description": "'eq' query matches with multi-valued DATE_TIME expression, document excluded",
+		"data": {
+			"type": "ne",
+			"expression": "field_date_time_mv",
+			"value": "2020-01-01T00:00:00.000+00:00"
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc3",
+			"doc4"
+		]
+	}
+]

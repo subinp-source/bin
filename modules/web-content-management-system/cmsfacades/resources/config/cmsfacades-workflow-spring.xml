@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+				http://www.springframework.org/schema/beans/spring-beans.xsd
+				http://www.springframework.org/schema/util
+				http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+    <!-- facades -->
+    <alias name="defaultCmsWorkflowFacade" alias="cmsWorkflowFacade" />
+    <bean id="defaultCmsWorkflowFacade" class="de.hybris.platform.cmsfacades.workflow.impl.DefaultCMSWorkflowFacade">
+        <property name="automatedWorkflowActionTypePredicate" ref="cmsAutomatedWorkflowActionTypePredicate" />
+        <property name="cmsAdminItemService" ref="cmsAdminItemService" />
+        <property name="cmsVersionService" ref="cmsVersionService" />
+        <property name="cmsWorkflowDataConverter" ref="cmsWorkflowDataConverter" />
+        <property name="commentsCodeGenerator" ref="commentsCodeGenerator" />
+        <property name="commentService" ref="commentService" />
+        <property name="createWorkflowValidator" ref="cmsCreateWorkflowValidator" />
+        <property name="editWorkflowValidator" ref="cmsEditWorkflowValidator" />
+        <property name="facadeValidationService" ref="facadeValidationService" />
+        <property name="findWorkflowValidator" ref="cmsFindWorkflowValidator" />
+        <property name="modelService" ref="modelService" />
+        <property name="permissionCRUDService" ref="cmsPermissionCachedCRUDService" />
+        <property name="postWorkflowActions" ref="cmsPostWorkflowActions" />
+        <property name="searchResultConverter" ref="cmsSearchResultConverter"/>
+        <property name="transactionManager" ref="txManager" />
+        <property name="uniqueIdentifierAttributeToDataContentConverter" ref="cmsUniqueIdentifierAttributeToDataContentConverter" />
+        <property name="uniqueItemIdentifierService" ref="cmsUniqueItemIdentifierService" />
+        <property name="userService" ref="userService" />
+        <property name="workflowActionService" ref="cmsWorkflowActionService" />
+        <property name="workflowProcessingService" ref="workflowProcessingService" />
+        <property name="workflowService" ref="cmsWorkflowService"/>
+        <property name="workflowTemplateService" ref="workflowTemplateService"/>
+        <property name="pageTypePredicate" ref="abstractPageTypePredicate"/>
+    </bean>
+    
+    <alias name="defaultCmsWorkflowActionFacade" alias="cmsWorkflowActionFacade" />
+    <bean id="defaultCmsWorkflowActionFacade" class="de.hybris.platform.cmsfacades.workflow.impl.DefaultCMSWorkflowActionFacade">
+        <property name="commentService" ref="commentService" />
+        <property name="cmsWorkflowService" ref="cmsWorkflowService"/>
+        <property name="permissionCRUDService" ref="cmsPermissionCachedCRUDService" />
+        <property name="searchResultConverter" ref="cmsSearchResultConverter"/>
+        <property name="cmsWorkflowParticipantService" ref="cmsWorkflowParticipantService" />
+        <property name="userService" ref="userService" />
+        <property name="cmsCommentDataConverter" ref="cmsCommentDataConverter" />
+        <property name="cmsWorkflowWithActionsDataConverter" ref="cmsWorkflowWithActionsDataConverter" />
+        <property name="cmsWorkflowTaskDataConverter" ref="cmsWorkflowTaskDataConverter" />
+        <property name="workflowActionService" ref="cmsWorkflowActionService" />
+    </bean>
+    
+    <alias name="defaultWorkflowTemplateFacade" alias="cmsWorkflowTemplateFacade" />
+    <bean id="defaultWorkflowTemplateFacade" class="de.hybris.platform.cmsfacades.workflow.impl.DefaultCMSWorkflowTemplateFacade">
+        <property name="catalogVersionService" ref="catalogVersionService" />
+        <property name="cmsWorkflowTemplateService" ref="cmsWorkflowTemplateService" />
+    </bean>
+
+    <!-- validators -->
+    <alias name="defaultCreateWorkflowValidator" alias="cmsCreateWorkflowValidator" />
+    <bean id="defaultCreateWorkflowValidator" class="de.hybris.platform.cmsfacades.workflow.validator.CreateWorkflowValidator">
+        <property name="itemModelExistsPredicate" ref="cmsItemModelExistsPredicate"/>
+        <property name="cmsItemExistsInCatalogVersionPredicate" ref="cmsItemExistsInCatalogVersionPredicate"/>
+        <property name="isAnyItemAlreadyInWorkflowPredicate" ref="cmsIsAnyItemAlreadyInWorkflowPredicate"/>
+        <property name="labelExistsInCMSVersionsPredicate" ref="cmsLabelExistsInCMSVersionsPredicate"/>
+        <property name="cmsAdminSiteService" ref="cmsAdminSiteService"/>
+        <property name="cmsWorkflowTemplateExistsPredicate" ref="cmsWorkflowTemplateExistsPredicate"/>
+    </bean>
+    
+    <alias name="defaultFindWorkflowValidator" alias="cmsFindWorkflowValidator" />
+    <bean id="defaultFindWorkflowValidator" class="de.hybris.platform.cmsfacades.workflow.validator.FindWorkflowValidator">
+        <property name="cmsItemExistsInCatalogVersionPredicate" ref="cmsItemExistsInCatalogVersionPredicate"/>
+        <property name="cmsAdminSiteService" ref="cmsAdminSiteService"/>
+    </bean>
+    
+    <alias name="defaultEditWorkflowValidator" alias="cmsEditWorkflowValidator" />
+    <bean id="defaultEditWorkflowValidator" class="de.hybris.platform.cmsfacades.workflow.validator.EditWorkflowValidator">
+        <property name="cmsWorkflowService" ref="cmsWorkflowService"/>
+        <property name="workflowService" ref="newestWorkflowService"/>
+        <property name="cmsAdminSiteService" ref="cmsAdminSiteService"/>
+        <property name="cmsItemExistsInCatalogVersionPredicate" ref="cmsItemExistsInCatalogVersionPredicate"/>
+    </bean>
+
+    <alias name="defaultWorkflowItemValidator" alias="cmsWorkflowItemValidator" />
+    <bean id="defaultWorkflowItemValidator" class="de.hybris.platform.cmsfacades.cmsitems.validator.DefaultWorkflowItemValidator">
+        <property name="cmsWorkflowService" ref="cmsWorkflowService"/>
+    </bean>
+
+    <!-- converters -->
+    <alias name="defaultCmsWorkflowDataConverter" alias="cmsWorkflowDataConverter" />
+    <bean id="defaultCmsWorkflowDataConverter" parent="abstractPopulatingConverter">
+        <property name="targetClass" value="de.hybris.platform.cmsfacades.data.CMSWorkflowData" />
+        <property name="populators">
+            <list merge="true">
+                <ref bean="cmsWorkflowDataPopulator" />
+            </list>
+        </property>
+    </bean>
+    
+    <alias name="defaultCmsWorkflowWithActionsDataConverter" alias="cmsWorkflowWithActionsDataConverter" />
+    <bean id="defaultCmsWorkflowWithActionsDataConverter" parent="abstractPopulatingConverter">
+        <property name="targetClass" value="de.hybris.platform.cmsfacades.data.CMSWorkflowData" />
+        <property name="populators">
+            <list merge="true">
+                <ref bean="cmsWorkflowWithActionsDataPopulator" />
+            </list>
+        </property>
+    </bean>
+    
+    <alias name="defaultCmsWorkflowActionDataConverter" alias="cmsWorkflowActionDataConverter" />
+    <bean id="defaultCmsWorkflowActionDataConverter" parent="abstractPopulatingConverter">
+        <property name="targetClass" value="de.hybris.platform.cmsfacades.data.CMSWorkflowActionData" />
+        <property name="populators">
+            <list merge="true">
+                <ref bean="cmsWorkflowActionDataPopulator" />
+            </list>
+        </property>
+    </bean>
+
+    <alias name="defaultCmsCommentDataConverter" alias="cmsCommentDataConverter" />
+    <bean id="defaultCmsCommentDataConverter" parent="abstractPopulatingConverter">
+        <property name="targetClass" value="de.hybris.platform.cmsfacades.data.CMSCommentData" />
+        <property name="populators">
+            <list merge="true">
+                <ref bean="cmsCommentDataPopulator" />
+            </list>
+        </property>
+    </bean>
+
+    <alias name="defaultCmsWorkflowTaskDataConverter" alias="cmsWorkflowTaskDataConverter" />
+    <bean id="defaultCmsWorkflowTaskDataConverter" parent="abstractPopulatingConverter">
+        <property name="targetClass" value="java.util.ArrayList" />
+        <property name="populators">
+            <list merge="true">
+                <ref bean="cmsWorkflowTaskDataPopulator" />
+            </list>
+        </property>
+    </bean>
+
+    <!-- populators -->
+    <alias name="defaultCmsWorkflowDataPopulator" alias="cmsWorkflowDataPopulator" />
+    <bean id="defaultCmsWorkflowDataPopulator" class="de.hybris.platform.cmsfacades.workflow.populator.CMSWorkflowDataPopulator">
+        <property name="cmsWorkflowParticipantService" ref="cmsWorkflowParticipantService" />
+    </bean>
+    
+    <alias name="defaultCmsWorkflowWithActionsDataPopulator" alias="cmsWorkflowWithActionsDataPopulator" />
+    <bean id="defaultCmsWorkflowWithActionsDataPopulator" class="de.hybris.platform.cmsfacades.workflow.populator.CMSWorkflowWithActionsDataPopulator">
+        <property name="cmsWorkflowActionDataConverter" ref="cmsWorkflowActionDataConverter" />
+        <property name="automatedWorkflowActionTypePredicate" ref="cmsAutomatedWorkflowActionTypePredicate" />
+    </bean>
+    
+    <alias name="defaultCmsWorkflowActionDataPopulator" alias="cmsWorkflowActionDataPopulator" />
+    <bean id="defaultCmsWorkflowActionDataPopulator" class="de.hybris.platform.cmsfacades.workflow.populator.CMSWorkflowActionDataPopulator">
+        <property name="cmsWorkflowParticipantService" ref="cmsWorkflowParticipantService" />
+        <property name="timeDiffService" ref="cmsTimeDiffService" />
+    </bean>
+
+    <alias name="defaultCmsCommentDataPopulator" alias="cmsCommentDataPopulator" />
+    <bean id="defaultCmsCommentDataPopulator" class="de.hybris.platform.cmsfacades.workflow.populator.CMSCommentDataPopulator">
+        <property name="cmsWorkflowCommentPredicate" ref="cmsWorkflowCommentPredicate" />
+        <property name="timeDiffService" ref="cmsTimeDiffService" />
+    </bean>
+
+    <alias name="defaultCmsWorkflowTaskDataPopulator" alias="cmsWorkflowTaskDataPopulator" />
+    <bean id="defaultCmsWorkflowTaskDataPopulator" class="de.hybris.platform.cmsfacades.workflow.populator.CMSWorkflowTaskDataPopulator">
+        <property name="cmsWorkflowActionDataConverter" ref="cmsWorkflowActionDataConverter" />
+        <property name="userService" ref="userService"/>
+        <property name="cmsWorkflowParticipantService" ref="cmsWorkflowParticipantService" />
+        <property name="typeService" ref="typeService"/>
+    </bean>
+
+    <!-- services -->	
+	 <alias name="defaultCmsWorkflowAttachmentService" alias="cmsWorkflowAttachmentService" />
+    <bean id="defaultCmsWorkflowAttachmentService" class="de.hybris.platform.cmsfacades.workflow.service.impl.DefaultCMSWorkflowAttachmentService">
+        <property name="cmsWorkflowService" ref="cmsWorkflowService" />
+        <property name="cmsWorkflowParticipantService" ref="cmsWorkflowParticipantService" />
+    </bean>
+    
+    <!-- post-operation actions -->
+    <alias name="defaultCmsPostWorkflowActions" alias="cmsPostWorkflowActions"/>
+    <util:list id="defaultCmsPostWorkflowActions">
+        <ref bean="cmsPublishPostWorkflowAction" />
+    </util:list>
+    
+    <alias name="defaultPublishPostWorkflowAction" alias="cmsPublishPostWorkflowAction"/>
+    <bean id="defaultPublishPostWorkflowAction" class="de.hybris.platform.cmsfacades.workflow.postaction.impl.PublishPostWorkflowAction">
+        <property name="itemSynchronizationService" ref="itemSynchronizationService" />
+        <property name="syncConfig" ref="syncConfig" />
+        <property name="workflowActionService" ref="cmsWorkflowActionService" />
+    </bean>
+
+</beans>

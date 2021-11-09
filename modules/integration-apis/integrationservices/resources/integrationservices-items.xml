@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ [y] hybris Platform
+  ~
+  ~ Copyright (c) 2018 SAP SE or an SAP affiliate company.
+  ~ All rights reserved.
+  ~
+  ~ This software is the confidential and proprietary information of SAP
+  ~ ("Confidential Information"). You shall not disclose such Confidential
+  ~ Information and shall use it only in accordance with the terms of the
+  ~ license agreement you entered into with SAP.
+  -->
+
+<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="items.xsd">
+
+
+    <collectiontypes>
+        <collectiontype code="ItemAttributeCollection" elementtype="IntegrationObjectItemAttribute"/>
+        <collectiontype code="ItemTypeMatchEnumCollection" elementtype="ItemTypeMatchEnum"/>
+    </collectiontypes>
+
+    <enumtypes>
+        <enumtype code="IntegrationRequestStatus" dynamic="true">
+            <value code="SUCCESS"/>
+            <value code="ERROR"/>
+        </enumtype>
+        <enumtype code="HttpMethod" dynamic="true">
+            <value code="POST"/>
+            <value code="DELETE"/>
+            <value code="PATCH"/>
+        </enumtype>
+        <enumtype code="ItemTypeMatchEnum" dynamic="true">
+            <value code="ALL_SUB_AND_SUPER_TYPES"/>
+            <value code="RESTRICT_TO_ITEM_TYPE"/>
+            <value code="ALL_SUBTYPES"/>
+        </enumtype>
+    </enumtypes>
+
+    <relations>
+        <relation code="IntegObj2IntegObjItem" localized="false">
+            <sourceElement type="IntegrationObject" qualifier="integrationObject" cardinality="one">
+                <modifiers unique="true" optional="false"/>
+            </sourceElement>
+            <targetElement type="IntegrationObjectItem" qualifier="items" cardinality="many" collectiontype="set">
+                <modifiers partof="true"/>
+            </targetElement>
+        </relation>
+        <relation code="IntegObjItem2IntegObjItemAttr" localized="false">
+            <sourceElement type="IntegrationObjectItem" qualifier="integrationObjectItem" cardinality="one">
+                <modifiers unique="true" optional="false"/>
+            </sourceElement>
+            <targetElement type="IntegrationObjectItemAttribute" qualifier="attributes" cardinality="many"
+                           collectiontype="set">
+                <modifiers partof="true"/>
+            </targetElement>
+        </relation>
+        <relation code="IntegObjItem2ClassificationIntegObjItemAttr" localized="false">
+            <sourceElement type="IntegrationObjectItem" qualifier="integrationObjectItem" cardinality="one">
+                <modifiers unique="true" optional="false"/>
+            </sourceElement>
+            <targetElement type="IntegrationObjectItemClassificationAttribute" qualifier="classificationAttributes"
+                           cardinality="many" collectiontype="set">
+                <modifiers partof="true"/>
+            </targetElement>
+        </relation>
+        <relation code="IntegObjItem2VirtualIntegObjItemAttr" localized="false">
+            <sourceElement type="IntegrationObjectItem" qualifier="integrationObjectItem" cardinality="one">
+                <modifiers unique="true" optional="false"/>
+            </sourceElement>
+            <targetElement type="IntegrationObjectItemVirtualAttribute" qualifier="virtualAttributes" cardinality="many" collectiontype="set">
+                <modifiers partof="true"/>
+            </targetElement>
+        </relation>
+    </relations>
+
+    <itemtypes>
+        <itemtype code="IntegrationObject">
+            <deployment table="IntegrationObjs" typecode="8400"/>
+            <attributes>
+                <attribute qualifier="code" type="java.lang.String">
+                    <modifiers unique="true" optional="false"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="rootItem" type="IntegrationObjectItem">
+                    <description>
+                        Identifies the root {@code IntegrationObjectItem} for this {@code IntegrationObject}. There
+                        should only be
+                        one root {@code IntegrationObjectItem} for any {@code IntegrationObject}. If the
+                        IntegrationObject was
+                        misconfiguration where the IntegrationObject is found to have more than 1 root {@code
+                        IntegrationObjectItem}
+                        then an exception will be thrown.
+                    </description>
+                    <persistence type="dynamic" attributeHandler="integrationObjectRootItemAttributeHandler"/>
+                    <modifiers read="true" write="false" optional="true"/>
+                </attribute>
+                <attribute qualifier="classificationAttributesPresent" type="java.lang.Boolean">
+                    <description>
+                        Determines whether this integration object has items with {@link
+                        IntegrationObjectItemClassificationAttributeModel}.
+                        Returns {@code true}, if at least one {@link IntegrationObjectItemModel} in this integration
+                        object contains
+                        at least one {@link IntegrationObjectItemClassificationAttributeModel} attribute; {@code false},
+                        if there
+                        no {@link IntegrationObjectItemClassificationAttributeModel} within this integration object
+                        structure.
+                    </description>
+                    <persistence type="dynamic"
+                                 attributeHandler="integrationObjectClassificationAttributesPresentAttributeHandler"/>
+                    <modifiers read="true" write="false" optional="false"/>
+                </attribute>
+            </attributes>
+            <indexes>
+                <index name="idx_integrationObjectCode" unique="true">
+                    <key attribute="code"/>
+                </index>
+            </indexes>
+        </itemtype>
+
+        <itemtype code="IntegrationObjectItem">
+            <deployment table="IntegrationObjItems" typecode="8401"/>
+            <attributes>
+                <attribute qualifier="code" type="java.lang.String">
+                    <modifiers unique="true" optional="false"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="type" type="ComposedType">
+                    <modifiers unique="false" optional="false"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="root" type="java.lang.Boolean">
+                    <modifiers unique="false" optional="false"/>
+                    <persistence type="property"/>
+                    <defaultvalue>false</defaultvalue>
+                </attribute>
+                <attribute qualifier="itemTypeMatch" type="ItemTypeMatchEnum">
+                    <modifiers unique="false" optional="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="uniqueAttributes" type="ItemAttributeCollection">
+                    <description>
+                        a collection of all attributes with unique modifier set to {@code true}, which define a
+                        composite key for this item. The collection contains only attributes of primitive types: if a
+                        relation attribute
+                        is set to 'unique', then key attributes of the referred type will be returned instead of the
+                        reference key
+                        attribute, e.g. unique key for a {@code Product} is the 'code' attribute and
+                        the 'catalogVersion' attribute, which refers to {@code CatalogVersion}; {@code CatalogVersion}
+                        in its turn has a unique attribute {@code version} and a unique reference attribute to {@code
+                        Catalog}. So,
+                        the result of calling the method will contain {@code Product.code}, {@code
+                        CatalogVersion.version}, and
+                        {@code Catalog.id} attribute models.
+                    </description>
+                    <persistence type="dynamic" attributeHandler="integrationObjectItemUniqueAttributesHandler"/>
+                    <modifiers read="true" write="false" optional="false"/>
+                </attribute>
+                <attribute qualifier="allowedItemTypeMatches" type="ItemTypeMatchEnumCollection">
+                    <description>
+                        a collection of all ItemTypeMatchEnums that an IntegrationObjectItem of the current {@type} may
+                        have set on its {@itemTypeMatch} attribute.
+                    </description>
+                    <persistence type="dynamic" attributeHandler="allowedItemTypeMatchesAttributeHandler"/>
+                    <modifiers read="true" write="false" optional="false"/>
+                </attribute>
+                <attribute qualifier="keyAttributes" type="ItemAttributeCollection">
+                    <description>
+                        a collection of all attributes with unique modifier set to {@code true} in this item type only.
+                        The collection does not contain attributes of the referenced types even if they are included in
+                        this item's
+                        key. For example, for a {@code Product} this collection will contain the 'code' attribute and
+                        the 'catalogVersion' attribute, which refers to {@code CatalogVersion} only.
+                    </description>
+                    <persistence type="dynamic" attributeHandler="integrationObjectItemKeyAttributesHandler"/>
+                    <modifiers read="true" write="false" optional="false"/>
+                </attribute>
+            </attributes>
+            <indexes>
+                <index name="idx_integrationObjectItemCodeIntObj" unique="true">
+                    <key attribute="code"/>
+                    <key attribute="integrationObject"/>
+                </index>
+            </indexes>
+        </itemtype>
+
+        <itemtype code="AbstractIntegrationObjectItemAttribute" abstract="true">
+            <description>
+                The parent class of other Integration Object Attributes.
+            </description>
+            <attributes>
+                <attribute qualifier="attributeName" type="java.lang.String">
+                    <modifiers optional="false" unique="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="autoCreate" type="java.lang.Boolean">
+                    <modifiers optional="true"/>
+                    <defaultvalue>false</defaultvalue>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="returnIntegrationObjectItem" type="IntegrationObjectItem">
+                    <modifiers optional="true"/>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <itemtype code="IntegrationObjectItemAttribute" extends="AbstractIntegrationObjectItemAttribute">
+            <description>
+                An Integration Object Item Attribute that uses standard type system attributes.
+            </description>
+            <deployment table="IntegrationObjItemAttrs" typecode="8402"/>
+            <attributes>
+                <attribute qualifier="attributeDescriptor" type="AttributeDescriptor">
+                    <modifiers optional="false"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="unique" type="java.lang.Boolean">
+                    <modifiers optional="true"/>
+                    <defaultvalue>false</defaultvalue>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="partOf" type="java.lang.Boolean">
+                    <persistence type="dynamic" attributeHandler="integrationObjectItemPartOfAttributeHandler"/>
+                    <modifiers read="true" write="false" optional="false"/>
+                </attribute>
+            </attributes>
+            <indexes>
+                <index name="idx_integrationObjectItemAttributeNameIntegrationObjectItem" unique="true">
+                    <key attribute="attributeName"/>
+                    <key attribute="integrationObjectItem"/>
+                </index>
+            </indexes>
+        </itemtype>
+
+        <itemtype code="IntegrationObjectItemClassificationAttribute" extends="AbstractIntegrationObjectItemAttribute">
+            <description>
+                An Integration Object Item Attribute that uses classification attributes.
+            </description>
+            <deployment table="IntObjItemClassAttrs" typecode="8409"/>
+            <attributes>
+                <attribute qualifier="classAttributeAssignment" type="ClassAttributeAssignment">
+                    <modifiers optional="false"/>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+            <indexes>
+                <index name="idx_integrationObjectItemClassificationAttributeNameIntegrationObjectItem" unique="true">
+                    <key attribute="attributeName"/>
+                    <key attribute="integrationObjectItem"/>
+                </index>
+            </indexes>
+        </itemtype>
+
+        <itemtype code="IntegrationObjectItemVirtualAttribute" extends="AbstractIntegrationObjectItemAttribute">
+            <description>
+                An Integration Object Item Attribute that exists virtually by executing the specified logic referenced in the descriptors
+            </description>
+            <deployment table="IntObjItemVirtualAttrs" typecode="8412" />
+            <attributes>
+                <attribute qualifier="retrievalDescriptor" type="IntegrationObjectVirtualAttributeDescriptor">
+                    <modifiers optional="false" />
+                    <persistence type="property" />
+                </attribute>
+            </attributes>
+            <indexes>
+                <index name="idx_integrationObjectItemVirtualAttributeNameIntegrationObjectItem" unique="true">
+                    <key attribute="attributeName" />
+                    <key attribute="integrationObjectItem" />
+                </index>
+            </indexes>
+        </itemtype>
+
+        <itemtype code="IntegrationObjectVirtualAttributeDescriptor">
+            <description>
+                An Integration Object Item Attribute that exists virtually and handles persistence/retrieval logic by executing the specified logic in the logicLocation
+            </description>
+            <deployment table="IntObjVirtAttrDescrs" typecode="8413" />
+            <attributes>
+                <attribute qualifier="code" type="java.lang.String">
+                    <modifiers unique="true" optional="false" read="true" initial="true" write="false" partof="false"/>
+                    <persistence type="property" />
+                </attribute>
+                <attribute qualifier="logicLocation" type="java.lang.String">
+                    <description>
+                        Specifies where the logic is located. Acceptable values are of this format:
+                        model://scriptModelCode
+                    </description>
+                    <modifiers optional="false" read="true" write="true" partof="false"/>
+                    <persistence type="property" />
+                </attribute>
+                <attribute qualifier="type" type="Type">
+                    <description>
+                        The logic's return or input type. The return type will be used as the type in the schema for the attribute.
+                    </description>
+                    <modifiers optional="true" read="true" write="true" partof="false"/>
+                    <persistence type="property" />
+                </attribute>
+            </attributes>
+            <indexes>
+                <index name="idx_integrationObjectVirtualAttributeDescriptorCode" unique="true">
+                    <key attribute="code" />
+                </index>
+            </indexes>
+        </itemtype>
+
+        <itemtype code="MonitoredRequest" abstract="true">
+            <attributes>
+                <attribute qualifier="status" type="IntegrationRequestStatus">
+                    <modifiers optional="false"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="integrationKey" type="java.lang.String">
+                    <modifiers optional="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="type" type="java.lang.String">
+                    <modifiers optional="false"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="payload" type="IntegrationApiMedia">
+                    <modifiers optional="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="messageId" type="java.lang.String">
+                    <modifiers optional="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="user" type="User">
+                    <modifiers read="true" write="false" initial="true" optional="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="sapPassport" type="java.lang.String">
+                    <modifiers optional="true" read="true" initial="true" write="false"/>
+                    <persistence type="property">
+                        <columntype>
+                            <value>VARCHAR(1024)</value>
+                        </columntype>
+                        <columntype database="hsqldb">
+                            <value>VARCHAR(1024)</value>
+                        </columntype>
+                        <columntype database="mysql">
+                            <value>VARCHAR(1024)</value>
+                        </columntype>
+                        <columntype database="oracle">
+                            <value>VARCHAR2(1024)</value>
+                        </columntype>
+                        <columntype database="sqlserver">
+                            <value>VARCHAR(1024)</value>
+                        </columntype>
+                        <columntype database="sap">
+                            <value>NVARCHAR(1024)</value>
+                        </columntype>
+                        <columntype database="postgresql">
+                            <value>varchar(1024)</value>
+                        </columntype>
+                    </persistence>
+                </attribute>
+            </attributes>
+            <indexes>
+                <index name="idx_integrationKey">
+                    <key attribute="integrationKey"/>
+                </index>
+                <index name="idx_messageId">
+                    <key attribute="messageId"/>
+                </index>
+            </indexes>
+        </itemtype>
+
+        <itemtype code="MonitoredRequestError" abstract="true">
+            <attributes>
+                <attribute qualifier="code" type="java.lang.String">
+                    <modifiers optional="false"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="message" type="java.lang.String">
+                    <modifiers optional="false"/>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <itemtype code="IntegrationApiMedia" extends="CatalogUnawareMedia">
+            <description>Item that represents media specific for Integration APIs.
+                It extends CatalogUnawareMedia type without adding any new attribute.
+                This class should be extended and not used directly. For compatibility
+                reasons has not been defined as "abstract=true"
+            </description>
+        </itemtype>
+    </itemtypes>
+</items>

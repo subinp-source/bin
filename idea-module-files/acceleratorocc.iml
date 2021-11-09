@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="OOTB" importedAsReadOnly="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/core-accelerator/acceleratorocc/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="acceleratorfacades" exported="" />
+    <orderEntry type="module" module-name="commercewebservices" exported="" />
+    <orderEntry type="module" module-name="platform" exported="" />
+  </component>
+</module>

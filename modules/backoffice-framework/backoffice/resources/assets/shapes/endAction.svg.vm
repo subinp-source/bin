@@ -1,0 +1,79 @@
+#* @vtlvariable name="model" type="de.hybris.platform.core.model.ItemModel" *#
+#* @vtlvariable name="class" type="java.lang.String" *#
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 244 112" width="244" height="112">
+	<style type="text/css">
+		div.node-container {
+			display: table-cell;
+			text-align: center;
+			vertical-align: middle;
+			width: 240px;
+			height: 102px;
+			line-height: 0;
+			padding: 4px 0;
+		}
+		div.node-container-text {
+			margin: -1px 25px 0;
+			max-height: 80pt;
+			width: 190px;
+			font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
+			font-size: 25.4pt;
+			line-height: 29.2pt;
+			overflow: hidden;
+			text-align: center;
+			word-break: normal;
+			display: -webkit-box;
+			text-overflow: ellipsis;
+			-webkit-line-clamp: 2;
+			-webkit-box-orient: vertical;
+		}
+		.action-end-text {
+			color: #fff;
+		}
+		.action-end-outer {
+			stroke: #0486E0;
+			stroke-width: 4;
+			fill: #fff;
+		}
+		.action-end-inner {
+			fill: #0486E0;
+		}
+		.action-end-outer.in-progress {
+			stroke: #0486E0;
+		}
+		.action-end-inner.in-progress {
+			fill: #0486E0;
+		}
+		.action-end-outer.completed {
+			stroke: #7ED321;
+		}
+		.action-end-inner.completed {
+			fill: #7ED321;
+		}
+		.action-end-outer.terminated {
+			stroke: #ff3b30;
+		}
+		.action-end-inner.terminated {
+			fill: #ff3b30;
+		}
+		.action-end-outer.selected {
+			fill: #D4E5FF;
+		}
+
+	</style>
+	<g>
+		<rect class="action-end-outer $class" ry="53" width="240" height="106" y="2" x="2" fill="#0486E0"/>
+		<rect class="action-end-inner $class" ry="41" width="216" height="82" y="14" x="14"/>
+		<foreignObject x="0" y="0" width="100%" height="100%">
+			<div xmlns="http://www.w3.org/1999/xhtml" class="node-container">
+				<div class="node-container-text action-end-text $class">
+					#if (!$model.getName() || "$model.getName()" == "")
+						<span>[$model.getCode()]</span>
+					#else
+						<span>$model.getName()</span>
+					#end
+				</div>
+			</div>
+		</foreignObject>
+	</g>
+</svg>

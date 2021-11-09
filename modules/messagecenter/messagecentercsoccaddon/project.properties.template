@@ -1,0 +1,11 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+messagecentercsoccaddon.key=value
+
+# Specifies the location of the spring context file added automatically to the global platform application context.
+messagecentercsoccaddon.application-context=messagecentercsoccaddon-spring.xml
+
+# Specifies the location of the spring context file which will be added to commerce web services web context
+ycommercewebservices.additionalWebSpringConfigs.messagecentercsoccaddon=classpath:/messagecentercsoccaddon/web/spring/messagecentercsoccaddon-web-spring.xml

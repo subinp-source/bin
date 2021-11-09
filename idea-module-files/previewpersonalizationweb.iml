@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="OOTB" importedAsReadOnly="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb/bin/previewpersonalizationwebserver.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../modules/personalization/previewpersonalizationweb/bin/previewpersonalizationwebserver.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="personalizationservices" exported="" />
+    <orderEntry type="module" module-name="platform" exported="" />
+    <orderEntry type="module" module-name="previewwebservices" exported="" />
+  </component>
+</module>

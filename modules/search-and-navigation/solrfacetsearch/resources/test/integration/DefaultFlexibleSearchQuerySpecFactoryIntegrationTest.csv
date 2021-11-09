@@ -1,0 +1,7 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+INSERT_UPDATE SolrIndexerQuery;solrIndexedType(identifier)[unique=true];identifier[unique=true];type(code);query;injectLastIndexTime;injectCurrentTime;injectCurrentDate;user(uid)
+;testIndexedType${testId};testFullIndexerQuery${testId};full;SELECT {pk} FROM {Product};true;true;true;anonymous
+;testIndexedType${testId};testUpdateIndexerQuery${testId};update;SELECT {PK} FROM {Product} WHERE {modifiedtime} >= ?lastIndexTime;true;false;false;anonymous
+;testIndexedType${testId};testDeleteIndexerQuery${testId};delete;SELECT {PK} FROM {Product} WHERE {code} = ?code;false;false;false;anonymous

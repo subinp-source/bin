@@ -1,0 +1,967 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<config xmlns="http://www.hybris.com/cockpit/config" xmlns:y="http://www.hybris.com/cockpit/config/hybris"
+        xmlns:list-view="http://www.hybris.com/cockpitng/component/listView"
+        xmlns:simple-search="http://www.hybris.com/cockpitng/config/simplesearch"
+        xmlns:advanced-search="http://www.hybris.com/cockpitng/config/advancedsearch"
+        xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea"
+        xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config"
+        xmlns:na="http://www.hybris.com/cockpitng/config/notifications">
+
+    <!--Notification Area-->
+    <context component="notification-area" merge-by="type">
+        <na:notification-area>
+            <na:notifications eventType="CreateObject" level="FAILURE">
+                <na:message>subscriptionbackoffice.customvalidation.interceptor.error</na:message>
+                <na:references>
+                    <na:reference placeholder="0" label="#root?.getCause()?.getCause()?.getMessage()" />
+                </na:references>
+            </na:notifications>
+        </na:notification-area>
+    </context>
+
+	<!--Explorer Tree -->
+	<context component="explorer-tree" parent="auto" merge-by="module">
+		<explorer-tree:explorer-tree xmlns:explorer-tree="http://www.hybris.com/cockpitng/config/explorertree">
+			<explorer-tree:navigation-node id="hmc_treenode_subscription">
+				<explorer-tree:type-node code="PromotionBillingTimeRestriction" id="hmc_typenode_promotionbillingtimerestriction" />
+				<explorer-tree:type-node code="BillingTime" id="hmc_typenode_billingtime" />
+				<explorer-tree:type-node code="BillingPlan" id="hmc_typenode_billingplan" />
+				<explorer-tree:type-node code="SubscriptionTerm" id="hmc_typenode_subscriptionterm" />
+			</explorer-tree:navigation-node>
+		</explorer-tree:explorer-tree>
+	</context>
+
+	<context type="BillingPlan">
+		<context component="base" merge-by="type">
+			<y:base>
+				<y:labels>
+					<y:label>name</y:label>
+				</y:labels>
+			</y:base>
+		</context>
+        <context component="listview" merge-by="type">
+            <list-view:list-view refresh-after-object-creation="true">
+                <list-view:column qualifier="name" hflex="true"/>
+                <list-view:column qualifier="billingCycleDay" hflex="true"/>
+                <list-view:column qualifier="billingCycleType" hflex="true"/>
+                <list-view:column qualifier="billingFrequency" hflex="true"/>
+            </list-view:list-view>
+        </context>
+		<context component="simple-search" merge-by="type">
+			<simple-search:simple-search>
+				<simple-search:field name="id" />
+				<simple-search:field name="name" />
+			</simple-search:simple-search>
+		</context>
+        <context component="advanced-search" merge-by="type">
+            <advanced-search:advanced-search>
+                <advanced-search:field-list>
+                    <advanced-search:field name="name"/>
+                    <advanced-search:field name="billingCycleDay"/>
+                    <advanced-search:field name="billingCycleType"/>
+                    <advanced-search:field name="billingFrequency"/>
+                </advanced-search:field-list>
+            </advanced-search:advanced-search>
+        </context>
+		<context component="editor-area" merge-by="type">
+			<editorArea:editorArea>
+				<editorArea:essentials>
+					<editorArea:essentialSection name="hmc.essential">
+						<editorArea:attribute qualifier="id"/>
+						<editorArea:attribute qualifier="name"/>
+					</editorArea:essentialSection>
+				</editorArea:essentials>
+                <editorArea:tab name="hmc.tab.basic" position="10">
+                    <editorArea:section name="hmc.section.basic" position="10">
+                        <editorArea:attribute qualifier="billingCycleDay" position="10"/>
+                        <editorArea:attribute qualifier="billingCycleType" position="20"/>
+                        <editorArea:attribute qualifier="billingFrequency" position="30"/>
+                    </editorArea:section>
+                </editorArea:tab>
+			</editorArea:editorArea>
+		</context>
+		<context component="create-wizard">
+			<wz:flow id="BillingPlanWizard" title="create.title(ctx.TYPE_CODE)">
+				<wz:prepare id="billingPlanPrepare">
+					<wz:initialize property="newBillingPlan" type="ctx.TYPE_CODE"/>
+				</wz:prepare>
+				<wz:step id="step1" label="subscriptionbackoffice.billingplan.essentials.label">
+					<wz:content id="step1.content">
+						<wz:property-list root="newBillingPlan">
+							<wz:property qualifier="id"/>
+						</wz:property-list>
+					</wz:content>
+					<wz:navigation id="step1.navigation">
+						<wz:cancel/>
+						<wz:next visible="!#empty(newBillingPlan.id)"/>
+					</wz:navigation>
+				</wz:step>
+				<wz:step id="step2" label="subscriptionbackoffice.billingplan.basicdata.label">
+					<wz:content id="step2.content">
+						<wz:property-list root="newBillingPlan">
+							<wz:property qualifier="name"/>
+							<wz:property qualifier="billingCycleDay" />
+							<wz:property qualifier="billingCycleType"/>
+							<wz:property qualifier="billingFrequency"/>
+						</wz:property-list>
+					</wz:content>
+					<wz:navigation id="step2.navigation">
+						<wz:cancel/>
+						<wz:done>
+							<wz:save-all/>
+						</wz:done>
+					</wz:navigation>
+				</wz:step>
+			</wz:flow>
+		</context>
+	</context>
+	
+	<!-- Billing Time -->
+	<context type="BillingTime" >
+        <context component="base" merge-by="type">
+            <y:base>
+                <y:labels>
+                    <y:label>code</y:label>
+                </y:labels>
+            </y:base>
+        </context>
+        <context component="listview" merge-by="type">
+            <list-view:list-view refresh-after-object-creation="true">
+                <list-view:column qualifier="code" hflex="true" />
+                <list-view:column qualifier="nameInCart" hflex="true"/>
+                <list-view:column qualifier="nameInOrder" hflex="true"/>
+                <list-view:column qualifier="order" hflex="true"/>
+				<list-view:column qualifier="cartAware" hflex="true"/>
+            </list-view:list-view>
+        </context>
+        <context component="simple-search" merge-by="type">
+            <simple-search:simple-search>
+				<simple-search:field name="code" />
+				<simple-search:field name="nameInCart" />
+				<simple-search:field name="nameInOrder" />
+            </simple-search:simple-search>
+        </context>
+        <context component="advanced-search" merge-by="type">
+            <advanced-search:advanced-search>
+                <advanced-search:field-list>
+                    <advanced-search:field name="code"/>
+                    <advanced-search:field name="nameInCart"/>
+                    <advanced-search:field name="nameInOrder"/>
+                    <advanced-search:field name="order"/>
+                    <advanced-search:field name="cartAware"/>
+                </advanced-search:field-list>
+            </advanced-search:advanced-search>
+        </context>
+        <context component="editor-area" merge-by="type">
+            <editorArea:editorArea>
+                <editorArea:essentials>
+                    <editorArea:essentialSection name="hmc.essential">
+                        <editorArea:attribute qualifier="code" />
+                    </editorArea:essentialSection>
+                </editorArea:essentials>
+                <editorArea:tab name="subscriptionbackoffice.tab.basic" position="10">
+                    <editorArea:section name="subscriptionbackoffice.section.basic" position="10">
+                        <editorArea:attribute qualifier="nameInCart" position="10"/>
+                        <editorArea:attribute qualifier="nameInOrder" position="20"/>
+                        <editorArea:attribute qualifier="description" position="30"/>
+                        <editorArea:attribute qualifier="order" position="40"/>
+                        <editorArea:attribute qualifier="cartAware" position="50"/>
+                    </editorArea:section>
+                </editorArea:tab>
+            </editorArea:editorArea>
+        </context>
+        <context component="create-wizard">
+            <wz:flow id="BillingTimeWizard" title="create.title(ctx.TYPE_CODE)">
+                <wz:prepare id="billingTimePrepare">
+                    <wz:initialize property="newBillingTime" type="ctx.TYPE_CODE"/>
+                </wz:prepare>
+                <wz:step id="step1" label="subscriptionbackoffice.billingtime.essentials.label">
+                    <wz:content id="step1.content">
+                        <wz:property-list root="newBillingTime">
+                            <wz:property qualifier="code"/>
+                        </wz:property-list>
+                    </wz:content>
+                    <wz:navigation id="step1.navigation">
+                        <wz:cancel/>
+                        <wz:next visible="!#empty(newBillingTime.code)"/>
+                    </wz:navigation>
+                </wz:step>
+                <wz:step id="step2" label="subscriptionbackoffice.billingtime.basicdata.label">
+                    <wz:content id="step2.content">
+                        <wz:property-list root="newBillingTime">
+                            <wz:property qualifier="nameInCart"/>
+                            <wz:property qualifier="nameInOrder"/>
+                            <wz:property qualifier="description"/>
+                            <wz:property qualifier="order"/>
+                            <wz:property qualifier="cartAware"/>
+                        </wz:property-list>
+                    </wz:content>
+                    <wz:navigation id="step2.navigation">
+                        <wz:cancel/>
+                        <wz:done>
+                            <wz:save-all/>
+                        </wz:done>
+                    </wz:navigation>
+                </wz:step>
+            </wz:flow>
+        </context>
+	</context>
+
+	<context type="PromotionBillingTimeRestriction">
+        <context component="base" merge-by="type">
+            <y:base>
+                <y:labels>
+                    <y:label>descriptionPattern</y:label>
+                </y:labels>
+            </y:base>
+        </context>
+        <context type="PromotionBillingTimeRestriction" component="listview" merge-by="type" parent="AbstractPromotionRestriction">
+            <list-view:list-view xmlns:list-view="http://www.hybris.com/cockpitng/component/listView" refresh-after-object-creation="true">
+                <list-view:column qualifier="promotion" />
+            </list-view:list-view>
+        </context>
+        <context type="PromotionBillingTimeRestriction" component="simple-search" merge-by="type" parent="AbstractPromotionRestriction">
+            <simple-search:simple-search xmlns:simple-search="http://www.hybris.com/cockpitng/config/simplesearch">
+                <simple-search:field xmlns="http://www.hybris.com/cockpitng/config/simplesearch" name="promotion" />
+                <simple-search:field xmlns="http://www.hybris.com/cockpitng/config/simplesearch" name="descriptionPattern" />
+            </simple-search:simple-search>
+        </context>
+        <context type="PromotionBillingTimeRestriction" component="editor-area" merge-by="type" parent="AbstractPromotionRestriction">
+            <editorArea xmlns="http://www.hybris.com/cockpitng/component/editorArea">
+                <essentials>
+                    <essentialSection name="hmc.essential">
+                        <attribute qualifier="promotion" />
+                        <attribute qualifier="descriptionPattern" />
+                    </essentialSection>
+                </essentials>
+                <tab name="subscriptionbackoffice.tab.restriction_properties">
+                    <section name="subscriptionbackoffice.section.restriction.billing_times" position="2">
+                        <attribute qualifier="billingTimes"/>
+                        <attribute qualifier="positive">
+                            <editor-parameter>
+                                <name>trueLabel</name>
+                                <value>positiveTrue</value>
+                            </editor-parameter>
+                            <editor-parameter>
+                                <name>falseLabel</name>
+                                <value>positiveFalse</value>
+                            </editor-parameter>
+                        </attribute>
+                    </section>
+                </tab>
+            </editorArea>
+        </context>
+	</context>
+
+    <context type="ChargeEntry">
+        <context component="simple-search" merge-by="type">
+            <simple-search:simple-search>
+                <simple-search:field name="id" />
+            </simple-search:simple-search>
+        </context>
+        <context component="advanced-search" merge-by="type">
+            <advanced-search:advanced-search>
+                <advanced-search:field-list>
+                    <advanced-search:field name="id"/>
+                    <advanced-search:field name="catalogVersion"/>
+                    <advanced-search:field name="price"/>
+                </advanced-search:field-list>
+            </advanced-search:advanced-search>
+        </context>
+        <context component="listview" merge-by="type">
+            <list-view:list-view>
+                <list-view:column qualifier="price"/>
+                <list-view:column qualifier="currency"/>
+                <list-view:column qualifier="catalogVersion"/>
+            </list-view:list-view>
+        </context>
+        <context component="editor-area" merge-by="type">
+            <editorArea:editorArea>
+                <editorArea:essentials>
+                    <editorArea:essentialSection name="hmc.essential">
+                        <editorArea:attribute qualifier="id"/>
+                        <editorArea:attribute qualifier="catalogVersion"/>
+                    </editorArea:essentialSection>
+                </editorArea:essentials>
+                <editorArea:tab name="subscriptionbackoffice.tab.basic" position="10">
+                    <editorArea:section name="subscriptionbackoffice.section.basic" merge-mode="append" position="10">
+                        <editorArea:attribute qualifier="price" position="10"/>
+                        <editorArea:attribute qualifier="currency" position="20"/>
+                    </editorArea:section>
+                </editorArea:tab>
+            </editorArea:editorArea>
+        </context>
+    </context>
+
+    <context type="OneTimeChargeEntry">
+        <context component="base" merge-by="type">
+            <y:base>
+                <y:labels>
+                    <y:label>name + ': ' + currency?.symbol + price + ' ' + billingEvent?.nameInCart</y:label>
+                </y:labels>
+            </y:base>
+        </context>
+        <context component="simple-search" merge-by="type">
+            <simple-search:simple-search>
+                <simple-search:field name="name" />
+            </simple-search:simple-search>
+        </context>
+        <context component="advanced-search" merge-by="type">
+            <advanced-search:advanced-search>
+                <advanced-search:field-list>
+                    <advanced-search:field name="name"/>
+                    <advanced-search:field name="billingEvent"/>
+                </advanced-search:field-list>
+            </advanced-search:advanced-search>
+        </context>
+        <context component="listview" merge-by="type">
+            <list-view:list-view>
+                <list-view:column qualifier="name" position="10"/>
+            </list-view:list-view>
+        </context>
+        <context component="editor-area" merge-by="type">
+            <editorArea:editorArea>
+                <editorArea:essentials>
+                    <editorArea:essentialSection name="hmc.essential">
+                        <editorArea:attribute qualifier="name" position="6"/>
+                    </editorArea:essentialSection>
+                </editorArea:essentials>
+                <editorArea:tab name="subscriptionbackoffice.tab.basic" position="10">
+                    <editorArea:section name="subscriptionbackoffice.section.basic" merge-mode="append" position="10">
+                        <editorArea:attribute qualifier="billingEvent" position="30"/>
+                        <editorArea:attribute qualifier="subscriptionPricePlanOneTime" position="100"/>
+                    </editorArea:section>
+                </editorArea:tab>
+            </editorArea:editorArea>
+        </context>
+        <context component="create-wizard">
+            <wz:flow id="OneTimeChargeEntryWizard" title="create.title(ctx.TYPE_CODE)" merge-mode="type">
+                <wz:prepare id="oneTimeChargeEntryPrepare">
+                    <wz:initialize property="newOneTimeChargeEntry" type="ctx.TYPE_CODE"/>
+                    <wz:assign property="newOneTimeChargeEntry.catalogVersion" value="ctx.parentObject?.catalogVersion"/>
+                    <wz:assign property="newOneTimeChargeEntry.subscriptionPricePlanOneTime" value="ctx.parentObject"/>
+                </wz:prepare>
+                <wz:step id="step1" label="subscriptionbackoffice.onetimechargeentry.essentials.label">
+                    <wz:content id="step1.content">
+                        <wz:property-list root="newOneTimeChargeEntry">
+                            <wz:property qualifier="name" position="10"/>
+                            <wz:property qualifier="price" position="20"/>
+                            <wz:property qualifier="currency" position="30"/>
+                            <wz:property qualifier="billingEvent" position="40"/>
+                        </wz:property-list>
+                    </wz:content>
+                    <wz:navigation id="step1.navigation">
+                        <wz:cancel/>
+                        <wz:done visible="newOneTimeChargeEntry.name!=null and newOneTimeChargeEntry.price!=null and newOneTimeChargeEntry.billingEvent!=null">
+                            <wz:save-all/>
+                        </wz:done>
+                    </wz:navigation>
+                </wz:step>
+            </wz:flow>
+        </context>
+    </context>
+
+    <context type="RecurringChargeEntry">
+        <context component="base" merge-by="type">
+            <y:base>
+                <y:labels>
+                    <y:label>'[' + cycleStart + '-' + cycleEnd + ']: ' + currency?.symbol + price</y:label>
+                </y:labels>
+            </y:base>
+        </context>
+        <context component="advanced-search" merge-by="type">
+            <advanced-search:advanced-search>
+                <advanced-search:field-list>
+                    <advanced-search:field name="cycleStart"/>
+                    <advanced-search:field name="cycleEnd"/>
+                </advanced-search:field-list>
+            </advanced-search:advanced-search>
+        </context>
+        <context component="listview" merge-by="type">
+            <list-view:list-view>
+                <list-view:column qualifier="cycleStart" position="10"/>
+                <list-view:column qualifier="cycleEnd" position="20"/>
+            </list-view:list-view>
+        </context>
+        <context component="editor-area" merge-by="type">
+            <editorArea:editorArea>
+                <editorArea:tab name="subscriptionbackoffice.tab.basic">
+                    <editorArea:section name="subscriptionbackoffice.section.basic">
+                        <editorArea:attribute qualifier="cycleStart" position="30"/>
+                        <editorArea:attribute qualifier="cycleEnd" position="40"/>
+                        <editorArea:attribute qualifier="subscriptionPricePlanRecurring" position="50"/>
+                    </editorArea:section>
+                </editorArea:tab>
+            </editorArea:editorArea>
+        </context>
+        <context component="create-wizard">
+            <wz:flow id="RecurringChargeEntryWizard" title="create.title(ctx.TYPE_CODE)">
+                <wz:prepare id="recurringChargeEntryPrepare">
+                    <wz:initialize property="newRecurringChargeEntry" type="ctx.TYPE_CODE"/>
+                    <wz:assign property="newRecurringChargeEntry.catalogVersion" value="ctx.parentObject?.catalogVersion"/>
+                    <wz:assign property="newRecurringChargeEntry.subscriptionPricePlanRecurring" value="ctx.parentObject"/>
+                </wz:prepare>
+                <wz:step id="step1" label="subscriptionbackoffice.recurringchargeentry.essentials.label">
+                    <wz:content id="step1.content">
+                        <wz:property-list root="newRecurringChargeEntry">
+                            <wz:property qualifier="cycleStart" position="10"/>
+                            <wz:property qualifier="cycleEnd" position="20"/>
+                            <wz:property qualifier="price" position="30"/>
+                            <wz:property qualifier="currency" position="40"/>
+                        </wz:property-list>
+                    </wz:content>
+                    <wz:navigation id="step1.navigation">
+                        <wz:cancel/>
+                        <wz:done visible="newRecurringChargeEntry.cycleStart!=null and newRecurringChargeEntry.cycleEnd!=null and newRecurringChargeEntry.price!=null">
+                            <wz:save-all/>
+                        </wz:done>
+                    </wz:navigation>
+                </wz:step>
+            </wz:flow>
+        </context>
+    </context>
+
+    <context type="OverageUsageChargeEntry">
+        <context component="base" merge-by="type">
+            <y:base>
+                <y:labels>
+                    <y:label>'Overage - ' + currency?.symbol + price </y:label>
+                </y:labels>
+            </y:base>
+        </context>
+        <context component="create-wizard">
+            <wz:flow id="OverageUsageChargeEntryWizard" title="create.title(ctx.TYPE_CODE)">
+                <wz:prepare id="overageUsageChargeEntryPrepare">
+                    <wz:initialize property="newOverageUsageChargeEntry" type="ctx.TYPE_CODE"/>
+                    <wz:assign property="newOverageUsageChargeEntry.catalogVersion" value="ctx.parentObject?.catalogVersion"/>
+                    <wz:assign property="newOverageUsageChargeEntry.usageCharge" value="ctx.parentObject"/>
+                </wz:prepare>
+                <wz:step id="step1" label="subscriptionbackoffice.overageusagechargeentry.essentials.label">
+                    <wz:content id="step1.content">
+                        <wz:property-list root="newOverageUsageChargeEntry">
+                            <wz:property qualifier="price" position="10"/>
+                            <wz:property qualifier="currency" position="20"/>
+                        </wz:property-list>
+                    </wz:content>
+                    <wz:navigation id="step1.navigation">
+                        <wz:cancel/>
+                        <wz:done>
+                            <wz:save-all/>
+                        </wz:done>
+                    </wz:navigation>
+                </wz:step>
+            </wz:flow>
+        </context>
+    </context>
+
+    <context type="TierUsageChargeEntry">
+        <context component="base" merge-by="type">
+            <y:base>
+                <y:labels>
+                    <y:label>'From ' + tierStart + ' to ' + tierEnd + ' ' + usageCharge?.usageUnit?.namePlural + ' - ' + currency?.symbol + price + ' each'</y:label>
+                </y:labels>
+            </y:base>
+        </context>
+        <context component="advanced-search" merge-by="type">
+            <advanced-search:advanced-search >
+                <advanced-search:field-list>
+                    <advanced-search:field name="tierStart"/>
+                    <advanced-search:field name="tierEnd"/>
+                </advanced-search:field-list>
+            </advanced-search:advanced-search>
+        </context>
+        <context component="listview" merge-by="type">
+            <list-view:list-view >
+                <list-view:column qualifier="tierStart" position="30"/>
+                <list-view:column qualifier="tierEnd" position="40"/>
+            </list-view:list-view>
+        </context>
+        <context component="editor-area" merge-by="type">
+            <editorArea:editorArea>
+                <editorArea:tab name="subscriptionbackoffice.tab.basic" position="10">
+                    <editorArea:section name="subscriptionbackoffice.section.basic" position="10">
+                        <editorArea:attribute qualifier="tierStart" position="30"/>
+                        <editorArea:attribute qualifier="tierEnd" position="40"/>
+                    </editorArea:section>
+                </editorArea:tab>
+            </editorArea:editorArea>
+        </context>
+        <context component="create-wizard">
+            <wz:flow id="TierUsageChargeEntryWizard" title="create.title(ctx.TYPE_CODE)">
+                <wz:prepare id="tierUsageChargeEntryPrepare">
+                    <wz:initialize property="newTierUsageChargeEntry" type="ctx.TYPE_CODE"/>
+                    <wz:assign property="newTierUsageChargeEntry.catalogVersion" value="ctx.parentObject?.catalogVersion"/>
+                    <wz:assign property="newTierUsageChargeEntry.usageCharge" value="ctx.parentObject"/>
+                </wz:prepare>
+                <wz:step id="step1" label="subscriptionbackoffice.tierusagechargeentry.essentials.label">
+                    <wz:content id="step1.content">
+                        <wz:property-list root="newTierUsageChargeEntry">
+                            <wz:property qualifier="tierStart" position="10"/>
+                            <wz:property qualifier="tierEnd" position="20"/>
+                            <wz:property qualifier="price" position="30"/>
+                            <wz:property qualifier="currency" position="40"/>
+                        </wz:property-list>
+                    </wz:content>
+                    <wz:navigation id="step1.navigation">
+                        <wz:cancel/>
+                        <wz:done>
+                            <wz:save-all/>
+                        </wz:done>
+                    </wz:navigation>
+                </wz:step>
+            </wz:flow>
+        </context>
+    </context>
+    <context merge-by="type" parent="GenericItem" type="Unit" component="listview">
+        <list-view:list-view>
+            <list-view:column qualifier="unitType" hflex="true"/>
+            <list-view:column qualifier="code" hflex="true"/>
+            <list-view:column qualifier="name"/>
+        </list-view:list-view>
+    </context>
+    <context merge-by="type" parent="C2LItem" type="Currency" component="listview">
+        <list-view:list-view>
+            <list-view:column qualifier="active" hflex="true"/>
+            <list-view:column qualifier="base" hflex="true"/>
+            <list-view:column qualifier="isocode" hflex="true"/>
+            <list-view:column qualifier="name" hflex="true"/>
+        </list-view:list-view>
+    </context>
+    <context type="SubscriptionPricePlan">
+        <context component="base" merge-by="type">
+            <y:base>
+                <y:labels>
+                    <y:label>name + ' - ' + currency?.isocode </y:label>
+                </y:labels>
+            </y:base>
+        </context>
+        <context component="simple-search" merge-by="type">
+            <simple-search:simple-search>
+                <simple-search:field name="name" />
+            </simple-search:simple-search>
+        </context>
+        <context component="advanced-search" merge-by="type">
+            <advanced-search:advanced-search>
+                <advanced-search:field-list>
+                    <advanced-search:field name="name"/>
+                </advanced-search:field-list>
+            </advanced-search:advanced-search>
+        </context>
+        <context component="listview" merge-by="type" parent="GenericItem" >
+            <list-view:list-view>
+                <list-view:column qualifier="name"/>
+                <list-view:column qualifier="currency"/>
+                <list-view:column qualifier="user"/>
+                <list-view:column qualifier="ug"/>
+                <list-view:column qualifier="dateRange"/>
+            </list-view:list-view>
+        </context>
+        <context component="editor-area" parent="GenericItem" merge-by="type">
+            <editorArea:editorArea>
+                <editorArea:essentials>
+                    <editorArea:essentialSection name="hmc.essential">
+                        <editorArea:attribute qualifier="name" position="10"/>
+                        <editorArea:attribute qualifier="catalogVersion" position="20"/>
+                        <editorArea:attribute qualifier="product" position="30"/>
+                        <editorArea:attribute qualifier="pg" position="40"/>
+                        <editorArea:attribute qualifier="user" position="50"/>
+                        <editorArea:attribute qualifier="ug" position="60"/>
+                    </editorArea:essentialSection>
+                </editorArea:essentials>
+                <editorArea:tab name="subscriptionbackoffice.tab.basic" position="10">
+                    <editorArea:section name="subscriptionbackoffice.section.basic" position="10">
+                        <editorArea:attribute qualifier="currency" position="10"/>
+                        <editorArea:attribute qualifier="dateRange" position="20"/>
+                    </editorArea:section>
+                </editorArea:tab>
+                <editorArea:tab name="subscriptionbackoffice.tab.subscriptionpriceplan.onetimechargeentries">
+                    <editorArea:section name="subscriptionbackoffice.section.subscriptionpriceplan.onetimechargeentries">
+                        <editorArea:attribute qualifier="oneTimeChargeEntries"/>
+                    </editorArea:section>
+                </editorArea:tab>
+                <editorArea:tab name="subscriptionbackoffice.tab.subscriptionpriceplan.recurringchargeentries">
+                    <editorArea:section name="subscriptionbackoffice.section.subscriptionpriceplan.recurringchargeentries">
+                        <editorArea:attribute qualifier="recurringChargeEntries"/>
+                    </editorArea:section>
+                </editorArea:tab>
+                <editorArea:tab name="subscriptionbackoffice.tab.subscriptionpriceplan.usagecharges">
+                    <editorArea:section name="subscriptionbackoffice.section.subscriptionpriceplan.usagecharges">
+                        <editorArea:attribute qualifier="usageCharges"/>
+                    </editorArea:section>
+                </editorArea:tab>
+            </editorArea:editorArea>
+        </context>
+        <context component="create-wizard">
+            <wz:flow id="SubscriptionPricePlanWizard" title="create.title(ctx.TYPE_CODE)">
+                <wz:prepare id="subscriptionPricePlanPrepare">
+                    <wz:initialize property="newSubscriptionPricePlan" type="ctx.TYPE_CODE"/>
+                    <wz:assign property="newSubscriptionPricePlan.product" value="ctx.parentObject"/>
+                </wz:prepare>
+                <wz:step id="step1" label="subscriptionbackoffice.subscriptionpriceplan.essentials.label">
+                    <wz:content id="step1.content">
+                        <wz:property-list root="newSubscriptionPricePlan">
+                            <wz:property qualifier="name" position="10"/>
+                            <wz:property qualifier="currency" position="20"/>
+                            <wz:property qualifier="user" position="30"/>
+                            <wz:property qualifier="ug" position="40"/>
+                            <wz:property qualifier="unit" position="50"/>
+                            <wz:property qualifier="dateRange" position="60"/>
+                        </wz:property-list>
+                    </wz:content>
+                    <wz:navigation id="step1.navigation">
+                        <wz:cancel/>
+                        <wz:done visible="newSubscriptionPricePlan.currency!=null and newSubscriptionPricePlan.unit!=null">
+                            <wz:save-all/>
+                        </wz:done>
+                    </wz:navigation>
+                </wz:step>
+            </wz:flow>
+        </context>
+        <context component="create-wizard-no-save" merge-by="component" parent="create-wizard">
+            <wz:flow id="SubscriptionPricePlanWizard" title="create.title(ctx.TYPE_CODE)">
+                <wz:step id="step1" label="subscriptionbackoffice.subscriptionpriceplan.essentials.label">
+                    <wz:navigation id="step1.navigation">
+                        <wz:cancel/>
+                        <wz:done/>
+                        <wz:done visible="newSubscriptionPricePlan.currency!=null and (newSubscriptionPricePlan.unit!=null or newSubscriptionPricePlan.product?.unit!=null)"/>
+                    </wz:navigation>
+                </wz:step>
+            </wz:flow>
+        </context>
+    </context>
+
+    <context type="SubscriptionTerm">
+        <context component="base" merge-by="type">
+            <y:base>
+                <y:labels>
+                    <y:label>name</y:label>
+                </y:labels>
+            </y:base>
+        </context>
+        <context component="simple-search" merge-by="type">
+            <simple-search:simple-search>
+                <simple-search:field name="id" />
+                <simple-search:field name="name" />
+            </simple-search:simple-search>
+        </context>
+        <context component="advanced-search" merge-by="type">
+            <advanced-search:advanced-search>
+                <advanced-search:field-list>
+                    <advanced-search:field name="id"/>
+                    <advanced-search:field name="name"/>
+                    <advanced-search:field name="termOfServiceNumber"/>
+                    <advanced-search:field name="termOfServiceRenewal"/>
+                    <advanced-search:field name="termOfServiceFrequency"/>
+                    <advanced-search:field name="cancellable"/>
+                    <advanced-search:field name="billingPlan"/>
+                </advanced-search:field-list>
+            </advanced-search:advanced-search>
+        </context>
+        <context component="listview" merge-by="type">
+            <list-view:list-view refresh-after-object-creation="true">
+                <list-view:column qualifier="id"/>
+                <list-view:column qualifier="name"/>
+                <list-view:column qualifier="termOfServiceNumber"/>
+                <list-view:column qualifier="termOfServiceRenewal"/>
+                <list-view:column qualifier="termOfServiceFrequency"/>
+                <list-view:column qualifier="cancellable"/>
+                <list-view:column qualifier="billingPlan"/>
+            </list-view:list-view>
+        </context>
+        <context component="editor-area" merge-by="type">
+            <editorArea:editorArea>
+                <editorArea:essentials>
+                    <editorArea:essentialSection name="hmc.essential">
+                        <editorArea:attribute qualifier="id"/>
+                        <editorArea:attribute qualifier="name"/>
+                    </editorArea:essentialSection>
+                </editorArea:essentials>
+                <editorArea:tab name="subscriptionbackoffice.tab.basic" position="10">
+                    <editorArea:section name="subscriptionbackoffice.section.basic" position="10">
+                        <editorArea:attribute qualifier="termOfServiceNumber" position="10"/>
+                        <editorArea:attribute qualifier="termOfServiceFrequency" position="20"/>
+                        <editorArea:attribute qualifier="termOfServiceRenewal" position="30"/>
+                        <editorArea:attribute qualifier="cancellable" position="40"/>
+                        <editorArea:attribute qualifier="billingPlan" position="50"/>
+                    </editorArea:section>
+                </editorArea:tab>
+            </editorArea:editorArea>
+        </context>
+        <context component="create-wizard">
+            <wz:flow id="SubscriptionTermWizard" title="create.title(ctx.TYPE_CODE)">
+                <wz:prepare id="subscriptionTermPrepare">
+                    <wz:initialize property="newSubscriptionTerm" type="ctx.TYPE_CODE"/>
+                </wz:prepare>
+                <wz:step id="step1" label="subscriptionbackoffice.subscriptionterm.essentials.label">
+                    <wz:content id="step1.content">
+                        <wz:property-list root="newSubscriptionTerm">
+                            <wz:property qualifier="id"/>
+                        </wz:property-list>
+                    </wz:content>
+                    <wz:navigation id="step1.navigation">
+                        <wz:cancel/>
+                        <wz:next visible="!#empty(newSubscriptionTerm.id)"/>
+                    </wz:navigation>
+                </wz:step>
+                <wz:step id="step2" label="subscriptionbackoffice.subscriptionterm.basicdata.label">
+                    <wz:content id="step2.content">
+                        <wz:property-list root="newSubscriptionTerm">
+                            <wz:property qualifier="name"/>
+                            <wz:property qualifier="termOfServiceNumber"/>
+                            <wz:property qualifier="termOfServiceFrequency"/>
+                            <wz:property qualifier="termOfServiceRenewal"/>
+                            <wz:property qualifier="cancellable"/>
+                            <wz:property qualifier="billingPlan"/>
+                        </wz:property-list>
+                    </wz:content>
+                    <wz:navigation id="step2.navigation">
+                        <wz:cancel/>
+                        <wz:done>
+                            <wz:save-all/>
+                        </wz:done>
+                    </wz:navigation>
+                </wz:step>
+            </wz:flow>
+        </context>
+    </context>
+
+    <context type="SubscriptionProduct" component="create-wizard" merge-by="type" parent="Product">
+        <context component="create-wizard">
+            <wz:flow id="SubscriptionProductWizard" title="create.title(ctx.TYPE_CODE)">
+                <wz:prepare id="productPrepare">
+                    <wz:assign property="newProduct.subscriptionTerm" value="ctx.parentObject" merge-mode="APPEND"/>
+                </wz:prepare>
+                <wz:step id="step1" label="create.product.essential.label" sublabel="create.product.essential.sublabel">
+                    <wz:content id="step1.content">
+                        <wz:property-list root="newProduct">
+                            <wz:property qualifier="subscriptionTerm" merge-mode="APPEND"/>
+                        </wz:property-list>
+                    </wz:content>
+                    <wz:navigation id="step1.navigation" merge-mode="REPLACE">
+                        <wz:cancel/>
+                        <wz:next visible="!#empty(newProduct.code) and newProduct.catalogVersion != null and newProduct.subscriptionTerm != null"/>
+                        <wz:done visible="!#empty(newProduct.code) and newProduct.catalogVersion != null and newProduct.subscriptionTerm != null">
+                            <wz:save property="newProduct"/>
+                        </wz:done>
+                    </wz:navigation>
+                </wz:step>
+            </wz:flow>
+        </context>
+    </context>
+
+    <context type="UsageCharge">
+        <context component="base" merge-by="type">
+            <y:base>
+                <y:labels>
+                    <y:label>name + ' - ' + usageUnit?.id + ' - ' + @labelService.getObjectLabel(catalogVersion)</y:label>
+                </y:labels>
+            </y:base>
+        </context>
+        <context component="simple-search" merge-by="type">
+            <simple-search:simple-search>
+                <simple-search:field name="id" />
+                <simple-search:field name="name" />
+            </simple-search:simple-search>
+        </context>
+        <context component="advanced-search" merge-by="type">
+            <advanced-search:advanced-search>
+                <advanced-search:field-list>
+                    <advanced-search:field name="name"/>
+                    <advanced-search:field name="usageUnit"/>
+                    <advanced-search:field name="catalogVersion"/>
+                </advanced-search:field-list>
+            </advanced-search:advanced-search>
+        </context>
+        <context component="listview" merge-by="type">
+            <list-view:list-view>
+                <list-view:column qualifier="name"/>
+                <list-view:column qualifier="usageUnit"/>
+                <list-view:column qualifier="catalogVersion"/>
+            </list-view:list-view>
+        </context>
+        <context component="editor-area" merge-by="type">
+            <editorArea:editorArea>
+                <editorArea:essentials>
+                    <editorArea:essentialSection name="hmc.essential">
+                        <editorArea:attribute qualifier="id"/>
+                        <editorArea:attribute qualifier="name"/>
+                        <editorArea:attribute qualifier="catalogVersion"/>
+                    </editorArea:essentialSection>
+                </editorArea:essentials>
+                <editorArea:tab name="subscriptionbackoffice.tab.basic" position="10">
+                    <editorArea:section name="subscriptionbackoffice.section.basic" position="10">
+                        <editorArea:attribute qualifier="usageUnit" position="10"/>
+                        <editorArea:attribute qualifier="usageChargeEntries" position="20"/>
+                    </editorArea:section>
+                </editorArea:tab>
+            </editorArea:editorArea>
+        </context>
+    </context>
+
+    <context type="PerUnitUsageCharge">
+        <context component="base" merge-by="type">
+            <y:base>
+                <y:labels>
+                    <y:label>'Per unit: ' + name + ' - ' + ( usageUnit?.name ?: (usageUnit?.id ?: '') ) </y:label>
+                </y:labels>
+            </y:base>
+        </context>
+        <context component="advanced-search" merge-by="type">
+            <advanced-search:advanced-search>
+                <advanced-search:field-list>
+                    <advanced-search:field name="usageChargeType"/>
+                </advanced-search:field-list>
+            </advanced-search:advanced-search>
+        </context>
+        <context component="editor-area" merge-by="type">
+            <editorArea:editorArea>
+                <editorArea:tab name="subscriptionbackoffice.tab.basic" position="10">
+                    <editorArea:section name="subscriptionbackoffice.section.basic" position="10">
+                        <editorArea:attribute qualifier="usageChargeType" position="20"/>
+                    </editorArea:section>
+                </editorArea:tab>
+            </editorArea:editorArea>
+        </context>
+        <context component="create-wizard">
+            <wz:flow id="PerUnitUsageChargeWizard" title="create.title(ctx.TYPE_CODE)">
+                <wz:prepare id="perUnitUsageChargePrepare">
+                    <wz:initialize property="newPerUnitUsageCharge" type="ctx.TYPE_CODE"/>
+                    <wz:assign property="newPerUnitUsageCharge.catalogVersion" value="ctx.parentObject?.catalogVersion"/>
+                </wz:prepare>
+                <wz:step id="step1" label="subscriptionbackoffice.perunitusagecharge.essentials.label">
+                    <wz:content id="step1.content">
+                        <wz:property-list root="newPerUnitUsageCharge">
+                            <wz:property qualifier="name" position="10"/>
+                            <wz:property qualifier="usageUnit" position="20"/>
+                            <wz:property qualifier="usageChargeType" position="30"/>
+                        </wz:property-list>
+                    </wz:content>
+                    <wz:navigation id="step1.navigation">
+                        <wz:cancel/>
+                        <wz:done>
+                            <wz:save-all/>
+                        </wz:done>
+                    </wz:navigation>
+                </wz:step>
+            </wz:flow>
+        </context>
+    </context>
+
+    <context type="VolumeUsageCharge">
+        <context component="base" merge-by="type">
+            <y:base>
+                <y:labels>
+                    <y:label>'Volume: ' + name + ' - ' + ( usageUnit?.name ?: (usageUnit?.id ?: '') ) </y:label>
+                </y:labels>
+            </y:base>
+        </context>
+        <context component="create-wizard">
+            <wz:flow id="VolumeUsageChargeWizard" title="create.title(ctx.TYPE_CODE)">
+                <wz:prepare id="volumeUsageChargePrepare">
+                    <wz:initialize property="newVolumeUsageCharge" type="ctx.TYPE_CODE"/>
+                    <wz:assign property="newVolumeUsageCharge.catalogVersion" value="ctx.parentObject?.catalogVersion"/>
+                </wz:prepare>
+                <wz:step id="step1" label="subscriptionbackoffice.volumeusagecharge.essentials.label">
+                    <wz:content id="step1.content">
+                        <wz:property-list root="newVolumeUsageCharge">
+                            <wz:property qualifier="name" position="10"/>
+                            <wz:property qualifier="usageUnit" position="20"/>
+                        </wz:property-list>
+                    </wz:content>
+                    <wz:navigation id="step1.navigation">
+                        <wz:cancel/>
+                        <wz:done>
+                            <wz:save-all/>
+                        </wz:done>
+                    </wz:navigation>
+                </wz:step>
+            </wz:flow>
+        </context>
+    </context>
+
+    <context type="UsageUnit">
+        <context component="base" merge-by="type">
+            <y:base>
+                <y:labels>
+                    <y:label>id</y:label>
+                </y:labels>
+            </y:base>
+        </context>
+        <context component="simple-search" merge-by="type">
+            <simple-search:simple-search>
+                <simple-search:field name="id" />
+                <simple-search:field name="name" />
+            </simple-search:simple-search>
+        </context>
+        <context component="advanced-search" merge-by="type">
+            <advanced-search:advanced-search>
+                <advanced-search:field-list>
+                    <advanced-search:field name="name"/>
+                    <advanced-search:field name="namePlural"/>
+                    <advanced-search:field name="accumulative"/>
+                </advanced-search:field-list>
+            </advanced-search:advanced-search>
+        </context>
+        <context component="listview" merge-by="type">
+            <list-view:list-view>
+                <list-view:column qualifier="id"/>
+                <list-view:column qualifier="name"/>
+                <list-view:column qualifier="namePlural"/>
+                <list-view:column qualifier="accumulative"/>
+            </list-view:list-view>
+        </context>
+        <context component="editor-area" merge-by="type">
+            <editorArea:editorArea>
+                <editorArea:essentials>
+                    <editorArea:essentialSection name="hmc.essential">
+                        <editorArea:attribute qualifier="id"/>
+                        <editorArea:attribute qualifier="name"/>
+                    </editorArea:essentialSection>
+                </editorArea:essentials>
+                <editorArea:tab name="subscriptionbackoffice.tab.basic" position="10">
+                    <editorArea:section name="subscriptionbackoffice.section.basic" position="10">
+                        <editorArea:attribute qualifier="namePlural" position="10"/>
+                        <editorArea:attribute qualifier="accumulative" position="20"/>
+                    </editorArea:section>
+                </editorArea:tab>
+            </editorArea:editorArea>
+        </context>
+        <context component="create-wizard">
+            <wz:flow id="UsageUnitWizard" title="create.title(ctx.TYPE_CODE)">
+                <wz:prepare id="usageUnitPrepare">
+                    <wz:initialize property="newUsageUnit" type="ctx.TYPE_CODE"/>
+                </wz:prepare>
+                <wz:step id="step1" label="subscriptionbackoffice.usageunit.essentials.label">
+                    <wz:content id="step1.content">
+                        <wz:property-list root="newUsageUnit">
+                            <wz:property qualifier="id"/>
+                        </wz:property-list>
+                    </wz:content>
+                    <wz:navigation id="step1.navigation">
+                        <wz:cancel/>
+                        <wz:next visible="!#empty(newUsageUnit.id)"/>
+                    </wz:navigation>
+                </wz:step>
+                <wz:step id="step2" label="subscriptionbackoffice.usageunit.basicdata.label">
+                    <wz:content id="step2.content">
+                        <wz:property-list root="newUsageUnit">
+                            <wz:property qualifier="name"/>
+                            <wz:property qualifier="namePlural"/>
+                            <wz:property qualifier="accumulative"/>
+                        </wz:property-list>
+                    </wz:content>
+                    <wz:navigation id="step2.navigation">
+                        <wz:cancel/>
+                        <wz:done>
+                            <wz:save-all/>
+                        </wz:done>
+                    </wz:navigation>
+                </wz:step>
+            </wz:flow>
+        </context>
+    </context>
+
+</config>

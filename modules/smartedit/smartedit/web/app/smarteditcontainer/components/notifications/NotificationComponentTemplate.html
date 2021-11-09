@@ -1,0 +1,5 @@
+<div class="se-notification" id="{{ id }}" *ngIf="notification">
+    <div *ngIf="hasTemplate()" [seCompileHtml]="notification.template"></div>
+    <div *ngIf="hasTemplateUrl()" [ngInclude]="notification.templateUrl"></div>
+    <div *ngIf="hasComponent()" [seCustomComponentOutlet]="notification.componentName"></div>
+</div>

@@ -1,0 +1,33 @@
+{
+  "code": "Test_code",
+  "catalogVersion": {
+    "version": "Test_version",
+    "catalog": {
+      "id": "Test_id",
+      "integrationKey": "TEST_KEY"
+    },
+    "integrationKey": "TEST_KEY"
+  },
+  "data_sheet": [
+    {
+      "catalogVersion": {
+        "version": "Test_version",
+        "catalog": {
+          "id": "Test_id",
+          "integrationKey": "TEST_KEY"
+        },
+        "integrationKey": "TEST_KEY"
+      },
+      "code": "Test_code",
+      "integrationKey": "TEST_KEY"
+    }
+  ],
+  "deliveryTime": "123.0",
+  "deliveryModes": [
+    {
+      "code": "Test_code",
+      "integrationKey": "TEST_KEY"
+    }
+  ],
+  "integrationKey": "TEST_KEY"
+}

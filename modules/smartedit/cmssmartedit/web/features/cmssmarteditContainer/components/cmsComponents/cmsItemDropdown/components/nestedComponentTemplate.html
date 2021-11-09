@@ -1,0 +1,28 @@
+<div class="cms-nested-component" data-component-id="{{$ctrl.item.uid}}">
+    <span
+        class="y-select-item-printer cms-nested-component_item"
+        data-ng-if="$ctrl.isSelected"
+        data-ng-click="$event.stopPropagation(); $ctrl.onComponentClick();"
+    >
+        <span class="sap-icon--card cms-nested-component__item-icon"></span>
+        <div class="cms-nested-component__item-data">
+            <p class="cms-nested-component__item-name" title="{{$ctrl.item.name}}">
+                {{$ctrl.item.name}}
+            </p>
+            <p class="cms-nested-component__item-type" title="{{$ctrl.item.typeCode}}">
+                {{$ctrl.item.typeCode}}
+            </p>
+        </div>
+    </span>
+    <div
+        class="y-select-item-printer cms-nested-component__result-item"
+        data-ng-if="!$ctrl.isSelected"
+    >
+        <span class="cms-nested-component__result-name" title="{{$ctrl.item.name}}">
+            {{$ctrl.item.name}}
+        </span>
+        <span class="cms-nested-component__result-code" title="{{$ctrl.item.typeCode}}">
+            {{$ctrl.item.typeCode}}
+        </span>
+    </div>
+</div>

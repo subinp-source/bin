@@ -1,0 +1,15 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+selectivecartsplitlistaddon.key=value
+
+# Specifies the location of the spring context file added automatically to the global platform application context.
+selectivecartsplitlistaddon.application-context=selectivecartsplitlistaddon-spring.xml
+
+yacceleratorstorefront.additionalWebSpringConfigs.selectivecartsplitlistaddon=classpath:/selectivecartsplitlistaddon/web/spring/selectivecartsplitlistaddon-web-spring.xml
+
+
+
+selectivecartsplitlistaddon.javascript.paths.responsive=/responsive/common/js/selectivecartsplitlistaddon.js
+selectivecartsplitlistaddon.css.paths.responsive=/responsive/common/css/selectivecartsplitlistaddon.css

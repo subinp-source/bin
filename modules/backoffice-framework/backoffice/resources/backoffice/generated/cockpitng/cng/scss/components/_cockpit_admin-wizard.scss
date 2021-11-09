@@ -1,0 +1,419 @@
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/cockpitng/cng/scss/cockpitng-globals.scss';
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/backoffice/scss/backoffice-variables.scss';
+
+
+.z-window {
+    &-modal &-content,
+    &-highlighted &-content,
+    &-overlapped &-content {
+        padding: 0;
+    }
+
+    & &-header {
+        line-height: 24px;
+        padding-top: 16px;
+    }
+
+    & &-icon#{&}-close {
+        margin-top: 0;
+    }
+}
+
+.widgetCell,
+.addWidgetWizardDetails {
+    .widgetName > .z-label {
+        margin-right: 20px;
+        color: #555555;
+        font-size: 16px;
+        font-weight: bold;
+    }
+}
+
+.addWidgetWizardDetails {
+    position: relative;
+    
+    .widgetDescr {
+        margin-top: 4px;
+        padding-left: 20px;
+
+        .z-label {
+            color: #333;
+        }
+    }
+
+    &.z-div .z-label{
+        font-size: 10px;
+    }
+    .addBtn {
+        margin-top: 30px;
+        position: absolute;
+        bottom: 3px;
+        right: 3px;
+        .z-button {
+            margin-left: 3px;
+        }
+    }
+    .descTitle {
+        margin-top: 10px;
+        margin-bottom: 15px;
+    }
+    .socketLabel {
+        margin-left: 20px;
+    }
+    .sockets {
+        margin-top: 5px;
+        margin-bottom: 5px;
+
+        .z-label {
+            display:block;
+        }
+        .socketLabel {
+            color: #333;
+        }
+    }
+}
+
+.chooseWidgetWizard {
+    .z-window-highlighted.z-window-content {
+        background: #ddd;
+    }
+    .z-toolbarbutton-content {
+        font-size: 11px;
+        font-weight: normal;
+    }
+    .z-toolbarbutton {
+        right: 5px !important;
+    }
+    .z-window-content {
+        .z-textbox {
+            width: 140px;
+        }
+        > .z-div > .z-div > .z-div > .z-label {
+            font-size: 12px;
+        }
+        &:first-child .z-div > .z-div > .z-div > .z-button {
+            width: 50px;
+            font-size: 12px;
+        }
+    }
+    .yo-refreshLibraryButton {
+        height: $admin-defaults__chooze-wizard-refreshLibraryButton--height;
+        line-height: $admin-defaults__chooze-wizard-refreshLibraryButton--line-height;
+        right: 0 !important;
+        &:hover .z-toolbarbutton-content {
+            color: $admin-defaults__chooze-wizard-refreshLibraryButton-hover--color;
+        }
+    }
+    .yo-searchNavigationBar {
+        display: block;
+        margin: 3px;
+
+        + .z-div, 
+        + .z-listbox {
+            border: $admin-defaults__chooze-wizard-content--border;
+            border-width: $admin-defaults__content--border-width 0 0;
+        }
+    }
+    .addWidgetWizardDetails {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-pack: stretch;
+        -webkit-justify-content: stretch;
+        -ms-flex-pack: stretch;
+        justify-content: stretch;
+        -webkit-flex-wrap: nowrap;
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        .infoCnt {
+            -webkit-box-flex: 1;
+            -webkit-flex: 1 1 auto;
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+            padding: $_admin-wizard__content-panel--padding;
+            overflow: auto;
+        }
+        .addBtn {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: end;
+            -webkit-justify-content: flex-end;
+            -ms-flex-pack: end;
+            justify-content: flex-end;
+            -webkit-flex-wrap: nowrap;
+            -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+            padding: $_admin-wizard__content-panel--padding;
+            border-top: $_admin-wizard__footer-panel--border-top;
+            position: static;
+
+            .z-button {
+                margin-left: $_admin-wizard__footer-panel-button--side-margin;
+                
+                &:first-child {
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+}
+
+.yw-xmlConfigWin.z-popup .z-popup-content > .z-borderlayout {
+    background-color: $admin-defaults__config-popup-container--bg-color;
+}
+
+.yo-create-widget-group-wizard {
+    .z-tree{
+        overflow: auto;
+    }
+    .z-tree-body {
+        > table {
+            width: 100%;
+        }
+    }
+}
+
+
+.widget-settings-wizard,
+.yo-create-widget-group-wizard {
+    max-width: $_admin-wizard__container--max-width;
+    min-width: $_admin-wizard__container--min-width;
+    border: none;
+    
+    .z-tabpanel {
+        padding: 0;
+        border-width: 0;
+    }
+}
+
+.widget-settings-wizard {
+    .settingsContent {
+        overflow-y: auto;
+        height: $_admin-wizard__content--height;
+        padding: $_admin-wizard__content--padding;
+
+        & + button.z-button {
+            margin: $_admin-wizard__content--padding;
+
+            &:before {
+                content: "";
+                position: absolute;
+                right: $_admin-wizard__content-delimiter--spacing;
+                left: $_admin-wizard__content-delimiter--spacing;
+                border-top: $_admin-wizard__content--border;
+                margin-top: $_admin-wizard__content-delimiter-before--margin-top;
+            }
+        }
+        table {
+            width: 100%;
+
+            table td  {
+                vertical-align: middle;
+                word-break: break-word;
+            }
+        }
+    }
+
+    .settingsRow {
+        .z-label {
+            display: block;
+        }
+    }
+
+    .settingsBottomCnt {
+        text-align: right;
+        padding: $_admin-wizard__footer-panel--padding;
+    }
+}
+
+.virtual-sockets {
+    .z-vlayout-inner {
+        padding-bottom: 0 !important;
+
+        & > .z-label {
+            font-weight: bold;
+            border-top: $_admin-wizard__widget-settings-virtual-sockets-label--border-top;
+            margin-top: $_admin-wizard__widget-settings-virtual-sockets-label--margin-top;
+            padding: $_admin-wizard__widget-settings-virtual-sockets-label--padding;
+            display: block;
+
+            &.no-virtual-sockets {
+                font-weight: normal;
+                font-style: italic;
+            }
+        }
+        &:first-child {
+            & > .z-label {
+                border: none;
+                margin-top: 0;
+            }
+        }
+    }
+}
+
+.add_virtual_socket_popup {
+    .z-select {
+        height: $_admin-wizard__widget-settings-virtual-sockets-popup-select--height;
+    }
+}
+
+
+
+
+.widget-group-content {
+    height: $_admin-wizard__content--height;
+
+    .z-tabpanels {
+        .z-tabpanel {
+            padding: 0;
+        }
+    }
+    .widget-preferences,
+    .widget-sockets {
+        > .z-label {
+            display: block;
+            padding: $_admin-wizard__create-widget-group-content-label--padding;
+        }
+    }
+}
+
+.widget-preferences {
+    .z-row {
+        td.z-row-inner {
+            padding-bottom: $_admin-wizard__create-widget-group-preferences-row--padding-bottom;
+            border-bottom: none !important;
+            .z-row-content {
+                padding: 0;
+            }
+        }
+    }
+    .z-grid {
+        overflow: visible;
+        padding: $_admin-wizard__create-widget-group-preferences-grid--padding;
+        
+        &-header-border {
+            display: none;
+        }
+    }
+}
+
+.widget-sockets {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+
+    &-content {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    &-tree-list,
+    &-chosen-list {
+        -webkit-box-flex: 1;
+        -ms-flex: 1 1 50%;
+        flex: 1 1 50%;
+
+        & > div {
+            padding: $_admin-wizard__create-widget-group-sockets-list--padding;
+            border: none;
+            overflow: auto;
+        }
+    }
+
+    &-chosen-list {
+        border-left: $_admin-wizard__create-widget-group-sockets-list--border;
+
+        .z-listbox-emptybody {
+            td {
+                background: none;
+    
+                &:after {
+                    content: 'No widgets to expose';
+                }
+            }
+        }
+        .z-listitem {
+            margin-bottom: $_admin-wizard__create-widget-group-sockets-list-item--margin-bottom;
+            display: block;
+
+            .z-listcell {
+                border: 0;
+                width: 100%;
+
+                &-content {
+                    padding: 0;
+                }
+            }
+
+            .y-iconcell {
+                width: $_admin-wizard__create-widget-group-sockets-list-item-icon--width;
+                padding: $_admin-wizard__create-widget-group-sockets-list-item-icon--padding;
+            }
+
+            .y-removeBtn {
+                button {
+                    width: $_admin-wizard__create-widget-group-sockets-list-item-delete-button--width;
+                }
+            }
+        }
+    }
+
+    &-tree-list {
+        border-right: $_admin-wizard__create-widget-group-sockets-list--border;
+
+        .z-treerow {
+            display: block;
+
+            &[title] {
+                margin-left: $_admin-wizard__create-widget-group-sockets-list-item-2nd-level--margin-left;
+            }
+            .z-treecell {
+                margin-bottom: $_admin-wizard__create-widget-group-sockets-list-item--margin-bottom;
+                border: $_admin-wizard__create-widget-group-sockets-list-item--border;
+                border-radius: $_admin-wizard__create-widget-group-sockets-list-item--border-radius;
+                display: inline-block;
+                width: 100% !important;
+                
+                + td {
+                    //fix for additional render table cell which breaks the layout in 'widget sockets' list
+                    display: none;
+                }
+                &-content {
+                    vertical-align: middle;
+                    min-height: $_admin-wizard__create-widget-group-sockets-list-item--min-height;
+                    padding: $_admin-wizard__create-widget-group-sockets-list-item--padding;
+                    
+                    .z-tree-spacer {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+    .yw-info-box {
+        overflow: visible;
+        margin-bottom: 0;
+        border-width: 1px 0;
+    }
+}
+
+.widget-group-footer,
+.settingsBottomCnt {
+    border-top: $_admin-wizard__footer-panel--border-top;
+}

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="OOTB" importedAsReadOnly="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/bin/b2bcommercebackofficeserver.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/bin/b2bcommercebackofficeserver.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../modules/b2b-commerce/b2bcommercebackoffice/lib" recursive="true" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/backoffice-framework/backoffice/web/webroot/WEB-INF/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../modules/backoffice-framework/backoffice/web/webroot/WEB-INF/lib" recursive="true" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/backoffice-framework/backoffice/web/webroot/WEB-INF/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="b2bcommerce" exported="" />
+    <orderEntry type="module" module-name="backoffice" exported="" />
+    <orderEntry type="module" module-name="commerceservicesbackoffice" exported="" />
+    <orderEntry type="module" module-name="platform" exported="" />
+  </component>
+</module>

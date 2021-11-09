@@ -1,0 +1,19 @@
+[
+	{
+		"testId": 1,
+		"description": "'not' query",
+		"data": {
+			"type": "not",
+			"query": {
+				"type": "matchTerm",
+				"expression": "code",
+				"value": "doc2"
+			}
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc3",
+			"doc4"
+		]
+	}
+]

@@ -1,0 +1,49 @@
+@import "cockpitng-globals.scss";
+
+/*Icons for explorer tree */
+div.yw-explorerTree {
+    
+    .y-tree-icon-treenode_basicCredential .y-tree-icon {
+        background-image: url("images/icons/treenodes/Basic-Credential.png");
+    }
+    
+    .y-tree-icon-treenode_consumedCertificateCredential .y-tree-icon {
+        background-image: url("images/icons/treenodes/Consumed-Certificate-Credential.png");
+    }
+    
+    .y-tree-icon-treenode_consumedDestination .y-tree-icon {
+        background-image: url("images/icons/treenodes/Consumed-Destination.png");
+    }
+    
+    .y-tree-icon-treenode_consumedOAuthCredential .y-tree-icon {
+        background-image: url("images/icons/treenodes/Consumed-OAuth-Credential.png");
+    }
+    
+    .y-tree-icon-treenode_destinationTarget .y-tree-icon {
+        background-image: url("images/icons/treenodes/Destination-Target.png");
+    }
+    
+    .y-tree-icon-treenode_eventConfiguration .y-tree-icon {
+        background-image: url("images/icons/treenodes/Event-Configuration.png");
+    }
+    
+    .y-tree-icon-treenode_exposedDestination .y-tree-icon {
+        background-image: url("images/icons/treenodes/Exposed-Destination.png");
+    }
+    
+    .y-tree-icon-treenode_exposedOAuthCredential .y-tree-icon {
+        background-image: url("images/icons/treenodes/Exposed-OAuth-Credential.png");
+    }
+    
+    .y-tree-icon-treenode_processEventConfiguration .y-tree-icon {
+        background-image: url("images/icons/treenodes/Process-Event-Configuration.png");
+    }
+    
+    .y-tree-icon-treenode_endpoint .y-tree-icon {
+        background-image: url("images/icons/treenodes/Endpoint.png");
+    }
+
+    .y-tree-icon-EventExportDeadLetter .y-tree-icon {
+        background-image: url("images/icons/treenodes/Event-Export-Dead-Letter.png");
+    }
+}

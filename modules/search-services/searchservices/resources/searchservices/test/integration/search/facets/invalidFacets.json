@@ -1,0 +1,32 @@
+[
+	{
+		"testId": 1,
+		"description": "facets with same id",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "facet",
+					"expression": "color"
+				},
+				{
+					"type": "rangeBuckets",
+					"id": "facet",
+					"expression": "price",
+					"buckets": [
+						{
+							"id": "0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			]
+		}
+	}
+]

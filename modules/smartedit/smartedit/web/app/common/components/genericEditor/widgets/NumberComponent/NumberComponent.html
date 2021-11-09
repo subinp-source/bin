@@ -1,0 +1,11 @@
+<input
+    [min]="1"
+    [ngClass]="{ 'is-invalid': widget.field.hasErrors, 'is-warning': widget.field.hasWarnings }"
+    [placeholder]="(widget.field.tooltip || '') | translate"
+    [attr.name]="widget.field.qualifier"
+    [disabled]="widget.isFieldDisabled()"
+    [(ngModel)]="widget.model[widget.qualifier]"
+    id="{{widget.field.qualifier}}-number"
+    class="fd-form-control"
+    type="number"
+/>

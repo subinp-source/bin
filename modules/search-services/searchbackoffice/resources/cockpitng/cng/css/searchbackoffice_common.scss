@@ -1,0 +1,21 @@
+@import "cockpitng-globals.scss";
+
+/*Icons for explorer tree */
+div.yw-explorerTree {
+    .y-tree-icon-hmc_type_tree_snsearchprovider .y-tree-icon {
+        background-image: url("images/0140_Sn-Search-Provider.png");
+    }
+
+    .y-tree-icon-hmc_type_tree_snindexconfiguration .y-tree-icon {
+        background-image: url("images/0141_Sn-Index-Configuration.png");
+    }
+
+    .y-tree-icon-hmc_type_tree_snindextype .y-tree-icon {
+        background-image: url("images/0142_Sn-Index-Type.png");
+    }
+
+    .y-tree-icon-hmc_type_tree_snsynonymdictionary .y-tree-icon {
+        background-image: url("images/0143_Sn-Synonym-Dictionary.png");
+    }
+    
+}

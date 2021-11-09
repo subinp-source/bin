@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <base href="/web/webroot/" />
+
+        <!--3rd prty libs-->
+        <script src="static-resources/dist/smarteditcontainer/js/thirdparties.js"></script>
+        <script src="static-resources/dist/smarteditcommons/js/vendor_chunk.js"></script>
+        <script src="static-resources/thirdparties/ckeditor/ckeditor.js"></script>
+
+        <script src="static-resources/dist/smarteditcommons/js/smarteditcommons.js"></script>
+        <script src="static-resources/dist/smarteditcontainer/js/smarteditcontainer.js"></script>
+
+        <script src="/test/e2e/utils/generated_outerLegacyCustomAppBootstrap.js"></script>
+        <script src="/test/e2e/utils/commonMockedModules/generated_outerGlobalBasePathFetchMock.js"></script>
+        <script src="/test/e2e/clientPagedList/legacyClientPagedList/clientPagedListApp.js"></script>
+        <style>
+            .visited {
+                color: purple;
+                font-style: italic;
+            }
+        </style>
+
+        <script>
+            var urlParams = new URLSearchParams(window.location.search);
+            window.sessionStorage.setItem(
+                'PERSPECTIVE_SERVICE_RESULT',
+                urlParams.get('perspectiveServiceResult')
+            );
+        </script>
+    </head>
+
+    <body custom-app="clientPageListAppModule">
+        <div ng-controller="defaultController as defaultCtl">
+            <div class="page-list-search form-group">
+                <input
+                    type="text"
+                    class="form-control"
+                    data-ng-model="defaultCtl.query.value"
+                    name="query"
+                />
+            </div>
+
+            <client-paged-list
+                items="defaultCtl.items"
+                keys="[{
+                            property:'name',
+                            i18n:'pagelist.headerpagetitle'
+                            },{
+                            property:'uid',
+                            i18n:'pagelist.headerpageid'
+                            },{
+                            property:'typeCode',
+                            i18n:'pagelist.headerpagetype'
+                            },{
+                            property:'template',
+                            i18n:'pagelist.headerpagetemplate'
+                            }]"
+                renderers="defaultCtl.renderers"
+                injected-context="defaultCtl.injectedContext"
+                sort-by="'name'"
+                reversed="false"
+                items-per-page="10"
+                query="defaultCtl.query.value"
+                display-count="true"
+                dropdown-items="defaultCtl.dropdownItems"
+                data-item-filter-keys="defaultCtl.searchKeys"
+            ></client-paged-list>
+        </div>
+    </body>
+</html>

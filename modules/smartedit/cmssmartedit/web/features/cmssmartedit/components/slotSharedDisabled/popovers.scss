@@ -1,0 +1,45 @@
+.se-slot-popover {
+    align-items: center;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    &__arrow {
+        opacity: 0;
+        margin-top: 15px;
+        position: relative;
+        width: 0;
+        border-bottom: 12px solid fd-color('neutral', 3);
+        border-right: 12px solid transparent;
+        border-left: 12px solid transparent;
+        z-index: 9999;
+        &--fill {
+            position: absolute;
+            top: 1px;
+            left: -11px;
+            width: 0;
+            border-bottom: 11px solid fd-color('background', 2);
+            border-right: 11px solid transparent;
+            border-left: 11px solid transparent;
+        }
+    }
+    &:before {
+        opacity: 0;
+        @include se-popover();
+        content: attr(data-popover-content);
+        margin-bottom: calc(-5.2 * 15px);
+        padding: 10px;
+        white-space: nowrap;
+    }
+}
+
+[data-smartedit-component-type='ContentSlot']:hover {
+    .se-slot-popover {
+        &:before {
+            opacity: 1;
+            margin-top: -1px;
+        }
+        &__arrow {
+            opacity: 1;
+        }
+    }
+}

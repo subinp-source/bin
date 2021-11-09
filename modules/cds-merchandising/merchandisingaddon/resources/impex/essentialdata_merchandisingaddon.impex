@@ -1,0 +1,16 @@
+#
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+#
+
+# variables for constraints on Merchandising Carousel Component
+$annotationMin = annotation[default = javax.validation.constraints.Min]
+$severityError = severity(code[default = ERROR], itemtype(code[default = Severity]))
+$periodicTargetModel = target[default = 'com.hybris.merchandising.addon.model.MerchandisingCarouselComponentModel']
+
+INSERT_UPDATE ComponentTypeGroups2ComponentType; source(code)[unique = true]; target(code)[unique = true]
+                                               ; narrow                     ; MerchandisingCarouselComponent
+                                               ; wide                       ; MerchandisingCarouselComponent
+
+INSERT_UPDATE MinConstraint; id[unique = true]                                   ; active[allownull = true]; type(code)                     ; qualifier          ; value; descriptor(enclosingType(code), qualifier)        ; $periodicTargetModel; $annotationMin; $severityError
+                           ; merchandisingCarouselComponentMinNumberToDisplay    ; true                    ; MerchandisingCarouselComponent ; numberToDisplay    ; 1    ; MerchandisingCarouselComponent:numberToDisplay    ;                     ;               ;
+                           ; merchandisingCarouselComponentMinViewportPercentage ; true                    ; MerchandisingCarouselComponent ; viewportPercentage ; 1    ; MerchandisingCarouselComponent:viewportPercentage ;                     ;               ;

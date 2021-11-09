@@ -1,0 +1,161 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# ImPex for Importing Product Media into Powertools Store
+
+# Macros / Replacement Parameter definitions
+$productCatalog=powertoolsProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$siteResource=jar:de.hybris.platform.sap.productconfig.frontend.constants.SapproductconfigaddonConstants&/ysapproductconfigaddon/import
+$thumbnail=thumbnail(code, $catalogVersion)
+$picture=picture(code, $catalogVersion)
+$thumbnails=thumbnails(code, $catalogVersion)
+$detail=detail(code, $catalogVersion)
+$normal=normal(code, $catalogVersion)
+$others=others(code, $catalogVersion)
+$data_sheet=data_sheet(code, $catalogVersion)
+$medias=medias(code, $catalogVersion)
+$galleryImages=galleryImages(qualifier, $catalogVersion)
+$lang=en
+$cpqMedia=cpqMedia(qualifier, $catalogVersion)
+$storeClassification=PowertoolsClassification
+$classSystemVersion=systemVersion(catalog(id[default='$storeClassification']),version[default='1.0'])[unique=true,default='$storeClassification:1.0'];
+
+INSERT_UPDATE MediaFolder;qualifier[unique=true];path[unique=true]
+;images;images
+
+#################################################################################
+# Add Media for Screwdriver
+#################################################################################
+
+INSERT_UPDATE Media;mediaFormat(qualifier);code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];$catalogVersion;folder(qualifier)[default=images]
+;1200Wx1200H    ;ScrewdriverPowerPlus1_1200            				;$siteResource/images/CONF_SCREWDRIVER_Powerplus_1_1200x1200.jpg;
+;515Wx515H    	;ScrewdriverPowerPlus1_515           				;$siteResource/images/CONF_SCREWDRIVER_Powerplus_1_515x515.jpg;
+;300Wx300H    	;ScrewdriverPowerPlus1_300           				;$siteResource/images/CONF_SCREWDRIVER_Powerplus_1_300x300.jpg;
+;96Wx96H    	;ScrewdriverPowerPlus1_96            				;$siteResource/images/CONF_SCREWDRIVER_Powerplus_1_96x96.jpg;
+;65Wx65H    	;ScrewdriverPowerPlus1_65            				;$siteResource/images/CONF_SCREWDRIVER_Powerplus_1_65x65.jpg;
+;1200Wx1200H    ;ScrewdriverPowerPlus2_1200            				;$siteResource/images/CONF_SCREWDRIVER_Powerplus_2_1200x1200.jpg;
+;515Wx515H    	;ScrewdriverPowerPlus2_515           				;$siteResource/images/CONF_SCREWDRIVER_Powerplus_2_515x515.jpg;
+;300Wx300H    	;ScrewdriverPowerPlus2_300           				;$siteResource/images/CONF_SCREWDRIVER_Powerplus_2_300x300.jpg;
+;96Wx96H    	;ScrewdriverPowerPlus2_96            				;$siteResource/images/CONF_SCREWDRIVER_Powerplus_2_96x96.jpg;
+;65Wx65H    	;ScrewdriverPowerPlus2_65            				;$siteResource/images/CONF_SCREWDRIVER_Powerplus_2_65x65.jpg;
+;1200Wx1200H    ;ScrewdriverPowerPlus3_1200            				;$siteResource/images/CONF_SCREWDRIVER_Powerplus_3_1200x1200.jpg;
+;515Wx515H    	;ScrewdriverPowerPlus3_515           				;$siteResource/images/CONF_SCREWDRIVER_Powerplus_3_515x515.jpg;
+;300Wx300H    	;ScrewdriverPowerPlus3_300           				;$siteResource/images/CONF_SCREWDRIVER_Powerplus_3_300x300.jpg;
+;96Wx96H    	;ScrewdriverPowerPlus3_96            				;$siteResource/images/CONF_SCREWDRIVER_Powerplus_3_96x96.jpg;
+;65Wx65H    	;ScrewdriverPowerPlus3_65            				;$siteResource/images/CONF_SCREWDRIVER_Powerplus_3_65x65.jpg;
+;1200Wx1200H    ;ScrewdriverPowerPlus4_1200            				;$siteResource/images/CONF_SCREWDRIVER_Powerplus_4_1200x1200.jpg;
+;515Wx515H    	;ScrewdriverPowerPlus4_515           				;$siteResource/images/CONF_SCREWDRIVER_Powerplus_4_515x515.jpg;
+;300Wx300H    	;ScrewdriverPowerPlus4_300           				;$siteResource/images/CONF_SCREWDRIVER_Powerplus_4_300x300.jpg;
+;96Wx96H    	;ScrewdriverPowerPlus4_96            				;$siteResource/images/CONF_SCREWDRIVER_Powerplus_4_96x96.jpg;
+;65Wx65H    	;ScrewdriverPowerPlus4_65            				;$siteResource/images/CONF_SCREWDRIVER_Powerplus_4_65x65.jpg;
+;192Wx96H    	;ScrewdriverOutdoorCharge_96             			;$siteResource/images/CONF_SCREWDRIVER_Powerplus_Outdoor-Charging-Station_96x96.jpg;
+;96Wx96H    	;ScrewdriverBitSet_96             					;$siteResource/images/CONF_SCREWDRIVER_Bit-set_96x96.jpg;
+;96Wx96H    	;ScrewdriverDrillSet_96             				;$siteResource/images/CONF_SCREWDRIVER_Drill-set_96x96.jpg;
+;96Wx96H    	;ScrewdriverProtectionCase_96             			;$siteResource/images/CONF_SCREWDRIVER_Powerplus_Protection-Case_96x96.jpg;
+;96Wx96H    	;ScrewdriverSecondBattery_96             			;$siteResource/images/CONF_SCREWDRIVER_Powerplus_Second-Battery_96x96.jpg;
+
+#################################################################################
+# Add Media for Bandsaw
+#################################################################################
+
+INSERT_UPDATE Media;mediaFormat(qualifier);code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/png'];$catalogVersion;folder(qualifier)[default=images]
+;192Wx96H   	;tilt_table                               ;$siteResource/images/CONF_BANDSAW_tilting-table_96x96.jpg;
+;192Wx96H   	;bandsaw_mount                            ;$siteResource/images/CONF_BANDSAW_bench-mounted_96x96.png;
+;192Wx96H   	;mobility_kit                             ;$siteResource/images/CONF_BANDSAW_mobility-kit-1_96x96.png;
+;515Wx515H    	  ;bandsaw1_515                             ;$siteResource/images/CONF_BANDSAW_product-image_1_515x515.jpg;
+;1200Wx1200H     ;bandsaw1_1200                            ;$siteResource/images/CONF_BANDSAW_product-image_1_1200x1200.jpg;
+;300Wx300H    	  ;bandsaw1_300                      		  ;$siteResource/images/CONF_BANDSAW_product-image_1_300x300.jpg;
+;96Wx96H         ;bandsaw1_96                              ;$siteResource/images/CONF_BANDSAW_product-image_1_96x96.jpg;
+;515Wx515H    	;bandsaw2_515                             ;$siteResource/images/CONF_BANDSAW_product-image_2_515x515.jpg;
+;1200Wx1200H   ;bandsaw2_1200                            ;$siteResource/images/CONF_BANDSAW_product-image_2_1200x1200.jpg;
+;300Wx300H     ;bandsaw2_300                             ;$siteResource/images/CONF_BANDSAW_product-image_2_300x300.jpg;
+;96Wx96H       ;bandsaw2_96                              ;$siteResource/images/CONF_BANDSAW_product-image_2_65x65.jpg;
+;515Wx515H    	  ;bandsaw3_515                             ;$siteResource/images/CONF_BANDSAW_product-image_3_515x515.jpg;
+;1200Wx1200H     ;bandsaw3_1200                            ;$siteResource/images/CONF_BANDSAW_product-image_3_1200x1200.jpg;
+;300Wx300H       ;bandsaw3_300                             ;$siteResource/images/CONF_BANDSAW_product-image_3_300x300.jpg;
+;96Wx96H         ;bandsaw3_96                              ;$siteResource/images/CONF_BANDSAW_product-image_3_65x65.jpg;
+;515Wx515H    	;bandsaw4_515                             ;$siteResource/images/CONF_BANDSAW_product-image_4_515x515.jpg;
+;1200Wx1200H   ;bandsaw4_1200                            ;$siteResource/images/CONF_BANDSAW_product-image_4_1200x1200.jpg;
+;300Wx300H     ;bandsaw4_300                             ;$siteResource/images/CONF_BANDSAW_product-image_4_300x300.jpg;
+;96Wx96H       ;bandsaw4_96                              ;$siteResource/images/CONF_BANDSAW_product-image_4_65x65.jpg;
+;515Wx515H    	  ;bandsaw5_515                             ;$siteResource/images/CONF_BANDSAW_product-image_5_515x515.jpg;
+;1200Wx1200H     ;bandsaw5_1200                            ;$siteResource/images/CONF_BANDSAW_product-image_5_1200x1200.jpg;
+;300Wx300H       ;bandsaw5_300                             ;$siteResource/images/CONF_BANDSAW_product-image_5_300x300.jpg;
+;96Wx96H         ;bandsaw5_96                              ;$siteResource/images/CONF_BANDSAW_product-image_5_65x65.jpg;
+;515Wx515H    	;bandsaw6_515                             ;$siteResource/images/CONF_BANDSAW_product-image_6_515x515.jpg;
+;1200Wx1200H   ;bandsaw6_1200                            ;$siteResource/images/CONF_BANDSAW_product-image_6_1200x1200.jpg;
+;300Wx300H     ;bandsaw6_300                             ;$siteResource/images/CONF_BANDSAW_product-image_6_300x300.jpg;
+;96Wx96H       ;bandsaw6_96                              ;$siteResource/images/CONF_BANDSAW_product-image_6_65x65.jpg;
+;515Wx515H    	  ;bandsaw7_515                             ;$siteResource/images/CONF_BANDSAW_product-image_7_515x515.jpg;
+;1200Wx1200H     ;bandsaw7_1200                            ;$siteResource/images/CONF_BANDSAW_product-image_7_1200x1200.jpg;
+;300Wx300H       ;bandsaw7_300                             ;$siteResource/images/CONF_BANDSAW_product-image_7_300x300.jpg;
+;96Wx96H         ;bandsaw7_96                              ;$siteResource/images/CONF_BANDSAW_product-image_7_65x65.jpg;
+;515Wx515H    	;bandsaw8_515                             ;$siteResource/images/CONF_BANDSAW_product-image_8_515x515.jpg;
+;1200Wx1200H   ;bandsaw8_1200                            ;$siteResource/images/CONF_BANDSAW_product-image_8_1200x1200.jpg;
+;300Wx300H     ;bandsaw8_300                             ;$siteResource/images/CONF_BANDSAW_product-image_8_300x300.jpg;
+;96Wx96H       ;bandsaw8_96                              ;$siteResource/images/CONF_BANDSAW_product-image_8_65x65.jpg;
+;515Wx515H    	  ;bandsaw9_515                             ;$siteResource/images/CONF_BANDSAW_product-image_9_515x515.jpg;
+;1200Wx1200H     ;bandsaw9_1200                            ;$siteResource/images/CONF_BANDSAW_product-image_9_1200x1200.jpg;
+;300Wx300H    	  ;bandsaw9_300                             ;$siteResource/images/CONF_BANDSAW_product-image_9_300x300.jpg;
+;96Wx96H         ;bandsaw9_96                              ;$siteResource/images/CONF_BANDSAW_product-image_9_65x65.jpg;
+;515Wx515H    	;bandsaw10_515                            ;$siteResource/images/CONF_BANDSAW_product-image_10_515x515.jpg;
+;1200Wx1200H   ;bandsaw10_1200                           ;$siteResource/images/CONF_BANDSAW_product-image_10_1200x1200.jpg;
+;300Wx300H     ;bandsaw10_300                            ;$siteResource/images/CONF_BANDSAW_product-image_10_300x300.jpg;
+;96Wx96H       ;bandsaw10_96                             ;$siteResource/images/CONF_BANDSAW_product-image_10_65x65.jpg;
+
+
+#################################################################################
+# Insert media containers
+#################################################################################
+
+INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$catalogVersion
+;MediaContainer_ScrewdriverPowerPlus1    		;ScrewdriverPowerPlus1_1200,ScrewdriverPowerPlus1_515,ScrewdriverPowerPlus1_300,ScrewdriverPowerPlus1_96,ScrewdriverPowerPlus1_65;
+;MediaContainer_ScrewdriverPowerPlus2    		;ScrewdriverPowerPlus2_1200,ScrewdriverPowerPlus2_515,ScrewdriverPowerPlus2_300,ScrewdriverPowerPlus2_96,ScrewdriverPowerPlus2_65;
+;MediaContainer_ScrewdriverPowerPlus3    		;ScrewdriverPowerPlus3_1200,ScrewdriverPowerPlus3_515,ScrewdriverPowerPlus3_300,ScrewdriverPowerPlus3_96,ScrewdriverPowerPlus3_65;
+;MediaContainer_ScrewdriverPowerPlus4    		;ScrewdriverPowerPlus4_1200,ScrewdriverPowerPlus4_515,ScrewdriverPowerPlus4_300,ScrewdriverPowerPlus4_96,ScrewdriverPowerPlus4_65;
+;MediaContainer_ScrewdriverOutdoorCharge    	;ScrewdriverOutdoorCharge_96;
+;MediaContainer_ScrewdriverBitSet    			;ScrewdriverBitSet_96;
+;MediaContainer_ScrewdriverDrillSet    			;ScrewdriverDrillSet_96;
+;MediaContainer_ScrewdriverProtectionCase    	;ScrewdriverProtectionCase_96;
+;MediaContainer_ScrewdriverSecondBattery    	;ScrewdriverSecondBattery_96;
+;MediaContainer_TILT_TABLE	   		 ;tilt_table;
+;MediaContainer_MOUNT	   		     ;bandsaw_mount;
+;MediaContainer_MOBILITY_KIT	   	 ;mobility_kit;
+;MediaContainer_BANDSAW1	   	 	 ;bandsaw1_1200,bandsaw1_515,bandsaw1_300,bandsaw1_96;
+;MediaContainer_BANDSAW2	   	 	 ;bandsaw2_1200,bandsaw2_515,bandsaw2_300,bandsaw1_96;
+;MediaContainer_BANDSAW3	   	 	 ;bandsaw3_1200,bandsaw3_515,bandsaw3_300,bandsaw3_96;
+;MediaContainer_BANDSAW4	   	 	 ;bandsaw4_1200,bandsaw4_515,bandsaw4_300,bandsaw4_96;
+;MediaContainer_BANDSAW5	   	 	 ;bandsaw5_1200,bandsaw5_515,bandsaw5_300,bandsaw5_96;
+;MediaContainer_BANDSAW6	   	 	 ;bandsaw6_1200,bandsaw6_515,bandsaw6_300,bandsaw6_96;
+;MediaContainer_BANDSAW7	   	 	 ;bandsaw7_1200,bandsaw7_515,bandsaw7_300,bandsaw7_96;
+;MediaContainer_BANDSAW8	   	 	 ;bandsaw8_1200,bandsaw8_515,bandsaw8_300,bandsaw8_96;
+;MediaContainer_BANDSAW9	   	 	 ;bandsaw9_1200,bandsaw9_515,bandsaw9_300,bandsaw9_96;
+;MediaContainer_BANDSAW10	   	 	 ;bandsaw10_1200,bandsaw10_515,bandsaw10_300,bandsaw10_96;
+
+
+#################################################################################
+# Add Media to Product
+#################################################################################
+INSERT_UPDATE Product;code[unique=true];$picture;$thumbnail;$detail;$others;$normal;$thumbnails;$galleryImages;$catalogVersion
+;CONF_SCREWDRIVER_S;ScrewdriverPowerPlus1_515;ScrewdriverPowerPlus1_96;ScrewdriverPowerPlus1_1200;ScrewdriverPowerPlus1_515,ScrewdriverPowerPlus1_65;ScrewdriverPowerPlus1_300;ScrewdriverPowerPlus1_96;MediaContainer_ScrewdriverPowerPlus1,MediaContainer_ScrewdriverPowerPlus2,MediaContainer_ScrewdriverPowerPlus3,MediaContainer_ScrewdriverPowerPlus4
+;CONF_BANDSAW_ML;bandsaw1_515;bandsaw1_96;;bandsaw1_1200;bandsaw1_300;bandsaw1_96;MediaContainer_BANDSAW1,MediaContainer_BANDSAW2,MediaContainer_BANDSAW3,MediaContainer_BANDSAW4,MediaContainer_BANDSAW5,MediaContainer_BANDSAW6,MediaContainer_BANDSAW7,MediaContainer_BANDSAW8,MediaContainer_BANDSAW9,MediaContainer_BANDSAW10
+
+#################################################################################
+# Add Media Container to Attribute
+#################################################################################
+INSERT_UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true];name[lang=$lang];$cpqMedia;
+;;OUTDOOR_CHARGING;;MediaContainer_ScrewdriverOutdoorCharge;
+;;CONF_BS_TILTTABLE;;MediaContainer_TILT_TABLE;
+;;CONF_BS_BASE_MOUNTING;;MediaContainer_MOUNT;
+;;CONF_BS_MOBILITYKIT;;MediaContainer_MOBILITY_KIT;
+
+
+#################################################################################
+# Add Media Container to Attribute Values
+#################################################################################
+INSERT_UPDATE ClassificationAttributeValue;code[unique=true];$cpqMedia;$classSystemVersion;
+;ACCESSORY_BITS			;MediaContainer_ScrewdriverBitSet;;  
+;ACCESSORY_DRILLS		;MediaContainer_ScrewdriverDrillSet;;
+;ACCESSORY_CASE			;MediaContainer_ScrewdriverProtectionCase;;
+;ACCESSORY_BATTERY		;MediaContainer_ScrewdriverSecondBattery;;

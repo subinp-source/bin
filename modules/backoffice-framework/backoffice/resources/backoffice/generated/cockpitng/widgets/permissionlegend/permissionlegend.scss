@@ -1,0 +1,28 @@
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/cockpitng/cng/scss/cockpitng-globals.scss';
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/backoffice/scss/backoffice-variables.scss';
+
+@import "scss/support/_permissionlegend-variables.scss";
+@import "scss/support/_permissionlegend-mixins.scss";
+
+.yw-permission-legend {
+	display: table;
+	padding: $permissionlegend__container--padding;
+
+	&-holder {
+		display: table-cell;
+		padding: $permissionlegend__holder--padding;
+		
+		> span {
+			float: left;
+			line-height: $permissionlegend__icon--size + 2px;
+
+			&.z-label {
+				padding-left: $permissionlegend__holder--padding-left;
+				padding-right: $permissionlegend__holder--padding-right;
+			}
+		}
+	}
+	&-icon {
+		@include _permission-cell-icon-font ($permissionlegend__icon--font-size, $permissionlegend__icon--size, 'g', 'd', 'inherited-ig', 'inherited-id', inline-block);
+	}
+}

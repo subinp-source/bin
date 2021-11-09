@@ -1,0 +1,23 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+$productCatalog=powertoolsProductCatalog
+$catalogVersions=catalogVersions(catalog(id),version);
+$serverConfigName=powertoolsSolrServerConfig
+$indexConfigName=powertoolsSolrIndexConfig
+$searchConfigName=powertoolsPageSize
+$facetSearchConfigName=powertoolsIndex
+$facetSearchConfigDescription=Powertools Solr Index
+$searchIndexNamePrefix=powertools
+$solrIndexedType=powertoolsProductType
+$indexBaseSite=powertools
+$indexLanguages=ja,en,de,zh
+$indexCurrencies=JPY,USD
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);multiValue[default=true];facet;facetSort(code);priority;categoryField[default=true];fieldValueProvider;visible[default=false];localized[default=false]
+;$solrIndexedType;bundleTemplates;string;;false;;5000;false;productBundleTemplatesValueProvider;;
+
+INSERT_UPDATE SolrSearchQueryProperty;indexedProperty(name, solrIndexedType(identifier))[unique=true];searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType];facet;includeInResponse[default=true]
+;bundleTemplates:$solrIndexedType;;false;
+

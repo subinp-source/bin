@@ -1,0 +1,11 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+INSERT_UPDATE OAuthClientDetails;clientId[unique=true];resourceIds;scope[mode=append];authorizedGrantTypes;accessTokenValiditySeconds;authorities;clientSecret;
+;smartedit;hybris;basic,permissionswebservices,previewwebservices;password,client_credentials;3600;;;
+;smartedit-admin;hybris;extended,permissionswebservices,previewwebservices;password,client_credentials;3600;ROLE_ADMINGROUP;secret;
+;smartedit-cmsmanager;hybris;extended,permissionswebservices,previewwebservices;password,client_credentials;3600;ROLE_BASECMSMANAGERGROUP;secret;
+
+INSERT_UPDATE SmartEditConfiguration;key[unique=true];value
+;storefrontPreviewRoute;"""cx-preview"""

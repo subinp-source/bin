@@ -1,0 +1,11 @@
+y-message,
+se-message {
+    display: block;
+}
+
+.se-y-message {
+    @include se-flex-row;
+    &:not(:last-child) {
+        margin-bottom: fd-space('s');
+    }
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+    Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+
+--><extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
+       
+    <extension abstractclassprefix="Generated" classprefix="Merchandisingsmartedit" managername="MerchandisingsmarteditManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="merchandisingsmartedit">
+                
+        <!-- you should add all required extensions to this list, except platform extensions which are automatically required -->
+                
+        <requires-extension name="smartedit"/>
+        	    
+        <requires-extension name="smarteditwebservices"/>
+                
+        <coremodule generated="true" manager="com.hybris.merchandising.jalo.MerchandisingsmarteditManager" packageroot="com.hybris.merchandising"/>
+                
+        <webmodule jspcompile="false" webroot="/merchandisingsmartedit"/>
+           
+    </extension>
+    
+</extensioninfo>

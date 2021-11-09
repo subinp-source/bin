@@ -1,0 +1,28 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+# -----------------------------------------------------------------------
+
+$classificationCatalog = classAttributeAssignmentCatalog
+$version = Staged
+$catalogVersion = catalogversion(catalog(id[default = $classificationCatalog]), version[default = $version])[unique = true]
+$systemVer = systemVersion(catalog(id[default = $classificationCatalog]), version[default = $version]);
+$class = classificationClass(code)[unique = true];
+$attribute = classificationAttribute(code)[unique = true];
+$supercategories = supercategories(code, $catalogVersion);
+
+
+INSERT_UPDATE ClassificationSystem; id[unique = true]      ; name[lang = en]        ;
+                                  ; $classificationCatalog ; $classificationCatalog ;
+
+INSERT_UPDATE ClassificationSystemVersion; catalog(id)[unique = true]; version[unique = true];
+                                         ; $classificationCatalog    ; $version              ;
+
+INSERT_UPDATE ClassificationClass; code[unique = true]; name[lang = en]; $catalogVersion[unique = true, allowNull = true]; $supercategories;
+                                 ; Object             ; Object         ;                                                 ;                 ;
+                                 ; Device             ; Device         ;                                                 ; Object          ;
+
+INSERT_UPDATE ClassificationAttribute; code[unique = true]; $systemVer;
+                                     ; Dimensions         ;           ;
+
+INSERT_UPDATE ClassAttributeAssignment; $class[unique = true]; $attribute[unique = true]; attributeType(code[default = string]); referenceType(code); position; multiValued[default = false]; localized[default = false]; range[default = false]; searchable[default = false]; listable[default = false]; comparable[default = true]; $systemVer
+                                      ; Object               ; Dimensions               ; string                               ;                    ; 0       ;                             ;                           ;                       ;                            ;                          ;                           ;

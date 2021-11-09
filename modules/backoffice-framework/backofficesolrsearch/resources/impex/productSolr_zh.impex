@@ -1,0 +1,19 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+# -----------------------------------------------------------------------
+
+$lang=zh
+$solrIndexedType=solrIndexedType(identifier)[unique=true,default='BackofficeProduct'];
+
+#Currencies
+UPDATE Currency;isocode[unique=true];name[lang=$lang];
+;EUR;欧元;
+;USD;美元;
+
+UPDATE SolrIndexedProperty;name[unique=true];$solrIndexedType;backofficeDisplayName[lang=$lang];
+;catalogVersion;;目录版本;
+;facet_catalogVersion;;目录版本;
+;catalog;;目录;
+;facet_catalog;;目录;
+;itemtype;;项目类型;
+;categoryLabel;;类别;

@@ -1,0 +1,36 @@
+@import "../support/platformbackoffice_compareview-variables";
+
+.yw-backoffice-compareview {
+	&-container &-navigationhistory {
+		background-color: $_compareview-container__toolbar--bg-color;
+		height: $_compareview-container__toolbar-height;
+  		display: -ms-flexbox; 
+  		display: -webkit-flex;
+  		display: flex;
+		-webkit-align-items: center;
+		-ms-flex-align: center;
+		align-items: center;
+
+		.yw-navigationhistory {
+			&-back {
+				margin: $_compareview-history__back--margin;
+				padding-left: $_compareview-history__back--padding-left;
+			}
+			&-title {
+				height: $_compareview-history__title--height;
+				display: -ms-flexbox; 
+  				display: -webkit-flex;
+  				display: flex;
+				-webkit-align-items: center;
+				-ms-flex-align: center;
+				align-items: center;
+
+				.z-label {
+					font-size: $_compareview-history__title--font-size;
+					line-height: $_compareview-history__title--line-height;
+					font-weight: $_compareview-history__title--font-weight;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="OOTB" importedAsReadOnly="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/order-management/yacceleratorordermanagement/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="acceleratorservices" exported="" />
+    <orderEntry type="module" module-name="platform" exported="" />
+    <orderEntry type="module" module-name="warehousing" exported="" />
+  </component>
+</module>

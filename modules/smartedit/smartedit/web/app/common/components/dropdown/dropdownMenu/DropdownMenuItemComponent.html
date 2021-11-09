@@ -1,0 +1,17 @@
+<li
+    *ngIf="dropdownItem.condition(selectedItem)"
+    class="se-dropdown-menu__item-wrapper"
+    [ngClass]="dropdownItem.customCss"
+>
+    <ng-container *ngIf="dropdownItem.component">
+        <ng-container
+            *ngComponentOutlet="dropdownItem.component; injector: dropdownItemInjector"
+        ></ng-container>
+    </ng-container>
+    <!-- Legacy AngularJS support -->
+    <span
+        *ngIf="dropdownItem.templateUrl"
+        [ngInclude]="dropdownItem.templateUrl"
+        [compileHtmlNgController]="compileHtmlNgController"
+    ></span>
+</li>

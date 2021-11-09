@@ -1,0 +1,5 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+INSERT_UPDATE SolrServerConfig;name[unique=true];mode(code);aliveCheckInterval;connectionTimeout;socketTimeout;maxTotalConnections;maxTotalConnectionsPerHostConfig;tcpNoDelay;indexingAliveCheckInterval;indexingConnectionTimeout;indexingSocketTimeout;indexingMaxTotalConnections;indexingMaxTotalConnectionsPerHostConfig;indexingTcpNoDelay
+;testServerConfig${testId};standalone;100;200;300;400;500;false;110;220;330;440;550;false

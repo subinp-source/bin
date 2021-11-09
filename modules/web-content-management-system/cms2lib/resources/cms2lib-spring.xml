@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+   	http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+	<bean id="flashComponentValidator" class="de.hybris.platform.cms2lib.components.interceptors.FlashComponentValidator" />
+
+	<bean id="flashComponentValidatorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="flashComponentValidator" />
+		<property name="typeCode" value="FlashComponent" />
+	</bean>
+
+	<alias name="defaultProductCarouselComponentTypePredicate" alias="cmsProductCarouselComponentTypePredicate" />
+	<bean id="defaultProductCarouselComponentTypePredicate" parent="cmsGenericTypePredicate">
+		<property name="typeCode">
+			<util:constant static-field="de.hybris.platform.cms2lib.model.components.ProductCarouselComponentModel._TYPECODE" />
+		</property>
+	</bean>
+
+</beans>

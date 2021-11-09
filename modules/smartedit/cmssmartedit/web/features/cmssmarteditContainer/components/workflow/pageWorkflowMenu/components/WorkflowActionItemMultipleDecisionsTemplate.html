@@ -1,0 +1,16 @@
+<div
+    class="fd-popover__body fd-popover__body--right fd-popover__body--no-arrow  se-workflow-action-item-decisions-list"
+>
+    <nav class="fd-menu">
+        <ul class="fd-menu__list ">
+            <li data-ng-repeat="decision in $ctrl.workflowAction.decisions">
+                <a
+                    class="fd-menu__item se-workflow-action-item-decisions-list__item"
+                    data-ng-click="$ctrl.onMainButtonClick($event, decision)"
+                >
+                    {{ decision.name }}
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>

@@ -1,0 +1,813 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context" xmlns:util="http://www.springframework.org/schema/util"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/util
+           http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<context:component-scan base-package="de.hybris.platform.b2b.occ" />
+
+	<!-- Pointcut definition with annotation-->
+	<aop:config proxy-target-class="true">
+		<aop:pointcut id="siteChannelRestrictionPointB2B"
+					  expression="@annotation(de.hybris.platform.commercewebservicescommons.annotation.SiteChannelRestriction)" />
+		<aop:aspect ref="siteChannelRestrictionAspect">
+			<aop:around pointcut-ref="siteChannelRestrictionPointB2B" method="validateSiteChannel" />
+		</aop:aspect>
+	</aop:config>
+
+	<!-- DTO Mappings -->
+
+	<alias alias="fieldSetBuilder" name="b2bFieldSetBuilder" />
+	<bean id="b2bFieldSetBuilder" parent="defaultFieldSetBuilder">
+		<property name="defaultMaxFieldSetSize" value="500000" />
+	</bean>
+
+	<bean parent="fieldSetLevelMapping">
+		<property name="dtoClass"
+		          value="de.hybris.platform.commercewebservicescommons.dto.product.ProductWsDTO" />
+		<property name="levelMapping">
+			<map>
+				<entry key="BASIC"
+				       value="purchasable,stock,name,baseProduct,availableForPickup,code,url,price" />
+				<entry key="DEFAULT"
+				       value="summary,averageRating,purchasable,stock(DEFAULT),description,variantMatrix(DEFAULT),name,baseOptions(DEFAULT),baseProduct,availableForPickup,variantOptions(DEFAULT),code,url,price(DEFAULT),numberOfReviews,manufacturer,categories(BASIC),priceRange,multidimensional,firstVariantCode,firstVariantImage,volumePricesFlag" />
+				<entry key="FULL"
+				       value="summary,productReferences(FULL),classifications(FULL),averageRating,purchasable,volumePrices(FULL),variantType,stock(FULL),description,variantMatrix(FULL),name,baseOptions(FULL),baseProduct,availableForPickup,variantOptions(FULL),reviews(FULL),code,url,price(FULL),numberOfReviews,manufacturer,volumePricesFlag,futureStocks(FULL),images(FULL),categories(FULL),potentialPromotions(FULL),priceRange,multidimensional,firstVariantCode,firstVariantImage" />
+			</map>
+		</property>
+	</bean>
+
+	<bean parent="fieldSetLevelMapping">
+		<property name="dtoClass"
+				  value="de.hybris.platform.b2bwebservicescommons.dto.company.B2BCostCenterWsDTO" />
+		<property name="levelMapping">
+			<map>
+				<entry key="BASIC"
+					   value="originalCode,name" />
+				<entry key="DEFAULT"
+					   value="originalCode,name,active,code,unit(BASIC,addresses(DEFAULT)),currency(isocode)" />
+				<entry key="FULL"
+					   value="originalCode,name,active,code,unit(BASIC,addresses(DEFAULT)),currency(isocode),assignedBudgets(DEFAULT)" />
+			</map>
+		</property>
+	</bean>
+
+
+	<bean parent="fieldSetLevelMapping">
+		<property name="dtoClass"
+				  value="de.hybris.platform.b2bwebservicescommons.dto.company.B2BCostCenterShallowWsDTO" />
+		<property name="levelMapping">
+			<map>
+				<entry key="BASIC"
+					   value="originalCode,name" />
+				<entry key="DEFAULT"
+					   value="originalCode,name,active,code,currency(isocode)" />
+				<entry key="FULL"
+					   value="originalCode,name,active,code,currency(isocode)" />
+			</map>
+		</property>
+	</bean>
+
+	<bean parent="fieldSetLevelMapping">
+		<property name="dtoClass"
+				  value="de.hybris.platform.b2bwebservicescommons.dto.company.B2BSelectionDataWsDTO" />
+		<property name="levelMapping">
+			<map>
+				<entry key="BASIC"
+					   value="id,selected,active" />
+				<entry key="DEFAULT"
+					   value="id,selected,active,normalizedCode" />
+				<entry key="FULL"
+					   value="id,selected,active,normalizedCode,displayRoles,roles" />
+			</map>
+		</property>
+	</bean>
+
+	<bean parent="fieldSetLevelMapping">
+		<property name="dtoClass"
+				  value="de.hybris.platform.b2bwebservicescommons.dto.company.B2BCostCenterListWsDTO" />
+		<property name="levelMapping">
+			<map>
+				<entry key="BASIC"
+					   value="costCenters,sorts,pagination" />
+				<entry key="DEFAULT"
+					   value="costCenters(DEFAULT),sorts(DEFAULT),pagination(DEFAULT)" />
+				<entry key="FULL"
+					   value="costCenters(FULL),sorts(FULL),pagination(FULL)" />
+			</map>
+		</property>
+	</bean>
+
+	<bean parent="fieldSetLevelMapping">
+		<property name="dtoClass"
+				  value="de.hybris.platform.b2bwebservicescommons.dto.order.B2BPaymentTypeWsDTO" />
+		<property name="levelMapping">
+			<map>
+				<entry key="BASIC"
+					   value="code" />
+				<entry key="DEFAULT"
+					   value="code,displayName" />
+				<entry key="FULL"
+					   value="code,displayName" />
+			</map>
+		</property>
+	</bean>
+
+	<bean parent="fieldSetLevelMapping">
+		<property name="dtoClass"
+				  value="de.hybris.platform.commercewebservicescommons.dto.user.UserWsDTO" />
+		<property name="levelMapping">
+			<map>
+				<entry key="BASIC"
+					   value="active,approvers,roles,selected,orgUnit" />
+				<entry key="DEFAULT"
+					   value="active,approvers(BASIC),roles,selected,orgUnit(BASIC)" />
+				<entry key="FULL"
+					   value="active,approvers(BASIC),roles,selected,orgUnit(BASIC)" />
+			</map>
+		</property>
+	</bean>
+
+	<bean parent="fieldSetLevelMapping">
+		<property name="dtoClass"
+		          value="de.hybris.platform.commercewebservicescommons.dto.order.CartWsDTO" />
+		<property name="levelMapping">
+			<map>
+				<entry key="BASIC" value="code,guid" />
+				<entry key="DEFAULT"
+					   value="costCenter(DEFAULT),paymentType,purchaseOrderNumber,totalUnitCount,totalDiscounts(FULL),totalPrice(FULL),subTotal(FULL),totalTax(FULL),totalPriceWithTax(FULL)" />
+				<entry key="FULL"
+					   value="costCenter(DEFAULT),paymentType,purchaseOrderNumber" />
+			</map>
+		</property>
+	</bean>
+
+	<bean parent="fieldSetLevelMapping" id="orderHistoryWsDTOFieldSetLevelMapping">
+		<property name="dtoClass"
+		          value="de.hybris.platform.commercewebservicescommons.dto.order.OrderHistoryWsDTO" />
+		<property name="levelMapping">
+			<map>
+				<entry key="BASIC" value="total,guid,status,statusDisplay,code,placed,purchaseOrderNumber,costCenter(DEFAULT)" />
+				<entry key="DEFAULT"
+				       value="total(DEFAULT),guid,status,statusDisplay,code,placed,purchaseOrderNumber,costCenter(DEFAULT)" />
+				<entry key="FULL"
+				       value="total(FULL),guid,status,statusDisplay,code,placed,purchaseOrderNumber,costCenter(DEFAULT)" />
+			</map>
+		</property>
+	</bean>
+
+	<bean parent="fieldSetLevelMapping">
+		<property name="dtoClass"
+				  value="de.hybris.platform.commercewebservicescommons.dto.user.AddressWsDTO" />
+		<property name="levelMapping">
+			<map>
+				<entry key="DEFAULT"
+					   value="BASIC,firstName,lastName,line1,line2,postalCode,town,region,country,formattedAddress" />
+			</map>
+		</property>
+	</bean>
+
+    <bean parent="fieldSetLevelMapping">
+        <property name="dtoClass"
+                  value="de.hybris.platform.b2bwebservicescommons.dto.company.B2BPermissionWsDTO" />
+        <property name="levelMapping">
+            <map>
+                <entry key="BASIC"
+                       value="active,code,orgUnit,selected" />
+                <entry key="DEFAULT"
+                       value="active,code,currency,orgUnit(BASIC),orderApprovalPermissionType(DEFAULT),periodRange,selected,threshold" />
+                <entry key="FULL"
+                       value="active,code,currency,orgUnit(BASIC),orderApprovalPermissionType(FULL),periodRange,selected,threshold" />
+            </map>
+        </property>
+    </bean>
+
+	<bean parent="fieldSetLevelMapping">
+		<property name="dtoClass"
+				  value="de.hybris.platform.b2bwebservicescommons.dto.company.B2BPermissionResultWsDTO" />
+		<property name="levelMapping">
+			<map>
+				<entry key="BASIC"
+					   value="approverName,approverNotes,permissionType,statusDisplay" />
+				<entry key="DEFAULT"
+					   value="approverName,approverNotes,permissionType(DEFAULT),statusDisplay" />
+				<entry key="FULL"
+					   value="approverName,approverNotes,permissionType(FULL),statusDisplay" />
+			</map>
+		</property>
+	</bean>
+
+	<bean parent="fieldSetLevelMapping">
+		<property name="dtoClass"
+				  value="de.hybris.platform.b2bwebservicescommons.dto.company.B2BPermissionListWsDTO" />
+		<property name="levelMapping">
+			<map>
+				<entry key="BASIC"
+					   value="orderApprovalPermissions,sorts,pagination" />
+				<entry key="DEFAULT"
+                       value="orderApprovalPermissions(DEFAULT),sorts(DEFAULT),pagination(DEFAULT)" />
+				<entry key="FULL"
+                       value="orderApprovalPermissions(FULL),sorts(FULL),pagination(FULL)" />
+			</map>
+		</property>
+	</bean>
+
+	<bean parent="fieldSetLevelMapping">
+		<property name="dtoClass"
+				  value="de.hybris.platform.b2bwebservicescommons.dto.company.B2BPermissionTypeWsDTO" />
+		<property name="levelMapping">
+			<map>
+				<entry key="BASIC"
+					   value="code,name" />
+				<entry key="DEFAULT"
+					   value="code,name" />
+				<entry key="FULL"
+					   value="code,name" />
+			</map>
+		</property>
+	</bean>
+
+    <bean parent="fieldSetLevelMapping">
+        <property name="dtoClass"
+                  value="de.hybris.platform.b2bwebservicescommons.dto.company.B2BPermissionTypeListWsDTO" />
+        <property name="levelMapping">
+            <map>
+                <entry key="BASIC"
+                       value="orderApprovalPermissionTypes,sorts,pagination" />
+                <entry key="DEFAULT"
+                       value="orderApprovalPermissionTypes(DEFAULT),sorts(DEFAULT),pagination(DEFAULT)" />
+                <entry key="FULL"
+                       value="orderApprovalPermissionTypes(FULL),sorts(FULL),pagination(FULL)" />
+            </map>
+        </property>
+    </bean>
+
+	<bean parent="fieldSetLevelMapping">
+		<property name="dtoClass"
+				  value="de.hybris.platform.b2bwebservicescommons.dto.company.B2BUnitWsDTO" />
+		<property name="levelMapping">
+			<map>
+				<entry key="BASIC"
+					   value="active,uid,name,parentOrgUnit" />
+				<entry key="DEFAULT"
+					   value="active,uid,name,addresses(DEFAULT),approvers(DEFAULT),managers(DEFAULT),administrators(DEFAULT),customers(DEFAULT), approvalProcess(DEFAULT), parentOrgUnit, costCenters(DEFAULT)" />
+				<entry key="FULL"
+					   value="active,uid,name,addresses(FULL),approvers(FULL),managers(FULL),administrators(FULL),customers(FULL), approvalProcess(FULL), parentOrgUnit, costCenters(DEFAULT)" />
+			</map>
+		</property>
+	</bean>
+
+	<bean parent="fieldSetLevelMapping">
+		<property name="dtoClass"
+				  value="de.hybris.platform.b2bwebservicescommons.dto.company.B2BUnitNodeWsDTO" />
+		<property name="levelMapping">
+			<map>
+				<entry key="BASIC"
+					   value="active,id,name,parent" />
+				<entry key="DEFAULT"
+					   value="active,id,name,parent,children(DEFAULT)" />
+				<entry key="FULL"
+					   value="active,id,name,parent,children(FULL)" />
+			</map>
+		</property>
+	</bean>
+
+
+	<bean parent="fieldSetLevelMapping">
+		<property name="dtoClass"
+				  value="de.hybris.platform.b2bwebservicescommons.dto.company.B2BUnitNodeListWsDTO" />
+		<property name="levelMapping">
+			<map>
+				<entry key="BASIC"
+					   value="unitNodes,sorts,pagination" />
+				<entry key="DEFAULT"
+					   value="unitNodes(DEFAULT),sorts(DEFAULT),pagination(DEFAULT)" />
+				<entry key="FULL"
+					   value="unitNodes(FULL),sorts(FULL),pagination(FULL)" />
+			</map>
+		</property>
+	</bean>
+
+	<bean parent="fieldSetLevelMapping">
+		<property name="dtoClass"
+				  value="de.hybris.platform.b2bwebservicescommons.dto.company.OrgUnitUserListWsDTO" />
+		<property name="levelMapping">
+			<map>
+				<entry key="BASIC"
+					   value="users,sorts,pagination" />
+				<entry key="DEFAULT"
+					   value="users(DEFAULT),sorts(DEFAULT),pagination(DEFAULT)" />
+				<entry key="FULL"
+					   value="users(FULL),sorts(FULL),pagination(FULL)" />
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="b2BCostCenterListFieldMapper" parent="fieldMapper">
+		<property name="sourceClass"
+				  value="de.hybris.platform.b2bwebservicescommons.dto.company.B2BCostCentersData" />
+		<property name="destClass"
+				  value="de.hybris.platform.b2bwebservicescommons.dto.company.B2BCostCenterListWsDTO" />
+	</bean>
+
+	<!-- DTO Mappings -->
+
+	<!-- Orika : Mappers -->
+	<bean class="de.hybris.platform.b2b.occ.mapping.mappers.B2BUnitDataMapper" parent="abstractCustomMapper" />
+	<bean class="de.hybris.platform.b2b.occ.mapping.mappers.B2BCostCenterDataMapper" parent="abstractCustomMapper" />
+	<bean class="de.hybris.platform.b2b.occ.mapping.mappers.B2BPlaceOrderDataMapper" parent="abstractCustomMapper" />
+
+	<!-- Orika : Converters -->
+	<bean class="de.hybris.platform.b2b.occ.mapping.converter.B2BPermissionResultConverter" />
+
+	<!-- Field Mappings : OrderWsDTO -->
+
+	<bean id="orgOrderFieldMapping" parent="fieldMapper">
+		<property name="sourceClass"
+				  value="de.hybris.platform.commercefacades.order.data.OrderData" />
+		<property name="destClass"
+				  value="de.hybris.platform.commercewebservicescommons.dto.order.OrderWsDTO" />
+		<property name="fieldMapping">
+			<map>
+				<entry key="b2bCustomerData" value="orgCustomer" />
+				<entry key="b2bPermissionResult" value="permissionResults" />
+			</map>
+		</property>
+	</bean>
+
+
+	<!-- Field Mappings : B2BPermissionResultData -->
+
+	<bean id="B2BPermissionResultFieldMapper" parent="fieldMapper">
+		<property name="sourceClass"
+				  value="de.hybris.platform.b2bapprovalprocessfacades.company.data.B2BPermissionResultData" />
+		<property name="destClass"
+				  value="de.hybris.platform.b2bwebservicescommons.dto.company.B2BPermissionResultWsDTO" />
+		<property name="fieldMapping">
+			<map>
+				<entry key="approver" value="approverName" />
+				<entry key="permissionTypeData" value="permissionType" />
+			</map>
+		</property>
+	</bean>
+
+	<!-- Field Mappings : B2BOrderHistoryEntryData -->
+
+	<bean id="b2BOrderHistoryEntryFieldMapper" parent="fieldMapper">
+		<property name="sourceClass"
+				  value="de.hybris.platform.b2bacceleratorfacades.order.data.B2BOrderHistoryEntryData" />
+		<property name="destClass"
+				  value="de.hybris.platform.b2bwebservicescommons.dto.order.OrderApprovalRecordWsDTO" />
+		<property name="fieldMapping">
+			<map>
+				<entry key="previousOrderVersionData.b2bPermissionResult" value="permissionTypes" />
+				<entry key="ownerData" value="approver" />
+				<entry key="previousOrderVersionData.statusDisplay" value="statusDisplay" />
+				<entry key="description" value="comments" />
+			</map>
+		</property>
+	</bean>
+
+	<!-- Field Mappings : B2BOrderApprovalData -->
+	<bean id="b2BOrderApprovalFieldMapper" parent="fieldMapper">
+		<property name="sourceClass"
+				  value="de.hybris.platform.b2bacceleratorfacades.order.data.B2BOrderApprovalData" />
+		<property name="destClass"
+				  value="de.hybris.platform.b2bwebservicescommons.dto.order.OrderApprovalWsDTO" />
+		<property name="fieldMapping">
+			<map>
+				<entry key="workflowActionModelCode" value="code" />
+				<entry key="b2bOrderData" value="order" />
+				<entry key="orderHistoryEntriesData" value="customerOrderApprovalRecords" />
+				<entry key="merchantApprovalHistoryEntriesData" value="merchantOrderApprovalRecords" />
+				<entry key="b2bOrderData.triggerData" value="trigger" />
+			</map>
+		</property>
+	</bean>
+
+	<bean id="b2BOrderApprovalDecisionFieldMapper" parent="fieldMapper">
+		<property name="sourceClass"
+				  value="de.hybris.platform.b2bacceleratorfacades.order.data.B2BOrderApprovalData" />
+		<property name="destClass"
+				  value="de.hybris.platform.b2bwebservicescommons.dto.order.OrderApprovalDecisionWsDTO" />
+		<property name="fieldMapping">
+			<map>
+				<entry key="selectedDecision" value="decision" />
+				<entry key="approvalComments" value="comment" />
+			</map>
+		</property>
+	</bean>
+
+	<!-- Field Mappings : B2BPermission -->
+
+	<bean id="b2BPermissionFieldMapper" parent="fieldMapper">
+		<property name="sourceClass"
+				  value="de.hybris.platform.b2bapprovalprocessfacades.company.data.B2BPermissionData" />
+		<property name="destClass"
+				  value="de.hybris.platform.b2bwebservicescommons.dto.company.B2BPermissionWsDTO" />
+		<property name="fieldMapping">
+			<map>
+				<entry key="value" value="threshold" />
+                <entry key="unit" value="orgUnit" />
+                <entry key="b2BPermissionTypeData" value="orderApprovalPermissionType" />
+			</map>
+		</property>
+	</bean>
+
+    <bean parent="fieldSetLevelMapping">
+        <property name="dtoClass"
+                  value="de.hybris.platform.b2bwebservicescommons.dto.mycompany.BudgetWsDTO" />
+        <property name="levelMapping">
+            <map>
+                <entry key="BASIC"
+                       value="active,code,name,orgUnit,selected" />
+                <entry key="DEFAULT"
+                       value="active,code,name,budget,currency,startDate,endDate,orgUnit(BASIC),selected,costCenters(DEFAULT)" />
+                <entry key="FULL"
+                       value="active,code,name,budget,currency,startDate,endDate,orgUnit(BASIC),selected,costCenters(FULL)" />
+            </map>
+        </property>
+    </bean>
+
+    <bean parent="fieldSetLevelMapping">
+        <property name="dtoClass"
+                  value="de.hybris.platform.b2bwebservicescommons.dto.mycompany.BudgetShallowWsDTO" />
+        <property name="levelMapping">
+            <map>
+                <entry key="BASIC"
+                       value="active,code,name,orgUnit,selected" />
+                <entry key="DEFAULT"
+                       value="active,code,name,budget,currency,startDate,endDate,selected" />
+                <entry key="FULL"
+                       value="active,code,name,budget,currency,startDate,endDate,selected" />
+            </map>
+        </property>
+    </bean>
+
+    <bean parent="fieldSetLevelMapping">
+        <property name="dtoClass"
+                  value="de.hybris.platform.b2bwebservicescommons.dto.mycompany.BudgetListWsDTO" />
+        <property name="levelMapping">
+            <map>
+                <entry key="BASIC"
+                       value="budgets,sorts,pagination" />
+                <entry key="DEFAULT"
+                       value="budgets(DEFAULT),sorts(DEFAULT),pagination(DEFAULT)" />
+                <entry key="FULL"
+                       value="budgets(FULL),sorts(FULL),pagination(FULL)" />
+            </map>
+        </property>
+    </bean>
+
+	<bean id="orgUnitUserGroupFieldSetLevelMapping" parent="fieldSetLevelMapping">
+		<property name="dtoClass"
+				  value="de.hybris.platform.b2bwebservicescommons.dto.company.OrgUnitUserGroupWsDTO" />
+		<property name="levelMapping">
+			<map>
+				<entry key="BASIC" value="uid,name,members,orgUnit,roles,selected" />
+				<entry key="DEFAULT"
+					   value="uid,name,members(DEFAULT),orgUnit(DEFAULT),permissions(DEFAULT),roles,selected" />
+				<entry key="FULL"
+					   value="uid,name,members(FULL),orgUnit(FULL),permissions(FULL),roles,selected" />
+			</map>
+		</property>
+	</bean>
+
+	<bean id="orgUnitUserGroupListFieldMapper" parent="fieldSetLevelMapping">
+		<property name="dtoClass"
+				  value="de.hybris.platform.b2bwebservicescommons.dto.company.OrgUnitUserGroupListWsDTO" />
+		<property name="levelMapping">
+			<map>
+				<entry key="BASIC"
+					   value="orgUnitUserGroups,sorts,pagination" />
+				<entry key="DEFAULT"
+					   value="orgUnitUserGroups(DEFAULT),sorts(DEFAULT),pagination(DEFAULT)" />
+				<entry key="FULL"
+					   value="orgUnitUserGroups(FULL),sorts(FULL),pagination(FULL)" />
+			</map>
+		</property>
+	</bean>
+
+    <bean id="budgetResultFieldMapper" parent="fieldMapper">
+        <property name="sourceClass"
+                  value="de.hybris.platform.b2bcommercefacades.company.data.B2BBudgetData" />
+        <property name="destClass"
+                  value="de.hybris.platform.b2bwebservicescommons.dto.mycompany.BudgetWsDTO" />
+        <property name="fieldMapping">
+            <map>
+                <entry key="unit" value="orgUnit" />
+            </map>
+        </property>
+    </bean>
+
+    <bean id="budgetListResultFieldMapper" parent="fieldMapper">
+        <property name="sourceClass"
+                  value="de.hybris.platform.b2bcommercefacades.company.data.BudgetsData" />
+        <property name="destClass"
+                  value="de.hybris.platform.b2bwebservicescommons.dto.mycompany.BudgetListWsDTO" />
+    </bean>
+
+	<bean id="orgUnitUserGroupFieldMapper" parent="fieldMapper">
+		<property name="sourceClass"
+				  value="de.hybris.platform.b2bcommercefacades.company.data.B2BUserGroupData" />
+		<property name="destClass"
+				  value="de.hybris.platform.b2bwebservicescommons.dto.company.OrgUnitUserGroupWsDTO" />
+		<property name="fieldMapping">
+			<map>
+				<entry key="unit" value="orgUnit" />
+			</map>
+		</property>
+	</bean>
+
+	<bean id="costCenterFieldMapper" parent="fieldMapper">
+ 		<property name="sourceClass"
+ 				  value="de.hybris.platform.b2bcommercefacades.company.data.B2BCostCenterData" />
+ 		<property name="destClass"
+ 				  value="de.hybris.platform.b2bwebservicescommons.dto.company.B2BCostCenterWsDTO" />
+ 		<property name="fieldMapping">
+ 			<map>
+ 				<entry key="b2bBudgetData" value="assignedBudgets" />
+ 			</map>
+ 		</property>
+ 	</bean>
+
+	<!-- Field Mappings : CustomerData -->
+
+	<bean id="b2BUserFieldMapperMergeDirective" depends-on="userFieldMapper" parent="mapMergeDirective">
+		<property name="fieldName" value="fieldMapping" />
+		<property name="key" value="unit" />
+		<property name="value" value="orgUnit" />
+	</bean>
+
+	<bean id="orgCustomerCreationFieldMapper" parent="fieldMapper">
+		<property name="sourceClass"
+				  value="de.hybris.platform.commercefacades.user.data.CustomerData" />
+		<property name="destClass"
+				  value="de.hybris.platform.b2bwebservicescommons.dto.company.OrgCustomerCreationWsDTO" />
+		<property name="fieldMapping">
+			<map>
+				<entry key="unit" value="orgUnit" />
+			</map>
+		</property>
+	</bean>
+
+    <bean parent="fieldSetLevelMapping">
+        <property name="dtoClass"
+                  value="de.hybris.platform.b2bwebservicescommons.dto.order.OrderApprovalRecordWsDTO" />
+        <property name="levelMapping">
+            <map>
+                <entry key="BASIC"
+                       value="permissionTypes,approver,statusDisplay" />
+                <entry key="DEFAULT"
+                       value="permissionTypes,approver,statusDisplay,comments" />
+                <entry key="FULL"
+                       value="permissionTypes,approver,statusDisplay,comments" />
+            </map>
+        </property>
+    </bean>
+
+    <bean parent="fieldSetLevelMapping">
+        <property name="dtoClass"
+                  value="de.hybris.platform.b2bwebservicescommons.dto.order.OrderApprovalWsDTO" />
+        <property name="levelMapping">
+            <map>
+                <entry key="BASIC"
+                       value="code,order" />
+                <entry key="DEFAULT"
+                       value="code,approvalDecisionRequired,order(DEFAULT),customerOrderApprovalRecords(DEFAULT),merchantOrderApprovalRecords(DEFAULT),trigger(DEFAULT)" />
+                <entry key="FULL"
+                       value="code,approvalDecisionRequired,order(FULL),customerOrderApprovalRecords(FULL),merchantOrderApprovalRecords(FULL),trigger(FULL)" />
+            </map>
+        </property>
+    </bean>
+
+	<bean parent="fieldSetLevelMapping">
+		<property name="dtoClass"
+				  value="de.hybris.platform.b2bwebservicescommons.dto.order.OrderApprovalDecisionWsDTO" />
+		<property name="levelMapping">
+			<map>
+				<entry key="BASIC"
+					   value="decision" />
+				<entry key="DEFAULT"
+					   value="decision,comment" />
+				<entry key="FULL"
+					   value="decision,comment" />
+			</map>
+		</property>
+	</bean>
+
+	<bean parent="fieldSetLevelMapping">
+		<property name="dtoClass"
+				  value="de.hybris.platform.commercewebservicescommons.dto.order.OrderWsDTO" />
+		<property name="levelMapping">
+			<map>
+				<entry key="BASIC"
+					   value="purchaseOrderNumber,orgCustomer,costCenter" />
+				<entry key="DEFAULT"
+					   value="purchaseOrderNumber,orgCustomer(DEFAULT),costCenter(DEFAULT),permissionResults(DEFAULT)" />
+				<entry key="FULL"
+					   value="purchaseOrderNumber,orgCustomer(FULL),costCenter(FULL),permissionResults(FULL),totalUnitCount" />
+			</map>
+		</property>
+	</bean>
+
+	<bean parent="fieldSetLevelMapping">
+		<property name="dtoClass"
+				  value="de.hybris.platform.b2bwebservicescommons.dto.order.OrderApprovalListWsDTO" />
+		<property name="levelMapping">
+			<map>
+				<entry key="BASIC"
+					   value="orderApprovals,sorts,pagination" />
+				<entry key="DEFAULT"
+					   value="orderApprovals(DEFAULT),sorts(DEFAULT),pagination(DEFAULT)" />
+				<entry key="FULL"
+					   value="orderApprovals(FULL),sorts(FULL),pagination(FULL)" />
+			</map>
+		</property>
+	</bean>
+
+	<bean id="replenishmentResultFieldMapper" parent="fieldMapper">
+		<property name="sourceClass"
+				  value="de.hybris.platform.b2bacceleratorfacades.order.data.ScheduledCartData" />
+		<property name="destClass"
+				  value="de.hybris.platform.b2bwebservicescommons.dto.order.ReplenishmentOrderWsDTO" />
+		<property name="fieldMapping">
+			<map>
+				<entry key="triggerData" value="trigger" />
+				<entry key="firstOrderDate" value="firstDate" />
+				<entry key="jobCode" value="replenishmentOrderCode" />
+			</map>
+		</property>
+	</bean>
+
+	<bean id="replenishmentOrderListResultFieldMapper" parent="fieldMapper">
+		<property name="sourceClass"
+				  value="de.hybris.platform.b2bwebservicescommons.dto.order.ReplenishmentOrderData" />
+		<property name="destClass"
+				  value="de.hybris.platform.b2bwebservicescommons.dto.order.ReplenishmentOrderListWsDTO" />
+	</bean>
+
+	<bean parent="fieldSetLevelMapping">
+		<property name="dtoClass"
+				  value="de.hybris.platform.b2bwebservicescommons.dto.order.ReplenishmentOrderWsDTO" />
+		<property name="levelMapping">
+			<map>
+				<entry key="BASIC"
+					   value="active,trigger,firstDate,replenishmentOrderCode" />
+				<entry key="DEFAULT"
+					   value="active,trigger(DEFAULT),firstDate,replenishmentOrderCode,potentialProductPromotions(DEFAULT),potentialOrderPromotions(DEFAULT),totalUnitCount,store,appliedOrderPromotions(DEFAULT),pickupItemsQuantity,net,calculated,appliedVouchers(DEFAULT),productDiscounts(DEFAULT),totalDiscounts(DEFAULT),subTotal(DEFAULT),orderDiscounts(DEFAULT),entries(DEFAULT),appliedProductPromotions(DEFAULT),totalPrice(DEFAULT),site,deliveryMode(DEFAULT),code,deliveryOrderGroups(DEFAULT),guid,paymentInfo(DEFAULT),pickupOrderGroups(DEFAULT),totalItems,totalPriceWithTax(DEFAULT),deliveryItemsQuantity,totalTax(DEFAULT),user(DEFAULT),deliveryAddress(DEFAULT),deliveryCost(DEFAULT),name,description,savedBy,saveTime,expirationTime" />
+				<entry key="FULL"
+					   value="active,trigger(FULL),firstDate,replenishmentOrderCode, potentialProductPromotions(FULL),potentialOrderPromotions(FULL),totalUnitCount,store,appliedOrderPromotions(FULL),pickupItemsQuantity,net,calculated,appliedVouchers(FULL),productDiscounts(FULL),totalDiscounts(FULL),subTotal(FULL),orderDiscounts(FULL),entries(FULL),appliedProductPromotions(FULL),totalPrice(FULL),site,deliveryMode(FULL),code,deliveryOrderGroups(FULL),guid,paymentInfo(FULL),pickupOrderGroups(FULL),totalItems,totalPriceWithTax(FULL),deliveryItemsQuantity,totalTax(FULL),user(FULL),deliveryAddress(FULL),deliveryCost(FULL),name,description,savedBy,saveTime,expirationTime" />
+			</map>
+		</property>
+	</bean>
+
+	<bean parent="fieldSetLevelMapping">
+		<property name="dtoClass"
+				  value="de.hybris.platform.b2bwebservicescommons.dto.order.ReplenishmentOrderListWsDTO" />
+		<property name="levelMapping">
+			<map>
+				<entry key="BASIC"
+					   value="replenishmentOrders,sorts,pagination" />
+				<entry key="DEFAULT"
+					   value="replenishmentOrders(DEFAULT),sorts(DEFAULT),pagination(DEFAULT)" />
+				<entry key="FULL"
+					   value="replenishmentOrders(FULL),sorts(FULL),pagination(FULL)" />
+			</map>
+		</property>
+	</bean>
+
+	<bean parent="fieldSetLevelMapping">
+		<property name="dtoClass"
+				  value="de.hybris.platform.b2bwebservicescommons.dto.order.TriggerWsDTO" />
+		<property name="levelMapping">
+			<map>
+				<entry key="BASIC"
+					   value="activationTime,displayTimeTable" />
+				<entry key="DEFAULT"
+					   value="activationTime,displayTimeTable" />
+				<entry key="FULL"
+					   value="activationTime,displayTimeTable" />
+			</map>
+		</property>
+	</bean>
+
+    <!-- Validators -->
+    <alias name="defaultB2BPlaceOrderCartValidator" alias="b2BPlaceOrderCartValidator" />
+    <bean id="defaultB2BPlaceOrderCartValidator" class="de.hybris.platform.b2b.occ.validators.B2BPlaceOrderCartValidator" />
+
+    <alias name="defaultB2BCartAddressValidator" alias="b2BCartAddressValidator" />
+    <bean id="defaultB2BCartAddressValidator" class="de.hybris.platform.b2b.occ.validators.B2BCartAddressValidator" />
+
+	<alias name="defaultB2BPermissionWsDTOValidator" alias="b2BPermissionWsDTOValidator" />
+	<bean id="defaultB2BPermissionWsDTOValidator" class="de.hybris.platform.b2b.occ.validators.B2BPermissionWsDTOValidator" />
+
+    <alias name="defaultBudgetManagementValidator" alias="budgetManagementValidator" />
+    <bean id="defaultBudgetManagementValidator" class="de.hybris.platform.b2b.occ.validators.BudgetManagementValidator" />
+
+    <alias name="defaultB2BUnitWsDTOValidator" alias="b2BUnitWsDTOValidator" />
+    <bean id="defaultB2BUnitWsDTOValidator" class="de.hybris.platform.b2b.occ.validators.B2BUnitWsDTOValidator" />
+
+	<alias name="defaultOrgCustomerCreationWsDTOValidator" alias="orgCustomerCreationWsDTOValidator" />
+	<alias name="defaultOrgCustomerCreationWsDTOValidator" alias="orgCustomerModificationWsDTOValidator" />
+	<bean id="defaultOrgCustomerCreationWsDTOValidator" class="de.hybris.platform.b2b.occ.validators.OrgCustomerCreationWsDTOValidator" />
+
+	<alias name="defaultOrgCustomerPasswordResetValidator" alias="orgCustomerPasswordResetValidator" />
+	<bean id="defaultOrgCustomerPasswordResetValidator" class="de.hybris.platform.b2b.occ.validators.OrgCustomerPasswordResetValidator" />
+
+	<alias name="defaultOrgUnitUserGroupWsDTOValidator" alias="orgUnitUserGroupWsDTOValidator" />
+	<bean id="defaultOrgUnitUserGroupWsDTOValidator" class="de.hybris.platform.b2b.occ.validators.OrgUnitUserGroupWsDTOValidator" />
+
+	<alias name="defaultBudgetWsDTOValidator" alias="budgetWsDTOValidator" />
+	<bean id="defaultBudgetWsDTOValidator" class="de.hybris.platform.b2b.occ.validators.BudgetWsDTOValidator" />
+
+    <alias name="defaultB2BCostCenterWsDTOValidator" alias="b2BCostCenterWsDTOValidator" />
+    <bean id="defaultB2BCostCenterWsDTOValidator" class="de.hybris.platform.b2b.occ.validators.B2BCostCenterWsDTOValidator" />
+
+	<alias name="defaultScheduleReplenishmentFormWsDTOValidator" alias="scheduleReplenishmentFormWsDTOValidator" />
+	<bean id="defaultScheduleReplenishmentFormWsDTOValidator" class="de.hybris.platform.b2b.occ.validators.ScheduleReplenishmentFormWsDTOValidator" />
+
+	<!-- Dynamic Map for B2B User role management -->
+    <alias name="defaultUserRoleManagementStrategyMap" alias="userRoleManagementStrategyMap" />
+    <util:map id="defaultUserRoleManagementStrategyMap">
+        <entry key="b2badmingroup" value-ref="administratorsRoleManagementStrategy" />
+        <entry key="b2bmanagergroup" value-ref="managersRoleManagementStrategy" />
+        <entry key="b2bcustomergroup" value-ref="customersRoleManagementStrategy" />
+    </util:map>
+
+	<alias name="defaultOrgUnitUserRoleManagementStrategyMap" alias="orgUnitUserRoleManagementStrategyMap" />
+	<util:map id="defaultOrgUnitUserRoleManagementStrategyMap">
+		<entry key="b2bapprovergroup" value-ref="unitApproversRoleManagementStrategy" />
+	</util:map>
+
+	<alias name="defaultOrgUnitUsersDisplayStrategyMap" alias="orgUnitUsersDisplayStrategyMap" />
+	<util:map id="defaultOrgUnitUsersDisplayStrategyMap">
+		<entry key="b2bapprovergroup" value-ref="orgUnitApproversDisplayStrategy" />
+		<entry key="b2badmingroup" value-ref="orgUnitAdministratorsDisplayStrategy" />
+		<entry key="b2bmanagergroup" value-ref="orgUnitManagersDisplayStrategy" />
+		<entry key="b2bcustomergroup" value-ref="orgUnitCustomersDisplayStrategy" />
+	</util:map>
+
+    <alias name="defaultAdministratorsRoleManagementStrategy" alias="administratorsRoleManagementStrategy" />
+    <bean id="defaultAdministratorsRoleManagementStrategy"
+          class="de.hybris.platform.b2b.occ.strategy.impl.DefaultUserRoleManagementStrategy">
+        <property name="role" value="b2badmingroup" />
+        <property name="b2bUserFacade" ref="b2bUserFacade" />
+    </bean>
+
+    <alias name="defaultCustomersRoleManagementStrategy" alias="customersRoleManagementStrategy" />
+    <bean id="defaultCustomersRoleManagementStrategy"
+          class="de.hybris.platform.b2b.occ.strategy.impl.DefaultUserRoleManagementStrategy">
+        <property name="role" value="b2bcustomergroup" />
+        <property name="b2bUserFacade" ref="b2bUserFacade" />
+    </bean>
+
+    <alias name="defaultManagersRoleManagementStrategy" alias="managersRoleManagementStrategy" />
+    <bean id="defaultManagersRoleManagementStrategy"
+          class="de.hybris.platform.b2b.occ.strategy.impl.DefaultUserRoleManagementStrategy">
+        <property name="role" value="b2bmanagergroup" />
+        <property name="b2bUserFacade" ref="b2bUserFacade" />
+    </bean>
+
+    <alias name="defaultUnitApproversRoleManagementStrategy" alias="unitApproversRoleManagementStrategy" />
+    <bean id="defaultUnitApproversRoleManagementStrategy"
+          class="de.hybris.platform.b2b.occ.strategy.impl.OrgUnitApproversManagementStrategy">
+        <property name="b2bApproverFacade" ref="b2bApproverFacade" />
+    </bean>
+
+    <alias name="defaultOrgUnitAdministratorsDisplayStrategy" alias="orgUnitAdministratorsDisplayStrategy" />
+    <bean id="defaultOrgUnitAdministratorsDisplayStrategy"
+          class="de.hybris.platform.b2b.occ.strategy.impl.OrgUnitAdministratorsDisplayStrategy">
+        <property name="b2bUnitFacade" ref="b2bUnitFacade" />
+    </bean>
+
+	<alias name="defaultOrgUnitApproversDisplayStrategy" alias="orgUnitApproversDisplayStrategy" />
+	<bean id="defaultOrgUnitApproversDisplayStrategy"
+		  class="de.hybris.platform.b2b.occ.strategy.impl.OrgUnitApproversDisplayStrategy">
+		<property name="b2bApproverFacade" ref="b2bApproverFacade" />
+	</bean>
+
+    <alias name="defaultOrgUnitCustomersDisplayStrategy" alias="orgUnitCustomersDisplayStrategy" />
+    <bean id="defaultOrgUnitCustomersDisplayStrategy"
+          class="de.hybris.platform.b2b.occ.strategy.impl.OrgUnitCustomersDisplayStrategy">
+        <property name="b2bUnitFacade" ref="b2bUnitFacade" />
+    </bean>
+
+    <alias name="defaultOrgUnitManagersDisplayStrategy" alias="orgUnitManagersDisplayStrategy" />
+    <bean id="defaultOrgUnitManagersDisplayStrategy"
+          class="de.hybris.platform.b2b.occ.strategy.impl.OrgUnitManagersDisplayStrategy">
+        <property name="b2bUnitFacade" ref="b2bUnitFacade" />
+    </bean>
+
+	<alias name="defaultOrderApprovalDecisionValidator" alias="orderApprovalDecisionValidator" />
+	<bean id="defaultOrderApprovalDecisionValidator" class="de.hybris.platform.b2b.occ.validators.OrderApprovalDecisionValidator" />
+</beans>

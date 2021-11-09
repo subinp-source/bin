@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+
+
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd">
+
+   <alias alias="sapProductConfigPersistenceConfigurationLifecycleStrategy"
+        name="sapProductConfigPersistenceConfigurationB2BLifecycleStrategy" />
+	<bean id="sapProductConfigPersistenceConfigurationB2BLifecycleStrategy"
+		class="de.hybris.platform.sap.productconfig.b2bservices.strategies.lifecycle.impl.PersistenceConfigurationLifecycleB2BStrategyImpl">
+		<constructor-arg name="configurationLifecycleStrategy" ref="sapProductConfigPersistenceConfigurationB2CLifecycleStrategy" />
+		<constructor-arg name="userService" ref="userService" />
+		<constructor-arg name="b2bUnitService" ref="defaultB2BUnitService" />
+		<constructor-arg name="persistenceService" ref="sapProductConfigProductConfigurationPersistenceService" />  
+	</bean>
+</beans>

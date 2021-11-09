@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<widget-definition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widget-definition.xsd"
+                   id="de.hybris.platform.integrationbackoffice.widgets.IntegrationObjectEditorTree">
+    <name>Integration Object Editor Tree</name>
+    <description>Tree to display the composed types</description>
+    <defaultTitle>Integration Object Editor Tree</defaultTitle>
+    <author>Hybris</author>
+    <version>1.0</version>
+    <keywords>
+        <keyword>IntegrationObjectEditorTree</keyword>
+    </keywords>
+    <view src="IntegrationObjectEditorTree.zul"/>
+    <controller
+            class="de.hybris.platform.integrationbackoffice.widgets.editor.controllers.IntegrationObjectEditorTreeController"/>
+    <sockets>
+        <input id="loadIO" type="java.lang.String"/>
+        <input id="createTree" type="jde.hybris.platform.integrationbackoffice.widgets.editor.data.CreateTreeData"/>
+        <input id="checkForStructuredType" type="de.hybris.platform.integrationbackoffice.dto.AbstractListItemDTO"/>
+        <input id="createDynamicTreeNode" type="de.hybris.platform.integrationbackoffice.dto.AbstractListItemDTO"/>
+        <input id="retypeTreeNodes" type="de.hybris.platform.integrationbackoffice.widgets.editor.data.RetypeTreeData"/>
+        <input id="renameTreeNodes" type="de.hybris.platform.integrationbackoffice.widgets.editor.data.RenameTreeData"/>
+        <input id="autoSelectAttributeRelation" type="org.zkoss.zul.Treeitem"/>
+        <output id="selectedItem" type="de.hybris.platform.core.model.type.ComposedTypeModel"/>
+    </sockets>
+</widget-definition>

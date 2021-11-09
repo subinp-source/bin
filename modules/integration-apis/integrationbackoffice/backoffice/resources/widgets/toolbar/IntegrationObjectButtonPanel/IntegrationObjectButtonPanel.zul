@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<widget xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.zkoss.org/2005/zul"
+        xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.hybris.com/schema/cockpitng/zul/zul.xsd"
+        height="100%">
+
+    <style src="${wr}/IntegrationObjectButtonPanel.css"/>
+
+    <hlayout spacing="8px">
+        <div id="filterButtonDiv"/>
+        <button id="refreshButton" label="${labels.integrationbackoffice.editMode.button.refresh}"/>
+        <button id="saveDefinitionsButton" label="${labels.integrationbackoffice.editMode.button.save}" sclass="y-btn-primary"/>
+    </hlayout>
+
+</widget>

@@ -1,0 +1,88 @@
+INSERT_UPDATE IntegrationObject; code[unique = true]; integrationType(code)
+                               ; IntegrationService ; INBOUND
+
+INSERT_UPDATE IntegrationObjectItem; integrationObject(code)[unique = true]; code[unique = true]                          ; type(code)                                   ; root[default = false]
+                                   ; IntegrationService                    ; InboundChannelConfiguration                  ; InboundChannelConfiguration                  ; true
+                                   ; IntegrationService                    ; AuthenticationType                           ; AuthenticationType
+                                   ; IntegrationService                    ; IntegrationObject                            ; IntegrationObject                            ;
+                                   ; IntegrationService                    ; IntegrationType                              ; IntegrationType                              ;
+                                   ; IntegrationService                    ; ItemTypeMatchEnum                            ; ItemTypeMatchEnum                            ;
+                                   ; IntegrationService                    ; IntegrationObjectItem                        ; IntegrationObjectItem                        ;
+                                   ; IntegrationService                    ; IntegrationObjectItemAttribute               ; IntegrationObjectItemAttribute               ;
+                                   ; IntegrationService                    ; IntegrationObjectItemClassificationAttribute ; IntegrationObjectItemClassificationAttribute ;
+                                   ; IntegrationService                    ; ClassificationSystem                         ; ClassificationSystem                         ;
+                                   ; IntegrationService                    ; ClassificationSystemVersion                  ; ClassificationSystemVersion                  ;
+                                   ; IntegrationService                    ; ClassAttributeAssignment                     ; ClassAttributeAssignment                     ;
+                                   ; IntegrationService                    ; ClassificationClass                          ; ClassificationClass                          ;
+                                   ; IntegrationService                    ; ClassificationAttribute                      ; ClassificationAttribute                      ;
+                                   ; IntegrationService                    ; AttributeDescriptor                          ; AttributeDescriptor                          ;
+                                   ; IntegrationService                    ; ComposedType                                 ; ComposedType                                 ;
+                                   ; IntegrationService                    ; IntegrationObjectVirtualAttributeDescriptor  ; IntegrationObjectVirtualAttributeDescriptor  ;
+                                   ; IntegrationService                    ; IntegrationObjectItemVirtualAttribute        ; IntegrationObjectItemVirtualAttribute        ;
+                                   ; IntegrationService                    ; Type                                         ; Type                                         ;
+
+INSERT_UPDATE IntegrationObjectItemAttribute; integrationObjectItem(integrationObject(code), code)[unique = true]; attributeName[unique = true]; attributeDescriptor(enclosingType(code), qualifier)                      ; returnIntegrationObjectItem(integrationObject(code), code)      ; unique[default = false]; autoCreate[default = false]
+                                            ; IntegrationService:InboundChannelConfiguration                     ; integrationObject           ; InboundChannelConfiguration:integrationObject                            ; IntegrationService :IntegrationObject                           ; true                   ; true
+                                            ; IntegrationService:InboundChannelConfiguration                     ; authenticationType          ; InboundChannelConfiguration:authenticationType                           ; IntegrationService :AuthenticationType                          ;
+
+                                            ; IntegrationService:AuthenticationType                              ; code                        ; AuthenticationType:code                                                  ;                                                                 ; true
+                                            ; IntegrationService:IntegrationObject                               ; code                        ; IntegrationObject:code
+                                            ; IntegrationService:IntegrationObject                               ; integrationType             ; IntegrationObject:integrationType                                        ; IntegrationService:IntegrationType                              ;
+                                            ; IntegrationService:IntegrationObject                               ; items                       ; IntegrationObject:items                                                  ; IntegrationService:IntegrationObjectItem                        ;
+
+                                            ; IntegrationService:IntegrationType                                 ; code                        ; IntegrationType:code                                                     ;                                                                 ;
+                                            ; IntegrationService:ItemTypeMatchEnum                               ; code                        ; ItemTypeMatchEnum:code                                                   ;                                                                 ;
+
+                                            ; IntegrationService:IntegrationObjectItem                           ; code                        ; IntegrationObjectItem:code                                               ;                                                                 ; true
+                                            ; IntegrationService:IntegrationObjectItem                           ; type                        ; IntegrationObjectItem:type                                               ; IntegrationService:ComposedType                                 ;
+                                            ; IntegrationService:IntegrationObjectItem                           ; itemTypeMatch               ; IntegrationObjectItem:itemTypeMatch                                      ; IntegrationService:ItemTypeMatchEnum                            ;
+                                            ; IntegrationService:IntegrationObjectItem                           ; integrationObject           ; IntegrationObjectItem:integrationObject                                  ; IntegrationService:IntegrationObject                            ; true                   ; true
+                                            ; IntegrationService:IntegrationObjectItem                           ; root                        ; IntegrationObjectItem:root                                               ;                                                                 ;
+                                            ; IntegrationService:IntegrationObjectItem                           ; attributes                  ; IntegrationObjectItem:attributes                                         ; IntegrationService:IntegrationObjectItemAttribute               ;
+                                            ; IntegrationService:IntegrationObjectItem                           ; classificationAttributes    ; IntegrationObjectItem:classificationAttributes                           ; IntegrationService:IntegrationObjectItemClassificationAttribute ;
+                                            ; IntegrationService:IntegrationObjectItem                           ; virtualAttributes           ; IntegrationObjectItem:virtualAttributes                                  ; IntegrationService:IntegrationObjectItemVirtualAttribute        ;
+
+                                            ; IntegrationService:IntegrationObjectItemAttribute                  ; attributeName               ; IntegrationObjectItemAttribute:attributeName                             ;                                                                 ; true
+                                            ; IntegrationService:IntegrationObjectItemAttribute                  ; returnIntegrationObjectItem ; IntegrationObjectItemAttribute:returnIntegrationObjectItem               ; IntegrationService:IntegrationObjectItem                        ;                        ; true
+                                            ; IntegrationService:IntegrationObjectItemAttribute                  ; attributeDescriptor         ; IntegrationObjectItemAttribute:attributeDescriptor                       ; IntegrationService:AttributeDescriptor                          ;
+                                            ; IntegrationService:IntegrationObjectItemAttribute                  ; unique                      ; IntegrationObjectItemAttribute:unique                                    ;                                                                 ;
+                                            ; IntegrationService:IntegrationObjectItemAttribute                  ; autoCreate                  ; IntegrationObjectItemAttribute:autoCreate                                ;                                                                 ;
+                                            ; IntegrationService:IntegrationObjectItemAttribute                  ; integrationObjectItem       ; IntegrationObjectItemAttribute:integrationObjectItem                     ; IntegrationService:IntegrationObjectItem                        ; true                   ; true
+
+                                            ; IntegrationService:IntegrationObjectItemClassificationAttribute    ; attributeName               ; IntegrationObjectItemClassificationAttribute:attributeName               ;                                                                 ; true
+                                            ; IntegrationService:IntegrationObjectItemClassificationAttribute    ; classAttributeAssignment    ; IntegrationObjectItemClassificationAttribute:classAttributeAssignment    ; IntegrationService:ClassAttributeAssignment                     ; true
+                                            ; IntegrationService:IntegrationObjectItemClassificationAttribute    ; integrationObjectItem       ; IntegrationObjectItemClassificationAttribute:integrationObjectItem       ; IntegrationService:IntegrationObjectItem                        ; true                   ; true
+                                            ; IntegrationService:IntegrationObjectItemClassificationAttribute    ; returnIntegrationObjectItem ; IntegrationObjectItemClassificationAttribute:returnIntegrationObjectItem ; IntegrationService:IntegrationObjectItem                        ;                        ; true
+
+                                            ; IntegrationService:ClassificationSystem                            ; id                          ; ClassificationSystem:id                                                  ;
+
+                                            ; IntegrationService:ClassificationSystemVersion                     ; catalog                     ; ClassificationSystemVersion:catalog                                      ; IntegrationService:ClassificationSystem                         ; true
+                                            ; IntegrationService:ClassificationSystemVersion                     ; version                     ; ClassificationSystemVersion:version                                      ;                                                                 ; true
+
+                                            ; IntegrationService:ClassAttributeAssignment                        ; classificationClass         ; ClassAttributeAssignment:classificationClass                             ; IntegrationService:ClassificationClass                          ; true
+                                            ; IntegrationService:ClassAttributeAssignment                        ; classificationAttribute     ; ClassAttributeAssignment:classificationAttribute                         ; IntegrationService:ClassificationAttribute                      ; true
+
+                                            ; IntegrationService:ClassificationClass                             ; code                        ; ClassificationClass:code                                                 ;                                                                 ; true
+                                            ; IntegrationService:ClassificationClass                             ; catalogVersion              ; ClassificationClass:catalogVersion                                       ; IntegrationService:ClassificationSystemVersion                  ; true
+
+                                            ; IntegrationService:ClassificationAttribute                         ; code                        ; ClassificationAttribute:code                                             ;
+                                            ; IntegrationService:ClassificationAttribute                         ; systemVersion               ; ClassificationAttribute:systemVersion                                    ; IntegrationService:ClassificationSystemVersion                  ; true
+
+                                            ; IntegrationService:AttributeDescriptor                             ; qualifier                   ; AttributeDescriptor:qualifier                                            ;                                                                 ; true
+                                            ; IntegrationService:AttributeDescriptor                             ; enclosingType               ; AttributeDescriptor:enclosingType                                        ; IntegrationService:ComposedType                                 ; true
+
+                                            ; IntegrationService:ComposedType                                    ; code                        ; ComposedType:code                                                        ;                                                                 ; true
+
+                                            ; IntegrationService:IntegrationObjectVirtualAttributeDescriptor     ; code                        ; IntegrationObjectVirtualAttributeDescriptor:code                         ;                                                                 ; true
+                                            ; IntegrationService:IntegrationObjectVirtualAttributeDescriptor     ; logicLocation               ; IntegrationObjectVirtualAttributeDescriptor:logicLocation                ;                                                                 ;
+                                            ; IntegrationService:IntegrationObjectVirtualAttributeDescriptor     ; type                        ; IntegrationObjectVirtualAttributeDescriptor:type                         ; IntegrationService:Type                                         ;
+
+                                            ; IntegrationService:IntegrationObjectItemVirtualAttribute           ; integrationObjectItem       ; IntegrationObjectItemVirtualAttribute:integrationObjectItem              ; IntegrationService:IntegrationObjectItem                        ; true                   ; true
+                                            ; IntegrationService:IntegrationObjectItemVirtualAttribute           ; attributeName               ; IntegrationObjectItemVirtualAttribute:attributeName                      ;                                                                 ; true
+                                            ; IntegrationService:IntegrationObjectItemVirtualAttribute           ; retrievalDescriptor         ; IntegrationObjectItemVirtualAttribute:retrievalDescriptor                ; IntegrationService:IntegrationObjectVirtualAttributeDescriptor  ;                        ; true
+
+                                            ; IntegrationService:Type                                            ; code                        ; Type:code                                                                ;                                                                 ; true
+
+
+INSERT_UPDATE InboundChannelConfiguration; integrationObject(code)[unique = true];
+                                         ; IntegrationService                    ;

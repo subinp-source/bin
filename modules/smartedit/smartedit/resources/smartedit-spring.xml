@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd
+           http://www.springframework.org/schema/util 
+           http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id="sslValidationManager" class="de.hybris.smartedit.ssl.SSLValidationManager" init-method="disableSSLValidation">
+        <constructor-arg index="0" value="${smartedit.ssl.validation.enabled}" />
+    </bean>
+
+	<bean name="smarteditOAuth2RequestFactory" class="org.springframework.security.oauth2.provider.request.DefaultOAuth2RequestFactory">
+		<constructor-arg ref="oauthClientDetails"/>
+	</bean>
+
+	<bean name="smarteditSSOAuthenticationFacade" class="de.hybris.smartedit.facade.impl.DefaultSSOAuthenticationFacade">
+		<property name="hybrisOAuthTokenServices" ref="oauthTokenServices"/>
+		<property name="smarteditOAuth2RequestFactory" ref="smarteditOAuth2RequestFactory"/>
+		<property name="clientDetailsService" ref="oauthClientDetails"/>
+		<property name="userDetailsService" ref="wsUserDetailsService"/>
+	</bean>
+
+	<bean name="smarteditSettingsFacade" class="de.hybris.smartedit.facade.impl.DefaultSettingsFacade">
+	</bean>
+
+</beans>

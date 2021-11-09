@@ -1,0 +1,9 @@
+.se-select-results-header {
+    .fd-menu__list-header {
+        @include fd-type('1');
+        padding: fd-space('xxs') fd-space('xs');
+        border-bottom: se-border();
+        color: fd-color('text', 2);
+        display: block;
+    }
+}

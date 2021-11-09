@@ -1,0 +1,13 @@
+{
+  "entries": [
+    {
+      "order": {
+        "code": "Test_code",
+        "integrationKey": "TEST_KEY"
+      },
+      "integrationKey": "TEST_KEY"
+    }
+  ],
+  "code": "Test_code",
+  "integrationKey": "TEST_KEY"
+}

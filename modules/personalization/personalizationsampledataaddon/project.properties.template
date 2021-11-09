@@ -1,0 +1,11 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+
+# Specifies the location of the spring context file added automatically to the global platform application context.
+personalizationsampledataaddon.application-context=personalizationsampledataaddon-spring.xml
+
+yacceleratorstorefront.additionalWebSpringConfigs.personalizationsampledataaddon=classpath:/personalizationsampledataaddon/web/spring/personalizationsampledataaddon-web-spring.xml
+
+personalizationsampledataaddon.awareof.addons=multicountrysampledataaddon

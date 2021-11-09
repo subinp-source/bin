@@ -1,0 +1,7 @@
+$lang=en
+
+INSERT_UPDATE ReferenceDistributionChannelMapping;salesOrganization[unique=true];distChannel[unique=true];distChannelName[lang=$lang];refDistChannelConditions;refDistChannelConditionsName[lang=$lang];refDistChannelCustMat;refDistChannelCustMatName[lang=$lang];
+;1010;10;"Distribution Channel 10";10;"Distribution Channel ";10;"Distribution Channel 10"
+
+INSERT_UPDATE ReferenceDivisionMapping;salesOrganization[unique=true];division[unique=true];divisionName[lang=$lang];refDivisionConditions;refDivisionConditionsName[lang=$lang];refDivisionCustomer;refDivisionCustomerName[lang=$lang]
+;1010;00;"Product division 00";00;"Product division 00";00;"Product Division 00"

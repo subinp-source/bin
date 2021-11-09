@@ -1,0 +1,229 @@
+[
+	{
+		"testId": 1,
+		"description": "'match' query with empty value doesn't match with STRING expression",
+		"data": {
+			"type": "match",
+			"expression": "field_string",
+			"value": ""
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 2,
+		"description": "'match' query with non existing term value doesn't match with STRING expression",
+		"data": {
+			"type": "match",
+			"expression": "field_string",
+			"value": "car"
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 3,
+		"description": "'match' query with single term value doesn't match with STRING expression, needs to be exact match",
+		"data": {
+			"type": "match",
+			"expression": "field_string",
+			"value": "green"
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 4,
+		"description": "'match' query with multiple terms value doesn't match with STRING expression, needs to be exact match",
+		"data": {
+			"type": "match",
+			"expression": "field_string",
+			"value": "green m"
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 5,
+		"description": "'match' query with value matches with STRING expression, exact match",
+		"data": {
+			"type": "match",
+			"expression": "field_string",
+			"value": "GREEN M"
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	},
+	{
+		"testId": 6,
+		"description": "'match' query with empty value doesn't match with multi-valued STRING expression",
+		"data": {
+			"type": "match",
+			"expression": "field_string_mv",
+			"value": ""
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 7,
+		"description": "'match' query with non existing term value doesn't match with multi-valued STRING expression",
+		"data": {
+			"type": "match",
+			"expression": "field_string_mv",
+			"value": "car"
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 8,
+		"description": "'match' query with single term value doesn't match with multi-valued STRING expression, needs to be exact match",
+		"data": {
+			"type": "match",
+			"expression": "field_string_mv",
+			"value": "green"
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 9,
+		"description": "'match' query with multiple terms value doesn't match with multi-valued STRING expression, needs to be exact match",
+		"data": {
+			"type": "match",
+			"expression": "field_string_mv",
+			"value": "size m"
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 10,
+		"description": "'match' query with value matches with multi-valued STRING expression, exact match",
+		"data": {
+			"type": "match",
+			"expression": "field_string_mv",
+			"value": "size M"
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2"
+		]
+	},
+	{
+		"testId": 11,
+		"description": "'match' query with empty value doesn't match with TEXT expression",
+		"data": {
+			"type": "match",
+			"expression": "field_text",
+			"value": ""
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 12,
+		"description": "'match' query with non existing term value doesn't match with TEXT expression",
+		"data": {
+			"type": "match",
+			"expression": "field_text",
+			"value": "car"
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 13,
+		"description": "'match' query with single term value matches with TEXT expression, doesn't need to be exact match",
+		"data": {
+			"type": "match",
+			"expression": "field_text",
+			"value": "green"
+		},
+		"matchingDocuments": [
+			"doc2",
+			"doc3"
+		]
+	},
+	{
+		"testId": 14,
+		"description": "'match' query with multiple terms value matches with TEXT expression, doesn't need to be exact match",
+		"data": {
+			"type": "match",
+			"expression": "field_text",
+			"value": "green m"
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2",
+			"doc3"
+		]
+	},
+	{
+		"testId": 15,
+		"description": "'match' query with value matches with TEXT expression, exact match",
+		"data": {
+			"type": "match",
+			"expression": "field_text",
+			"value": "GREEN M"
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2",
+			"doc3"
+		]
+	},
+	{
+		"testId": 16,
+		"description": "'match' query with empty value doesn't match with multi-valued TEXT expression",
+		"data": {
+			"type": "match",
+			"expression": "field_text_mv",
+			"value": ""
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 17,
+		"description": "'match' query with non existing term value doesn't match with multi-valued TEXT expression",
+		"data": {
+			"type": "match",
+			"expression": "field_text_mv",
+			"value": "car"
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 18,
+		"description": "'match' query with single term value matches with multi-valued TEXT expression, doesn't need to be exact match",
+		"data": {
+			"type": "match",
+			"expression": "field_text_mv",
+			"value": "green"
+		},
+		"matchingDocuments": [
+			"doc2",
+			"doc3"
+		]
+	},
+	{
+		"testId": 19,
+		"description": "'match' query with multiple terms value matches with multi-valued TEXT expression, doesn't need to be exact match",
+		"data": {
+			"type": "match",
+			"expression": "field_text_mv",
+			"value": "green m"
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2",
+			"doc3"
+		]
+	},
+	{
+		"testId": 20,
+		"description": "'match' query with value matches with multi-valued TEXT expression, exact match",
+		"data": {
+			"type": "match",
+			"expression": "field_text_mv",
+			"value": "GREEN M"
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2",
+			"doc3"
+		]
+	}
+]

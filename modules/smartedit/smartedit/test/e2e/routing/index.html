@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--3rd prty libs-->
+        <script src="../../../web/webroot/static-resources/dist/smarteditcontainer/js/thirdparties.js"></script>
+        <script src="../../../web/webroot/static-resources/dist/smarteditcommons/js/vendor_chunk.js"></script>
+        <script src="../../../web/webroot/static-resources/thirdparties/ckeditor/ckeditor.js"></script>
+
+        <!--libs-->
+        <script src="../../../web/webroot/static-resources/dist/smarteditcommons/js/smarteditcommons.js"></script>
+        <script src="../utils/commonMockedModules/generated_outerI18nMock.js"></script>
+        <script src="../../../web/webroot/static-resources/dist/smarteditcontainer/js/smarteditcontainer.js"></script>
+
+        <!--Mocks-->
+        <script src="../utils/commonMockedModules/PermissionMock.js"></script>
+        <script src="../utils/commonMockedModules/generated_outerGlobalBasePathFetchMock.js"></script>
+        <script src="../utils/commonMockedModules/whoAmIMock.js"></script>
+        <script src="../utils/commonMockedModules/LanguagesMock.js"></script>
+        <script src="../e2eOnLoadingSetup.js"></script>
+        <script src="outerMocks.js"></script>
+    </head>
+
+    <body>
+        <h1>Smart Edit Container</h1>
+        <br />
+        <div
+            data-ng-controller="DefaultCtrl as ctrl"
+            style="position:absolute; z-index: 99999; top: 0; left: 0;"
+        >
+            <button id="navigateToJSView" type="button" data-ng-click="ctrl.navigateToJSView()">
+                navigateToJSView
+            </button>
+            <button
+                id="navigateToAngularView"
+                type="button"
+                data-ng-click="ctrl.navigateToAngularView()"
+            >
+                navigateToAngularView
+            </button>
+        </div>
+    </body>
+</html>

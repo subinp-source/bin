@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="eclipsebin/notused"/>
+
+				
+				
+	<classpathentry exported="true" kind="src" path="/commerceservices" />
+	<classpathentry exported="true" kind="lib" path="lib/awaitility-1.7.0.jar" />
+	<classpathentry exported="true" kind="lib" path="bin/personalizationservicesserver.jar" />
+	<classpathentry exported="true" kind="lib" path="resources" />
+	<classpathentry exported="true" output="eclipsebin/classes" kind="src" path="testsrc" />
+	<classpathentry exported="false" kind="src" path="/platform" />
+				
+</classpath>
+				

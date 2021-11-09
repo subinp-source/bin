@@ -1,0 +1,23 @@
+<div
+    *ngIf="showResultsHeaderItem() || resultsHeaderLabel || actionableSearchItem"
+    class="results-header"
+>
+    <!-- Results Header Custom Component -->
+    <div *ngIf="showResultsHeaderItem()">
+        <ng-container *ngComponentOutlet="resultsHeaderComponent"></ng-container>
+    </div>
+
+    <se-actionable-search-item
+        *ngIf="actionableSearchItem"
+        [search]="search"
+        [eventId]="actionableSearchItem.eventId"
+        [actionText]="actionableSearchItem.actionText"
+        (actionButtonClick)="onActionButtonClick()"
+    >
+    </se-actionable-search-item>
+
+    <!-- Results Header Label -->
+    <li class="fd-menu__list-header" *ngIf="displayResultsHeaderLabel">
+        {{ resultsHeaderLabel | translate }}
+    </li>
+</div>

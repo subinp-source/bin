@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="CUSTOM" importedAsReadOnly="false" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../custom/training/trainingcore/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../custom/training/trainingcore/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../custom/training/trainingcore">
+      <sourceFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/backoffice/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/backoffice/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/backoffice/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/backoffice/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/backoffice/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/web/testsrc" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/classes" />
+      <excludeFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/web/webroot/WEB-INF/classes" />
+      <excludeFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../custom/training/trainingcore/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../custom/training/trainingcore/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../custom/training/trainingcore/lib" recursive="true" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="acceleratorcms" exported="" />
+  </component>
+</module>

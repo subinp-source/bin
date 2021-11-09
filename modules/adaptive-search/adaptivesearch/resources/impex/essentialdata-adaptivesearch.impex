@@ -1,0 +1,26 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+INSERT_UPDATE UserGroup ; UID[unique=true]   ; groups(uid)[mode=append] ; description                       ; name                        
+                        ; searchmanagergroup ; employeegroup            ; Search Profiles Manager Group     ; Search Profiles Manager Group
+                        
+
+$START_USERRIGHTS       ;                    ;                          ;                                   ;                             ;   ;   ;   ;  
+Type                    ; UID                ; MemberOfGroups           ; Target                            ; read                        ; change; create; remove
+UserGroup               ; searchmanagergroup ;                          ;                                   ;                             ;   ;   ;   ;  
+                        ;                    ;                          ; AbstractAsSearchProfile           ; +                           ; + ; + ; + ;  
+                        ;                    ;                          ; AbstractAsSearchConfiguration     ; +                           ; + ; + ; + ;  
+                        ;                    ;                          ; AbstractAsFacetConfiguration      ; +                           ; + ; + ; + ;  
+                        ;                    ;                          ; AbstractAsFacetValueConfiguration ; +                           ; + ; + ; + ;  
+                        ;                    ;                          ; AbstractAsBoostItemConfiguration  ; +                           ; + ; + ; + ;  
+                        ;                    ;                          ; AbstractAsBoostRuleConfiguration  ; +                           ; + ; + ; + ;  
+                        ;                    ;                          ; AbstractAsSortConfiguration       ; +                           ; + ; + ; + ;  
+                        ;                    ;                          ; AsSortExpression                  ; +                           ; + ; + ; + ;  
+                        ;                    ;                          ; AsSearchProfileActivationSet      ; +                           ; + ; + ; + ;  
+                        ;                    ;                          ; Product                           ; +                           ; - ; - ; - ;  
+                        ;                    ;                          ; variantType                       ; +                           ; - ; - ; - ;  
+$END_USERRIGHTS         ;                    ;                          ;                                   ;                             ;   ;   ;   ;  
+
+INSERT_UPDATE Employee ; UID[unique=true] ; backOfficeLoginDisabled ; groups(uid)[mode=append] ; description                  ; name                        
+                       ; searchmanager    ; false                   ; searchmanagergroup       ; Search Configuration Manager ; Search Configuration Manager

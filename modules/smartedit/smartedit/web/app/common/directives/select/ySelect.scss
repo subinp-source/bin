@@ -1,0 +1,184 @@
+@import '~fiori-fundamentals/scss/icons/icon.scss';
+
+.select2-display-none {
+    display: none;
+}
+.ui-select-choices li {
+    list-style: none !important;
+}
+.select2-container-disabled .ui-select-toggle {
+    cursor: not-allowed;
+}
+
+// Search Fields
+.select2-search {
+    width: 100%;
+    margin: fd-space('xxs') 0;
+    padding: 0 10px;
+    position: relative;
+}
+.ui-select-search.select2-input {
+    width: 100%;
+    border: none;
+    margin: 0;
+    background: fd-color('background', 2);
+    box-shadow: 0 0 0 1px fd-color('neutral', 4);
+    &:focus {
+        box-shadow: 0 0 0 2px fd-color('accent', 6);
+    }
+}
+.select2-search-field {
+    list-style: none !important;
+    padding: fd-space('xxs');
+    input {
+        height: 36px;
+        margin-top: 4px;
+        width: 100% !important;
+    }
+}
+
+// List Toggle
+.select2-arrow.ui-select-toggle {
+    @include fd-icon-base();
+    @include se-flex-row(center);
+    @extend .sap-icon--navigation-down-arrow;
+    border-left: se-border(2) !important;
+    background-color: fd-color('neutral', 1) !important;
+    min-width: fd-space('l');
+    align-self: stretch;
+
+    b {
+        display: none !important;
+    }
+    &::before {
+        color: fd-color('action', 1);
+    }
+}
+
+// Container and dropdowns
+.y-infinite-scrolling__listbox-header {
+    @include fd-type('1');
+    padding: fd-space('xxs') fd-space('xs');
+    border-bottom: se-border();
+    color: fd-color('text', 2);
+}
+.select2-drop,
+.select2-drop-active,
+.ui-select-dropdown {
+    position: absolute;
+    border: none;
+    width: 100%;
+    top: 100%;
+    z-index: 2000;
+    background: fd-color('background', 2);
+    box-shadow: 0 0 0 1px fd-color('neutral', 4);
+    border-radius: fd-space('base');
+}
+.select2-results {
+    max-height: 200px;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    outline: none;
+    margin-bottom: fd-space('base');
+
+    li.select2-highlighted {
+        background: fd-color-state('selected');
+    }
+    li.select2-disabled {
+        cursor: not-allowed;
+        opacity: 0.65;
+        &:hover {
+            background: none;
+        }
+    }
+}
+.select2-container.ng-not-empty {
+    .ui-select-match-item.select2-search-choice:hover {
+        background-color: fd-color-state('hover');
+    }
+    .select2-search-field {
+        border-top: se-border(2);
+        border-radius: 0 0 fd-space('base') fd-space('base');
+    }
+}
+.select2-container {
+    display: block;
+
+    ul.select2-choices {
+        box-shadow: 0 0 0 1px fd-color('neutral', 4) !important;
+        margin: 0;
+        border-radius: 4px;
+        padding-top: 1px;
+        cursor: default;
+    }
+    a.ui-select-match,
+    a.select2-choice,
+    a.select2-choices {
+        @include se-flex-row(space-between);
+        @include se-text-ellipsis;
+        background-color: fd-color('background', 2);
+        color: fd-color('text', 2);
+        padding-left: fd-space('xs');
+        border-radius: fd-space('base');
+        box-shadow: none;
+        border: se-border(2);
+        text-decoration: none;
+        height: fd-space('l');
+
+        .select2-chosen {
+            @include se-text-ellipsis;
+            @include se-flex-row();
+            padding: 0 fd-space('xxs') 0 0;
+            width: 100%;
+        }
+    }
+}
+
+// List Items
+.ui-select-match-item {
+    display: grid !important; // Override Techne
+    grid-template-columns: 16fr 1fr;
+    align-items: center;
+    padding: fd-space('xxs') fd-space('s');
+    min-height: 36px;
+}
+.select2-result-label.ui-select-choices-row-inner {
+    @include se-flex-row;
+    padding: fd-space('xxs') fd-space('xs');
+    color: fd-color('text', 2);
+    min-height: 36px;
+    > div {
+        width: 100%;
+    }
+
+    &:last-child {
+        border-radius: 0 0 4px 4px;
+    }
+}
+
+.select2-with-searchbox .ui-select-choices {
+    margin: 0;
+}
+
+// Remove Button
+a.select2-search-choice-close,
+.se-generic-editor-dropdown__remove-button {
+    @include se-flex-row(center);
+    @include fd-icon-base();
+    @extend .sap-icon--sys-cancel;
+    position: initial;
+    text-decoration: none;
+    outline: none;
+    margin-left: fd-space('xxs');
+    color: fd-color('action', 1);
+    &:hover,
+    &:active {
+        color: fd-color-state('hover', 'action');
+    }
+}
+
+.se-generic-editor-dropdown__remove-button {
+    background-color: fd-color('background', 2);
+    border: none;
+}

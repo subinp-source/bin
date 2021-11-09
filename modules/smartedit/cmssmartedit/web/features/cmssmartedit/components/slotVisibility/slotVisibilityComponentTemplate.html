@@ -1,0 +1,42 @@
+<div
+    class="se-slot-visibility-wrapper"
+    data-ng-class="{'se-slot-visibility-wrapper__external': ctrl.readOnly}"
+>
+    <div class="se-slot-visiblity-component__content" data-ng-if="ctrl.isReady">
+        <div class="se-slot-visibility__icon-wrapper">
+            <div class="se-slot-visibility__icon sap-icon--home-share"></div>
+            <div
+                data-ng-if="ctrl.isSharedComponent"
+                class="se-slot-visibility__icon--shared sap-icon--chain-link"
+            ></div>
+        </div>
+
+        <div class="se-slot-visiblity-component__description">
+            <div data-ng-if="ctrl.readOnly" class="se-slot-visiblity-component__name">
+                {{ ::ctrl.component.name }}
+            </div>
+            <div
+                data-ng-if="!ctrl.readOnly"
+                class="se-slot-visiblity-component__name--link"
+                data-ng-click="ctrl.openEditorModal()"
+            >
+                {{ ::ctrl.component.name }}
+            </div>
+            <div class="se-slot-visiblity-component__type">{{ ::ctrl.component.typeCode }}</div>
+            <div class="se-slot-visiblity-component__visibility">
+                {{'se.genericeditor.tab.visibility.title' | translate}}
+                {{ctrl.componentVisibilitySwitch | translate}} / {{ctrl.componentRestrictionsCount}}
+                {{'se.cms.restrictions.editor.tab' | translate}}
+            </div>
+            <div
+                data-ng-if="ctrl.component.isExternal === true"
+                class="sap-icon--globe slot-visiblity-component--globe-icon"
+            ></div>
+        </div>
+    </div>
+    <hidden-component-menu
+        class="slot-visiblity-component--hidden-menu"
+        data-slot-id="ctrl.slotId"
+        data-component="ctrl.component"
+    ></hidden-component-menu>
+</div>

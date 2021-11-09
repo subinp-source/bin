@@ -1,0 +1,7 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+$lang=en
+
+INSERT_UPDATE AsCategoryAwareSearchConfiguration ; searchProfile(code,catalogVersion(catalog(id),version))[unique=true] ; uid[unique=true]    ; catalogVersion(catalog(id),version)[unique=true]
+                                                 ; searchProfile:hwcatalog:Staged                                       ; searchConfiguration ; hwcatalog:Staged                                

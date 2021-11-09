@@ -1,0 +1,26 @@
+<div class="se-edit-page-info__display-conditions">
+    <div class="se-edit-page-info-display-conditions__basic-info">
+        <div class="se-edit-page-info__page-name">
+            <label class="se-control-label" data-translate="{{ $ctrl.pageNameI18nKey }}"></label>
+            <div
+                class="form-readonly-text form-readonly-text__tight dc-page-name"
+                data-ng-bind="$ctrl.pageName"
+            ></div>
+        </div>
+        <div>
+            <label class="se-control-label" data-translate="{{ $ctrl.pageTypeI18nKey }}"></label>
+            <div
+                class="form-readonly-text form-readonly-text__tight dc-page-type"
+                data-ng-bind="$ctrl.pageType"
+            ></div>
+        </div>
+    </div>
+
+    <label class="se-control-label">
+        <span data-translate="{{ $ctrl.displayConditionLabelI18nKey }}"></span>
+        <se-help [title]="pageSync.helpTitle" [template]="$ctrl.helpTemplate"></se-help>
+    </label>
+    <p class="form-readonly-text form-readonly-text__tight dc-page-display-condition">
+        {{ $ctrl.getPageDisplayConditionI18nKey() | translate }}
+    </p>
+</div>

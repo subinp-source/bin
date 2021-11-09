@@ -1,0 +1,7 @@
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<content-elements>
+	<content-element type="FlashComponent" name="type.flashcomponent.name" image="cmscockpit/images/FlashComponent.gif"
+		description="type.flashcomponent.description" imageSmall="cmscockpit/images/FlashComponentSmall.gif" />
+</content-elements>	

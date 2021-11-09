@@ -1,0 +1,9 @@
+.smartedit-testing-overlay {
+    position: absolute;
+    z-index: 1000;
+    top: 150px;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: #fff;
+}

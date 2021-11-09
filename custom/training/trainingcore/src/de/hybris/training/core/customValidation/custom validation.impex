@@ -1,0 +1,21 @@
+UPDATE GenericItem[processor = de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor]; pk[unique = true]
+
+
+
+
+
+
+$lang=en
+INSERT_UPDATE AttributeConstraint; id[unique = true]; annotation[allownull = true]; descriptor(enclosingType(code), qualifier); qualifier   ; message[lang = $lang];target
+                                 ;RegistrationNumberValidator;de.hybris.training.core.customValidation.ValidatorInterface;VehicleBase:vehicleRegistrationNumber; vehicleRegistrationNumber ; Registration number must contain “KL”;de.hybris.training.core.model.VehicleBaseModel
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+--><extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
+        
+    <extension abstractclassprefix="Generated" classprefix="Smarteditaddon" description="smarteditaddon extension" managername="SmarteditaddonManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="smarteditaddon" usemaven="false">
+                
+        <!-- you should add all required extensions to this list, except platform extensions which are automatically required -->
+                
+        <requires-extension name="smartedit"/>
+                
+        <requires-extension name="addonsupport"/>
+                
+        <requires-extension name="acceleratorstorefrontcommons"/>
+                
+        <coremodule generated="true" manager="de.hybris.platform.smarteditaddon.jalo.SmarteditaddonManager" packageroot="de.hybris.platform.smarteditaddon"/>
+            
+    </extension>
+    
+</extensioninfo>

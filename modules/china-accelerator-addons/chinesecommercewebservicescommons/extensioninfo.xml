@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+--><extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
+               
+    
+    
+    <extension abstractclassprefix="Generated" classprefix="Chinesecommercewebservicescommons" jaloLogicFree="true" managername="ChinesecommercewebservicescommonsManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="chinesecommercewebservicescommons" usemaven="false">
+                          
+      
+   
+        
+        <requires-extension name="commercewebservicescommons"/>
+                              
+        
+        
+        <coremodule generated="true" manager="de.hybris.platform.chinesecommercewebservicescommons.jalo.ChinesecommercewebservicescommonsManager" packageroot="de.hybris.platform.chinesecommercewebservicescommons"/>
+                                             
+    
+    
+    </extension>
+                  
+
+
+
+</extensioninfo>

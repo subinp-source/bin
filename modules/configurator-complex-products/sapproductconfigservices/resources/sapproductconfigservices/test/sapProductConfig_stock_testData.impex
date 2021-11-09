@@ -1,0 +1,30 @@
+#################################################################################
+# Availability
+#################################################################################
+# Vendor
+INSERT_UPDATE Vendor;code[unique=true];name
+;default;Default Vendor
+
+# Warehouse
+INSERT_UPDATE Warehouse;code[unique=true];name;baseStores(uid);vendor(code)[default=default];default[default=true]
+;default;Default Warehouse;testConfigureStore;
+;pw_warehouse_s;;testConfigureStore;
+
+INSERT_UPDATE StockLevel;productCode[unique=true];warehouse(code)[unique=true,default=default];available;inStockStatus(code);maxPreOrder[default=1];maxStockLevelHistoryCount[default=-1];overSelling[default=0];preOrder[default=0];reserved[default=0]
+;YSAP_SIMPLE_POC;pw_warehouse_s;222;forceInStock;
+;WEC_DRAGON_BUS;pw_warehouse_s;222;forceInStock;
+;YSAP_NOCFG;pw_warehouse_s;222;forceInStock;
+;KD990SOL;pw_warehouse_s;333;forceInStock;
+;CPQ_HOME_THEATER;pw_warehouse_s;333;forceInStock;
+;000000000000056227;pw_warehouse_s;333;forceInStock;
+;CPQ_LAPTOP;pw_warehouse_s;333;forceInStock;
+;CPQ_LAPTOP_HOME;pw_warehouse_s;222;forceInStock;
+;CPQ_LAPTOP_GAME;pw_warehouse_s;222;forceInStock;
+;CPQ_LAPTOP_PROF;pw_warehouse_s;222;forceInStock;
+;CPQ_LAPTOP_MUSIC;pw_warehouse_s;222;forceInStock;
+;CPQ_LAPTOP_MUZAC;pw_warehouse_s;222;forceInStock;
+;CONF_PIPE;pw_warehouse_s;222;forceInStock;
+;CONF_PIPE-40-15-ST;pw_warehouse_s;222;forceInStock;
+;CONF_PIPE-30-15-PL;pw_warehouse_s;222;forceInStock;
+;KD990MIX;pw_warehouse_s;333;forceInStock;
+;CONF_CAMERA_SL;pw_warehouse_s;333;forceInStock;

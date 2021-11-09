@@ -1,0 +1,22 @@
+@import '../smartedit/styling/outer/styling.css';
+@import '../vendor/styles';
+@import '~ui-select/dist/select.min.css';
+@import '~select2/dist/css/select2.css';
+
+// fixes global resets coming from techne within the container
+html {
+    font-size: $fd-font-size !important;
+}
+
+body {
+    height: initial;
+    font-family: $font-sap !important;
+    background-color: fd-color('background', 1) !important;
+}
+
+h1,
+h2,
+h3 {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}

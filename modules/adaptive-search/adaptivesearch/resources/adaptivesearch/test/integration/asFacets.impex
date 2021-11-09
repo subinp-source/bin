@@ -1,0 +1,13 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+$lang=en
+
+INSERT_UPDATE AsPromotedFacet ; searchConfiguration(uid,catalogVersion(catalog(id),version))[unique=true] ; uid[unique=true] ; indexProperty ; catalogVersion(catalog(id),version)
+                              ; searchConfiguration:hwcatalog:Staged                                      ; promotedFacet    ; property1     ; hwcatalog:Staged                   
+
+INSERT_UPDATE AsFacet ; searchConfiguration(uid,catalogVersion(catalog(id),version))[unique=true] ; uid[unique=true] ; indexProperty ; catalogVersion(catalog(id),version)
+                      ; searchConfiguration:hwcatalog:Staged                                      ; facet            ; property2     ; hwcatalog:Staged                   
+                      
+INSERT_UPDATE AsExcludedFacet ; searchConfiguration(uid,catalogVersion(catalog(id),version))[unique=true] ; uid[unique=true] ; indexProperty ; catalogVersion(catalog(id),version)
+                              ; searchConfiguration:hwcatalog:Staged                                      ; excludedFacet    ; property3     ; hwcatalog:Staged                   

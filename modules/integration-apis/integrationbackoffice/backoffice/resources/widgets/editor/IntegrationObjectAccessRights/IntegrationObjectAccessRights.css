@@ -1,0 +1,20 @@
+.yw-integrationbackoffice-access-rights-listbox .z-listcell-content {
+    padding-left: 15px !important;
+}
+
+.yw-integrationbackoffice-access-rights-listbox .z-listheader {
+    padding-left: 15px !important;
+    height: 54px !important;
+}
+
+.yw-integrationbackoffice-access-rights-listbox .z-listheader .z-listheader-content {
+    line-height: 40px !important;
+}
+
+.yw-integrationbackoffice-access-rights-listbox .z-listheader-sorticon {
+    color: #151c22 !important;
+    position: static !important;
+    float: right !important;
+    margin-left: 3px !important;
+    margin-top: 6px !important;
+}

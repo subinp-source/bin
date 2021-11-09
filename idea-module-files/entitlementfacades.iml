@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="OOTB" importedAsReadOnly="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../modules/entitlements/entitlementfacades/lib" recursive="true" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="commercefacades" exported="" />
+    <orderEntry type="module" module-name="entitlementservices" exported="" />
+    <orderEntry type="module" module-name="platform" exported="" />
+  </component>
+</module>

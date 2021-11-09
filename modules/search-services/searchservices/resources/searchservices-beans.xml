@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
+
+	<bean class="de.hybris.platform.searchservices.admin.data.SnFieldTypeInfo">
+		<property name="fieldType" type="de.hybris.platform.searchservices.enums.SnFieldType" equals="true" />
+		<property name="valueType" type="Class&lt;?>" equals="true" />
+		<property name="facetable" type="boolean" equals="true" />
+		<property name="sortable" type="boolean" equals="true" />
+		<property name="searchable" type="boolean" equals="true" />
+		<property name="groupable" type="boolean" equals="true" />
+		<property name="supportedQueryTypes" type="java.util.List&lt;String>" equals="true" />
+	</bean>
+
+	<bean class="de.hybris.platform.searchservices.admin.data.SnExpressionInfo">
+		<property name="expression" type="String" equals="true" />
+		<property name="name" type="java.util.Map&lt;java.util.Locale,String>" equals="true" />
+	</bean>
+
+	<bean class="de.hybris.platform.searchservices.admin.data.SnLanguage">
+		<property name="id" type="String" equals="true" />
+		<property name="name" type="java.util.Map&lt;java.util.Locale,String>" equals="true" />
+	</bean>
+
+	<bean class="de.hybris.platform.searchservices.admin.data.SnCurrency">
+		<property name="id" type="String" equals="true" />
+		<property name="name" type="java.util.Map&lt;java.util.Locale,String>" equals="true" />
+	</bean>
+
+	<bean class="de.hybris.platform.searchservices.admin.data.SnCatalogVersion">
+		<property name="catalogId" type="String" equals="true" />
+		<property name="version" type="String" equals="true" />
+	</bean>
+
+	<bean class="de.hybris.platform.searchservices.spi.data.AbstractSnSearchProviderConfiguration">
+		<property name="id" type="String" equals="true" />
+		<property name="name" type="java.util.Map&lt;java.util.Locale,String>" equals="true" />
+		<property name="listeners" type="java.util.List&lt;String>" equals="true" />
+	</bean>
+
+	<bean class="de.hybris.platform.searchservices.admin.data.SnIndexConfiguration">
+		<property name="id" type="String" equals="true" />
+		<property name="name" type="java.util.Map&lt;java.util.Locale,String>" equals="true" />
+		<property name="user" type="String" equals="true" />
+		<property name="languages" type="java.util.List&lt;de.hybris.platform.searchservices.admin.data.SnLanguage>"
+			equals="true" />
+		<property name="currencies" type="java.util.List&lt;de.hybris.platform.searchservices.admin.data.SnCurrency>"
+			equals="true" />
+		<property name="listeners" type="java.util.List&lt;String>" equals="true" />
+		<property name="searchProviderConfiguration"
+			type="de.hybris.platform.searchservices.spi.data.AbstractSnSearchProviderConfiguration" equals="true" />
+		<property name="synonymDictionaryIds" type="java.util.List&lt;String>" equals="true" />
+	</bean>
+
+	<bean class="de.hybris.platform.searchservices.admin.data.SnIndexType">
+		<property name="id" type="String" equals="true" />
+		<property name="name" type="java.util.Map&lt;java.util.Locale,String>" equals="true" />
+		<property name="itemComposedType" type="String" equals="true" />
+		<property name="identityProvider" type="String" equals="true" />
+		<property name="identityProviderParameters" type="java.util.Map&lt;String,String>" equals="true" />
+		<property name="defaultValueProvider" type="String" equals="true" />
+		<property name="defaultValueProviderParameters" type="java.util.Map&lt;String,String>" equals="true" />
+		<property name="listeners" type="java.util.List&lt;String>" equals="true" />
+		<property name="indexConfigurationId" type="String" equals="true" />
+		<property name="fields" type="java.util.Map&lt;String,de.hybris.platform.searchservices.admin.data.SnField>"
+			equals="true" />
+		<property name="catalogsIds" type="java.util.List&lt;String>" equals="true" />
+		<property name="catalogVersions"
+			type="java.util.List&lt;de.hybris.platform.searchservices.admin.data.SnCatalogVersion>" equals="true" />
+	</bean>
+
+	<bean class="de.hybris.platform.searchservices.admin.data.SnField">
+		<property name="id" type="String" equals="true" />
+		<property name="name" type="java.util.Map&lt;java.util.Locale,String>" equals="true" />
+		<property name="fieldType" type="de.hybris.platform.searchservices.enums.SnFieldType" equals="true" />
+		<property name="valueProvider" type="String" equals="true" />
+		<property name="valueProviderParameters" type="java.util.Map&lt;String,String>" equals="true" />
+		<property name="retrievable" type="java.lang.Boolean" equals="true" />
+		<property name="searchable" type="java.lang.Boolean" equals="true" />
+		<property name="localized" type="java.lang.Boolean" />
+		<property name="qualifierTypeId" type="String" />
+		<property name="multiValued" type="java.lang.Boolean" equals="true" />
+		<property name="useForSuggesting" type="java.lang.Boolean" equals="true" />
+		<property name="useForSpellchecking" type="java.lang.Boolean" equals="true" />
+		<property name="weight" type="Float" equals="true" />
+	</bean>
+
+	<bean class="de.hybris.platform.searchservices.admin.data.SnSynonymDictionary">
+		<property name="id" type="String" equals="true" />
+		<property name="name" type="java.util.Map&lt;java.util.Locale,String>" equals="true" />
+		<property name="languageIds" type="java.util.List&lt;String>" equals="true" />
+		<property name="entries" type="java.util.List&lt;SnSynonymEntry>" equals="true" />
+	</bean>
+
+	<bean class="de.hybris.platform.searchservices.admin.data.SnSynonymEntry">
+		<property name="id" type="String" equals="true" />
+		<property name="input" type="java.util.List&lt;String>" equals="true" />
+		<property name="synonyms" type="java.util.List&lt;String>" equals="true" />
+	</bean>
+
+	<bean class="de.hybris.platform.searchservices.index.data.SnIndex">
+		<property name="id" type="String" equals="true" />
+		<property name="indexTypeId" type="String" equals="true" />
+		<property name="active" type="java.lang.Boolean" equals="true" />
+	</bean>
+
+	<bean class="de.hybris.platform.searchservices.indexer.data.SnIndexerOperation">
+		<property name="id" type="String" equals="true" />
+		<property name="indexTypeId" type="String" equals="true" />
+		<property name="indexId" type="String" equals="true" />
+		<property name="operationType" type="de.hybris.platform.searchservices.enums.SnIndexerOperationType"
+			equals="true" />
+		<property name="status" type="de.hybris.platform.searchservices.enums.SnIndexerOperationStatus" equals="true" />
+	</bean>
+
+</beans>

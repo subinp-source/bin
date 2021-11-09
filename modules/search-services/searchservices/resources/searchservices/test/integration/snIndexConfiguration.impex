@@ -1,0 +1,6 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+INSERT_UPDATE SnIndexConfiguration ; id[unique=true]        ; name[lang=en]       ; name[lang=de]       ; searchProviderConfiguration(id)
+                                   ; testIndexConfiguration ; Index configuration ; Index-Konfiguration ; search-provider-test           

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
+
+	<bean class="de.hybris.platform.customercouponocc.dto.CustomerCouponWsDTO">
+		<description>Customer coupon</description>
+		<hints>
+			<hint name="wsRelated"/>
+			<hint name="alias">CustomerCoupon</hint>
+		</hints>
+		<property name="couponId" type="String">
+			<description>Coupon identifier</description>
+		</property>
+		<property name="name" type="String">
+			<description>Name of the coupon</description>
+		</property>
+		<property name="startDate" type="java.util.Date">
+			<description>Start date of the coupon</description>
+		</property>
+		<property name="endDate" type="java.util.Date">
+			<description>End date of the coupon</description>
+		</property>
+		<property name="status" type="String">
+			<description>Status of the coupon</description>
+			<hints> 			
+    			<hint name="example">Effective</hint>
+            </hints>
+		</property>
+		<property name="description" type="String">
+			<description>Description of the coupon</description>
+		</property>
+		<property name="notificationOn" type="java.lang.Boolean">
+			<description>Indicates if notification is enabled or disabled</description>
+		</property>
+		<property name="allProductsApplicable" type="java.lang.Boolean">
+			<description>Indicates whether the coupon is applicable for all products</description>
+		</property>
+	</bean>
+	
+	<bean class="de.hybris.platform.customercouponocc.dto.CustomerCoupon2CustomerWsDTO">
+		<description>Customer coupon for customer</description>
+		<hints>
+			<hint name="wsRelated"/>
+			<hint name="alias">CustomerCoupon2Customer</hint>
+		</hints>
+		<property name="coupon" type="de.hybris.platform.customercouponocc.dto.CustomerCouponWsDTO">
+			<description>Customer coupon</description>
+		</property>
+		<property name="customer" type="de.hybris.platform.commercewebservicescommons.dto.user.UserWsDTO">
+			<description>Customer</description>
+		</property>
+	</bean>
+	
+	<bean class="de.hybris.platform.customercouponocc.dto.CustomerCouponNotificationWsDTO">
+		<description>Customer coupon notification</description>
+		<hints>
+			<hint name="wsRelated"/>
+			<hint name="alias">CustomerCouponNotification</hint>
+		</hints>
+		<property name="coupon" type="de.hybris.platform.customercouponocc.dto.CustomerCouponWsDTO">
+			<description>Customer coupon</description>
+		</property>
+		<property name="customer" type="de.hybris.platform.commercewebservicescommons.dto.user.UserWsDTO">
+			<description>Customer</description>
+		</property>
+		<property name="status" type="String">
+			<description>Notification status</description>
+			<hints> 			
+    			<hint name="example">EFFECTIVESENT</hint>
+            </hints>
+		</property>
+	</bean>
+	
+	<bean class="de.hybris.platform.customercouponocc.dto.CustomerCouponSearchResultWsDTO">
+		<description>Customer coupon search result</description>
+		<hints>
+			<hint name="wsRelated"/>
+			<hint name="alias">CustomerCouponSearchResult</hint>
+		</hints>
+		<property name="coupons" type="java.util.List&lt;de.hybris.platform.customercouponocc.dto.CustomerCouponWsDTO>">
+			<description>List of coupon</description>
+		</property>
+		<property name="sorts" type="java.util.List&lt;de.hybris.platform.webservicescommons.dto.SortWsDTO>">
+			<description>Sorting information</description>
+		</property>
+		<property name="pagination" type="de.hybris.platform.webservicescommons.dto.PaginationWsDTO">
+			<description>Pagination information</description>
+		</property>
+	</bean>
+	
+</beans>

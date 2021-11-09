@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+--><extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
+    	
+    <extension abstractclassprefix="Generated" classprefix="Messagecentercsoccaddon" description="messagecentercsoccaddon extension" managername="MessagecentercsoccaddonManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="messagecentercsoccaddon">
+        		
+        <!-- you should add all required extensions to this list, except platform extensions which are automatically required -->
+                 
+		
+        <requires-extension name="addonsupport"/>
+        		
+        <requires-extension name="commercewebservicescommons"/>
+        		
+        <requires-extension name="messagecentercsfacades"/>
+        		
+		
+        <coremodule generated="true" manager="de.hybris.platform.messagecentercsoccaddon.jalo.MessagecentercsoccaddonManager" packageroot="de.hybris.platform.messagecentercsoccaddon"/>
+        					
+		
+
+	
+    </extension>
+    
+</extensioninfo>

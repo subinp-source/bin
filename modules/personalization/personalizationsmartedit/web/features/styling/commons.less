@@ -1,0 +1,231 @@
+
+/* STATUS STYLING
+ */
+.perso__status--enabled {
+    color: @text-color-green;
+}
+ 
+.perso__status--ignore,
+.perso__status--disabled {
+    color: @fd-color--text-disabled;
+}
+
+.select2-highlighted {
+    .perso__status--enabled, .perso__status--disabled, .perso__status--ignore {
+        color: @white;
+    }
+}
+
+/* SCROLLZONES, SCROLLBAR STYLING
+/* manage library, multi-segments, ... 
+*/
+.perso__scrollzone {
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    width: 100%;
+    height: 10%;
+}
+
+.perso__scrollzone--normal {
+    background-color: @fd-color--background-neutral;
+}
+  
+.perso__scrollzone--transparent {
+    background-color: transparent;
+} 
+ 
+.perso__scrollzone--top {
+    top: 0;
+}
+ 
+.perso__scrollzone--bottom {
+    bottom: 0;
+}
+
+.perso__scrollbar--hidden {
+    -ms-overflow-style: none; // IE 10+
+    &::-webkit-scrollbar {
+        display: none; // Safari and Chrome
+    }
+}
+
+/* FULLSCREEN MODALS STYLING
+/* manage library, multi-segments, ...
+*/
+.modal-fullscreen {
+    width: 100% !important;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    .modal-header .close {
+        //reset it to original value, not the new one from SE
+        margin-right: @perso-gutter;    //20px
+    }
+
+    .se-slider-panel-container{
+        width: 100%;
+    }
+}
+
+.modal-fullscreen > .modal-content {
+    height: auto;
+    min-height: 100%;
+    border-radius: 0;
+    background-color: @white;
+}
+
+/* TREE STYLING
+/* manage library, customize view, ...
+*/
+.perso-tree__status {
+    font-size: 14px;
+    text-transform: initial;
+}
+ 
+.perso-tree__dates-layout {
+    font-size: @perso__sm-text--font-size;
+}
+
+.perso-tree__primary-data {
+    font-weight: @font-weight-semibold;
+ }
+ 
+/* ICONS STYLING
+/* commerce customization icon, globe icon, ...
+*/
+.perso__cc-icon {
+    vertical-align: middle;
+    color: @fd-color--text-neutral;
+    &:before {
+        font-size: @perso__icon--default-font-size;
+    }
+}
+
+.perso__globe-icon {
+    color: @fd-color--text-neutral;
+}
+
+.perso__cc-icon--hidden {
+    visibility: hidden;
+}
+
+.perso__more-icon {
+    font-size: @perso__more-icon--font-size;
+}
+
+//expand/collapse arrow or left/down navigation arrows
+.perso__toggle-icon {
+    font-size: @perso__icon--default-font-size;
+    vertical-align: -webkit-baseline-middle;
+}
+
+/* HELPERS
+*/
+.perso-wrap-ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.perso__item-name {
+    font-size: @techne__tooltip-inner--font-size;
+    font-weight: @font-weight-semibold;
+}
+
+.perso__wrapper-description {
+    font-size: @techne__tooltip-inner--font-size;
+}
+
+/* HELP MESSAGES STYLING
+*/
+.perso__page-level-help-message {
+    font-size: @perso__default-text--font-size;
+    font-style: italic;
+    color: @fd-color--text-disabled;
+    white-space: normal;
+}
+
+
+/* Input Group Field
+*/
+
+.perso-input-group {
+    width: 100%;
+    display: flex;
+    position: relative;
+    align-items: center;
+  }
+
+// model height adjustments
+.se-modal--personalizationsmarteditAddEditActionTemplate,
+.se-modal--personalizationsmarteditCombinedViewConfigureTemplate{
+    .se-modal__body{
+        overflow-y: visible;
+        max-height: fit-content;
+    }
+}
+
+.fd-link:hover, .fd-link .is-hover {
+    text-decoration: none;
+}
+
+.dropdown-menu .divider{
+    margin: 0;
+}
+
+.badge-success{
+    border-color: @fd-color--status-1;
+    color: @fd-color--status-1;
+}
+.badge-warning{
+    border-color: @fd-color--status-2;
+    color: @fd-color--status-2;
+}
+.badge-danger{
+    border-color: @fd-color--status-3;
+    color: @fd-color--status-3;
+}
+
+a {
+    color: @fd-color--action-1;
+    text-decoration: none;
+}
+a:hover {
+    color: @fd-color--action-hover;
+}
+
+.btn-link{
+color: @fd-color--action-1;
+}
+
+.tooltip-inner{
+    background-color: @fd-color--shell;
+}
+
+.tooltip.top-left .tooltip-arrow{
+    border-top-color:@fd-color--shell;
+}
+
+.se-y-help-icon{
+    display: inline-block;
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+    background-color: @fd-color--background-neutral;
+}
+
+// more menu dropdown actions
+.perso-dropdown-menu__item--disabled {
+    .se-dropdown-item {
+        color: @fd-color--text-disabled !important;
+        opacity: @fd-opacity--disabled;
+    }
+}
+
+.perso-dropdown-menu__item--delete {
+    .se-dropdown-item {
+       color: @fd-color--status-3 !important;  //red
+    }
+}

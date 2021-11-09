@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
+
+	<bean class="de.hybris.platform.sap.productconfig.occ.ConfigurationWsDTO">
+      <description>Representation of a product configuration. Contains the entities that describe a complex product: attributes of different types, groups of attributes, hierarchies of groups, statuses and messages. The attributes are typically connected through dependencies</description>
+       <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">CCPConfiguration</hint>
+       </hints>
+		<property name="configId" type="String" >
+			<description>Configuration Identifier. A randomly generated UUID owned by the product configurator</description>
+         <hints>
+           <hint name="example">ee520001-3e9a-4321-acc8-b92783c8ca4e</hint>
+         </hints>
+      </property>
+		<property name="rootProduct" type="String" >
+			<description>Code of the configuration root product</description>
+         <hints>
+           <hint name="example">CONF_LAPTOP</hint>
+         </hints>
+	   </property>
+	   <property name="consistent" type="boolean" >
+			<description>Configuration is consistent, meaning it contains no conflicts</description>
+         <hints>
+           <hint name="example">true</hint>
+         </hints>
+	   </property>
+	   <property name="complete" type="boolean" >
+			<description>Configuration is complete, meaning each mandatory attribute has been specified</description>
+         <hints>
+           <hint name="example">true</hint>
+         </hints>
+	   </property>
+	   <property name="quantity" type="long" >
+			<description>Configuration quantity</description>
+         <hints>
+           <hint name="example">1</hint>
+         </hints>
+		</property>
+	   <property name="totalNumberOfIssues" type="int" >
+			<description>Total number of issues: sum of number of conflicts and number of incomplete mandatory field</description>
+         <hints>
+           <hint name="example">1</hint>
+         </hints>
+		</property>
+		<property name="groups" type="java.util.List&lt;de.hybris.platform.sap.productconfig.occ.GroupWsDTO&gt;" >
+			<description>Attribute groups</description>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.sap.productconfig.occ.ConfigurationOverviewWsDTO">
+      <description>Representation of a product configuration overview, a condensed read-only view of a product configuration. Contains only the selected values</description>
+       <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">CCPConfigurationOverview</hint>
+       </hints>
+		<property name="sourceDocumentId" type="String" >
+			<description>Identifier of document that owns this configuration. Can be the ID of a saved cart, a quote or an order</description>
+         <hints>
+           <hint name="example">0001012345</hint>
+         </hints>
+	   </property>
+		<property name="id" type="String" >
+			<description>Configuration Identifier. A randomly generated UUID owned by the product configurator</description>
+         <hints>
+           <hint name="example">ee520001-3e9a-4321-acc8-b92783c8ca4e</hint>
+         </hints>
+	   </property>
+		<property name="productCode" type="String" >
+			<description>Product code of configuration's root product</description>
+         <hints>
+           <hint name="example">CONF_LAPTOP</hint>
+         </hints>
+	   </property>
+	   <property name="totalNumberOfIssues" type="int" >
+			<description>Total number of issues: sum of number of conflicts and number of incomplete mandatory field</description>
+         <hints>
+           <hint name="example">1</hint>
+         </hints>
+		</property>
+		<property name="groups" type="java.util.List&lt;de.hybris.platform.sap.productconfig.occ.GroupOverviewWsDTO&gt;" >
+			<description>Configuration overview groups</description>
+	   </property>
+		<property name="pricing" type="de.hybris.platform.sap.productconfig.occ.PriceSummaryWsDTO" >
+			<description>Price summary</description>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.sap.productconfig.occ.ProductConfigOrderEntryWsDTO"
+		extends="de.hybris.platform.commercewebservicescommons.dto.order.OrderEntryWsDTO">
+        <description>Representation of an order entry with product configuration attached</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">CCPOrderEntry</hint>
+        </hints>
+		<property name="configId" type="String" >
+			<description>Configuration Identifier. A randomly generated UUID owned by the product configurator</description>
+         <hints>
+           <hint name="example">ee520001-3e9a-4321-acc8-b92783c8ca4e</hint>
+         </hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.sap.productconfig.occ.GroupOverviewWsDTO">
+      <description>Representation of a group in the context of the product configuration overview</description>
+      <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">CCPGroupOverview</hint>
+      </hints>
+      <property name="id" type="String" >
+			<description>Group Identifier</description>
+         <hints>
+           <hint name="example">1-CONF_LAPTOP.GROUP1</hint>
+         </hints>
+		</property>
+		<property name="groupDescription" type="String" >
+			<description>Language dependent group description</description>
+         <hints>
+           <hint name="example">Audio Options</hint>
+         </hints>
+		</property>
+		<property name="groupType" type="String" >
+			<description>Type of group</description>
+         <hints>
+           <hint name="example">CONFLICT</hint>
+         </hints>
+		</property>
+		<property name="characteristicValues" type="java.util.List&lt;de.hybris.platform.sap.productconfig.occ.OverviewCsticValueWsDTO&gt;" >
+			<description>Attribute values</description>
+		</property>
+		<property name="subGroups" type="java.util.List&lt;de.hybris.platform.sap.productconfig.occ.GroupOverviewWsDTO&gt;" >
+			<description>List of subordinate groups</description>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.sap.productconfig.occ.GroupWsDTO">
+      <description>Representation of a group in the context of the product configuration</description>
+      <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">CCPGroup</hint>
+      </hints>
+		<property name="id" type="String" >
+			<description>Group Identifier</description>
+         <hints>
+           <hint name="example">1-CONF_LAPTOP.AUDIO</hint>
+         </hints>
+		</property>
+		<property name="name" type="String" >
+			<description>Language independent group name</description>
+         <hints>
+           <hint name="example">AUDIO</hint>
+         </hints>
+		</property>
+		<property name="description" type="String" >
+			<description>Language dependent group description</description>
+         <hints>
+           <hint name="example">Audio Options</hint>
+         </hints>
+      </property>
+		<property name="configurable" type="boolean" >
+			<description>Group contains attributes. False if the group represents a non-configurable leaf in the configuration hierarchy</description>
+         <hints>
+           <hint name="example">true</hint>
+         </hints>
+		</property>
+    <property name="consistent" type="boolean" >
+     <description>Group is consistent, meaning it contains no conflicts</description>
+        <hints>
+          <hint name="example">true</hint>
+        </hints>
+    </property>
+    <property name="complete" type="boolean" >
+     <description>Group is complete, meaning each mandatory attribute has been specified</description>
+        <hints>
+          <hint name="example">true</hint>
+        </hints>
+    </property>			
+		<property name="groupType" type="String" >
+			<description>INSTANCE</description>
+		</property>
+		<property name="attributes" type="java.util.List&lt;de.hybris.platform.sap.productconfig.occ.CsticWsDTO&gt;" >
+			<description>List of attributes</description>
+		</property>
+		<property name="subGroups" type="java.util.List&lt;de.hybris.platform.sap.productconfig.occ.GroupWsDTO&gt;" >
+			<description>List of subordinate groups</description>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.sap.productconfig.occ.CsticWsDTO">
+      <description>An attribute of a complex product</description>
+      <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">CCPAttribute</hint>
+      </hints>
+      <property name="key" type="String" >
+			<description>Language independent attribute key</description>
+         <hints>
+           <hint name="example">1-CONF_LAPTOP.HARDWARE-SCREEN_SIZE</hint>
+         </hints>
+		</property>
+		<property name="name" type="String" >
+			<description>Language independent attribute name as assigned in the modeling environment</description>
+         <hints>
+           <hint name="example">SCREEN_SIZE</hint>
+         </hints>
+		</property>
+		<property name="langDepName" type="String" >
+			<description>Language dependent attribute description</description>
+         <hints>
+           <hint name="example">Screen Size</hint>
+         </hints>
+		</property>
+		<property name="value" type="String" >
+			<description>Attribute value, in case the attribute is single valued</description>
+         <hints>
+           <hint name="example">17'</hint>
+         </hints>
+		</property>
+		<property name="formattedValue" type="String" >
+			<description>Formatted attribute value, relevant for numeric attributes. This formatting takes the session locale into account</description>
+         <hints>
+           <hint name="example">24,87</hint>
+         </hints>
+		</property>
+		<property name="longText" type="String" >
+			<description>Language dependent attribute long description</description>
+         <hints>
+           <hint name="example">Screen size in inches</hint>
+         </hints>
+		</property>
+		<property name="visible" type="boolean" >
+			<description>Attribute is visible</description>
+         <hints>
+           <hint name="example">true</hint>
+         </hints>
+		</property>
+		<property name="required" type="boolean" >
+			<description>It is required to specify this attribute in order to complete the configuration</description>
+         <hints>
+           <hint name="example">false</hint>
+         </hints>
+		</property>
+		<property name="type" type="de.hybris.platform.sap.productconfig.facades.UiType" >
+			<description>Attribute type. Specifies how the attribute should be rendered ideally</description>
+         <hints>
+           <hint name="example">CHECK_BOX_LIST</hint>
+         </hints>
+		</property>
+		<property name="validationType" type="de.hybris.platform.sap.productconfig.facades.UiValidationType" >
+			<description>Attribute validation type. Specifies how an attribute should be validated in case it's free input</description>
+         <hints>
+           <hint name="example">NUMERIC</hint>
+         </hints>
+		</property>
+		<property name="intervalInDomain" type="boolean" >
+			<description>The list of attribute domain values contain an interval. Only relevant if the attribute is of numeric type</description>
+         <hints>
+           <hint name="example">false</hint>
+         </hints>
+		</property>
+		<property name="maxlength" type="int" >
+			<description>Maximum length of attribute value names for all domain values</description>
+         <hints>
+           <hint name="example">5</hint>
+         </hints>
+		</property>
+		<property name="typeLength" type="int" >
+			<description>Maximum number of decimal places. Only relevant if the attribute is of numeric type</description>
+         <hints>
+           <hint name="example">10</hint>
+         </hints>
+		</property>
+		<property name="numberScale" type="int" >
+			<description>Number of decimal places. Only relevant if the attribute is of numeric type</description>
+         <hints>
+           <hint name="example">2</hint>
+         </hints>
+		</property>
+		<property name="negativeAllowed" type="boolean" >
+			<description>Are negative values allowed? Only relevant if the attribute is of numeric type</description>
+         <hints>
+           <hint name="example">false</hint>
+         </hints>
+		</property>
+		<property name="retractTriggered" type="boolean" >
+         <description>Has a retract been triggered for all values of this attribute?</description>
+         <hints>
+           <hint name="example">true</hint>
+         </hints>
+		</property>
+		<property name="domainValues" type="java.util.List&lt;de.hybris.platform.sap.productconfig.occ.CsticValueWsDTO&gt;" >
+			<description>List of domain values</description>
+		</property>
+		<property name="conflicts" type="java.util.List&lt;de.hybris.platform.sap.productconfig.occ.ConflictWsDTO&gt;" >
+			<description>List of conflicts</description>
+		</property>
+		<property name="images" type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.product.ImageWsDTO>" >
+			<description>Image list</description>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.sap.productconfig.occ.ConflictWsDTO">
+      <description>Textual representation of a conflict</description>
+      <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">CCPConflict</hint>
+      </hints>
+      <property name="text" type="String" >
+			<description>Language dependent conflict text</description>
+         <hints>
+           <hint name="example">It is not possible to select the extra audio package and the docking station T20 in parallel. Review your selections </hint>
+         </hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.sap.productconfig.occ.OverviewCsticValueWsDTO">
+      <description>Representation of an attribute value in the context of the configuration overview</description>
+      <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">CCPAttributeValueOverview</hint>
+      </hints>
+      <property name="characteristic" type="String" >
+			<description>Language dependent attribute name</description>
+         <hints>
+           <hint name="example">Accessories</hint>
+         </hints>
+		</property>
+		<property name="value" type="String" >
+			<description>Language dependent value name</description>
+         <hints>
+           <hint name="example">Extra Audio Package</hint>
+         </hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.sap.productconfig.occ.CsticValueWsDTO">
+      <description>Representation of an attribute value</description>
+      <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">CCPAttributeValue</hint>
+      </hints>
+		<property name="key" type="String" >
+			<description>Value key</description>
+         <hints>
+           <hint name="example">MET_BLUE</hint>
+         </hints>
+		</property>
+		<property name="name" type="String" >
+			<description>Language independent value name</description>
+         <hints>
+           <hint name="example">MET_BLUE</hint>
+         </hints>
+		</property>
+		<property name="langDepName" type="String" >
+			<description>Language dependent value description</description>
+         <hints>
+           <hint name="example">Metallic Blue</hint>
+         </hints>
+		</property>
+		<property name="selected" type="boolean" >
+			<description>Indicates if value is selected</description>
+         <hints>
+           <hint name="example">false</hint>
+         </hints>
+		</property>
+		<property name="readonly" type="boolean" >
+			<description>Indicates if value is read-only</description>
+         <hints>
+           <hint name="example">false</hint>
+         </hints>
+		</property>
+		<property name="images" type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.product.ImageWsDTO>" >
+			<description>List of images</description>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.sap.productconfig.occ.ConfigurationSupplementsWsDTO">
+      <description>Enriches a product configuration with supplementary pricing data</description>
+      <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">CCPConfigurationPricing</hint>
+      </hints>
+		<property name="configId" type="String" >
+			<description>Configuration Identifier. A randomly generated UUID owned by the product configurator</description>
+         <hints>
+           <hint name="example">ee520001-3e9a-4321-acc8-b92783c8ca4e</hint>
+         </hints>
+		</property>
+		<property name="showDeltaPrices" type="boolean" >
+			<description>Indicates that attribute surcharges are displayed relatively to the current attribute price</description>
+         <hints>
+           <hint name="example">true</hint>
+         </hints>
+		</property>
+		<property name="pricingError" type="boolean" >
+			<description>Indicates that pricing is currently not available</description>
+         <hints>
+           <hint name="example">false</hint>
+         </hints>
+		</property>
+		<property name="attributes" type="java.util.List&lt;de.hybris.platform.sap.productconfig.occ.CsticSupplementsWsDTO&gt;" >
+			<description>List of supplementary data on attribute level</description>
+		</property>
+		<property name="priceSummary" type="de.hybris.platform.sap.productconfig.occ.PriceSummaryWsDTO" >
+			<description>Price summary</description>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.sap.productconfig.occ.CsticSupplementsWsDTO">
+      <description>Enriches an attribute with supplementary pricing data</description>
+      <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">CCPAttributePricing</hint>
+      </hints>
+		<property name="csticUiKey" type="String" >
+			<description>Attribute key</description>
+         <hints>
+           <hint name="example">1-CONF_LAPTOP.AUDIO-ACCESSORY</hint>
+         </hints>
+		</property>
+		<property name="selectedValues" type="java.util.List&lt;String&gt;" >
+			<description>List of currently selected domain values</description>
+		</property>
+		<property name="priceSupplements" type="java.util.List&lt;de.hybris.platform.sap.productconfig.occ.CsticValueSupplementsWsDTO&gt;" >
+			<description>List of value price supplements</description>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.sap.productconfig.occ.CsticValueSupplementsWsDTO">
+      <description>Enriches an attribute value with supplementary pricing data</description>
+      <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">CCPAttributeValuePricing</hint>
+      </hints>
+		<property name="attributeValueKey" type="String" >
+			<description>Value key</description>
+         <hints>
+           <hint name="example">MET_BLUE</hint>
+         </hints>
+		</property>
+		<property name="priceValue" type="de.hybris.platform.commercewebservicescommons.dto.product.PriceWsDTO" >
+			<description>Price of attribute value</description>
+		</property>
+		<property name="obsoletePriceValue" type="de.hybris.platform.commercewebservicescommons.dto.product.PriceWsDTO" >
+			<description>Obsolete price that has been reduced as discounts have been applied</description>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.sap.productconfig.occ.PriceSummaryWsDTO">
+      <description>Prices on overall product configuration level</description>
+      <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">CCPConfigurationOverallPricing</hint>
+      </hints>
+		<property name="basePrice" type="de.hybris.platform.commercewebservicescommons.dto.product.PriceWsDTO" >
+			<description>Base price</description>
+		</property>
+		<property name="selectedOptions" type="de.hybris.platform.commercewebservicescommons.dto.product.PriceWsDTO" >
+			<description>Summarized price of the selected options</description>
+		</property>
+		<property name="currentTotal" type="de.hybris.platform.commercewebservicescommons.dto.product.PriceWsDTO" >
+			<description>Total price</description>
+		</property>
+		<property name="currentTotalSavings" type="de.hybris.platform.commercewebservicescommons.dto.product.PriceWsDTO" >
+			<description>Savings that occur because discounts have been applied to one or more attribute values of the configuration</description>
+		</property>
+	</bean>
+
+</beans>

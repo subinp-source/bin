@@ -1,0 +1,45 @@
+<se-infinite-scrolling
+    *ngIf="isPagedDropdown; else selectList"
+    [pageSize]="infiniteScrollingPageSize"
+    [mask]="search"
+    [fetchPage]="fetchPage"
+    [context]="selectComponentCtx"
+    (itemsChange)="onInfiniteScrollItemsChange()"
+>
+    <ng-container *ngTemplateOutlet="selectList"></ng-container>
+</se-infinite-scrolling>
+
+<ng-template #selectList>
+    <ol
+        [attr.id]="id +'-list'"
+        fd-menu-list
+        suListKeyboardControl
+        [suListKeyboardControlDisabledPredicate]="keyboardControlDisabledPredicate"
+        (suListKeyboardControlEnterKeydown)="onEnterKeydown($event)"
+        [ngClass]="{ 'fd-menu__list--basic': !isPagedDropdown }"
+    >
+        <ng-container *ngFor="let item of items; trackBy: itemTrackBy">
+            <!-- 
+    for <fd-option> class "is-selected" cannot be set via property binding
+    so we wrap that tag and apply fundamental css class (fd-menu__item) on the wrapper
+    so that the proper styles can be inherited
+  -->
+            <li
+                *ngIf="(excludeSelected && !isItemSelected(item)) || !excludeSelected"
+                suListItemKeyboardControl
+                class="se-select-list__item"
+                [ngClass]="{'is-selected': (!excludeSelected && isItemSelected(item)), 'is-disabled': isItemDisabled(item)}"
+            >
+                <fd-option (click)="onOptionClick($event, item)" class="menu-option">
+                    <se-item-printer
+                        [item]="item"
+                        [isSelected]="false"
+                        [component]="itemComponent"
+                        [selectComponentCtx]="selectComponentCtx"
+                    >
+                    </se-item-printer>
+                </fd-option>
+            </li>
+        </ng-container>
+    </ol>
+</ng-template>

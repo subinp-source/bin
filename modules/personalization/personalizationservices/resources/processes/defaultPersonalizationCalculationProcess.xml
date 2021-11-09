@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<process xmlns="http://www.hybris.de/xsd/processdefinition" start="updateUserSegments" name="defaultPersonalizationCalculationProcess"
+		processClass="de.hybris.platform.personalizationservices.model.process.CxPersonalizationProcessModel" onError="error">
+
+	<action id="updateUserSegments" bean="updateUserSegmentsAction">
+		<transition name="OK" to="calculatePersonalizationForUser"/>
+		<transition name="NOK" to="error"/>
+	</action>
+
+
+	<action id="calculatePersonalizationForUser" canJoinPreviousNode="true" bean="calculatePersonalizationForUserAction">
+		<transition name="OK" to="success"/>
+		<transition name="NOK" to="error"/>
+	</action>
+
+	<end id="error" state="ERROR">Something went wrong.</end>
+	<end id="success" state="SUCCEEDED">Personalization calculated for user.</end>
+</process>

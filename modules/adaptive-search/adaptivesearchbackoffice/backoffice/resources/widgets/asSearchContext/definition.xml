@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<widget-definition id="de.hybris.platform.adaptivesearch.widgets.searchContext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widget-definition.xsd">
+
+	<name>Search Context</name>
+	<description>Allows to change the search context (language and currency) for adaptive search</description>
+	<defaultTitle>Search Context</defaultTitle>
+
+	<author>hybris</author>
+	<version>0.1</version>
+	<keywords>
+		<keyword>Adaptive Search</keyword>
+	</keywords>
+
+	<controller class="de.hybris.platform.adaptivesearchbackoffice.widgets.searchcontext.SearchContextController" />
+
+	<sockets>
+		<input id="navigationContext" type="de.hybris.platform.adaptivesearchbackoffice.data.NavigationContextData" />
+		<output id="searchContext" type="de.hybris.platform.adaptivesearchbackoffice.data.SearchContextData" />
+	</sockets>
+</widget-definition>

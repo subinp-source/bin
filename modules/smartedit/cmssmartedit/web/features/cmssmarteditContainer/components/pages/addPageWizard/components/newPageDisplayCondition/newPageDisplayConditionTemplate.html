@@ -1,0 +1,75 @@
+<div data-ng-show="$ctrl.ready === true" class="se-new-page-display-condition">
+    <div class="page-condition-selector-wrapper form-group">
+        <label for="page-condition-selector-id" class="se-control-label"
+            >{{ 'se.cms.page.condition.selection.label' | translate }}</label
+        >
+        <ui-select
+            id="page-condition-selector-id"
+            data-ng-model="$ctrl.conditionSelected"
+            class="fd-form-control"
+            search-enabled="false"
+            theme="select2"
+            data-dropdown-auto-width="false"
+            data-ng-change="$ctrl.dataChanged()"
+        >
+            <ui-select-match id="select-type" class="ySEPageRestr-picker--select__match">
+                {{ $ctrl.conditionSelected.label | translate }}
+            </ui-select-match>
+            <ui-select-choices repeat="c in $ctrl.conditions" position="down">
+                {{ c.label | translate }}
+            </ui-select-choices>
+        </ui-select>
+        <span class="se-form-help-message">
+            <span>{{ $ctrl.conditionSelected.description | translate }}</span>
+        </span>
+    </div>
+
+    <div
+        data-ng-if="$ctrl.showPrimarySelector()"
+        class="page-condition-primary-selector-wrapper form-group"
+    >
+        <label for="page-condition-primary-selector-id" class="se-control-label"
+            >{{ 'se.cms.page.condition.primary.association.label' | translate }}</label
+        >
+        <se-select
+            id="page-condition-primary-selector-id"
+            [model]="$ctrl.primarySelectedModel"
+            (model-change)="$ctrl._primarySelectedModelOnChange($event)"
+            [fetch-strategy]="$ctrl._primaryPageChoicesFetchStrategy"
+            [on-change]="$ctrl.dataChanged"
+        >
+        </se-select>
+        <span data-ng-show="$ctrl.primarySelected.label" class="se-form-help-message">
+            <span
+                >{{ 'se.cms.page.label.label' | translate }}: {{ $ctrl.primarySelected.label
+                }}</span
+            >
+        </span>
+    </div>
+
+    <div data-ng-if="$ctrl.showHomePageWidget()">
+        <div class="se-component-homepage fd-form__item">
+            <input
+                type="checkbox"
+                id="set-homepage-checkbox"
+                class="se-component-item--details fd-form__control se-component-homepage__checkbox-input"
+                name="clone-on-drop"
+                data-ng-change="$ctrl.homePageChanged()"
+                data-ng-model="$ctrl.homepage"
+            />
+            <label
+                class="se-control-label se-component-homepage--label fd-form__label"
+                for="set-homepage-checkbox"
+                data-translate="se.cms.display.conditions.homepage.set"
+            ></label>
+        </div>
+        <label
+            class="se-control-label se-component-homepage--label"
+            for="set-homepage-checkbox"
+            data-ng-if="$ctrl.showReplaceLabel"
+        >
+            {{ "se.cms.display.conditions.homepage.replace" | translate: { currentHomepage:
+            $ctrl.currentHomePageName } }}
+        </label>
+    </div>
+</div>

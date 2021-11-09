@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <alias name="instrumentedDocumentCartRepository" alias="documentCartRepository"/>
+
+    <bean id="defaultDocumentCartRepository"
+          class="ydocumentcartpackage.persistence.polyglot.repository.documentcart.Repository">
+        <constructor-arg ref="cartQueryFactory"/>
+        <constructor-arg ref="cachedDocumentStorage"/>
+    </bean>
+
+    <bean id="instrumentedDocumentCartRepository"
+          class="ydocumentcartpackage.persistence.polyglot.repository.documentcart.InstrumentedItemStateRepository">
+        <constructor-arg value="documentCartRepository"/>
+        <constructor-arg ref="defaultDocumentCartRepository"/>
+        <constructor-arg ref="metricRegistry"/>
+    </bean>
+
+    <bean id="cartQueryFactory"
+          class="ydocumentcartpackage.persistence.polyglot.repository.documentcart.query.BaseQueryFactory">
+        <constructor-arg ref="cartTypeInfo"/>
+    </bean>
+
+    <bean id="databaseCartStorage"
+          class="ydocumentcartpackage.persistence.polyglot.repository.documentcart.cart.DatabaseCartStorage">
+        <constructor-arg ref="cartDataSource"/>
+        <constructor-arg ref="jsonSerializer"/>
+    </bean>
+
+    <bean id="cartTypeInfo" class="ydocumentcartpackage.persistence.polyglot.repository.documentcart.cart.CartTypeInfo">
+        <constructor-arg ref="polyglotRepositoriesConfigProvider"/>
+    </bean>
+
+    <bean id="jsonSerializer"
+          class="ydocumentcartpackage.persistence.polyglot.repository.documentcart.serializer.json.JsonSerializer"/>
+
+    <bean id="cartDataSource"
+          class="ydocumentcartpackage.persistence.polyglot.repository.documentcart.cart.DataSourceFactory">
+        <constructor-arg ref="configurationService"/>
+        <constructor-arg ref="hikariMetricRegistry"/>
+    </bean>
+
+    <bean id="threadLocalDocumentStorageCache"
+          class="ydocumentcartpackage.persistence.polyglot.repository.documentcart.storage.cache.ThreadLocalDocumentCache"/>
+
+    <bean id="defaultDocumentStorageCache"
+          class="ydocumentcartpackage.persistence.polyglot.repository.documentcart.storage.cache.InstrumentedStorageCache">
+        <constructor-arg ref="threadLocalDocumentStorageCache"/>
+        <constructor-arg ref="metricRegistry"/>
+        <constructor-arg value="documentCart"/>
+    </bean>
+
+    <alias name="defaultDocumentStorageCache" alias="documentCartStorageCache"/>
+
+    <bean id="cachedDocumentStorage"
+          class="ydocumentcartpackage.persistence.polyglot.repository.documentcart.storage.CachedDocumentStorage">
+        <constructor-arg ref="documentCartStorageCache"/>
+        <constructor-arg ref="databaseCartStorage"/>
+    </bean>
+
+
+    <bean id="documentCartRepositoryCallback"
+          class="ydocumentcartpackage.servicelayer.web.DocumentCartRepositoryCallback">
+        <constructor-arg ref="cachedDocumentStorage"/>
+    </bean>
+
+    <bean parent="listMergeDirective" depends-on="polyglotPersistenceCallbacksList">
+        <property name="add" ref="documentCartRepositoryCallback"/>
+    </bean>
+
+    <bean id="hikariMetricRegistry" class="com.codahale.metrics.MetricRegistry"/>
+
+    <bean id="hikariJmxReporter" class="de.hybris.platform.metrics.DropwizardJmxReporterFactoryBean">
+        <property name="domain" value="hikari-metrics"/>
+        <property name="metricRegistry" ref="hikariMetricRegistry"/>
+    </bean>
+
+</beans>

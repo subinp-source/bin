@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
+
+	<bean class="de.hybris.platform.configurablebundleocc.dto.BundleStarterWsDTO">
+
+		<description>Mandatory data required to start a bundle. This includes the templateId of the bundle, the productCode, and the quantity of the product itself.</description>
+		<hints>
+			<hint name="wsRelated"/>
+			<hint name="alias">BundleStarter</hint>
+		</hints>
+		<import type="javax.validation.constraints.Min" />
+		<import type="javax.validation.constraints.NotBlank"/>
+		<property name="templateId" type="String">
+			<description>Id of a template to create a bundle</description>
+			<hints>
+				<hint name="example">PhotoStarterPackage</hint>
+				<hint name="required">true</hint>
+			</hints>
+			<annotations scope="member">@NotBlank</annotations>
+		</property>
+		<property name="productCode" type="String">
+			<description>Product code.</description>
+			<hints>
+				<hint name="example">29925</hint>
+				<hint name="required">true</hint>
+			</hints>
+			<annotations scope="member">@NotBlank</annotations>
+		</property>
+		<property name="quantity" type="long">
+			<description>Quantity of the product added to cart</description>
+			<hints>
+				<hint name="example">1</hint>
+				<hint name="required">true</hint>
+			</hints>
+			<annotations scope="member">@Min(value = 1)</annotations>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.configurablebundleocc.data.BundleTemplateWsDTO">
+		<description>Description of a bundle component related to a product</description>
+		<hints>
+			<hint name="wsRelated"/>
+			<hint name="alias">BundleTemplate</hint>
+		</hints>
+		<property name="id" type="String">
+			<description>Id of this bundle template</description>
+			<hints>
+				<hint name="example">PhotoOTGCameraComponent</hint>
+				<hint name="required">true</hint>
+			</hints>
+		</property>
+		<property name="name" type="String">
+			<description>Name of this bundle template</description>
+			<hints>
+				<hint name="example">Camera Component</hint>
+				<hint name="required">false</hint>
+			</hints>
+		</property>
+		<property name="rootBundleTemplateName" type="String">
+			<description>Name of the root bundle template within the bundle tree structure</description>
+			<hints>
+				<hint name="example">Photo On The Go Package</hint>
+				<hint name="required">false</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.commercewebservicescommons.dto.product.ProductWsDTO">
+		<property name="bundleTemplates" type="java.util.List&lt;de.hybris.platform.configurablebundleocc.data.BundleTemplateWsDTO>">
+			<description>Set of bundle templates that are identified as starter components and can initiate a bundle in the cart</description>
+		</property>
+	</bean>
+
+</beans>

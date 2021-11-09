@@ -1,0 +1,261 @@
+/* *
+/* This file includes the styles used in Manage Customization Library modal
+*/
+
+@perso-library__fd-modal__body--padding-right: 2*@perso-gutter;   //40px
+@perso-library__y-tree__mobile-more-menu--padding-top: 0.5*@perso-gutter; //10px
+@perso-library__scroll-zone-area--height: 85vh;
+@perso-library__mobile-layout--padding: 0.75*@perso-gutter; //15px;
+@perso-library__number-data--mobile-margin-bottom: 0.5*@perso-gutter;   //10px
+@perso-library__back-to-top-icon--bottom: 1.25*@perso-gutter;     //25px
+@perso-library__back-to-top-icon--right: 0.5*@perso-gutter;       //10px
+
+.perso-library {
+    font-size: @perso__default-text--font-size;
+    .tree-head {
+        word-wrap: break-word;
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        padding-top: 15px;
+        text-transform: initial;
+        color: @fd-color--text-neutral;
+        background-color: @fd-color--background-neutral;
+        font-size: @perso__default-text--font-size;
+        font-weight: normal;
+    }
+    .se-modal__body.fd-modal__body {
+        max-height: 100vh;
+        padding-right: @perso-library__fd-modal__body--padding-right;
+    }
+}
+
+.tree-head__col--md, .y-tree__col--md {
+    width: 20%;
+}
+
+.tree-head__col--sm, .y-tree__col--sm {
+    width: 15%;
+}
+
+.tree-head__col--xs, .y-tree__col--xs {
+    width: 10%;
+    text-align: center;
+}
+
+.tree-head__col--lg, .y-tree__col--lg {
+    width: 30%;
+}
+
+.y-tree__col--xl {
+    width: 40%;
+}
+
+.perso-library__y-tree {
+    :hover{
+        background-color: @fd-color--background-hover !important;
+    }
+
+    & * {
+        transition: none;
+    }
+    .mobile-more-menu {
+        padding-top: @perso-library__y-tree__mobile-more-menu--padding-top;
+    }
+    .angular-ui-tree-handle {
+        color: @text-color-dark-blue;
+        min-height: inherit;
+    }
+    .angular-ui-tree-nodes .angular-ui-tree-nodes {
+        padding-left: 0;
+    }
+    .desktop-layout, .mobile-layout {
+        display: flex;
+        justify-content: space-between; //3 elements: the arrow, the drag area row, the more menu
+    }
+    .inactive-level{
+        background-color: @white !important
+    }
+    .active-level--last{
+        margin-bottom: 0; 
+    }
+
+    .se-y-dropdown-menu__list:hover{
+        background-color: @white !important; 
+    }
+}
+
+.y-tree-header--fixed {
+    position: fixed;
+    top: 60px;
+    width: calc(100% - 62px);
+    z-index: 999;
+}
+
+.perso-library__header {
+    display: flex;
+    padding-top:3px;
+    margin-bottom: 15px;
+}
+
+.perso-library__title{
+    flex-grow: 8;
+    padding-top:7px;
+}
+
+.perso-library__status{
+    min-width: 145px;
+    .select2-chosen{
+        padding-right: 20px !important;
+    }
+}
+
+.perso-library__search, 
+.perso-library__status {
+    margin-right: 20px;
+}
+
+.perso-library__scroll-zone {
+    height: @perso-library__scroll-zone-area--height;
+    overflow-y: scroll;
+}
+
+.perso-library__back-to-top {
+    position: absolute;
+    font-size: @perso-library__back-to-top-icon--font-size;
+    bottom: @perso-library__back-to-top-icon--bottom;   //25px
+    right: @perso-library__back-to-top-icon--right;    //10px
+     //for ie11 only
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.y-tree-row__angular-ui-tree-handle {
+    color: @text-color-dark-blue;
+    font-size: @perso__default-text--font-size;
+    border: none;
+    min-height: inherit;
+    font-weight: @font-weight-normal;
+    display: flex;
+    justify-content: flex-start;
+    background-color: transparent;
+    width: 96%;
+    &:hover {
+        background-color: transparent;
+    }
+}
+
+.y-tree-row__angular-ui-tree-handle--mobile {
+    color: @text-color-dark-blue;
+    font-size: @perso__default-text--font-size;
+    border: none;
+    min-height: inherit;
+    font-weight: @font-weight-normal;
+    background-color: transparent;
+    width: 96%;
+    &:hover {
+        background-color: transparent;
+    }
+}
+
+.perso-library__tree-head--mobile {
+    font-weight: @font-weight-semibold;
+    color: @fd-color--text-neutral;
+}
+
+.y-tree__col-xl--mobile {
+    width: 90%;
+}
+
+.perso-library__number-data--mobile {
+    margin-bottom: 10px;
+}
+
+.perso-library__angular-ui-tree-drag {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    font-size: @perso__default-text--font-size;
+    font-weight: inherit;
+    color: @text-color-dark-blue;
+    background-color: @white;
+    .desktop-layout {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 15px 10px 15px;
+        border: 1px solid @border-color-light-grey;
+        margin-top: -1px;
+    }
+    .mobile-layout {
+        display: flex;
+        justify-content: space-between;
+        border: 1px solid @border-color-light-grey;
+        margin-top: -1px;
+        padding: @perso-library__mobile-layout--padding;
+        position: relative;
+    }
+    .mobile-more-menu {
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: @perso-gutter;
+    }
+    .perso-library__primary-data {
+        font-weight: @font-weight-semibold;
+    }
+    .mobile-data {
+        padding-bottom: @perso-gutter;
+    }
+    .perso-library__number-data--mobile {
+        margin-bottom: @perso-library__number-data--mobile-margin-bottom;
+    }
+
+    .perso-library__tree-head--mobile {
+        font-weight: @font-weight-semibold;
+        color: @fd-color--text-neutral;
+    }
+    .perso__toggle-icon {
+        font-size: @perso__icon--default-font-size;
+        vertical-align: -webkit-baseline-middle;
+    }
+    .perso__cc-icon {
+        vertical-align: middle;
+    }
+}
+
+@media (max-width: 1400px) {
+    .tree-head__col--md, .y-tree__col--md {
+        text-align: center;
+    }
+    .y-tree__col--md {
+        padding-left: 4%;
+    }
+    .y-tree-header--fixed {
+        width: calc(100% - 62px);
+    }
+}
+
+@media (max-width: 1600px) {
+   .y-tree__col--lg, .y-tree__col--xl {
+        padding-left: 1%;
+    }
+}
+
+//IE specific - have smaller height in IE10+, otherwise infinite scroll does not look great
+@media (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .perso-library__scroll-zone {
+        height: 65vh;
+    }
+}
+
+//Firefox specific - scrollbar issues
+@media (min--moz-device-pixel-ratio: 0) {
+    .perso__scrollbar--hidden {
+        overflow-y: auto;   //FF - display the scrollbar only when needed
+    }
+
+    .perso-library__scroll-zone {
+        height: 80vh;    //to solve some use cases with double scrollbar
+    }
+}

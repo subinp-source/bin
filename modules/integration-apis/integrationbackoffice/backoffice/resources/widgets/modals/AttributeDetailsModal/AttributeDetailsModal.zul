@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<widget xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.zkoss.org/2005/zul"
+        xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.hybris.com/schema/cockpitng/zul/zul.xsd"
+        height="100%">
+
+    <style src="${wr}/AttributeDetailsModal.css"/>
+
+    <vlayout spacing="15px" sclass="yw-integrationbackoffice-modal-body-no-button">
+        <span sclass="yw-integrationbackoffice-modal-label">
+            ${labels.integrationbackoffice.attributeDetailsModal.qualifier}
+        </span>
+        <textbox id="attributeName" readonly="true"/>
+        <span sclass="yw-integrationbackoffice-modal-label">
+            ${labels.integrationbackoffice.attributeDetailsModal.baseType}
+        </span>
+        <textbox id="baseType" readonly="true"/>
+        <span sclass="yw-integrationbackoffice-modal-label">
+            ${labels.integrationbackoffice.attributeDetailsModal.partOf}
+        </span>
+        <radiogroup id="partOfRadio" sclass="z-radio">
+            <radio label="True"/>
+            <radio label="False"/>
+        </radiogroup>
+        <span sclass="yw-integrationbackoffice-modal-label">
+            ${labels.integrationbackoffice.attributeDetailsModal.autocreate}
+        </span>
+        <radiogroup id="autocreateRadio" sclass="z-radio">
+            <radio label="True"/>
+            <radio label="False"/>
+        </radiogroup>
+        <span sclass="yw-integrationbackoffice-modal-label">
+            ${labels.integrationbackoffice.attributeDetailsModal.optional}
+        </span>
+        <radiogroup id="optionalRadio" sclass="z-radio">
+            <radio label="True"/>
+            <radio label="False"/>
+        </radiogroup>
+        <span sclass="yw-integrationbackoffice-modal-label">
+            ${labels.integrationbackoffice.attributeDetailsModal.unique}
+        </span>
+        <radiogroup id="uniqueRadio" sclass="z-radio">
+            <radio label="True"/>
+            <radio label="False"/>
+        </radiogroup>
+        ${labels.integrationbackoffice.attributeDetailsModal.note}
+    </vlayout>
+
+</widget>

@@ -1,0 +1,75 @@
+/****************************************************
+				se-select
+****************************************************/
+
+//overwrite ui-select styling
+.se-generic-editor-dropdown__match2 item-printer.y-select-item-printer > div {
+    background: transparent;
+    border-left: none;
+}
+
+.y-select-no-result-label {
+    padding: 5px 10px 10px 15px;
+}
+
+se-localized-element
+    se-generic-editor-field
+    .select2-container.select2-allowclear
+    .select2-choice
+    abbr {
+    display: none;
+}
+
+:not(y-select)
+    .se-generic-editor-dropdown__paged
+    .se-generic-editor-dropdown__match:not(.select2-default)
+    .select2-arrow.ui-select-toggle {
+    display: none;
+}
+
+/********************************************************
+                    SELECT2 CONTAINER
+*********************************************************/
+
+.select2-container-active.has-error .select2-choice {
+    border-color: @smartedit-red;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px fade(@smartedit-red, 60%);
+}
+
+language-selector {
+    .ui-select-match .select2-arrow,
+    .ui-select-match .select2-arrow.ui-select-toggle {
+        top: -3px;
+    }
+}
+
+//overwriting the default select2 styling to match smartedit design
+.select2-container .select2-choice.ySERestriction-select__placeholder .select2-arrow,
+.select2-container .select2-choice.ySERestriction-select__placeholder div,
+.select2-container .select2-choice.ySEPageRestr-picker--select__match .select2-arrow,
+.select2-container .select2-choice.ySEPageRestr-picker--select__match div {
+    border-left: none;
+    background: transparent;
+    color: @dark-blue !important;
+    b {
+        margin-top: 10px;
+        color: @dark-blue;
+    }
+}
+
+se-generic-editor-field .select2-container .select2-choice .select2-arrow b,
+se-generic-editor-field .select2-container .select2-choice abbr,
+se-generic-editor-field
+    .select2-container-multi
+    .select2-choices
+    .select2-search-field
+    input.select2-active,
+se-generic-editor-field .select2-more-results.select2-active,
+.select2-search input,
+se-generic-editor-field .select2-search input.select2-active,
+se-generic-editor-field .select2-container .select2-choice .select2-arrow b,
+se-generic-editor-field .select2-container .select2-choice div b {
+    color: @dark-blue;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

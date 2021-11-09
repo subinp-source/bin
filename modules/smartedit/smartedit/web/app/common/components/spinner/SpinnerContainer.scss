@@ -1,0 +1,10 @@
+.se-spinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &--fluid {
+        min-height: 50vh;
+    }
+}

@@ -1,0 +1,62 @@
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/cockpitng/cng/scss/cockpitng-globals.scss';
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/backoffice/scss/backoffice-variables.scss';
+
+/*================================
+    Switch-Type Checkbox
+================================*/
+// Default styling of Checkbox & Radiobox in Cockpitng
+
+
+@import "../support/_cockpit-variables.scss";
+
+.ye-switch-checkbox.z-checkbox {
+    min-height: $editor-defaults__switch-checkbox--line-height;
+    line-height: $editor-defaults__switch-checkbox--line-height;
+    padding-left: $editor-defaults__switch-checkbox--width;
+    
+    label {
+        padding-left: 10px;
+        position: relative;
+            
+        &:before,
+        &:after {
+            width: $editor-defaults__switch-checkbox--width;
+            height: $editor-defaults__switch-checkbox-btn--size;
+            content: "";
+            border: $editor-defaults__switch-checkbox--border;
+            border-radius: $editor-defaults__switch-checkbox--border-radius;
+            background: $editor-defaults__switch-checkbox-btn--bg-color;
+            transition: $editor-defaults__switch-checkbox--transition;
+            position: absolute;
+            top: 50%;
+            left: $editor-defaults__switch-checkbox--width * -1;
+            transform: translateY(-50%);
+            margin-top: 0;
+            margin-left: 0;
+        }
+
+        &:after {
+            width: $editor-defaults__switch-checkbox-btn--size;
+        }
+        &:empty {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
+    input:checked ~ label.z-checkbox-content {
+        &:before {
+            background: $editor-defaults__switch-checkbox-checked--bg-color;
+        }
+
+        &:after {
+            margin-left: -$editor-defaults__switch-checkbox-btn--size;
+            left: 0;
+        }
+        &:empty {
+            &:after {
+                left: 100%;
+            }
+        }
+    }
+}

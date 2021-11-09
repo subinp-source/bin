@@ -1,0 +1,8 @@
+INSERT_UPDATE StockLevel;productCode[unique=true];warehouse(code)[unique=true,default=default];available;inStockStatus(code);maxPreOrder[default=1];maxStockLevelHistoryCount[default=-1];overSelling[default=0];preOrder[default=0];reserved[default=0]
+;CONF_SCREWDRIVER_S;pw_warehouse_s;500;forceInStock;
+;CONF_SCREWDRIVER_S-PROF-2-12;pw_warehouse_s;500;forceInStock;
+;CONF_SCREWDRIVER_S-PROF-2-18;pw_warehouse_s;500;forceInStock;
+;CONF_SCREWDRIVER_S-STD-2-12;pw_warehouse_s;500;forceInStock;
+;CONF_SCREWDRIVER_S-STD-4-9;pw_warehouse_s;500;forceInStock;
+;CONF_BANDSAW_ML;pw_warehouse_s;500;forceInStock;
+

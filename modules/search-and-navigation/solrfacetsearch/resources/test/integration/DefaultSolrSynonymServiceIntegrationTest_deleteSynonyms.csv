@@ -1,0 +1,5 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+REMOVE SolrSynonymConfig;facetSearchConfig(name)[batchmode=true,unique=true]
+;testFacetSearchConfig${testId}

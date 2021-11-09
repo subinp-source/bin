@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+--><extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
+    	
+    <extension abstractclassprefix="Generated" classprefix="Chineseaddressoccaddon" description="chineseaddressoccaddon extension" managername="ChineseaddressoccaddonManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="chineseaddressoccaddon">
+        		
+        <!-- you should add all required extensions to this list, except platform extensions which are automatically required -->
+                 
+		
+        <requires-extension name="addonsupport"/>
+        		
+        <requires-extension name="chinesecommercewebservicescommons"/>
+        		
+        <requires-extension name="chineseaddressfacades"/>
+        		
+        <coremodule generated="true" manager="de.hybris.platform.chineseaddressoccaddon.jalo.ChineseaddressoccaddonManager" packageroot="de.hybris.platform.chineseaddressoccaddon"/>
+        					
+		
+
+	
+    </extension>
+    
+</extensioninfo>

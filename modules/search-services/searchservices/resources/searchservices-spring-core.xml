@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/util
+		   http://www.springframework.org/schema/util/spring-util.xsd">
+		   
+	<!-- Model Attributes & Interceptors -->
+
+	<bean id="abstractSnInterceptor" abstract="true"
+		class="de.hybris.platform.searchservices.core.model.interceptor.AbstractSnInterceptor">
+		<property name="modelService" ref="modelService" />
+		<property name="l10nService" ref="l10nService" />
+	</bean>		   
+		   
+	<!-- DAOs -->
+
+	<bean id="abstractSnGenericDao" abstract="true">
+		<property name="flexibleSearchService" ref="flexibleSearchService" />
+	</bean>
+		
+	<!-- Services -->
+
+	<bean id="abstractSnContextFactory" abstract="true">
+		<property name="snIndexConfigurationService" ref="snIndexConfigurationService" />
+		<property name="snIndexTypeService" ref="snIndexTypeService" />
+	</bean>
+
+	<alias name="defaultSnContextFactory" alias="snContextFactory" />
+	<bean id="defaultSnContextFactory"
+		class="de.hybris.platform.searchservices.core.service.impl.DefaultSnContextFactory"
+		parent="abstractSnContextFactory">
+		<property name="snIndexConfigurationService" ref="snIndexConfigurationService" />
+		<property name="snIndexTypeService" ref="snIndexTypeService" />
+		<property name="snQualifierTypeFactory" ref="snQualifierTypeFactory" />
+	</bean>
+
+	<alias name="defaultSnSessionService" alias="snSessionService" />
+	<bean id="defaultSnSessionService"
+		class="de.hybris.platform.searchservices.core.service.impl.DefaultSnSessionService">
+		<property name="sessionService" ref="sessionService" />
+		<property name="userService" ref="userService" />
+		<property name="i18nService" ref="i18nService" />
+		<property name="catalogVersionService" ref="catalogVersionService" />
+		<property name="snCommonConfigurationService" ref="snCommonConfigurationService" />
+	</bean>
+
+	<bean id="snListenerDefinition"
+		class="de.hybris.platform.searchservices.core.service.impl.DefaultSnListenerDefinition" abstract="true">
+		<property name="priority" value="${searchservices.listeners.priority.default}" />
+	</bean>
+
+	<alias name="defaultSnListenerFactory" alias="snListenerFactory" />
+	<bean id="defaultSnListenerFactory"
+		class="de.hybris.platform.searchservices.core.service.impl.DefaultSnListenerFactory">
+		<property name="supportedTypes">
+			<util:list>
+				<value>de.hybris.platform.searchservices.indexer.service.SnIndexerListener</value>
+				<value>de.hybris.platform.searchservices.indexer.service.SnIndexerBatchListener</value>
+				<value>de.hybris.platform.searchservices.search.service.SnSearchListener</value>
+				<value>de.hybris.platform.searchservices.suggest.service.SnSuggestListener</value>
+			</util:list>
+		</property>
+	</bean>
+
+	<alias name="defaultSnIdentityProvider" alias="snIdentityProvider" />
+	<bean id="defaultSnIdentityProvider"
+		class="de.hybris.platform.searchservices.core.service.impl.DefaultSnIdentityProvider">
+		<property name="snExpressionEvaluator" ref="snExpressionEvaluator" />
+	</bean>
+
+	<alias name="defaultSnQualifierTypeFactory" alias="snQualifierTypeFactory" />
+	<bean id="defaultSnQualifierTypeFactory"
+		class="de.hybris.platform.searchservices.core.service.impl.DefaultSnQualifierTypeFactory" />
+
+	<bean id="snQualifierType" class="de.hybris.platform.searchservices.core.service.impl.DefaultSnQualifierType"
+		abstract="true" />
+
+	<alias name="defaultLanguageSnQualifierProvider" alias="languageSnQualifierProvider" />
+	<bean id="defaultLanguageSnQualifierProvider"
+		class="de.hybris.platform.searchservices.core.service.impl.LanguageSnQualifierProvider">
+		<property name="commonI18NService" ref="commonI18NService" />
+	</bean>
+
+	<bean id="languagesnQualifierType" parent="snQualifierType">
+		<property name="id" value="language" />
+		<property name="qualifierProvider" ref="languageSnQualifierProvider" />
+	</bean>
+
+	<alias name="defaultCurrencySnQualifierProvider" alias="currencySnQualifierProvider" />
+	<bean id="defaultCurrencySnQualifierProvider"
+		class="de.hybris.platform.searchservices.core.service.impl.CurrencySnQualifierProvider">
+		<property name="commonI18NService" ref="commonI18NService" />
+	</bean>
+
+	<bean id="currencysnQualifierType" parent="snQualifierType">
+		<property name="id" value="currency" />
+		<property name="qualifierProvider" ref="currencySnQualifierProvider" />
+	</bean>
+
+	<alias name="defaultSnExpressionEvaluator" alias="snExpressionEvaluator" />
+	<bean id="defaultSnExpressionEvaluator"
+		class="de.hybris.platform.searchservices.core.service.impl.DefaultSnExpressionEvaluator">
+		<property name="typeService" ref="typeService" />
+		<property name="modelService" ref="modelService" />
+	</bean>
+
+</beans>

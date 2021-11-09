@@ -1,0 +1,17 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+# -----------------------------------------------------------------------
+
+INSERT_UPDATE UserGroup; UID[unique = true]      ; locname[lang = en]         ; backOfficeLoginDisabled; groups(uid)[mode = append]
+                       ; adminsubgroup           ; Admin sub-group            ; false                  ; admingroup
+                       ; backofficeadminsubgroup ; Backoffice Admin sub-group ; false                  ; backofficeadmingroup
+
+INSERT_UPDATE BackofficeRole; UID[unique = true] ; groups(uid)[mode = append]; locName              ; name                 ; backOfficeLoginDisabled
+                            ; backofficeuserrole ; employeegroup             ; Backoffice User Role ; Backoffice User Role ; FALSE
+
+INSERT_UPDATE Employee; UID[unique = true]      ; groups(uid)[mode = append]
+                      ; directadmin             ; admingroup
+                      ; directbackofficeadmin   ; backofficeadmingroup
+                      ; indirectadmin           ; adminsubgroup
+                      ; indirectbackofficeadmin ; backofficeadminsubgroup
+                      ; roleadmin               ; backofficeuserrole,backofficeadministratorrole

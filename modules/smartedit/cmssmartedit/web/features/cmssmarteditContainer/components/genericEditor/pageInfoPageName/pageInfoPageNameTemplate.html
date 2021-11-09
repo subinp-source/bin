@@ -1,0 +1,16 @@
+<div class="se-page-info__name">
+    <homepage-icon
+        class="homepage-icon__page-list"
+        data-cms-page="$ctrl.cmsPage"
+        data-uri-context="$ctrl.uriContext"
+    ></homepage-icon>
+    <input
+        type="text"
+        id="{{$ctrl.field.qualifier}}-homepage"
+        class="se-field--homepage fd-form-control"
+        placeholder="{{field.tooltip| translate}}"
+        name="{{$ctrl.field.qualifier}}"
+        data-ng-disabled="$ctrl.disabled"
+        data-ng-model="$ctrl.model[$ctrl.qualifier]"
+    />
+</div>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<action-definition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   id="com.hybris.backoffice.widgets.actions.sync"
+                   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/action-definition.xsd">
+    <sockets>
+        <output id="currentObjects" type="java.util.List"/>
+    </sockets>
+
+    <name>Synchronize</name>
+    <description>Action launching synchronization popup.</description>
+    <author>hybris</author>
+    <version>1.0</version>
+
+    <iconUri>icons/icon_action_sync_default.png</iconUri>
+    <iconHoverUri>icons/icon_action_sync_hover.png</iconHoverUri>
+    <iconDisabledUri>icons/icon_action_sync_disabled.png</iconDisabledUri>
+    <actionClassName>com.hybris.backoffice.widgets.actions.sync.SyncAction</actionClassName>
+</action-definition>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="eclipsebin/notused"/>
+
+				
+				
+	<classpathentry exported="true" kind="src" path="/xyformsservices" />
+	<classpathentry exported="true" kind="src" path="/commercefacades" />
+	<classpathentry exported="true" kind="lib" path="lib/jdom2-2.0.6.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/saxon-9.1.0.8.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/urlrewritefilter-4.0.4.jar" />
+	<classpathentry exported="true" kind="lib" path="resources" />
+	<classpathentry exported="true" output="eclipsebin/classes" kind="src" path="src" />
+	<classpathentry exported="true" output="eclipsebin/classes" kind="src" path="testsrc" />
+	<classpathentry exported="true" output="eclipsebin/classes" kind="src" path="gensrc" />
+	<classpathentry exported="false" kind="src" path="/platform" />
+				
+</classpath>
+				

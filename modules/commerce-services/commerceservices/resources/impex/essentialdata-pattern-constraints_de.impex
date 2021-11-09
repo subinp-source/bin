@@ -1,0 +1,13 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+#
+# Import category code and product code pattern constraints
+#
+# Language
+$lang = de
+
+# Category code and product code pattern constraints
+UPDATE PatternConstraint; id[unique = true, allownull = true]; message[$lang]
+                        ; CategoryCodePattern                ; Schrägstrich, Backslash, codierter Schrägstrich (%2F) und codierter Backslash (%5C) sind nicht zulässig
+                        ; ProductCodePattern                 ; Schrägstrich, Backslash, codierter Schrägstrich (%2F) und codierter Backslash (%5C) sind nicht zulässig

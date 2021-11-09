@@ -1,0 +1,1103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<config xmlns="http://www.hybris.com/cockpit/config"
+	xmlns:explorer-tree="http://www.hybris.com/cockpitng/config/explorertree"
+	xmlns:y="http://www.hybris.com/cockpit/config/hybris"
+	xmlns:simple-search="http://www.hybris.com/cockpitng/config/simplesearch"
+	xmlns:list-view="http://www.hybris.com/cockpitng/component/listView"
+	xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea"
+	xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config"
+	xmlns:na="http://www.hybris.com/cockpitng/config/notifications">
+
+	<!-- Explorer Tree configuration -->
+	<context merge-by="module" parent="auto" component="explorer-tree">
+		<explorer-tree:explorer-tree>
+			<explorer-tree:navigation-node id="hmc_treenode_system" merge-mode="append">
+				<explorer-tree:navigation-node id="hmc.solrfacetsearch">
+					<explorer-tree:type-node code="AbstractSnSearchProviderConfiguration"
+						id="hmc_type_tree_snsearchprovider" />
+					<explorer-tree:type-node code="SnIndexConfiguration"
+						id="hmc_type_tree_snindexconfiguration" />
+					<explorer-tree:type-node code="SnIndexType" id="hmc_type_tree_snindextype" />
+					<explorer-tree:type-node code="SnSynonymDictionary" id="hmc_type_tree_snsynonymdictionary" />
+				</explorer-tree:navigation-node>
+			</explorer-tree:navigation-node>
+		</explorer-tree:explorer-tree>
+	</context>
+
+	<context type="AbstractSnSearchProviderConfiguration">
+		<context merge-by="type" parent="GenericItem" component="base">
+			<y:base>
+				<y:labels>
+					<y:label>(name ?: '') + ' [' + (id ?: '') + ']'</y:label>
+				</y:labels>
+			</y:base>
+		</context>
+
+		<context merge-by="type" parent="GenericItem" component="simple-search">
+			<simple-search:simple-search>
+				<simple-search:field name="id" />
+				<simple-search:field name="name" />
+			</simple-search:simple-search>
+		</context>
+
+		<context merge-by="type" parent="GenericItem" component="listview">
+			<list-view:list-view refresh-after-object-creation="true">
+				<list-view:column qualifier="id" />
+				<list-view:column qualifier="name" />
+			</list-view:list-view>
+		</context>
+
+		<context merge-by="type" parent="GenericItem" component="editor-area">
+			<editorArea:editorArea>
+				<editorArea:essentials>
+					<editorArea:essentialSection name="hmc.essential">
+						<editorArea:attribute qualifier="id" />
+						<editorArea:attribute qualifier="name" />
+					</editorArea:essentialSection>
+				</editorArea:essentials>
+				<editorArea:tab name="tab.configuration.snsearchproviderconfiguration.general" />
+			</editorArea:editorArea>
+		</context>
+
+		<context component="create-wizard">
+			<wz:flow id="snsearchproviderconfiguration-create-wizard" title="create.title(ctx.TYPE_CODE)">
+				<wz:prepare id="prepare">
+					<wz:initialize property="newItem" type="ctx.TYPE_CODE" />
+				</wz:prepare>
+				<wz:step id="step1" label="create.searchproviderconfiguration.essential.label"
+					sublabel="create.searchproviderconfiguration.essential.sublabel">
+					<wz:content id="step1.content">
+						<wz:property-list root="newItem">
+							<wz:property qualifier="id" />
+							<wz:property qualifier="name" />
+						</wz:property-list>
+					</wz:content>
+					<wz:navigation id="step1.navigation">
+						<wz:cancel />
+						<wz:done visible="newItem.id != null">
+							<wz:save property="newItem" />
+						</wz:done>
+					</wz:navigation>
+				</wz:step>
+			</wz:flow>
+		</context>
+	</context>
+
+	<context type="SnIndexConfiguration">
+		<context merge-by="type" parent="GenericItem" component="base">
+			<y:base>
+				<y:labels>
+					<y:label>(name ?: '') + ' [' + (id ?: '') + ']'</y:label>
+				</y:labels>
+			</y:base>
+		</context>
+
+		<context merge-by="type" parent="GenericItem" component="simple-search">
+			<simple-search:simple-search>
+				<simple-search:field name="id" />
+				<simple-search:field name="name" />
+			</simple-search:simple-search>
+		</context>
+
+		<context merge-by="type" parent="GenericItem" component="listview">
+			<list-view:list-view refresh-after-object-creation="true">
+				<list-view:column qualifier="id" />
+				<list-view:column qualifier="name" />
+				<list-view:column qualifier="searchProviderConfiguration" />
+			</list-view:list-view>
+		</context>
+
+		<context merge-by="type" parent="GenericItem" component="editor-area">
+			<editorArea:editorArea>
+				<editorArea:essentials>
+					<editorArea:essentialSection name="hmc.essential">
+						<editorArea:attribute qualifier="id" />
+						<editorArea:attribute qualifier="name" />
+					</editorArea:essentialSection>
+				</editorArea:essentials>
+				<editorArea:tab name="tab.configuration.snindexconfiguration.general">
+					<editorArea:section name="sec.configuration.snindexconfiguration.general.searchandindexer">
+						<editorArea:attribute qualifier="searchProviderConfiguration" />
+					</editorArea:section>
+					<editorArea:section name="sec.configuration.snindexconfiguration.general.synonymdictionaries">
+						<editorArea:attribute qualifier="synonymDictionaries" />
+					</editorArea:section>
+					<editorArea:section name="sec.configuration.snindexconfiguration.general.session">
+						<editorArea:attribute qualifier="user" />
+						<editorArea:attribute qualifier="languages" />
+						<editorArea:attribute qualifier="currencies" />
+					</editorArea:section>
+				</editorArea:tab>
+				<editorArea:tab name="tab.configuration.snindexconfiguration.indextypes">
+					<editorArea:section name="sec.configuration.snindexconfiguration.indextypes.indextypes">
+						<editorArea:attribute qualifier="indexTypes" />
+					</editorArea:section>
+				</editorArea:tab>
+			</editorArea:editorArea>
+		</context>
+
+		<context merge-by="type" parent="GenericItem" component="editorareaactions">
+			<y:actions xmlns:y="http://www.hybris.com/cockpit/config/hybris">
+				<y:group qualifier="common">
+					<y:action action-id="com.hybris.cockpitng.action.delete" property="currentObject" />
+					<y:action action-id="de.hybris.platform.searchbackoffice.actions.exportconfiguration"
+						property="currentObject" />
+				</y:group>
+			</y:actions>
+		</context>
+
+		<context component="create-wizard">
+			<wz:flow id="snindexconfiguration-create-wizard" title="create.title(ctx.TYPE_CODE)">
+				<wz:prepare id="prepare">
+					<wz:initialize property="newItem" type="ctx.TYPE_CODE" />
+				</wz:prepare>
+				<wz:step id="step1" label="create.snindexconfiguration.essential.label"
+					sublabel="create.snindexconfiguration.essential.sublabel">
+					<wz:content id="step1.content">
+						<wz:property-list root="newItem">
+							<wz:property qualifier="id" />
+							<wz:property qualifier="name" />
+							<wz:property qualifier="searchProviderConfiguration">
+								<wz:editor-parameter>
+									<wz:name>isNestedObjectCreationDisabled</wz:name>
+									<wz:value>false</wz:value>
+								</wz:editor-parameter>
+							</wz:property>
+						</wz:property-list>
+					</wz:content>
+					<wz:navigation id="step1.navigation">
+						<wz:cancel />
+						<wz:next visible="!#empty(newItem.id)" />
+						<wz:done visible="!#empty(newItem.id)">
+							<wz:save property="newItem" />
+						</wz:done>
+					</wz:navigation>
+				</wz:step>
+				<wz:step id="step2" label="create.snindexconfiguration.indextypes.label"
+					sublabel="create.snindexconfiguration.indextypes.sublabel">
+					<wz:content id="step2.content">
+						<wz:property-list root="newItem">
+							<wz:property qualifier="indexTypes" />
+						</wz:property-list>
+					</wz:content>
+					<wz:navigation id="step2.navigation">
+						<wz:cancel />
+						<wz:back />
+						<wz:next />
+						<wz:done visible="!#empty(newItem.id)">
+							<wz:save property="newItem" />
+						</wz:done>
+					</wz:navigation>
+				</wz:step>
+				<wz:step id="step3" label="create.snindexconfiguration.session.label"
+					sublabel="create.snindexconfiguration.session.sublabel">
+					<wz:content id="step3.content">
+						<wz:property-list root="newItem">
+							<wz:property qualifier="user" />
+							<wz:property qualifier="languages" />
+							<wz:property qualifier="currencies" />
+						</wz:property-list>
+					</wz:content>
+					<wz:navigation id="step2.navigation">
+						<wz:cancel />
+						<wz:back />
+						<wz:done visible="!#empty(newItem.id)">
+							<wz:save property="newItem" />
+						</wz:done>
+					</wz:navigation>
+				</wz:step>
+			</wz:flow>
+		</context>
+	</context>
+
+	<context type="SnIndexType">
+		<context merge-by="type" parent="GenericItem" component="base">
+			<y:base>
+				<y:labels>
+					<y:label>(name ?: '') + ' [' + (id ?: '') + ']'</y:label>
+				</y:labels>
+			</y:base>
+		</context>
+
+		<context merge-by="type" parent="GenericItem" component="simple-search">
+			<simple-search:simple-search>
+				<simple-search:field name="id" />
+				<simple-search:field name="name" />
+			</simple-search:simple-search>
+		</context>
+
+		<context merge-by="type" parent="GenericItem" component="listview">
+			<list-view:list-view refresh-after-object-creation="true">
+				<list-view:column qualifier="id" />
+				<list-view:column qualifier="name" />
+				<list-view:column qualifier="itemComposedType" />
+				<list-view:column qualifier="indexConfiguration" />
+			</list-view:list-view>
+		</context>
+
+		<context merge-by="type" parent="GenericItem" component="editor-area">
+			<editorArea:editorArea>
+				<editorArea:essentials>
+					<editorArea:essentialSection name="hmc.essential">
+						<editorArea:attribute qualifier="id" />
+						<editorArea:attribute qualifier="name" />
+						<editorArea:attribute qualifier="itemComposedType" />
+						<editorArea:attribute qualifier="indexConfiguration" />
+					</editorArea:essentialSection>
+				</editorArea:essentials>
+				<editorArea:tab name="tab.configuration.snindextype.general">
+					<editorArea:section name="sec.configuration.snindextype.general.providers">
+						<editorArea:attribute qualifier="identityProvider"
+							editor="de.hybris.platform.searchbackoffice.editors.configurabledropdown">
+							<editorArea:editor-parameter>
+								<editorArea:name>dataProvider</editorArea:name>
+								<editorArea:value>beansSnDataProvider</editorArea:value>
+							</editorArea:editor-parameter>
+							<editorArea:editor-parameter>
+								<editorArea:name>dataProviderParameter_types</editorArea:name>
+								<editorArea:value>de.hybris.platform.searchservices.core.service.SnIdentityProvider</editorArea:value>
+							</editorArea:editor-parameter>
+						</editorArea:attribute>
+						<editorArea:attribute qualifier="identityProviderParameters" />
+						<editorArea:attribute qualifier="defaultValueProvider"
+							editor="de.hybris.platform.searchbackoffice.editors.configurabledropdown">
+							<editorArea:editor-parameter>
+								<editorArea:name>dataProvider</editorArea:name>
+								<editorArea:value>beansSnDataProvider</editorArea:value>
+							</editorArea:editor-parameter>
+							<editorArea:editor-parameter>
+								<editorArea:name>dataProviderParameter_types</editorArea:name>
+								<editorArea:value>de.hybris.platform.searchservices.indexer.service.SnIndexerValueProvider
+								</editorArea:value>
+							</editorArea:editor-parameter>
+						</editorArea:attribute>
+						<editorArea:attribute qualifier="defaultValueProviderParameters" />
+					</editorArea:section>
+					<editorArea:section name="sec.configuration.snindextype.general.session">
+						<editorArea:attribute qualifier="catalogs" />
+						<editorArea:attribute qualifier="catalogVersions" />
+					</editorArea:section>
+				</editorArea:tab>
+				<editorArea:tab name="tab.configuration.snindextype.fields">
+					<editorArea:section name="sec.configuration.snindextype.fields.fields">
+						<editorArea:panel name="FieldsPanel" colspan="4">
+							<editorArea:attribute qualifier="fields"
+								editor="com.hybris.cockpitng.editor.extendedmultireferenceeditor">
+								<editorArea:editor-parameter>
+									<editorArea:name>listConfigContext</editorArea:name>
+									<editorArea:value>inLineEditorConfig</editorArea:value>
+								</editorArea:editor-parameter>
+								<editorArea:editor-parameter>
+									<editorArea:name>inlineEditing</editorArea:name>
+									<editorArea:value>true</editorArea:value>
+								</editorArea:editor-parameter>
+							</editorArea:attribute>
+						</editorArea:panel>
+					</editorArea:section>
+				</editorArea:tab>
+				<editorArea:tab name="tab.configuration.snindextype.cronjobs">
+					<editorArea:section name="sec.configuration.snindextype.cronjobs">
+						<editorArea:panel name="cronJobPanel" colspan="4">
+							<editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+								editor="com.hybris.cockpitng.editor.extendedmultireferenceeditor" qualifier="indexerCronJobs">
+								<editorArea:editor-parameter>
+									<editorArea:name>createOnly</editorArea:name>
+									<editorArea:value>true</editorArea:value>
+								</editorArea:editor-parameter>
+								<editorArea:editor-parameter>
+									<editorArea:name>listConfigContext</editorArea:name>
+									<editorArea:value>referenceListView</editorArea:value>
+								</editorArea:editor-parameter>
+								<editorArea:editor-parameter>
+									<editorArea:name>selectedItemsMaxSize</editorArea:name>
+									<editorArea:value>7</editorArea:value>
+								</editorArea:editor-parameter>
+							</editorArea:attribute>
+						</editorArea:panel>
+					</editorArea:section>
+				</editorArea:tab>
+			</editorArea:editorArea>
+		</context>
+
+		<context merge-by="type" parent="GenericItem" component="editorareaactions">
+			<y:actions xmlns:y="http://www.hybris.com/cockpit/config/hybris">
+				<y:group qualifier="common">
+					<y:action action-id="com.hybris.cockpitng.action.delete" property="currentObject" />
+					<y:action action-id="de.hybris.platform.searchbackoffice.actions.runindexer" property="currentObject" />
+					<y:action action-id="de.hybris.platform.searchbackoffice.actions.exportconfiguration"
+						property="currentObject" />
+				</y:group>
+			</y:actions>
+		</context>
+
+		<context component="create-wizard">
+			<wz:flow id="snindextype-create-wizard" title="create.title(ctx.TYPE_CODE)">
+				<wz:prepare id="prepare">
+					<wz:initialize property="newItem" type="ctx.TYPE_CODE" />
+				</wz:prepare>
+				<wz:step id="step1" label="create.snindextype.essential.label"
+					sublabel="create.snindextype.essential.sublabel">
+					<wz:content id="step1.content">
+						<wz:property-list root="newItem">
+							<wz:property qualifier="id" />
+							<wz:property qualifier="name" />
+							<wz:property qualifier="itemComposedType" />
+							<wz:property qualifier="indexConfiguration" />
+						</wz:property-list>
+					</wz:content>
+					<wz:navigation id="step1.navigation">
+						<wz:cancel />
+						<wz:next visible="!#empty(newItem.id) AND newItem.itemComposedType != null" />
+						<wz:done visible="!#empty(newItem.id) AND newItem.itemComposedType != null">
+							<wz:save property="newItem" />
+						</wz:done>
+					</wz:navigation>
+				</wz:step>
+				<wz:step id="step2" label="create.snindextype.providers.label"
+					sublabel="create.snindextype.providers.sublabel">
+					<wz:content id="step2.content">
+						<wz:property-list root="newItem">
+							<wz:property qualifier="identityProvider"
+								editor="de.hybris.platform.searchbackoffice.editors.configurabledropdown">
+								<wz:editor-parameter>
+									<wz:name>dataProvider</wz:name>
+									<wz:value>beansSnDataProvider</wz:value>
+								</wz:editor-parameter>
+								<wz:editor-parameter>
+									<wz:name>dataProviderParameter_types</wz:name>
+									<wz:value>de.hybris.platform.searchservices.core.service.SnIdentityProvider</wz:value>
+								</wz:editor-parameter>
+							</wz:property>
+							<wz:property qualifier="identityProviderParameters" />
+							<wz:property qualifier="defaultValueProvider"
+								editor="de.hybris.platform.searchbackoffice.editors.configurabledropdown">
+								<wz:editor-parameter>
+									<wz:name>dataProvider</wz:name>
+									<wz:value>beansSnDataProvider</wz:value>
+								</wz:editor-parameter>
+								<wz:editor-parameter>
+									<wz:name>dataProviderParameter_types</wz:name>
+									<wz:value>de.hybris.platform.searchservices.indexer.service.SnIndexerValueProvider</wz:value>
+								</wz:editor-parameter>
+							</wz:property>
+							<wz:property qualifier="defaultValueProviderParameters" />
+						</wz:property-list>
+					</wz:content>
+					<wz:navigation id="step2.navigation">
+						<wz:cancel />
+						<wz:back />
+						<wz:next visible="!#empty(newItem.id) AND newItem.itemComposedType != null" />
+						<wz:done visible="!#empty(newItem.id) AND newItem.itemComposedType != null">
+							<wz:save property="newItem" />
+						</wz:done>
+					</wz:navigation>
+				</wz:step>
+				<wz:step id="step3" label="create.snindextype.fields.label" sublabel="create.snindextype.fields.sublabel">
+					<wz:content id="step3.content">
+						<wz:property-list root="newItem">
+							<wz:property qualifier="fields">
+								<wz:editor-parameter>
+									<wz:name>isNestedObjectCreationDisabled</wz:name>
+									<wz:value>false</wz:value>
+								</wz:editor-parameter>
+							</wz:property>
+						</wz:property-list>
+					</wz:content>
+					<wz:navigation id="step3.navigation">
+						<wz:cancel />
+						<wz:back />
+						<wz:next visible="!#empty(newItem.id) AND newItem.itemComposedType != null" />
+						<wz:done visible="!#empty(newItem.id) AND newItem.itemComposedType != null">
+							<wz:save property="newItem" />
+						</wz:done>
+					</wz:navigation>
+				</wz:step>
+				<wz:step id="step4" label="create.snindextype.session.label" sublabel="create.snindextype.session.sublabel">
+					<wz:content id="step4.content">
+						<wz:property-list root="newItem">
+							<wz:property qualifier="catalogs" />
+							<wz:property qualifier="catalogVersions" />
+						</wz:property-list>
+					</wz:content>
+					<wz:navigation id="step4.navigation">
+						<wz:cancel />
+						<wz:back />
+						<wz:next visible="!#empty(newItem.id) AND newItem.itemComposedType != null" />
+						<wz:done visible="!#empty(newItem.id) AND newItem.itemComposedType != null">
+							<wz:save property="newItem" />
+						</wz:done>
+					</wz:navigation>
+				</wz:step>
+				<wz:step id="step5" label="create.snindextype.cronjobs.label"
+					sublabel="create.snindextype.cronjobs.sublabel">
+					<wz:content id="step5.content">
+						<wz:property-list root="newItem">
+							<wz:property qualifier="indexerCronJobs">
+								<wz:editor-parameter>
+									<wz:name>isNestedObjectCreationDisabled</wz:name>
+									<wz:value>false</wz:value>
+								</wz:editor-parameter>
+							</wz:property>
+						</wz:property-list>
+					</wz:content>
+					<wz:navigation id="step5.navigation">
+						<wz:cancel />
+						<wz:back />
+						<wz:done visible="!#empty(newItem.id) AND newItem.itemComposedType != null">
+							<wz:save property="newItem" />
+						</wz:done>
+					</wz:navigation>
+				</wz:step>
+			</wz:flow>
+		</context>
+	</context>
+
+	<context type="SnField">
+		<context merge-by="type" parent="GenericItem" component="base">
+			<y:base>
+				<y:labels>
+					<y:label>(name ?: '') + ' [' + (id ?: '') + ']'</y:label>
+				</y:labels>
+			</y:base>
+		</context>
+
+		<context merge-by="type" parent="GenericItem" component="simple-search">
+			<simple-search:simple-search>
+				<simple-search:field name="id" />
+				<simple-search:field name="name" />
+			</simple-search:simple-search>
+		</context>
+
+		<context merge-by="type" parent="GenericItem" component="listview">
+			<list-view:list-view refresh-after-object-creation="true">
+				<list-view:column qualifier="id" />
+				<list-view:column qualifier="name" />
+			</list-view:list-view>
+		</context>
+
+		<context merge-by="type" parent="GenericItem" component="inLineEditorConfig">
+			<list-view:list-view xmlns:list-view="http://www.hybris.com/cockpitng/component/listView">
+				<list-view:column qualifier="id" />
+				<list-view:column qualifier="name" />
+				<list-view:column qualifier="fieldType" />
+				<list-view:column qualifier="retrievable" />
+				<list-view:column qualifier="searchable" />
+				<list-view:column qualifier="localized" />
+				<list-view:column qualifier="qualifierTypeId" />
+				<list-view:column qualifier="multiValued" />
+				<list-view:column qualifier="useForSuggesting" />
+				<list-view:column qualifier="useForSpellchecking" />
+				<list-view:column qualifier="weight" />
+			</list-view:list-view>
+		</context>
+
+		<context merge-by="type" parent="GenericItem" component="editor-area">
+			<editorArea:editorArea>
+				<editorArea:essentials>
+					<editorArea:essentialSection name="hmc.essential">
+						<editorArea:attribute qualifier="id" />
+						<editorArea:attribute qualifier="name" />
+						<editorArea:attribute qualifier="fieldType" />
+					</editorArea:essentialSection>
+				</editorArea:essentials>
+				<editorArea:tab name="tab.configuration.snfield.general">
+					<editorArea:section name="sec.configuration.snfield.general.search">
+						<editorArea:attribute qualifier="retrievable" />
+						<editorArea:attribute qualifier="searchable" />
+						<editorArea:attribute qualifier="localized" />
+						<editorArea:attribute qualifier="qualifierTypeId"
+							editor="de.hybris.platform.searchbackoffice.editors.configurabledropdown">
+							<editorArea:editor-parameter>
+								<editorArea:name>dataProvider</editorArea:name>
+								<editorArea:value>qualifierTypesSnDataProvider</editorArea:value>
+							</editorArea:editor-parameter>
+						</editorArea:attribute>
+						<editorArea:attribute qualifier="multiValued" />
+						<editorArea:attribute qualifier="useForSpellchecking" />
+						<editorArea:attribute qualifier="useForSuggesting" />
+						<editorArea:attribute qualifier="weight" />
+					</editorArea:section>
+				</editorArea:tab>
+				<editorArea:tab name="tab.configuration.snfield.indexer">
+					<editorArea:section name="sec.configuration.snfield.indexer.providers">
+						<editorArea:attribute qualifier="valueProvider"
+							editor="de.hybris.platform.searchbackoffice.editors.configurabledropdown">
+							<editorArea:editor-parameter>
+								<editorArea:name>dataProvider</editorArea:name>
+								<editorArea:value>beansSnDataProvider</editorArea:value>
+							</editorArea:editor-parameter>
+							<editorArea:editor-parameter>
+								<editorArea:name>dataProviderParameter_types</editorArea:name>
+								<editorArea:value>de.hybris.platform.searchservices.indexer.service.SnIndexerValueProvider
+								</editorArea:value>
+							</editorArea:editor-parameter>
+						</editorArea:attribute>
+						<editorArea:attribute qualifier="valueProviderParameters" />
+					</editorArea:section>
+				</editorArea:tab>
+			</editorArea:editorArea>
+		</context>
+
+		<context component="create-wizard">
+			<wz:flow id="snfield-create-wizard" title="create.title(ctx.TYPE_CODE)">
+				<wz:prepare id="prepare">
+					<wz:initialize property="newItem" type="ctx.TYPE_CODE" />
+					<wz:assign property="newItem.indexType" value="ctx.parentObject" />
+				</wz:prepare>
+				<wz:step id="step1" label="create.snfield.essential.label" sublabel="create.snfield.essential.sublabel">
+					<wz:content id="step1.content">
+						<wz:property-list root="newItem">
+							<wz:property qualifier="id" />
+							<wz:property qualifier="name" />
+							<wz:property qualifier="fieldType" />
+						</wz:property-list>
+					</wz:content>
+					<wz:navigation id="step1.navigation">
+						<wz:cancel />
+						<wz:next visible="!#empty(newItem.id) AND newItem.fieldType != null" />
+						<wz:done visible="!#empty(newItem.id) AND newItem.fieldType != null">
+							<wz:save property="newItem" />
+						</wz:done>
+					</wz:navigation>
+				</wz:step>
+				<wz:step id="step2" label="create.snfield.indexer.label" sublabel="create.snfield.indexer.sublabel">
+					<wz:content id="step2.content">
+						<wz:property-list root="newItem">
+							<wz:property qualifier="valueProvider"
+								editor="de.hybris.platform.searchbackoffice.editors.configurabledropdown">
+								<wz:editor-parameter>
+									<wz:name>dataProvider</wz:name>
+									<wz:value>beansSnDataProvider</wz:value>
+								</wz:editor-parameter>
+								<wz:editor-parameter>
+									<wz:name>dataProviderParameter_types</wz:name>
+									<wz:value>de.hybris.platform.searchservices.indexer.service.SnIndexerValueProvider</wz:value>
+								</wz:editor-parameter>
+							</wz:property>
+							<wz:property qualifier="valueProviderParameters" />
+						</wz:property-list>
+					</wz:content>
+					<wz:navigation id="step2.navigation">
+						<wz:cancel />
+						<wz:back />
+						<wz:next visible="!#empty(newItem.id) AND newItem.fieldType != null" />
+						<wz:done visible="!#empty(newItem.id) AND newItem.fieldType != null">
+							<wz:save property="newItem" />
+						</wz:done>
+					</wz:navigation>
+				</wz:step>
+				<wz:step id="step3" label="create.snfield.search.label" sublabel="create.snfield.search.sublabel">
+					<wz:content id="step3.content">
+						<wz:property-list root="newItem">
+							<wz:property qualifier="retrievable" />
+							<wz:property qualifier="searchable" />
+							<wz:property qualifier="localized" />
+							<wz:property qualifier="qualifierTypeId"
+								editor="de.hybris.platform.searchbackoffice.editors.configurabledropdown">
+								<wz:editor-parameter>
+									<wz:name>dataProvider</wz:name>
+									<wz:value>qualifierTypesSnDataProvider</wz:value>
+								</wz:editor-parameter>
+							</wz:property>
+							<wz:property qualifier="multiValued" />
+							<wz:property qualifier="useForSuggesting" />
+							<wz:property qualifier="useForSpellchecking" />
+							<wz:property qualifier="weight" />
+						</wz:property-list>
+					</wz:content>
+					<wz:navigation id="step3.navigation">
+						<wz:cancel />
+						<wz:back />
+						<wz:done visible="!#empty(newItem.id) AND newItem.fieldType != null">
+							<wz:save property="newItem" />
+						</wz:done>
+					</wz:navigation>
+				</wz:step>
+			</wz:flow>
+		</context>
+	</context>
+
+	<context type="SnSynonymDictionary">
+		<context merge-by="type" parent="GenericItem" component="base">
+			<y:base>
+				<y:labels>
+					<y:label>(name ?: '') + ' [' + (id ?: '') + ']'</y:label>
+				</y:labels>
+			</y:base>
+		</context>
+
+		<context merge-by="type" parent="GenericItem" component="simple-search">
+			<simple-search:simple-search>
+				<simple-search:field name="id" />
+				<simple-search:field name="name" />
+				<simple-search:field name="languages" />
+			</simple-search:simple-search>
+		</context>
+
+		<context merge-by="type" parent="GenericItem" component="listview">
+			<list-view:list-view refresh-after-object-creation="true">
+				<list-view:column qualifier="id" />
+				<list-view:column qualifier="name" />
+				<list-view:column qualifier="languages" />
+			</list-view:list-view>
+		</context>
+
+		<context merge-by="type" parent="GenericItem" component="editor-area">
+			<editorArea:editorArea>
+				<editorArea:essentials>
+					<editorArea:essentialSection name="hmc.essential">
+						<editorArea:attribute qualifier="id" />
+						<editorArea:attribute qualifier="name" />
+						<editorArea:attribute qualifier="languages" />
+					</editorArea:essentialSection>
+				</editorArea:essentials>
+				<editorArea:tab name="tab.configuration.snsynonymdictionary.general">
+					<editorArea:section name="sec.configuration.snsynonymdictionary.general.entries">
+						<editorArea:panel name="EntriesPanel" colspan="4">
+							<editorArea:attribute qualifier="entries"
+								editor="com.hybris.cockpitng.editor.extendedmultireferenceeditor">
+								<editorArea:editor-parameter>
+									<editorArea:name>listConfigContext</editorArea:name>
+									<editorArea:value>inLineEditorConfig</editorArea:value>
+								</editorArea:editor-parameter>
+								<editorArea:editor-parameter>
+									<editorArea:name>inlineEditing</editorArea:name>
+									<editorArea:value>true</editorArea:value>
+								</editorArea:editor-parameter>
+							</editorArea:attribute>
+						</editorArea:panel>
+					</editorArea:section>
+				</editorArea:tab>
+
+			</editorArea:editorArea>
+		</context>
+
+		<context component="create-wizard">
+			<wz:flow id="snindextype-create-wizard" title="create.title(ctx.TYPE_CODE)">
+				<wz:prepare id="prepare">
+					<wz:initialize property="newItem" type="ctx.TYPE_CODE" />
+				</wz:prepare>
+				<wz:step id="step1" label="create.snsynonymdictionary.essential.label"
+					sublabel="create.snsynonymdictionary.essential.sublabel">
+					<wz:content id="step1.content">
+						<wz:property-list root="newItem">
+							<wz:property qualifier="id" />
+							<wz:property qualifier="name" />
+							<wz:property qualifier="languages" />
+						</wz:property-list>
+					</wz:content>
+					<wz:navigation id="step1.navigation">
+						<wz:cancel />
+						<wz:next visible="!#empty(newItem.id) AND newItem.name != null" />
+						<wz:done visible="!#empty(newItem.id) AND newItem.name != null">
+							<wz:save property="newItem" />
+						</wz:done>
+					</wz:navigation>
+				</wz:step>
+				<wz:step id="step2" label="create.snsynonymdictionary.entries.label"
+					sublabel="create.snsynonymdictionary.entries.sublabel">
+					<wz:content id="step2.content">
+						<wz:property-list root="newItem">
+							<wz:property qualifier="entries">
+								<wz:editor-parameter>
+									<wz:name>isNestedObjectCreationDisabled</wz:name>
+									<wz:value>false</wz:value>
+								</wz:editor-parameter>
+							</wz:property>
+						</wz:property-list>
+					</wz:content>
+					<wz:navigation id="step2.navigation">
+						<wz:cancel />
+						<wz:back />
+						<wz:done visible="!#empty(newItem.id) AND newItem.name != null">
+							<wz:save property="newItem" />
+						</wz:done>
+					</wz:navigation>
+				</wz:step>
+			</wz:flow>
+		</context>
+
+	</context>
+
+
+	<context type="SnSynonymEntry">
+		<context merge-by="type" parent="GenericItem" component="base">
+			<y:base>
+				<y:labels>
+					<y:label>(id ?: '')</y:label>
+				</y:labels>
+			</y:base>
+		</context>
+
+		<context merge-by="type" parent="GenericItem" component="simple-search">
+			<simple-search:simple-search>
+				<simple-search:field name="id" />
+				<simple-search:field name="input" />
+				<simple-search:field name="synonyms" />
+			</simple-search:simple-search>
+		</context>
+
+		<context merge-by="type" parent="GenericItem" component="listview">
+			<list-view:list-view refresh-after-object-creation="true">
+				<list-view:column qualifier="id" />
+				<list-view:column qualifier="input" />
+				<list-view:column qualifier="synonyms" />
+			</list-view:list-view>
+		</context>
+
+		<context merge-by="type" parent="GenericItem" component="inLineEditorConfig">
+			<list-view:list-view xmlns:list-view="http://www.hybris.com/cockpitng/component/listView">
+				<list-view:column qualifier="id" />
+				<list-view:column qualifier="input" />
+				<list-view:column qualifier="synonyms" />
+			</list-view:list-view>
+		</context>
+
+		<context merge-by="type" parent="GenericItem" component="editor-area">
+			<editorArea:editorArea>
+				<editorArea:essentials>
+					<editorArea:essentialSection name="hmc.essential">
+						<editorArea:attribute qualifier="id" />
+					</editorArea:essentialSection>
+				</editorArea:essentials>
+				<editorArea:tab name="tab.configuration.snsynonymentry.general">
+					<editorArea:section name="sec.configuration.snsynonymentry.general.input.synonyms">
+						<editorArea:attribute qualifier="input" />
+						<editorArea:attribute qualifier="synonyms" />
+					</editorArea:section>
+				</editorArea:tab>
+			</editorArea:editorArea>
+		</context>
+
+		<context component="create-wizard">
+			<wz:flow id="snsynonymentry-create-wizard" title="create.title(ctx.TYPE_CODE)">
+				<wz:prepare id="prepare">
+					<wz:initialize property="newItem" type="ctx.TYPE_CODE" />
+					<wz:assign property="newItem.synonymDictionary" value="ctx.parentObject" />
+				</wz:prepare>
+				<wz:step id="step1" label="create.snsynonymentry.essential.label"
+					sublabel="create.snsynonymentry.essential.sublabel">
+					<wz:content id="step1.content">
+						<wz:property-list root="newItem">
+							<wz:property qualifier="id" />
+							<wz:property qualifier="input" />
+							<wz:property qualifier="synonyms" />
+						</wz:property-list>
+					</wz:content>
+					<wz:navigation id="step1.navigation">
+						<wz:cancel />
+						<wz:done visible="!#empty(newItem.id)">
+							<wz:save property="newItem" />
+						</wz:done>
+					</wz:navigation>
+				</wz:step>
+			</wz:flow>
+		</context>
+	</context>
+
+	<context type="FlexibleSearchSnIndexerItemSource">
+		<context merge-by="type" parent="AbstractSnIndexerItemSource" component="base">
+			<y:base>
+				<y:labels>
+					<y:label>query</y:label>
+				</y:labels>
+			</y:base>
+		</context>
+
+		<context merge-by="type" parent="AbstractSnIndexerItemSource" component="listview">
+			<list-view:list-view refresh-after-object-creation="true">
+				<list-view:column qualifier="query" />
+			</list-view:list-view>
+		</context>
+
+		<context merge-by="type" parent="AbstractSnIndexerItemSource" component="referenceListView">
+			<list-view:list-view xmlns:list-view="http://www.hybris.com/cockpitng/component/listView">
+				<list-view:column qualifier="query" />
+			</list-view:list-view>
+		</context>
+
+		<context merge-by="type" parent="AbstractSnIndexerItemSource" component="editor-area">
+			<editorArea:editorArea>
+				<editorArea:tab name="tab.configuration.snindexeritemsource.general">
+					<editorArea:section name="sec.configuration.snindexeritemsource.general.indexer">
+						<editorArea:attribute qualifier="query">
+							<editorArea:editor-parameter>
+								<editorArea:name>rows</editorArea:name>
+								<editorArea:value>10</editorArea:value>
+							</editorArea:editor-parameter>
+						</editorArea:attribute>
+					</editorArea:section>
+				</editorArea:tab>
+			</editorArea:editorArea>
+		</context>
+
+		<context component="create-wizard">
+			<wz:flow id="snindexeritemsource-create-wizard" title="create.title(ctx.TYPE_CODE)">
+				<wz:handler handlerBean="" handlerId="">
+					<wz:additionalParams />
+				</wz:handler>
+				<wz:prepare id="prepare">
+					<wz:initialize property="newItem" type="ctx.TYPE_CODE" />
+					<wz:assign property="newItem.indexType" value="ctx.parentObject" />
+				</wz:prepare>
+				<wz:step id="step1" label="create.snindexeritemsource.essential.label"
+					sublabel="create.snindexeritemsource.essential.sublabel">
+					<wz:content id="step1.content">
+						<wz:property-list root="newItem">
+							<wz:property qualifier="query">
+								<wz:editor-parameter>
+									<wz:name>rows</wz:name>
+									<wz:value>10</wz:value>
+								</wz:editor-parameter>
+							</wz:property>
+						</wz:property-list>
+					</wz:content>
+					<wz:navigation id="step1.navigation">
+						<wz:cancel />
+						<wz:done visible="!#empty(newItem.query)">
+							<wz:save property="newItem" />
+						</wz:done>
+					</wz:navigation>
+				</wz:step>
+			</wz:flow>
+		</context>
+	</context>
+
+	<context type="SnIndexerItemSourceOperation">
+		<context merge-by="type" parent="GenericItem" component="base">
+			<y:base>
+				<y:labels>
+					<y:label>@labelService.getObjectLabel(documentOperationType) + ' - ' +
+						@labelService.getObjectLabel(indexerItemSource)
+					</y:label>
+				</y:labels>
+			</y:base>
+		</context>
+
+		<context merge-by="type" parent="AbstractSnIndexerItemSourceOperation" component="listview">
+			<list-view:list-view refresh-after-object-creation="true">
+				<list-view:column qualifier="documentOperationType" />
+				<list-view:column qualifier="indexerItemSource" />
+			</list-view:list-view>
+		</context>
+
+		<context merge-by="type" parent="AbstractSnIndexerItemSourceOperation" component="referenceListView">
+			<list-view:list-view xmlns:list-view="http://www.hybris.com/cockpitng/component/listView">
+				<list-view:column qualifier="documentOperationType" />
+				<list-view:column qualifier="indexerItemSource" />
+			</list-view:list-view>
+		</context>
+
+		<context merge-by="type" parent="GenericItem" component="editor-area">
+			<editorArea:editorArea>
+				<editorArea:tab name="tab.configuration.snindexeritemsourceoperation.general">
+					<editorArea:section name="sec.configuration.snindexeritemsourceoperation.general.indexer">
+						<editorArea:attribute qualifier="documentOperationType" />
+						<editorArea:attribute qualifier="indexerItemSource" />
+					</editorArea:section>
+				</editorArea:tab>
+			</editorArea:editorArea>
+		</context>
+
+		<context component="create-wizard">
+			<wz:flow id="snindexercronjob-create-wizard" title="create.title(ctx.TYPE_CODE)">
+				<wz:handler handlerBean="" handlerId="">
+					<wz:additionalParams />
+				</wz:handler>
+				<wz:prepare id="prepare">
+					<wz:initialize property="newItem" type="ctx.TYPE_CODE" />
+					<wz:assign property="newItem.indexType" value="ctx.parentObject" />
+				</wz:prepare>
+				<wz:step id="step1" label="create.snindexeritemsourceoperation.essential.label"
+					sublabel="create.snindexeritemsourceoperation.essential.sublabel">
+					<wz:content id="step1.content">
+						<wz:property-list root="newItem">
+							<wz:property qualifier="documentOperationType" />
+							<wz:property qualifier="indexerItemSource">
+								<wz:editor-parameter>
+									<wz:name>isNestedObjectCreationDisabled</wz:name>
+									<wz:value>false</wz:value>
+								</wz:editor-parameter>
+							</wz:property>
+						</wz:property-list>
+					</wz:content>
+					<wz:navigation id="step1.navigation">
+						<wz:cancel />
+						<wz:done visible="newItem.documentOperationType != null AND newItem.indexerItemSource != null">
+							<wz:save property="newItem" />
+						</wz:done>
+					</wz:navigation>
+				</wz:step>
+			</wz:flow>
+		</context>
+	</context>
+
+	<context type="AbstractSnIndexerCronJob">
+		<context merge-by="type" parent="CronJob" component="base">
+			<y:base>
+				<y:labels>
+					<y:label>code</y:label>
+				</y:labels>
+			</y:base>
+		</context>
+
+		<context merge-by="type" parent="CronJob" component="referenceListView">
+			<list-view:list-view xmlns:list-view="http://www.hybris.com/cockpitng/component/listView">
+				<list-view:column qualifier="code" />
+				<list-view:column qualifier="status" />
+				<list-view:column qualifier="result" />
+				<list-view:column qualifier="timeTable" />
+			</list-view:list-view>
+		</context>
+	</context>
+
+	<context type="FullSnIndexerCronJob">
+		<context merge-by="type" parent="AbstractSnIndexerCronJob" component="editor-area">
+			<editorArea:editorArea>
+				<editorArea:tab name="tab.cronjob.snindexer">
+					<editorArea:section name="sec.cronjob.snindexer">
+						<editorArea:attribute qualifier="indexType" />
+						<editorArea:attribute qualifier="indexerItemSource" />
+					</editorArea:section>
+				</editorArea:tab>
+			</editorArea:editorArea>
+		</context>
+
+		<context component="create-wizard">
+			<wz:flow id="snindexercronjob-create-wizard" title="create.title(ctx.TYPE_CODE)">
+				<wz:prepare id="prepare">
+					<wz:initialize property="newItem" type="ctx.TYPE_CODE" />
+					<wz:assign property="newItem.indexType" value="ctx.parentObject" />
+				</wz:prepare>
+				<wz:step id="step1" label="create.cronjob.snindexer.essential.label"
+					sublabel="create.cronjob.snindexer.essential.sublabel">
+					<wz:content id="step1.content">
+						<wz:property-list root="newItem">
+							<wz:property qualifier="code" />
+							<wz:property qualifier="job" />
+							<wz:property qualifier="indexType" />
+							<wz:property qualifier="indexerItemSource">
+								<wz:editor-parameter>
+									<wz:name>isNestedObjectCreationDisabled</wz:name>
+									<wz:value>false</wz:value>
+								</wz:editor-parameter>
+							</wz:property>
+						</wz:property-list>
+					</wz:content>
+					<wz:navigation id="step1.navigation">
+						<wz:cancel />
+						<wz:done
+							visible="!#empty(newItem.code) AND newItem.indexType != null AND newItem.indexerItemSource != null">
+							<wz:save property="newItem" />
+						</wz:done>
+					</wz:navigation>
+				</wz:step>
+			</wz:flow>
+		</context>
+	</context>
+
+	<context type="IncrementalSnIndexerCronJob">
+		<context merge-by="type" parent="AbstractSnIndexerCronJob" component="editor-area">
+			<editorArea:editorArea>
+				<editorArea:tab name="tab.cronjob.snindexer">
+					<editorArea:section name="sec.cronjob.snindexer">
+						<editorArea:attribute qualifier="indexType" />
+						<editorArea:attribute qualifier="indexerItemSourceOperations" />
+					</editorArea:section>
+				</editorArea:tab>
+			</editorArea:editorArea>
+		</context>
+
+		<context component="create-wizard">
+			<wz:flow id="snincrementalindexercronjob-create-wizard" title="create.title(ctx.TYPE_CODE)">
+				<wz:prepare id="prepare">
+					<wz:initialize property="newItem" type="ctx.TYPE_CODE" />
+					<wz:assign property="newItem.indexType" value="ctx.parentObject" />
+				</wz:prepare>
+				<wz:step id="step1" label="create.cronjob.snindexer.essential.label"
+					sublabel="create.cronjob.snindexer.essential.sublabel">
+					<wz:content id="step1.content">
+						<wz:property-list root="newItem">
+							<wz:property qualifier="code" />
+							<wz:property qualifier="job" />
+							<wz:property qualifier="indexType" />
+							<wz:property qualifier="indexerItemSourceOperations">
+								<wz:editor-parameter>
+									<wz:name>isNestedObjectCreationDisabled</wz:name>
+									<wz:value>false</wz:value>
+								</wz:editor-parameter>
+							</wz:property>
+						</wz:property-list>
+					</wz:content>
+					<wz:navigation id="step1.navigation">
+						<wz:cancel />
+						<wz:done
+							visible="!#empty(newItem.code) AND newItem.indexType != null AND newItem.indexerItemSourceOperations != null">
+							<wz:save property="newItem" />
+						</wz:done>
+					</wz:navigation>
+				</wz:step>
+			</wz:flow>
+		</context>
+	</context>
+
+	<context type="CollectionPatternConstraint" >
+		<context merge-by="type" parent="AttributeConstraint" component="editor-area">
+			<editorArea:editorArea name="">
+				<editorArea:tab name="hmc.tab.constraint">
+					<editorArea:section name="hmc.tab.constraint.attributes">
+						<editorArea:attribute qualifier="flags"/>
+						<editorArea:attribute qualifier="regexp"/>
+					</editorArea:section>
+				</editorArea:tab>
+			</editorArea:editorArea>
+		</context>
+
+		<context merge-by="type" parent="AttributeConstraint" component="create-wizard">
+			<wz:flow id="AttributeConstraintWizard" title="create.title(ctx.TYPE_CODE)">
+				<wz:step id="step1" label="flow.allmanadatory">
+					<wz:content id="step1.content">
+						<wz:property-list root="newObject">
+							<wz:property qualifier="flags"/>
+							<wz:property qualifier="regexp"/>
+						</wz:property-list>
+					</wz:content>
+				</wz:step>
+			</wz:flow>
+		</context>
+	</context>
+
+
+	<context type="sn-run-indexer" component="create-wizard">
+		<wz:flow id="sn-run-indexer-wizard" title="snrunindexer.title">
+			<wz:step id="step1" label="snrunindexer.essential.label">
+				<wz:content id="step1.content">
+					<wz:custom-view id="step1.content.customView" lang="zul">
+						<wz:renderer spring-bean="snRunIndexerWizardStepOneRenderer" />
+					</wz:custom-view>
+				</wz:content>
+				<wz:navigation id="step1.navigation">
+					<wz:cancel />
+					<wz:custom visible="!#empty(snSelectedIndexerCronJobCode)"
+						label="com.hybris.cockpitng.widgets.configurableflow.snrunindexer.action.run"
+						handler="snRunIndexerWizardRunActionHandler" />
+				</wz:navigation>
+			</wz:step>
+		</wz:flow>
+	</context>
+
+	<context component="notification-area">
+		<na:notification-area>
+			<na:notifications eventType="SnExportConfiguration" level="SUCCESS">
+				<na:message>user.notification.snexportconfiguration.success</na:message>
+			</na:notifications>
+			<na:notifications eventType="SnExportConfiguration" level="FAILURE">
+				<na:message>user.notification.snexportconfiguration.failure</na:message>
+			</na:notifications>
+		</na:notification-area>
+	</context>
+
+</config>

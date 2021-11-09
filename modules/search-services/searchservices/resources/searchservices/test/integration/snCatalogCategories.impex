@@ -1,0 +1,19 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+$lang=en
+$catalogVersion=catalogVersion(catalog(id[default='hwcatalog']),version[default='Staged'])[unique=true,default='hwcatalog:Staged']
+
+INSERT_UPDATE Category ; code[unique=true] ; $catalogVersion[unique=true]
+                       ; cat10             ;
+                       ; cat11             ;
+                       ; cat12             ;
+                       ; cat20             ;                             
+                       ; cat21             ;                             
+                       ; cat22             ;                             
+
+INSERT_UPDATE CategoryCategoryRelation ; source(code,$catalogVersion)[unique=true] ; target(code,$catalogVersion)[unique=true]
+                                       ; cat10                                     ; cat11                                    
+                                       ; cat10                                     ; cat12                                                                       
+                                       ; cat20                                     ; cat21                                    
+                                       ; cat20                                     ; cat22                                    

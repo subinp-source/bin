@@ -1,0 +1,29 @@
+{
+    "include": ["**/*.ts", "./src/*.ts"],
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "lib": ["dom", "es5", "scripthost", "es2015", "es2015.iterable"],
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "allowJs": true,
+        "noUnusedParameters": false,
+        "strictNullChecks": true,
+        "forceConsistentCasingInFileNames": true,
+        "noEmitOnError": true,
+        "baseUrl": "../../../",
+        "typeRoots": ["node_modules/@types"],
+        "traceResolution": true,
+        "listEmittedFiles": true,
+        "skipLibCheck": true,
+        "pretty": true,
+        "declaration": false,
+        "experimentalDecorators": true,
+        "paths": {
+            "smarteditcontainer": ["smartedit-build/@types/smarteditcontainer"],
+            "smartedit": ["smartedit-build/@types/smartedit"]
+        }
+    }
+}

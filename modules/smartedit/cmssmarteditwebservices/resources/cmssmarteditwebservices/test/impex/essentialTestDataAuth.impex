@@ -1,0 +1,60 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+$defaultPassword=12341234
+$lang=en
+$languages=en,de
+
+INSERT_UPDATE Language;isocode[unique=true];active
+                      ;de;true
+                      ;en;true
+
+INSERT_UPDATE Employee;UID[unique=true];groups(uid)[mode=append];sessionLanguage(isocode);password[default=$defaultPassword];name
+;testadmin;admingroup,cmsmanagergroup;$lang;;Admin
+;cmsmanager;cmsmanagergroup;$lang;1234;CmsManager
+;cmseditor;cmseditorgroup,cmsmanagergroup;$lang; 1234 ; CmsEditor
+
+INSERT_UPDATE UserGroup;UID[unique=true];groups(uid)[mode=append];locname[lang=en]; readableLanguages(isocode); writeableLanguages(isocode)
+;basecmsmanagergroup;employeegroup;Base CMS Manager Group ; $languages ; $languages
+;cmsmanagergroup;employeegroup,basecmsmanagergroup;CmsManagerGroup ; ;
+;cmseditorgroup; employeegroup,basecmsmanagergroup ;CMS Editor Group; $languages ; $languages
+
+INSERT_UPDATE User;UID[unique=true];name;groups(uid);
+;cmsmanager;CmsManager;cmsmanagergroup;
+
+# Content catalogs
+INSERT_UPDATE ContentCatalog;id[unique=true];name[lang=$lang];defaultCatalog;
+;ID_APPLE;Apple's Content Catalog;true
+
+# Product catalogs
+INSERT_UPDATE Catalog;id[unique=true];name[lang=$lang];defaultCatalog;
+;ID_PHONES;Phone Product Catalog;true
+;ID_LAPTOPS;Laptop Product Catalog;false
+
+INSERT_UPDATE CatalogVersion; catalog(id)[unique=true]; version[unique=true];active;languages(isoCode);readPrincipals(uid);writePrincipals(uid)
+;ID_APPLE;staged;false;$languages;;cmsmanagergroup
+;ID_APPLE;online;true;$languages;cmsmanagergroup;cmsmanagergroup
+;ID_PHONES;staged1;false;$languages;;cmsmanagergroup
+;ID_PHONES;staged2;false;$languages;;cmsmanagergroup
+;ID_PHONES;online;true;$languages;cmsmanagergroup;
+;ID_LAPTOPS;staged1;false;$languages;;cmsmanagergroup
+;ID_LAPTOPS;staged2;false;$languages;;cmsmanagergroup
+;ID_LAPTOPS;online;true;$languages;cmsmanagergroup;
+
+INSERT_UPDATE OAuthClientDetails;clientId[unique=true];resourceIds;scope;authorizedGrantTypes;authorities;clientSecret;registeredRedirectUri
+;trusted_client;hybris;basic;authorization_code,refresh_token,password,client_credentials	;ROLE_ADMINGROUP,ROLE_CMSMANAGERGROUP;secret;http://localhost:9001/authorizationserver/oauth2_callback;
+
+
+$START_USERRIGHTS;;;;;;;;;
+Type;UID;MemberOfGroups;Password;Target;read;change;create;remove;change_perm
+UserGroup;cmsmanagergroup;;;;;;;;
+
+;;;;CatalogVersion;+;+;-;-;-;
+;;;;Type;+;-;-;-;-;
+;;;;Item;+;-;-;-;-;
+
+# cms2 items
+;;;;CMSItem;+;+;+;+;+;
+
+$END_USERRIGHTS;;;;;

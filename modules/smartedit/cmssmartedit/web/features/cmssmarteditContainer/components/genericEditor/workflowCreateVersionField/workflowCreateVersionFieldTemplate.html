@@ -1,0 +1,33 @@
+<div class="fd-form__set">
+    <div class="fd-form__item fd-form__item--check">
+        <input
+            type="checkbox"
+            name="createVersion"
+            data-ng-model="$ctrl.model.createVersion"
+            data-ng-change="$ctrl.onCreateVersionChange()"
+            class="fd-form__control"
+        />
+        <label
+            class="fd-form__label"
+            for="createVersion"
+            data-translate="se.cms.workflow.editor.create.version"
+        >
+        </label>
+    </div>
+    <div class="fd-form__item" data-ng-if="$ctrl.showVersionLabel()">
+        <label
+            class="fd-form__label"
+            for="versionLabel"
+            class="version-label__title"
+            data-translate="se.cms.workflow.editor.create.version.label"
+        >
+        </label>
+        <input
+            type="text"
+            class="fd-form__control"
+            name="versionLabel"
+            data-ng-class="{'has-error':$ctrl.field.hasErrors}"
+            data-ng-model="$ctrl.model.versionLabel"
+        />
+    </div>
+</div>

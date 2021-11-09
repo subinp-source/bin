@@ -1,0 +1,22 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# Content Slots
+UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV)
+;;CustomerRegistrationEmailTopSlot;EmailBannerSaleNowOnImage,CustomerRegistrationEmailBody
+;;DeliverySentEmailTopSlot;EmailBannerSaleNowOnImage,DeliverySentEmailBody
+;;ForgottenPasswordEmailTopSlot;EmailBannerSaleNowOnImage,ForgottenPasswordEmailBody
+;;NotPickedUpConsignmentCanceledEmailTopSlot;EmailBannerSaleNowOnImage,NotPickedUpConsignmentCanceledEmailBody
+;;OrderCancelledEmailTopSlot;EmailBannerSaleNowOnImage,OrderCancelledEmailBody
+;;OrderCollectionReminderEmailTopSlot;EmailBannerSaleNowOnImage,OrderCollectionReminderEmailBody
+;;OrderConfirmationEmailTopSlot;EmailBannerSaleNowOnImage,OrderConfirmationEmailBody
+;;OrderMoveToCsEmailTopSlot;EmailBannerSaleNowOnImage,OrderMoveToCsEmailBody
+;;OrderPartiallyCanceledEmailTopSlot;EmailBannerSaleNowOnImage,OrderPartiallyCanceledEmailBody
+;;OrderPartiallyRefundedEmailTopSlot;EmailBannerSaleNowOnImage,OrderPartiallyRefundedEmailBody
+;;OrderRefundEmailTopSlot;EmailBannerSaleNowOnImage,OrderRefundEmailBody
+;;QuoteBuyerCancellationEmailTopSlot;EmailBannerSaleNowOnImage,QuoteBuyerCancellationEmailBody
+;;QuoteBuyerSubmissionEmailTopSlot;EmailBannerSaleNowOnImage,QuoteBuyerSubmissionEmailBody
+;;QuoteExpiredEmailTopSlot;EmailBannerSaleNowOnImage,QuoteExpiredEmailBody
+;;QuoteToExpireSoonEmailTopSlot;EmailBannerSaleNowOnImage,QuoteToExpireSoonEmailBody
+;;ReadyForPickupEmailTopSlot;EmailBannerSaleNowOnImage,ReadyForPickupEmailBody
+;;EmailBottomSlot;EmailBannerFreeDeliveryImage

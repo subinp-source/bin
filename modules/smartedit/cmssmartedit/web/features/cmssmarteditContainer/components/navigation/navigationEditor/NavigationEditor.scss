@@ -1,0 +1,85 @@
+@import '~fiori-fundamentals/scss/_mixins.scss';
+
+.se-navigation-editor-wrapper {
+    min-height: 100vh;
+    padding: 95px 30px 30px 30px;
+    background-color: fd-color('background', 1);
+}
+
+.se-navigation-editor-header {
+    position: relative;
+    min-height: 100%;
+    background-color: fd-color('background', 2);
+    font-family: $font-sap;
+    margin: 0 -30px 20px -30px;
+    padding: 16px 30px;
+
+    &__title {
+        @include fd-type('4');
+        color: fd-color('text', 1);
+        margin: 0;
+        padding: 0;
+    }
+
+    &__sub-title {
+        @include fd-type();
+        color: fd-color('text', 3);
+        margin: 0;
+        padding: 5px 0 0 0;
+    }
+}
+
+.se-navigation-editor-tree {
+    &__header {
+        height: 55px;
+        width: 100%;
+        border-radius: 4px 4px 0 0;
+        background-color: fd-color('background', 2);
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 1rem;
+    }
+
+    &__name {
+        padding-left: 45px;
+
+        &.col-md-offset-1 {
+            margin-left: 0;
+        }
+    }
+
+    &__title {
+        padding-left: 60px;
+    }
+}
+
+.tablehead.se-navigation-editor-tree__head {
+    border-top: 1px solid fd-color('neutral', 2);
+    background-color: fd-color('neutral', 1);
+    @include fd-type();
+    font-family: $font-sap;
+    color: fd-color('text', 3);
+    height: 40px;
+    padding: 10px 0;
+}
+
+.modal-dialog,
+.fd-modal__body {
+    .se-navigation-editor-tree {
+        &__entry {
+            width: 155px;
+            padding-left: 55px;
+        }
+
+        &__name {
+            width: 200px;
+        }
+
+        &__head {
+            margin: 0 -20px 0 -20px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+    }
+}

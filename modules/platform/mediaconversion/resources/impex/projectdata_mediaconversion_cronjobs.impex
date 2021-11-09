@@ -1,0 +1,13 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+
+#
+# Sample Cronjobs
+#
+INSERT_UPDATE MediaConversionCronJob;code[unique=true];job(code);sessionLanguage(isocode);
+;MediaConversionCronjobSample;mediaConversionJob;en;
+
+INSERT_UPDATE ExtractMediaMetaDataCronJob;code[unique=true];job(code);sessionLanguage(isocode);
+;ExtractMediaMetaDataCronJobSample;extractMediaMetaDataJob;en;

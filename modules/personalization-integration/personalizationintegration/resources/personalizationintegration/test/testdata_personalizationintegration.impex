@@ -1,0 +1,75 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+# Users
+$defaultPassword = 12341234
+$regulargroup = regulargroup
+$customergroup = customergroup
+$contentCatalog = testCatalog
+$contentCV = catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]), CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+
+
+# Create Customer Group
+INSERT_UPDATE Usergroup; uid[unique = true]; groups(uid)[mode = append];
+                       ; $regulargroup     ; customergroup             ;
+
+INSERT_UPDATE Customer; uid[unique = true]   ; groups(uid)   ; password[default = $defaultPassword]; name
+                      ; customer1@hybris.com ; customergroup ;                                     ; Miljenko Calhoun
+                      ; customer2@hybris.com ; customergroup ;                                     ; Miljenko Calhoun
+                      ; customer3@hybris.com ; customergroup ;                                     ; John Doe
+                      ; customer4@hybris.com ; customergroup ;                                     ; Gordon Shumway
+
+INSERT_UPDATE CxSegment; code[unique = true]; providers           ; autoCreated[default = true]
+                       ; segment1           ; provider1,provider2 ;
+                       ; segment2           ; provider1           ; false
+                       ; segment3           ; provider2
+                       ; segment4           ;
+                       ; segment5           ; provider2,provider1
+                       ; segment6           ; provider2
+
+
+INSERT_UPDATE CxUserToSegment; segment(code)[unique = true]; user(uid)[unique = true]; affinity; provider[unique = true]
+                             ; segment1                    ; customer1@hybris.com    ; 1       ;
+                             ; segment1                    ; customer2@hybris.com    ; 1       ;
+                             ; segment2                    ; customer2@hybris.com    ; 1       ;
+                             ; segment3                    ; customer2@hybris.com    ; 1       ;
+                             ; segment1                    ; customer3@hybris.com    ; 1       ;
+                             ; segment2                    ; customer3@hybris.com    ; 1       ;
+                             ; segment1                    ; customer3@hybris.com    ; 1       ; DEFAULT
+                             ; segment2                    ; customer3@hybris.com    ; 1       ; DEFAULT
+                             ; segment1                    ; customer4@hybris.com    ; 1       ; DEFAULT
+                             ; segment2                    ; customer4@hybris.com    ; 1       ; DEFAULT
+                             ; segment3                    ; customer4@hybris.com    ; 1       ; DEFAULT
+                             ; segment1                    ; customer4@hybris.com    ; 1       ; ANOTHER
+                             ; segment2                    ; customer4@hybris.com    ; 1       ;
+
+INSERT_UPDATE CxCustomizationsGroup; code    ; $contentCV[unique = true]
+                                   ; default ;
+
+#Cx Customizations
+INSERT_UPDATE CxCustomization; code[unique = true]; name           ; $contentCV[unique = true]; group(code, $contentCV)[default = 'default']
+                             ; customization1     ; customization1 ;
+                             ; customization2     ; customization2 ;
+                             ; otherC             ; otherC         ;
+
+INSERT_UPDATE CxVariation; code[unique = true]; name       ; $contentCV[unique = true]; active[default = true]; customization(code, $contentCV);
+                         ; variation1         ; variation1 ;                          ;                       ; customization1                 ;
+                         ; variation2         ; variation2 ;                          ;                       ; customization2                 ;
+
+INSERT_UPDATE CxSegmentTrigger; code[unique = true]; $contentCV[unique = true]; variation(code, $contentCV)[unique = true]; segments(code); groupBy(code)[default = 'OR'];
+                              ; trigger1           ;                          ; variation1                                ; segment1      ;
+                              ; trigger2           ;                          ; variation2                                ; segment3      ;
+
+INSERT_UPDATE CxMapperScript; scriptType(code); active; code[unique = true]; version[unique = true]; content                                                                                                                                 ; group     ;
+                            ; GROOVY          ; true  ; testcxmapperscript ; 0                     ; "result = new de.hybris.platform.personalizationintegration.mapping.SegmentMappingData(); result.setCode('segment2'); return [result];" ; testGroup ;
+
+
+
+INSERT_UPDATE BaseStore; uid[unique = true]; catalogs(id)
+                       ; testStore         ; $contentCatalog ;
+                       ; testStore2		   ; $contentCatalog ;
+
+INSERT_UPDATE BaseSite; uid[unique = true]; stores(uid)
+                      ; testSite          ; testStore  ;
+                      ; testSite2		  ; testStore2 ;

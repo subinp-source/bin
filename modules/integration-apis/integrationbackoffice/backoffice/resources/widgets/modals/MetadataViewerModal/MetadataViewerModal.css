@@ -1,0 +1,85 @@
+.yw-integrationbackoffice-metadata-tabs {
+    padding-bottom: 10px;
+}
+
+.yw-integrationbackoffice-metadata-tabpanel {
+    border: none;
+}
+
+.yw-integrationbackoffice-metadata-textbox {
+    resize: none;
+    font-family: monospace;
+    white-space: pre;
+    width: 100%;
+    height: 450px;
+    overflow: auto;
+}
+
+.yw-integrationbackoffice-metadata-textbox-impex {
+    margin-bottom: 85px !important;
+}
+
+.yw-integrationbackoffice-metadata-json-tooltip-image {
+    cursor: pointer;
+    z-index: 100;
+    position: absolute;
+    left: 330px;
+}
+
+.yw-modal-integrationBackofficeMetadataViewerModal {
+    min-height: 740px;
+    min-width: 1000px;
+}
+
+.yw-integrationbackoffice-metadata-visualizer.z-networkchart {
+    height: 535px !important;
+}
+
+.yw-integrationbackoffice-metadata-tabs .z-tab:nth-child(4) {
+    padding-left: 25px !important;
+}
+
+.yw-integrationbackoffice-metadata-visualizer {
+    height: 550px;
+}
+
+.vis-tooltip {
+    border: 2px solid #d5eeff !important;
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-up {
+    background-image: url("images/up_arrow.png");
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-down {
+    background-image: url("images/down_arrow.png");
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-left {
+    background-image: url("images/left_arrow.png");
+
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-right {
+    background-image: url("images/right_arrow.png");
+
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-zoomIn {
+    background-image: url("images/plus.png");
+
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-zoomOut {
+    background-image: url("images/minus.png");
+
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-zoomExtends {
+    background-image: url("images/zoomextends.png");
+}
+
+
+div.vis-network div.vis-navigation div.vis-button:hover {
+    box-shadow: 1px 1px 8px rgb(4, 134, 224);
+}

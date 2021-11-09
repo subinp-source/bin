@@ -1,0 +1,72 @@
+[
+	{
+		"testId": 1,
+		"description": "'gt' query without expression",
+		"data": {
+			"type": "gt",
+			"value": 2
+		}
+	},
+	{
+		"testId": 2,
+		"description": "'gt' query with empty expression",
+		"data": {
+			"type": "gt",
+			"expression": "",
+			"value": 2
+		}
+	},
+	{
+		"testId": 3,
+		"description": "'gt' query with not allowed expression",
+		"data": {
+			"type": "gt",
+			"expression": "-$!#-",
+			"value": "2040-01-01T00:00:00.000+00:00"
+		}
+	},
+	{
+		"testId": 4,
+		"description": "'gt' query with not existing expression",
+		"data": {
+			"type": "gt",
+			"expression": "notExisting",
+			"value": "2040-01-01T00:00:00.000+00:00"
+		}
+	},
+	{
+		"testId": 5,
+		"description": "'gt' query with STRING expression",
+		"data": {
+			"type": "gt",
+			"expression": "field_string",
+			"value": 2
+		}
+	},
+	{
+		"testId": 6,
+		"description": "'gt' query with TEXT expression",
+		"data": {
+			"type": "gt",
+			"expression": "field_text",
+			"value": 2
+		}
+	},
+	{
+		"testId": 7,
+		"description": "'gt' query with BOOLEAN expression",
+		"data": {
+			"type": "gt",
+			"expression": "field_boolean",
+			"value": 2
+		}
+	},
+	{
+		"testId": 8,
+		"description": "'gt' query without value",
+		"data": {
+			"type": "gt",
+			"expression": "field_integer"
+		}
+	}
+]

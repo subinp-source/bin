@@ -1,0 +1,11 @@
+################################################################
+# Set up Outbound Sync configuration container
+# ##############################################################
+INSERT_UPDATE OutboundSyncStreamConfigurationContainer; id[unique = true]       ;
+                                                      ; outboundSyncDataStreams ;
+
+INSERT_UPDATE OutboundSyncJob; code[unique = true]  ; streamConfigurationContainer(id)
+                             ; odataOutboundSyncJob ; outboundSyncDataStreams
+
+INSERT_UPDATE OutboundSyncCronJob; code[unique = true] ; job(code)            ; sessionLanguage(isoCode)[default = en]
+                                 ; outboundSyncCronJob ; odataOutboundSyncJob ;

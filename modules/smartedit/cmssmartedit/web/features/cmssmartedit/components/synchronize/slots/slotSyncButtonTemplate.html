@@ -1,0 +1,48 @@
+<div class="se-slot-sync-button-template" data-ng-if="ctrl.ready">
+    <div
+        class="se-slot-ctx-menu__dropdown-toggle-wrapper se-slot-ctx-menu__divider"
+        data-uib-dropdown
+        data-dropdown-append-to="'#smarteditoverlay'"
+        data-auto-close="outsideClick"
+        data-is-open="ctrl.isPopupOpened"
+    >
+        <span
+            data-y-popover
+            class="se-slot-ctx-menu__popover-ancor"
+            data-trigger="'hover'"
+            data-template="ctrl.newPageIsNotSynchronizedTemplate"
+            data-ng-if="ctrl.newPageIsNotSynchronized"
+            data-placement="'bottom'"
+        >
+        </span>
+
+        <button
+            type="button"
+            data-uib-dropdown-toggle
+            class="se-slot-ctx-menu__dropdown-toggle"
+            data-ng-class="{'se-slot-ctx-menu__dropdown-toggle--open': ctrl.isPopupOpened, 
+                'se-slot-ctx-menu__dropdown-toggle--disabled': ctrl.newPageIsNotSynchronized }"
+            id="slot-sync-button-{{::ctrl.slotId}}"
+        >
+            <span class="sap-icon--synchronize se-slot-ctx-menu__dropdown-toggle-icon"></span>
+            <span
+                data-ng-if="!ctrl.isSlotInSync"
+                class="sap-icon--alert se-slot-sync__btn-status se-slot-ctx-menu__dropdown-toggle-add-on"
+            ></span>
+        </button>
+        <div class="se-slot__dropdown-menu dropdown-menu-right" data-uib-dropdown-menu role="menu">
+            <div class="se-toolbar-menu-content--wrapper">
+                <div
+                    class="se-slot-contextual-menu__header"
+                    data-translate="se.cms.synchronization.slot.header"
+                ></div>
+                <div class="se-slot-sync__body">
+                    <slot-synchronization-panel
+                        data-ng-if="ctrl.isPopupOpened"
+                        data-slot-id="ctrl.slotId"
+                    ></slot-synchronization-panel>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

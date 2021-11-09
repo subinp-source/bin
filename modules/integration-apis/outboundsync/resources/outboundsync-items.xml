@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+  ~ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+  -->
+<!--
+	ATTENTION: This is just an example file. You have to edit it according to your needs.
+-->
+
+<items 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			xsi:noNamespaceSchemaLocation="items.xsd">
+
+	<itemtypes>
+		<itemtype code="OutboundSyncStreamConfigurationContainer" extends="StreamConfigurationContainer" />
+
+		<itemtype code="OutboundSyncJob" extends="ServicelayerJob">
+			<attributes>
+				<attribute qualifier="springId" type="java.lang.String" redeclare="true">
+					<persistence type="property"/>
+					<modifiers read="true" write="true" search="true" initial="true" optional="false"/>
+					<defaultvalue>"outboundSyncCronJobPerformable"</defaultvalue>
+				</attribute>
+				<attribute qualifier="streamConfigurationContainer" type="OutboundSyncStreamConfigurationContainer">
+					<modifiers read="true" write="false" initial="true" optional="false" />
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+		</itemtype>
+
+		<itemtype code="OutboundSyncCronJob" extends="CronJob">
+			<attributes>
+				<attribute qualifier="job" type="OutboundSyncJob" redeclare="true">
+					<modifiers read="true" write="false" initial="true" search="true"/>
+				</attribute>
+			</attributes>
+		</itemtype>
+
+		<itemtype code="OutboundSyncRetry">
+			<deployment table="OutboundSyncRetry" typecode="8408" />
+			<attributes>
+				<attribute qualifier="itemPk" type="java.lang.Long">
+					<modifiers unique="true" optional="false" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="channel" type="OutboundChannelConfiguration">
+					<modifiers unique="true" optional="false" />
+					<description>Channel with the configuration including the Integration Object and the Destination for the synchronization</description>
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="syncAttempts" type="java.lang.Integer">
+					<description>
+						Number of attempts to synchronize, that will allow us to keep track of the max number of attempts
+						that we want to perform. This attempts number includes the original attempt as well as all subsequent retries.
+						For example, when first item synchronization attempt fails, a new retry entity will be created and the
+						{@code syncAttempts} are set to 1 although no retries have been attempted yet.
+					</description>
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="remainingSyncAttempts" type="java.lang.Integer">
+					<description>
+						Number of outbound synchronization attempts remaining before giving up synchronization of the corresponding item.
+						If 0 or negative, no more synchronization attempts will be made.
+					</description>
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="reachedMaxRetries" type="java.lang.Boolean">
+					<modifiers optional="false" />
+					<description>Indicates this retry record has reached the maximum number of retries. Use remainingSyncAttempts after deprecation.</description>
+					<defaultvalue>false</defaultvalue>
+					<persistence type="property" />
+					<model>
+						<getter name="reachedMaxRetries" deprecated="true" deprecatedSince="1905.08-CEP" default="true"/>
+						<setter name="reachedMaxRetries" deprecated="true" deprecatedSince="1905.08-CEP" default="true"/>
+					</model>
+				</attribute>
+			</attributes>
+			<indexes>
+				<index name="idx_outboundSyncRetryItemPkChannel" unique="true">
+					<key attribute="itemPk" />
+					<key attribute="channel" />
+				</index>
+			</indexes>
+		</itemtype>
+
+		<itemtype code="OutboundSyncStreamConfiguration" extends="StreamConfiguration">
+			<attributes>
+				<attribute qualifier="outboundChannelConfiguration" type="OutboundChannelConfiguration">
+					<modifiers optional="false" initial="true"/>
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+		</itemtype>
+
+		<itemtype code="OutboundChannelConfiguration">
+			<description>Relates an Integration Object to a destination</description>
+			<deployment table="OutboundChannelConf" typecode="8407"/>
+			<attributes>
+				<attribute qualifier="code" type="java.lang.String">
+					<description>The unique value that represents this outbound scenario</description>
+					<modifiers unique="true" optional="false" initial="true"/>
+					<persistence type="property"/>
+				</attribute>
+				<attribute qualifier="integrationObject" type="IntegrationObject">
+					<description>Integration Object to be sent for this outbound scenario</description>
+					<modifiers optional="false" initial="true" />
+					<persistence type="property"/>
+				</attribute>
+				<attribute qualifier="destination" type="ConsumedDestination">
+					<description>Destination where the Integration Object will be sent for this outbound scenario</description>
+					<modifiers optional="false" initial="true" />
+					<persistence type="property"/>
+				</attribute>
+				<attribute qualifier="autoGenerate" type="java.lang.Boolean" >
+					<description>
+						Identifies whether or not additional outboundsync configuration will automatically generate when this
+						{@code OutboundChannelConfiguration} is created.
+					</description>
+					<defaultvalue>false</defaultvalue>
+					<modifiers optional="false" initial="true"/>
+					<persistence type="property"/>
+				</attribute>
+			</attributes>
+			<indexes>
+				<index name="idx_outboundChannelConfigurationCode" unique="true">
+					<key attribute="code" />
+				</index>
+			</indexes>
+		</itemtype>
+	</itemtypes>
+</items>

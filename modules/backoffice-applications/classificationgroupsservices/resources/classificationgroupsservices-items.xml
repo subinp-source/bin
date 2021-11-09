@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<!--
+	ATTENTION: This is just an example file. You have to edit it according to your needs.
+-->
+
+<items 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			xsi:noNamespaceSchemaLocation="items.xsd">
+	<relations>
+		<relation code="ClassFeatureGroup2ClassFeatureGroupAssignmentRelation" localized="false"
+				  autocreate="true"
+				  generate="true">
+			<sourceElement type="ClassFeatureGroup" qualifier="classFeatureGroup" cardinality="one"/>
+			<targetElement type="ClassFeatureGroupAssignment" qualifier="classFeatureGroupAssignments"
+						   cardinality="many"
+						   collectiontype="list" ordered="true">
+			</targetElement>
+		</relation>
+		<relation code="ClassificationClass2ClassFeatureGroupRelation" localized="false" autocreate="true"
+				  generate="true">
+			<sourceElement type="ClassificationClass" qualifier="classificationClass" cardinality="one">
+				<modifiers unique="true" optional="false"/>
+			</sourceElement>
+			<targetElement type="ClassFeatureGroup" qualifier="classFeatureGroups"
+						   cardinality="many"
+						   collectiontype="list" ordered="true">
+				<modifiers partof="true"/>
+			</targetElement>
+		</relation>
+	</relations>
+	<itemtypes>
+		<itemtype code="ClassFeatureGroup" autocreate="true" generate="true">
+			<deployment table="ClassFeatureGroup" typecode="7510"/>
+			<attributes>
+				<attribute qualifier="code" type="java.lang.String">
+					<description>Code of ClassFeatureGroup</description>
+					<modifiers read="true" write="true" search="true" optional="false" unique="true"/>
+					<persistence type="property"/>
+				</attribute>
+				<attribute qualifier="name" type="localized:java.lang.String">
+					<description>Localized name of ClassFeatureGroup</description>
+					<modifiers read="true" write="true" search="true" optional="true"/>
+					<persistence type="property"/>
+				</attribute>
+				<attribute qualifier="index" type="java.lang.Integer">
+					<description>Index of group in ClassificationClass</description>
+					<modifiers read="true" write="false" search="true" optional="false"/>
+					<persistence type="dynamic" attributeHandler="classFeatureGroupIndexHandler"/>
+				</attribute>
+			</attributes>
+		</itemtype>
+
+		<itemtype code="ClassFeatureGroupAssignment" autocreate="true" generate="true">
+			<deployment table="FeatureGroupAssignment" typecode="7511"/>
+			<attributes>
+				<attribute qualifier="index" type="java.lang.Integer">
+					<description>Index of ClassFeatureGroupAssignment in ClassFeatureGroup</description>
+					<modifiers read="true" write="false" search="true" optional="true"/>
+					<persistence type="dynamic" attributeHandler="classFeatureGroupAssignmentIndexHandler"/>
+				</attribute>
+				<attribute qualifier="fullQualifier" type="java.lang.String">
+					<description>Full qualifier of ClassAttributeAssignment</description>
+					<modifiers read="true" write="true" search="true" optional="true"/>
+					<persistence type="dynamic" attributeHandler="classFeatureGroupAssignmentFullQualifierHandler"/>
+				</attribute>
+				<attribute qualifier="classAttributeAssignment" type="ClassAttributeAssignment">
+					<description>ClassAttributeAssignment which is wrapped by ClassFeatureGroupAssignment</description>
+					<modifiers read="true" write="true" search="true" optional="false" unique="true"/>
+					<persistence type="property"/>
+				</attribute>
+				<attribute qualifier="classificationClass" type="ClassificationClass">
+					<description>ClassificationClass of ClassFeatureGroupAssignment</description>
+					<modifiers read="true" write="true" search="true" optional="false" unique="true"/>
+					<persistence type="property"/>
+				</attribute>
+			</attributes>
+		</itemtype>
+	</itemtypes>
+</items>

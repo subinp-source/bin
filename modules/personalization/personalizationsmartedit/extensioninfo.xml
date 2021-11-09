@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+--><extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
+       
+    <extension abstractclassprefix="Generated" classprefix="Personalizationsmartedit" managername="PersonalizationsmarteditManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="personalizationsmartedit">
+               
+        <requires-extension name="npmancillary"/>
+               
+        <requires-extension name="smartedit"/>
+               
+        <requires-extension name="cmssmartedit"/>
+               
+        <requires-extension name="smarteditwebservices"/>
+        
+        <!-- those extensions can't be directly required by personalizationsmartedit because they can be deployed on other hybris cluster, but they are still required to exist and be accessible via http in order for this extension to work properly -->
+        
+        <!--        <requires-extension name="personalizationwebservices" /> -->
+        
+        <!--        <requires-extension name="personalizationcms" /> -->
+        
+        <!--        <requires-extension name="personalizationcmsweb" /> -->
+        
+        <!--        <requires-extension name="previewpersonalizationweb" /> -->
+              
+        <coremodule generated="true" manager="de.hybris.platform.personalizationsmartedit.jalo.PersonalizationsmarteditManager" packageroot="de.hybris.platform.personalizationsmartedit"/>
+               
+        <webmodule jspcompile="false" webroot="/personalizationsmartedit"/>
+               
+   
+    </extension>
+          
+
+</extensioninfo>

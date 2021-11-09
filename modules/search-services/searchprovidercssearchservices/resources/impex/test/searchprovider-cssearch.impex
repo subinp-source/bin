@@ -1,0 +1,34 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+# Import configuration properties into impex macros
+UPDATE GenericItem[processor=de.hybris.platform.searchservices.util.impex.ConfigPropertyImportProcessor] ; pk[unique=true]
+
+$oauthTokenUrl=$config-domainServices.oauth.token.url                                                               
+$oauthClientId=$config-domainServices.oauth.clientId                                                                
+$oauthClientSecret=$config-domainServices.oauth.clientSecret                                                        
+
+$searchServiceApiUrl=$config-domainServices.search.api.url                                                          
+$searchServiceApiSpecUrl=$config-domainServices.search.api.specUrl                                                  
+
+
+# API Registry                                                                                                
+
+INSERT_UPDATE DestinationTarget ; id[unique=true] ; destinationChannel(code)
+                                ; domain-services ;                         
+                                                         
+INSERT_UPDATE ConsumedOAuthCredential ; id[unique=true]      ; oAuthUrl       ; clientId       ; clientSecret      
+                                      ; domain-services-auth ; $oauthTokenUrl ; $oauthClientId ; $oauthClientSecret
+
+INSERT_UPDATE Endpoint ; id[unique=true] ; version[unique=true] ; name           ; description ; specUrl                  ; specData ; extensionName
+                       ; search-service  ; v1                   ; Search Service ;             ; $searchServiceApiSpecUrl ;          ;              
+
+INSERT_UPDATE ConsumedDestination ; id[unique=true] ; url                  ; additionalProperties(key, value)[map-delimiter=|] ; endpoint(id)   ; destinationTarget(id) ; active[default=true] ; credential(id)      
+                                  ; search-service  ; $searchServiceApiUrl ;                                                   ; search-service ; domain-services       ;                      ; domain-services-auth
+
+
+# Search Provider                 
+
+INSERT_UPDATE CSSearchSnSearchProviderConfiguration ; id[unique=true]      ; name                                                      ; consumedDestination(id)
+                                                    ; search-provider-test ; Search provider configuration for the search core service ; search-service

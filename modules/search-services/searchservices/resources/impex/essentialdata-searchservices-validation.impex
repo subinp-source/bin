@@ -1,0 +1,16 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+INSERT_UPDATE NotBlankConstraint ; id[unique=true,allownull=true]          ; active ; type(code)                            ; qualifier ; descriptor(enclosingType(code),qualifier) ; target                                                                             ; severity(code)
+                                 ; snSearchProviderConfigurationIdNotBlank ; true   ; AbstractSnSearchProviderConfiguration ; id        ; AbstractSnSearchProviderConfiguration:id  ; de.hybris.platform.searchservices.model.AbstractSnSearchProviderConfigurationModel ; ERROR         
+                                 ; snIndexConfigurationIdNotBlank          ; true   ; SnIndexConfiguration                  ; id        ; SnIndexConfiguration:id                   ; de.hybris.platform.searchservices.model.SnIndexConfigurationModel                  ; ERROR         
+                                 ; snIndexTypeIdNotBlank                   ; true   ; SnIndexType                           ; id        ; SnIndexType:id                            ; de.hybris.platform.searchservices.model.SnIndexTypeModel                           ; ERROR         
+                                 ; snFieldIdNotBlank                       ; true   ; SnField                               ; id        ; SnField:id                                ; de.hybris.platform.searchservices.model.SnFieldModel                               ; ERROR         
+                                 
+INSERT_UPDATE SnWeightConstraint ; id[unique=true,allownull=true] ; active ; type(code) ; qualifier ; descriptor(enclosingType(code),qualifier) ; target                                               ; severity(code)
+                                 ; snFieldWeight                  ; true   ; SnField    ; weight    ; SnField:weight                            ; de.hybris.platform.searchservices.model.SnFieldModel ; ERROR         
+
+INSERT_UPDATE SnCollectionPatternConstraint ; id[unique=true,allownull=true] ; active ; type(code)     ; qualifier ; descriptor(enclosingType(code),qualifier) ; target                                                      ; severity(code) ; message[lang=en]                                          ; regexp    ; flags(code)     
+                                            ; snSynonymEntryInputPattern     ; true   ; SnSynonymEntry ; input     ; SnSynonymEntry:input                      ; de.hybris.platform.searchservices.model.SnSynonymEntryModel ; ERROR          ; "{type} input is illegal. Forbidden characters (,=>)."    ; ^[^,=>]+$ ; CASE_INSENSITIVE
+                                            ; snSynonymEntrySynonymsPattern  ; true   ; SnSynonymEntry ; synonyms  ; SnSynonymEntry:synonyms                   ; de.hybris.platform.searchservices.model.SnSynonymEntryModel ; ERROR          ; "{type} synonyms is illegal. Forbidden characters (,=>)." ; ^[^,=>]+$ ; CASE_INSENSITIVE
+                                            

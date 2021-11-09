@@ -1,0 +1,2937 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
+
+    <!-- v2 DTOs ====================================================================================================== -->
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.voucher.VoucherWsDTO">
+        <description>Representation of a Voucher</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">Voucher</hint>
+        </hints>
+        <property name="code" type="String">
+            <description>The identifier of the Voucher. This is the first part of voucher code which holds first 3 letters, like: 123</description>
+        </property>
+        <property name="voucherCode" type="String">
+            <description>Voucher code, is the holder for keeping specific occasional voucher related to business usage. It can be generated and looks like: 123-H8BC-Y3D5-34AL</description>
+        </property>
+        <property name="name" type="String">
+            <description>Name of the voucher</description>
+        </property>
+        <property name="description" type="String">
+            <description>Description of the voucher</description>
+        </property>
+        <property name="value" type="Double">
+            <description>Value of the voucher. Example of such value is: 15.0d</description>
+        </property>
+        <property name="valueFormatted" type="String">
+            <description>Formatted value of the voucher</description>
+        </property>
+        <property name="valueString" type="String">
+            <description>The value of the voucher to display. Example: 15.0%</description>
+        </property>
+        <property name="freeShipping" type="Boolean">
+            <description>Specifies if the order this voucher is applied to is shipped for free (true) or not (false). Defaults to false.</description>
+        </property>
+        <property name="currency" type="de.hybris.platform.commercewebservicescommons.dto.storesession.CurrencyWsDTO">
+            <description>Currency of the voucher</description>
+        </property>
+        <property name="appliedValue" type="de.hybris.platform.commercewebservicescommons.dto.product.PriceWsDTO">
+            <description>Applied value when using this voucher</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.voucher.VoucherListWsDTO">
+        <description>Representation of a Voucher List</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">VoucherList</hint>
+        </hints>
+        <property name="vouchers"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.voucher.VoucherWsDTO>">
+            <description>List of vouchers</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.storesession.CurrencyWsDTO">
+        <description>Representation of a Currency</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">Currency</hint>
+        </hints>
+        <property name="isocode" type="String">
+            <description>Code of the currency in iso format</description>
+        </property>
+        <property name="name" type="String">
+            <description>Name of the currency</description>
+        </property>
+        <property name="active" type="Boolean">
+            <description>Boolean flag whether currency is active</description>
+        </property>
+        <property name="symbol" type="String">
+            <description>Symbol of the currency</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.storesession.CurrencyListWsDTO">
+        <description>Representation of a Currency List</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">CurrencyList</hint>
+        </hints>
+        <property name="currencies"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.storesession.CurrencyWsDTO>">
+            <description>List of currencies</description>
+        </property>
+    </bean>
+
+    <enum class="de.hybris.platform.commercewebservicescommons.dto.product.PriceWsDTOType">
+        <value>BUY</value>
+        <value>FROM</value>
+    </enum>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.product.PriceWsDTO">
+        <description>Representation of a Price</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">Price</hint>
+        </hints>
+        <property name="currencyIso" type="String">
+            <description>Currency iso format</description>
+        </property>
+        <property name="value" type="java.math.BigDecimal">
+            <description>Value of price in BigDecimal format</description>
+        </property>
+        <property name="priceType" type="de.hybris.platform.commercewebservicescommons.dto.product.PriceWsDTOType">
+            <description>Type of the price</description>
+        </property>
+        <property name="formattedValue" type="String">
+            <description>Value of price formatted</description>
+        </property>
+        <property name="minQuantity" type="Long">
+            <description>Minimum quantity of the price value</description>
+        </property>
+        <property name="maxQuantity" type="Long">
+            <description>Maximum quantity of the price value</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.product.PriceRangeWsDTO">
+        <description>Representation of a Price Range</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">PriceRange</hint>
+        </hints>
+        <property name="maxPrice" type="de.hybris.platform.commercewebservicescommons.dto.product.PriceWsDTO">
+            <description>Maximum value of the Price Range</description>
+        </property>
+        <property name="minPrice" type="de.hybris.platform.commercewebservicescommons.dto.product.PriceWsDTO">
+            <description>Minium value of the Price Range</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.product.PromotionWsDTO">
+        <description>Representation of a Promotion</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">Promotion</hint>
+        </hints>
+        <property name="code" type="String">
+            <description>Code of the promotion</description>
+        </property>
+        <property name="title" type="String">
+            <description>Promotion title</description>
+        </property>
+        <property name="promotionType" type="String">
+            <description>Type of the promotion</description>
+        </property>
+        <property name="startDate" type="java.util.Date">
+            <description>The initial date of the promotion</description>
+        </property>
+        <property name="endDate" type="java.util.Date">
+            <description>Last date of validity of the promotion</description>
+        </property>
+        <property name="description" type="String">
+            <description>Description of the promotion</description>
+        </property>
+        <property name="couldFireMessages" type="java.util.List&lt;String>">
+            <description>Message about promotion which is displayed when planning potential promotion. This field has higher priority over promotion description</description>
+        </property>
+        <property name="firedMessages" type="java.util.List&lt;String>">
+            <description>Message fired while the promotion is active. This is info how much you will get when applying the promotion</description>
+        </property>
+        <property name="productBanner" type="de.hybris.platform.commercewebservicescommons.dto.product.ImageWsDTO">
+            <description>Image banner of the promotion</description>
+        </property>
+        <property name="enabled" type="Boolean">
+            <description>Boolean flag if promotion is enabled</description>
+        </property>
+        <property name="priority" type="Integer">
+            <description>Priority index as numeric value of the promotion. Higher number means higher priority</description>
+        </property>
+        <property name="promotionGroup" type="String">
+            <description>Group of the promotion</description>
+        </property>
+        <property name="restrictions"
+                  type="java.util.Collection&lt;de.hybris.platform.commercewebservicescommons.dto.product.PromotionRestrictionWsDTO>">
+            <description>List of promotion restrictions</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.product.PromotionListWsDTO">
+        <description>Representation of a Promotion list</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">PromotionList</hint>
+        </hints>
+        <property name="promotions"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.product.PromotionWsDTO>">
+            <description>List of promotions</description>
+        </property>
+    </bean>
+
+    <enum class="de.hybris.platform.commercewebservicescommons.dto.product.ImageWsDTOType">
+        <value>PRIMARY</value>
+        <value>GALLERY</value>
+    </enum>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.product.ImageWsDTO">
+        <description>Representation of an Image</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">Image</hint>
+        </hints>
+        <property name="imageType" type="de.hybris.platform.commercewebservicescommons.dto.product.ImageWsDTOType">
+            <description>Type of the image, can be PRIMARY or GALLERY</description>
+        </property>
+        <property name="format" type="String">
+            <description>Format of the image, can be zoom, product, thumbnail, store, cartIcon, etc.</description>
+        </property>
+        <property name="url" type="String">
+            <description>URL address of the image</description>
+        </property>
+        <property name="altText" type="String">
+            <description>Tooltip content which is visible while image mouse hovering</description>
+        </property>
+        <property name="galleryIndex" type="Integer">
+            <description>Index of the image while displayed in gallery</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.product.PromotionRestrictionWsDTO">
+        <description>Representation of a Promotion Restriction</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">PromotionRestriction</hint>
+        </hints>
+        <property name="restrictionType" type="String">
+            <description>Type of the promotion restriction</description>
+        </property>
+        <property name="description" type="String">
+            <description>Description of the promotion restriction</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.catalog.AbstractCatalogItemWsDTO">
+        <description>Representation of an Abstract Catalog Item</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">AbstractCatalogItem</hint>
+        </hints>
+        <property name="id" type="String">
+            <description>Identifier of abstract catalog item</description>
+        </property>
+        <property name="lastModified" type="java.util.Date">
+            <description>Date of last modification</description>
+        </property>
+        <property name="name" type="String">
+            <description>Name of abstract catalog item</description>
+        </property>
+        <property name="url" type="String">
+            <description>Url address of abstract catalog item</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.catalog.CatalogWsDTO"
+          extends="de.hybris.platform.commercewebservicescommons.dto.catalog.AbstractCatalogItemWsDTO">
+        <description>Representation of an Catalog</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">Catalog</hint>
+        </hints>
+        <property name="catalogVersions"
+                  type="java.util.Collection&lt;de.hybris.platform.commercewebservicescommons.dto.catalog.CatalogVersionWsDTO>">
+            <description>List of versions of catalog</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.catalog.CatalogListWsDTO">
+        <description>Representation of a Catalog List</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">CatalogList</hint>
+        </hints>
+        <property name="catalogs"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.catalog.CatalogWsDTO>">
+            <description>List of catalog items</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.catalog.CatalogVersionWsDTO"
+          extends="de.hybris.platform.commercewebservicescommons.dto.catalog.AbstractCatalogItemWsDTO">
+        <description>Representation of a Catalog Version</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">CatalogVersion</hint>
+        </hints>
+        <property name="categories"
+                  type="java.util.Collection&lt;de.hybris.platform.commercewebservicescommons.dto.catalog.CategoryHierarchyWsDTO>">
+            <description>List of category hierarchies</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.catalog.CategoryHierarchyWsDTO"
+          extends="de.hybris.platform.commercewebservicescommons.dto.catalog.AbstractCatalogItemWsDTO">
+        <description>Representation of a Category Hierarchy</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">CategoryHierarchy</hint>
+        </hints>
+        <property name="subcategories"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.catalog.CategoryHierarchyWsDTO>">
+            <description>List of subcategory hierarchies</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.product.ProductWsDTO">
+        <description>Representation of a Product</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">Product</hint>
+        </hints>
+        <property name="code" type="String">
+            <description>Code of the product</description>
+        </property>
+        <property name="name" type="String">
+            <description>Name of the product</description>
+        </property>
+        <property name="url" type="String">
+            <description>Url address of the product</description>
+        </property>
+        <property name="description" type="String">
+            <description>Description of the product</description>
+        </property>
+        <property name="purchasable" type="Boolean">
+            <description>Flag defining if product is purchasable</description>
+        </property>
+        <property name="stock" type="de.hybris.platform.commercewebservicescommons.dto.product.StockWsDTO">
+            <description>Stock value of the product</description>
+        </property>
+        <property name="futureStocks"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.product.FutureStockWsDTO>">
+            <description>List of future stocks</description>
+        </property>
+        <property name="availableForPickup" type="java.lang.Boolean">
+            <description>Flag defining if product is available for pickup</description>
+        </property>
+        <property name="averageRating" type="Double">
+            <description>Rating number of average value</description>
+        </property>
+        <property name="numberOfReviews" type="Integer">
+            <description>Number of reviews associated with the product</description>
+        </property>
+        <property name="summary" type="String">
+            <description>Product summary</description>
+        </property>
+        <property name="manufacturer" type="String">
+            <description>Data of product manufacturer</description>
+        </property>
+        <property name="variantType" type="String">
+            <description>Variant type of the product</description>
+        </property>
+        <property name="price" type="de.hybris.platform.commercewebservicescommons.dto.product.PriceWsDTO">
+            <description>Price of the product</description>
+        </property>
+        <property name="baseProduct" type="String">
+            <description>Information about base product</description>
+        </property>
+        <property name="images"
+                  type="java.util.Collection&lt;de.hybris.platform.commercewebservicescommons.dto.product.ImageWsDTO>">
+            <description>List of images linked to product</description>
+        </property>
+        <property name="categories"
+                  type="java.util.Collection&lt;de.hybris.platform.commercewebservicescommons.dto.product.CategoryWsDTO>">
+            <description>List of categories product belongs to</description>
+        </property>
+        <property name="reviews"
+                  type="java.util.Collection&lt;de.hybris.platform.commercewebservicescommons.dto.product.ReviewWsDTO>">
+            <description>List of reviews associated with the product</description>
+        </property>
+        <property name="classifications"
+                  type="java.util.Collection&lt;de.hybris.platform.commercewebservicescommons.dto.product.ClassificationWsDTO>">
+            <description>List of classifications related to the product</description>
+        </property>
+        <property name="potentialPromotions"
+                  type="java.util.Collection&lt;de.hybris.platform.commercewebservicescommons.dto.product.PromotionWsDTO>">
+            <description>List of potential promotions related to the product</description>
+        </property>
+        <property name="variantOptions"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.product.VariantOptionWsDTO>">
+            <description>List of variant options related to the product</description>
+        </property>
+        <property name="baseOptions"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.product.BaseOptionWsDTO>">
+            <description>List of base options related to the product</description>
+        </property>
+        <property name="volumePricesFlag" type="Boolean">
+            <description>Flag stating if volume price should be displayed</description>
+        </property>
+        <property name="volumePrices"
+                  type="List&lt;de.hybris.platform.commercewebservicescommons.dto.product.PriceWsDTO>">
+            <description>List of volume prices</description>
+        </property>
+        <property name="productReferences"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.product.ProductReferenceWsDTO>">
+            <description>List of product references</description>
+        </property>
+        <property name="variantMatrix"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.product.VariantMatrixElementWsDTO>">
+            <description>List of variant matrixes associated with the product</description>
+        </property>
+        <property name="priceRange" type="de.hybris.platform.commercewebservicescommons.dto.product.PriceRangeWsDTO">
+            <description>Price range assigned to the product</description>
+        </property>
+        <property name="multidimensional" type="Boolean">
+            <description>Flag stating if product is multidimentional</description>
+        </property>
+        <property name="configuratorType" type="String">
+            <description>Configurator type related to the product</description>
+        </property>
+        <property name="configurable" type="Boolean">
+            <description>Flag stating if product is configurable</description>
+        </property>
+        <property name="tags"
+                  type="java.util.Set&lt;String>">
+            <description>Tags associated with the product</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.product.StockWsDTO">
+        <description>Representation of a Stock</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">Stock</hint>
+        </hints>
+        <property name="stockLevelStatus" type="String">
+            <description>Status of stock level</description>
+        </property>
+        <property name="stockLevel" type="Long">
+            <description>Stock level expressed as number</description>
+        </property>
+        <property name="isValueRounded" type="Boolean">
+            <description>Indicate whether Stock level value is rounded</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.product.FutureStockWsDTO">
+        <description>Representation of a Future Stock</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">FutureStock</hint>
+        </hints>
+        <property name="stock" type="de.hybris.platform.commercewebservicescommons.dto.product.StockWsDTO">
+            <description>Stock information of future stock</description>
+        </property>
+        <property name="date" type="java.util.Date">
+            <description>Date of future stock</description>
+        </property>
+        <property name="formattedDate" type="String">
+            <description>Date of future stock expressed in text value</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.product.CategoryWsDTO">
+        <description>Representation of a Category</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">Category</hint>
+        </hints>
+        <property name="code" type="String">
+            <description>Code of the category</description>
+        </property>
+        <property name="name" type="String">
+            <description>Name of the category</description>
+        </property>
+        <property name="url" type="String">
+            <description>URL of the category</description>
+        </property>
+        <property name="image" type="de.hybris.platform.commercewebservicescommons.dto.product.ImageWsDTO">
+            <description>Category image</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.product.ReviewWsDTO">
+        <description>Representation of a Review</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">Review</hint>
+        </hints>
+        <property name="id" type="String">
+            <description>Identifier of review</description>
+        </property>
+        <property name="headline" type="String">
+            <description>Review headline</description>
+        </property>
+        <property name="comment" type="String">
+            <description>Review comment</description>
+        </property>
+        <property name="rating" type="Double">
+            <description>Review rating value</description>
+        </property>
+        <property name="date" type="java.util.Date">
+            <description>Date of the review</description>
+        </property>
+        <property name="alias" type="String">
+            <description>Alias name for the review</description>
+        </property>
+        <property name="principal" type="de.hybris.platform.commercewebservicescommons.dto.user.UserWsDTO">
+            <description>Person related to the review</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.product.ReviewListWsDTO">
+        <description>Representation of a Review List</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">ReviewList</hint>
+        </hints>
+        <property name="reviews"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.product.ReviewWsDTO>">
+            <description>List of reviews</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.product.ClassificationWsDTO">
+        <description>Representation of a Classification</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">Classification</hint>
+        </hints>
+        <property name="code" type="String">
+            <description>Code of the classification</description>
+        </property>
+        <property name="name" type="String">
+            <description>Name of the classification</description>
+        </property>
+        <property name="features"
+                  type="java.util.Collection&lt;de.hybris.platform.commercewebservicescommons.dto.product.FeatureWsDTO>">
+            <description>List of features for given classification</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.product.FeatureWsDTO">
+        <description>Representation of a Feature</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">Feature</hint>
+        </hints>
+        <property name="code" type="String">
+            <description>Code of the feature</description>
+        </property>
+        <property name="name" type="String">
+            <description>Name of the feature</description>
+        </property>
+        <property name="description" type="String">
+            <description>Description of the feature</description>
+        </property>
+        <property name="type" type="String">
+            <description>Type of the feature</description>
+        </property>
+        <property name="range" type="Boolean">
+            <description>Range number of the reature</description>
+        </property>
+        <property name="comparable" type="Boolean">
+            <description>Flag defining it feature is comparable</description>
+        </property>
+        <property name="featureUnit" type="de.hybris.platform.commercewebservicescommons.dto.product.FeatureUnitWsDTO">
+            <description>Feature unit</description>
+        </property>
+        <property name="featureValues"
+                  type="java.util.Collection&lt;de.hybris.platform.commercewebservicescommons.dto.product.FeatureValueWsDTO>">
+            <description>List of feature values</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.product.FeatureUnitWsDTO">
+        <description>Representation of a Feature Unit</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">FeatureUnit</hint>
+        </hints>
+        <property name="symbol" type="String">
+            <description>Symbol of the feature unit</description>
+        </property>
+        <property name="name" type="String">
+            <description>Name of the feature unit</description>
+        </property>
+        <property name="unitType" type="String">
+            <description>Type of the feature unit</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.product.FeatureValueWsDTO">
+        <description>Representation of a Feature Value</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">FeatureValue</hint>
+        </hints>
+        <property name="value" type="String">
+            <description>Value of the feature</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.product.VariantOptionWsDTO">
+        <description>Representation of a Variant Option</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">VariantOption</hint>
+        </hints>
+        <property name="code" type="String">
+            <description>Code of the variant option</description>
+        </property>
+        <property name="stock" type="de.hybris.platform.commercewebservicescommons.dto.product.StockWsDTO">
+            <description>Stock value of the variant option</description>
+        </property>
+        <property name="url" type="String">
+            <description>Url address of the variant option</description>
+        </property>
+        <property name="priceData" type="de.hybris.platform.commercewebservicescommons.dto.product.PriceWsDTO">
+            <description>Price data information of the variant option</description>
+        </property>
+        <property name="variantOptionQualifiers"
+                  type="java.util.Collection&lt;de.hybris.platform.commercewebservicescommons.dto.product.VariantOptionQualifierWsDTO>">
+            <description>List of variant option qualifiers</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.product.VariantOptionQualifierWsDTO">
+        <description>Representation of a Variant Option Qualifier</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">VariantOptionQualifier</hint>
+        </hints>
+        <property name="qualifier" type="String">
+            <description>Qualifier</description>
+        </property>
+        <property name="name" type="String">
+            <description>Name of variant option qualifier</description>
+        </property>
+        <property name="value" type="String">
+            <description>Value of variant option qualifier</description>
+        </property>
+        <property name="image" type="de.hybris.platform.commercewebservicescommons.dto.product.ImageWsDTO">
+            <description>Image associated with variant option qualifier</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.ConfigurationInfoWsDTO">
+        <description>Representation of a Configuration Info</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">ConfigurationInfo</hint>
+        </hints>
+        <property name="configuratorType" type="String">
+            <description>Type of configuration info</description>
+        </property>
+        <property name="status" type="String">
+            <description>Status of configuration info</description>
+        </property>
+        <property name="configurationLabel" type="String">
+            <description>Label of configuration info</description>
+        </property>
+        <property name="configurationValue" type="String">
+            <description>Value of configuration info</description>
+        </property>
+    </bean>
+    
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.StatusSummaryWsDTO">
+        <description>Representation of a status summary, an aggregated view on issues for a specific status or severity. These issues are attached to configurations of products or order entries</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">StatusSummary</hint>
+        </hints> 
+        <property name="status" type="String">
+            <description>Status or severity indicator, can be one of ERROR, WARNING, INFO or SUCCESS</description>
+            <hints>
+                <hint name="example">ERROR</hint>                    
+            </hints>
+        </property>
+        <property name="numberOfIssues" type="Integer">
+            <description>Number of issues per status</description>
+            <hints>
+                <hint name="example">3</hint>             
+            </hints>
+        </property> 
+    </bean>    
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.ConfigurationInfoListWsDTO">
+        <description>Representation of a Configuration Info List</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">ConfigurationInfoList</hint>
+        </hints>
+        <property name="configurationInfos"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.order.ConfigurationInfoWsDTO>">
+            <description>List of configuration info</description>
+        </property>
+    </bean>
+
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.product.BaseOptionWsDTO">
+        <description>Representation of a Base Ooption</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">BaseOption</hint>
+        </hints>
+        <property name="variantType" type="String">
+            <description>Variant type of base option</description>
+        </property>
+        <property name="options"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.product.VariantOptionWsDTO>">
+            <description>List of all variant options</description>
+        </property>
+        <property name="selected" type="de.hybris.platform.commercewebservicescommons.dto.product.VariantOptionWsDTO">
+            <description>Variant option selected</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.product.ProductReferenceWsDTO"
+          extends="de.hybris.platform.commercewebservicescommons.dto.product.ReferenceWsDTO">
+        <description>Representation of a Product Reference</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">ProductReference</hint>
+        </hints>
+        <property name="preselected" type="Boolean">
+            <description>Flag stating if product reference is preselected</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.product.ProductReferenceListWsDTO">
+        <description>Representation of a Product Reference List</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">ProductReferenceList</hint>
+        </hints>
+        <property name="references"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.product.ProductReferenceWsDTO>">
+            <description>List of product references</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.product.ReferenceWsDTO">
+        <description>Representation of a Reference</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">Reference</hint>
+        </hints>
+        <property name="referenceType" type="String">
+            <description>Reference type</description>
+        </property>
+        <property name="description" type="String">
+            <description>Reference description</description>
+        </property>
+        <property name="quantity" type="Integer">
+            <description>Reference quantity</description>
+        </property>
+        <property name="target" type="de.hybris.platform.commercewebservicescommons.dto.product.ProductWsDTO">
+            <description>Target product</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.product.VariantMatrixElementWsDTO">
+        <description>Representation of a Variant Matrix Element</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">VariantMatrixElement</hint>
+        </hints>
+        <property name="variantValueCategory"
+                  type="de.hybris.platform.commercewebservicescommons.dto.product.VariantValueCategoryWsDTO">
+            <description>Variant value category for variant matrix element</description>
+        </property>
+        <property name="parentVariantCategory"
+                  type="de.hybris.platform.commercewebservicescommons.dto.product.VariantCategoryWsDTO">
+            <description>Parent variant category for variant matrix element</description>
+        </property>
+        <property name="variantOption"
+                  type="de.hybris.platform.commercewebservicescommons.dto.product.VariantOptionWsDTO">
+            <description>Variant option for variant matrix element</description>
+        </property>
+        <property name="elements"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.product.VariantMatrixElementWsDTO>">
+            <description>List of elements with the type of variant matrix element</description>
+        </property>
+        <property name="isLeaf" type="Boolean"/>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.product.VariantValueCategoryWsDTO">
+        <description>Representation of a Variant Value Category</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">VariantValueCategory</hint>
+        </hints>
+        <property name="name" type="String">
+            <description>Name of the variant value category</description>
+        </property>
+        <property name="sequence" type="Integer">
+            <description>Sequence number of variant value category</description>
+        </property>
+        <property name="superCategories"
+                  type="java.util.Collection&lt;de.hybris.platform.commercewebservicescommons.dto.product.VariantCategoryWsDTO>">
+            <description>Parent category of variant value category</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.product.VariantCategoryWsDTO">
+        <description>Representation of a Variant Category</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">VariantCategory</hint>
+        </hints>
+        <property name="name" type="String">
+            <description>Variant category name</description>
+        </property>
+        <property name="hasImage" type="Boolean">
+            <description>Flag if varian category has image assigned</description>
+        </property>
+        <property name="priority" type="Integer">
+            <description>Priority number of variant category</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.user.UserWsDTO"
+          extends="de.hybris.platform.commercewebservicescommons.dto.user.PrincipalWsDTO">
+        <description>Representation of an User</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">User</hint>
+        </hints>
+        <property name="defaultAddress" type="de.hybris.platform.commercewebservicescommons.dto.user.AddressWsDTO">
+            <description>User address</description>
+        </property>
+        <property name="titleCode" type="String">
+            <description>User title code</description>
+        </property>
+        <property name="title" type="String">
+            <description>User title</description>
+        </property>
+        <property name="firstName" type="String">
+            <description>User first name</description>
+        </property>
+        <property name="lastName" type="String">
+            <description>User last name</description>
+        </property>
+        <property name="currency" type="de.hybris.platform.commercewebservicescommons.dto.storesession.CurrencyWsDTO">
+            <description>User preferred currency</description>
+        </property>
+        <property name="language" type="de.hybris.platform.commercewebservicescommons.dto.storesession.LanguageWsDTO">
+            <description>User preferred language</description>
+        </property>
+        <property name="displayUid" type="String">
+            <description>User identifier</description>
+        </property>
+        <property name="customerId" type="String">
+            <description>Customer identifier</description>
+        </property>
+        <property name="deactivationDate" type="java.util.Date">
+            <description>Deactivation date</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.user.UserSignUpWsDTO">
+        <description>Representation of an UserSignUp. Consists of fields required to register new customer</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">UserSignUp</hint>
+        </hints>
+        <property name="uid" type="String">
+            <description>user id, unique string required to create new user. It can be email</description>
+            <hints>
+                <hint name="required">true</hint>
+            </hints>
+        </property>
+        <property name="firstName" type="String">
+            <description>first name of the user</description>
+            <hints>
+                <hint name="required">true</hint>
+            </hints>
+        </property>
+        <property name="lastName" type="String">
+            <description>last name of the user</description>
+            <hints>
+                <hint name="required">true</hint>
+            </hints>
+        </property>
+        <property name="titleCode" type="String"/>
+        <property name="password" type="String">
+            <description>user password</description>
+            <hints>
+                <hint name="required">true</hint>
+            </hints>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.storesession.LanguageWsDTO">
+        <description>Representation of a Language</description>
+            <hints>
+                <hint name="wsRelated"/>
+                <hint name="alias">Language</hint>
+            </hints>
+        <property name="isocode" type="String">
+            <description>iso code of the language</description>
+        </property>
+        <property name="name" type="String">
+            <description>name of the language</description>
+        </property>
+        <property name="nativeName" type="String">
+            <description>name the language in native form</description>
+        </property>
+        <property name="active" type="Boolean">
+            <description>true/false indicator when the language is active</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.storesession.LanguageListWsDTO">
+        <description>Lists all available languages (all languages used for a particular store). If the list of languages for a base store is empty, a list of all languages available in the system will be returned</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">LanguageList</hint>
+        </hints>
+        <property name="languages"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.storesession.LanguageWsDTO>">
+            <description>This is the list of Language fields that should be returned in the response body</description>
+        </property>
+
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.user.UserGroupWsDTO"
+          extends="de.hybris.platform.commercewebservicescommons.dto.user.PrincipalWsDTO">
+        <description>Representation of an User Group</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">UserGroup</hint>
+        </hints>
+        <property name="members" type="java.util.List&lt;PrincipalWsDTO>">
+            <description>List of members</description>
+        </property>
+        <property name="subGroups" type="java.util.List&lt;UserGroupWsDTO>">
+            <description>List of subgroups</description>
+        </property>
+        <property name="membersCount" type="Integer">
+            <description>Number of members</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.user.UserGroupListWsDTO">
+        <description>Representation of an User Group List</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">UserGroupList</hint>
+        </hints>
+        <property name="userGroups"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.user.UserGroupWsDTO>">
+            <description>List of user groups</description>
+        </property>
+        <property name="totalNumber" type="Integer">
+            <description>Total number</description>
+        </property>
+        <property name="pageSize" type="Integer">
+            <description>Page size</description>
+        </property>
+        <property name="numberOfPages" type="Integer">
+            <description>Number of pages</description>
+        </property>
+        <property name="currentPage" type="Integer">
+            <description>Current page</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.user.MemberListWsDTO">
+        <description>Representation of a Member List</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">MemberList</hint>
+        </hints>
+        <property name="members"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.user.PrincipalWsDTO>">
+            <description>List of member</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.user.ResetPasswordWsDTO">
+        <description>Representation of a Reset Password</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">ResetPassword</hint>
+        </hints>
+        <property name="token" type="String">
+            <description>token value which will be generated as unique string that will be sent with email to allow user for completing reset-password operation</description>
+            <hints>
+                <hint name="required">true</hint>
+            </hints>
+        </property>
+        <property name="newPassword" type="String">
+            <description>new password string which is required to complete process of resetting password</description>
+            <hints>
+                <hint name="required">true</hint>
+            </hints>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.OrderHistoryListWsDTO">
+        <description>Representation of an Order History List</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">OrderHistoryList</hint>
+        </hints>
+        <property name="orders"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.order.OrderHistoryWsDTO>">
+            <description>List of order history items</description>
+        </property>
+        <property name="sorts"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.search.pagedata.SortWsDTO>">
+            <description>List of sorts</description>
+        </property>
+        <property name="pagination"
+                  type="de.hybris.platform.commercewebservicescommons.dto.search.pagedata.PaginationWsDTO">
+            <description>Pagination items</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.OrderHistoryWsDTO">
+        <description>Representation of an Order History</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">OrderHistory</hint>
+        </hints>
+        <property name="code" type="String">
+            <description>Code of Order History</description>
+        </property>
+        <property name="status" type="String">
+            <description>Status of Order History</description>
+        </property>
+        <property name="statusDisplay" type="String">
+            <description>Status display</description>
+        </property>
+        <property name="placed" type="java.util.Date">
+            <description>Date of placing order</description>
+        </property>
+        <property name="guid" type="String">
+            <description>Guest user identifier</description>
+        </property>
+        <property name="total" type="de.hybris.platform.commercewebservicescommons.dto.product.PriceWsDTO">
+            <description>Total price</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.search.pagedata.SortWsDTO"
+          deprecated="Use de.hybris.platform.webservicescommons.dto.SortWsDTO instead" deprecatedSince="6.5">
+        <description>Representation a Sort option</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">Sort</hint>
+        </hints>
+        <property name="code" type="String">
+            <description>Code of Sort</description>
+        </property>
+        <property name="name" type="String">
+            <description>Name of Sort</description>
+        </property>
+        <property name="selected" type="Boolean">
+            <description>Flag stating when Sort is selected</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.search.pagedata.PageableWsDTO"
+          deprecated="Use de.hybris.platform.webservicescommons.dto.PaginationWsDTO instead" deprecatedSince="6.5">
+        <description>Representation of a search query pagination</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">Pageable</hint>
+        </hints>
+        <property name="pageSize" type="Integer">
+            <description>The number of results per page. A page may have less results if there are less than a full page of results, only on the last page in the results</description>
+        </property>
+        <property name="currentPage" type="Integer">
+            <description>The current page number. The first page is number zero (0), the second page is number one (1), and so on</description>
+        </property>
+        <property name="sort" type="String">
+            <description>The selected sort code</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.search.pagedata.PaginationWsDTO"
+          extends="de.hybris.platform.commercewebservicescommons.dto.search.pagedata.PageableWsDTO"
+          deprecated="Use de.hybris.platform.webservicescommons.dto.PaginationWsDTO instead" deprecatedSince="6.5">
+        <description>Representation of a search results pagination</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">deprecatedPagination</hint>
+        </hints>
+        <property name="totalPages" type="Integer">
+            <description>The total number of pages. This is the number of pages, each of pageSize, required to display the totalResults.
+            </description>
+        </property>
+        <property name="totalResults" type="Long">
+            <description>The total number of matched results across all pages</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.search.SearchStateWsDTO">
+        <description>Representation of a Search State</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">SearchState</hint>
+        </hints>
+        <property name="url" type="String">
+            <description>Url address of search state</description>
+        </property>
+        <property name="query" type="de.hybris.platform.commercewebservicescommons.dto.search.SearchQueryWsDTO">
+            <description>Query of search state</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.search.SearchQueryWsDTO">
+        <description>Representation of a Search Query</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">SearchQuery</hint>
+        </hints>
+        <property name="value" type="String">
+            <description>Value of search query</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.product.ProductListWsDTO">
+        <description>Representation of a Product List</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">ProductList</hint>
+        </hints>
+        <property name="products"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.product.ProductWsDTO>">
+            <description>List of products</description>
+        </property>
+        <property name="catalog" type="String">
+            <description>Catalog of product list</description>
+        </property>
+        <property name="version" type="String">
+            <description>Version of product list</description>
+        </property>
+        <property name="totalProductCount" type="Integer">
+            <description>Total product count</description>
+        </property>
+        <property name="totalPageCount" type="Integer">
+            <description>Total page count</description>
+        </property>
+        <property name="currentPage" type="Integer">
+            <description>Number of current page</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.queues.ProductExpressUpdateElementWsDTO">
+        <description>Representation of a Product Express Update Element</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">ProductExpressUpdateElement</hint>
+        </hints>
+        <property name="code" type="String">
+            <description>Code of product express update element</description>
+        </property>
+        <property name="catalogId" type="String">
+            <description>Catalog identifier</description>
+        </property>
+        <property name="catalogVersion" type="String">
+            <description>Catalog version</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.queues.ProductExpressUpdateElementListWsDTO">
+        <description>Representation of a Product Express Update Element List</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">ProductExpressUpdateElementList</hint>
+        </hints>
+        <property name="productExpressUpdateElements"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.queues.ProductExpressUpdateElementWsDTO>">
+            <description>List of product express update element</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.queues.OrderStatusUpdateElementWsDTO">
+        <description>Representation of an Order Status Update Element</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">OrderStatusUpdateElement</hint>
+        </hints>
+        <property name="code" type="String">
+            <description>Code of update element of order status</description>
+        </property>
+        <property name="status" type="String">
+            <description>Status of update element</description>
+        </property>
+        <property name="baseSiteId" type="String">
+            <description>BaseSite identifier</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.queues.OrderStatusUpdateElementListWsDTO">
+        <description>Representation of an Order Status Update Element List</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">OrderStatusUpdateElementList</hint>
+        </hints>
+        <property name="orderStatusUpdateElements"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.queues.OrderStatusUpdateElementWsDTO>">
+            <description>List of order status update elements</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.user.TitleWsDTO">
+        <description>Representation of a Title</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">Title</hint>
+        </hints>
+        <property name="code" type="String">
+            <description>Title code</description>
+        </property>
+        <property name="name" type="String">
+            <description>Title name</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.user.TitleListWsDTO">
+        <description>Representation of a Title List</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">TitleList</hint>
+        </hints>
+        <property name="titles"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.user.TitleWsDTO>">
+            <description>List of titles</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.CardTypeWsDTO">
+        <description>Representation of a Card Type</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">CardType</hint>
+        </hints>
+        <property name="code" type="String">
+            <description>Card type code</description>
+        </property>
+        <property name="name" type="String">
+            <description>Card type name</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.CardTypeListWsDTO">
+        <description>Representation of a Card Type List</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">CardTypeList</hint>
+        </hints>
+        <property name="cardTypes"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.order.CardTypeWsDTO>">
+            <description>List of card types</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.AbstractOrderWsDTO">
+        <description>Representation of an Abstract Order</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">AbstractOrder</hint>
+        </hints>
+        <property name="code" type="String">
+            <description>Code number of order</description>
+        </property>
+        <property name="net" type="Boolean">
+            <description>Flag stating iv value is net-value</description>
+        </property>
+        <property name="totalPriceWithTax" type="de.hybris.platform.commercewebservicescommons.dto.product.PriceWsDTO">
+            <description>Total price with tax</description>
+        </property>
+        <property name="totalPrice" type="de.hybris.platform.commercewebservicescommons.dto.product.PriceWsDTO">
+            <description>Total price value</description>
+        </property>
+        <property name="totalTax" type="de.hybris.platform.commercewebservicescommons.dto.product.PriceWsDTO">
+            <description>Total tax price</description>
+        </property>
+        <property name="subTotal" type="de.hybris.platform.commercewebservicescommons.dto.product.PriceWsDTO">
+            <description>Subtotal price</description>
+        </property>
+        <property name="deliveryCost" type="de.hybris.platform.commercewebservicescommons.dto.product.PriceWsDTO">
+            <description>Delivery cost</description>
+        </property>
+        <property name="entries"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.order.OrderEntryWsDTO>">
+            <description>List of order entries</description>
+        </property>
+        <property name="entryGroups"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.order.EntryGroupWsDTO>">
+            <description>List of entry groups</description>
+        </property>
+        <property name="totalItems" type="Integer"/>
+        <property name="deliveryMode" type="de.hybris.platform.commercewebservicescommons.dto.order.DeliveryModeWsDTO">
+            <description>Delivery mode information</description>
+        </property>
+        <property name="deliveryAddress" type="de.hybris.platform.commercewebservicescommons.dto.user.AddressWsDTO">
+            <description>Delivery address</description>
+        </property>
+        <property name="paymentInfo"
+                  type="de.hybris.platform.commercewebservicescommons.dto.order.PaymentDetailsWsDTO">
+            <description>Payment information</description>
+        </property>
+        <property name="appliedOrderPromotions"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.product.PromotionResultWsDTO>">
+            <description>List of applied order promotions</description>
+        </property>
+        <property name="appliedProductPromotions"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.product.PromotionResultWsDTO>">
+            <description>List of applied product promotions</description>
+        </property>
+        <property name="productDiscounts" type="de.hybris.platform.commercewebservicescommons.dto.product.PriceWsDTO">
+            <description>Product discounts</description>
+        </property>
+        <property name="orderDiscounts" type="de.hybris.platform.commercewebservicescommons.dto.product.PriceWsDTO">
+            <description>Order discounts</description>
+        </property>
+        <property name="totalDiscounts" type="de.hybris.platform.commercewebservicescommons.dto.product.PriceWsDTO">
+            <description>Total discounts</description>
+        </property>
+        <property name="site" type="String">
+            <description>Site</description>
+        </property>
+        <property name="store" type="String">
+            <description>Store</description>
+        </property>
+        <property name="guid" type="String">
+            <description>Guest user id identifier</description>
+        </property>
+        <property name="calculated" type="Boolean">
+            <description>Flag showing if order is calculated</description>
+        </property>
+        <property name="appliedVouchers"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.voucher.VoucherWsDTO>">
+            <description>List of applied vouchers</description>
+        </property>
+        <property name="user" type="de.hybris.platform.commercewebservicescommons.dto.user.PrincipalWsDTO">
+            <description>User information</description>
+        </property>
+        <property name="pickupOrderGroups"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.order.PickupOrderEntryGroupWsDTO>">
+            <description>List of pickup order entry group</description>
+        </property>
+        <property name="deliveryOrderGroups"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.order.DeliveryOrderEntryGroupWsDTO>">
+            <description>List of delivery order entries group</description>
+        </property>
+        <property name="pickupItemsQuantity" type="Long">
+            <description>Quantity of pickup items</description>
+        </property>
+        <property name="deliveryItemsQuantity" type="Long">
+            <description>Quantity of delivery items</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.ConsignmentWsDTO">
+        <description>Representation of a Consignment</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">Consignment</hint>
+        </hints>
+        <property name="code" type="String">
+            <description>Consignment code</description>
+        </property>
+        <property name="trackingID" type="String">
+            <description>Consignment tracking identifier</description>
+        </property>
+        <property name="status" type="String">
+            <description>Consignment status</description>
+        </property>
+        <property name="statusDisplay" type="String">
+            <description>Consignment status display</description>
+        </property>
+        <property name="statusDate" type="java.util.Date">
+            <description>Consignment status date</description>
+        </property>
+        <property name="entries"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.order.ConsignmentEntryWsDTO>">
+            <description>List of consignment entries</description>
+        </property>
+        <property name="shippingAddress" type="de.hybris.platform.commercewebservicescommons.dto.user.AddressWsDTO">
+            <description>Shipping address</description>
+        </property>
+        <property name="deliveryPointOfService"
+                  type="de.hybris.platform.commercewebservicescommons.dto.store.PointOfServiceWsDTO">
+            <description>Delivery point of service</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.ConsignmentEntryWsDTO">
+        <description>Representation of a Consignment Entry</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">ConsignmentEntry</hint>
+        </hints>
+        <property name="orderEntry" type="de.hybris.platform.commercewebservicescommons.dto.order.OrderEntryWsDTO">
+            <description>Order entry of Consignment entry</description>
+        </property>
+        <property name="quantity" type="Long">
+            <description>Quantity value of Consignment entry</description>
+        </property>
+        <property name="shippedQuantity" type="Long">
+            <description>Shipped quantity</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.CartWsDTO"
+          extends="de.hybris.platform.commercewebservicescommons.dto.order.AbstractOrderWsDTO">
+        <description>Representation of a Cart</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">Cart</hint>
+        </hints>
+        <property name="totalUnitCount" type="Integer">
+            <description>Total unit count</description>
+        </property>
+        <property name="potentialOrderPromotions"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.product.PromotionResultWsDTO>">
+            <description>List of potential order promotions for cart</description>
+        </property>
+        <property name="potentialProductPromotions"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.product.PromotionResultWsDTO>">
+            <description>List of potential product promotions for cart</description>
+        </property>
+        <property name="name" type="String">
+            <description>Name of the cart</description>
+        </property>
+        <property name="description" type="String">
+            <description>Description of the cart</description>
+        </property>
+        <property name="expirationTime" type="java.util.Date">
+            <description>Date of cart expiration time</description>
+        </property>
+        <property name="saveTime" type="java.util.Date">
+            <description>Date of saving cart</description>
+        </property>
+        <property name="savedBy" type="de.hybris.platform.commercewebservicescommons.dto.user.PrincipalWsDTO">
+            <description>Information about person who saved cart</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.CartListWsDTO">
+        <description>Representation of a Cart list</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">CartList</hint>
+        </hints>
+        <property name="carts"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.order.CartWsDTO>">
+            <description>List of carts</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.CartModificationWsDTO">
+        <description>Representation of a Cart modification</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">CartModification</hint>
+        </hints>
+        <property name="statusCode" type="String">
+            <description>Status code of cart modification</description>
+        </property>
+        <property name="quantityAdded" type="Long">
+            <description>Quantity added with cart modification</description>
+        </property>
+        <property name="quantity" type="Long">
+            <description>Final quantity after cart modification</description>
+        </property>
+        <property name="entry" type="de.hybris.platform.commercewebservicescommons.dto.order.OrderEntryWsDTO">
+            <description>Order entry</description>
+        </property>
+        <property name="deliveryModeChanged" type="Boolean">
+            <description>Delivery mode changed</description>
+        </property>
+        <property name="statusMessage" type="String">
+            <description>Status message</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.CartModificationListWsDTO">
+        <description>Representation of a Cart modification list</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">CartModificationList</hint>
+        </hints>
+        <property name="cartModifications"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.order.CartModificationWsDTO>">
+            <description>List of cart modifications</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.PaymentDetailsWsDTO">
+        <description>Representation of a Payment Details</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">PaymentDetails</hint>
+        </hints>
+        <property name="id" type="String">
+            <description>Unique identifier of payment detail</description>
+        </property>
+        <property name="accountHolderName" type="String">
+            <description>Name of account holder</description>
+        </property>
+        <property name="cardType" type="de.hybris.platform.commercewebservicescommons.dto.order.CardTypeWsDTO">
+            <description>Type of payment card</description>
+        </property>
+        <property name="cardNumber" type="String">
+            <description>Payment card number</description>
+        </property>
+        <property name="startMonth" type="String">
+            <description>Start month from which payment is valid</description>
+        </property>
+        <property name="startYear" type="String">
+            <description>Start year from which payment is valid</description>
+        </property>
+        <property name="expiryMonth" type="String">
+            <description>Month of expiration of payment</description>
+        </property>
+        <property name="expiryYear" type="String">
+            <description>Year of expiration of payment</description>
+        </property>
+        <property name="issueNumber" type="String">
+            <description>Issue number</description>
+        </property>
+        <property name="subscriptionId" type="String">
+            <description>Identifier of subscription</description>
+        </property>
+        <property name="saved" type="Boolean">
+            <description>Flag to mark if payment is saved one</description>
+        </property>
+        <property name="defaultPayment" type="Boolean">
+            <description>Flag to mark if payment the default one</description>
+        </property>
+        <property name="billingAddress" type="de.hybris.platform.commercewebservicescommons.dto.user.AddressWsDTO">
+            <description>Address details to be considered as billing address</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.PaymentDetailsListWsDTO">
+        <description>Representation of a Payment details list</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">PaymentDetailsList</hint>
+        </hints>
+        <property name="payments"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.order.PaymentDetailsWsDTO>">
+            <description>List of payment details</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.DeliveryModeWsDTO">
+        <description>Representation of a Delivery mode</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">DeliveryMode</hint>
+        </hints>
+        <property name="code" type="String">
+            <description>Code of the delivery mode</description>
+        </property>
+        <property name="name" type="String">
+            <description>Name of the delivery mode</description>
+        </property>
+        <property name="description" type="String">
+            <description>Description of the delivery mode</description>
+        </property>
+        <property name="deliveryCost" type="de.hybris.platform.commercewebservicescommons.dto.product.PriceWsDTO">
+            <description>Cost of the delivery</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.DeliveryModeListWsDTO">
+        <description>Representation of a Delivery mode list</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">DeliveryModeList</hint>
+        </hints>
+        <property name="deliveryModes"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.order.DeliveryModeWsDTO>">
+            <description>List of delivery modes</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.OrderWsDTO"
+          extends="de.hybris.platform.commercewebservicescommons.dto.order.AbstractOrderWsDTO">
+        <description>Representation of an Order</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">Order</hint>
+        </hints>
+        <property name="created" type="java.util.Date">
+            <description>Date of order creation</description>
+        </property>
+        <property name="status" type="String">
+            <description>Status of order</description>
+        </property>
+        <property name="statusDisplay" type="String">
+            <description>Status display</description>
+        </property>
+        <property name="guestCustomer" type="Boolean">
+            <description>Flag showing if customer is Guest customer</description>
+        </property>
+        <property name="consignments"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.order.ConsignmentWsDTO>">
+            <description>List of consignment</description>
+        </property>
+        <property name="deliveryStatus" type="String">
+            <description>Order delivery status</description>
+        </property>
+        <property name="deliveryStatusDisplay" type="String">
+            <description>Order delivery status display</description>
+        </property>
+        <property name="unconsignedEntries"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.order.OrderEntryWsDTO>">
+            <description>List of unconsigned order entries</description>
+        </property>
+        <property name="cancellable" type="Boolean">
+            <description>Boolean flag showing if order is cancellable</description>
+            <hints>
+                <hint name="example">true</hint>
+            </hints>
+        </property>
+        <property name="returnable" type="Boolean">
+            <description>Boolean flag showing if order is returnable</description>
+            <hints>
+                <hint name="example">true</hint>
+            </hints>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.OrderEntryWsDTO">
+        <description>Representation of an Order entry</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">OrderEntry</hint>
+        </hints>
+        <property name="entryNumber" type="Integer">
+            <description>Entry number of the order entry</description>
+        </property>
+        <property name="quantity" type="Long">
+            <description>Quantity number of items in order entry</description>
+        </property>
+        <property name="basePrice" type="de.hybris.platform.commercewebservicescommons.dto.product.PriceWsDTO">
+            <description>Base price of order entry item</description>
+        </property>
+        <property name="totalPrice" type="de.hybris.platform.commercewebservicescommons.dto.product.PriceWsDTO">
+            <description>Total price of order entry item</description>
+        </property>
+        <property name="product" type="de.hybris.platform.commercewebservicescommons.dto.product.ProductWsDTO">
+            <description>Product details of order entry</description>
+        </property>
+        <property name="updateable" type="Boolean">
+            <description>Flag defining if order entry item is updateable</description>
+        </property>
+        <property name="deliveryMode" type="de.hybris.platform.commercewebservicescommons.dto.order.DeliveryModeWsDTO">
+            <description>Delivery mode</description>
+        </property>
+        <property name="configurationInfos"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.order.ConfigurationInfoWsDTO>">
+            <description>Configuration info of order entry</description>
+        </property>
+        <property name="statusSummaryList"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.order.StatusSummaryWsDTO>">
+            <description>List of aggregated status information per entry, relevant if the entry is configurable and its configuration contains one or many issues in different severities. Note that configurators typically raise such issues only in case the parent document is changeable. 
+            In this case the issues (depending on their severity) need to be fixed before a checkout can be done. This means this segment can be present for a cart entry, for order entries it will always be empty</description>
+        </property>
+        <property name="deliveryPointOfService"
+                  type="de.hybris.platform.commercewebservicescommons.dto.store.PointOfServiceWsDTO">
+            <description>Point of service associated with order entry</description>
+        </property>
+        <property name="cancelledItemsPrice" type="de.hybris.platform.commercewebservicescommons.dto.product.PriceWsDTO">
+            <description>Total price of cancelled items which belong to the order entry item</description>
+        </property>
+        <property name="cancellableQuantity" type="Long">
+            <description>Quantity number of cancellable items in order entry</description>
+            <hints>
+                <hint name="example">5</hint>
+            </hints>
+        </property>
+        <property name="returnedItemsPrice" type="de.hybris.platform.commercewebservicescommons.dto.product.PriceWsDTO">
+            <description>Total price of returned items which belong to the order entry item</description>
+        </property>
+        <property name="returnableQuantity" type="Long">
+            <description>Quantity number of returnable items in order entry</description>
+            <hints>
+                <hint name="example">5</hint>
+            </hints>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.OrderEntryListWsDTO">
+        <description>Representation of an Order entry list consumed</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">OrderEntryList</hint>
+        </hints>
+        <property name="orderEntries"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.order.OrderEntryWsDTO>">
+            <description>List of order entries</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.PromotionOrderEntryConsumedWsDTO">
+        <description>Representation of a Promotion order entry consumed</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">PromotionOrderEntryConsumed</hint>
+        </hints>
+        <property name="code" type="String">
+            <description>Order entry code</description>
+        </property>
+        <property name="adjustedUnitPrice" type="Double">
+            <description>Adjusted unit price for promotion order entry</description>
+        </property>
+        <property name="orderEntryNumber" type="Integer">
+            <description>Order entry number</description>
+        </property>
+        <property name="quantity" type="Long">
+            <description>Quantity of promotion order entry</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.EntryGroupWsDTO">
+        <description>Representation of an Entry Group</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">EntryGroup</hint>
+        </hints>
+        <property name="entries"
+                  type="java.util.Collection&lt;de.hybris.platform.commercewebservicescommons.dto.order.OrderEntryWsDTO>">
+            <description>List of order entries</description>
+        </property>
+        <property name="entryGroups"
+                  type="java.util.Collection&lt;de.hybris.platform.commercewebservicescommons.dto.order.EntryGroupWsDTO>">
+            <description>List of child entry groups</description>
+        </property>
+        <property name="entryGroupNumber" type="java.lang.Integer">
+            <description>Identifier of the entry group</description>
+            <hints>
+                <hint name="example">1</hint>
+            </hints>
+        </property>
+        <property name="label" type="java.lang.String">
+            <description>Label for the entry group</description>
+            <hints>
+                <hint name="example">Photo On The Go Package</hint>
+            </hints>
+        </property>
+        <property name="erroneous" type="java.lang.Boolean">
+            <description>Indicates if the entry group is in an error state</description>
+            <hints>
+                <hint name="example">true</hint>
+            </hints>
+        </property>
+        <property name="type" type="java.lang.String">
+            <description>Indicates type of the group, possible values are STANDALONE, CONFIGURABLEBUNDLE or any customer implemented type for any new provider</description>
+            <hints>
+                <hint name="example">STANDALONE</hint>
+            </hints>
+        </property>
+
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.OrderEntryGroupWsDTO">
+        <description>Representation of an Order Entry Group</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">OrderEntryGroup</hint>
+        </hints>
+        <property name="totalPriceWithTax" type="de.hybris.platform.commercewebservicescommons.dto.product.PriceWsDTO">
+            <description>Total price with tax</description>
+        </property>
+        <property name="entries"
+                  type="java.util.Collection&lt;de.hybris.platform.commercewebservicescommons.dto.order.OrderEntryWsDTO>">
+            <description>List of order entries</description>
+        </property>
+        <property name="quantity" type="Long">
+            <description>Quantity of order entries in a group</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.PickupOrderEntryGroupWsDTO"
+          extends="de.hybris.platform.commercewebservicescommons.dto.order.OrderEntryGroupWsDTO">
+        <description>Representation of a Pickup Order Entry Group</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">PickupOrderEntryGroup</hint>
+        </hints>
+        <property name="deliveryPointOfService"
+                  type="de.hybris.platform.commercewebservicescommons.dto.store.PointOfServiceWsDTO">
+            <description>Delivery point of service</description>
+        </property>
+        <property name="distance" type="Double">
+            <description>Distance calculated to pickup place</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.DeliveryOrderEntryGroupWsDTO"
+          extends="de.hybris.platform.commercewebservicescommons.dto.order.OrderEntryGroupWsDTO">
+        <description>Representation of a Delivery Order Entry Group</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">DeliveryOrderEntryGroup</hint>
+        </hints>
+        <property name="deliveryAddress" type="de.hybris.platform.commercewebservicescommons.dto.user.AddressWsDTO">
+            <description>Delivery address for order entry group</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.product.PromotionResultWsDTO">
+        <description>Representation of a Promotion result</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">PromotionResult</hint>
+        </hints>
+        <property name="description" type="String">
+            <description>Description of promotion result</description>
+        </property>
+        <property name="promotion" type="de.hybris.platform.commercewebservicescommons.dto.product.PromotionWsDTO">
+            <description>Promotion information for given promotion result</description>
+        </property>
+        <property name="consumedEntries"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.order.PromotionOrderEntryConsumedWsDTO>">
+            <description>List of promotion order entries consumed</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.product.PromotionResultListWsDTO">
+        <description>Representation of a Promotion result list</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">PromotionResultList</hint>
+        </hints>
+        <property name="promotions"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.product.PromotionResultWsDTO>">
+            <description>List of promotion results</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.user.PrincipalWsDTO">
+        <description>Representation of a Principal webservice DTO used for defining User data types</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">Principal</hint>
+        </hints>
+        <property name="uid" type="String">
+            <description>Unique user identifier</description>
+        </property>
+        <property name="name" type="String">
+            <description>Name of the user</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.store.PointOfServiceWsDTO">
+        <description>Representation of a Point of service</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">PointOfService</hint>
+        </hints>
+        <property name="name" type="String">
+            <description>Name of the point of service</description>
+        </property>
+        <property name="displayName" type="String">
+            <description>Display name of the point of service</description>
+        </property>
+        <property name="url" type="String">
+            <description>Url address of the point of service</description>
+        </property>
+        <property name="description" type="String">
+            <description>Description of the point of service</description>
+        </property>
+        <property name="openingHours"
+                  type="de.hybris.platform.commercewebservicescommons.dto.store.OpeningScheduleWsDTO">
+            <description>Opening hours of point of service</description>
+        </property>
+        <property name="storeContent" type="String">
+            <description>Store content of given point of service</description>
+        </property>
+        <property name="features" type="java.util.Map&lt;String, String>">
+            <description>List of features for a given point of service</description>
+        </property>
+        <property name="geoPoint" type="de.hybris.platform.commercewebservicescommons.dto.store.GeoPointWsDTO">
+            <description>Geopoint localization info about point of service</description>
+        </property>
+        <property name="formattedDistance" type="String">
+            <description>Distance to the point of service as text value</description>
+        </property>
+        <property name="distanceKm" type="Double">
+            <description>Distance to the point of service as number value</description>
+        </property>
+        <property name="mapIcon" type="de.hybris.platform.commercewebservicescommons.dto.product.ImageWsDTO">
+            <description>Image associated with the point of service</description>
+        </property>
+        <property name="address" type="de.hybris.platform.commercewebservicescommons.dto.user.AddressWsDTO">
+            <description>Address information of point of service</description>
+        </property>
+        <property name="storeImages"
+                  type="java.util.Collection&lt;de.hybris.platform.commercewebservicescommons.dto.product.ImageWsDTO>">
+            <description>Collection of images associated with a point of service</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.user.AddressWsDTO">
+        <description>Request body fields required and optional to operate on address data. The DTO is in XML or .json format</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">Address</hint>
+        </hints>
+        <property name="id" type="String">
+            <description>Unique id value of the address which is optional while creating new address. While performing other address operations this value is the key</description>
+        </property>
+        <property name="title" type="String">
+            <description>Title of the address person</description>
+        </property>
+        <property name="titleCode" type="String">
+            <description>Code of the title</description>
+            <hints>
+                <hint name="required">true</hint>
+            </hints>
+        </property>
+        <property name="firstName" type="String">
+            <description>First name of the address person</description>
+            <hints>
+                <hint name="required">true</hint>
+            </hints>
+        </property>
+        <property name="lastName" type="String">
+            <description>Last name of the address person</description>
+            <hints>
+                <hint name="required">true</hint>
+            </hints>
+        </property>
+        <property name="companyName" type="String">
+            <description>Company Name</description>
+        </property>
+        <property name="line1" type="String">
+            <description>First line of the address</description>
+            <hints>
+                <hint name="required">true</hint>
+            </hints>
+        </property>
+        <property name="line2" type="String">
+            <description>Second line of the address</description>
+        </property>
+        <property name="town" type="String">
+            <description>Town, field required</description>
+            <hints>
+                <hint name="required">true</hint>
+            </hints>
+        </property>
+        <property name="region" type="de.hybris.platform.commercewebservicescommons.dto.user.RegionWsDTO">
+            <description>Region where address belongs to</description>
+        </property>
+        <property name="district" type="String">
+            <description>District name</description>
+        </property>
+        <property name="postalCode" type="String">
+            <description>Postal code of the address</description>
+            <hints>
+                <hint name="required">true</hint>
+            </hints>
+        </property>
+        <property name="phone" type="String">
+            <description>Phone number</description>
+        </property>
+        <property name="cellphone" type="String">
+            <description>Cellphone number</description>
+        </property>
+        <property name="email" type="String">
+            <description>Email address</description>
+        </property>
+        <property name="country" type="de.hybris.platform.commercewebservicescommons.dto.user.CountryWsDTO">
+            <description>Country where address is located</description>
+        </property>
+        <property name="shippingAddress" type="Boolean">
+            <description>Boolean flag if address is for shipping</description>
+        </property>
+        <property name="defaultAddress" type="Boolean">
+            <description>Boolean flag if address is default</description>
+        </property>
+        <property name="visibleInAddressBook" type="Boolean">
+            <description>Boolean flag if address is visible in the Address Book</description>
+        </property>
+        <property name="formattedAddress" type="String">
+            <description>Boolean flag if address is formatted</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.user.AddressListWsDTO">
+        <description>Representation of an Address list</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">AddressList</hint>
+        </hints>
+        <property name="addresses"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.user.AddressWsDTO>">
+            <description>List of addresses</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.user.CountryWsDTO">
+        <description>Response body fields which will be returned while fetching the list of countries. The DTO is in XML or .json format</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">Country</hint>
+        </hints>
+        <property name="isocode" type="String">
+            <description>Country code in iso format</description>
+        </property>
+        <property name="name" type="String">
+            <description>Name of the country</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.user.CountryListWsDTO">
+        <description>List of countries</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">CountryList</hint>
+        </hints>
+        <property name="countries"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.user.CountryWsDTO>">
+            <description>This is the list of Country fields that should be returned in the response body</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.user.RegionWsDTO">
+        <description>Response body fields which will be returned while fetching the list of country's regions.</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">Region</hint>
+        </hints>
+        <property name="isocode" type="String">
+            <description>Country and Region code in iso format</description>
+        </property>
+        <property name="isocodeShort" type="String">
+            <description>Region code in short iso form</description>
+        </property>
+        <property name="countryIso" type="String">
+            <description>Country code in iso format</description>
+        </property>
+        <property name="name" type="String">
+            <description>Name of the region</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.user.RegionListWsDTO">
+        <description>List of Regions</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">RegionList</hint>
+        </hints>
+        <property name="regions"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.user.RegionWsDTO>">
+            <description>This is the list of Region fields that should be returned in the response body</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.store.OpeningDayWsDTO">
+        <description>List of OpeningDay</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">OpeningDay</hint>
+        </hints>
+        <property name="openingTime" type="de.hybris.platform.commercewebservicescommons.dto.store.TimeWsDTO">
+            <description>Starting time of opening day</description>
+        </property>
+        <property name="closingTime" type="de.hybris.platform.commercewebservicescommons.dto.store.TimeWsDTO">
+            <description>Closing time of opening day</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.store.OpeningScheduleWsDTO">
+        <description>Representation of an Opening schedule</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">OpeningSchedule</hint>
+        </hints>
+        <property name="name" type="String">
+            <description>Name of the opening schedule</description>
+        </property>
+        <property name="code" type="String">
+            <description>Code of the opening schedule</description>
+        </property>
+        <property name="weekDayOpeningList"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.store.WeekdayOpeningDayWsDTO>">
+            <description>List of weekday opening days</description>
+        </property>
+        <property name="specialDayOpeningList"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.store.SpecialOpeningDayWsDTO>">
+            <description>List of special opening days</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.store.GeoPointWsDTO">
+        <description>Representation of a GeoPoint</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">GeoPoint</hint>
+        </hints>
+        <property name="latitude" type="Double">
+            <description>Geopoint latitude</description>
+        </property>
+        <property name="longitude" type="Double">
+            <description>Geopoint longitude</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.store.SpecialOpeningDayWsDTO"
+          extends="de.hybris.platform.commercewebservicescommons.dto.store.OpeningDayWsDTO">
+        <description>Representation of a special opening day</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">SpecialOpeningDay</hint>
+        </hints>
+        <property name="date" type="java.util.Date">
+            <description>Date of special opening day</description>
+        </property>
+        <property name="formattedDate" type="String">
+            <description>Text representation of the date of special opening day</description>
+        </property>
+        <property name="closed" type="Boolean">
+            <description>Flag stating if special opening day is closed</description>
+        </property>
+        <property name="name" type="String">
+            <description>Name of the special opening day event</description>
+        </property>
+        <property name="comment" type="String">
+            <description>Comment field</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.store.TimeWsDTO">
+        <description>Representation of a Time</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">Time</hint>
+        </hints>
+        <property name="hour" type="Byte">
+            <description>Hour part of the time data</description>
+        </property>
+        <property name="minute" type="Byte">
+            <description>Minute part of the time data</description>
+        </property>
+        <property name="formattedHour" type="String">
+            <description>Formatted hour</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.store.WeekdayOpeningDayWsDTO"
+          extends="de.hybris.platform.commercewebservicescommons.dto.store.OpeningDayWsDTO">
+        <description>Representation of a Weekday Opening Day</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">WeekdayOpeningDay</hint>
+        </hints>
+        <property name="weekDay" type="String">
+            <description>Text representation of week day opening day</description>
+        </property>
+        <property name="closed" type="Boolean">
+            <description>Flag stating if weekday opening day is closed</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.store.StoreFinderSearchPageWsDTO">
+        <description>Representation of a Store finder search page</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">StoreFinderSearchPage</hint>
+        </hints>
+        <property name="stores"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.store.PointOfServiceWsDTO>">
+            <description>List of stores</description>
+        </property>
+        <property name="sorts"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.search.pagedata.SortWsDTO>">
+            <description>List of sortings</description>
+        </property>
+        <property name="pagination"
+                  type="de.hybris.platform.commercewebservicescommons.dto.search.pagedata.PaginationWsDTO">
+            <description>Pagination</description>
+        </property>
+        <property name="locationText" type="String">
+            <description>Location text</description>
+        </property>
+        <property name="sourceLatitude" type="Double">
+            <description>Source latitude</description>
+        </property>
+        <property name="sourceLongitude" type="Double">
+            <description>Source longitude</description>
+        </property>
+        <property name="boundNorthLatitude" type="Double">
+            <description>Bound north latitude</description>
+        </property>
+        <property name="boundEastLongitude" type="Double">
+            <description>Bound east longitude</description>
+        </property>
+        <property name="boundSouthLatitude" type="Double">
+            <description>Bound south latitude</description>
+        </property>
+        <property name="boundWestLongitude" type="Double">
+            <description>Bound west longitude</description>
+        </property>
+    </bean>
+
+
+    <!-- Search Facet Data -->
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.search.facetdata.BreadcrumbWsDTO">
+        <description>Representation of a Breadcrumb</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">Breadcrumb</hint>
+        </hints>
+        <property name="facetCode" type="String">
+            <description>Code of the facet</description>
+        </property>
+        <property name="facetName" type="String">
+            <description>Name of the facet</description>
+        </property>
+        <property name="facetValueCode" type="String">
+            <description>Value code of the facet</description>
+        </property>
+        <property name="facetValueName" type="String">
+            <description>Value name of the facet</description>
+        </property>
+        <property name="removeQuery" type="de.hybris.platform.commercewebservicescommons.dto.search.SearchStateWsDTO">
+            <description>Remove query</description>
+        </property>
+        <property name="truncateQuery"
+                  type="de.hybris.platform.commercewebservicescommons.dto.search.SearchStateWsDTO">
+            <description>Truncate query</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.search.facetdata.FacetWsDTO">
+        <description>Representation of a Facet</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">Facet</hint>
+        </hints>
+        <property name="name" type="String">
+            <description>Name of the facet</description>
+        </property>
+        <property name="priority" type="Integer">
+            <description>Priority value of the facet</description>
+        </property>
+        <property name="category" type="Boolean">
+            <description>Flag stating if facet is category facet</description>
+        </property>
+        <property name="multiSelect" type="Boolean">
+            <description>Flag stating if facet is multiSelect</description>
+        </property>
+        <property name="visible" type="Boolean">
+            <description>Flag stating if facet is visible</description>
+        </property>
+        <property name="topValues"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.search.facetdata.FacetValueWsDTO>">
+            <description>List of top facet values</description>
+        </property>
+        <property name="values"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.search.facetdata.FacetValueWsDTO>">
+            <description>List of all facet values</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.search.facetdata.FacetValueWsDTO">
+        <description>Representation of a Facet Value</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">FacetValue</hint>
+        </hints>
+        <property name="name" type="String">
+            <description>Name of the facet value</description>
+        </property>
+        <property name="count" type="Long">
+            <description>Count of the facet value</description>
+        </property>
+        <property name="query" type="de.hybris.platform.commercewebservicescommons.dto.search.SearchStateWsDTO">
+            <description>Query of the facet value</description>
+        </property>
+        <property name="selected" type="Boolean">
+            <description>Flag stating if facet value is selected</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.search.facetdata.ProductCategorySearchPageWsDTO"
+          extends="de.hybris.platform.commercewebservicescommons.dto.search.facetdata.ProductSearchPageWsDTO">
+        <description>Representation od a Product Category Search Page</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">ProductCategorySearchPage</hint>
+        </hints>
+        <property name="subCategories"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.product.CategoryWsDTO>">
+            <description>List of subcategories</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.search.facetdata.ProductSearchPageWsDTO">
+        <description>Representation of a Product Search Page</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">ProductSearchPage</hint>
+        </hints>
+        <property name="freeTextSearch" type="String">
+            <description>Free text search</description>
+        </property>
+        <property name="categoryCode" type="String">
+            <description>Code of category</description>
+        </property>
+        <property name="keywordRedirectUrl" type="String">
+            <description>Redirect url address keyword</description>
+        </property>
+        <property name="spellingSuggestion"
+                  type="de.hybris.platform.commercewebservicescommons.dto.search.facetdata.SpellingSuggestionWsDTO">
+            <description>Spelling suggestion</description>
+        </property>
+        <property name="products"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.product.ProductWsDTO>">
+            <description>List of products</description>
+        </property>
+        <property name="sorts"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.search.pagedata.SortWsDTO>">
+            <description>List of sorts</description>
+        </property>
+        <property name="pagination"
+                  type="de.hybris.platform.commercewebservicescommons.dto.search.pagedata.PaginationWsDTO">
+            <description>Pagination number</description>
+        </property>
+        <property name="currentQuery" type="de.hybris.platform.commercewebservicescommons.dto.search.SearchStateWsDTO">
+            <description>Current query</description>
+        </property>
+        <property name="breadcrumbs"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.search.facetdata.BreadcrumbWsDTO>">
+            <description>List of breadcrumbs info</description>
+        </property>
+        <property name="facets"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.search.facetdata.FacetWsDTO>">
+            <description>List of facets</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.search.facetdata.SpellingSuggestionWsDTO">
+        <description>Representation of a Spell Checker Suggestion</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">SpellingSuggestion</hint>
+        </hints>
+        <property name="suggestion" type="String">
+            <description>Spelling suggestion</description>
+        </property>
+        <property name="query" type="String">
+            <description>Query for spelling suggestion</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.search.solrfacetsearch.SolrSearchQueryWsDTO">
+        <description>Representation of a Solr Search Query</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">SolrSearchQuery</hint>
+        </hints>
+        <property name="categoryCode" type="String">
+            <description>Code of category</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.search.solrfacetsearch.SolrSearchQueryTermWsDTO">
+        <description>Representation of a Solr Search Query Term</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">SolrSearchQueryTerm</hint>
+        </hints>
+        <property name="key" type="String">
+            <description>Key of solr search query term</description>
+        </property>
+        <property name="value" type="String">
+            <description>Value of solr search query term</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.product.SuggestionWsDTO">
+        <description>Representation of a Suggestion</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">Suggestion</hint>
+        </hints>
+        <property name="value" type="String">
+            <description>Suggestion value</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.product.SuggestionListWsDTO">
+        <description>Representation of a Suggestion List</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">SuggestionList</hint>
+        </hints>
+        <property name="suggestions"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.product.SuggestionWsDTO>">
+            <description>List of suggestions</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.ZoneDeliveryModeWsDTO"
+          extends="de.hybris.platform.commercewebservicescommons.dto.order.DeliveryModeWsDTO">
+        <description>Representation of a Zone Delivery Mode</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">ZoneDeliveryMode</hint>
+        </hints>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.store.PointOfServiceStockWsDTO"
+          extends="de.hybris.platform.commercewebservicescommons.dto.store.PointOfServiceWsDTO">
+        <description>Representation of a Point Of Service Stock</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">PointOfServiceStock</hint>
+        </hints>
+        <property name="stockInfo" type="de.hybris.platform.commercewebservicescommons.dto.product.StockWsDTO">
+            <description>Stock information about point of service</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.store.StoreFinderStockSearchPageWsDTO">
+        <description>Representation of a Store Finder Stock Search Page</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">StoreFinderStockSearchPage</hint>
+        </hints>
+        <property name="stores"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.store.PointOfServiceStockWsDTO>">
+            <description>List of stores</description>
+        </property>
+        <property name="sorts"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.search.pagedata.SortWsDTO>">
+            <description>List of sorts</description>
+        </property>
+        <property name="pagination"
+                  type="de.hybris.platform.commercewebservicescommons.dto.search.pagedata.PaginationWsDTO">
+            <description>Pagination</description>
+        </property>
+        <property name="locationText" type="String">
+            <description>Location text</description>
+        </property>
+        <property name="sourceLatitude" type="Double">
+            <description>Source latitude</description>
+        </property>
+        <property name="sourceLongitude" type="Double">
+            <description>Source longitude</description>
+        </property>
+        <property name="boundNorthLatitude" type="Double">
+            <description>Bound to north latitude</description>
+        </property>
+        <property name="boundEastLongitude" type="Double">
+            <description>Bound to east longitude</description>
+        </property>
+        <property name="boundSouthLatitude" type="Double">
+            <description>Bound to south latitude</description>
+        </property>
+        <property name="boundWestLongitude" type="Double">
+            <description>Bound to west longitude</description>
+        </property>
+        <property name="product" type="de.hybris.platform.commercewebservicescommons.dto.product.ProductWsDTO">
+            <description>Product</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.user.AddressValidationWsDTO">
+        <description>Representation of an Address Validation</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">AddressValidation</hint>
+        </hints>
+        <property name="errors" type="de.hybris.platform.webservicescommons.dto.error.ErrorListWsDTO">
+            <description>List of errors</description>
+        </property>
+        <property name="decision" type="String">
+            <description>Decision</description>
+        </property>
+        <property name="suggestedAddresses"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.user.AddressWsDTO>">
+            <description>List of suggested addresses</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.SaveCartResultWsDTO">
+        <description>Representation of a Save Cart Result</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">SaveCartResult</hint>
+        </hints>
+        <property name="savedCartData" type="de.hybris.platform.commercewebservicescommons.dto.order.CartWsDTO">
+            <description>Cart data information for saved cart</description>
+        </property>
+    </bean>
+
+    <!-- Consent management -->
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.consent.ConsentTemplateListWsDTO">
+        <description>Representation of a Consent Template List</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">ConsentTemplateList</hint>
+        </hints>
+        <property name="consentTemplates"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.consent.ConsentTemplateWsDTO>">
+            <description>List of consent templates</description>
+        </property>
+    </bean>
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.consent.ConsentTemplateWsDTO">
+        <description>Representation of a Consent Template</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">ConsentTemplate</hint>
+        </hints>
+        <property name="id" type="String">
+            <description>Consent template identifier</description>
+        </property>
+        <property name="name" type="String">
+            <description>Consent template name</description>
+        </property>
+        <property name="description" type="String">
+            <description>Consent template description</description>
+        </property>
+        <property name="version" type="Integer">
+            <description>Consent template version</description>
+        </property>
+        <property name="currentConsent" type="de.hybris.platform.commercewebservicescommons.dto.consent.ConsentWsDTO">
+            <description>Current consent</description>
+        </property>
+    </bean>
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.consent.ConsentWsDTO">
+        <description>Representation of a Consent</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">Consent</hint>
+        </hints>
+        <property name="code" type="String">
+            <description>Code of consent</description>
+        </property>
+        <property name="consentGivenDate" type="java.util.Date">
+            <description>Date of consenting</description>
+        </property>
+        <property name="consentWithdrawnDate" type="java.util.Date">
+            <description>Consent withdrawn date</description>
+        </property>
+    </bean>
+
+    <!--Base Store-->
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.basestore.BaseStoreWsDTO">
+        <description>Representation of a Base Store</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">BaseStore</hint>
+        </hints>
+        <property name="name" type="String">
+            <description>Base store name</description>
+        </property>
+        <property name="externalTaxEnabled" type="Boolean">
+            <description>Flag defining is external tax is enabled</description>
+        </property>
+        <property name="paymentProvider" type="String">
+            <description>Payment provider</description>
+        </property>
+        <property name="createReturnProcessCode" type="String">
+            <description>Create return process code</description>
+        </property>
+        <property name="maxRadiusForPosSearch" type="Double">
+            <description>Maximum radius for searching point of service</description>
+        </property>
+        <property name="submitOrderProcessCode" type="String">
+            <description>Submit order process code</description>
+        </property>
+        <property name="currencies"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.storesession.CurrencyWsDTO>">
+            <description>List of currencies</description>
+        </property>
+        <property name="defaultCurrency" type="de.hybris.platform.commercewebservicescommons.dto.storesession.CurrencyWsDTO">
+            <description>Default currency</description>
+        </property>
+        <property name="defaultDeliveryOrigin"
+                  type="de.hybris.platform.commercewebservicescommons.dto.store.PointOfServiceWsDTO">
+            <description>Point of service being default delivery origin</description>
+        </property>
+        <property name="defaultLanguage" type="de.hybris.platform.commercewebservicescommons.dto.storesession.LanguageWsDTO">
+            <description>Default language</description>
+        </property>
+        <property name="deliveryCountries"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.user.CountryWsDTO>">
+            <description>List of delivery countries</description>
+        </property>
+        <property name="deliveryModes" type="de.hybris.platform.commercewebservicescommons.dto.order.DeliveryModeListWsDTO">
+            <description>List of delivery modes</description>
+        </property>
+        <property name="languages"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.storesession.LanguageWsDTO>">
+            <description>List of languages</description>
+        </property>
+        <property name="pointsOfService"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.store.PointOfServiceWsDTO>">
+            <description>List of points of service</description>
+        </property>
+        <property name="expressCheckoutEnabled" type="Boolean">
+            <description>Flag specifying whether the express checkout option is enabled</description>
+        </property>
+    </bean>
+
+    <!--Base Sites-->
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.basesite.BaseSiteListWsDTO">
+        <description>Representation of a Base Site List</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">BaseSiteList</hint>
+        </hints>
+        <property name="baseSites"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.basesite.BaseSiteWsDTO>">
+            <description>List of basesites</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.basesite.BaseSiteWsDTO">
+        <description>Representation of a Base Site</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">BaseSite</hint>
+        </hints>
+        <property name="uid" type="String">
+            <description>Unique identifier of Basesite</description>
+        </property>
+        <property name="name" type="String">
+            <description>Name of Basesite</description>
+        </property>
+        <property name="stores"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.basestore.BaseStoreWsDTO>">
+            <description>List of Basestores</description>
+        </property>
+        <property name="theme" type="String">
+            <description>Theme of Basesite</description>
+        </property>
+        <property name="defaultLanguage" type="de.hybris.platform.commercewebservicescommons.dto.storesession.LanguageWsDTO">
+            <description>Default language for Basesite</description>
+        </property>
+        <property name="locale" type="String">
+            <description>Locale data for Basesite</description>
+        </property>
+        <property name="channel" type="String">
+            <description>Channel</description>
+        </property>
+        <property name="urlEncodingAttributes" type="java.util.Collection&lt;String>">
+            <description>List of url encoding attributes</description>
+        </property>
+        <property name="urlPatterns" type="java.util.Collection&lt;String>">
+            <description>List of url patterns</description>
+        </property>
+        <property name="defaultPreviewCatalogId" type="String">
+            <description>Default preview catalog id</description>
+        </property>
+        <property name="defaultPreviewCategoryCode" type="String">
+            <description>Default preview category code</description>
+        </property>
+        <property name="defaultPreviewProductCode" type="String">
+            <description>Default preview product code</description>
+        </property>
+    </bean>
+
+
+    <!-- store counts for store finder -->
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.store.StoreCountWsDTO">
+        <description>Representation of a Store Count</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">StoreCount</hint>
+        </hints>
+        <property name="type" type="String">
+            <description>Type of store count</description>
+        </property>
+        <property name="name" type="String">
+            <description>Name of store count</description>
+        </property>
+        <property name="isoCode" type="String">
+            <description>Iso code of store</description>
+        </property>
+        <property name="count" type="Integer">
+            <description>Count</description>
+        </property>
+        <property name="storeCountDataList"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.store.StoreCountWsDTO>">
+            <description>List of store counts</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.store.StoreCountListWsDTO">
+        <description>Representation of a Store Count List</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">StoreCountList</hint>
+        </hints>
+        <property name="countriesAndRegionsStoreCount"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.store.StoreCountWsDTO>">
+            <description>List of store counts</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.store.PointOfServiceListWsDTO">
+        <description>Representation of a Point of Service List</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">PointOfServiceList</hint>
+        </hints>
+        <property name="pointOfServices"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.store.PointOfServiceWsDTO>">
+            <description>List of points of service</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.PaymentModeWsDTO">
+        <description>Representation of a Payment Mode</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">PaymentMode</hint>
+        </hints>
+        <property name="code" type="java.lang.String">
+            <description>Payment mode code</description>
+        </property>
+        <property name="name" type="java.lang.String">
+            <description>Payment mode name</description>
+        </property>
+        <property name="description" type="java.lang.String">
+            <description>Payment mode description</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.PaymentModeListWsDTO">
+        <description>Representation of a Payment Mode List</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">PaymentModeList</hint>
+        </hints>
+        <property name="paymentModes" type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.order.PaymentModeWsDTO>">
+            <description>List of payment modes</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.CancellationRequestEntryInputWsDTO">
+        <description>Representation of a cancellation request entry input for an order</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">CancellationRequestEntryInput</hint>
+        </hints>
+        <property name="orderEntryNumber" type="Integer">
+            <description>Order entry number of the cancelled product</description>
+            <hints>
+                <hint name="example">1</hint>
+                <hint name="required">true</hint>
+            </hints>
+        </property>
+        <property name="quantity" type="Long">
+            <description>Quantity of the product which belongs to the order entry and is requested to be cancelled</description>
+            <hints>
+                <hint name="example">5</hint>
+                <hint name="required">true</hint>
+            </hints>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.CancellationRequestEntryInputListWsDTO">
+        <description>Representation of a cancellation request entry input list for an order</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">CancellationRequestEntryInputList</hint>
+        </hints>
+        <property name="cancellationRequestEntryInputs"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.order.CancellationRequestEntryInputWsDTO>">
+            <description>Cancellation request entry inputs which contain information about the order entries which are requested to be cancelled</description>
+            <hints>
+                <hint name="required">true</hint>
+            </hints>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.ReturnRequestEntryWsDTO">
+        <description>Representation of a return request entry which contains information about the returned product</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">ReturnRequestEntry</hint>
+        </hints>
+        <property name="orderEntry" type="de.hybris.platform.commercewebservicescommons.dto.order.OrderEntryWsDTO">
+            <description>Order entry related to the return request entry</description>
+        </property>
+        <property name="expectedQuantity" type="Long">
+            <description>Quantity which is expected to be returned for this return request entry</description>
+            <hints>
+                <hint name="example">5</hint>
+            </hints>
+        </property>
+        <property name="refundAmount" type="de.hybris.platform.commercewebservicescommons.dto.product.PriceWsDTO">
+            <description>Refund amount of the entry</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.ReturnRequestWsDTO">
+        <description>Representation of a return request for an order</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">ReturnRequest</hint>
+        </hints>
+        <property name="cancellable" type="Boolean">
+            <description>Boolean flag for whether the return request is cancellable</description>
+            <hints>
+                <hint name="example">true</hint>
+            </hints>
+        </property>
+        <property name="code" type="java.lang.String">
+            <description>Return request code</description>
+            <hints>
+                <hint name="example">00000001</hint>
+            </hints>
+        </property>
+        <property name="creationTime" type="java.util.Date">
+            <description>Date of the return request creation</description>
+            <hints>
+                <hint name="example">2020-12-31T09:00:00+0000</hint>
+            </hints>
+        </property>
+        <property name="deliveryCost" type="de.hybris.platform.commercewebservicescommons.dto.product.PriceWsDTO">
+            <description>Delivery cost</description>
+        </property>
+        <property name="order" type="de.hybris.platform.commercewebservicescommons.dto.order.OrderWsDTO">
+            <description>Order related to the return request</description>
+        </property>
+        <property name="refundDeliveryCost" type="Boolean">
+            <description>Boolean flag for whether there is a delivery cost for refund</description>
+            <hints>
+                <hint name="example">false</hint>
+            </hints>
+        </property>
+        <property name="returnEntries"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.order.ReturnRequestEntryWsDTO>">
+            <description>Entries of the return request which contains information about the returned product</description>
+        </property>
+        <property name="returnLabelDownloadUrl" type="java.lang.String">
+            <description>URL of the return label</description>
+        </property>
+        <property name="rma" type="java.lang.String">
+            <description>Return merchandise authorization number</description>
+            <hints>
+                <hint name="example">00000001</hint>
+            </hints>
+        </property>
+        <property name="status" type="String">
+            <description>Status of return request</description>
+        </property>
+        <property name="subTotal" type="de.hybris.platform.commercewebservicescommons.dto.product.PriceWsDTO">
+            <description>Subtotal price</description>
+        </property>
+        <property name="totalPrice" type="de.hybris.platform.commercewebservicescommons.dto.product.PriceWsDTO">
+            <description>Total price</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.ReturnRequestEntryInputWsDTO">
+        <description>Representation of a return request entry input for an order</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">ReturnRequestEntryInput</hint>
+        </hints>
+        <property name="orderEntryNumber" type="Integer">
+            <description>Order entry number of the returned product</description>
+            <hints>
+                <hint name="example">1</hint>
+                <hint name="required">true</hint>
+            </hints>
+        </property>
+        <property name="quantity" type="Long">
+            <description>Quantity of the product which belongs to the order entry and is requested to be returned</description>
+            <hints>
+                <hint name="example">5</hint>
+                <hint name="required">true</hint>
+            </hints>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.ReturnRequestEntryInputListWsDTO">
+        <description>Representation of a return request entry input list for an order</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">ReturnRequestEntryInputList</hint>
+        </hints>
+        <property name="orderCode" type="java.lang.String">
+            <description>Code of the order which return request is related to</description>
+            <hints>
+                <hint name="example">00000001</hint>
+                <hint name="required">true</hint>
+            </hints>
+        </property>
+        <property name="returnRequestEntryInputs"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.order.ReturnRequestEntryInputWsDTO>">
+            <description>Return request entry inputs which contain information about the order entries which are requested to be returned</description>
+            <hints>
+                <hint name="required">true</hint>
+            </hints>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.ReturnRequestListWsDTO">
+        <description>Representation of an Order Return Request List</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">ReturnRequestList</hint>
+        </hints>
+        <property name="returnRequests"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.order.ReturnRequestWsDTO>">
+            <description>List of order return requests</description>
+        </property>
+        <property name="sorts"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.search.pagedata.SortWsDTO>">
+            <description>List of sorts</description>
+        </property>
+        <property name="pagination"
+                  type="de.hybris.platform.commercewebservicescommons.dto.search.pagedata.PaginationWsDTO">
+            <description>Pagination items</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.ReturnRequestModificationWsDTO">
+        <description>Representation of modifications for a return request</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">ReturnRequestModification</hint>
+        </hints>
+        <property name="status" type="de.hybris.platform.commercewebservicescommons.dto.product.ReturnRequestStatusWsDTOType">
+            <description>Status of the return request</description>
+        </property>
+    </bean>
+
+    <enum class="de.hybris.platform.commercewebservicescommons.dto.product.ReturnRequestStatusWsDTOType">
+        <value>CANCELLING</value>
+    </enum>
+</beans>

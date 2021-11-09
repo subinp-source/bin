@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="OOTB" importedAsReadOnly="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/china-accelerator-addons/chinesecommercewebservicescommons/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="commercewebservicescommons" exported="" />
+    <orderEntry type="module" module-name="platform" exported="" />
+  </component>
+</module>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <label> Custom IFrame</label> <br />
+        <button id="navigateToJSViewInner">To Non-Smartedit Custom View</button> <br />
+    </body>
+
+    <script>
+        document.getElementById('navigateToJSViewInner').addEventListener(
+            'click',
+            function(event) {
+                parent.postMessage(
+                    {
+                        pk: Math.random(),
+                        gatewayId: 'urlService',
+                        eventId: 'path',
+                        data: {
+                            arguments: ['/customView']
+                        }
+                    },
+                    '*'
+                );
+            },
+            false
+        );
+    </script>
+</html>

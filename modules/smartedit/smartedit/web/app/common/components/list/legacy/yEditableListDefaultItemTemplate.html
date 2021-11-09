@@ -1,0 +1,9 @@
+<div>
+    <span>{{ node.uid }}</span>
+    <se-dropdown-menu
+        data-ng-if="$ctrl.editable"
+        [dropdown-items]="$ctrl.getDropdownItems()"
+        [selected-item]="this"
+        class="pull-right se-tree-node__actions--more-menu"
+    ></se-dropdown-menu>
+</div>

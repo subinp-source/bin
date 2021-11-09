@@ -1,0 +1,99 @@
+ul.se-tabset.nav-tabs {
+    @include se-flex-row();
+    margin-bottom: fd-space('s');
+}
+.se-tabset .se-tabset__select {
+    .fd-popover__popper {
+        width: 200px !important;
+    }
+
+    li {
+        margin-bottom: -1px;
+    }
+
+    li > a {
+        position: relative;
+        display: block;
+        padding: 10px 15px;
+        margin-right: 2px;
+        line-height: 1.42857143;
+        border: 1px solid transparent;
+        border-radius: 3px 3px 0 0;
+    }
+    li a:hover {
+        border-color: #c6c6c6 #c6c6c6 #d4d7dc;
+        text-decoration: none;
+        background-color: #c6c6c6;
+    }
+
+    li.active > a,
+    li.active > a:hover,
+    li.active > a:focus {
+        color: #0486e0;
+        cursor: default;
+        background-color: #fff;
+        border: 1px solid #0486e0;
+        border-bottom-color: transparent;
+    }
+
+    li.sm-tab-error {
+        color: #ff3b30;
+    }
+
+    li.sm-tab-error:before {
+        content: '! ';
+    }
+}
+
+.se-tabset .se-tabset__link,
+.se-tabset .se-tabset__link:hover {
+    padding: 0 0 fd-space('xs');
+    margin-right: 30px;
+    cursor: pointer;
+    text-transform: capitalize;
+    color: fd-color('text', 2);
+    background-color: transparent;
+    text-decoration: none;
+    border: none !important;
+}
+.se-tabset__tab.active .se-tabset__link {
+    color: fd-color('action', 1);
+
+    &::after {
+        @include se-active-link;
+        content: '';
+        position: absolute;
+        top: 90%;
+        height: 0;
+        left: 0;
+        width: 100%;
+    }
+}
+
+.se-tabset__tab.active .se-tabset__link.sm-tab-error {
+    color: #ff3b30;
+
+    &:before {
+        content: '! ';
+    }
+}
+
+.multi-tabs-editor .se-tabset.nav-tabs {
+    display: inline-flex;
+    justify-items: center;
+    padding-bottom: 2px;
+    margin-bottom: fd-space('base');
+    vertical-align: bottom;
+
+    .se-tabset__link {
+        display: flex;
+        justify-content: center;
+        padding: 0 4px;
+        margin-right: 0;
+        min-width: 30px;
+        box-sizing: border-box;
+    }
+    .se-tabset__tab:last-child .se-tabset__link {
+        margin-right: 0;
+    }
+}

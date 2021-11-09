@@ -1,0 +1,65 @@
+<div class="se-shared-slot-button-template" data-ng-if="ctrl.slotSharedFlag">
+    <div
+        class="se-slot-ctx-menu__dropdown-toggle-wrapper se-slot-ctx-menu__divider"
+        data-uib-dropdown
+        data-dropdown-append-to="'#smarteditoverlay'"
+        data-auto-close="outsideClick"
+        data-is-open="ctrl.isPopupOpened"
+    >
+        <button
+            type="button"
+            data-uib-dropdown-toggle
+            class="se-slot-ctx-menu__dropdown-toggle sap-icon--chain-link se-slot-ctx-menu__dropdown-toggle-icon"
+            data-ng-class="{'se-slot-ctx-menu__dropdown-toggle--open': ctrl.isPopupOpened}"
+            id="sharedSlotButton-{{::ctrl.slotId}}"
+        ></button>
+        <div
+            class="dropdown-menu dropdown-menu-right se-slot__dropdown-menu"
+            data-uib-dropdown-menu
+        >
+            <div
+                class="se-slot-contextual-menu__header"
+                data-translate="se.sharedslot.decorator.label"
+            ></div>
+
+            <div class="se-shared-slot__body">
+                <div
+                    class="se-shared-slot__description"
+                    data-translate="se.cms.slot.shared.popover.message"
+                ></div>
+
+                <div has-operation-permission="'se.shared.slot.override.options'">
+                    <div
+                        class="se-shared-slot__sub-header"
+                        data-translate="se.cms.slot.shared.popover.convertoptions.title"
+                    ></div>
+
+                    <div class="se-shared-slot__option">
+                        <a
+                            class="se-shared-slot__link fd-link"
+                            data-ng-click="ctrl.convertToNonSharedSlotAndCloneComponents()"
+                            data-translate="se.cms.slot.shared.popover.button.clonecomponents"
+                        >
+                        </a>
+                        <div
+                            class="se-shared-slot__link-description"
+                            data-translate="se.cms.slot.shared.popover.text.clonecomponents"
+                        ></div>
+                    </div>
+                    <div class="se-shared-slot__option">
+                        <a
+                            class="se-shared-slot__link fd-link"
+                            data-ng-click="ctrl.convertToNonSharedSlotAndRemoveComponents()"
+                            data-translate="se.cms.slot.shared.popover.button.removecomponents"
+                        >
+                        </a>
+                        <div
+                            class="se-shared-slot__link-description"
+                            data-translate="se.cms.slot.shared.popover.text.removecomponents"
+                        ></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

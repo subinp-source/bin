@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
+
+	<!-- DTO -->
+	<bean
+		class="de.hybris.platform.personalizationpromotionsweb.data.CxPromotionActionData"
+		extends="de.hybris.platform.personalizationfacades.data.ActionData">
+		<description>CxPromotionAction details</description>
+		<hints>
+			<hint name="wsRelated" />
+			<hint name="alias">cxPromotionAction</hint>
+		</hints>
+		<property name="promotionId" type="String">
+			<description>ID of the promotion</description>
+		</property>
+	</bean>
+
+	<bean
+		class="de.hybris.platform.personalizationpromotionsweb.data.PromotionRuleWsDTO">
+		<description>Promotion rule details</description>
+		<hints>
+			<hint name="wsRelated" />
+			<hint name="alias">promotionRule</hint>
+		</hints>
+		<property name="code" type="String">
+			<description>Code of the promotion rule</description>
+			<hints>
+				<hint name="required">true</hint>
+			</hints>
+		</property>
+		<property name="name" type="String">
+			<description>Name of the promotion rule</description>
+		</property>
+		<property name="description" type="String">
+			<description>Description of the promotion rule</description>
+		</property>
+		<property name="status" type="String">
+			<description>Status of the promotion rule</description>
+		</property>
+		<property name="promotionGroup" type="String">
+			<description>Promotion group of the promotion rule</description>
+		</property>
+	</bean>
+
+	<bean
+		class="de.hybris.platform.personalizationpromotionsweb.data.PromotionRuleListWsDTO">
+		<description>List of promotion rules</description>
+		<hints>
+			<hint name="wsRelated" />
+			<hint name="alias">segmentList</hint>
+		</hints>
+		<property name="promotions"
+			type="java.util.List&lt;de.hybris.platform.personalizationpromotionsweb.data.PromotionRuleWsDTO>">
+			<description>List of promotion rules</description>
+		</property>
+	</bean>
+</beans>

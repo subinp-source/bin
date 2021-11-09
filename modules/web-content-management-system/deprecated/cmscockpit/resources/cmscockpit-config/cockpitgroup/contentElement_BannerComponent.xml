@@ -1,0 +1,7 @@
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<content-elements>
+	<content-element type="BannerComponent" name="type.bannercomponent.name" description="type.bannercomponent.description"
+		image="cmscockpit/images/ContentElementBanner.gif" refImage="cmscockpit/images/ContentElementBannerReference.gif" imageSmall="cmscockpit/images/ContentElementBannerSmall.gif" />
+</content-elements>	

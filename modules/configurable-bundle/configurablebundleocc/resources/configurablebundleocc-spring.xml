@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean parent="fieldSetLevelMapping" id="bundleTemplateWsDTOFieldSetLevelMapping">
+		<property name="dtoClass"
+				  value="de.hybris.platform.configurablebundleocc.data.BundleTemplateWsDTO"/>
+		<property name="levelMapping">
+			<map>
+				<entry key="BASIC" value="id,name,rootBundleTemplateName"/>
+				<entry key="DEFAULT" value="id,name,rootBundleTemplateName"/>
+				<entry key="FULL" value="id,name,rootBundleTemplateName"/>
+			</map>
+		</property>
+	</bean>
+
+	<bean parent="fieldSetLevelMapping" id="bundleProductWsDTOFieldSetLevelMapping">
+		<property name="dtoClass"
+				  value="de.hybris.platform.commercewebservicescommons.dto.product.ProductWsDTO"/>
+		<property name="levelMapping">
+			<map>
+				<entry key="BASIC"
+					   value="bundleTemplates"/>
+				<entry key="DEFAULT"
+					   value="bundleTemplates(DEFAULT)"/>
+				<entry key="FULL"
+					   value="bundleTemplates(FULL)"/>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="cwsProductConfiguredPopulator" parent="defaultProductConfiguredPopulator">
+		<property name="populators">
+			<map key-type="de.hybris.platform.commercefacades.product.ProductOption" merge="true">
+				<entry key="BUNDLE" value-ref="bundleStarterPopulator"/>
+			</map>
+		</property>
+	</bean>
+
+    <context:annotation-config/>
+
+</beans>

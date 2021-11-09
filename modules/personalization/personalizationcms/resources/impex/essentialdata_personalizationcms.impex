@@ -1,0 +1,12 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+INSERT_UPDATE UserGroup;UID[unique=true];groups(uid)[mode=append]
+;cxmanagergroup;basecmsmanagergroup
+;cxreadonlygroup;employeegroup
+
+INSERT_UPDATE ComponentTypeGroups2ComponentType;source(code)[unique=true];target(code)[unique=true]
+;wide;CxCmsComponentContainer
+;narrow;CxCmsComponentContainer
+;logo;CxCmsComponentContainer

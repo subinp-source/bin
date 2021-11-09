@@ -1,0 +1,5 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+INSERT_UPDATE SolrSearchConfig;description[unique=true];pageSize;legacyMode;restrictFieldsInResponse
+;testSearchConfig${testId};20;false;true

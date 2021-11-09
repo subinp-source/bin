@@ -1,0 +1,13 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+$facetSearchConfigName=testFacetSearchConfig${testId}
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];useForHighlighting
+;testIndexedType${testId};name;true
+
+INSERT_UPDATE SolrSynonymConfig;facetSearchConfig(name)[unique=true,default=$facetSearchConfigName];language(isocode)[unique=true];synonymFrom[unique=true];synonymTo
+;;en;trousers;pants
+
+INSERT_UPDATE SolrSearchConfig;description[unique=true];enableHighlighting
+;testSearchConfig${testId};true

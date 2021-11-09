@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="output" path="eclipsebin/notused"/>
+
+
+				
+				
+	<classpathentry exported="true" kind="lib" path="lib/spring-integration-event-5.2.8.RELEASE.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/spring-integration-feed-5.2.8.RELEASE.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/spring-integration-file-5.2.8.RELEASE.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/spring-integration-ftp-5.2.8.RELEASE.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/spring-integration-groovy-5.2.8.RELEASE.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/spring-integration-http-5.2.8.RELEASE.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/spring-integration-ip-5.2.8.RELEASE.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/spring-integration-jdbc-5.2.8.RELEASE.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/spring-integration-jms-5.2.8.RELEASE.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/spring-integration-jmx-5.2.8.RELEASE.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/spring-integration-mail-5.2.8.RELEASE.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/spring-integration-rmi-5.2.8.RELEASE.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/spring-integration-scripting-5.2.8.RELEASE.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/spring-integration-security-5.2.8.RELEASE.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/spring-integration-sftp-5.2.8.RELEASE.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/spring-integration-stream-5.2.8.RELEASE.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/spring-integration-test-5.2.8.RELEASE.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/spring-integration-ws-5.2.8.RELEASE.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/spring-integration-xml-5.2.8.RELEASE.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/spring-integration-xmpp-5.2.8.RELEASE.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/spring-ws-core-3.0.8.RELEASE.jar" />
+	<classpathentry exported="true" kind="lib" path="resources" />
+	<classpathentry exported="false" kind="src" path="/platform" />
+				
+</classpath>
+				

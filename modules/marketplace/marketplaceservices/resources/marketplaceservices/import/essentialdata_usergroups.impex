@@ -1,0 +1,10 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+INSERT_UPDATE UserGroup;UID[unique=true];name;groups(uid)[mode=append]
+;vendoradministratorgroup;Vendor Administrator Group;employeegroup;
+;vendorproductmanagergroup;Vendor Product Manager Group;employeegroup;
+;vendorcontentmanagergroup;Vendor Content Manager Group;employeegroup;
+;vendorwarehousestaffgroup;Vendor Warehouse Staff Group;employeegroup;
+;merchantvendormanagergroup;Merchant Vendor Manager Group;employeegroup

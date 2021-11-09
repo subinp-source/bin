@@ -1,0 +1,315 @@
+[
+	{
+		"id": "doc1",
+		"fields": {
+			"code": "doc1",
+			"name": {
+				"en": "Shirt red M",
+				"de": "Hemd rot M"
+			},
+			"description": {
+				"en": "red Shirt M"
+			},
+			"color": "RED",
+			"color_text": "RED",
+			"size": "M",
+			"size_text": "M",
+			"price": {
+				"EUR": 10,
+				"USD": 11
+			},
+			"scalePrices": [
+				{
+					"EUR": 10,
+					"USD": 11
+				},
+				{
+					"EUR": 9,
+					"USD": 10
+				}
+			],
+			"keywords": [
+				"shirt",
+				"red",
+				"M"
+			],
+			"localized_keywords": [
+				{
+					"en": "shirt"
+				},
+				{
+					"en": "red"
+				},
+				{
+					"en": "M"
+				}
+			],
+			"categoryIds": [
+				"apparel",
+				"shirts"
+			],
+			"categoryName": [
+				{
+					"en": "Apparel",
+					"de": "Bekleidung"
+				},
+				{
+					"en": "Shirts",
+					"de": "Hemden"
+				}
+			],
+			"field_string": "RED M",
+			"field_string_mv": [
+				"RED shirt",
+				"size M"
+			],
+			"field_text": "RED shirt size M",
+			"field_text_mv": [
+				"RED shirt",
+				"size M"
+			],
+			"field_boolean": true,
+			"field_boolean_mv": [
+				true,
+				true
+			],
+			"field_integer": 10,
+			"field_integer_mv": [
+				10,
+				15
+			],
+			"field_long": 10,
+			"field_long_mv": [
+				10,
+				15
+			],
+			"field_float": 10.0,
+			"field_float_mv": [
+				10.0,
+				15.0
+			],
+			"field_double": 10.0,
+			"field_double_mv": [
+				10.0,
+				15.0
+			],
+			"field_date_time": "2010-01-01T00:00:00.000+00:00",
+			"field_date_time_mv": [
+				"2010-01-01T00:00:00.000+00:00",
+				"2015-01-01T00:00:00.000-00:00"
+			]
+		}
+	},
+	{
+		"id": "doc2",
+		"fields": {
+			"code": "doc2",
+			"name": {
+				"en": "Jacket green M",
+				"de": "Jacke grün M"
+			},
+			"description": {
+				"en": "green jacket M"
+			},
+			"color": "GREEN",
+			"color_text": "GREEN",
+			"size": "M",
+			"size_text": "M",
+			"price": {
+				"EUR": 20,
+				"USD": 21
+			},
+			"scalePrices": [
+				{
+					"EUR": 20,
+					"USD": 21
+				},
+				{
+					"EUR": 18,
+					"USD": 19
+				}
+			],
+			"keywords": [
+				"jacket",
+				"green",
+				"M"
+			],
+			"localized_keywords": [
+				{
+					"en": "jacket"
+				},
+				{
+					"en": "green"
+				},
+				{
+					"en": "M"
+				}
+			],
+			"categoryIds": [
+				"apparel",
+				"jackets"
+			],
+			"categoryName": [
+				{
+					"en": "Apparel",
+					"de": "Bekleidung"
+				},
+				{
+					"en": "Jackets",
+					"de": "Jacken"
+				}
+			],
+			"field_string": "GREEN M",
+			"field_string_mv": [
+				"GREEN jacket",
+				"size M"
+			],
+			"field_text": "Green jacket size M",
+			"field_text_mv": [
+				"Green jacket",
+				"size M"
+			],
+			"field_boolean": false,
+			"field_boolean_mv": [
+				true,
+				false
+			],
+			"field_integer": 20,
+			"field_integer_mv": [
+				20,
+				25
+			],
+			"field_long": 20,
+			"field_long_mv": [
+				20,
+				25
+			],
+			"field_float": 20.0,
+			"field_float_mv": [
+				20.0,
+				25.0
+			],
+			"field_double": 20.0,
+			"field_double_mv": [
+				20.0,
+				25.0
+			],
+			"field_date_time": "2020-01-01T00:00:00.000+00:00",
+			"field_date_time_mv": [
+				"2020-01-01T00:00:00.000+00:00",
+				"2025-01-01T00:00:00.000-00:00"
+			]
+		}
+	},
+	{
+		"id": "doc3",
+		"fields": {
+			"code": "doc3",
+			"name": {
+				"en": "Pullover green L",
+				"de": "Pullover grün L"
+			},
+			"description": {
+				"en": "green pullover L"
+			},
+			"color": "GREEN",
+			"color_text": "GREEN",
+			"size": "L",
+			"size_text": "L",
+			"price": {
+				"EUR": 30,
+				"USD": 31
+			},
+			"scalePrices": [
+				{
+					"EUR": 30,
+					"USD": 31
+				},
+				{
+					"EUR": 27,
+					"USD": 28
+				}
+			],
+			"keywords": [
+				"pullover",
+				"green",
+				"L"
+			],
+			"localized_keywords": [
+				{
+					"en": "pullover"
+				},
+				{
+					"en": "green"
+				},
+				{
+					"en": "L"
+				}
+			],
+			"categoryIds": [
+				"apparel",
+				"shirts"
+			],
+			"categoryIds": [
+				"apparel",
+				"pullovers"
+			],
+			"categoryName": [
+				{
+					"en": "Apparel",
+					"de": "Bekleidung"
+				},
+				{
+					"en": "Pullovers",
+					"de": "Pullover"
+				}
+			],
+			"field_string": "GREEN L",
+			"field_string_mv": [
+				"GREEN pullover",
+				"size L"
+			],
+			"field_text": "Green pullover size L",
+			"field_text_mv": [
+				"Green pullover",
+				"size L"
+			],
+			"field_boolean": true,
+			"field_boolean_mv": [
+				false,
+				false
+			],
+			"field_integer": 30,
+			"field_integer_mv": [
+				30,
+				35
+			],
+			"field_long": 30,
+			"field_long_mv": [
+				30,
+				35
+			],
+			"field_float": 30.0,
+			"field_float_mv": [
+				30.0,
+				35.0
+			],
+			"field_double": 30.0,
+			"field_double_mv": [
+				30.0,
+				35.0
+			],
+			"field_date_time": "2030-01-01T00:00:00.000+00:00",
+			"field_date_time_mv": [
+				"2030-01-01T00:00:00.000+00:00",
+				"2035-01-01T00:00:00.000-00:00"
+			]
+		}
+	},
+	{
+		"id": "doc4",
+		"fields": {
+
+		}
+	}
+]

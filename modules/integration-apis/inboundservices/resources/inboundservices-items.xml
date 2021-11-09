@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ [y] hybris Platform
+  ~
+  ~ Copyright (c) 2018 SAP SE or an SAP affiliate company.
+  ~ All rights reserved.
+  ~
+  ~ This software is the confidential and proprietary information of SAP
+  ~ ("Confidential Information"). You shall not disclose such Confidential
+  ~ Information and shall use it only in accordance with the terms of the
+  ~ license agreement you entered into with SAP.
+  -->
+<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="items.xsd">
+
+    <enumtypes>
+        <enumtype code="AuthenticationType">
+            <value code="BASIC"/>
+            <value code="OAUTH"/>
+        </enumtype>
+    </enumtypes>
+
+    <relations>
+        <relation code="InboundRequest2InboundRequestError" localized="false">
+            <sourceElement type="InboundRequest" qualifier="inboundRequest" cardinality="one"/>
+            <targetElement type="InboundRequestError" qualifier="errors" cardinality="many" collectiontype="set">
+                <modifiers partof="true"/>
+            </targetElement>
+        </relation>
+        <relation code="InboundChannelConfiguration2ExposedDestination" autocreate="true" localized="false">
+            <sourceElement qualifier="inboundChannelConfiguration" type="InboundChannelConfiguration" cardinality="one">
+                <modifiers read="true" write="true" search="true" optional="true" initial="true" unique="true"/>
+            </sourceElement>
+            <targetElement qualifier="exposedDestinations" type="ExposedDestination" cardinality="many" ordered="true" collectiontype="list">
+                <modifiers read="true" write="true" search="true" optional="true" partof="false" />
+            </targetElement>
+        </relation>
+    </relations>
+    <itemtypes>
+        <itemtype code="InboundRequest" extends="MonitoredRequest">
+            <deployment table="InboundRequests" typecode="8403"/>
+            <attributes>
+                <attribute qualifier="httpMethod" type="HttpMethod">
+                    <description>Indicates what HTTP method was used for this inbound request</description>
+                    <modifiers initial="true" read="true" write="false" optional="true"/>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <itemtype code="InboundRequestError" extends="MonitoredRequestError">
+            <deployment table="InboundRequestErrors" typecode="8405"/>
+        </itemtype>
+
+        <itemtype code="InboundRequestMedia" extends="IntegrationApiMedia">
+            <description>Item that represents media specific for Inbound Integration APIs.
+                It extends IntegrationApiMedia type without adding any new attribute.
+            </description>
+        </itemtype>
+
+        <itemtype code="InboundChannelConfiguration">
+            <description>
+                Relates an Integration Object to an Authentication Type
+            </description>
+            <deployment table="InboundChannelConf" typecode="8410"/>
+            <attributes>
+                <attribute qualifier="integrationObject" type="IntegrationObject">
+                    <description>Integration Object configured with authentication for an Inbound Request</description>
+                    <modifiers unique="true" optional="false" initial="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="authenticationType" type="AuthenticationType">
+                    <description>Type of authentication for an integration object in an Inbound request, which can be of
+                        a type defined in the AuthenticationType Enum
+                    </description>
+                    <modifiers read="true" write="true" optional="false"/>
+                    <defaultvalue>em().getEnumerationValue("AuthenticationType", "BASIC")</defaultvalue>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+            <indexes>
+                <index name="idx_inboundChannelConfigurationIo" unique="true">
+                    <key attribute="integrationObject"/>
+                </index>
+            </indexes>
+        </itemtype>
+
+        <itemtype code="IntegrationClientCredentialsDetails" extends="OAuthClientDetails">
+            <description>
+                Extended OAuthClientDetails for Integration Services authentication that requires user and supports only
+                the client_credentials grant type
+            </description>
+            <deployment table="IntClientCredDetails" typecode="8411"/>
+            <attributes>
+                <attribute qualifier="authorizedGrantTypes" type="StringSet" redeclare="true">
+                    <description>Read only grant type for the client that always defaults to client_credentials
+                    </description>
+                    <modifiers read="true" write="false" initial="true"/>
+                    <defaultvalue>
+                        java.util.Collections.singleton("client_credentials")
+                    </defaultvalue>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="user" type="Employee">
+                    <modifiers read="true" write="false" initial="true" optional="false"/>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+    </itemtypes>
+</items>

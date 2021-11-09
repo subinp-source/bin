@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+
+
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+
+    <bean id="smarteditaddonCoreDataImportedEventListener" parent="abstractCoreDataImportedEventListener">
+        <property name="supportedChannels">
+            <list value-type="de.hybris.platform.commerceservices.enums.SiteChannel">
+                <value>B2C</value>
+                <!--
+                                <value>B2B</value>
+                -->
+            </list>
+        </property>
+        <property name="addonExtensionMetadata">
+            <bean class="de.hybris.platform.addonsupport.data.AddonExtensionMetadata">
+                <property name="suffixChannel" value="false"/>
+                <property name="baseExtensionName" value="smarteditaddon"/>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="smarteditaddonSampleDataEventListener" parent="abstractGenericAddOnSampleDataEventListener">
+        <property name="extensionName" value="smarteditaddon"/>
+    </bean>
+
+    <!-- SystemSetup for the Smarteditaddon -->
+    <bean id="smarteditaddonSystemSetup" class="de.hybris.platform.smarteditaddon.setup.SmarteditAddonSystemSetup"
+          parent="abstractCoreSystemSetup" />
+
+    <bean id="cmsSmarteditDynamicAttributeService"
+          class="de.hybris.platform.smarteditaddon.cms.services.impl.CMSSmartEditDynamicAttributeService">
+        <property name="sessionService" ref="sessionService"/>
+        <property name="cmsComponentContainerRegistry" ref="cmsComponentContainerRegistry"/>
+        <property name="uniqueItemIdentifierService" ref="cmsUniqueItemIdentifierService"/>
+    </bean>
+
+    <!-- ######################################### -->
+    <!--              MAIL RELATED BEANS           -->
+    <!-- ######################################### -->
+
+    <alias name="smarteditaddonEditEmailComponentRenderingService" alias="smartEditEmailComponentRenderingService" />
+    <bean id="smarteditaddonEditEmailComponentRenderingService"
+          class="de.hybris.platform.smarteditaddon.service.impl.DefaultSmartEditEmailComponentRenderingService">
+        <property name="cmsComponentService" ref="cmsComponentService"/>
+        <property name="typeService" ref="typeService"/>
+        <property name="modelService" ref="modelService"/>
+        <property name="rendererTemplateDao" ref="rendererTemplateDao"/>
+        <property name="rendererService" ref="rendererService"/>
+        <property name="baseSiteService" ref="baseSiteService"/>
+        <property name="siteBaseUrlResolutionService" ref="siteBaseUrlResolutionService"/>
+    </bean>
+
+    <!-- extends default emailTemplateService and overrides alias defined in acceleratorservices -->
+    <alias name="smarteditaddonSmartEditEmailTemplateService" alias="emailTemplateService"/>
+    <bean id="smarteditaddonSmartEditEmailTemplateService"
+          class="de.hybris.platform.smarteditaddon.service.SmartEditEmailTemplateService" parent="defaultEmailTemplateService">
+        <property name="cmsPageService" ref="cmsPageService"/>
+        <property name="cmsDynamicAttributeService" ref="cmsSmarteditDynamicAttributeService"/>
+        <property name="smartEditEmailComponentRenderingService" ref="smartEditEmailComponentRenderingService"/>
+        <property name="uniqueItemIdentifierService" ref="cmsUniqueItemIdentifierService"/>
+    </bean>
+
+</beans>

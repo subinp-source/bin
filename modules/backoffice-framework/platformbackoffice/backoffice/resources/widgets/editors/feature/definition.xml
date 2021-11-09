@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<editor-definition id="com.hybris.cockpitng.editor.feature"
+						 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+						 xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/editor-definition.xsd">
+
+	<name>Feature Editor</name>
+	<description>Feature Editor</description>
+	<type>Feature</type>
+	<editorClassName>de.hybris.platform.platformbackoffice.classification.editor.FeatureEditor</editorClassName>
+
+</editor-definition>

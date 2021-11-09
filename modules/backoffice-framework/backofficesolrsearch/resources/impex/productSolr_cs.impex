@@ -1,0 +1,19 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+# -----------------------------------------------------------------------
+
+$lang=cs
+$solrIndexedType=solrIndexedType(identifier)[unique=true,default='BackofficeProduct'];
+
+#Currencies
+UPDATE Currency;isocode[unique=true];name[lang=$lang];
+;EUR;Euro;
+;USD;USD;
+
+UPDATE SolrIndexedProperty;name[unique=true];$solrIndexedType;backofficeDisplayName[lang=$lang];
+;catalogVersion;;Verze katalogu;
+;facet_catalogVersion;;Verze katalogu;
+;catalog;;katalog;
+;facet_catalog;;katalog;
+;itemtype;;Typ položky;
+;categoryLabel;;Kategorie;

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<config xmlns="http://www.hybris.com/cockpit/config"
+        xmlns:n="http://www.hybris.com/cockpitng/config/explorertree"
+        xmlns:b="http://www.hybris.com/cockpit/config/hybris"
+        xmlns:as="http://www.hybris.com/cockpitng/config/advancedsearch"
+        xmlns:list="http://www.hybris.com/cockpitng/component/listView"
+        xmlns:ea="http://www.hybris.com/cockpitng/component/editorArea">
+
+    <context merge-by="module" component="integrationbackoffice-explorer-tree">
+        <n:explorer-tree>
+                    <n:type-node id="webhookbackoffice.explorer.typenode.webhookconfiguration"
+                                 code="WebhookConfiguration"/>
+        </n:explorer-tree>
+    </context>
+
+    <context type="ConsumedDestination" component="base">
+        <b:base>
+            <b:labels>
+                <b:label>id</b:label>
+            </b:labels>
+        </b:base>
+    </context>
+
+    <context type="WebhookConfiguration">
+        <context component="base">
+            <b:base>
+                <b:labels>
+                    <b:label>integrationObject.code</b:label>
+                </b:labels>
+            </b:base>
+        </context>
+    </context>
+    <context component="advanced-search" type="WebhookConfiguration">
+        <as:advanced-search connection-operator="AND">
+            <as:field-list>
+                <as:field name="integrationObject" operator="equals" selected="true"/>
+                <as:field name="destination" operator="equals"/>
+                <as:field name="eventType" operator="contains"/>
+                <as:field name="creationtime" operator="greaterOrEquals"/>
+                <as:field name="creationtime" operator="lessOrEquals"/>
+            </as:field-list>
+            <as:sort-field name="creationtime" asc="false"/>
+        </as:advanced-search>
+    </context>
+    <context component="listview" type="WebhookConfiguration">
+        <list:list-view refresh-after-object-creation="true">
+            <list:column qualifier="integrationObject"/>
+            <list:column qualifier="destination"/>
+            <list:column qualifier="eventType"/>
+            <list:column qualifier="filterLocation"/>
+            <list:column qualifier="creationtime"/>
+        </list:list-view>
+    </context>
+    <context component="editor-area" type="WebhookConfiguration">
+        <ea:editorArea>
+            <ea:tab name="WebhookConfigurationContainer">
+                <ea:section name="webhookbackoffice.webhookconfiguration.details">
+                    <ea:attribute qualifier="integrationObject"
+                                  readonly="true"/>
+                    <ea:attribute qualifier="destination"
+                                  readonly="true"/>
+                    <ea:attribute qualifier="eventType"
+                                  readonly="true"/>
+                    <ea:attribute qualifier="filterLocation"/>
+                    <ea:attribute qualifier="creationtime" readonly="true"/>
+                </ea:section>
+            </ea:tab>
+        </ea:editorArea>
+    </context>
+    <context component="listviewactions" type="WebhookConfiguration" merge-by="type">
+        <y:actions xmlns:y="http://www.hybris.com/cockpit/config/hybris">
+            <y:group qualifier="common">
+                <y:action action-id="com.hybris.cockpitng.action.create" merge-mode="remove"/>
+                <y:action id="com.hybris.cockpitng.action.create" action-id="webhookbackoffice.actions.createWebhookConfigurationAction" property="pageable.typeCode" position="10"/>
+            </y:group>
+        </y:actions>
+    </context>
+
+</config>

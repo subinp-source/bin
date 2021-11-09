@@ -1,0 +1,8 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+INSERT_UPDATE SmartEditConfiguration;key[unique=true];value
+;previewTicketURI;"""/previewwebservices/v1/preview"""
+;applications.cmssmartedit;{"smartEditLocation":"/cmssmartedit/cmssmartedit/js/cmssmartedit.js"}
+;applications.cmssmarteditContainer;{"smartEditContainerLocation":"/cmssmartedit/cmssmartedit/js/cmssmarteditContainer.js"}

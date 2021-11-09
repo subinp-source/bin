@@ -1,0 +1,6 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+INSERT_UPDATE CxConfig;code[unique=true];orderMapperSegmentMap(key,value(code))
+;electronics;"VIPGold->2000;VIPSilver->1500;VIPBronze->500";

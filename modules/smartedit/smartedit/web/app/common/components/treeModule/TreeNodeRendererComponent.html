@@ -1,0 +1,52 @@
+<div
+    class="tree-node tree-node-content se-tree-node angular-ui-tree-handle"
+    [ngClass]="{
+        'hovered': node.mouseHovered,
+        'se-tree-node--first-level': isRootNodeDescendant,
+        'se-tree-node--selected': !collapsed
+    }"
+    [ngStyle]="{
+        'padding-left': getPaddingLeft(node.level)
+    }"
+    [attr.level]="node.level"
+    (mouseover)="onMouseOver()"
+    (mouseout)="onMouseOut()"
+>
+    <div *ngIf="!showAsList" class="se-tree-node__expander--wrapper col-xs-1 text-center">
+        <a
+            class="se-tree-node__expander btn btn-link btn-sm"
+            *ngIf="node.hasChildren"
+            [attr.disabled]="isDisabled || null"
+            (click)="toggle($event)"
+        >
+            <span
+                [ngClass]="{
+                    'sap-icon--slim-arrow-right': collapsed,
+                    'sap-icon--slim-arrow-down': !collapsed
+                }"
+            ></span>
+        </a>
+    </div>
+
+    <div *ngIf="displayDefaultTemplate" class="se-tree-node__name col-xs-5">
+        <span>{{node.name}}</span>
+        <h6 *ngIf="node.title">{{node.title | seL10n | async }}</h6>
+    </div>
+
+    <!--Legacy support-->
+
+    <div
+        [ngStyle]="{'width': '100%'}"
+        *ngIf="tree.nodeTemplateUrl"
+        [ngInclude]="tree.nodeTemplateUrl"
+        [scope]="{node: node}"
+        [compileHtmlNgController]="legacyController"
+    ></div>
+
+    <ng-container *ngIf="tree.nodeComponent">
+        <ng-container *ngComponentOutlet="tree.nodeComponent; injector: nodeComponentInjector">
+        </ng-container>
+    </ng-container>
+</div>
+
+<se-tree-node [source]="node.nodes" *ngIf="node.nodes.length && node.isExpanded"> </se-tree-node>

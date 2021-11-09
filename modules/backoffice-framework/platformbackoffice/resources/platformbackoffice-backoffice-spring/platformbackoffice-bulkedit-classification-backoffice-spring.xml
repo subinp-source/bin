@@ -1,0 +1,57 @@
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<alias name="defaultClassificationBulkEditForm" alias="classificationBulkEditForm"/>
+	<bean id="defaultClassificationBulkEditForm" class="de.hybris.platform.platformbackoffice.bulkedit.ClassificationBulkEditForm"
+		  scope="prototype"/>
+
+	<alias name="defaultClassificationBulkEditRenderer" alias="classificationBulkEditRenderer"/>
+	<bean id="defaultClassificationBulkEditRenderer" class="de.hybris.platform.platformbackoffice.bulkedit.ClassificationBulkEditRenderer" parent="defaultBulkEditRenderer">
+		<property name="objectFacade" ref="objectFacade"/>
+		<property name="classificationEditorBulkEditRenderer" ref="classificationEditorBulkEditRenderer" />
+		<property name="classificationSectionBulkEditRenderer" ref="classificationSectionBulkEditRenderer" />
+	</bean>
+
+	<alias name="defaultClassificationSectionBulkEditRenderer" alias="classificationSectionBulkEditRenderer" />
+	<bean id="defaultClassificationSectionBulkEditRenderer" class="de.hybris.platform.platformbackoffice.bulkedit.renderer.DefaultClassificationSectionBulkEditRenderer">
+		<property name="classificationSectionNameProvider" ref="classificationSectionNameProvider" />
+	</bean>
+
+	<alias name="defaultClassificationEditorBulkEditRenderer" alias="classificationEditorBulkEditRenderer" />
+	<bean id="defaultClassificationEditorBulkEditRenderer" class="de.hybris.platform.platformbackoffice.bulkedit.renderer.DefaultClassificationEditorBulkEditRenderer">
+		<property name="objectFacade" ref="objectFacade" />
+	</bean>
+
+	<alias name="defaultBulkEditSelectedAttributesHelper" alias="bulkEditSelectedAttributesHelper" />
+	<bean id="defaultBulkEditSelectedAttributesHelper" class="de.hybris.platform.platformbackoffice.bulkedit.BulkEditSelectedAttributesHelper" />
+
+	<alias name="defaultClassificationPersistenceHandler" alias="classificationPersistenceHandler" />
+	<bean id="defaultClassificationPersistenceHandler" class="de.hybris.platform.platformbackoffice.bulkedit.ClassificationPersistenceHandler">
+		<property name="classificationService" ref="classificationService" />
+		<property name="cockpitGlobalEventPublisher" ref="eventPublisher"/>
+		<property name="modelService" ref="modelService"/>
+	</bean>
+
+	<alias name="defaultBulkEditClassificationService" alias="bulkEditClassificationService" />
+	<bean id="defaultBulkEditClassificationService" class="de.hybris.platform.platformbackoffice.bulkedit.DefaultBulkEditClassificationService">
+		<property name="objectFacade" ref="objectFacade" />
+		<property name="selectedAttributesHelper" ref="bulkEditSelectedAttributesHelper" />
+	</bean>
+
+	<alias name="defaultClassificationBulkEditHandler" alias="classificationBulkEditHandler" />
+	<bean id="defaultClassificationBulkEditHandler" class="de.hybris.platform.platformbackoffice.bulkedit.ClassificationBulkEditHandler" parent="bulkEditHandler">
+		<property name="classificationPersistenceHandler" ref="classificationPersistenceHandler" />
+		<property name="bulkEditClassificationService" ref="bulkEditClassificationService" />
+	</bean>
+
+	<alias name="defaultBulkEditClassificationExportRenderer" alias="bulkEditClassificationExportRenderer"/>
+	<bean id="defaultBulkEditClassificationExportRenderer"
+		  class="com.hybris.backoffice.renderer.attributeschooser.ClassificationAttributesExportRenderer"
+		  parent="abstractClassificationExportRenderer">
+		<property name="supportedAttributesPredicate"><null/></property>
+	</bean>
+</beans>

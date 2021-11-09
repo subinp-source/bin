@@ -1,0 +1,85 @@
+@import "../support/platformbackoffice_bulkedit-variables";
+
+.yw-bulkedit-groupbox {
+  border-top: $_bulkedit-centered__groupbox-header--border-top;
+  padding: 0;
+
+  &:first-child {
+    border-top: 0;
+  }
+
+  & .z-groupbox-header {
+    height: auto;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  & &-caption {
+    &.z-caption{
+      padding: $_bulkedit-centered__groupbox-header--padding;
+      background: transparent;
+      top: auto !important;
+      display: block;
+
+      .z-caption-content {
+        width: 100%;
+        padding: 0;
+        font-size: $_bulkedit-centered__groupbox-header--font-size;
+        line-height: $_bulkedit-centered__groupbox-header--line-height;
+        font-weight: bold;
+        
+        &:after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          border-bottom: $_bulkedit-centered__groupbox-header--border-bottom;
+          width: 100%;
+          display: block;
+        }
+      }
+
+      &:hover {
+        button.yw-expandCollapse {
+          background-position: $_bulkedit-centered__groupbox-header-button-expand-hover--bg-position;
+        }
+
+        .z-caption-content {
+          &:after {
+            border-color: $_bulkedit__tabpanel-delimit-horizontal--border-color
+          }
+        }
+      }
+    }
+
+    button.yw-expandCollapse {
+      top: 50%;
+      right: $_bulkedit-centered__groupbox-header-button-collapsed--right;
+      transform: translateY(-50%);
+      background-position: $_bulkedit-centered__groupbox-header-button-expand--bg-position;
+    }
+  }
+
+  &.z-groupbox-collapsed {
+    button.yw-expandCollapse {
+      background-position: $_bulkedit-centered__groupbox-header-button-collapsed--bg-position;
+    }
+
+    & .z-caption {
+      &:hover {
+        button.yw-expandCollapse {
+          background-position: $_bulkedit-centered__groupbox-header-button-collapsed-hover--bg-position;
+        }
+        .z-caption-content {
+          &:after {
+            border: none;
+          }
+        }
+      }
+    }
+  }
+  .z-groupbox-content {
+    padding: $_bulkedit-centered__groupbox-content--padding;
+  }
+}
+
+

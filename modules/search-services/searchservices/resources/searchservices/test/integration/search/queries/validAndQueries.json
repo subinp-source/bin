@@ -1,0 +1,44 @@
+[
+	{
+		"testId": 1,
+		"description": "'and' query, queries match common documents",
+		"data": {
+			"type": "and",
+			"queries": [
+				{
+					"type": "matchTerm",
+					"expression": "color",
+					"value": "GREEN"
+				},
+				{
+					"type": "matchTerm",
+					"expression": "size",
+					"value": "M"
+				}
+			]
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	},
+	{
+		"testId": 2,
+		"description": "'and' query, queries don't match common documents",
+		"data": {
+			"type": "and",
+			"queries": [
+				{
+					"type": "matchTerm",
+					"expression": "code",
+					"value": "doc3"
+				},
+				{
+					"type": "matchTerm",
+					"expression": "code",
+					"value": "doc1"
+				}
+			]
+		},
+		"matchingDocuments": []
+	}
+]

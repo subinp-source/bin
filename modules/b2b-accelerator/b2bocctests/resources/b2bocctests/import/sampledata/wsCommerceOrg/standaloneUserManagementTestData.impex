@@ -1,0 +1,40 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+$defaultPassword = 1234
+
+INSERT_UPDATE B2BOrderThresholdPermission; code[unique = true] ; Unit(uid); threshold; currency(isocode)[default = 'USD'];
+                                         ; Rustic_0K_USD_ORDER ; Rustic   ; 0        ;
+                                         ; Rustic_5K_USD_ORDER ; Rustic   ; 5000     ;
+                                         ; Rustic_7K_USD_ORDER ; Rustic   ; 7000     ;
+
+INSERT_UPDATE B2BOrderThresholdTimespanPermission; code[unique = true]  ; Unit(uid); threshold; currency(isocode); range(code, itemtype(code));
+                                                 ; Rustic_15K_USD_MONTH ; Rustic   ; 15000    ; USD              ; MONTH:B2BPeriodRange       ;
+                                                 ; Rustic_25K_USD_MONTH ; Rustic   ; 25000    ; USD              ; MONTH:B2BPeriodRange       ;
+
+INSERT_UPDATE B2BUserGroup; uid[unique = true]                ; name                 ; unit(uid); permissions(code, unit(uid))                           ;
+                          ; premiumPermissionsUserManagement  ; Premium Permissions  ; Rustic   ; Rustic_7K_USD_ORDER:Rustic,Rustic_25K_USD_MONTH:Rustic ;
+                          ; standardPermissionsUserManagement ; Standard Permissions ; Rustic   ; Rustic_5K_USD_ORDER:Rustic,Rustic_15K_USD_MONTH:Rustic ;
+                          ; limitedPermissionsUserManagement  ; Limited Permissions  ; Rustic   ; Rustic_0K_USD_ORDER:Rustic,Rustic_25K_USD_MONTH:Rustic ;
+
+INSERT_UPDATE B2BUnit; description     ; uid[unique = true]; name            ; locName[lang = en]; groups(uid);
+                     ; Rustic          ; Rustic            ; Rustic          ; Rustic            ;            ;
+                     ; Rustic Services ; Rustic_Services   ; Rustic Services ; Rustic_Services   ;            ;
+                     ; Custom Retail   ; Custom_Retail     ; Custom Retail   ; Custom_Retail     ;            ;
+
+INSERT_UPDATE B2BCustomer; description; customerID                           ; uid[unique = true]              ; originalUid                     ; email                           ; name              ; title(code); groups(uid)                            ; permissionGroups(uid)            ; sessionCurrency(isocode)[default = 'USD']; password[default = $defaultPassword];
+                         ; Admin A    ; 1a2a41a3-c54c-4ce8-a2d2-0324e1c32a21 ; oc.linda.wolf@rustic-hw.com     ; oc.linda.wolf@rustic-hw.com     ; oc.linda.wolf@rustic-hw.com     ; OC Linda Wolf     ; ms         ; Rustic,b2badmingroup, b2bapprovergroup ;                                  ;                                          ;                                     ; ;
+                         ; AdminB     ; 2a2a41a3-c54c-4ce8-a2d2-0324e1c32a21 ; oc.lars.bauer@rustic-hw.com     ; oc.lars.bauer@rustic-hw.com     ; oc.lars.bauer@rustic-hw.com     ; OC Lars Bauer     ; mr         ; Rustic_Services, b2badmingroup         ;                                  ;                                          ;                                     ; ; ;
+                         ; Approver A ; 3a2a41a3-c54c-4ce8-a2d2-0324e1c32a21 ; oc.hanna.schmidt@rustic-hw.com  ; oc.hanna.schmidt@rustic-hw.com  ; oc.hanna.schmidt@rustic-hw.com  ; OC Hanna Schmidt  ; ms         ; Rustic, b2bapprovergroup               ;                                  ;                                          ;                                     ; ; ;
+                         ; Approver B ; 4a2a41a3-c54c-4ce8-a2d2-0324e1c32a21 ; oc.james.bell@rustic-hw.com     ; oc.james.bell@rustic-hw.com     ; oc.james.bell@rustic-hw.com     ; OC James Bell     ; mr         ; Rustic_Services, b2bapprovergroup      ;                                  ;                                          ;                                     ; ; ;
+                         ; Customer A ; 5a2a41a3-c54c-4ce8-a2d2-0324e1c32a21 ; oc.mark.rivers@rustic-hw.com    ; oc.mark.rivers@rustic-hw.com    ; oc.mark.rivers@rustic-hw.com    ; OC Mark Rivers    ; mr         ; Custom_Retail, b2bcustomergroup        ; premiumPermissionsUserManagement ;                                          ;                                     ; ; ;
+                         ; Manager A  ; 6a2a41a3-c54c-4ce8-a2d2-0324e1c32a21 ; oc.akiro.nakamura@rustic-hw.com ; oc.akiro.nakamura@rustic-hw.com ; oc.akiro.nakamura@rustic-hw.com ; OC Akiro Nakamura ; mr         ; Rustic, b2bmanagergroup                ; premiumPermissionsUserManagement ;                                          ;                                     ; ; ;
+                         ; Manager B  ; 6a2a41a3-c54c-4ce8-a2d2-0324e1c32a24 ; fabian.sanchez@rustic-hw.com    ; fabian.sanchez@rustic-hw.com    ; fabian.sanchez@rustic-hw.com    ; Fabian Sanchez    ; mr         ; Rustic, b2bmanagergroup                ; premiumPermissionsUserManagement ;                                          ;                                     ; ; ;
+
+
+UPDATE B2BUnit; uid[unique = true]; approvers(uid)[mode = append]  ;
+              ; Rustic            ; oc.hanna.schmidt@rustic-hw.com ;
+              ; Rustic_Retail     ; oc.james.bell@rustic-hw.com    ;
+              ; Custom_Retail     ; oc.mark.rivers@rustic-hw.com   ;
+

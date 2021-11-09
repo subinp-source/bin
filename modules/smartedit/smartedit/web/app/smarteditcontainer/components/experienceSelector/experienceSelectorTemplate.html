@@ -1,0 +1,10 @@
+<se-generic-editor
+    *ngIf="isReady"
+    [smarteditComponentType]="smarteditComponentType"
+    [smarteditComponentId]="smarteditComponentId"
+    [structureApi]="structureApi"
+    [content]="content"
+    [contentApi]="contentApi"
+    (getApi)="getApi($event)"
+>
+</se-generic-editor>

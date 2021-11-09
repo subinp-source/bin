@@ -1,0 +1,72 @@
+[
+	{
+		"testId": 1,
+		"description": "'le' query without expression",
+		"data": {
+			"type": "le",
+			"value": 2
+		}
+	},
+	{
+		"testId": 2,
+		"description": "'le' query with empty expression",
+		"data": {
+			"type": "le",
+			"expression": "",
+			"value": 2
+		}
+	},
+	{
+		"testId": 3,
+		"description": "'le' query with not allowed expression",
+		"data": {
+			"type": "le",
+			"expression": "-$!#-",
+			"value": "2025-01-01T00:00:00.000+00:00"
+		}
+	},
+	{
+		"testId": 4,
+		"description": "'le' query with not existing expression",
+		"data": {
+			"type": "le",
+			"expression": "notExisting",
+			"value": "2025-01-01T00:00:00.000+00:00"
+		}
+	},
+	{
+		"testId": 5,
+		"description": "'le' query with STRING expression",
+		"data": {
+			"type": "le",
+			"expression": "field_string",
+			"value": 2
+		}
+	},
+	{
+		"testId": 6,
+		"description": "'le' query with TEXT expression",
+		"data": {
+			"type": "le",
+			"expression": "field_text",
+			"value": 2
+		}
+	},
+	{
+		"testId": 7,
+		"description": "'le' query with BOOLEAN expression",
+		"data": {
+			"type": "le",
+			"expression": "field_boolean",
+			"value": 2
+		}
+	},
+	{
+		"testId": 8,
+		"description": "'le' query without value",
+		"data": {
+			"type": "le",
+			"expression": "field_integer"
+		}
+	}
+]

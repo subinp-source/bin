@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+           
+    <context:component-scan base-package="de.hybris.platform.chinesepaymentocc"/>
+
+	<alias name="defaultChinesePaymentModeCodeValidator" alias="chinesePaymentModeCodeValidator"/>
+	<bean id="defaultChinesePaymentModeCodeValidator" class="de.hybris.platform.chinesepaymentocc.validator.PaymentModeCodeValidator">
+		<constructor-arg name="chineseCheckoutFacade" ref="chineseCheckoutFacade"/>
+	</bean>
+
+	<alias name="defaultChineseOrderValidator" alias="chineseOrderValidator"/>
+	<bean id="defaultChineseOrderValidator" class="de.hybris.platform.chinesepaymentocc.validator.ChineseOrderValidator">
+		<constructor-arg name="chineseOrderPayableCheckStrategy" ref="chineseOrderPayableCheckStrategy"/>
+		<constructor-arg name="checkoutCustomerStrategy" ref="checkoutCustomerStrategy"/>
+	</bean>
+
+	<alias name="defaultChinesePlaceOrderCartValidator" alias="chinesePlaceOrderCartValidator"/>
+	<bean id="defaultChinesePlaceOrderCartValidator"
+	      class="de.hybris.platform.chinesepaymentocc.validator.ChinesePlaceOrderCartValidator">
+	      <constructor-arg ref="voucherFacade" />
+	</bean>
+
+	<bean parent="fieldSetLevelMapping">
+		<property name="dtoClass"
+		          value="de.hybris.platform.commercewebservicescommons.dto.order.CartWsDTO"/>
+		<property name="levelMapping">
+			<map>				
+				<entry key="FULL"
+				       value="chinesePaymentInfo"/>
+			</map>
+		</property>
+	</bean>
+    
+    <bean parent="fieldSetLevelMapping">
+        <property name="dtoClass"
+                  value="de.hybris.platform.commercewebservicescommons.dto.order.OrderWsDTO"/>
+        <property name="levelMapping">
+            <map>
+                <entry key="DEFAULT"
+                       value="chinesePaymentInfo,paymentStatus"/>
+                <entry key="FULL"
+                       value="chinesePaymentInfo,paymentStatus"/>
+            </map>
+        </property>
+    </bean>
+    
+    	<bean parent="fieldSetLevelMapping" id="chinesePaymentRequestWsDTOFieldSetLevelMapping">
+		<property name="dtoClass" value="de.hybris.platform.chinesecommercewebservicescommons.dto.ChinesePaymentRequestWsDTO"/>
+		<property name="levelMapping">
+			<map>
+				<entry key="BASIC" value="url,expiredDate,order"/>
+				<entry key="DEFAULT" value="url,expiredDate,order(DEFAULT)"/>
+				<entry key="FULL" value="url,expiredDate,order(FULL)"/>
+			</map>
+		</property>
+	</bean>
+
+</beans>

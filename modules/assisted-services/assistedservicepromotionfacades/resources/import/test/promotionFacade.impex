@@ -1,0 +1,33 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+
+INSERT_UPDATE SingleCodeCoupon;couponId(id)[unique=true];maxRedemptionsPerCustomer;maxTotalRedemptions;active[default=true]
+                              ;SUMMER69;1;10;
+                              ;FALL16;1;100;
+                              ;CHRISTMAS16;3;100;
+                              ;WINTER16;2;15;
+                              ;WINTER14;2;15;
+                              ;BUYMORE16;1;;
+
+INSERT_UPDATE PromotionGroup;identifier[unique=true]
+                            ;flashBuyPromotionGroup
+
+INSERT_UPDATE RuleGroup;code[unique=true]
+                       ;flashBuyPromotionRuleGroup
+
+INSERT_UPDATE PromotionSourceRule;code[unique=true];name[lang=en];description[lang=en];priority;status(code);ruleGroup(code);website(identifier);startDate[default=01-01-2000,dateformat=dd-MM-yyyy];endDate[default=01-01-2099,dateformat=dd-MM-yyyy];
+                                 ;productRule1;rule1;description1;1;PUBLISHED;flashBuyPromotionRuleGroup;flashBuyPromotionGroup
+                                 ;productRule3;rule3;description3;1;UNPUBLISHED;flashBuyPromotionRuleGroup;flashBuyPromotionGroup
+                                 ;rule2;rule2;description2;1;PUBLISHED;flashBuyPromotionRuleGroup;flashBuyPromotionGroup
+                                 ;rule4;rule4;description4;1;PUBLISHED;flashBuyPromotionRuleGroup;flashBuyPromotionGroup
+                                 ;rule5;rule5;description5;1;PUBLISHED;flashBuyPromotionRuleGroup;flashBuyPromotionGroup
+                                 ;rule6;rule6;description6;1;PUBLISHED;flashBuyPromotionRuleGroup;flashBuyPromotionGroup
+                                 ;rule7;rule7;description7;1;PUBLISHED;flashBuyPromotionRuleGroup;flashBuyPromotionGroup

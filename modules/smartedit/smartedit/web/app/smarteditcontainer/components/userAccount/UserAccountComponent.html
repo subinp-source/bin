@@ -1,0 +1,10 @@
+<div class="se-user-account-dropdown">
+    <div class="se-user-account-dropdown__role">
+        {{ 'se.toolbar.useraccount.role' | translate }}
+    </div>
+    <div class="user-account-dropdown__name">{{username}}</div>
+    <div class="divider"></div>
+    <a class="se-sign-out__link fd-menu__item" (click)="signOut()"
+        >{{'se.toolbar.useraccount.signout' | translate}}
+    </a>
+</div>

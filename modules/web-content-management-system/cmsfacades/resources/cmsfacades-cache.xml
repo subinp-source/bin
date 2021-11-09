@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd"
+       default-lazy-init="true">
+
+    <context:annotation-config/>
+
+    <!-- Configuration for default cache region -->
+    <alias name="defaultRenderingCmsCacheRegion" alias="cmsRenderingCacheRegion"/>
+    <bean name="defaultRenderingCmsCacheRegion" class="de.hybris.platform.regioncache.region.impl.EHCacheRegion">
+        <constructor-arg name="name" value="cmsRenderingCacheRegion"/>
+        <constructor-arg name="maxEntries" value="${cms.rendering.region.cache.size}"/>
+        <constructor-arg name="evictionPolicy" value="${cms.rendering.region.cache.eviction.policy}"/>
+        <constructor-arg name="statsEnabled" value="${cms.rendering.region.cache.stats.enabled}"/>
+        <constructor-arg name="exclusiveComputation" value="${cms.rendering.region.cache.exclusive.computation}"/>
+        <constructor-arg name="ttlSeconds" value="${cms.rendering.region.cache.ttl}"/>
+        <property name="handledTypes">
+            <array>
+                <value>__CMS_RENDERING_CACHE__</value>
+            </array>
+        </property>
+    </bean>
+
+    <bean id="cmsRenderingCacheRegionRegistrar" class="de.hybris.platform.regioncache.region.CacheRegionRegistrar"
+          c:region-ref="cmsRenderingCacheRegion"/>
+
+</beans>

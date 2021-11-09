@@ -1,0 +1,19 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+$contentCatalog=powertoolsContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];page
+;;AccountOrderDetailsItemsComponent;/WEB-INF/views/addons/consignmenttrackingaddon/responsive/pages/account/accountOrderDetailItems.jsp
+
+INSERT_UPDATE ConsignmentTrackingAction;$contentCV[unique=true];uid[unique=true];url;name;restrictions(uid,$contentCV);&actionRef
+;;ConsignmentTrackingAction;/consignment/\\${consignment.code}/tracking;Consignment Tracking Action;ActionRestriction;ConsignmentTrackingAction
+
+INSERT_UPDATE ApplicableCmsActionsTypeForCmsComponent;target(code)[unique=true];source(code)[unique=true]
+;JspIncludeComponent;ConsignmentTrackingAction
+
+INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];actions(uid,$contentCV)
+;;AccountOrderDetailsItemsComponent;ConsignmentTrackingAction
+

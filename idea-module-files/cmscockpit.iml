@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="OOTB" importedAsReadOnly="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/web/webroot/WEB-INF/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/bin/cmscockpitserver.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../modules/web-content-management-system/deprecated/cmscockpit/bin/cmscockpitserver.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="admincockpit" exported="" />
+    <orderEntry type="module" module-name="basecommerce" exported="" />
+    <orderEntry type="module" module-name="cms2" exported="" />
+    <orderEntry type="module" module-name="cms2lib" exported="" />
+    <orderEntry type="module" module-name="cockpit" exported="" />
+    <orderEntry type="module" module-name="platform" exported="" />
+  </component>
+</module>

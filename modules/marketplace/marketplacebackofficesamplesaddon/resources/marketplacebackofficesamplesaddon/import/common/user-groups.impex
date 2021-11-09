@@ -1,0 +1,17 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+UPDATE UserGroup;UID[unique=true];groups(uid)[mode=append]
+;backofficeproductmanagergroup;vendor1permissiongroup
+;backofficeproductmanagergroup;vendor2permissiongroup
+;backofficeproductmanagergroup;vendor3permissiongroup
+;backofficeproductmanagergroup;vendor4permissiongroup
+;backofficeproductmanagergroup;vendor5permissiongroup
+;backofficeproductmanagergroup;vendor6permissiongroup
+;backofficeproductmanagergroup;vendor7permissiongroup
+;backofficeproductmanagergroup;vendor8permissiongroup
+
+INSERT_UPDATE Employee;UID[unique=true];name;groups(uid)
+;merchantproductmanager;Merchant Product Manager;backofficeproductmanagergroup
+;merchantcontentmanager;Merchant Content Manager;cmsmanagergroup

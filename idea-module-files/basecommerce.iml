@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="OOTB" importedAsReadOnly="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../modules/base-commerce/basecommerce/bin/basecommerceserver.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../modules/base-commerce/basecommerce/bin/basecommerceserver.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../modules/base-commerce/basecommerce/lib" recursive="true" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="apiregistryservices" exported="" />
+    <orderEntry type="module" module-name="platform" exported="" />
+  </component>
+</module>

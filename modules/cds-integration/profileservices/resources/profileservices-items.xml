@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<!--
+	ATTENTION: This is just an example file. You have to edit it according to your needs.
+-->
+
+<items 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			xsi:noNamespaceSchemaLocation="items.xsd">
+
+	<enumtypes>
+		<enumtype code="DestinationChannel" autocreate="false" generate="false">
+			<value code="CDS"/>
+		</enumtype>
+	</enumtypes>
+
+	<itemtypes>
+		<itemtype code="AbstractOrder"
+				  autocreate="false"
+				  generate="false">
+
+			<attributes>
+				<attribute qualifier="consentReference" type="java.lang.String">
+					<persistence type="property"/>
+				</attribute>
+				<attribute qualifier="cartIdReference" type="java.lang.String">
+					<persistence type="property"/>
+				</attribute>
+			</attributes>
+		</itemtype>
+
+		<itemtype code="User"
+				  autocreate="false"
+				  generate="false">
+
+			<attributes>
+				<attribute qualifier="consentReference" type="java.lang.String">
+					<persistence type="property"/>
+				</attribute>
+                <attribute qualifier="profileTagDebug" type="java.lang.Boolean">
+                    <persistence type="property"/>
+                </attribute>
+			</attributes>
+		</itemtype>
+
+	</itemtypes>
+</items>

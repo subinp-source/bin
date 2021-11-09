@@ -1,0 +1,31 @@
+<div class="se-navigation-management-page-list-template">
+    <div class="se-toolbar-group">
+        <se-toolbar
+            css-class="se-toolbar--shell"
+            image-root="imageRoot"
+            toolbar-name="smartEditHeaderToolbar"
+        ></se-toolbar>
+
+        <se-toolbar
+            css-class="se-toolbar--shell se-toolbar--shortcut"
+            image-root="imageRoot"
+            toolbar-name="smartEditNavigationToolbar"
+        ></se-toolbar>
+    </div>
+
+    <div class="se-navigation-editor-wrapper" data-ng-if="nav.readOnly !== undefined">
+        <div class="se-navigation-editor-header">
+            <h1
+                class="se-navigation-editor-header__title"
+                data-translate="se.cms.navigationmanagement.title"
+            ></h1>
+            <h4 class="se-navigation-editor-header__sub-title">
+                {{nav.catalogName | l10n}} - {{nav.catalogVersion}}
+            </h4>
+        </div>
+        <navigation-editor-tree
+            data-uri-context="nav.uriContext"
+            data-read-only="nav.readOnly"
+        ></navigation-editor-tree>
+    </div>
+</div>

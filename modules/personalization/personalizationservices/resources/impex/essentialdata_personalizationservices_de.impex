@@ -1,0 +1,11 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+# Do not translate; Do not translate; To be translated; To be translated;
+# ImpEx for Importing English Localisations for the personalizationservices;;;;
+$lang=de
+
+UPDATE MaxConstraint;id[unique = true];message[lang = $lang]
+#% beforeEach: de.hybris.platform.personalizationservices.configuration.ImpexConfigService.ignoreIfLanguageIsMissing(line, "$lang");
+;cxOccTTLMaxTime;Gültigkeitsdauer der Personalisierungsberechnung kann nicht größer als ein Jahr in Millisekunden (31536000000) sein

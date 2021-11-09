@@ -1,0 +1,24 @@
+.se-add-page__sub-header {
+    padding-bottom: fd-space('s');
+    color: fd-color('text', 2);
+}
+.se-add-page__sub-header-title {
+    margin-bottom: fd-space('xxs');
+}
+.se-add-page__list.fd-menu {
+    border-top: se-border();
+    padding: 0;
+}
+.se-add-page__item {
+    cursor: pointer;
+    &--page-template {
+        height: fd-space('xxl');
+        @include se-flex-row;
+    }
+}
+.se-add-page__item-title {
+    @include fd-weight('bold');
+}
+.se-add-page-type__item-description {
+    white-space: normal;
+}

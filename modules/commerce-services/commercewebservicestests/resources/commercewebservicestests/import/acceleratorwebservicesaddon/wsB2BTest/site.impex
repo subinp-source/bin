@@ -1,0 +1,11 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+$siteUid = wsB2BTest
+$urlEncodingAttributes = storefront, language
+
+# Base Site
+UPDATE CMSSite; uid[unique = true]; urlEncodingAttributes
+              ; $siteUid          ; $urlEncodingAttributes
+
+

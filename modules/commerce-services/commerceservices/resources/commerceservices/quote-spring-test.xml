@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<alias name="defaultOrgUnitDao" alias="orgUnitDao"/>
+	<bean id="testOrgUnitQuoteService" class="de.hybris.platform.commerceservices.organization.services.impl.DefaultOrgUnitQuoteService">
+		<property name="orgUnitDao" ref ="orgUnitDao"/>
+		<property name="quoteStateSelectionStrategy" ref="testQuoteStateSelectionStrategy"/>
+		<property name="orgUnitAuthorizationStrategy" ref ="orgUnitAuthorizationStrategy"/>
+	</bean>
+	
+	<bean id="testQuoteStateSelectionStrategy"
+		  class="de.hybris.platform.commerceservices.order.strategies.impl.DefaultQuoteStateSelectionStrategy">
+		<property name="userTypeActionStateMap" ref="quoteUserTypeActionStateMap"/>
+		<property name="userTypeActionStateTransitionMap" ref="quoteUserTypeActionStateTransitionMap"/>
+		<property name="quoteUserTypeIdentificationStrategy" ref="testQuoteUserTypeIdentificationStrategy"/>
+	</bean>
+
+	<bean id="testQuoteUserTypeIdentificationStrategy"
+		  class="de.hybris.platform.commerceservices.order.strategies.impl.DefaultQuoteUserTypeIdentificationStrategy">
+		<property name="userService" ref="userService"/>
+		<property name="buyerGroup" value="customergroup" />
+		<property name="sellerGroup" value="orgemployeegroup" />
+		<property name="sellerApproverGroup" value="orgapprovergroup" />
+	</bean>
+
+</beans>

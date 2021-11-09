@@ -1,0 +1,23 @@
+.se-user-account-dropdown__role,
+.user-account-dropdown__name {
+    padding: fd-space('base') fd-space('small');
+    cursor: default;
+}
+.se-user-account-dropdown__role {
+    @include fd-type('-1');
+    color: fd-color('text', 2);
+}
+.user-account-dropdown__name {
+    color: fd-color('text', 1);
+    white-space: nowrap;
+}
+.se-sign-out__link.fd-menu__item {
+    @include fd-type('0');
+    padding: fd-space('base') fd-space('small');
+    color: fd-color('text', 2);
+    white-space: nowrap;
+    display: block;
+    &:hover {
+        text-decoration: none;
+    }
+}

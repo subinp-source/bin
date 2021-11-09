@@ -1,0 +1,17 @@
+package de.hybris.platform.ruleengineservices.test
+
+import de.hybris.platform.ruleengineservices.rao.*;
+
+import java.util.*;
+salience 10;
+rule "looping-rule01"
+@ruleCode("looping-rule01.drl")
+@moduleName("rules-module-junit")
+dialect "mvel"
+    when
+    	$cart:CartRAO(currencyIsoCode != "somevalue")
+    then
+    	System.out.println("looping-rule01 with cart currency:" + $cart.getCurrencyIsoCode());
+    	$cart.setCurrencyIsoCode($cart.getCurrencyIsoCode() + ".");
+    	update($cart);
+end

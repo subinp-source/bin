@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="items.xsd">
+	<itemtypes>
+		<itemtype code="BackofficeRole" extends="UserGroup" jaloclass="com.hybris.backoffice.jalo.user.BackofficeRole">
+			<attributes>
+				<attribute type="StringCollection" qualifier="authorities" >
+					<modifiers read="true" write="true" />
+					<persistence type="property"/>
+				</attribute>
+			</attributes>
+		</itemtype>
+
+		<itemtype code="Principal" autocreate="false" generate="false">
+			<attributes>
+				<attribute qualifier="backOfficeLoginDisabled" type="java.lang.Boolean">
+					<modifiers read="true" write="true" search="true" optional="true"/>
+					<persistence type="property"/>
+				</attribute>
+			</attributes>
+		</itemtype>
+
+		<itemtype code="ExcelImportCronJob" extends="CronJob">
+			<attributes>
+				<attribute qualifier="excelFile" type="Media">
+					<modifiers read="true" write="true" optional="false" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="referencedContent" type="Media">
+					<modifiers read="true" write="true" optional="true" />
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+		</itemtype>
+
+		<itemtype code="ExcelImportJob" extends="ServicelayerJob" />
+
+		<itemtype code="AbstractWorkflowAction" autocreate="false" generate="false">
+			<attributes>
+				<attribute qualifier="visualisationX" type="java.lang.Integer">
+					<modifiers read="true" write="true" search="false" optional="true"/>
+					<persistence type="property"/>
+				</attribute>
+				<attribute qualifier="visualisationY" type="java.lang.Integer">
+					<modifiers read="true" write="true" search="false" optional="true"/>
+					<persistence type="property"/>
+				</attribute>
+			</attributes>
+		</itemtype>
+
+		<itemtype code="AbstractWorkflowDecision" autocreate="false" generate="false">
+			<attributes>
+				<attribute qualifier="visualisationX" type="java.lang.Integer">
+					<modifiers read="true" write="true" search="false" optional="true"/>
+					<persistence type="property"/>
+				</attribute>
+				<attribute qualifier="visualisationY" type="java.lang.Integer">
+					<modifiers read="true" write="true" search="false" optional="true"/>
+					<persistence type="property"/>
+				</attribute>
+			</attributes>
+		</itemtype>
+
+		<itemtype code="WorkflowActionTemplateLinkTemplateRelation" autocreate="false" generate="false">
+			<attributes>
+				<attribute qualifier="visualisationX" type="java.lang.Integer">
+					<modifiers read="true" write="true" search="false" optional="true"/>
+					<persistence type="property"/>
+				</attribute>
+				<attribute qualifier="visualisationY" type="java.lang.Integer">
+					<modifiers read="true" write="true" search="false" optional="true"/>
+					<persistence type="property"/>
+				</attribute>
+			</attributes>
+		</itemtype>
+		
+	</itemtypes>
+</items>

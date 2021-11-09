@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<editor-definition id="de.hybris.platform.adaptivesearchbackoffice.editors.configurabledropdown"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/editor-definition.xsd">
+
+    <name>Configurable drop-down</name>
+    <description>Configurable drop-down</description>
+    <author>hybris</author>
+    <version>0.1</version>
+
+    <type>^List\((.*)\)$</type>
+    <editorClassName>de.hybris.platform.adaptivesearchbackoffice.editors.configurabledropdown.ConfigurableDropdownEditor</editorClassName>
+</editor-definition>

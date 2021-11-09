@@ -1,0 +1,58 @@
+// Page Approval
+.se-page-approval {
+    .se-page-approval__btn {
+        color: fd-color('action', 1);
+
+        &::before {
+            @include fd-type('0');
+        }
+
+        &:focus,
+        &:active {
+            box-shadow: none;
+        }
+
+        &:active,
+        &:hover {
+            background-color: fd-color('background', 2);
+        }
+    }
+
+    .se-page-approval--list {
+        width: auto;
+        float: none;
+        margin: 0;
+        min-width: 190px;
+        border: 1px solid rgba(0, 0, 0, 0);
+        box-shadow: 0 2px 8px 0 fd-color('neutral', 3);
+        border-radius: 4px;
+        padding-top: 0;
+        padding-bottom: 0;
+        left: auto;
+        right: 0;
+        top: 35px;
+    }
+
+    .se-page-approval--item a {
+        display: flex;
+        align-items: center;
+    }
+
+    .se-page-approval--item-selected {
+        background-color: sfd-color('neutral', 1);
+    }
+
+    .se-page-approval__icon--draft,
+    .se-page-approval__icon--ready-to-sync {
+        @include status-icon();
+        margin-right: 10px;
+    }
+
+    .se-page-approval__icon--ready-to-sync {
+        background-color: fd-color('action', 1);
+    }
+
+    .se-page-approval__icon--draft {
+        background-color: fd-color('status', 4);
+    }
+}

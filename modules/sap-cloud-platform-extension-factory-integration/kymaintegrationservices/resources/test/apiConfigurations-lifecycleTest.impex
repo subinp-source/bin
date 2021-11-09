@@ -1,0 +1,33 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+INSERT_UPDATE DestinationTarget;id[unique=true];destinationChannel(code)[default=KYMA];template
+;template_kyma;;true
+
+INSERT_UPDATE Endpoint;id[unique=true];version;specUrl;specData;&eref;name
+;e1;v1;"url";;e1;n1
+
+INSERT_UPDATE OAuthClientDetails;clientId[unique=true];resourceIds;scope;authorizedGrantTypes;clientSecret;authorities
+;kyma;hybris;basic;authorization_code,refresh_token,password,client_credentials;password;ROLE_TRUSTED_CLIENT
+;kyma1;hybris;basic;authorization_code,refresh_token,password,client_credentials;password;ROLE_TRUSTED_CLIENT
+
+INSERT_UPDATE ExposedOAuthCredential;id[unique=true];oAuthClientDetails(clientId);password
+;kymaCred1;kyma;secret
+;kymaCred2;kyma;secret
+;kymaCred3;kyma1;secret
+
+INSERT_UPDATE ExposedDestination;id[unique=true];url;endpoint(&eref);additionalProperties;destinationTarget(id)[default=template_kyma];active;credential(id)
+;template_first_dest;"http://localhost:9002/test";e1;;;true;kymaCred2
+;template_second_dest;"http://localhost:9002/test";e1;;;false;kymaCred1
+;template_third_dest;"http://localhost:9002/test";e1;;;true;kymaCred1
+
+
+INSERT_UPDATE EventConfiguration;eventClass[unique=true];destinationTarget(id)[default=template_kyma];version[unique=true];exportFlag;priority(code);exportName;mappingType(code);converterBean;description
+;de.hybris.platform.commerceservices.event.RegisterEvent;;1;true;CRITICAL;customer.created;GENERIC;;"Customer Register Event v2"
+;de.hybris.platform.commerceservices.event.ForgottenPwdEvent;;1;true;CRITICAL;password.forgotton;GENERIC;;"Forgotten Password Event v1"
+;de.hybris.platform.order.events.SubmitOrderEvent;;1;true;CRITICAL;orderCreated;GENERIC;;"Submit Order Event"
+
+INSERT_UPDATE EventPropertyConfiguration;propertyName[unique=true];eventConfiguration(eventClass)[unique=true];propertyMapping;title[default='title'];description;examples(key,value)[map-delimiter=|];required[default=true];type[default='string'];
+;"orderCode";de.hybris.platform.order.events.SubmitOrderEvent;"event.order.code";"Order code";"Code of an Order.";orderCode->76272727;false
+

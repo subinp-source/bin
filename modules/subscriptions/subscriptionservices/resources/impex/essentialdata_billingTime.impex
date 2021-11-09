@@ -1,0 +1,14 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+$lang=en
+
+INSERT_UPDATE BillingEvent;code[unique=true];order;cartAware[default=true];nameInCart[lang=$lang];nameInOrder[lang=$lang];description[lang=$lang]
+;paynow;1;;Pay on Checkout;Paid on order;Pay Now
+
+# Subscription pricing
+INSERT_UPDATE UsageUnit;id[unique=true];accumulative[default=false];name[lang=$lang];namePlural[lang=$lang]
+;phone_minutes;;minute;minutes
+;sms;;text message;text messages
+;mobile_data;;MB;MBs

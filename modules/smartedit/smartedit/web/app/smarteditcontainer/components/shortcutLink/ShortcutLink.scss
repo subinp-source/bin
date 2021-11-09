@@ -1,0 +1,31 @@
+.se-shortcut-link {
+    display: inline-block;
+    margin-right: 38px;
+
+    &__item {
+        color: fd-color('text', 2);
+        position: relative;
+        text-decoration: none;
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: none;
+            color: fd-color('text', 2);
+        }
+        &--active {
+            color: fd-color('action', 1);
+            &:hover {
+                color: fd-color('action', 1);
+                text-decoration: none;
+            }
+            &::after {
+                @include se-active-link;
+                content: ' ';
+                position: absolute;
+                left: 0;
+                top: 29px;
+                width: 100%;
+            }
+        }
+    }
+}

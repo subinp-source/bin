@@ -1,0 +1,61 @@
+{
+    "contractTestConfig": {
+        "mavenArtifact": "com.sap.cx.smartedit:smartedit-apis",
+        "repositoryUrl": "https://common.repositories.sap.ondemand.com/artifactory/deploy-snapshots-cx-commerce-maven/",
+        "version": "0.0.6-SNAPSHOT",
+        "contracts": "smartedit/cmssmarteditwebservices/cmssmarteditwebservices.yaml smartedit/cmswebservices/cmswebservices.yaml smartedit/permissions/permissions.yaml"
+    },
+    "reporterEnabled": "mocha-junit-reporter,mochawesome",
+    "mochawesomeReporterOptions": {
+        "reportDir": "./tests/reports",
+        "reportFilename": "report",
+        "json": false
+    },
+    "mochaJunitReporterReporterOptions": {
+        "mochaFile": "./tests/reports/report.xml"
+    },
+    "testsToGenerate": {
+        "cmswebservices": [
+            "/v1/sites",
+            "/v1/types",
+            "/v1/types/{code}",
+            "/v1/users/{userId}",
+            "/v1/media",
+            "/v1/media/{uuid}",
+            "/v1/usergroups",
+            "/v1/usergroups/{userGroupId}",
+            "/v1/pagetypes",
+            "/v1/restrictiontypes",
+            "/v1/pagetypesrestrictiontypes",
+            "/v1/catalogs/{catalogId}/versions/{versionId}/media",
+            "/v1/sites/catalogs",
+            "/v1/sites/{siteId}/languages",
+            "/v1/sites/{siteId}/cmsitems/{itemUUID}/versions",
+            "/v1/sites/{siteId}/catalogs/{catalogId}/versions/{versionId}/targets",
+            "/v1/sites/{siteId}/catalogs/{catalogId}/versions/{versionId}/pagescontentslotscontainers",
+            "/v1/sites/{siteId}/catalogs/{catalogId}/versions/{versionId}/pagescontentslots",
+            "/v1/sites/{siteId}/catalogs/{catalogId}/versions/{versionId}/pagetemplates",
+            "/v1/sites/{siteId}/catalogs/{catalogId}/versions/{versionId}/pages",
+            "/v1/sites/{siteId}/catalogs/{catalogId}/versions/{versionId}/pages/{pageId}",
+            "/v1/sites/{siteId}/catalogs/{catalogId}/versions/{versionId}/pages/{pageId}/variations",
+            "/v1/sites/{siteId}/catalogs/{catalogId}/versions/{versionId}/pages/{pageId}/fallbacks",
+            "/v1/sites/{siteId}/cmsitems/{itemUUID}/versions/{versionId}/rollbacks",
+            "/v1/sites/{siteId}/cmsitems/{itemUUID}/versions",
+            "/v1/catalogs/{catalogId}/versions/{versionId}/pages/{pageId}/contentslots/{slotId}/typerestrictions"
+        ],
+        "cmssmarteditwebservices": [
+            "/v1/inbox/workflowtasks",
+            "/v1/sites/{baseSiteId}/contentcatalogs",
+            "/v1/sites/{baseSiteId}/productcatalogs",
+            "/v1/sites/{baseSiteId}/products/{code}",
+            "/v1/sites/{baseSiteId}/categories/{code}",
+            "/v1/productcatalogs/{catalogId}/versions/{versionId}/products",
+            "/v1/productcatalogs/{catalogId}/versions/{versionId}/categories"
+        ],
+        "permissions": [
+            "/v1/permissions/principals/{principalUid}/attributes",
+            "/v1/permissions/principals/{principalUid}/catalogs",
+            "/v1/permissions/principals/{principalUid}/global"
+        ]
+    }
+}

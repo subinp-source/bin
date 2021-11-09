@@ -1,0 +1,12 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+$regulargroup=regulargroup
+$customergroup=customergroup
+
+INSERT_UPDATE UserGroup;uid[unique=true]
+;$customergroup
+
+INSERT_UPDATE SearchRestriction;code[unique=true];name[lang=en];query;restrictedType(code);principal(uid);active[default=true];generate[default=false];
+;inStoreBundleVisibility;"In-Store Bundle Template Visibility";"{item:catalogVersion} IN (?session.catalogversions)";BundleTemplate;$customergroup;

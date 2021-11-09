@@ -1,0 +1,10 @@
+<div class="se-notification__hotkey">
+    <div *ngFor="let key of hotkeyNames; let last = last">
+        <div class="se-notification__hotkey--key"><span>{{ key }}</span></div>
+        <span *ngIf="!last" class="se-notification__hotkey__icon--add">+</span>
+    </div>
+    <div class="se-notification__hotkey--text">
+        <div class="se-notification__hotkey--title">{{ title }}</div>
+        <div class="se-notification__hotkey--message">{{ message }}</div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="se-toolbar-group">
+    <se-toolbar
+        css-class="se-toolbar--shell"
+        image-root="imageRoot"
+        toolbar-name="smartEditHeaderToolbar"
+    ></se-toolbar>
+</div>
+<div class="se-landing-page">
+    <span class="se-landing-page-title" data-translate="se.landingpage.title"></span>
+
+    <div class="se-landing-page-site-selection" data-ng-if="$ctrl.model != undefined">
+        <se-dropdown
+            data-field="$ctrl.field"
+            data-qualifier="$ctrl.qualifier"
+            data-model="$ctrl.model"
+            data-id="$ctrl.sitesId"
+        ></se-dropdown>
+    </div>
+
+    <span class="se-landing-page-label" data-translate="se.landingpage.label"></span>
+
+    <div class="se-landing-page-catalogs">
+        <div class="se-landing-page-catalog" data-ng-repeat="catalog in $ctrl.catalogs">
+            <se-catalog-details
+                [catalog]="catalog"
+                [site-id]="$ctrl.model.site"
+                [is-catalog-for-current-site]="$last"
+            ></se-catalog-details>
+        </div>
+    </div>
+
+    <img src="static-resources/images/best-run-sap-logo.svg" class="se-landing-page-footer-logo" />
+</div>

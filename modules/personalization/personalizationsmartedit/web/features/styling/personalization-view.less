@@ -1,0 +1,44 @@
+@perso__component-decorator--border-size: 3px;
+@perso__component-decorator-icon--font-size: 22px;
+@perso__component-decorator-icon--icon-height: 42px;
+@perso__component-decorator-icon--padding: 0.5*@perso-gutter 0.25*@perso-gutter;    //10px 5px
+
+.perso__component-decorator {
+    outline: @perso__component-decorator--border-size solid @blue;
+    outline-offset: -@perso__component-decorator--border-size;
+}
+
+.perso__component-decorator-icon {
+    font-size: @perso__component-decorator-icon--font-size;
+    color: @white;
+    &:before {
+        padding: @perso__component-decorator-icon--padding;
+        height: @perso__component-decorator-icon--icon-height;
+        background-color: @blue;
+        box-shadow: -1px 5px 12px -2px rgba(117, 117, 117, 0.44);   //consistent with SE
+    }
+}
+.personalizationsmarteditCombinedViewComponentLightUp{
+    position: absolute;
+    .pe-combined-view-component-letter{
+        position: absolute;
+        top: calc(50% - 22px);
+    }
+}
+
+.personalization-ctx__icon:before {
+    vertical-align: inherit;
+}
+
+.personalization-ctx__icon:hover {
+    background: @background-color-white;
+    color: @light-blue;
+}
+
+.smartEditComponentX .se-wrapper-data {
+    margin-top: -6px;
+}
+
+[class*="personalizationsmarteditComponentSelected"] .se-wrapper-data{
+    margin-top: -16px;
+}

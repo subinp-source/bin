@@ -1,0 +1,125 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+"#% impex.setValidationMode(""import_relaxed"");"
+
+$catalogVersion = catalogVersion(catalog(id[default='apparelProductCatalog']),version[default='Staged'])[unique=true,default='apparelProductCatalog:Staged']
+
+#### solr - configuration ####
+$solrIndexTypeDe = apparel-deProductType
+$solrIndexTypeUk = apparel-ukProductType
+
+#### search services - configuration ####
+$snIndexTypeDe = apparel-de-product
+$snIndexTypeUk = apparel-uk-product
+
+#### solr ####
+
+### APPAREL DE ###
+
+INSERT_UPDATE AsSearchProfileActivationSet ; indexType[unique=true] ; $catalogVersion[unique=true]
+                                           ; $solrIndexTypeDe       ;
+
+INSERT_UPDATE AsCategoryAwareSearchProfile ; code[unique=true] ; name[lang=en]                         ; indexType             ; $catalogVersion[unique=true] ; activationSet(indexType,$catalogVersion) ; activationSetPOS
+                                           ; defaultApparelDe  ; Default Search Profile for apparel de ; $solrIndexTypeDe      ;                              ; $solrIndexTypeDe                         ; 0
+
+### APPAREL UK ###
+
+INSERT_UPDATE AsSearchProfileActivationSet ; indexType[unique=true] ; $catalogVersion[unique=true]
+                                           ; $solrIndexTypeUk       ;
+
+INSERT_UPDATE AsCategoryAwareSearchProfile ; code[unique=true] ; name[lang=en]                         ; indexType             ; $catalogVersion[unique=true] ; activationSet(indexType,$catalogVersion) ; activationSetPOS
+                                           ; defaultApparelUk  ; Default search profile for apparel uk ; $solrIndexTypeUk      ;                              ; $solrIndexTypeUk                        ; 0
+
+
+#### search services ####
+
+### APPAREL DE ###
+INSERT_UPDATE AsSearchProfileActivationSet ; indexType[unique=true] ; $catalogVersion[unique=true]
+                                           ; $snIndexTypeDe         ;
+
+INSERT_UPDATE AsCategoryAwareSearchProfile ; code[unique=true]       ; name[lang=en]                         ; indexType[unique=true] ; $catalogVersion[unique=true] ; activationSet(indexType,$catalogVersion) ; activationSetPOS
+                                           ; $snIndexTypeDe-default  ; Default search profile for Apparel DE ; $snIndexTypeDe         ;                              ; $snIndexTypeDe                           ; 0
+
+INSERT_UPDATE AsCategoryAwareSearchConfiguration ; searchProfile(code,$catalogVersion)[unique=true] ; uid[unique=true]                     ; category(code,$catalogVersion) ; facetsMergeMode(code) ; boostItemsMergeMode(code) ; boostRulesMergeMode(code) ; sortsMergeMode(code) ; $catalogVersion[unique=true]
+                                                 ; $snIndexTypeDe-default                           ; 6d5a9d84-d2c8-4ed5-90fc-b06724516262 ;                                ; ADD_AFTER             ; ADD_AFTER                 ; ADD                       ; ADD_AFTER            ;
+
+INSERT_UPDATE AsFacet ; searchConfiguration(uid,$catalogVersion) ; uid[unique=true]                     ; indexProperty ; facetType(code) ; priority ; $catalogVersion[unique=true] ; ranged[default=false] ; searchConfigurationPOS
+                      ; 6d5a9d84-d2c8-4ed5-90fc-b06724516262     ; b6fdb50c-1003-4fac-8131-367d245a2405 ; category      ; REFINE          ; 100      ;                              ;                       ; 0
+                      ; 6d5a9d84-d2c8-4ed5-90fc-b06724516262     ; cb4126c2-63be-4b9b-98b5-3ac0edacc260 ; brand         ; REFINE          ; 100      ;                              ;                       ; 1
+                      ; 6d5a9d84-d2c8-4ed5-90fc-b06724516262     ; 0916c2db-0f20-4d26-83ab-38e719fb916f ; collection    ; REFINE          ; 100      ;                              ;                       ; 2
+                      ; 6d5a9d84-d2c8-4ed5-90fc-b06724516262     ; a99739e5-790f-4bde-8d63-ecae28cba8df ; size          ; REFINE          ; 100      ;                              ;                       ; 3
+                      ; 6d5a9d84-d2c8-4ed5-90fc-b06724516262     ; 07b450a5-3d60-409c-81e7-68bfe177236b ; color         ; REFINE          ; 100      ;                              ;                       ; 4
+                      ; 6d5a9d84-d2c8-4ed5-90fc-b06724516262     ; c6ba6f3e-fd04-441d-baaf-f17f1f8968b2 ; gender        ; REFINE          ; 100      ;                              ;                       ; 5
+                      ; 6d5a9d84-d2c8-4ed5-90fc-b06724516262     ; 14f9af68-646b-11ea-bc55-0242ac130003 ; priceValue    ; REFINE          ; 100      ;                              ; true                  ; 6
+
+INSERT_UPDATE AsFacetRange ; facetConfiguration(uid,$catalogVersion) ; uid[unique=true]                     ; id               ; qualifier ; name[lang=en]     ; from ; to     ; $catalogVersion[unique=true] ; facetConfigurationPOS
+                           ; 14f9af68-646b-11ea-bc55-0242ac130003    ; 2ba710f4-646e-11ea-bc55-0242ac130003 ; EUR-0-20         ; EUR       ; EUR 0-20          ; 0    ; 20     ;                              ; 0
+                           ; 14f9af68-646b-11ea-bc55-0242ac130003    ; 3359cf6c-646e-11ea-bc55-0242ac130003 ; EUR-20-50        ; EUR       ; EUR 20-50         ; 20   ; 50     ;                              ; 1
+                           ; 14f9af68-646b-11ea-bc55-0242ac130003    ; 3359d282-646e-11ea-bc55-0242ac130003 ; EUR-50-100       ; EUR       ; EUR 50-100        ; 50   ; 100    ;                              ; 2
+                           ; 14f9af68-646b-11ea-bc55-0242ac130003    ; 3359d3a4-646e-11ea-bc55-0242ac130003 ; EUR-100-200      ; EUR       ; EUR 100-200       ; 100  ; 200    ;                              ; 3
+                           ; 14f9af68-646b-11ea-bc55-0242ac130003    ; 2034033e-9f4d-11ea-bb37-0242ac130002 ; EUR-200-300      ; EUR       ; EUR 200-300       ; 200  ; 300    ;                              ; 4
+                           ; 14f9af68-646b-11ea-bc55-0242ac130003    ; 3ddf017c-9f4d-11ea-bb37-0242ac130002 ; EUR-300-400      ; EUR       ; EUR 300-400       ; 300  ; 400    ;                              ; 5
+                           ; 14f9af68-646b-11ea-bc55-0242ac130003    ; 3ddf037a-9f4d-11ea-bb37-0242ac130002 ; EUR-400-500      ; EUR       ; EUR 400-500       ; 400  ; 500    ;                              ; 6
+                           ; 14f9af68-646b-11ea-bc55-0242ac130003    ; 3ddf04d8-9f4d-11ea-bb37-0242ac130002 ; EUR-500-600      ; EUR       ; EUR 500-600       ; 500  ; 600    ;                              ; 7
+                           ; 14f9af68-646b-11ea-bc55-0242ac130003    ; 3ddf05aa-9f4d-11ea-bb37-0242ac130002 ; EUR-600-700      ; EUR       ; EUR 600-700       ; 600  ; 700    ;                              ; 8
+                           ; 14f9af68-646b-11ea-bc55-0242ac130003    ; 3ddf0730-9f4d-11ea-bb37-0242ac130002 ; EUR-700-800      ; EUR       ; EUR 700-800       ; 700  ; 800    ;                              ; 9
+                           ; 14f9af68-646b-11ea-bc55-0242ac130003    ; 3ddf0898-9f4d-11ea-bb37-0242ac130002 ; EUR-800-900      ; EUR       ; EUR 800-900       ; 800  ; 900    ;                              ; 10
+                           ; 14f9af68-646b-11ea-bc55-0242ac130003    ; 3ddf0a6e-9f4d-11ea-bb37-0242ac130002 ; EUR-900-1000     ; EUR       ; EUR 900-1,000     ; 900  ; 1000   ;                              ; 11
+                           ; 14f9af68-646b-11ea-bc55-0242ac130003    ; 3ddf0b5e-9f4d-11ea-bb37-0242ac130002 ; EUR-1000-1000000 ; EUR       ; EUR 1,000-100,000 ; 1000 ; 100000 ;                              ; 12
+
+INSERT_UPDATE AsSort ; searchConfiguration(uid,$catalogVersion) ; uid[unique=true]                     ; code       ; name[lang=en]         ; priority ; $catalogVersion[unique=true] ; applyPromotedItems[default=false] ; highlightPromotedItems[default=false] ; searchConfigurationPOS
+                     ; 6d5a9d84-d2c8-4ed5-90fc-b06724516262     ; 86f3f9ab-256b-46d0-ae22-2331d96e6e9c ; relevance  ; Relevance             ; 100      ;                              ; true                              ; true                                  ; 0
+                     ; 6d5a9d84-d2c8-4ed5-90fc-b06724516262     ; 3af394d8-6667-4249-adde-18d7825ab87c ; price-asc  ; Price (lowest first)  ; 100      ;                              ;                                   ; true                                  ; 1
+                     ; 6d5a9d84-d2c8-4ed5-90fc-b06724516262     ; e6d25279-78e2-42f7-9b82-b90007fcf402 ; price-desc ; Price (highest first) ; 100      ;                              ;                                   ; true                                  ; 2
+
+INSERT_UPDATE AsSortExpression ; sortConfiguration(uid,$catalogVersion) ; uid[unique=true]                     ; expression ; order(code) ; $catalogVersion[unique=true] ; sortConfigurationPOS
+                               ; 86f3f9ab-256b-46d0-ae22-2331d96e6e9c   ; ec37ccf1-9f80-4426-9b3e-6f06e8eaf48f ; _score_    ; DESCENDING  ;                              ; 0
+                               ; 3af394d8-6667-4249-adde-18d7825ab87c   ; e6255d1a-6149-4c4f-92b3-5f86287a9889 ; price      ; ASCENDING   ;                              ; 0
+                               ; e6d25279-78e2-42f7-9b82-b90007fcf402   ; 59646592-f338-4448-927d-d881fb2e084c ; price      ; DESCENDING  ;                              ; 0
+
+### APPAREL UK ###
+
+INSERT_UPDATE AsSearchProfileActivationSet ; indexType[unique=true] ; $catalogVersion[unique=true]
+                                           ; $snIndexTypeUk         ;
+
+INSERT_UPDATE AsCategoryAwareSearchProfile ; code[unique=true]      ; name[lang=en]                         ; indexType      ; $catalogVersion[unique=true] ; activationSet(indexType,$catalogVersion) ; activationSetPOS
+                                           ; $snIndexTypeUk-default ; Default search profile for Apparel UK ; $snIndexTypeUk ;                              ; $snIndexTypeUk                           ; 0
+
+INSERT_UPDATE AsCategoryAwareSearchConfiguration ; searchProfile(code,$catalogVersion)[unique=true] ; uid[unique=true]                     ; category(code,$catalogVersion) ; facetsMergeMode(code) ; boostItemsMergeMode(code) ; boostRulesMergeMode(code) ; sortsMergeMode(code) ; $catalogVersion[unique=true]
+                                                 ; $snIndexTypeUk-default                           ; 6191da93-40c1-4871-a5cf-c183fbf85710 ;                                ; ADD_AFTER             ; ADD_AFTER                 ; ADD                       ; ADD_AFTER            ;
+
+INSERT_UPDATE AsFacet ; searchConfiguration(uid,$catalogVersion) ; uid[unique=true]                     ; indexProperty ; facetType(code) ; priority ; $catalogVersion[unique=true] ; ranged[default=false] ; searchConfigurationPOS
+                      ; 6191da93-40c1-4871-a5cf-c183fbf85710     ; fd18e760-b99c-4721-8e92-f72d8394fa09 ; category      ; REFINE          ; 100      ;                              ;                       ; 0
+                      ; 6191da93-40c1-4871-a5cf-c183fbf85710     ; 76a09a9e-8d63-412c-bd91-1f911e14f01d ; brand         ; REFINE          ; 100      ;                              ;                       ; 1
+                      ; 6191da93-40c1-4871-a5cf-c183fbf85710     ; 32a9a24c-4663-4d1b-93ac-826e67975c1c ; collection    ; REFINE          ; 100      ;                              ;                       ; 2
+                      ; 6191da93-40c1-4871-a5cf-c183fbf85710     ; 8936222c-caba-48d6-a6ec-02c57f1daf53 ; size          ; REFINE          ; 100      ;                              ;                       ; 3
+                      ; 6191da93-40c1-4871-a5cf-c183fbf85710     ; 947b5bb3-9f50-49dd-8b84-303bb5706133 ; color         ; REFINE          ; 100      ;                              ;                       ; 4
+                      ; 6191da93-40c1-4871-a5cf-c183fbf85710     ; 021eb3a6-bce6-405f-befe-2d907c877e26 ; gender        ; REFINE          ; 100      ;                              ;                       ; 5
+                      ; 6191da93-40c1-4871-a5cf-c183fbf85710     ; 757374a8-d8ec-452f-bb63-645991adb7a8 ; priceValue    ; REFINE          ; 100      ;                              ; true                  ; 6
+
+INSERT_UPDATE AsFacetRange ; facetConfiguration(uid,$catalogVersion) ; uid[unique=true]                     ; id           ; qualifier ; name[lang=en]     ; from ; to     ; $catalogVersion[unique=true] ; facetConfigurationPOS
+                           ; 757374a8-d8ec-452f-bb63-645991adb7a8    ; 3ddf0cc6-9f4d-11ea-bb37-0242ac130002 ; GBP-0-20         ; GBP       ; GBP 0-20          ; 0    ; 20     ;                              ; 0
+                           ; 757374a8-d8ec-452f-bb63-645991adb7a8    ; 3ddf0d84-9f4d-11ea-bb37-0242ac130002 ; GBP-20-50        ; GBP       ; GBP 20-50         ; 20   ; 50     ;                              ; 1
+                           ; 757374a8-d8ec-452f-bb63-645991adb7a8    ; 3ddf0e38-9f4d-11ea-bb37-0242ac130002 ; GBP-50-100       ; GBP       ; GBP 50-100        ; 50   ; 100    ;                              ; 2
+                           ; 757374a8-d8ec-452f-bb63-645991adb7a8    ; 3ddf0fc8-9f4d-11ea-bb37-0242ac130002 ; GBP-100-200      ; GBP       ; GBP 100-200       ; 100  ; 200    ;                              ; 3
+                           ; 757374a8-d8ec-452f-bb63-645991adb7a8    ; 3ddf1086-9f4d-11ea-bb37-0242ac130002 ; GBP-200-300      ; GBP       ; GBP 200-300       ; 200  ; 300    ;                              ; 4
+                           ; 757374a8-d8ec-452f-bb63-645991adb7a8    ; 3ddf11ee-9f4d-11ea-bb37-0242ac130002 ; GBP-300-400      ; GBP       ; GBP 300-400       ; 300  ; 400    ;                              ; 5
+                           ; 757374a8-d8ec-452f-bb63-645991adb7a8    ; 3ddf12ac-9f4d-11ea-bb37-0242ac130002 ; GBP-400-500      ; GBP       ; GBP 400-500       ; 400  ; 500    ;                              ; 6
+                           ; 757374a8-d8ec-452f-bb63-645991adb7a8    ; 3ddf1360-9f4d-11ea-bb37-0242ac130002 ; GBP-500-600      ; GBP       ; GBP 500-600       ; 500  ; 600    ;                              ; 7
+                           ; 757374a8-d8ec-452f-bb63-645991adb7a8    ; 3ddf14a0-9f4d-11ea-bb37-0242ac130002 ; GBP-600-700      ; GBP       ; GBP 600-700       ; 600  ; 700    ;                              ; 8
+                           ; 757374a8-d8ec-452f-bb63-645991adb7a8    ; 3ddf1554-9f4d-11ea-bb37-0242ac130002 ; GBP-700-800      ; GBP       ; GBP 700-800       ; 700  ; 800    ;                              ; 9
+                           ; 757374a8-d8ec-452f-bb63-645991adb7a8    ; 3ddf1824-9f4d-11ea-bb37-0242ac130002 ; GBP-800-900      ; GBP       ; GBP 800-900       ; 800  ; 900    ;                              ; 10
+                           ; 757374a8-d8ec-452f-bb63-645991adb7a8    ; 3ddf1932-9f4d-11ea-bb37-0242ac130002 ; GBP-900-1000     ; GBP       ; GBP 900-1,000     ; 900  ; 1000   ;                              ; 11
+                           ; 757374a8-d8ec-452f-bb63-645991adb7a8    ; 3ddf19f0-9f4d-11ea-bb37-0242ac130002 ; GBP-1000-1000000 ; GBP       ; GBP 1,000-100,000 ; 1000 ; 100000 ;                              ; 12
+
+INSERT_UPDATE AsSort ; searchConfiguration(uid,$catalogVersion) ; uid[unique=true]                     ; code       ; name[lang=en]         ; priority ; $catalogVersion[unique=true] ; applyPromotedItems[default=false] ; highlightPromotedItems[default=false] ; searchConfigurationPOS
+                     ; 6191da93-40c1-4871-a5cf-c183fbf85710     ; ce2b8564-a873-4b54-a284-d6da478576b4 ; relevance  ; Relevance             ; 100      ;                              ; true                              ; true                                  ; 0
+                     ; 6191da93-40c1-4871-a5cf-c183fbf85710     ; 2ccd4c9c-ff20-4df0-9ef5-77bcbd8cad05 ; price-asc  ; Price (lowest first)  ; 100      ;                              ;                                   ; true                                  ; 1
+                     ; 6191da93-40c1-4871-a5cf-c183fbf85710     ; 1bac1084-234d-4321-a897-35b5e484fdb4 ; price-desc ; Price (highest first) ; 100      ;                              ;                                   ; true                                  ; 2
+
+INSERT_UPDATE AsSortExpression ; sortConfiguration(uid,$catalogVersion) ; uid[unique=true]                     ; expression ; order(code) ; $catalogVersion[unique=true] ; sortConfigurationPOS
+                               ; ce2b8564-a873-4b54-a284-d6da478576b4   ; b137593c-e523-4000-8d4c-98fab6ad944f ; _score_    ; DESCENDING  ;                              ; 0
+                               ; 2ccd4c9c-ff20-4df0-9ef5-77bcbd8cad05   ; 4a26be4e-e585-4e7a-867f-ba03b817a0dc ; price      ; ASCENDING   ;                              ; 1
+                               ; 1bac1084-234d-4321-a897-35b5e484fdb4   ; fa72aa14-76bf-45fb-b704-42d14baa3605 ; price      ; DESCENDING  ;                              ; 2

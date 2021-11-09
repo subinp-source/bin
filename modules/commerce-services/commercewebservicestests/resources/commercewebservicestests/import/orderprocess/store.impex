@@ -1,0 +1,21 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+#
+# Update the wsTest BaseStore
+#
+
+$storeUid=wsTest
+$orderProcessCode=order-process
+
+# Base Store
+UPDATE BaseStore;uid[unique=true];submitOrderProcessCode
+;$storeUid;$orderProcessCode
+
+
+$storeUid=wsIntegrationTest
+$orderProcessCode=order-process
+
+# Base Store
+UPDATE BaseStore;uid[unique=true];submitOrderProcessCode
+;$storeUid;$orderProcessCode

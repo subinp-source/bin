@@ -1,0 +1,26 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+
+$lang = en
+
+### Test Workflow ###
+INSERT_UPDATE WorkflowTemplate; code[unique = true]; name[lang = $lang]; owner(uid); description[lang = $lang]; activationscript; visibleForPrincipals(uid)
+; TestWorkflowTemplate ; Test Workflow Template ; admin ; ; ; admingroup
+
+INSERT_UPDATE WorkflowActionTemplate; code[unique = true]; name[lang = $lang]; description[lang = $lang]; principalAssigned(uid); workflow(code)[unique = true]; sendEmail; emailAddress; rendererTemplate(code); actionType(code)
+; TW_Created ; Created             ; ; admingroup ; TestWorkflowTemplate ; false ; ; ; start
+; TW_End     ; End of the Workflow ; ; admingroup ; TestWorkflowTemplate ; false ; ; ; end
+
+INSERT_UPDATE WorkflowDecisionTemplate; code[unique = true]; name[lang = $lang]; actionTemplate(code); description[allownull = true]
+; TW001 ; decide ; TW_Created ;
+
+INSERT_UPDATE WorkflowActionTemplateLinkTemplateRelation; source(code)[unique = true]; target(code)[unique = true]; andConnectionTemplate; qualifier
+; TW001 ; TW_End ; false ; WorkflowActionTemplateLinkTemplateRelation

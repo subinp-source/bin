@@ -1,0 +1,20 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+$productCatalog=powertoolsProductCatalog
+$contentCatalog=powertoolsContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Stage])[default=$contentCatalog:Stage]
+$defaultLanguage=zh
+$storeUid=powertools
+$siteUid=powertools
+$webServiceSiteUid=$siteUidWS
+
+$siteMapLangCur=enCny,zhCny
+
+
+#make sure that CNY is imported in the producatCatalogs/template/catalog.impex
+# SiteMap Configuration
+INSERT_UPDATE SiteMapLanguageCurrency;&siteMapLanguageCurrency;language(isoCode)[unique=true];currency(isocode)[unique=true]
+;enCny;en;CNY
+;zhCny;zh;CNY

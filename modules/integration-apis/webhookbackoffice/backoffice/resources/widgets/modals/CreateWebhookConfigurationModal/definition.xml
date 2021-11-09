@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<widget-definition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widget-definition.xsd"
+                   id="de.hybris.platform.webhookbackoffice.widgets.CreateWebhookConfigurationModal">
+    <name>Create WebhookConfiguration Modal</name>
+    <description>Window for the fields to define when creating a WebhookConfiguration</description>
+    <defaultTitle>Create WebhookConfiguration Modal</defaultTitle>
+    <author>Hybris</author>
+    <version>1.0</version>
+    <view src="CreateWebhookConfigurationModal.zul"/>
+    <keywords>
+        <keyword>CreateWebhookConfigurationModal</keyword>
+    </keywords>
+    <controller
+            class="de.hybris.platform.webhookbackoffice.widgets.modals.controllers.CreateWebhookConfigurationModalController"/>
+    <sockets>
+        <input id="createWebhookConfiguration" type="java.lang.String"/>
+        <output id="cancel" type="java.util.Objects"/>
+    </sockets>
+</widget-definition>

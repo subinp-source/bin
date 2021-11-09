@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<items 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			xsi:noNamespaceSchemaLocation="items.xsd">
+
+	<enumtypes>
+		<enumtype code="NotificationType" autocreate="false" generate="false">
+			<value code="BACK_IN_STOCK"></value>
+		</enumtype>
+	</enumtypes>
+	<itemtypes>
+		<itemtype code="StockNotificationProcess" autocreate="true" generate="true"
+			extends="ProductInterestsProcess">
+		</itemtype>
+	</itemtypes>
+</items>

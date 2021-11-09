@@ -1,0 +1,6 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+INSERT_UPDATE CatalogVersion ; catalog(id)[unique=true] ; version[unique=true] ; readPrincipals(uid)[mode=append] ; writePrincipals(uid)[mode=append]
+                             ; apparelProductCatalog    ; Staged               ; searchmanagergroup               ; searchmanagergroup               
+                             ; apparelProductCatalog    ; Online               ; searchmanagergroup               ; searchmanagergroup               

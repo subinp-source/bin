@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<editor-definition id="de.hybris.platform.personalizationintegrationbackoffice.editor.defaultsegmentprovidereditor"
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/editor-definition.xsd">
+
+	<name>Segment Provider Editor</name>
+	<description>Segment Provider Editor</description>
+	<author>hybris</author>
+	<version>1.0</version>
+
+	<type>^Set\((java.lang.String)$</type>
+	<editorClassName>de.hybris.platform.personalizationintegrationbackoffice.editor.DefaultSegmentProviderEditor</editorClassName>
+</editor-definition>

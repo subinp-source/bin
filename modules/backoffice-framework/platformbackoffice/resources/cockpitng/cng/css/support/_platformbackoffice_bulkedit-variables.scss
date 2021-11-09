@@ -1,0 +1,12 @@
+$_bulkedit__tabpanel-delimit-horizontal--border-color: $grey__default--300;
+$_bulkedit-centered__groupbox-header--padding: $container-spacing-default_two-thirds 0;
+$_bulkedit-centered__groupbox-header--border-bottom: $boxes--border__thin solid transparent;
+$_bulkedit-centered__groupbox-header--border-top: $boxes--border__thin solid $_bulkedit__tabpanel-delimit-horizontal--border-color;
+$_bulkedit-centered__groupbox-header--font-size: $font-size__medium;
+$_bulkedit-centered__groupbox-header--line-height: $font-size__base;
+$_bulkedit-centered__groupbox-header-button-collapsed--right: 5px;
+$_bulkedit-centered__groupbox-header-button-collapsed--bg-position: -16px 0px;
+$_bulkedit-centered__groupbox-header-button-collapsed-hover--bg-position: -16px -16px;
+$_bulkedit-centered__groupbox-header-button-expand--bg-position: 0px 0px;
+$_bulkedit-centered__groupbox-header-button-expand-hover--bg-position: 0px -16px;
+$_bulkedit-centered__groupbox-content--padding: $container-spacing-default__third 0 $container-spacing-default__half;

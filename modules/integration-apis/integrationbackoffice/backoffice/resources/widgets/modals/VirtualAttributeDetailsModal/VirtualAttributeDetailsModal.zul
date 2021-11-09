@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<widget xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.zkoss.org/2005/zul"
+        xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.hybris.com/schema/cockpitng/zul/zul.xsd"
+        height="100%">
+
+    <style src="${wr}/VirtualAttributeDetailsModal.css"/>
+
+    <vlayout spacing="15px" sclass="yw-integrationbackoffice-modal-body-no-button">
+        <span sclass="yw-integrationbackoffice-modal-label">
+            ${labels.integrationbackoffice.virtualAttributeDetailsModal.code}
+        </span>
+        <textbox id="code" readonly="true"/>
+
+        <span sclass="yw-integrationbackoffice-modal-label">
+            ${labels.integrationbackoffice.virtualAttributeDetailsModal.location}
+        </span>
+        <textbox id="location" readonly="true"/>
+
+        <span sclass="yw-integrationbackoffice-modal-label">
+            ${labels.integrationbackoffice.virtualAttributeDetailsModal.type}
+        </span>
+        <textbox id="type" readonly="true"/>
+        ${labels.integrationbackoffice.virtualAttributeDetailsModal.note}
+    </vlayout>
+
+</widget>

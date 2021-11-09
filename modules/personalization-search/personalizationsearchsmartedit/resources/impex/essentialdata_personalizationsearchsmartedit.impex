@@ -1,0 +1,9 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# Enable the following lines in your extended SmartEdit module, then run ant updatesystem
+#
+INSERT_UPDATE SmartEditConfiguration;key[unique=true];value
+;applications.personalizationsearchsmartedit;{"smartEditLocation":"/personalizationsearchsmartedit/personalizationsearchsmartedit/js/personalizationsearchsmartedit.js"}
+;applications.personalizationsearchsmarteditContainer;{"smartEditContainerLocation":"/personalizationsearchsmartedit/personalizationsearchsmartedit/js/personalizationsearchsmarteditContainer.js"}
+;personalizationsearch.commercecustomization.search.profile.enabled;true

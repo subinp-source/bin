@@ -1,0 +1,57 @@
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/cockpitng/cng/scss/cockpitng-globals.scss';
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/backoffice/scss/backoffice-variables.scss';
+
+@import "_permissionlegend-variables.scss";
+
+@mixin _permission-cell-icon-font ($font-size, $container-size, $granted, $denied, $inherit-granted, $inherit-denied, $display-type: false, $add-hover:true) {
+	&-#{$inherit-granted},
+	&-#{$granted},
+	&-#{$inherit-denied},
+	&-#{$denied} {
+		height: $container-size;
+		width: $container-size;
+		position: relative;
+		@if $display-type {
+			display: $display-type;
+		}
+		&:before {
+			content: "\f00d";
+        	position: absolute;
+        	font: normal normal normal #{$font-size} FontAwesome;
+        	color: inherit;
+        	width: 100%;
+        	text-align: center;
+        	line-height: $container-size + 2;
+		}
+	}
+	&-#{$granted},
+	&-#{$inherit-granted} {
+		&:before {
+			content: "\f00c";
+		}
+	}
+	&-#{$inherit-denied}, &-#{$inherit-granted} {
+		color: $permissionlegend__inherited-icon--color;
+		@if $add-hover {
+			&:hover {
+				color: $permissionlegend__inherited-icon-hover--color;
+			}
+		}
+	}
+	&-#{$granted} {
+		color: $permissionlegend__granted-icon--color;
+		@if $add-hover {
+			&:hover {
+				color: $permissionlegend__granted-icon-hover--color;
+			}
+		}
+	}
+	&-#{$denied} {
+		color: $permissionlegend__denied-icon--color;
+		@if $add-hover {
+			&:hover {
+				color: $permissionlegend__denied-icon-hover--color;
+			}
+		}
+	}
+}

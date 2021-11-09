@@ -1,0 +1,16 @@
+<textarea
+    #textarea
+    class="fd-form__control"
+    [ngClass]="{'has-error': widget.field.hasErrors}"
+    name="{{widget.field.qualifier}}-{{widget.qualifier}}"
+    [disabled]="widget.isFieldDisabled()"
+    [(ngModel)]="widget.model[widget.qualifier]"
+    (change)="reassignUserCheck()"
+></textarea>
+<div *ngIf="requiresUserCheck()">
+    <input type="checkbox" [(ngModel)]="widget.field.isUserChecked" />
+    <span
+        [ngClass]="{'warning-check-msg': true, 'not-checked': widget.editor.hasFrontEndValidationErrors && !widget.field.isCheckedByUser}"
+        >{{'se.editor.richtext.check' | translate}}</span
+    >
+</div>

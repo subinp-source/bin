@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:noNamespaceSchemaLocation="items.xsd">
+
+	<itemtypes>
+		<itemtype code="SamlUserGroup" autocreate="false" generate="false">
+			<attributes>
+				<attribute qualifier="enableBackofficeLogin" type="java.lang.Boolean">
+					<defaultvalue>java.lang.Boolean.TRUE</defaultvalue>
+					<modifiers optional="false"/>
+					<persistence type="property"/>
+				</attribute>
+			</attributes>
+		</itemtype>
+	</itemtypes>
+
+</items>

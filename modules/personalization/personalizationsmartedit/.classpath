@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="output" path="eclipsebin/notused"/>
+
+				
+				
+	<classpathentry exported="true" kind="src" path="/npmancillary" />
+	<classpathentry exported="true" kind="src" path="/smartedit" />
+	<classpathentry exported="true" kind="src" path="/cmssmartedit" />
+	<classpathentry exported="true" kind="src" path="/smarteditwebservices" />
+	<classpathentry exported="true" kind="lib" path="bin/personalizationsmarteditserver.jar" />
+	<classpathentry exported="true" kind="lib" path="resources" />
+	<classpathentry exported="false" kind="src" path="/platform" />
+				
+</classpath>
+				

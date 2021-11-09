@@ -1,0 +1,8 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+INSERT_UPDATE PaymentMode;code[unique=true];name[lang=en];description[lang=en];active;paymentinfotype(code);
+;wstestpay;WsTestPay;Sample payment mode for WsTest;true;AdvancePaymentInfo;
+;wsmockpay;WsMockPay;Sample payment mode for WsTest;true;AdvancePaymentInfo;
+

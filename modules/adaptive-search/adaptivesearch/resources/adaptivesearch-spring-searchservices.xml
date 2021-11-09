@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<alias name="defaultSnAsCatalogVersionResolver" alias="snAsCatalogVersionResolver" />
+	<bean id="defaultSnAsCatalogVersionResolver"
+		class="de.hybris.platform.adaptivesearch.searchservices.strategies.impl.DefaultSnAsCatalogVersionResolver">
+		<property name="catalogVersionService" ref="catalogVersionService" />
+		<property name="snCommonConfigurationService" ref="snCommonConfigurationService" />
+	</bean>
+
+	<alias name="defaultSnAsCategoryPathResolver" alias="snAsCategoryPathResolver" />
+	<bean id="defaultSnAsCategoryPathResolver"
+		class="de.hybris.platform.adaptivesearch.searchservices.strategies.impl.DefaultSnAsCategoryPathResolver">
+		<property name="categoryService" ref="categoryService" />
+	</bean>
+
+	<alias name="defaultSnAsSearchProfileCalculationListener" alias="snAsSearchProfileCalculationListener" />
+	<bean id="defaultSnAsSearchProfileCalculationListener"
+		class="de.hybris.platform.adaptivesearch.searchservices.listeners.SnAsSearchProfileCalculationListener">
+		<property name="modelService" ref="modelService" />
+		<property name="commonI18NService" ref="commonI18NService" />
+		<property name="snAsCatalogVersionResolver" ref="snAsCatalogVersionResolver" />
+		<property name="snAsCategoryPathResolver" ref="snAsCategoryPathResolver" />
+		<property name="asSearchProfileContextFactory" ref="asSearchProfileContextFactory" />
+		<property name="asSearchProfileActivationService" ref="asSearchProfileActivationService" />
+		<property name="asSearchProfileCalculationService" ref="asSearchProfileCalculationService" />
+		<property name="snQualifierTypeFactory" ref="snQualifierTypeFactory" />
+	</bean>
+
+	<bean id="snAsSearchProfileCalculationListenerDefinition" parent="snListenerDefinition">
+		<property name="priority" value="-10000" />
+		<property name="listener" ref="snAsSearchProfileCalculationListener" />
+	</bean>
+
+	<alias name="defaultSnAsSearchProvider" alias="snAsSearchProvider" />
+	<bean id="defaultSnAsSearchProvider"
+		class="de.hybris.platform.adaptivesearch.searchservices.strategies.impl.SnAsSearchProvider">
+		<property name="typeService" ref="typeService" />
+		<property name="i18nService" ref="i18nService" />
+		<property name="l10nService" ref="l10nService" />
+		<property name="commonI18NService" ref="commonI18NService" />
+		<property name="catalogVersionService" ref="catalogVersionService" />
+		<property name="snSessionService" ref="snSessionService" />
+		<property name="snFieldTypeRegistry" ref="snFieldTypeRegistry" />
+		<property name="snIndexConfigurationService" ref="snIndexConfigurationService" />
+		<property name="snIndexTypeService" ref="snIndexTypeService" />
+		<property name="snCommonConfigurationService" ref="snCommonConfigurationService" />
+		<property name="snQualifierTypeFactory" ref="snQualifierTypeFactory" />
+		<property name="snContextFactory" ref="snContextFactory" />
+		<property name="snSearchService" ref="snSearchService" />
+	</bean>
+
+</beans>

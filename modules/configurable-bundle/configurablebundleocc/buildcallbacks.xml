@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<project name="configurablebundleocc_buildcallbacks">
+
+	<macrodef name="configurablebundleocc_clean_classpath_file">
+		<sequential>
+			<copy file="${ext.configurablebundleocc.path}/.classpath" tofile="${ext.configurablebundleocc.path}/.classpath.edit"
+			      overwrite="true"
+			      failonerror="true">
+				<filterchain>
+					<linecontainsregexp negate="true">
+						<regexp pattern="^(\t\t\t\t|)$" />  <!-- added by script -->
+					</linecontainsregexp>
+				</filterchain>
+			</copy>
+			<move file="${ext.configurablebundleocc.path}/.classpath.edit" tofile="${ext.configurablebundleocc.path}/.classpath"
+			      overwrite="true"
+			      failonerror="true" />
+		</sequential>
+	</macrodef>
+
+	<macrodef name="configurablebundleocc_after_clean">
+		<sequential>
+			<echo level="info" message="Generating .classpath file for configurablebundleocc" />
+			<create_extension_classpath_file extname="configurablebundleocc" />
+			<configurablebundleocc_clean_classpath_file />
+		</sequential>
+	</macrodef>
+
+</project>

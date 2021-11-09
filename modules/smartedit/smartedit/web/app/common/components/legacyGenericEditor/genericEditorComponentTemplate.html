@@ -1,0 +1,19 @@
+<se-generic-editor
+    [id]="$ctrl.id"
+    [smartedit-component-id]="$ctrl.smarteditComponentId"
+    [smartedit-component-type]="$ctrl.smarteditComponentType"
+    [structure]="$ctrl.structure"
+    [structure-api]="$ctrl.structureApi"
+    [content]="$ctrl.content"
+    [content-api]="$ctrl.contentApi"
+    [(submit)]="$ctrl.submit"
+    [(reset)]="$ctrl.reset"
+    [(is-dirty)]="$ctrl.isDirty"
+    [(is-valid)]="$ctrl.isValid"
+    [editor-stack-id]="$ctrl.editorStackId"
+    [update-callback]="$ctrl.updateCallback"
+    [custom-on-submit]="$ctrl.customOnSubmit"
+    [uri-context]="$ctrl.uriContext"
+    (get-api)="$ctrl.getApi($event)"
+>
+</se-generic-editor>

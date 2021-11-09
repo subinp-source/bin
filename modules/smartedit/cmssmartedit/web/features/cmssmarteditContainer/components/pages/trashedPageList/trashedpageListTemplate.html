@@ -1,0 +1,66 @@
+<div class="se-trash-list">
+    <se-toolbar
+        css-class="se-toolbar--shell"
+        image-root="imageRoot"
+        toolbar-name="smartEditHeaderToolbar"
+    ></se-toolbar>
+    <se-toolbar
+        css-class="se-toolbar--shell ySmartEditTrashPageToolbar"
+        image-root="imageRoot"
+        toolbar-name="smartEditTrashPageToolbar"
+    ></se-toolbar>
+
+    <div class="se-page-list__header">
+        <span
+            class="se-page-list__catalog-name"
+            data-translate="se.cms.trashedpagelist.title"
+        ></span>
+        <p class="se-page-list__sub-title">
+            {{trashedPageListCtl.catalogName | l10n}} - {{trashedPageListCtl.catalogVersion}}
+        </p>
+    </div>
+
+    <div class="se-page-list__body">
+        <div class="se-page-list__table-header">
+            <span class="se-paged-list__page-count-wrapper">
+                <span
+                    class="span-page-list__page-count-text"
+                    data-translate="se.pagelist.countsearchresult"
+                ></span>
+                <span class="se-page-list__page-count"> ({{ trashedPageListCtl.count }}) </span>
+            </span>
+
+            <div class="fd-form__group se-page-list__search">
+                <div class="se-input-group">
+                    <input
+                        type="search"
+                        class="se-input-group__input-area ySEPage-list-search-input "
+                        placeholder="{{ 'se.cms.pagelist.searchplaceholder' | translate }}"
+                        data-ng-model="trashedPageListCtl.mask"
+                        data-ng-model-options="{debounce: 500}"
+                        name="mask"
+                    />
+                    <span class="sap-icon--search se-input-group__addon"></span>
+                    <div
+                        data-ng-show="trashedPageListCtl.mask"
+                        aria-label="clear"
+                        class="se-input-group__addon se-input-group__clear-btn"
+                        data-ng-click="trashedPageListCtl.reset()"
+                    >
+                        <span class="sap-icon--decline"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="se-page-list__table-body">
+            <se-dynamic-paged-list
+                class="se-trashed-pages"
+                [config]="trashedPageListCtl.trashedPageListConfig"
+                [mask]="trashedPageListCtl.mask"
+                (get-api)="trashedPageListCtl.getApi($event);"
+                (on-items-update)="trashedPageListCtl.onPageItemsUpdate($event.pagination)"
+            >
+            </se-dynamic-paged-list>
+        </div>
+    </div>
+</div>

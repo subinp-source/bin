@@ -1,0 +1,64 @@
+<div class="se-component-menu__tabs-header">
+    <div
+        class="se-component-menu__tabs-header--upper"
+        data-ng-if="$ctrl.hasMultipleContentCatalogs == true"
+    >
+        <y-select
+            class="se-component-menu__select"
+            data-id="uuid"
+            data-ng-model="$ctrl.selectedCatalogVersionId"
+            data-on-change="$ctrl.onCatalogVersionChange"
+            data-fetch-strategy="$ctrl.catalogVersionsFetchStrategy"
+            data-item-template="::$ctrl.catalogVersionTemplate"
+            data-search-enabled="false"
+        />
+    </div>
+    <div class="se-component-menu__tabs-header--lower">
+        <component-search
+            data-on-change="$ctrl.onSearchTermChanged(searchTerm)"
+            class="se-component-menu__tabs-search"
+            data-placeholder="se.cms.componentmenu.search.placeholder"
+        ></component-search>
+
+        <fieldset class="fd-form__set">
+            <div class="fd-form__item fd-form__item--check se-component-menu__clone-on-drop">
+                <input
+                    type="checkbox"
+                    class="fd-form__control se-component-menu__clone-check-box"
+                    id="component-clone-checkbox"
+                    name="clone-on-drop"
+                    data-ng-model="$ctrl.cloneOnDrop"
+                    data-ng-change="$ctrl.onComponentCloneOnDropChange()"
+                />
+                <label
+                    class="fd-form__label se-component-menu__clone-label"
+                    for="component-clone-checkbox"
+                    data-translate="se.cms.component.clone.on.drop.label"
+                >
+                </label>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+<div class="se-component-menu__result-container" recompile-dom="$ctrl.resetComponentsList">
+    <se-infinite-scrolling
+        data-ng-if="$ctrl.isActive"
+        class="se-component-menu__infinite-scroll"
+        data-ng-class="{'se-component-menu__infinite-scroll--short': $ctrl.hasMultipleContentCatalogs == true}"
+        drop-down-class="ySEComponents"
+        [page-size]="10"
+        [mask]="$ctrl.searchTerm"
+        [fetch-page]="$ctrl.loadComponentItems"
+        [context]="$ctrl"
+    >
+        <div class="se-component-menu__result">
+            <component-item
+                class="se-component-menu__item-wrap"
+                data-component-info="item"
+                data-clone-on-drop="$ctrl.cloneOnDrop"
+                data-ng-repeat="item in $ctrl.items track by item.uid"
+            ></component-item>
+        </div>
+    </se-infinite-scrolling>
+</div>

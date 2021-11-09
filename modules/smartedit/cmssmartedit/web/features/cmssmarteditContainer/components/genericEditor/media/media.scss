@@ -1,0 +1,88 @@
+.se-media-container-field__media-list {
+    @include se-grid-columns(4, 0 fd-space('s'));
+}
+.se-media-container-cell {
+    &--mobile {
+        order: 4;
+    }
+    &--desktop {
+        order: 2;
+    }
+    &--tablet {
+        order: 3;
+    }
+    &--widescreen {
+        order: 1;
+    }
+}
+.se-media__action-icon {
+    color: fd-color('action', 1);
+    margin-right: fd-space('xxs');
+    width: 12px;
+
+    &--delete {
+        color: fd-color('status', 3);
+    }
+}
+.se-file-selector__btn,
+.se-media__remove-btn {
+    @include se-text-btn;
+    height: 32px;
+}
+.se-media__remove-btn-txt {
+    color: fd-color('status', 3);
+}
+.se-media__remove-btn-txt--disabled {
+    color: fd-color('status', 4);
+}
+.seFileSelector {
+    padding-top: 10px;
+    cursor: pointer;
+}
+
+// Media Upload Form
+.se-media-upload-form {
+    @include se-box-shadow;
+    border-radius: fd-space('base');
+}
+.se-media-upload-form__header {
+    @include se-flex-row(space-between);
+    border-bottom: se-border();
+    height: 53px;
+    padding: 20px;
+
+    &-title {
+        @include fd-type('1');
+        color: fd-color('text', 1);
+    }
+}
+.se-media-upload-form__replace-file {
+    @include se-flex-row(space-between);
+    padding: 16px 20px 0;
+}
+.se-media-upload__file-name {
+    @include se-text-ellipsis;
+    max-width: 80%;
+}
+.se-media-upload__file-info {
+    @include se-grid-columns(2, 16px);
+    padding: 20px;
+}
+
+.file-selector-disabled .se-file-selector__btn:hover,
+.file-selector-disabled .se-file-selector__btn:focus {
+    cursor: not-allowed;
+}
+
+// Media Advanced Info Popover
+.se-adv-media-info {
+    padding: 11px;
+}
+.se-adv-media-info-row:not(:last-child) {
+    margin-bottom: fd-space('s');
+}
+.se-adv-media-info-row__description {
+    color: fd-color('text', 1);
+    word-break: break-all;
+    max-width: 95%;
+}

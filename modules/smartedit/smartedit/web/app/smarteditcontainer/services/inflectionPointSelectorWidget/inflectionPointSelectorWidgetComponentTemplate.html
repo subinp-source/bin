@@ -1,0 +1,26 @@
+<div class="se-inflection-point dropdown" [class.open]="isOpen" id="inflectionPtDropdown">
+    <button
+        type="button"
+        class="se-inflection-point__toggle"
+        (click)="toggleDropdown($event)"
+        aria-pressed="false"
+        [attr.aria-expanded]="isOpen"
+    >
+        <span [ngClass]="getIconClass()" class="se-inflection-point___selected"></span>
+    </button>
+    <div class="se-inflection-point-dropdown">
+        <nav class="fd-menu">
+            <ul class="fd-menu__list" role="menu">
+                <li
+                    *ngFor="let choice of points"
+                    class="fd-menu__item inflection-point__device"
+                    [ngClass]="{selected: isSelected(choice)}"
+                    id="se-device-{{choice.type}}"
+                    (click)="selectPoint(choice)"
+                >
+                    <span [ngClass]="getIconClass(choice)"></span>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>

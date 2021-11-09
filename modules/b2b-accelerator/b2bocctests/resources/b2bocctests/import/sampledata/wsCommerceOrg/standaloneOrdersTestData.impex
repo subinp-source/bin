@@ -1,0 +1,91 @@
+$defaultPassword = 1234
+
+$catalog-id = wsTestCatalog
+$catalog-version = Online
+
+$catalogversion = catalogversion(catalog(id), version)[unique=true, default=$catalog-id:$catalog-version]
+$supercategories = supercategories(code, catalogversion(catalog(id[default=$catalog-id]), version[default=$catalog-version]))
+
+$testCategory0-id = testCategory0;
+
+$prices = europe1prices[translator=de.hybris.platform.europe1.jalo.impex.Europe1PricesTranslator]
+
+INSERT_UPDATE DynamicProcessDefinition;code[unique=true];active;content
+                                      ;order-process;true;"<process xmlns='http://www.hybris.de/xsd/processdefinition' start='checkOrder'
+name='order-process' processClass='de.hybris.platform.orderprocessing.model.OrderProcessModel'>
+
+<!-- Check Order -->
+<action id='checkOrder' bean='noAction'>
+    <transition name='OK' to='success'/>
+</action>
+
+<end id='error' state='ERROR'>Order process error.</end>
+<end id='failed' state='FAILED'>Order process failed.</end>
+<end id='success' state='SUCCEEDED'>Order process completed.</end>
+
+</process>"
+
+# Delivery Zones
+INSERT_UPDATE Zone;code[unique=true];countries(isocode)
+                  ;usa;US
+
+INSERT_UPDATE ZoneDeliveryMode;code[unique=true];net;active[default=true]
+                              ;standard-net;true
+
+INSERT_UPDATE ZoneDeliveryModeValue;deliveryMode(code)[unique=true];zone(code)[default='usa'][unique=true];currency(isocode)[unique=true];value;minimum[unique=true]
+                                   ;standard-net;;USD;9,99;0,00
+
+INSERT_UPDATE B2BUnit; uid[unique = true]; &B2BUnitID
+                     ; Rustic            ; Rustic
+
+INSERT_UPDATE B2BCustomer; description; uid[unique = true]        ; originalUid               ; email                     ; name       ; title(code); groups(uid)              ; permissionGroups(uid); sessionCurrency(isocode)[default = 'USD']; &ownerId                  ; password[default = $defaultPassword];
+                         ; Admin A    ; linda.wolf@rustic-hw.com  ; linda.wolf@rustic-hw.com  ; linda.wolf@rustic-hw.com  ; Linda Wolf ; ms         ; Rustic, b2badmingroup    ;                      ;                                          ;                           ;  ;
+                         ; Customer A ; mark.rivers@rustic-hw.com ; mark.rivers@rustic-hw.com ; mark.rivers@rustic-hw.com ; Mark Mark  ; mr         ; Rustic, b2bcustomergroup ;                      ;                                          ; mark.rivers@rustic-hw.com ;  ;
+
+INSERT_UPDATE B2BBudget; code[unique = true]; Unit(uid); budget; currency(isocode)[allownull = true]; dateRange[dateformat = dd.MM.yyyy hh:mm:ss, allownull = true]; name[lang = en];
+                       ; Monthly_50K_USD    ; Rustic   ; 50000 ; USD                                ; 01.01.2010 10:00:00,31.12.2032 10:00:00                      ; Monthly 50K USD
+                       ; Monthly_20K_USD    ; Rustic   ; 20000 ; USD                                ; 01.01.2010 10:00:00,31.12.2032 10:00:00                      ; Monthly 20K USD
+
+INSERT_UPDATE B2BCostCenter; code[unique = true]; name[lang = en]    ; Unit(uid); budgets(code)   ; currency(isocode)[default = 'USD']; active
+                           ; Rustic_Global      ; Rustic Global      ; Rustic   ; Monthly_50K_USD ;                                   ; true
+                           ; Rustic_Retail      ; Retail             ; Rustic   ; Monthly_20K_USD ;                                   ; true
+                           ; Rustic_Cost_Center ; Rustic Cost Center ; Rustic   ;                 ;                                   ; true
+                           ; Rustic_US          ; Rustic US          ; Rustic   ; Monthly_50K_USD ;                                   ; true
+
+UPDATE BaseStore; uid[unique = true]; paymentProvider  ; submitOrderProcessCode
+                ; wsTest            ; Mockup           ; order-process
+
+INSERT_UPDATE PaymentInfo; code[unique = true]                  ; user(uid)                 ; saved ; duplicate
+                         ; 7f75cebc-47dd-4897-900f-3022aa812e2a ; mark.rivers@rustic-hw.com ; false ; false
+
+INSERT_UPDATE CreditCardPaymentInfo; code[unique = true]                                                   ; user(uid)                    ; saved ; duplicate ; number          ;validToMonth;validToYear;ccOwner;type(code)    ;subscriptionId;
+                                   ; mark.rivers@rustic-hw.com_08322fb5-6449-44e3-bb19-41335467be58 ; mark.rivers@rustic-hw.com ; false ; false     ; 4111111111111111;8           ;2024       ;Mark   ;visa      ;86c7545e-bbcc-42b1-b4d2-e6aaf1bfcd24;
+
+INSERT_UPDATE Unit; unitType[unique = true]; code[unique = true]; name[lang = en]; conversion
+                  ; pieces                 ; pieces             ; pieces         ; 1
+
+INSERT_UPDATE Product; code[unique = true]; $catalogversion; name[lang = de]; name[lang = en]; unit(code); $prices   ; approvalStatus(code); startLineNumber; $supercategories
+                     ; HW1210-3422        ;                ; testDE         ; testEN         ; pieces    ; 57,95 EUR ; approved            ; 0              ; $testCategory0-id
+                     ; HW1210-9342        ;                ; test1DE        ; test1EN        ; pieces    ; 7,5 USD   ; approved            ; 0              ; $testCategory0-id
+                     ; HW1210-9345        ;                ; test2DE        ; test2EN        ; pieces    ; 10,5 USD  ; approved            ; 0              ; $testCategory0-id
+
+INSERT_UPDATE CartEntry; costCenter(code)               ; product(code); unit(code); quantity  ; order(code)[unique = true]; &addIdOrder
+                       ; Rustic_Global                  ; HW1210-3422  ; pieces    ; 1         ; abc                       ; asd
+                       ; Rustic_Retail                  ; HW1210-9342  ; pieces    ; 1         ; xyz                       ; xsd
+                       ; Rustic_US                      ; HW1210-9342  ; pieces    ; 1         ; ccpo                      ; cpo
+                       ; Rustic_Cost_Center             ; HW1210-9345  ; pieces    ; 1         ; qwe                       ; qse
+
+INSERT_UPDATE Address; owner(&B2BUnitID)[unique = true]; streetname[unique = true]; streetnumber; postalcode; duplicate; town   ; country(isocode); billingAddress; contactAddress; shippingAddress; unloadingAddress; firstname; lastname; email                     ; gender(code); middlename; phone1; url; company     ; fax; &addId
+                     ; Rustic                          ; otbrDeliveryAddress      ; 2           ; 28277     ; false    ; Bremen ; US              ; true          ; true          ; true           ; true            ; Mark     ; Mark    ; mark.rivers@rustic-hw.com ; MALE        ;           ;       ;    ; hybris GmbH ;    ; otbrDeliveryAddress
+
+INSERT_UPDATE Address; owner(&ownerId)[unique = true]; streetname[unique = true]; streetnumber; postalcode; duplicate; town   ; country(isocode); billingAddress; contactAddress; shippingAddress; unloadingAddress; firstname; lastname; email                     ; gender(code); middlename; phone1; url; company     ; fax; &addId
+                     ; mark.rivers@rustic-hw.com     ; otDeliveryAddress        ; 2           ; 28277     ; false    ; Bremen ; US              ; true          ; true          ; true           ; true            ; Mark     ; Mark    ; mark.rivers@rustic-hw.com ; MALE        ;           ;       ;    ; hybris GmbH ;    ; otDeliveryAddress
+
+INSERT_UPDATE ServicelayerJob; code[unique = true]          ; active; retry; priority; springId[unique = true]
+                             ; b2bAcceleratorCartToOrderJob ; true  ; true ; 4       ; b2bAcceleratorCartToOrderJob
+
+INSERT_UPDATE Cart; code[unique = true]; date[dateformat = dd.MM.yyyy]; calculated; currency(isocode); deliverycost; deliverymode(code); paymentinfo(code)                                              ; paymentmode(code); status(code) ; totalprice; totaldiscounts; user(uid)                 ; paymenttype(code); site(uid); deliveryAddress(&addId); store(uid); paymentAddress(&addId); entries(&addIdOrder) ; guid                                  ; purchaseOrderNumber
+                  ; abc                ; 27.04.2010                   ; true      ; USD              ; 9.99        ; standard-net      ; 7f75cebc-47dd-4897-900f-3022aa812e2a                           ;                  ; CREATED      ; 82.99     ; 0             ; mark.rivers@rustic-hw.com ; ACCOUNT          ; wsTest   ; otbrDeliveryAddress    ; wsTest    ; otbrDeliveryAddress   ; asd                  ;                                       ;
+                  ; xyz                ; 27.04.2020                   ; true      ; USD              ; 9.99        ; standard-net      ; mark.rivers@rustic-hw.com_08322fb5-6449-44e3-bb19-41335467be58 ;                  ; CREATED      ; 22.99     ; 0             ; mark.rivers@rustic-hw.com ; CARD             ; wsTest   ; otDeliveryAddress      ; wsTest    ; otDeliveryAddress     ; xsd                  ; 08322fb5-6449-44e3-bb19-41335467be58  ;
+                  ; qwe                ; 27.04.2020                   ; true      ; USD              ; 8.99        ; standard-net      ; mark.rivers@rustic-hw.com_08322fb5-6449-44e3-bb19-41335467be58 ;                  ; CREATED      ; 32.99     ; 0             ; mark.rivers@rustic-hw.com ; CARD             ; wsTest   ; otDeliveryAddress      ; wsTest    ; otDeliveryAddress     ; qse                  ; 08222fb5-6449-44e3-bb19-41335467be48  ;
+                  ; ccpo               ; 27.04.2020                   ; true      ; USD              ; 9.99        ; standard-net      ; mark.rivers@rustic-hw.com_08322fb5-6449-44e3-bb19-41335467be58 ;                  ; CREATED      ; 22.99     ; 0             ; mark.rivers@rustic-hw.com ; CARD             ; wsTest   ; otDeliveryAddress      ; wsTest    ; otDeliveryAddress     ; ccpo                 ; 08322fb5-6449-44e3-bb19-41335467be68  ; purchaseCCPO

@@ -1,0 +1,30 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved
+# -----------------------------------------------------------------------
+
+
+$lang=en;
+$solrIndexedType=solrIndexedType(identifier)[unique=true,default='BackofficeProduct'];
+$typeCode=type(code)[default='Product'];
+$active=active[allownull=true,default=true];
+
+UPDATE SolrIndexedProperty ; name[unique=true]                   ; $solrIndexedType ; backofficeDisplayName[lang=$lang] ;
+                           ; pcmCoreAttributesCoverageGroup      ;                  ; Core attributes                   ;
+                           ; pcmMarketingAttributesCoverageGroup ;                  ; Marketing attributes              ;
+
+INSERT_UPDATE NotNullConstraint ; id[unique=true]                           ; $typeCode ; $active ; message[lang=$lang]                                           ;
+                                ; ProductNameNotNullForAllLocalesConstraint ;           ;         ; The attribute "Identifier" should contain values for all languages. ;
+
+INSERT_UPDATE SizeConstraint ; id[unique=true]                      ; $typeCode ; $active ; message[lang=$lang]                                                ;
+                             ; ProductEurope1PricesSizeConstraint   ;           ;         ; The attribute "Prices" must contain at least 1 element.     ;
+                             ; ProductSupercategoriesSizeConstraint ;           ;         ; The attribute "Supercategories" must contain at least 1 element.   ;
+                             ; ProductGalleryImagesSizeConstraint   ;           ;         ; The attribute "Gallery Images" must contain at least 1 element.     ;
+                             ; ProductReferencesSizeConstraint      ;           ;         ; The attribute "Product References" must contain at least 1 element. ;
+
+INSERT_UPDATE NotEmptyConstraint ; id[unique=true]                      ; $typeCode ; $active ; message[lang=$lang]                              ;
+                                 ; ProductCodeNotEmptyConstraint        ;           ;         ; The attribute "Article Number" must not be empty.          ;
+                                 ; ProductDescriptionNotEmptyConstraint ;           ;         ; The attribute "Description" should not be empty. ;
+                                 ; ProductEanNotEmptyConstraint         ;           ;         ; The Attribute "EAN" should not be empty.         ;
+
+INSERT_UPDATE HybrisEnumValueCodeConstraint ; id[unique=true]                              ; $typeCode ; $active ; message[lang=$lang]                                      ;
+                                            ; ProductApprovedHybrisEnumValueCodeConstraint ;           ;         ; The attribute value for "Approval" should be "approved". ;

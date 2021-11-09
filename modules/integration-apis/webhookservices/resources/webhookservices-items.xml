@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+
+<items 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+            xsi:noNamespaceSchemaLocation="items.xsd">
+
+    <enumtypes>
+        <enumtype code="DestinationChannel" autocreate="false">
+            <description>
+                This channel is used to funnel published events to the webhookservices extension from apiregistryservices
+            </description>
+            <value code="WEBHOOKSERVICES"/>
+        </enumtype>
+    </enumtypes>
+
+    <itemtypes>
+        <itemtype code="WebhookConfiguration">
+            <description>
+                Configures how a webhook reacts to an event by specifying an event, an Integration Object to
+                transform the event to, and the destination to send the payload.
+            </description>
+            <deployment table="WebhookConfigs" typecode="8414"/>
+            <attributes>
+                <attribute qualifier="eventType" type="java.lang.String">
+                    <description>The event this WebhookConfiguration responds to</description>
+                    <defaultvalue>"de.hybris.platform.webhookservices.event.ItemSavedEvent"</defaultvalue>
+                    <modifiers unique="true" optional="true" read="true" initial="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="integrationObject" type="IntegrationObject">
+                    <description>
+                        The IntegrationObject this WebhookConfiguration is to use when sending the payload
+                    </description>
+                    <modifiers unique="true" optional="false" read="true" write="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="destination" type="ConsumedDestination">
+                    <description>
+                        The destination this WebhookConfiguration is to send the payload
+                    </description>
+                    <modifiers unique="true" optional="false" read="true" write="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="filterLocation" type="java.lang.String">
+                    <description>
+                        Specifies the URI of the filter logic. For example, script://orderFilter.
+                    </description>
+                    <modifiers optional="true" read="true" write="true"/>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+            <indexes>
+                <index name="idx_eventConfigIntObjDestination">
+                    <key attribute="eventType"/>
+                    <key attribute="integrationObject"/>
+                    <key attribute="destination"/>
+                </index>
+            </indexes>
+        </itemtype>
+    </itemtypes>
+
+</items>

@@ -1,0 +1,92 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# (Confidential Information). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+$destination_target=Default_Template
+
+INSERT_UPDATE Endpoint;id[unique=true];name;version[unique=true];description;specUrl;specData;extensionName
+"#%beforeEach:
+import de.hybris.platform.core.Registry;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.apache.commons.lang3.StringUtils;
+import de.hybris.platform.util.Config;
+
+Logger LOG = LoggerFactory.getLogger(""ImpExImportReader"");
+extensionNames = Registry.getCurrentTenant().getTenantSpecificExtensionNames();
+extensionName = line.get(7);
+endpointId = line.get(1);
+    if(!StringUtils.isEmpty(extensionName) && !extensionNames.contains(extensionName))
+    {
+        LOG.info(""Endpoint [{}] was skipped because the extension [{}] containing the endpoint is not included in the setup"", endpointId, extensionName);
+        line.clear();
+    }
+"
+;cc-commercewebservices;CC OCC Commerce Webservices v2;v2;"Commerce Cloud OCC Commerce Webservices v2";{ccv2.services.api.url.0}/occ/v2/api-docs;;commercewebservices
+;cc-ycommercewebservices;CC OCC Commerce Webservices Template v2;v2;"Commerce Cloud OCC Commerce Webservices Template v2";{ccv2.services.api.url.0}/rest/v2/api-docs;;ycommercewebservices
+;cc-assistedservicewebservices;CC Assisted Service Module Webservices v2;v2;"Commerce Cloud Assisted Service Module Webservices v2";{ccv2.services.api.url.0}/assistedservicewebservices/v2/api-docs;;assistedservicewebservices
+;cc-all-events;CC Events v1;v1;"Commerce Cloud Events v1";"empty";;
+;cc-ordermanagementwebservices;Order Management Webservices v1;v1;"Order Management Webservices v1";{ccv2.services.api.url.0}/ordermanagementwebservices/api-docs;;ordermanagementwebservices
+;cc-warehousingwebservices;Warehousing Webservices v1;v1;"Warehousing Webservices v1";{ccv2.services.api.url.0}/warehousingwebservices/api-docs;;warehousingwebservices
+;cc-permissionswebservices;Permission Webservices v1;v1;"Permission Webservices v1";{ccv2.services.api.url.0}/permissionswebservices/api-docs;;permissionswebservices
+;cc-personalizationwebservices;Personalization Webservices v1;v1;"Personalization Webservices v1";{ccv2.services.api.url.0}/personalizationwebservices/api-docs;;personalizationwebservices
+;cc-previewwebservices;Preview Webservices v1;v1;"Preview Webservices v1";{ccv2.services.api.url.0}/previewwebservices/api-docs;;previewwebservices
+;cc-couponwebservices;Coupon Webservices v1;v1;"Coupon Webservices v1";{ccv2.services.api.url.0}/couponwebservices/api-docs;;couponwebservices
+;cc-sapymktrecommendationwebservices;SAP YMKT Recommendations Webservices v1 ;v1;"SAP YMKT Recommendations Webservices v1";{ccv2.services.api.url.0}/sapymktrecommendationwebservices/v1/api-docs;;sapymktrecommendationwebservices
+;cc-sapymktsegmentationwebservices;SAP YKMT Segmentation Webservices v1;v1;"SAP YKMT Segmentation Webservices v1";{ccv2.services.api.url.0}/sapymktsegmentationwebservices/v1/api-docs;;sapymktsegmentationwebservices
+;cc-adaptivesearchwebservices;Adaptive Search Webservices v1;v1;"Adaptive Search Webservices v1";{ccv2.services.api.url.0}/adaptivesearchwebservices/api-docs;;adaptivesearchwebservices
+;cc-cmssmarteditwebservices;CMS Smart Edit Webservices v1;v1;"CMS Smart Edit Webservices v1";{ccv2.services.api.url.0}/cmssmarteditwebservices/api-docs;;cmssmarteditwebservices
+;cc-smarteditwebservices;Smart Edit Webservices v1;v1;"Smart Edit Webservices v1";{ccv2.services.api.url.0}/smarteditwebservices/api-docs;;smarteditwebservices
+;cc-cmswebservices;CMS Webservices v1;v1;"CMS Webservices v1";{ccv2.services.api.url.0}/cmswebservices/api-docs;;cmswebservices
+;cc-adminapi;Platform Admin API v2;v2;"Platform Admin API v2";{ccv2.services.api.url.0}/adminapi/api-docs;;adminapi
+
+INSERT_UPDATE DestinationTarget;id[unique=true];destinationChannel(code)[default=DEFAULT];template
+;$destination_target;;true
+
+
+INSERT_UPDATE ExposedDestination;id[unique=true];url;endpoint(id)[unique=true];additionalProperties(key,value)[map-delimiter=|];destinationTarget(id)[default=$destination_target];active[default=true]
+"#%beforeEach:
+import  de.hybris.platform.servicelayer.search.FlexibleSearchQuery;
+import de.hybris.platform.core.Registry;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import de.hybris.platform.util.Config;
+
+Logger LOG = LoggerFactory.getLogger(""ImpExImportReader"");
+
+lineEndpoint = line.get(3);
+
+flexibleSearchService = Registry.getApplicationContext().getBean(""flexibleSearchService"");
+query = ""SELECT {PK} from {Endpoint} WHERE {id}='"" + lineEndpoint + ""'""  ;
+flexibleSearchQuery = new FlexibleSearchQuery(query);
+result = flexibleSearchService.search(flexibleSearchQuery).getResult();
+
+if(result.isEmpty())
+{
+    LOG.info(""ExposedDestination [{}] was skipped because the endpoint [{}] which belongs to the destination was skipped"", line.get(1), lineEndpoint);
+    line.clear();
+    break;
+}"
+;cc-assistedservicewebservices;{ccv2.services.api.url.0}/assistedservicewebservices;cc-assistedservicewebservices;;;
+;cc-commercewebservices;{ccv2.services.api.url.0}/occ/v2;cc-commercewebservices;;;
+;cc-ycommercewebservices;{ccv2.services.api.url.0}/rest/v2;cc-ycommercewebservices;;;
+;cc-all-events;"empty";cc-all-events;;;
+;cc-ordermanagementwebservices;{ccv2.services.api.url.0}/ordermanagementwebservices;cc-ordermanagementwebservices;;;
+;cc-warehousingwebservices;{ccv2.services.api.url.0}/warehousingwebservices;cc-warehousingwebservices;;;
+;cc-permissionswebservices;{ccv2.services.api.url.0}/permissionswebservices;cc-permissionswebservices;;;
+;cc-personalizationwebservices;{ccv2.services.api.url.0}/personalizationwebservices;cc-personalizationwebservices;;;
+;cc-previewwebservices;{ccv2.services.api.url.0}/previewwebservices;cc-previewwebservices;;;
+;cc-couponwebservices;{ccv2.services.api.url.0}/couponwebservices;cc-couponwebservices;;;
+;cc-sapymktrecommendationwebservices;{ccv2.services.api.url.0}/sapymktrecommendationwebservices/v1;cc-sapymktrecommendationwebservices;;;
+;cc-sapymktsegmentationwebservices;{ccv2.services.api.url.0}/sapymktsegmentationwebservices/v1;cc-sapymktsegmentationwebservices;;;
+;cc-adaptivesearchwebservices;{ccv2.services.api.url.0}/adaptivesearchwebservices;cc-adaptivesearchwebservices;;;
+;cc-cmssmarteditwebservices;{ccv2.services.api.url.0}/cmssmarteditwebservices;cc-cmssmarteditwebservices;;;
+;cc-smarteditwebservices;{ccv2.services.api.url.0}/smarteditwebservices;cc-smarteditwebservices;;;
+;cc-cmswebservices;{ccv2.services.api.url.0}/cmswebservices;cc-cmswebservices;;;
+;cc-adminapi;{ccv2.services.api.url.0}/adminapi;cc-adminapi;;;

@@ -1,0 +1,101 @@
+.modal-dialog.modal-lg,
+.fd-modal.modal-lg {
+    width: 650px;
+}
+.modal-dialog.modal-md,
+.fd-modal.modal-md {
+    width: 600px;
+}
+#y-modal-dialog.fd-modal {
+    max-width: 100%;
+    .se-generic-editor__body {
+        padding: 0;
+    }
+}
+
+// This modifier is used to normalize legacy modals with fundamental ones
+// by giving them backdrop and centered positioning.
+
+.modal-dialog-window--normalized {
+    background-color: rgba(0, 0, 0, 0.5);
+
+    .modal-dialog {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) !important;
+    }
+}
+
+.fd-modal .fd-modal__body {
+    padding: 20px;
+}
+
+.fd-modal__body .se-generic-editor__body {
+    padding: 0;
+}
+
+.fd-modal__title {
+    @include se-text-ellipsis();
+}
+
+.fd-modal__header {
+    @include se-container-section('header');
+}
+.se-modal__header--no-title,
+.fd-modal__header--no-title {
+    @include se-flex-row(flex-end);
+}
+.se-modal-close,
+.fd-modal__close {
+    @include se-flex-row(center);
+    &::before {
+        margin: 0 !important;
+    }
+}
+.fd-modal__body {
+    @include se-container-section('body');
+    position: initial;
+    .se-generic-editor__body {
+        padding: 0;
+    }
+}
+.fd-modal__footer {
+    @include se-container-section('footer');
+}
+
+// Wizard
+.se-wait-spinner-dialog {
+    .modal-dialog.modal-lg {
+        width: initial;
+        text-align: center;
+    }
+    .fd-modal__content {
+        background: transparent;
+    }
+}
+
+// Confirm
+
+.se-confirmation-dialog {
+    top: 30px;
+    width: 600px;
+}
+
+// login
+
+.su-login-dialog-container {
+    width: 100vw;
+    height: 100vh;
+    background-color: fd-color('background', 1);
+
+    .fd-modal__content {
+        background-color: transparent;
+    }
+}
+
+.su-login-dialog {
+    padding-top: 120px;
+    width: 100%;
+    height: 100%;
+}

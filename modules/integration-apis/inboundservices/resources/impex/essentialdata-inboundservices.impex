@@ -1,0 +1,32 @@
+INSERT_UPDATE IntegrationObject; code[unique = true]          ; integrationType(code)
+                               ; InboundIntegrationMonitoring ; INBOUND
+
+INSERT_UPDATE IntegrationObjectItem; integrationObject(code)[unique = true]; code[unique = true]      ; type(code)               ; root[default = false]
+                                   ; InboundIntegrationMonitoring          ; InboundRequest           ; InboundRequest           ; true
+                                   ; InboundIntegrationMonitoring          ; IntegrationRequestStatus ; IntegrationRequestStatus ;
+                                   ; InboundIntegrationMonitoring          ; InboundRequestError      ; InboundRequestError      ;
+                                   ; InboundIntegrationMonitoring          ; InboundUser              ; User                     ;
+
+INSERT_UPDATE IntegrationObjectItemAttribute; integrationObjectItem(integrationObject(code), code)[unique = true]; attributeName[unique = true]; attributeDescriptor(enclosingType(code), qualifier); returnIntegrationObjectItem(integrationObject(code), code); unique[default = false]
+                                            ; InboundIntegrationMonitoring:InboundRequest                        ; requestIntegrationKey       ; InboundRequest:integrationKey                      ;                                                           ; true
+                                            ; InboundIntegrationMonitoring:InboundRequest                        ; sapPassport                 ; InboundRequest:sapPassport                         ;                                                           ;
+                                            ; InboundIntegrationMonitoring:InboundRequest                        ; messageId                   ; InboundRequest:messageId                           ;                                                           ; true
+                                            ; InboundIntegrationMonitoring:InboundRequest                        ; creationtime                ; InboundRequest:creationtime                        ;                                                           ; true
+                                            ; InboundIntegrationMonitoring:InboundRequest                        ; errors                      ; InboundRequest:errors                              ; InboundIntegrationMonitoring:InboundRequestError          ;
+                                            ; InboundIntegrationMonitoring:InboundRequest                        ; status                      ; InboundRequest:status                              ; InboundIntegrationMonitoring:IntegrationRequestStatus     ;
+                                            ; InboundIntegrationMonitoring:InboundRequest                        ; type                        ; InboundRequest:type                                ;                                                           ;
+                                            ; InboundIntegrationMonitoring:InboundRequest                        ; user                        ; InboundRequest:user                                ; InboundIntegrationMonitoring:InboundUser                  ;
+
+                                            ; InboundIntegrationMonitoring:InboundRequestError                   ; creationtime                ; InboundRequestError:creationtime                   ;                                                           ; true
+                                            ; InboundIntegrationMonitoring:InboundRequestError                   ; inboundRequest              ; InboundRequestError:inboundRequest                 ; InboundIntegrationMonitoring:InboundRequest               ; true
+                                            ; InboundIntegrationMonitoring:InboundRequestError                   ; code                        ; InboundRequestError:code                           ;                                                           ;
+                                            ; InboundIntegrationMonitoring:InboundRequestError                   ; message                     ; InboundRequestError:message                        ;                                                           ;
+
+                                            ; InboundIntegrationMonitoring:IntegrationRequestStatus              ; code                        ; IntegrationRequestStatus:code                      ;                                                           ;
+
+                                            ; InboundIntegrationMonitoring:InboundUser                           ; uid                         ; User:uid                                           ;                                                           ; true
+                                            ; InboundIntegrationMonitoring:InboundUser                           ; name                        ; User:displayName                                   ;                                                           ;
+
+
+INSERT_UPDATE InboundChannelConfiguration; integrationObject(code)[unique = true];
+                                         ; InboundIntegrationMonitoring          ;

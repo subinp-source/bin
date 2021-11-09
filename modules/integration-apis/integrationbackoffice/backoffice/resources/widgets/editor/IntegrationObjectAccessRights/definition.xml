@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<widget-definition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widget-definition.xsd"
+                   id="de.hybris.platform.integrationbackoffice.widgets.IntegrationObjectAccessRights">
+    <name>Integration Object Access Rights</name>
+    <description>Allows the editing of access rights on Integration Objects</description>
+    <defaultTitle>Integration Object Access Rights</defaultTitle>
+    <author>Hybris</author>
+    <version>1.0</version>
+    <keywords>
+        <keyword>IntegrationObjectAccessRights</keyword>
+    </keywords>
+    <view src="IntegrationObjectAccessRights.zul"/>
+    <controller
+            class="de.hybris.platform.integrationbackoffice.widgets.authorization.controllers.IntegrationObjectAccessRightsController"/>
+    <sockets>
+        <input id="receiveIntegrationObjectComboBox"
+               type="de.hybris.platform.integrationservices.model.IntegrationObjectModel"/>
+        <input id="queryFromSearchBar"
+               type="java.lang.String"/>
+        <output id="sendClickedItem" type="de.hybris.platform.core.model.type.ComposedTypeModel"/>
+        <output id="principalPermissionInfos" type="java.util.Map"/>
+        <output id="queryToPermissionManager" type="java.lang.String"/>
+    </sockets>
+</widget-definition>

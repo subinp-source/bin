@@ -1,0 +1,7 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+INSERT_UPDATE SearchRestriction;code[unique=true];principal(uid)[unique=true];query;restrictedType(code)[unique=true];active;generate
+;backendOrderVisibility;customersupportagentgroup;{versionID} IS NULL;Order;true;true
+;backendOrderVisibility;customersupportmanagergroup;{versionID} IS NULL;Order;true;true

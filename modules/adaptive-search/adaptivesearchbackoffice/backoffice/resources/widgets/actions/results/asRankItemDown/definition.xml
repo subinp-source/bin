@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<action-definition id="de.hybris.platform.adaptivesearchbackoffice.actions.results.rankitemdown" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/action-definition.xsd">
+
+   <name>rankitemdown</name>
+   <description>Rank Item Down</description>
+   <author>hybris</author>
+   <version>1.0</version>
+
+   <actionClassName>de.hybris.platform.adaptivesearchbackoffice.actions.results.rankitemdown.RankItemDownAction</actionClassName>
+   	
+   <inputType>java.lang.Object</inputType>
+   <outputType>java.lang.Object</outputType>
+
+</action-definition>

@@ -1,0 +1,45 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+#######################
+# REGISTRATION EMAILS #
+#######################
+
+# TODO: Create template for RegistrationApprovedEmailTemplate 
+# TODO: Create template for RegistrationRejectedEmailTemplate
+# TODO: Create template for RegistrationReceivedEmailTemplate
+
+# Variables
+$contentCatalog=powertoolsContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$emailFromEmail=customerservices@hybris.com
+$emailFromName=客服团队
+$lang=zh
+$jarResource=jar:de.hybris.platform.secureportaladdon.constants.SecureportaladdonConstants&/secureportaladdon/import/contentCatalogs/powertoolsContentCatalog/emails
+$jarEmailResource=jar:de.hybris.platform.powertoolsstore.constants.PowertoolsStoreConstants&/powertoolsstore/import/coredata/contentCatalogs/powertoolsContentCatalog/emails
+
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$emailResource=$config-emailResourceValue
+
+# Email page
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];fromEmail[lang=$lang];fromName[lang=$lang]
+;;RegistrationPendingApprovalEmail;$emailFromEmail;$emailFromName
+;;RegistrationApprovedEmail;$emailFromEmail;$emailFromName
+;;RegistrationReceivedEmail;$emailFromEmail;$emailFromName
+;;RegistrationRejectedEmail;$emailFromEmail;$emailFromName
+
+# Email velocity templates
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;powertools-BannerComponent-template;"CMSBannerComponent Template";$emailResource/email-bannerComponentTemplate.vm
+;powertools-CMSImageComponent-template;"CMSImageComponent Template";$emailResource/email-cmsImageComponentTemplate.vm
+;powertools-CMSLinkComponent-template;"CMSLinkComponent Template";$emailResource/email-cmsLinkComponentTemplate.vm
+;powertools-CMSParagraphComponent-template;"CMSParagraphComponent Template";$emailResource/email-cmsParagraphComponentTemplate.vm
+;powertools-SimpleBannerComponent-template;"CMSSimpleBannerComponent Template";$emailResource/email-bannerComponentTemplate.vm
+;RegistrationPendingApprovalEmailTemplateSubject;Registration Pending Approval Email - Subject;$jarResource/email-registrationPendingApprovalSubject.vm
+;RegistrationPendingApprovalEmailTemplateBody;Registration Pending Approval Email - Body;$jarResource/email-registrationPendingApprovalBody.vm
+;RegistrationApprovedEmailTemplateSubject;Registration Approved Email - Subject;$jarResource/email-registrationApprovedSubject.vm
+;RegistrationApprovedEmailTemplateBody;Registration Approved Email - Body;$jarResource/email-registrationApprovedBody.vm
+;RegistrationReceivedEmailTemplateSubject;Registration Received Email - Subject;$jarResource/email-registrationReceivedSubject.vm
+;RegistrationReceivedEmailTemplateBody;Registration Received Email - Body;$jarResource/email-registrationReceivedBody.vm
+;RegistrationRejectedEmailTemplateSubject;Registration Rejected Email - Subject;$jarResource/email-registrationRejectedSubject.vm
+;RegistrationRejectedEmailTemplateBody;Registration Rejected Email - Body;$jarResource/email-registrationRejectedBody.vm

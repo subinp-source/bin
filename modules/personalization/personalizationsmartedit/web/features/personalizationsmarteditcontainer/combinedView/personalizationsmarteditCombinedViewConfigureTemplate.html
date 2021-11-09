@@ -1,0 +1,102 @@
+<form class="pe-combinedview-config__form">
+    <div class="form-group">
+        <label for="PageFilterDropdownField001"
+            class="fd-form__label"
+            data-translate="personalization.commons.filter.label"></label>
+
+        <div class="pe-combinedview-config__filter-layout">
+            <page-filter-dropdown id="PageFilterDropdownField001"
+                data-on-select-callback="modalController.pageFilterChange(value)"
+                class="fd-has-margin-right-small"></page-filter-dropdown>
+            <has-multicatalog>
+                <catalog-filter-dropdown data-on-select-callback="modalController.catalogFilterChange(value)"></catalog-filter-dropdown>
+            </has-multicatalog>
+        </div>
+
+        <div class="pe-combinedview-config__select-group-layout">
+            <div class="pe-combinedview-config__select-group-label-layout">
+                <label for="CombinedViewSearchField1"
+                    class="fd-form__label se-control-label required pe-combinedview-config__label"
+                    data-translate="personalization.modal.combinedview.search.label"></label>
+            </div>
+            <ui-select data-ng-init="modalController.initUiSelect($select)"
+                ng-model="selectedElement"
+                theme="select2"
+                class="fd-form__control"
+                ng-keyup="modalController.searchInputKeypress($event, $select.search)"
+                on-select="modalController.selectElement($item)"
+                data-backspace-reset="false"
+                reset-search-input="false"
+                id="CombinedViewSearchField1">
+                <ui-select-match placeholder="{{ 'personalization.modal.combinedview.search.placeholder' | translate}}">
+                    <span>{{'personalization.modal.combinedview.search.placeholder' | translate}}</span>
+                </ui-select-match>
+                <ui-select-choices repeat="item in selectionArray"
+                    position="down"
+                    ui-disable-choice="modalController.isItemInSelectDisabled(item)"
+                    personalization-infinite-scroll="modalController.addMoreItems()"
+                    personalization-infinite-scroll-distance="1">
+                    <div class="pe-combinedview-config__ui-select-choices-layout"
+                        data-ng-class="{'pe-combinedview-config__ui-select-item--selected': modalController.isItemSelected(item)}">
+                        <div class="pe-combinedview-config__ui-select-choices-col1">
+                            <div class="perso-wrap-ellipsis"
+                                data-ng-bind="item.customization.name + ' > ' + item.variation.name"
+                                title="{{item.customization.name}} > {{item.variation.name}}">
+                            </div>
+                        </div>
+                        <div class="pe-combinedview-config__ui-select-choices-col2">
+                            <has-multicatalog>
+                                <div data-ng-if="catalogFilter!=='current'"
+                                    data-ng-init="modalController.getAndSetCatalogVersionNameL10N(item.variation)">
+                                    <div class="perso-wrap-ellipsis"
+                                        data-ng-if="!modalController.isItemFromCurrentCatalog(item.variation)"
+                                        data-ng-bind="item.variation.catalogVersionNameL10N"
+                                        title="{{item.variation.catalogVersionNameL10N}}">
+                                    </div>
+                                    <div class="perso-wrap-ellipsis"
+                                        data-ng-if="modalController.isItemFromCurrentCatalog(item.variation)"
+                                        data-translate="personalization.filter.catalog.current"
+                                        title="{{'personalization.filter.catalog.current' | translate }}">
+                                    </div>
+                                </div>
+                            </has-multicatalog>
+                        </div>
+                    </div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+    <div class="form-group">
+        <p data-ng-hide="selectedItems.length > 0"
+            data-translate="personalization.toolbar.combinedview.openconfigure.empty"></p>
+        <div id="CombinedViewSelectedField1"
+            class="pe-combinedview-config__list-layout"
+            data-ng-repeat="item in selectedItems"
+            data-ng-class="{'pe-combinedview-config__divider': $first}">
+            <div class="pe-combinedview-config__letter-layout">
+                <div data-ng-class="modalController.getClassForElement($index)"
+                    data-ng-bind="modalController.getLetterForElement($index)"></div>
+            </div>
+            <div class="pe-combinedview-config__names-layout">
+                <div class="perso-wrap-ellipsis pe-combinedview-config__cname"
+                    data-ng-bind="item.customization.name"
+                    title="{{item.customization.name}}"></div>
+                <span> ></span>
+                <div class="perso-wrap-ellipsis pe-combinedview-config__vname"
+                    data-ng-bind="item.variation.name"
+                    title="{{item.variation.name}}"></div>
+            </div>
+            <div class="pe-combinedview-config__hyicon-globe">
+                <span data-ng-if="!modalController.isItemFromCurrentCatalog(item.variation)"
+                    class="perso__globe-icon sap-icon--globe"
+                    data-uib-tooltip="{{item.variation.catalogVersionNameL10N}}"
+                    data-tooltip-placement="top-right"></span>
+            </div>
+            <div class="pe-combinedview-config__hyicon-remove">
+                <span class="sap-icon--decline"
+                    data-ng-click="modalController.removeSelectedItem(item)"
+                    title="{{'personalization.modal.combinedview.icon.remove.title' | translate}}"></span>
+            </div>
+        </div>
+    </div>
+</form>

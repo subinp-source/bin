@@ -1,0 +1,41 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+INSERT_UPDATE CxSegment; code[unique = true]; providers; autoCreated[default = true]
+                       ; newSegment0        ; provider2
+                       ; newSegment1        ; provider2
+                       ; newSegment2        ; provider2
+                       ; newSegment3        ; provider2
+                       ; newSegment4        ; provider2
+                       ; newSegment5        ; provider2
+                       ; newSegment6        ; provider2
+                       ; newSegment7        ; provider2
+                       ; newSegment8        ; provider2
+                       ; newSegment9        ; provider2
+                       ; newSegment10       ; provider2
+                       ; newSegment11       ; provider2
+                       ; newSegment12       ; provider2
+                       ; newSegment13       ; provider2
+                       ; newSegment14       ; provider2
+                       ; newSegment15       ; provider2
+                       ; newSegment16       ; provider2
+                       ; newSegment17       ; provider2
+                       ; newSegment18       ; provider2
+                       ; newSegment19       ; provider2
+                       ; newSegment20       ; provider2
+                       ; newSegment21       ; provider2
+                       ; newSegment22       ; provider2
+                       ; newSegment23       ; provider2
+                       ; newSegment24       ; provider2
+                       ; newSegment25       ; provider2
+                       ; newSegment26       ; provider2
+                       ; newSegment27       ; provider2
+                       ; newSegment28       ; provider2
+                       ; newSegment29       ; provider2
+                       ; newSegment30       ; provider2
+                       ; newSegment31       ; provider2
+                       ; newSegment32       ; provider2
+                       ; newSegment33       ; provider2
+                       ; newSegment34       ; provider2
+                       ; newSegment35       ; provider2

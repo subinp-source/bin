@@ -1,0 +1,16 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# 
+# Import the Product Catalog and Classification Catalog
+#
+# Localization zh
+#
+
+$lang=zh
+
+$productCatalog=powertoolsProductCatalog
+$classificationCatalog=PowertoolsClassification
+
+UPDATE Catalog;id[unique=true];name[lang=$lang]
+;$productCatalog;"电动工具产品目录";

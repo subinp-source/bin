@@ -1,0 +1,85 @@
+[
+	{
+		"testId": 1,
+		"description": "sort without expression",
+		"data": {
+			"sort": {
+				"expressions": [
+					{
+						"ascending": true
+					}
+				]
+			}
+		}
+	},
+	{
+		"testId": 2,
+		"description": "sort with empty expression",
+		"data": {
+			"sort": {
+				"expressions": [
+					{
+						"expression": "",
+						"ascending": true
+					}
+				]
+			}
+		}
+	},
+	{
+		"testId": 3,
+		"description": "sort with invalid expression",
+		"data": {
+			"sort": {
+				"expressions": [
+					{
+						"expression": "-$!#-",
+						"ascending": true
+					}
+				]
+			}
+		}
+	},
+	{
+		"testId": 4,
+		"description": "sort with not existing expression",
+		"data": {
+			"sort": {
+				"expressions": [
+					{
+						"expression": "notExisting",
+						"ascending": true
+					}
+				]
+			}
+		}
+	},
+	{
+		"testId": 5,
+		"description": "sort with TEXT expression",
+		"data": {
+			"sort": {
+				"expressions": [
+					{
+						"expression": "field_text",
+						"ascending": true
+					}
+				]
+			}
+		}
+	},
+	{
+		"testId": 6,
+		"description": "sort with multi-valued expression",
+		"data": {
+			"sort": {
+				"expressions": [
+					{
+						"expression": "field_string_mv",
+						"ascending": true
+					}
+				]
+			}
+		}
+	}
+]

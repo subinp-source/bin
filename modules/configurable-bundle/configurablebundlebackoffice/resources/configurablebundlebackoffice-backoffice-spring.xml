@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:cng="http://www.hybris.com/cockpitng/spring" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.hybris.com/cockpitng/spring
+        http://www.hybris.com/cockpitng/spring/cng-spring.xsd">
+
+	<bean id="configurablebundlebackofficeLabelLocator" class="com.hybris.cockpitng.util.labels.ResourcesLabelLocator" scope="singleton" init-method="init" lazy-init="false">
+  		<property name="location" value="/configurablebundlebackoffice-backoffice-labels/"/>
+  		<property name="name" value="labels"/>
+  	</bean>
+
+	<alias name="defaultBundleTemplatesTreeModelPopulator" alias="bundleTemplatesTreeModelPopulator"/>
+	<bean id="defaultBundleTemplatesTreeModelPopulator" class="de.hybris.platform.configurablebundlebackoffice.widgets.populator.BundleTemplatesTreeModelPopulator">
+		<property name="labelService" ref="labelService"/>
+		<property name="modelService" ref="modelService"/>
+	</bean>
+
+	<alias name="defaultBundleTemplatesModelPopulator" alias="bundleTemplatesModelPopulator"/>
+	<bean id="defaultBundleTemplatesModelPopulator" class="de.hybris.platform.configurablebundlebackoffice.widgets.populator.BundleTemplatesModelPopulator" parent="defaultCatalogTreeModelPopulator"/>
+
+	<alias name="defaultBundleTemplateAllCatalogsConditionAdapter" alias="bundleTemplateAllCatalogsConditionAdapter"/>
+	<bean id="defaultBundleTemplateAllCatalogsConditionAdapter" class="de.hybris.platform.configurablebundlebackoffice.widgets.searchadapters.BundleTemplateAllCatalogsConditionAdapter"/>
+
+	<alias name="defaultBundleTemplateCatalogConditionAdapter" alias="bundleTemplateCatalogConditionAdapter"/>
+	<bean id="defaultBundleTemplateCatalogConditionAdapter" class="de.hybris.platform.configurablebundlebackoffice.widgets.searchadapters.BundleTemplateCatalogConditionAdapter"/>
+
+	<alias name="defaultBundleTemplateCatalogVersionConditionAdapter" alias="bundleTemplateCatalogVersionConditionAdapter"/>
+	<bean id="defaultBundleTemplateCatalogVersionConditionAdapter" class="de.hybris.platform.configurablebundlebackoffice.widgets.searchadapters.BundleTemplateCatalogVersionConditionAdapter"/>
+
+	<alias name="defaultBundleTemplateFlexibleSearchConditionsAdapters" alias="bundleTemplateFlexibleSearchConditionsAdapters"/>
+	<util:list id="defaultBundleTemplateFlexibleSearchConditionsAdapters"
+			   value-type="com.hybris.backoffice.widgets.searchadapters.conditions.SearchConditionAdapter" >
+		<ref bean="bundleTemplateAllCatalogsConditionAdapter"/>
+		<ref bean="bundleTemplateCatalogConditionAdapter"/>
+		<ref bean="bundleTemplateCatalogVersionConditionAdapter"/>
+	</util:list>
+
+	<alias name="defaultBundleTemplateTreeFilterAdvancedFlexibleSearchInitializer"
+		   alias="bundleTemplateTreeFilterAdvancedFlexibleSearchInitializer"/>
+	<bean id="defaultBundleTemplateTreeFilterAdvancedFlexibleSearchInitializer"
+		  class="com.hybris.backoffice.widgets.searchadapters.CatalogTreeFilterAdvancedSearchInitializer">
+		<property name="conditionsAdapters" ref="bundleTemplateFlexibleSearchConditionsAdapters"/>
+	</bean>
+
+	<alias name="defaultBundleTemplateSummaryViewApprovalStatusRenderer" alias="bundleTemplateSummaryViewApprovalStatusRenderer"/>
+	<bean id="defaultBundleTemplateSummaryViewApprovalStatusRenderer"
+		  parent="abstractSummaryViewItemWithIconRenderer"
+		  class="de.hybris.platform.configurablebundlebackoffice.renderers.DefaultBundleTemplateSummaryViewApprovalStatusRenderer">
+	</bean>
+
+	<alias name="defaultBundleTemplateSummarySyncStatusRenderer" alias="bundleTemplateSummarySyncStatusRenderer"/>
+	<bean id="defaultBundleTemplateSummarySyncStatusRenderer"
+		  parent="defaultSummarySyncStatusRenderer"
+		  class="de.hybris.platform.configurablebundlebackoffice.renderers.DefaultBundleTemplateSummarySyncStatusRenderer">
+		<property name="synchronizationFacade" ref="configurableBundleSynchronizationFacade"/>
+		<property name="partialSyncInfoRenderer" ref="configurableBundlePartialSyncInfoRenderer"/>
+	</bean>
+
+	<alias name="defaultConfigurableBundleSyncStatusCellRenderer" alias="configurableBundleSyncStatusCellRenderer"/>
+	<bean id="defaultConfigurableBundleSyncStatusCellRenderer"
+		  class="com.hybris.backoffice.sync.renderers.SyncStatusCellRenderer">
+		<property name="lazyTasksExecutorFactory" ref="tasksExecutorFactory"/>
+		<property name="synchronizationFacade" ref="configurableBundleSynchronizationFacade"/>
+		<property name="partialSyncInfoRenderer" ref="configurableBundlePartialSyncInfoRenderer"/>
+		<property name="lazyRender" value="false"/>
+	</bean>
+
+
+	<alias name="defaultConfigurableBundlePartialSyncInfoTooltipRenderer" alias="configurableBundlePartialSyncInfoRenderer"/>
+	<bean id="defaultConfigurableBundlePartialSyncInfoTooltipRenderer" class="com.hybris.backoffice.sync.renderers.PartialSyncInfoTooltipRenderer">
+		<property name="synchronizationFacade" ref="configurableBundleSynchronizationFacade"/>
+		<property name="labelService" ref="labelService"/>
+	</bean>
+
+	<alias name="defaultConfigurableBundleSynchronizationFacade" alias="configurableBundleSynchronizationFacade"/>
+	<bean id="defaultConfigurableBundleSynchronizationFacade" class="com.hybris.backoffice.sync.facades.DefaultSynchronizationFacade">
+		<property name="catalogSynchronizationService" ref="catalogSynchronizationService"/>
+		<property name="synchronizationStatusService" ref="synchronizationStatusService"/>
+		<property name="catalogTypeService" ref="catalogTypeService"/>
+		<property name="relatedItemsCollector" ref="configurableBundleRelatedItemsCollector"/>
+		<property name="cronJobService" ref="cronJobService"/>
+		<property name="modelService" ref="modelService"/>
+		<property name="mediaService" ref="mediaService"/>
+		<property name="sessionService" ref="sessionService"/>
+		<property name="userService" ref="userService"/>
+		<property name="catalogVersionService" ref="catalogVersionService"/>
+	</bean>
+
+	<alias name="defaultConfigurableBundleRelatedItemsCollector" alias="configurableBundleRelatedItemsCollector"/>
+	<bean id="defaultConfigurableBundleRelatedItemsCollector" class="de.hybris.platform.servicelayer.model.collector.DefaultRelatedItemsCollector">
+		<property name="itemVisitorRegistry" ref="configurableBundleItemVisitorRegistry"/>
+	</bean>
+
+	<alias name="defaultConfigurableBundleItemVisitorRegistry" alias="configurableBundleItemVisitorRegistry"/>
+	<bean id="defaultConfigurableBundleItemVisitorRegistry" class="de.hybris.platform.servicelayer.model.visitor.ItemVisitorRegistry">
+		<property name="defaultVisitor" ref="defaultItemVisitor"/>
+		<property name="typeService" ref="typeService"/>
+		<property name="visitors" ref="configurableBundleVisitors"/>
+	</bean>
+
+	<alias name="defaultConfigurableBundleVisitors" alias="configurableBundleVisitors"/>
+	<util:map id="defaultConfigurableBundleVisitors">
+		<entry key="#{T(de.hybris.platform.configurablebundleservices.model.BundleTemplateModel)._TYPECODE}" value-ref="configurableBundleBundleTemplateItemVisitor"/>
+	</util:map>
+
+	<alias name="defaultConfigurableBundleBundleTemplateItemVisitor" alias="configurableBundleBundleTemplateItemVisitor"/>
+	<bean name="defaultConfigurableBundleBundleTemplateItemVisitor"
+		  class="de.hybris.platform.configurablebundlebackoffice.synchronization.itemvisitors.impl.BundleTemplateItemVisitor"/>
+
+	<alias name="defaultItemTypeAwareContextPopulator" alias="itemTypeAwareContextPopulator"/>
+	<bean id="defaultItemTypeAwareContextPopulator" class="de.hybris.platform.configurablebundlebackoffice.widgets.contextpopulator.ItemTypeAwareContextPopulator" parent="defaultContextPopulator"/>
+
+	<alias name="defaultExplorerTreeBundleTemplatesDynamicNodeRefreshStrategy" alias="explorerTreeBundleTemplatesDynamicNodeRefreshStrategy"/>
+	<bean id="defaultExplorerTreeBundleTemplatesDynamicNodeRefreshStrategy" class="de.hybris.platform.configurablebundlebackoffice.widgets.explorertree.refreshstrategy.ExplorerTreeBundleTemplatesDynamicNodeRefreshStrategy" />
+
+	<bean id="explorerTreeBundleTemplatesDynamicNodeRefreshStrategyExplorerTreeRefreshStrategiesListMergeDirective" depends-on="explorerTreeRefreshStrategies" parent="listMergeDirective">
+		<property name="add" ref="explorerTreeBundleTemplatesDynamicNodeRefreshStrategy"/>
+	</bean>
+
+	<cng:list-extender bean="defaultCoverageCalculationStrategyRegistry" property="domainStrategies"
+					   getter="@domainStrategiesList">
+		<cng:add>
+			<bean class="de.hybris.platform.validation.coverage.strategies.impl.CoverageCalculationStrategyMapping">
+				<property name="domainID" value="pcmBundleTemplateCoreAttributesCoverageGroup"/>
+				<property name="strategyMap">
+					<map>
+						<entry key="BundleTemplate">
+							<bean class="de.hybris.platform.validation.coverage.strategies.impl.ValidationBasedCoverageCalculationStrategy">
+								<property name="validationService" ref="validationService"/>
+								<property name="typeService" ref="typeService"/>
+								<property name="coverageConstraintGroupDao" ref="coverageConstraintGroupDao"/>
+								<property name="sortProperties" value="true"/>
+								<property name="constraintGroupID" value="pcmBundleTemplateCoreAttributesCoverageGroup"/>
+							</bean>
+						</entry>
+					</map>
+				</property>
+			</bean>
+			<bean class="de.hybris.platform.validation.coverage.strategies.impl.CoverageCalculationStrategyMapping">
+				<property name="domainID" value="pcmBundleTemplateMarketingAttributesCoverageGroup"/>
+				<property name="strategyMap">
+					<map>
+						<entry key="BundleTemplate">
+							<bean class="de.hybris.platform.validation.coverage.strategies.impl.ValidationBasedCoverageCalculationStrategy">
+								<property name="validationService" ref="validationService"/>
+								<property name="typeService" ref="typeService"/>
+								<property name="coverageConstraintGroupDao" ref="coverageConstraintGroupDao"/>
+								<property name="sortProperties" value="true"/>
+								<property name="constraintGroupID" value="pcmBundleTemplateMarketingAttributesCoverageGroup"/>
+							</bean>
+						</entry>
+					</map>
+				</property>
+			</bean>
+			<bean class="de.hybris.platform.validation.coverage.strategies.impl.CoverageCalculationStrategyMapping">
+				<property name="domainID" value="pcmBundleTemplateChildTemplatesCoverageGroup"/>
+				<property name="strategyMap">
+					<map>
+						<entry key="BundleTemplate">
+							<bean class="de.hybris.platform.validation.coverage.strategies.impl.ValidationBasedCoverageCalculationStrategy">
+								<property name="validationService" ref="validationService"/>
+								<property name="typeService" ref="typeService"/>
+								<property name="coverageConstraintGroupDao" ref="coverageConstraintGroupDao"/>
+								<property name="sortProperties" value="true"/>
+								<property name="constraintGroupID" value="pcmBundleTemplateChildTemplatesCoverageGroup"/>
+							</bean>
+						</entry>
+					</map>
+				</property>
+			</bean>
+		</cng:add>
+	</cng:list-extender>
+
+	<alias name="defaultNestedAttributeAwareEditorAreaSectionRenderer" alias="nestedAttributeAwareEditorAreaSectionRenderer"/>
+	<bean id="defaultNestedAttributeAwareEditorAreaSectionRenderer" class="de.hybris.platform.configurablebundlebackoffice.widgets.editorarea.renderer.impl.NestedAttributeAwareEditorAreaSectionRenderer" parent="defaultEditorAreaSectionRenderer">
+		<property name="typeFacade" ref="typeFacade"/>
+	</bean>
+
+	<alias name="defaultNestedAttributeEditorAreaLogicHandler" alias="nestedAttributeEditorAreaLogicHandler"/>
+	<bean id="defaultNestedAttributeEditorAreaLogicHandler" class="de.hybris.platform.configurablebundlebackoffice.widgets.editorarea.handlers.NestedAttributeEditorAreaLogicHandler" parent="defaultEditorAreaLogicHandler">
+	</bean>
+
+	<alias name="defaultDynamicElementsProviderComponentsVisitor" alias="dynamicElementsProviderComponentsVisitor"/>
+	<bean id="defaultDynamicElementsProviderComponentsVisitor" class="de.hybris.platform.configurablebundlebackoffice.widgets.common.dynamicforms.impl.DefaultDynamicElementsProviderComponentsVisitor"
+		  parent="abstractComponentVisitor" scope="prototype"/>
+
+	<alias name="defaultCoverageEditorAreaComponentsVisitorFactory" alias="coverageEditorAreaComponentsVisitorFactory"/>
+	<bean id="defaultCoverageEditorAreaComponentsVisitorFactory"
+		  class="com.hybris.cockpitng.widgets.common.dynamicforms.impl.DefaultComponentsVisitorFactory" scope="prototype">
+		<property name="componentName" value="editorAreaDynamicForms"/>
+		<property name="componentsDisablingVisitor" ref="componentsDisablingVisitor"/>
+		<property name="componentsVisitor" ref="coverageDynamicCompoundComponentsVisitor"/>
+		<property name="notificationService" ref="notificationService"/>
+		<aop:scoped-proxy/>
+	</bean>
+
+	<alias name="defaultCoverageDynamicCompoundComponentsVisitor" alias="coverageDynamicCompoundComponentsVisitor"/>
+	<bean id="defaultCoverageDynamicCompoundComponentsVisitor"
+		  class="de.hybris.platform.configurablebundlebackoffice.widgets.common.dynamicforms.impl.CoverageDynamicCompoundComponentsVisitor" scope="prototype"/>
+
+	<alias name="defaultSyncInfoTreeItemRenderer" alias="syncInfoTreeItemRenderer"/>
+	<bean id="defaultSyncInfoTreeItemRenderer" class="de.hybris.platform.configurablebundlebackoffice.widgets.explorertree.renderer.SyncInfoTreeItemRenderer" parent="defaultExplorerTreeItemRenderer" scope="prototype">
+		<constructor-arg>
+			<null/>
+		</constructor-arg>
+		<property name="syncStatusCellRenderer" ref="configurableBundleSyncStatusCellRenderer"/>
+	</bean>
+
+	<alias name="defaultAbstractBundleRuleLabelProvider" alias="abstractBundleRuleLabelProvider"/>
+	<bean id="defaultAbstractBundleRuleLabelProvider"
+		  class="de.hybris.platform.configurablebundlebackoffice.labelproviders.AbstractBundleRuleLabelProvider"
+		  abstract="true"/>
+
+	<alias name="defaultChangeProductPriceBundleRuleLabelProvider" alias="changeProductPriceBundleRuleLabelProvider"/>
+	<bean id="defaultChangeProductPriceBundleRuleLabelProvider"
+		  class="de.hybris.platform.configurablebundlebackoffice.labelproviders.ChangeProductPriceBundleRuleLabelProvider"
+		  parent="abstractBundleRuleLabelProvider"/>
+
+	<alias name="defaultDisableProductBundleRuleLabelProvider" alias="disableProductBundleRuleLabelProvider"/>
+	<bean id="defaultDisableProductBundleRuleLabelProvider"
+		  class="de.hybris.platform.configurablebundlebackoffice.labelproviders.DisableProductBundleRuleLabelProvider"
+		  parent="abstractBundleRuleLabelProvider"/>
+
+	<bean id="cloneIdGenerator" class="de.hybris.platform.servicelayer.keygenerator.impl.PersistentKeyGenerator" >
+		<property name="key" value="cloneIDGenerator"/>
+		<property name="digits" value="8"/>
+		<property name="start" value="00000000"/>
+		<property name="type" value="alphanumeric"/>
+	</bean>
+
+	<cng:property-extender bean="bundleTemplateCoreDataQualityValueResolver" property="dataQualityCalculationServiceProxy">
+		<ref bean="dataQualityCalculationServiceProxy"/>
+	</cng:property-extender>
+
+	<cng:property-extender bean="bundleTemplateMarketingDataQualityValueResolver" property="dataQualityCalculationServiceProxy">
+		<ref bean="dataQualityCalculationServiceProxy"/>
+	</cng:property-extender>
+
+	<cng:property-extender bean="bundleTemplateChildTemplatesDataQualityValueResolver" property="dataQualityCalculationServiceProxy">
+		<ref bean="dataQualityCalculationServiceProxy"/>
+	</cng:property-extender>
+
+</beans>

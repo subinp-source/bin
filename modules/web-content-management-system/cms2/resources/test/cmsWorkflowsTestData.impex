@@ -1,0 +1,121 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+$catalog-id=cms_Catalog	
+$catalog-name=Cms_Catalog_Name	
+$catalog-catalogversion1=CatalogVersion1
+$catalog-catalogversion2=CatalogVersion2
+$catalog-catalogversion3=CatalogVersion3
+
+$homepage-slot-id=HomepageBodySlot
+$faq-slot-id=FaqBodySlot
+$homepage-page-uid=homepage
+$faq-page-uid=faq
+
+$productCatalog=cms_ProductCatalog
+$contentCV = catalogVersion(CatalogVersion.catalog(Catalog.id[default = $catalog-id]), CatalogVersion.version[default = $catalog-catalogversion1])[default = $catalog-id:$catalog-catalogversion1]
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$item=item(CMSItem.uid,CmsItem.$contentCV)
+
+$workflowTemplate1Name=WorkflowTemplate1
+$workflowTemplate2Name=WorkflowTemplate2
+	
+$contentCatVersion=catalogVersion(catalog(id[default=$catalog-id])	version[default=$catalog-online])[default=$catalog-id:$catalog-online]
+
+INSERT_UPDATE UserGroup;UID[unique=true];groups(uid)[mode=append]
+;cmsmanagergroup;employeegroup;
+
+INSERT_UPDATE User;uid[unique=true];groups(uid)[mode=append];
+;cmsmanager;cmsmanagergroup
+;cmsreader;employeegroup
+
+INSERT_UPDATE ContentCatalog;id[unique=true];name[lang=en];	
+;$catalog-id;$catalog-name;	
+	
+INSERT_UPDATE CatalogVersion;catalog(id)[unique=true];version[unique=true];active;readPrincipals(uid)[mode=append]
+;$catalog-id;$catalog-catalogversion1;false;cmsmanagergroup	
+	
+INSERT_UPDATE CatalogVersion;catalog(id)[unique=true];version[unique=true];active;readPrincipals(uid)[mode=append]
+;$catalog-id;$catalog-catalogversion2;false;cmsmanagergroup
+
+INSERT_UPDATE CatalogVersion;catalog(id)[unique=true];version[unique=true];active;readPrincipals(uid)[mode=append]	
+;$catalog-id;$catalog-catalogversion3;false;cmsmanagergroup
+
+# Access rights for workflow users - Needed to be able to create WorkflowActionTemplates
+$START_USERRIGHTS;;;;;;;;;
+Type;UID;MemberOfGroups;Password;Target;read;change;create;remove;change_perm
+UserGroup;employeegroup;;;;;;;;
+
+# cms2 items
+;;;;Workflow;+;+;+;+;+;
+;;;;WorkflowAction;+;+;+;+;+;
+;;;;WorkflowActionTemplate;+;+;+;+;+;
+$END_USERRIGHTS;;;;;
+
+
+INSERT_UPDATE WorkflowTemplate; code[unique = true]; name[lang = en]; catalogVersions(catalog(id),version)[mode=append]; visibleForPrincipals(uid)[mode=append];
+; $workflowTemplate1Name ; Workflow Template 1 ; $catalog-id:$catalog-catalogversion1, $catalog-id:$catalog-catalogversion2 ; cmsmanagergroup
+
+INSERT_UPDATE WorkflowTemplate; code[unique = true]; name[lang = en]; catalogVersions(catalog(id),version)[mode=append]; visibleForPrincipals(uid)[mode=append];
+; $workflowTemplate2Name ; Workflow Template 2 ; $catalog-id:$catalog-catalogversion2 ; cmsmanager
+
+INSERT_UPDATE WorkflowActionTemplate;code[unique = true] ;name[lang = en] ;description[lang = en] ;principalAssigned(uid) ;workflow(code)[unique = true] ;sendEmail ;actionType(code) ;
+;actionTemplate1Start         ;"Start Action 1"  ;"Start Action 1" ;cmsmanagergroup      ;$workflowTemplate1Name ;false ;start  ;
+;actionTemplate1End           ;"End Action 1"    ;"End Action 1"   ;cmsmanagergroup      ;$workflowTemplate1Name ;false ;end    ;
+;actionTemplate2Start         ;"Start Action 2"  ;"Start Action 2" ;cmsmanagergroup      ;$workflowTemplate2Name ;false ;start  ;
+;actionTemplate2End           ;"End Action 2"    ;"End Action 2"   ;cmsmanagergroup      ;$workflowTemplate2Name ;false ;end    ;
+
+
+INSERT_UPDATE WorkflowDecisionTemplate;code[unique = true] ;name[lang = en] ;actionTemplate(code) ;description[allownull = true] ;
+;decisionApproved1    ;"Approve 1"  ;actionTemplate1Start  ;"Approve 1" ;
+;decisionApproved2    ;"Approve 2"  ;actionTemplate2Start  ;"Approve 2" ;
+
+INSERT_UPDATE WorkflowActionTemplateLinkTemplateRelation;source(code)[unique = true] ;target(code)[unique = true] ;andConnectionTemplate ;qualifier ;
+;decisionApproved1    ;actionTemplate1End ;false ;WorkflowActionTemplateLinkTemplateRelation ;
+;decisionApproved2    ;actionTemplate2End ;false ;WorkflowActionTemplateLinkTemplateRelation ;
+
+
+# Create pages needed for the workflows.
+INSERT_UPDATE PageTemplate; $contentCV[unique = true]; uid[unique = true]; name;
+; ; LandingPage2Template ; Landing Page 2 Template ;
+
+INSERT_UPDATE ContentPage; $contentCV[unique = true]; uid[unique = true]; name; masterTemplate(uid, $contentCV) ;
+; ; homepage    ; homepage     ; LandingPage2Template ;
+; ; faq         ; faq          ; LandingPage2Template ;
+; ; productPage ; productPage  ; LandingPage2Template ;
+; ; notInWorkflowPage ; notInWorkflowPage ; LandingPage2Template ;
+
+# Сreate component and slot for homepage
+INSERT_UPDATE CMSLinkComponent;catalogVersion(catalog(id),version)[unique=true,allownull=true];uid[unique=true];name;url;linkName;category(code, $productCV);target(code)[default='sameWindow'];;&componentRef
+                              ;$catalog-id:$catalog-catalogversion1;LinkInSlot;LinkInSlotName;https://www.abc.com;abc;;;;cmsLinkInSlotRef
+                              ;$catalog-id:$catalog-catalogversion1;AnotherLinkInSlot;AnotherLinkInSlotName;https://www.abc.com;abc;;;;cmsAnotherLinkInSlotRef
+
+# The LinkInSlot is available on two different pages (homepage, faq), AnotherLinkInSlot is available on homepage
+INSERT_UPDATE ContentSlot;active[allownull=true];catalogVersion(catalog(id),version)[unique=true,allownull=true];name;uid[unique=true,allownull=true];cmsComponents(&componentRef)
+                         ;true;$catalog-id:$catalog-catalogversion1;HomePageSlot;$homepage-slot-id;cmsLinkInSlotRef,cmsAnotherLinkInSlotRef
+                         ;true;$catalog-id:$catalog-catalogversion1;FaqPageSlot;$faq-slot-id;cmsLinkInSlotRef
+
+INSERT_UPDATE ContentSlotForPage;catalogVersion(catalog(id),version)[unique=true,allownull=true];contentSlot(catalogVersion(catalog(id),version),uid)[allownull=true];page(catalogVersion(catalog(id),version),uid)[allownull=true];position[allownull=true];uid[unique=true,allownull=true]
+                                ;$catalog-id:$catalog-catalogversion1;$catalog-id:$catalog-catalogversion1:$homepage-slot-id;$catalog-id:$catalog-catalogversion1:$homepage-page-uid;0;HomepageBodySlot
+                                ;$catalog-id:$catalog-catalogversion1;$catalog-id:$catalog-catalogversion1:$faq-slot-id;$catalog-id:$catalog-catalogversion1:$faq-page-uid;0;FaqBodySlot
+
+# Create sample workflows (do not change the order of workflows)
+INSERT_UPDATE Workflow; code[unique = true]; job(code); status(code);
+; workflow1 ; $workflowTemplate1Name ; RUNNING ;
+; workflow2 ; $workflowTemplate2Name ; PAUSED  ;
+; workflow3 ; $workflowTemplate1Name ; RUNNING ;
+
+# All three pages are in different workflows
+INSERT_UPDATE WorkflowItemAttachment; name[lang = en][unique=true]; workflow(code); $item;
+; attachment1 ; workflow1 ; homepage    ;
+; attachment2 ; workflow2 ; productPage ;
+; attachment3 ; workflow3 ; faq    ;
+
+INSERT_UPDATE WorkflowAction; code[unique = true]; workflow(code); template(code); status(code); principalAssigned(uid); activated[dateformat=dd.MM.yyyy HH:mm]
+; action1Start ; workflow1 ; actionTemplate1Start ; in_progress ;cmsmanagergroup; 06.02.2019 04:00 ;
+; action1End   ; workflow1 ; actionTemplate1End   ; pending     ;cmsmanagergroup;;
+; action2Start ; workflow2 ; actionTemplate2Start ; in_progress ;cmsmanagergroup; 06.02.2019 05:00 ;
+; action2End   ; workflow2 ; actionTemplate2End   ; pending     ;cmsmanagergroup;;
+; action3Start ; workflow3 ; actionTemplate1Start ; in_progress ;cmsmanagergroup; 06.02.2019 04:00 ;
+; action3End   ; workflow3 ; actionTemplate1End   ; pending     ;cmsmanagergroup;;

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<list-view unassigned-group-name="Other">
+	<group name="General">
+		<custom class="de.hybris.platform.cockpit.services.config.impl.CheckboxColumn" name=" " visible="true"/>
+		<property qualifier="catalog.id" visible="true"/>
+		<property qualifier="catalog.name" visible="true"/>
+	</group>
+</list-view>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<alias name="defaultWorkflowDesignerCloseListener" alias="workflowDesignerCloseListener"/>
+	<bean id="defaultWorkflowDesignerCloseListener"
+		  class="com.hybris.backoffice.workflow.designer.handler.WorkflowDesignerCloseListener">
+		<property name="delegate" ref="listContainerCloseListener"/>
+	</bean>
+
+	<alias name="defaultWorkflowDesignerDataManipulationViewEventHandler"
+		   alias="workflowDesignerDataManipulationViewEventHandler"/>
+	<bean id="defaultWorkflowDesignerDataManipulationViewEventHandler"
+		  class="com.hybris.backoffice.workflow.designer.handler.WorkflowDesignerDataManipulationViewEventHandler">
+		<property name="notificationService" ref="notificationService"/>
+		<property name="workflowModelRetriever" ref="workflowModelRetriever"/>
+		<property name="onAddNodeActionsListener" ref="workflowDesignerOnAddNodeActionsListener"/>
+		<property name="workflowDesignerSaveHandler" ref="workflowDesignerSaveHandler"/>
+		<property name="workflowDesignerRemoveHandler" ref="workflowDesignerRemoveHandler"/>
+		<property name="workflowDesignerConnectionHandler" ref="workflowDesignerConnectionHandler"/>
+	</bean>
+
+	<alias name="defaultDataManipulationDetectingHandler" alias="dataManipulationDetectingHandler"/>
+	<bean id="defaultDataManipulationDetectingHandler"
+		  class="com.hybris.backoffice.workflow.designer.handler.DataManipulationDetectingHandler">
+		<property name="delegate" ref="workflowDesignerDataManipulationViewEventHandler"/>
+		<property name="listener" ref="workflowDesignerCloseListener"/>
+	</bean>
+
+	<alias name="defaultViewEventDetectingHandler" alias="viewEventDetectingHandler"/>
+	<bean id="defaultViewEventDetectingHandler"
+		  class="com.hybris.backoffice.workflow.designer.handler.ViewEventDetectingHandler">
+		<property name="delegate" ref="workflowDesignerDataManipulationViewEventHandler"/>
+		<property name="listener" ref="workflowDesignerCloseListener"/>
+	</bean>
+
+	<alias name="defaultNetworkPopulationDetectingHandler" alias="networkPopulationDetectingHandler"/>
+	<bean id="defaultNetworkPopulationDetectingHandler"
+		  class="com.hybris.backoffice.workflow.designer.handler.NetworkPopulationDetectingHandler">
+		<property name="delegate" ref="workflowDesignerNetworkPopulator"/>
+		<property name="listener" ref="workflowDesignerCloseListener"/>
+	</bean>
+
+	<alias name="defaultWorkflowDesignerSaveHandler" alias="workflowDesignerSaveHandler"/>
+	<bean id="defaultWorkflowDesignerSaveHandler"
+		  class="com.hybris.backoffice.workflow.designer.handler.DefaultWorkflowDesignerSaveHandler">
+		<property name="notificationService" ref="notificationService"/>
+		<property name="workflowTemplatePersistenceService" ref="workflowTemplatePersistenceService"/>
+		<property name="workflowModelFinder" ref="workflowModelFinder"/>
+	</bean>
+
+	<alias name="defaultWorkflowDesignerRemoveHandler" alias="workflowDesignerRemoveHandler"/>
+	<bean id="defaultWorkflowDesignerRemoveHandler"
+		  class="com.hybris.backoffice.workflow.designer.handler.DefaultWorkflowDesignerRemoveHandler">
+		<property name="nodeTypeService" ref="workflowDesignerNodeTypeService"/>
+	</bean>
+
+	<alias name="defaultWorkflowDesignerOnAddNodeActionsListener" alias="workflowDesignerOnAddNodeActionsListener"/>
+	<bean id="defaultWorkflowDesignerOnAddNodeActionsListener"
+		  class="com.hybris.backoffice.workflow.designer.handler.DefaultWorkflowDesignerOnAddNodeActionsListener"/>
+
+	<!-- Retrievers -->
+	<alias name="defaultDecisionRetriever" alias="decisionRetriever"/>
+	<bean id="defaultDecisionRetriever"
+		  class="com.hybris.backoffice.workflow.designer.handler.retriever.DecisionRetriever">
+		<property name="nodeTypeService" ref="workflowDesignerNodeTypeService"/>
+		<property name="workflowModelFinder" ref="workflowModelFinder"/>
+	</bean>
+
+	<alias name="defaultActionRetriever" alias="actionRetriever"/>
+	<bean id="defaultActionRetriever"
+		  class="com.hybris.backoffice.workflow.designer.handler.retriever.ActionRetriever">
+		<property name="nodeTypeService" ref="workflowDesignerNodeTypeService"/>
+		<property name="workflowModelFinder" ref="workflowModelFinder"/>
+	</bean>
+
+	<alias name="defaultWorkflowModelRetriever" alias="workflowModelRetriever"/>
+	<bean id="defaultWorkflowModelRetriever"
+		  class="com.hybris.backoffice.workflow.designer.handler.retriever.DefaultWorkflowModelRetriever">
+		<property name="workflowModelRetrievers">
+			<list>
+				<ref bean="actionRetriever"/>
+				<ref bean="decisionRetriever"/>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Configurable flow handlers -->
+	<alias name="defaultWorkflowTemplateCreateActionForm" alias="workflowTemplateCreateActionForm"/>
+	<bean id="defaultWorkflowTemplateCreateActionForm" scope="prototype"
+		  class="com.hybris.backoffice.workflow.designer.form.WorkflowTemplateCreateActionForm"/>
+
+	<alias name="defaultAbstractWorkflowDesignerCreateHandler" alias="abstractWorkflowDesignerCreateHandler"/>
+	<bean id="defaultAbstractWorkflowDesignerCreateHandler" abstract="true">
+		<property name="notificationService" ref="notificationService"/>
+		<property name="nodeTypeService" ref="workflowDesignerNodeTypeService"/>
+	</bean>
+
+	<alias name="defaultWorkflowDesignerCreateActionHandler" alias="workflowDesignerCreateActionHandler"/>
+	<bean id="defaultWorkflowDesignerCreateActionHandler"
+		  class="com.hybris.backoffice.workflow.designer.handler.create.WorkflowDesignerCreateActionHandler"
+		  parent="abstractWorkflowDesignerCreateHandler">
+		<property name="modelService" ref="modelService"/>
+	</bean>
+
+	<alias name="defaultWorkflowTemplateCreateDecisionForm" alias="workflowTemplateCreateDecisionForm"/>
+	<bean id="defaultWorkflowTemplateCreateDecisionForm" scope="prototype"
+		  class="com.hybris.backoffice.workflow.designer.form.WorkflowTemplateCreateDecisionForm"/>
+
+	<alias name="defaultWorkflowDesignerCreateDecisionHandler" alias="workflowDesignerCreateDecisionHandler"/>
+	<bean id="defaultWorkflowDesignerCreateDecisionHandler"
+		  class="com.hybris.backoffice.workflow.designer.handler.create.WorkflowDesignerCreateDecisionHandler"
+		  parent="abstractWorkflowDesignerCreateHandler">
+		<property name="modelService" ref="modelService"/>
+	</bean>
+
+</beans>

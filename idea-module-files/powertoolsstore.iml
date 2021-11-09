@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="OOTB" importedAsReadOnly="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/b2b-accelerator/powertoolsstore/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="b2bacceleratorservices" exported="" />
+    <orderEntry type="module" module-name="platform" exported="" />
+  </component>
+</module>

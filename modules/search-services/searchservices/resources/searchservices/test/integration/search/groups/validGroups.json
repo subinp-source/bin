@@ -1,0 +1,409 @@
+[
+	{
+		"testId": 1,
+		"description": "group",
+		"data": {
+			"group": {
+				"expression": "color",
+				"limit": 10
+			},
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 3,
+			"totalSize": 3,
+			"searchHits": [
+				{
+					"id": "doc1",
+					"fields": {
+						"code": "doc1",
+						"name": "Shirt red M",
+						"color": "RED",
+						"size": "M"
+					},
+					"innerHits": [
+						{
+							"id": "doc1",
+							"fields": {
+								"code": "doc1",
+								"name": "Shirt red M",
+								"color": "RED",
+								"size": "M"
+							}
+						}
+					]
+				},
+				{
+					"id": "doc2",
+					"fields": {
+						"code": "doc2",
+						"name": "Shirt green M",
+						"color": "GREEN",
+						"size": "M"
+					},
+					"innerHits": [
+						{
+							"id": "doc2",
+							"fields": {
+								"code": "doc2",
+								"name": "Shirt green M",
+								"color": "GREEN",
+								"size": "M"
+							}
+						},
+						{
+							"id": "doc3",
+							"fields": {
+								"code": "doc3",
+								"name": "Shirt green L",
+								"color": "GREEN",
+								"size": "L"
+							}
+						}
+					]
+				},
+				{
+					"id": "doc4",
+					"fields": {
+						"code": null,
+						"name": null,
+						"color": null,
+						"size": null
+					},
+					"innerHits": [
+						{
+							"id": "doc4",
+							"fields": {
+								"code": null,
+								"name": null,
+								"color": null,
+								"size": null
+							}
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 2,
+		"description": "group, with limit 1",
+		"data": {
+			"group": {
+				"expression": "color",
+				"limit": 1
+			},
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 3,
+			"totalSize": 3,
+			"searchHits": [
+				{
+					"id": "doc1",
+					"fields": {
+						"code": "doc1",
+						"name": "Shirt red M",
+						"color": "RED",
+						"size": "M"
+					},
+					"innerHits": [
+						{
+							"id": "doc1",
+							"fields": {
+								"code": "doc1",
+								"name": "Shirt red M",
+								"color": "RED",
+								"size": "M"
+							}
+						}
+					]
+				},
+				{
+					"id": "doc2",
+					"fields": {
+						"code": "doc2",
+						"name": "Shirt green M",
+						"color": "GREEN",
+						"size": "M"
+					},
+					"innerHits": [
+						{
+							"id": "doc2",
+							"fields": {
+								"code": "doc2",
+								"name": "Shirt green M",
+								"color": "GREEN",
+								"size": "M"
+							}
+						}
+					]
+				},
+				{
+					"id": "doc4",
+					"fields": {
+						"code": null,
+						"name": null,
+						"color": null,
+						"size": null
+					},
+					"innerHits": [
+						{
+							"id": "doc4",
+							"fields": {
+								"code": null,
+								"name": null,
+								"color": null,
+								"size": null
+							}
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 3,
+		"description": "group with STRING expression",
+		"data": {
+			"group": {
+				"expression": "color",
+				"limit": 10
+			},
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 3,
+			"totalSize": 3,
+			"searchHits": [
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc4"
+				}
+			]
+		}
+	},
+	{
+		"testId": 4,
+		"description": "group with INTEGER expression",
+		"data": {
+			"group": {
+				"expression": "field_integer",
+				"limit": 10
+			},
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 3,
+			"totalSize": 3,
+			"searchHits": [
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc3"
+				},
+				{
+					"id": "doc4"
+				}
+			]
+		}
+	},
+	{
+		"testId": 5,
+		"description": "group with LONG expression",
+		"data": {
+			"group": {
+				"expression": "field_long",
+				"limit": 10
+			},
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 3,
+			"totalSize": 3,
+			"searchHits": [
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc3"
+				},
+				{
+					"id": "doc4"
+				}
+			]
+		}
+	},
+	{
+		"testId": 6,
+		"description": "group with FLOAT expression",
+		"data": {
+			"group": {
+				"expression": "field_float",
+				"limit": 10
+			},
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 3,
+			"totalSize": 3,
+			"searchHits": [
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc3"
+				},
+				{
+					"id": "doc4"
+				}
+			]
+		}
+	},
+	{
+		"testId": 7,
+		"description": "group with DOUBLE expression",
+		"data": {
+			"group": {
+				"expression": "field_double",
+				"limit": 10
+			},
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 3,
+			"totalSize": 3,
+			"searchHits": [
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc3"
+				},
+				{
+					"id": "doc4"
+				}
+			]
+		}
+	},
+	{
+		"testId": 8,
+		"description": "group with facets",
+		"data": {
+			"group": {
+				"expression": "color",
+				"limit": 10
+			},
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			},
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"expression": "color"
+				},
+				{
+					"type": "termBuckets",
+					"id": "size",
+					"expression": "size"
+				}
+			]
+		},
+		"expectedData": {
+			"size": 3,
+			"totalSize": 3,
+			"searchHits": [
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc4"
+				}
+			],
+			"facets": [
+				{
+					"id": "color",
+					"buckets": [
+						{
+							"id": "GREEN",
+							"count": 1
+						},
+						{
+							"id": "RED",
+							"count": 1
+						}
+					]
+				},
+				{
+					"id": "size",
+					"buckets": [
+						{
+							"id": "M",
+							"count": 2
+						},
+						{
+							"id": "L",
+							"count": 1
+						}
+					]
+				}
+			]
+		}
+	}
+]

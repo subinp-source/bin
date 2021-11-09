@@ -1,0 +1,26 @@
+<div class="form-group form-group__inline">
+    <label class="se-control-label control-label__margin">
+        {{ $ctrl.associatedPrimaryPageLabelI18nKey | translate }}</label
+    >
+    <div
+        data-ng-if="$ctrl.readOnly"
+        class="dc-associated-primary-page form-readonly-text form-readonly-text__tight"
+    >
+        {{ ::$ctrl.associatedPrimaryPage.name }}
+    </div>
+    <div data-ng-if="!$ctrl.readOnly">
+        <se-select
+            id="display-conditions-primary-association-selector"
+            [model]="$ctrl.associatedPrimaryPageModel"
+            (model-change)="$ctrl.associatedPrimaryPageModelOnChange($event)"
+            [fetch-strategy]="$ctrl.fetchStrategy"
+        >
+        </se-select>
+        <span data-ng-show="$ctrl.associatedPrimaryPage.name" class="se-form-help-message">
+            <span
+                >{{ 'se.cms.page.label.label' | translate }}: {{ $ctrl.associatedPrimaryPage.label
+                }}</span
+            >
+        </span>
+    </div>
+</div>

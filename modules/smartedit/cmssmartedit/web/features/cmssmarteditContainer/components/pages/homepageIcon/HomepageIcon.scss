@@ -1,0 +1,10 @@
+.se-home-page--current {
+    color: fd-color('action', 1);
+}
+.se-home-page--old {
+    color: fd-color('text', 1);
+}
+.se-home-page--current,
+.se-home-page--old {
+    margin-right: fd-space('base');
+}

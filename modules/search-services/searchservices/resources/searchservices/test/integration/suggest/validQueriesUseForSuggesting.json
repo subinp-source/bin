@@ -1,0 +1,182 @@
+[
+	{
+		"testId": 1,
+		"description": "query without useForSuggesting field, no field returned",
+		"data": {
+			"query": "shi"
+		},
+		"expectedData": {
+			"size": 0,
+			"suggestHits": [ ]
+		}
+	},
+	{
+		"testId": 2,
+		"description": "query with non-localized, single-value useForSuggesting field, field returned",
+		"fields": [
+			{
+				"id": "color_text",
+				"useForSuggesting": true
+			}
+		],
+		"data": {
+			"query": "RE"
+		},
+		"expectedData": {
+			"size": 1,
+			"suggestHits": [ { "query": "RED" }]
+		}
+	},
+	{
+		"testId": 3,
+		"description": "query with non-localized, multi-value useForSuggesting field, field returned",
+		"fields": [
+			{
+				"id": "field_text_mv",
+				"useForSuggesting": true
+			}
+		],
+		"data": {
+			"query": "RE"
+		},
+		"expectedData": {
+			"size": 1,
+			"suggestHits": [ { "query": "RED shirt" }]
+		}
+	},
+	{
+		"testId": 4,
+		"description": "query with localized, single-value useForSuggesting field, field returned",
+		"fields": [
+			{
+				"id": "name",
+				"useForSuggesting": true
+			}
+		],
+		"data": {
+			"query": "shi"
+		},
+		"expectedData": {
+			"size": 1,
+			"suggestHits": [ { "query": "Shirt red M" }]
+		}
+	},
+	{
+		"testId": 5,
+		"description": "query with localized, multi-value useForSuggesting field, field returned",
+		"fields": [
+			{
+				"id": "categoryName",
+				"useForSuggesting": true
+			}
+		],
+		"data": {
+			"query": "shi"
+		},
+		"expectedData": {
+			"size": 1,
+			"suggestHits": [ { "query": "Shirts" }]
+		}
+	},
+	{
+		"testId": 6,
+		"description": "empty query single useForSuggesting field, no field returned",
+		"fields": [
+			{
+				"id": "color",
+				"useForSuggesting": true
+			}
+		],
+		"data": {
+			"query": "RE"
+		},
+		"expectedData": {
+			"size": 1,
+			"suggestHits": [ { "query": "RED" }]
+		}
+	},
+	{
+		"testId": 7,
+		"description": "query with multiple localized, single-value useForSuggesting fields, field returned",
+		"fields": [
+			{
+				"id": "name",
+				"useForSuggesting": true
+			},
+			{
+				"id": "description",
+				"useForSuggesting": true
+			}
+		],
+		"data": {
+			"query": "re"
+		},
+		"expectedData": {
+			"size": 1,
+			"suggestHits": [ { "query": "red Shirt M" }]
+		}
+	},
+	{
+		"testId": 8,
+		"description": "query with multiple localized, multi-value useForSuggesting fields, field returned",
+		"fields": [
+			{
+				"id": "localized_keywords",
+				"useForSuggesting": true
+			},
+			{
+				"id": "categoryName",
+				"useForSuggesting": true
+			}
+		],
+		"data": {
+			"query": "re"
+		},
+		"expectedData": {
+			"size": 1,
+			"suggestHits": [ { "query": "red" }]
+		}
+	},
+	{
+		"testId": 9,
+		"description": "query with multiple non-localized, single-value useForSuggesting fields, field returned",
+		"fields": [
+			{
+				"id": "color_text",
+				"useForSuggesting": true
+			},
+			{
+				"id": "size_text",
+				"useForSuggesting": true
+			}
+		],
+		"data": {
+			"query": "RE"
+		},
+		"expectedData": {
+			"size": 1,
+			"suggestHits": [ { "query": "RED" }]
+		}
+	},
+	{
+		"testId": 10,
+		"description": "query with multiple non-localized, multi-value useForSuggesting fields, field returned",
+		"fields": [
+			{
+				"id": "field_text_mv",
+				"useForSuggesting": true
+			},
+			{
+				"id": "field_string_mv",
+				"useForSuggesting": true
+			}
+		],
+		"data": {
+			"query": "RE"
+		},
+		"expectedData": {
+			"size": 1,
+			"suggestHits": [ { "query": "RED shirt" }]
+		}
+	}
+]

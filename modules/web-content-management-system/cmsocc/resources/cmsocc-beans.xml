@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
+
+	<bean class="de.hybris.platform.cmsocc.data.ComponentWsDTO">
+		<property name="uid" type="String" />
+		<property name="uuid" type="String" />
+		<property name="typeCode" type="String" />
+		<property name="modifiedtime" type="java.util.Date" />
+		<property name="name" type="String" />
+		<property name="otherProperties" type="java.util.Map&lt;String,Object>" />
+	</bean>
+
+	<bean class="de.hybris.platform.cmsocc.data.ContentSlotWsDTO">
+		<property name="slotId" type="String" />
+		<property name="slotUuid" type="String" />
+		<property name="position" type="String" />
+		<property name="name" type="String" />
+		<property name="slotShared" type="Boolean" />
+		<property name="slotStatus" type="String" />
+		<property name="components" type="de.hybris.platform.cmsocc.data.ComponentListWsDTO" />
+		<property name="otherProperties" type="java.util.Map&lt;String,Object>" />
+	</bean>
+
+	<bean class="de.hybris.platform.cmsocc.data.ComponentListWsDTO">
+		<property name="component" type="java.util.List&lt;de.hybris.platform.cmsocc.data.ComponentWsDTO>" />
+	</bean>
+
+	<bean class="de.hybris.platform.cmsocc.data.ContentSlotListWsDTO">
+		<property name="contentSlot" type="java.util.List&lt;de.hybris.platform.cmsocc.data.ContentSlotWsDTO>" />
+	</bean>
+
+	<bean class="de.hybris.platform.cmsocc.data.CMSPageWsDTO">
+		<property name="uid" type="String" />
+		<property name="uuid" type="String" />
+		<property name="title" type="String" />
+		<property name="template" type="String" />
+		<property name="typeCode" type="String" />
+		<property name="name" type="String" />
+		<property name="description" type="String" />
+		<property name="robotTag" type="String" />
+		<property name="defaultPage" type="Boolean" />
+		<property name="contentSlots" type="de.hybris.platform.cmsocc.data.ContentSlotListWsDTO" />
+		<property name="catalogVersionUuid" type="String" />
+		<property name="otherProperties" type="java.util.Map&lt;String,Object>" />
+	</bean>
+
+	<bean class="de.hybris.platform.cmsocc.data.CMSPageListWsDTO">
+		<property name="page" type="java.util.List&lt;de.hybris.platform.cmsocc.data.CMSPageWsDTO>" />
+	</bean>
+
+	<bean class="de.hybris.platform.cmsocc.data.MediaWsDTO">
+		<import type="javax.xml.bind.annotation.XmlRootElement" />
+		<import type="javax.xml.bind.annotation.XmlElements" />
+		<import type="javax.xml.bind.annotation.XmlElement" />
+		<import type="javax.xml.bind.annotation.XmlAccessType" />
+		<import type="javax.xml.bind.annotation.XmlAccessorType" />
+		<annotations>
+            @XmlRootElement
+            @XmlAccessorType(XmlAccessType.FIELD)
+        </annotations>
+		<property name="code" type="String" />
+		<property name="catalogId" type="String" />
+		<property name="catalogVersion" type="String" />
+		<property name="mime" type="String" />
+		<property name="altText" type="String" />
+		<property name="description" type="String" />
+		<property name="url" type="String" />
+		<property name="downloadUrl" type="String" />
+	</bean>
+
+	<bean class="de.hybris.platform.cmsocc.data.NavigationNodeWsDTO">
+		<import type="javax.xml.bind.annotation.XmlRootElement" />
+		<import type="javax.xml.bind.annotation.XmlElements" />
+		<import type="javax.xml.bind.annotation.XmlElement" />
+		<import type="javax.xml.bind.annotation.XmlAccessType" />
+		<import type="javax.xml.bind.annotation.XmlAccessorType" />
+		<annotations>
+            @XmlRootElement
+            @XmlAccessorType(XmlAccessType.FIELD)
+        </annotations>
+		<property name="uid" type="String" />
+		<property name="uuid" type="String" />
+		<property name="name" type="String" />
+		<property name="position" type="Integer" />
+		<property name="entries" type="java.util.List&lt;de.hybris.platform.cmsocc.data.NavigationEntryWsDTO>" />
+		<property name="children" type="java.util.List&lt;de.hybris.platform.cmsocc.data.NavigationNodeWsDTO>" />
+		<property name="title" type="String" />
+		<property name="localizedTitle" type="String" />
+	</bean>
+
+	<bean class="de.hybris.platform.cmsocc.data.NavigationEntryWsDTO">
+		<property name="itemId" type="String" />
+		<property name="itemType" type="String" />
+		<property name="itemSuperType" type="String" />
+	</bean>
+
+	<bean class="de.hybris.platform.cmsocc.data.ComponentIDListWsDTO">
+		<description>List of CMS component IDs</description>
+		<property name="idList" type="java.util.List&lt;String>" />
+	</bean>
+
+	<bean class="de.hybris.platform.cmsocc.data.RequestParamData">
+		<property name="queryParameters" type="java.util.Map&lt;String, java.util.List&lt;String>>" />
+		<property name="pathParameters" type="java.util.Map&lt;String, String>" />
+	</bean>
+
+</beans>

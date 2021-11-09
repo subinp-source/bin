@@ -1,0 +1,23 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+INSERT_UPDATE DestinationTarget;id[unique=true];destinationChannel(code)[default=DEFAULT];template
+;template_default;;true
+
+INSERT_UPDATE Endpoint;id[unique=true];version;specUrl;specData;&eref;name
+;e1;v1;"url";;e1;n1
+
+INSERT_UPDATE ExposedDestination;id[unique=true];url;endpoint(&eref);additionalProperties;destinationTarget(id)[default=template_default];active;
+;template_first_dest;"http://localhost:9002/test";e1;;;true;
+;template_second_dest;"http://localhost:9002/test";e1;;;false;
+;template_third_dest;"http://localhost:9002/test";e1;;;true;
+
+INSERT_UPDATE EventConfiguration;eventClass[unique=true];destinationTarget(id)[default=template_default];version[unique=true];exportFlag;priority(code);exportName;mappingType(code);converterBean;description
+;de.hybris.platform.commerceservices.event.RegisterEvent;;1;true;CRITICAL;customer.created;GENERIC;;"Customer Register Event v2"
+;de.hybris.platform.commerceservices.event.ForgottenPwdEvent;;1;true;CRITICAL;password.forgotton;GENERIC;;"Forgotten Password Event v1"
+;de.hybris.platform.order.events.SubmitOrderEvent;;1;true;CRITICAL;orderCreated;GENERIC;;"Submit Order Event"
+
+INSERT_UPDATE EventPropertyConfiguration;propertyName[unique=true];eventConfiguration(eventClass)[unique=true];propertyMapping;title[default='title'];description;examples(key,value)[map-delimiter=|];required[default=true];type[default='string'];
+;"orderCode";de.hybris.platform.order.events.SubmitOrderEvent;"event.order.code";"Order code";"Code of an Order.";orderCode->76272727;false
+

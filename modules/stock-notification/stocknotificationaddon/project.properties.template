@@ -1,0 +1,15 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+stocknotificationaddon.key=value
+
+# Specifies the location of the spring context file added automatically to the global platform application context.
+stocknotificationaddon.application-context=stocknotificationaddon-spring.xml
+
+yacceleratorstorefront.additionalWebSpringConfigs.stocknotificationaddon=classpath:/stocknotificationaddon/web/spring/stocknotificationaddon-web-spring.xml
+
+
+
+stocknotificationaddon.javascript.paths.responsive=/responsive/common/js/stocknotificationaddon.js
+stocknotificationaddon.css.paths.responsive=/responsive/common/css/stocknotificationaddon.css

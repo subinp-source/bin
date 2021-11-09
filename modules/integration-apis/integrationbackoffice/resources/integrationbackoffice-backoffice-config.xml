@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<config xmlns="http://www.hybris.com/cockpit/config"
+        xmlns:ea="http://www.hybris.com/cockpitng/component/editorArea"
+        xmlns:na="http://www.hybris.com/cockpitng/config/notifications"
+        xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config"
+        xmlns:n="http://www.hybris.com/cockpitng/config/explorertree"
+        xmlns:y="http://www.hybris.com/cockpit/config/hybris"
+        xmlns:as="http://www.hybris.com/cockpitng/config/advancedsearch"
+        xmlns:list="http://www.hybris.com/cockpitng/component/listView"
+        xmlns:b="http://www.hybris.com/cockpit/config/hybris">
+
+    <context component="perspective-view-switcher" authority="backofficeintegrationadministrator">
+        <vs:view-switcher xmlns:vs="http://www.hybris.com/cockpitng/config/viewSwitcher">
+            <vs:authority name="backofficeintegrationadministrator ">
+                <vs:view id="integrationBackofficeToolPerspective"/>
+                <vs:view id="hmc2"/>
+            </vs:authority>
+        </vs:view-switcher>
+    </context>
+
+    <context component="perspective-view-switcher" authority="backofficeintegrationagent">
+        <vs:view-switcher xmlns:vs="http://www.hybris.com/cockpitng/config/viewSwitcher">
+            <vs:authority name="backofficeintegrationagent">
+                <vs:view id="integrationBackofficeToolPerspective"/>
+            </vs:authority>
+        </vs:view-switcher>
+    </context>
+
+    <context component="integrationbackoffice-explorer-tree"
+             authority="backofficeintegrationadministrator, backofficeintegrationagent">
+        <n:explorer-tree xmlns:n="http://www.hybris.com/cockpitng/config/explorertree">
+            <n:navigation-node id="integrationbackoffice.explorer.treenode.integrationApis" expanded-by-default="true">
+                <n:type-node id="integrationbackoffice.explorer.treenode.maintenance" code="Modeling"/>
+                <n:type-node id="integrationbackoffice.explorer.typenode.inboundchannelconfiguration"
+                             code="InboundChannelConfiguration"/>
+                <n:type-node id="integrationbackoffice.explorer.typenode.accessrights"
+                             code="AccessRights"/>
+            </n:navigation-node>
+        </n:explorer-tree>
+    </context>
+
+    <context component="integrationbackoffice-explorer-tree" merge-by="principal" principal="backofficeintegrationagentrole">
+        <n:explorer-tree xmlns:n="http://www.hybris.com/cockpitng/config/explorertree">
+            <n:navigation-node id="integrationbackoffice.explorer.treenode.integrationApis">
+                <n:type-node id="integrationbackoffice.explorer.typenode.accessrights"
+                             code="AccessRights" merge-mode="remove"/>
+            </n:navigation-node>
+        </n:explorer-tree>
+    </context>
+
+    <context component="integrationbackoffice-modeling-actions" type="IntegrationObject">
+        <y:actions xmlns:y="http://www.hybris.com/cockpit/config/hybris">
+            <y:group qualifier="common">
+                <y:action action-id="integrationbackoffice.actions.integrationObjectMetadataViewerAction"
+                          position="2"/>
+            </y:group>
+        </y:actions>
+    </context>
+
+    <context component="integrationbackoffice-modeling-actions" type="IntegrationObject"
+             authority="backofficeintegrationadministrator"
+             merge-by="authority">
+        <y:actions xmlns:y="http://www.hybris.com/cockpit/config/hybris">
+            <y:group qualifier="common">
+                <y:action action-id="integrationbackoffice.actions.createIntegrationObjectAction"
+                          position="0"/>
+                <y:action action-id="integrationbackoffice.actions.deleteIntegrationObjectAction"
+                          position="1"/>
+                <y:action action-id="integrationbackoffice.actions.cloneIntegrationObjectAction"
+                          position="3"/>
+                <y:action action-id="integrationbackoffice.actions.integrationObjectAuditReportDownloadAction"
+                          position="4"/>
+                <y:action action-id="integrationbackoffice.actions.addClassificationClassAction"
+                          property="currentObject"
+                          position="5"/>
+                <y:action action-id="integrationbackoffice.actions.itemTypeMatchIOIAction"
+                          position="6"/>
+                <y:action action-id="integrationbackoffice.actions.createVirtualAttributeAction"
+                          position="7"/>
+            </y:group>
+        </y:actions>
+    </context>
+
+    <context type="IntegrationObject" component="base">
+        <b:base xmlns:b="http://www.hybris.com/cockpit/config/hybris">
+            <b:labels>
+                <b:label>code</b:label>
+            </b:labels>
+        </b:base>
+    </context>
+    <context type="IntegrationObjectItem" component="base">
+        <b:base xmlns:b="http://www.hybris.com/cockpit/config/hybris">
+            <b:labels>
+                <b:label>code</b:label>
+            </b:labels>
+        </b:base>
+    </context>
+    <context type="IntegrationObjectItemAttribute" component="base">
+        <b:base xmlns:b="http://www.hybris.com/cockpit/config/hybris">
+            <b:labels>
+                <b:label>attributeName</b:label>
+            </b:labels>
+        </b:base>
+    </context>
+    <context type="ComposedType" component="base">
+        <b:base xmlns:b="http://www.hybris.com/cockpit/config/hybris">
+            <b:labels>
+                <b:label>code</b:label>
+            </b:labels>
+        </b:base>
+    </context>
+
+    <context component="notification-area" source="integrationbackoffice" merge-by="source">
+        <na:notification-area xmlns:na="http://www.hybris.com/cockpitng/config/notifications">
+            <na:notifications eventType="JustMessage" level="FAILURE">
+                <na:message>integrationbackoffice.notification.message</na:message>
+                <na:references linksEnabled="false">
+                    <na:reference placeholder="0"
+                                  label="#root instanceof T(java.lang.Throwable) ? @exceptionTranslationService.toString(#root) : #root"/>
+                </na:references>
+            </na:notifications>
+            <na:notifications eventType="JustMessage" level="SUCCESS">
+                <na:message>integrationbackoffice.notification.message</na:message>
+                <na:references linksEnabled="false">
+                    <na:reference placeholder="0"
+                                  label="#root instanceof T(java.lang.Throwable) ? @exceptionTranslationService.toString(#root) : #root"/>
+                </na:references>
+            </na:notifications>
+            <na:notifications eventType="JustMessage" level="INFO">
+                <na:message>integrationbackoffice.notification.message</na:message>
+                <na:references linksEnabled="false">
+                    <na:reference placeholder="0"
+                                  label="#root instanceof T(java.lang.Throwable) ? @exceptionTranslationService.toString(#root) : #root"/>
+                </na:references>
+            </na:notifications>
+            <na:notifications eventType="JustMessage" level="WARNING" destination="GLOBAL">
+                <na:message>integrationbackoffice.notification.message</na:message>
+                <na:references linksEnabled="false">
+                    <na:reference placeholder="0"
+                                  label="#root instanceof T(java.lang.Throwable) ? @exceptionTranslationService.toString(#root) : #root"/>
+                </na:references>
+            </na:notifications>
+        </na:notification-area>
+    </context>
+
+    <context component="notification-area">
+        <na:notification-area>
+            <na:notifications eventType="CreateObjectLink" level="SUCCESS">
+                <na:message>user.notification.item.created</na:message>
+                <!-- Expected created object -->
+                <na:references linksEnabled="true">
+                </na:references>
+            </na:notifications>
+        </na:notification-area>
+    </context>
+
+    <context type="Product" component="integration-object-add-classification-class-wizard" parent="GenericItem"
+             merge-by="type">
+        <wz:flow id="integrationObjectAddClassificationClass" title="integrationbackoffice.wizard.classification.label"
+                 show-breadcrumb="false"
+                 size="large" merge-mode="merge">
+            <wz:prepare id="integrationObjectClassification" merge-mode="merge">
+                <wz:initialize property="classificationAttributesForm" template-bean="attributesForm"/>
+            </wz:prepare>
+            <wz:step id="step1">
+                <wz:content id="step1.content">
+                    <wz:custom-view lang="zul">
+                        <wz:renderer spring-bean="defaultClassificationAttributesWithoutLocalizationRenderer">
+                            <wz:parameter>
+                                <wz:name>itemsToExport</wz:name>
+                                <wz:value>{}</wz:value>
+                            </wz:parameter>
+                            <wz:parameter>
+                                <wz:name>classificationAttributesFormModelKey</wz:name>
+                                <wz:value>classificationAttributesForm</wz:value>
+                            </wz:parameter>
+                            <wz:parameter>
+                                <wz:name>retrieveMode</wz:name>
+                                <wz:value>ALL</wz:value>
+                            </wz:parameter>
+                            <wz:parameter>
+                                <wz:name>excludeLocalizedNodes</wz:name>
+                                <wz:value>true</wz:value>
+                            </wz:parameter>
+                            <wz:parameter>
+                                <wz:name>includeAllSupported</wz:name>
+                                <wz:value>false</wz:value>
+                            </wz:parameter>
+                        </wz:renderer>
+                    </wz:custom-view>
+                </wz:content>
+                <wz:navigation id="step2.navigation">
+                    <wz:cancel/>
+                    <wz:custom label="integrationbackoffice.wizard.classification.button.add.label"
+                               handler="integrationObjectClassificationClassWizardHandler"
+                               visible="classificationAttributesForm.hasSelectedAttributes()">
+                        <wz:parameter>
+                            <wz:name>classificationAttributesFormModelKey</wz:name>
+                            <wz:value>classificationAttributesForm</wz:value>
+                        </wz:parameter>
+                    </wz:custom>
+                </wz:navigation>
+            </wz:step>
+        </wz:flow>
+    </context>
+
+    <!-- Inbound Channel Configuration -->
+    <context type="InboundChannelConfiguration">
+        <context component="base">
+            <b:base>
+                <b:labels>
+                    <b:label>integrationObject.code</b:label>
+                </b:labels>
+            </b:base>
+        </context>
+        <context component="advanced-search">
+            <as:advanced-search connection-operator="AND">
+                <as:field-list>
+                    <as:field name="integrationObject" operator="contains" selected="true">
+                    </as:field>
+                    <as:field name="authenticationType" operator="equals" selected="true"/>
+                    <as:field name="creationtime" operator="greaterOrEquals"/>
+                    <as:field name="creationtime" operator="lessOrEquals"/>
+                </as:field-list>
+                <as:sort-field name="creationtime" asc="false"/>
+            </as:advanced-search>
+        </context>
+        <context component="listview">
+            <list:list-view refresh-after-object-creation="true">
+                <list:column qualifier="integrationObject"/>
+                <list:column qualifier="authenticationType"/>
+                <list:column qualifier="creationtime"/>
+                <list:column qualifier="url" spring-bean="URLRenderer" label="integrationbackoffice.inboundchannelconfiguration.listview.column.url" />
+            </list:list-view>
+        </context>
+        <context component="integration-editor-area">
+            <ea:editorArea>
+                <ea:tab name="InboundChannelConfigurationContainer">
+                    <ea:section name="integrationbackoffice.inboundchannelconfiguration.details">
+                        <ea:attribute qualifier="integrationObject" readonly="true" />
+                        <ea:attribute qualifier="authenticationType"/>
+                        <ea:attribute qualifier="creationtime" readonly="true"/>
+                    </ea:section>
+                </ea:tab>
+            </ea:editorArea>
+        </context>
+        <!-- modify -->
+        <context component="create-wizard">
+            <wz:flow id="InboundChannelConfigurationWizard"
+                     title="integrationbackoffice.inboundchannelconfiguration.create.channel.configuration.title">
+                <wz:prepare id="inboundChannelConfigurationPrepare">
+                    <wz:initialize property="inboundchannelconfig" type="InboundChannelConfiguration"/>
+                    <wz:initialize property="newIntegrationServiceClientDetail" type="IntegrationClientCredentialsDetails"/>
+                </wz:prepare>
+                <wz:step id="step1" label="integrationbackoffice.inboundchannelconfiguration.create.channel.configuration.step1.label">
+                    <wz:content id="step1.content">
+                        <wz:property-list root="inboundchannelconfig">
+                            <wz:property qualifier="integrationObject" />
+                            <wz:property qualifier="authenticationType" />
+                        </wz:property-list>
+                    </wz:content>
+                    <wz:navigation id="step1.navigation">
+                        <wz:cancel/>
+                        <wz:next visible="inboundchannelconfig.integrationObject != null &amp;&amp; inboundchannelconfig.authenticationType != null &amp;&amp; T(de.hybris.platform.inboundservices.enums.AuthenticationType).OAUTH.equals(inboundchannelconfig.authenticationType)" />
+                        <wz:custom visible="inboundchannelconfig.integrationObject != null &amp;&amp; inboundchannelconfig.authenticationType != null &amp;&amp; T(de.hybris.platform.inboundservices.enums.AuthenticationType).BASIC.equals(inboundchannelconfig.authenticationType)" label="com.hybris.cockpitng.widgets.configurableflow.flow.done"
+                                   handler="defaultICCCustomDoneHandler" >
+                        </wz:custom>
+                    </wz:navigation>
+                </wz:step>
+                <wz:step id="step2" label="integrationbackoffice.inboundchannelconfiguration.create.channel.configuration.step2.label">
+                    <wz:content id="step2.content" merge-mode="append">
+                        <wz:property-list root="newIntegrationServiceClientDetail">
+                            <wz:property qualifier="clientId" description="field.integrationserviceclientdetail.clientid.description"/>
+                            <wz:property qualifier="clientSecret" description="field.integrationserviceclientdetail.clientsecret.description" editor="com.hybris.cockpitng.editor.defaultpassword"/>
+                            <wz:property qualifier="user" description="field.integrationserviceclientdetail.user.description"/>
+                        </wz:property-list>
+                    </wz:content>
+                    <wz:navigation id="step2.navigation">
+                        <wz:cancel/>
+                        <wz:back/>
+                        <wz:custom label="com.hybris.cockpitng.widgets.configurableflow.flow.done"
+                                   handler="defaultICCCustomDoneHandler" >
+                        </wz:custom>
+                    </wz:navigation>
+                </wz:step>
+            </wz:flow>
+        </context>
+    </context>
+
+    <context component="permissionManagementTypes" type="com.hybris.cockpitng.dataaccess.facades.permissions.impl.DefaultPermissionInfo">
+        <list:list-view xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+            <list:column qualifier="label" label="context"/>
+            <list:column qualifier="read" spring-bean="permissionManagementListCellRenderer" label="read" width="55px"/>
+            <list:column qualifier="change" spring-bean="permissionManagementListCellRenderer" label="change" width="55px"/>
+            <list:column qualifier="create" spring-bean="permissionManagementListCellRenderer" label="create" width="55px"/>
+            <list:column qualifier="remove" spring-bean="permissionManagementListCellRenderer" label="remove" width="55px"/>
+        </list:list-view>
+    </context>
+    <context component="permissionManagementFields" type="com.hybris.cockpitng.dataaccess.facades.permissions.impl.DefaultPermissionInfo">
+        <list:list-view xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+            <list:column qualifier="label" label="attribute"/>
+            <list:column qualifier="read" spring-bean="permissionManagementListCellRenderer" label="read" width="55px"/>
+            <list:column qualifier="change" spring-bean="permissionManagementListCellRenderer" label="change" width="55px"/>
+        </list:list-view>
+    </context>
+    <context component="permissionManagementlistviewActions">
+        <y:actions xmlns:y="http://www.hybris.com/cockpit/config/hybris" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <y:group qualifier="common">
+                <y:action action-id="com.hybris.cockpitng.action.delete.permission" property="selectedObjects">
+                    <y:parameter>
+                        <y:name>needsConfirmation</y:name>
+                        <y:value>true</y:value>
+                    </y:parameter>
+                </y:action>
+                <y:action action-id="com.hybris.cockpitng.action.create.permission" property="$_permissionInfoType"/>
+            </y:group>
+        </y:actions>
+    </context>
+    <context type="ExposedDestination" component="listview" merge-by="type">
+        <list:list-view>
+            <list:column qualifier="inboundChannelConfiguration" label="label.exposedDestination.inboundChannelConfiguration"/>
+        </list:list-view>
+    </context>
+    <context type="ExposedDestination" component="editor-area" merge-by="type" parent="AbstractDestination">
+        <ea:editorArea>
+            <ea:tab name="destination_tab" tooltipText="destination_tab" position="0">
+                <ea:section name="destination_section_configuration">
+                    <ea:attribute qualifier="inboundChannelConfiguration" label="label.exposedDestination.inboundChannelConfiguration" description="label.exposedDestination.inboundChannelConfiguration.description"/>
+                </ea:section>
+            </ea:tab>
+        </ea:editorArea>
+    </context>
+    <context type="ExposedDestination" component="create-wizard" merge-by="module">
+        <wz:flow id="ExposedDestinationWizard" title="create.title(ctx.TYPE_CODE)" merge-mode="append">
+            <wz:prepare id="inboundChannelConfigurationPrepare">
+                <wz:initialize property="newObject" type="ctx.TYPE_CODE"/>
+                <wz:assign property="newObject.inboundChannelConfiguration" value="ctx.parentObject"/>
+                <wz:assign property="newObject.credential" value="ctx.parentObject"/>
+            </wz:prepare>
+            <wz:step id="step1" label="flow.allmanadatory" merge-mode="append">
+                <wz:navigation id="step1.navigation">
+                    <wz:cancel />
+                    <wz:next visible="newObject.destinationTarget!=null and newObject.active!=null and newObject.endpoint!=null and newObject.url!=null and newObject.id!=null"/>
+                    <wz:done visible="newObject.destinationTarget!=null and newObject.active!=null and newObject.endpoint!=null and newObject.url!=null and newObject.id!=null">
+                        <wz:save property="newObject"/>
+                    </wz:done>
+                </wz:navigation>
+            </wz:step>
+            <wz:step id="step2" label="label.exposedDestination.step2.inboundChannelConfiguration.description">
+                <wz:content id="step2.content">
+                    <wz:property-list root="newObject" merge-mode="append">
+                        <wz:property qualifier="inboundChannelConfiguration" label="label.exposedDestination.inboundChannelConfiguration" description="label.exposedDestination.inboundChannelConfiguration.description"/>
+                        <wz:property qualifier="credential"  label="label.exposedDestination.credential" description="label.exposedDestination.credential.description"/>
+                    </wz:property-list>
+                </wz:content>
+                <wz:navigation id="step2.navigation">
+                    <wz:cancel/>
+                    <wz:back visible="newObject.inboundChannelConfiguration==null or newObject.inboundChannelConfiguration!=null and  newObject.credential !=null"/>
+                    <wz:done visible="newObject.inboundChannelConfiguration==null or newObject.inboundChannelConfiguration!=null and  newObject.credential !=null">
+                        <wz:save property="newObject"/>
+                    </wz:done>
+                </wz:navigation>
+            </wz:step>
+        </wz:flow>
+    </context>
+
+    <context component="listviewactions" type="InboundChannelConfiguration" merge-by="type">
+        <y:actions xmlns:y="http://www.hybris.com/cockpit/config/hybris">
+            <y:group qualifier="common">
+                <y:action action-id="com.hybris.cockpitng.action.delete" merge-mode="remove"/>
+                <y:action id="com.hybris.cockpitng.action.delete" action-id="integrationbackoffice.actions.deleteInboundChannelConfigurationAction" property="selectedObjects" position="20"/>
+            </y:group>
+        </y:actions>
+    </context>
+
+    <context type="InboundChannelConfiguration" component="editorareaactions" merge-by="type">
+        <y:actions xmlns:y="http://www.hybris.com/cockpit/config/hybris">
+            <y:group qualifier="common">
+                <y:action action-id="com.hybris.cockpitng.action.delete" merge-mode="remove"/>
+                <y:action action-id="integrationbackoffice.actions.deleteInboundChannelConfigurationAction" property="currentObject"/>
+                <y:action action-id="com.hybris.backoffice.widgets.actions.RegisterIntegrationObjectAction" property="currentObject"/>
+            </y:group>
+        </y:actions>
+    </context>
+</config>

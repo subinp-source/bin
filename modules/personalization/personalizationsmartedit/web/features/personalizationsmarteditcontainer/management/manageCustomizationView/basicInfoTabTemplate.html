@@ -1,0 +1,74 @@
+<div class="pe-customization-modal">
+    <form>
+        <div class="fd-form__item">
+            <label for="customization-name"
+                data-translate="personalization.modal.customizationvariationmanagement.basicinformationtab.name"
+                class="fd-form__label se-control-label required"></label>
+            <input type="text"
+                class="fd-form__control"
+                placeholder="{{'personalization.modal.customizationvariationmanagement.basicinformationtab.name.placeholder' | translate}}"
+                name="{{$ctrl.customization.name}}_key"
+                data-ng-model="$ctrl.customization.name"
+                data-ng-required="true"
+                id="customization-name">
+        </div>
+        <div class="fd-form__item">
+            <label for="customization-description"
+                data-translate="personalization.modal.customizationvariationmanagement.basicinformationtab.details"
+                class="se-control-label fd-form__label"></label>
+            <textarea rows="2"
+                class="fd-form__control pe-customization-modal__textarea"
+                placeholder="{{'personalization.modal.customizationvariationmanagement.basicinformationtab.details.placeholder' | translate}}"
+                name="{{$ctrl.customization.description}}_key"
+                data-ng-model="$ctrl.customization.description"
+                id="customization-description"></textarea>
+        </div>
+        <div class="fd-form__item fd-has-padding-bottom-tiny">
+            <label for="customization-status"
+                data-translate="personalization.modal.customizationvariationmanagement.basicinformationtab.status"
+                class="se-control-label fd-form__label"></label>
+            <div class="fd-form__item fd-form__item--check">
+                <label class="fd-form__label"
+                    for="test-checkbox"
+                    id="customization-status">
+                    <span class="fd-toggle fd-toggle--s fd-form__control">
+                        <input type="checkbox"
+                            name=""
+                            value=""
+                            id="test-checkbox"
+                            data-ng-model="$ctrl.customization.statusBoolean"
+                            data-ng-change="$ctrl.customizationStatusChange()">
+                        <span class="fd-toggle__switch"
+                            role="presentation"></span>
+                    </span>
+
+                </label>
+            </div>
+        </div>
+        <div class="fd-form__item">
+            <div>
+                <a data-ng-show="!$ctrl.datetimeConfigurationEnabled"
+                    class="fd-link"
+                    data-ng-click="$ctrl.datetimeConfigurationEnabled = !$ctrl.datetimeConfigurationEnabled"
+                    data-translate="personalization.modal.customizationvariationmanagement.basicinformationtab.details.showdateconfigdata"></a>
+                <a data-ng-show="$ctrl.datetimeConfigurationEnabled"
+                    class="fd-link"
+                    data-ng-click="$ctrl.datetimeConfigurationEnabled = !$ctrl.datetimeConfigurationEnabled; $ctrl.resetDateTimeConfiguration();"
+                    data-translate="personalization.modal.customizationvariationmanagement.basicinformationtab.details.hidedateconfigdata"></a>
+            </div>
+            <div data-translate="personalization.modal.customizationvariationmanagement.basicinformationtab.details.statusfortimeframe.description"
+                class="fd-has-padding-top-tiny"></div>
+        </div>
+        <div class="fd-form__item">
+            <div data-ng-show="$ctrl.datetimeConfigurationEnabled">
+                <div class="row pe-customization-modal__dates-group">
+                    <date-time-picker-range name="data-date-time-from-to-key"
+                        data-date-from="$ctrl.customization.enabledStartDate"
+                        data-date-to="$ctrl.customization.enabledEndDate"
+                        data-is-editable="true"
+                        date-format="$ctrl.DATE_CONSTANTS.MOMENT_FORMAT"></date-time-picker-range>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

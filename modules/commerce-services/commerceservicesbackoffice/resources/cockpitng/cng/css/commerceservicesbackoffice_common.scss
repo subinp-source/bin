@@ -1,0 +1,24 @@
+$occ-collection-browser__modal-window--min-width: 640px;
+$occ-collection-browser__modal-window--min-height: 580px;
+$occ-collection-browser__modal-window--max-width: 990px;
+$occ-collection-browser__modal-window--max-height: 880px;
+
+.yw-editorarea-parent-unit-wrapper .ye-com_hybris_cockpitng_editor_boolean_wrapper {
+	margin-bottom: -4px;
+}
+
+/*Icons for explorer tree */   
+   div.yw-explorerTree .y-tree-icon-hmc_typenode_Consent .y-tree-icon {
+   background-image: url("images/002_consent.png");
+}
+
+div.yw-explorerTree .y-tree-icon-hmc_typenode_ConsentTemplate .y-tree-icon {
+   background-image: url("images/001_consent_template.png");
+}
+
+.yw-modal-occ-coll-container.z-window {
+	min-width: $occ-collection-browser__modal-window--min-width;
+	min-height: $occ-collection-browser__modal-window--min-height;
+	max-width: $occ-collection-browser__modal-window--max-width;
+	max-height: $occ-collection-browser__modal-window--max-height;
+}

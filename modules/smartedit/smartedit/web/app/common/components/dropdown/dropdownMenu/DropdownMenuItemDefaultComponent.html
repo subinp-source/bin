@@ -1,0 +1,7 @@
+<a
+    class="se-dropdown-item fd-menu__item"
+    [ngClass]="data.dropdownItem.customCss"
+    (click)="data.dropdownItem.callback(data.selectedItem)"
+>
+    {{ data.dropdownItem.key | translate }}
+</a>

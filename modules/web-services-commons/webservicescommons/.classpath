@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="eclipsebin/notused"/>
+
+				
+				
+	<classpathentry exported="true" kind="src" path="/tomcatembeddedserver" />
+	<classpathentry exported="true" kind="lib" path="lib/jackson-jaxrs-base-2.10.2.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/jackson-jaxrs-json-provider-2.10.2.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/jackson-module-jaxb-annotations-2.10.2.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/javax.json-1.1.4.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/javax.json-api-1.1.4.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/org.eclipse.persistence.antlr-2.7.6.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/org.eclipse.persistence.asm-2.7.6.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/org.eclipse.persistence.core-2.7.6.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/org.eclipse.persistence.moxy-2.7.6.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/spring-plugin-core-1.2.0.RELEASE.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/spring-plugin-metadata-1.2.0.RELEASE.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/springfox-core-2.9.2.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/springfox-schema-2.9.2.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/springfox-spi-2.9.2.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/springfox-spring-web-2.9.2.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/springfox-swagger-common-2.9.2.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/springfox-swagger-ui-2.9.2.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/springfox-swagger2-2.9.2.jar" />
+	<classpathentry exported="true" kind="lib" path="bin/webservicescommonsserver.jar" />
+	<classpathentry exported="true" kind="lib" path="resources" />
+	<classpathentry exported="true" output="eclipsebin/classes" kind="src" path="testsrc" />
+	<classpathentry exported="false" kind="src" path="/platform" />
+				
+</classpath>
+				

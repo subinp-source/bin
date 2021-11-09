@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+           
+    <context:component-scan base-package="de.hybris.platform.chineseprofileoccaddon"/>
+
+	<!-- Cache manager for addon -->
+
+	<alias name="defaultChineseprofileoccaddonCacheManager" alias="chineseprofileoccaddonCacheManager"/>
+	<bean id="defaultChineseprofileoccaddonCacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+		<property name="cacheManager" ref="chineseprofileoccaddonEhcache"/>
+	</bean>
+
+	<alias name="defaultChineseprofileoccaddonEhcache" alias="chineseprofileoccaddonEhcache"/>
+	<bean id="defaultChineseprofileoccaddonEhcache" class="de.hybris.platform.webservicescommons.cache.TenantAwareEhCacheManagerFactoryBean">
+		<property name="cacheNamePrefix" value="chineseprofileoccaddonCache_"/>
+		<property name="configLocation" value="/WEB-INF/cache/addons/chineseprofileoccaddon/ehcache.xml"/>
+	</bean>
+
+	<bean depends-on="wsCacheManagerList" parent="listMergeDirective">
+		<property name="add" ref="chineseprofileoccaddonCacheManager"/>
+	</bean>
+	
+	<bean parent="fieldSetLevelMapping">
+		<property name="dtoClass"
+		          value="de.hybris.platform.commercewebservicescommons.dto.user.UserWsDTO"/>
+		<property name="levelMapping">
+			<map>				
+				<entry key="DEFAULT"
+				       value="mobileNumber,emailLanguage"/>
+				<entry key="FULL"
+				       value="mobileNumber,emailLanguage"/>
+			</map>
+		</property>
+	</bean>
+
+    <alias name="mobileNumberUnbindValidator" alias="mobileNumberUnbindValidator"/>
+    <bean id="mobileNumberUnbindValidator" class="de.hybris.platform.chineseprofileoccaddon.validator.MobileNumberUnbindValidator">
+    	<constructor-arg name="chineseCustomerFacade" ref="chineseCustomerFacade"/>
+    </bean>
+    
+    <alias name="mobileNumberBindValidator" alias="mobileNumberBindValidator"/>
+    <bean id="mobileNumberBindValidator" class="de.hybris.platform.chineseprofileoccaddon.validator.MobileNumberBindValidator">
+    	<constructor-arg name="chineseCustomerFacade" ref="chineseCustomerFacade"/>
+    	<constructor-arg name="chineseAddressFacade" ref="chineseAddressFacade"/>
+    </bean>
+    
+    <alias name="verificationCodeValidator" alias="verificationCodeValidator"/>
+     <bean id="verificationCodeValidator" class="de.hybris.platform.chineseprofileoccaddon.validator.VerificationCodeValidator">
+    	<constructor-arg name="chineseCustomerFacade" ref="chineseCustomerFacade"/>  
+    	<constructor-arg name="chineseAddressFacade" ref="chineseAddressFacade"/> 	
+    </bean>
+    
+    <alias name="emailLanguageValidator" alias="emailLanguageValidator"/>
+    <bean id="emailLanguageValidator" class="de.hybris.platform.chineseprofileoccaddon.validator.EmailLanguageValidator">
+    	<constructor-arg name="storeSessionFacade" ref="storeSessionFacade"/>   	
+    </bean>
+    
+    
+</beans>

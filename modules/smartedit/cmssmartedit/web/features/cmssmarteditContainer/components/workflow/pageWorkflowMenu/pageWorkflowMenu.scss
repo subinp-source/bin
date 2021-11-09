@@ -1,0 +1,29 @@
+@import '../workflow.scss';
+
+.btn-page-tasks {
+    &:hover,
+    &:focus {
+        color: $workflow-action-color;
+    }
+
+    &[aria-expanded='true'] {
+        background-color: fd-color-state('selected');
+    }
+
+    .sap-icon--workflow-tasks {
+        color: $workflow-action-color;
+        font-size: 18px;
+        margin-right: 8px;
+    }
+
+    .toolbar-action--button--txt {
+        font-size: 14px;
+        color: fd-color('text', 1);
+    }
+}
+
+.se-toolbar__right .se-template-toolbar__action-template.se-toolbar-action--active {
+    .toolbar-action--button.btn-page-tasks[aria-expanded='true'] {
+        background-color: fd-color-state('selected');
+    }
+}

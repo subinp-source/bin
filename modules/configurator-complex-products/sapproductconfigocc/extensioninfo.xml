@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+--><extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
+    	
+    <extension abstractclassprefix="Generated" classprefix="Sapproductconfigocc" description="sapproductconfigocc extension" jaloLogicFree="true" managername="SapproductconfigoccManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="sapproductconfigocc">
+        		
+        <!-- you should add all required extensions to this list, except platform extensions which are automatically required -->
+                 
+		
+		
+        <requires-extension name="commercewebservicescommons"/>
+        		
+        <requires-extension name="sapproductconfigfacades"/>
+        		
+        <requires-extension name="commercefacades"/>
+        		
+        <!--  Add the blow only as compile dependency to the eclipse project -->
+        		
+        <!--  <requires-extension name="commercewebservices"/> -->
+        		
+		
+        <coremodule generated="true" manager="de.hybris.platform.sap.productconfig.occ.jalo.SapproductconfigoccManager" packageroot="de.hybris.platform.sap.productconfig.occ"/>
+        					
+		
+
+	
+    </extension>
+    
+</extensioninfo>

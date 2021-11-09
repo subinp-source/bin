@@ -1,0 +1,15 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+customercouponaddon.key=value
+
+# Specifies the location of the spring context file added automatically to the global platform application context.
+customercouponaddon.application-context=customercouponaddon-spring.xml
+
+yacceleratorstorefront.additionalWebSpringConfigs.customercouponaddon=classpath:/customercouponaddon/web/spring/customercouponaddon-web-spring.xml
+
+
+
+customercouponaddon.javascript.paths.responsive=/responsive/common/js/customercouponaddon.js;/responsive/common/js/imported/assistedservicepromotionaddon.js
+customercouponaddon.css.paths.responsive=/responsive/common/css/customercouponaddon.css;/responsive/common/css/jquery-ui.min.css;/responsive/common/css/imported/assistedservicepromotionaddon.css

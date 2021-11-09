@@ -1,0 +1,51 @@
+<fd-popover
+    [(isOpen)]="isOpen"
+    [closeOnOutsideClick]="false"
+    [triggers]="['click']"
+    *ngIf="hasActivePerspective()"
+    appendTo="body"
+    class="se-perspective-selector"
+    [placement]="'bottom-end'"
+    [disabled]="isDisabled"
+>
+    <fd-popover-control>
+        <div class="se-perspective-selector__trigger">
+            <se-tooltip
+                [isChevronVisible]="true"
+                [triggers]="['mouseenter', 'mouseleave']"
+                *ngIf="isTooltipVisible()"
+            >
+                <span
+                    se-tooltip-trigger
+                    id="perspectiveTooltip"
+                    class="hyicon hyicon-info se-perspective-selector__hotkey-tooltip--icon"
+                >
+                </span>
+
+                <div se-tooltip-body>{{ activePerspective.descriptionI18nKey | translate }}</div>
+            </se-tooltip>
+            <button class="se-perspective-selector__btn" [disabled]="isDisabled">
+                {{getActivePerspectiveName() | translate}}
+                <span class="se-perspective-selector__btn-arrow icon-navigation-down-arrow"></span>
+            </button>
+        </div>
+    </fd-popover-control>
+    <fd-popover-body>
+        <ul
+            class="se-perspective__list fd-list-group"
+            [ngClass]="{'se-perspective__list--tooltip': isTooltipVisible()}"
+            role="menu"
+        >
+            <li
+                *ngFor="let choice of getDisplayedPerspectives()"
+                class="fd-list-group__item se-perspective__list-item fd-has-padding-none"
+            >
+                <a
+                    class="item se-perspective__list-item-text"
+                    (click)="selectPerspective($event, choice.key);"
+                    >{{choice.nameI18nKey | translate}}</a
+                >
+            </li>
+        </ul>
+    </fd-popover-body>
+</fd-popover>

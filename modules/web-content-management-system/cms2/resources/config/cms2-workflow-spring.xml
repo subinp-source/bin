@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+   	http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Service -->
+    <alias name="defaultCmsWorkflowService" alias="cmsWorkflowService"/>
+    <bean id="defaultCmsWorkflowService" class="de.hybris.platform.cms2.workflow.service.impl.DefaultCMSWorkflowService"
+          parent="newestWorkflowService">
+        <property name="cmsWorkflowDao" ref="cmsWorkflowDao"/>
+        <property name="relatedItemsService" ref="cmsRelatedItemsService"/>
+        <property name="cmsWorkflowParticipantService" ref="cmsWorkflowParticipantService"/>
+    </bean>
+
+    <alias name="defaultCmsWorkflowTemplateService" alias="cmsWorkflowTemplateService"/>
+    <bean id="defaultCmsWorkflowTemplateService" class="de.hybris.platform.cms2.workflow.service.impl.DefaultCMSWorkflowTemplateService">
+        <property name="cmsWorkflowTemplateDao" ref="cmsWorkflowTemplateDao"/>
+        <property name="userService" ref="userService"/>
+    </bean>
+
+    <alias name="defaultCmsWorkflowParticipantService" alias="cmsWorkflowParticipantService"/>
+    <bean id="defaultCmsWorkflowParticipantService" class="de.hybris.platform.cms2.workflow.service.impl.DefaultCMSWorkflowParticipantService">
+        <property name="cmsWorkflowService" ref="cmsWorkflowService"/>
+        <property name="userService" ref="userService"/>
+    </bean>
+
+    <alias name="defaultCmsWorkflowActionService" alias="cmsWorkflowActionService"/>
+    <bean id="defaultCmsWorkflowActionService" class="de.hybris.platform.cms2.workflow.service.impl.DefaultCMSWorkflowActionService"
+          parent="workflowActionService">
+        <property name="cmsWorkflowActionDao" ref="cmsWorkflowActionDao"/>
+    </bean>
+
+    <!-- DAOs -->
+    <alias alias="cmsWorkflowDao" name="defaultCmsWorkflowDao"/>
+    <bean id="defaultCmsWorkflowDao" class="de.hybris.platform.cms2.servicelayer.daos.impl.DefaultCMSWorkflowDao"
+          parent="abstractCMSItemDao"/>
+
+    <alias alias="cmsWorkflowActionDao" name="defaultCmsWorkflowActionDao"/>
+    <bean id="defaultCmsWorkflowActionDao" class="de.hybris.platform.cms2.servicelayer.daos.impl.DefaultCMSWorkflowActionDao"
+          parent="abstractCMSItemDao"/>
+
+
+    <alias alias="cmsWorkflowTemplateDao" name="defaultCmsWorkflowTemplateDao"/>
+    <bean id="defaultCmsWorkflowTemplateDao" class="de.hybris.platform.cms2.servicelayer.daos.impl.DefaultCMSWorkflowTemplateDao"
+          parent="abstractItemDao"/>
+
+    <!-- Automated Actions -->
+    <bean id="rejectEditingAutomatedWorkflowAction"
+          class="de.hybris.platform.cms2.workflow.actions.RejectEditingAutomatedWorkflowAction"
+          scope="prototype">
+        <property name="workflowActionService" ref="workflowActionService"/>
+    </bean>
+
+    <bean id="approvePageAutomatedWorkflowAction"
+          class="de.hybris.platform.cms2.workflow.actions.ApprovePageAutomatedWorkflowAction"
+          scope="prototype">
+        <property name="modelService" ref="modelService"/>
+        <property name="pageTypePredicate" ref="abstractPageTypePredicate"/>
+        <property name="transactionManager" ref="txManager"/>
+    </bean>
+</beans>

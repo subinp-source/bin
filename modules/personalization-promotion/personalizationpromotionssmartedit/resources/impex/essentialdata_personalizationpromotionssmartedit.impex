@@ -1,0 +1,8 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+INSERT_UPDATE SmartEditConfiguration;key[unique=true];value
+;applications.personalizationpromotionssmartedit;{"smartEditLocation":"/personalizationpromotionssmartedit/personalizationpromotionssmartedit/js/personalizationpromotionssmartedit.js"}
+;applications.personalizationpromotionssmarteditContainer;{"smartEditContainerLocation":"/personalizationpromotionssmartedit/personalizationpromotionssmartedit/js/personalizationpromotionssmarteditContainer.js"}
+;personalizationsmartedit.commercecustomization.promotions.enabled;true

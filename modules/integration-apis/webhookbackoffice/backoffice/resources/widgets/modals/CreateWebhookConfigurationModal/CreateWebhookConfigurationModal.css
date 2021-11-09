@@ -1,0 +1,14 @@
+.yw-modal-createWebhookConfigurationModal {
+    height: 425px !important;
+}
+
+.yw-webhookbackoffice-modal-body {
+    border-top: 1px solid #d5d8dc;
+    border-bottom: 1px solid #d5d8dc;
+    padding: 15px 20px 35px 20px;
+}
+
+.yw-webhookbackoffice-modal-button {
+    float: right;
+    margin: 10px;
+}

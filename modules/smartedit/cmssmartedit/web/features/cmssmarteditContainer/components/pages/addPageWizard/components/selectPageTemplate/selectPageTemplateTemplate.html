@@ -1,0 +1,36 @@
+<div class="se-page-type-step-template">
+    <div class="se-add-page__sub-header">
+        <div class="se-add-page__sub-header-title">
+            {{ 'se.cms.addpagewizard.pagetemplate.description' | translate}}
+        </div>
+
+        <div class="se-input-group se-page-type-step-template-list-search">
+            <input
+                type="text"
+                class="se-input-group__input-area ySEPage-list-search-input"
+                placeholder="{{ 'se.cms.pagewizard.templatestep.searchplaceholder' | translate }}"
+                data-ng-model="$ctrl.searchString"
+                name="query"
+            />
+            <span class="sap-icon--search se-input-group__addon"></span>
+            <div
+                data-ng-if="$ctrl.searchString"
+                class="se-input-group__addon se-input-group__clear-btn"
+                data-ng-click="$ctrl.clearSearch()"
+            >
+                <span class="sap-icon--decline"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="se-add-page__list fd-menu" data-ng-if="$ctrl.pageTemplates.length > 0">
+        <div
+            data-ng-repeat="template in $ctrl.pageTemplates | templateNameFilter:$ctrl.searchString track by $id(template)"
+            data-ng-class="{ 'is-selected': $ctrl.isSelected(template)}"
+            class="se-add-page__item se-add-page__item--page-template fd-menu__item"
+            data-ng-click="$ctrl.templateSelected(template)"
+        >
+            <div class="se-add-page__item-title">{{ template.name }}</div>
+        </div>
+    </div>
+</div>

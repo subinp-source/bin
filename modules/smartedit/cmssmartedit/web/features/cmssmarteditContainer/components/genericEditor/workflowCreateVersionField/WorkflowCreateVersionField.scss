@@ -1,0 +1,12 @@
+workflow-create-version-field .version-label__title {
+    display: flex;
+    align-items: center;
+    input {
+        outline: none;
+    }
+}
+
+.fd-form__item--check {
+    display: flex;
+    align-items: center;
+}

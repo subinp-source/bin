@@ -1,0 +1,129 @@
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/cockpitng/cng/scss/cockpitng-globals.scss';
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/backoffice/scss/backoffice-variables.scss';
+
+
+
+$login__default-label--color: $grey__dark--600;
+$login__default--bp-xs: 500px;
+$login__default--bp-m: 1050px;
+
+// Input Default (temporary)
+$login__input-box--height: 36px;
+
+// Primary Buttons Styling adjustments (temporary)
+$login__primary-button--border-radius: 4px;
+$login__primary-button--height: $login__input-box--height;
+$login__primary-button--bg-color: #0a6ed1; 
+$login__primary-button--color: $white;
+$login__primary-button--text-transform: none;
+$login__primary-button--line-height: ceil(($login__input-box--height * 0.61));
+
+$login__primary-button-hover--bg-color: lighten($login__primary-button--bg-color, 15%);
+
+$login__input-box--padding: 4px 10px;
+$login__input-box--border-color: #89919a;
+$login__input-box--color: #32363a;
+$login__input-box--border: $boxes--border__thin solid $login__input-box--border-color;
+$login__input-box--border-radius: 4px;
+$login__input-box--width: 100%;
+$login__input-box--font-size: $font-size__base;
+$login__input-box--box-shadow: none;
+$login__input-box--bg-color: $white;
+
+$login__input-box-focus--bg-color: $white;
+$login__input-box-focus--color: #32363a;
+$login__input-box-focus--border-color: #7bbaf9;
+$login__input-box-focus--border: $boxes--border__thin solid $login__input-box-focus--border-color;
+$login__input-box-focus--box-shadow: 0 0 0 $boxes--border__thin $login__input-box-focus--border-color;
+
+$login__radio-checked--box-shadow: 0 0 3px 0px rgba(255, 255, 255, 0.5);
+$login__radio--width: $login__input-box--width;
+
+$login__editor-box--bg-color: false;
+
+@if $login__editor-box--bg-color {
+  $login__input-box--bg-color: $login__editor-box--bg-color;
+}
+
+$login__select-box--bg-color: $login__input-box--bg-color;
+$login__select-box--bg: url(images/selectbox_arrow.svg) no-repeat center right, url(images/selectbox_arrow-bg.gif) repeat-y top right;
+$login__select-box--height: $login__input-box--height;
+$login__select-box--border-radius: $login__input-box--border-radius;
+
+$login__z-window--bg: transparent !important;
+
+$login__grid--bp-xs: 350px;
+$login__grid--bp-s: 440px;
+$login__grid--width: 400px;
+$login__grid--margin: 10% auto 20px;
+$login__grid-bp-xs--padding-left: 10px;
+$login__grid-bp-s--padding-left: 20px;
+$login__grid-hbox-separator-width: 2px;
+
+
+$login__grid-label--width: 156px;
+$login__grid-label-bp-xs--width: 95px;
+$login__grid-label-bp-s--width: 110px;
+$login__grid-label--height: $editor-defaults__inline-box--height;
+$login__grid-label--line-height: 16px;
+$login__grid-label--font-size: $font-size__base;
+$login__grid-label--padding-right: $container-spacing-default__third;
+
+$login__grid-form--margin: 0 0 20px;
+
+$login__grid-form-label--width: 40%;
+$login__grid-form-row--padding-bottom: $container-spacing-default__third + 8px;
+
+
+$login__grid-spinner--width: $login__input-box--width;
+$login__grid-spinner-input-box--width: calc($login__grid-spinner--width - 19px);
+$login__grid-spinner-button--bg-color: $white;
+$login__grid-spinner-button-hover--bg-color: $blue__light--100;
+
+$login__error-notification-box--bg-color: $validation__error--color;
+
+$login__error-notification-box--border-radius: $login__input-box--border-radius;
+$login__error-notification-box-icon--size: 16px;
+$login__error-notification-box-icon--margin-right: $container-spacing-default__third;
+$login__error-notification-box-icon--bg: url("images/icon_status_error_white.png") no-repeat scroll;
+$login__error-notification-box--margin: 0 0 $container-spacing-default__base;
+$login__error-notification-box--padding: 10px; 
+$login__error-notification-box-label--color: $white;
+$login__error-notification-box-label--font-weight: $font-weight-bold;
+
+// changed login variables 
+
+$login__body--bg-color: $grey__light--500;
+$login__body-logo--bg: $login__body--bg-color url("images/logo_slogan.svg") no-repeat fixed 2% 96%;
+
+$login__logo--bg: url("images/logo_transparent.svg") no-repeat transparent center;
+$login__logo--height: 45px;
+
+$login__container--bg-color: $white;
+$login__container--left: 0;
+$login__container--right: $login__container--left;
+$login__container--top: 45%;
+$login__container--transform: translateY(-60%);
+$login__container--margin: 0 auto;
+$login__container--max-width: 600px;
+$login__container--width: 100%;
+$login__container--min-width: 350px;
+$login__container--border-radius: 4px;
+$login__container--box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.1);
+$login__container--padding: $container-spacing-default__base;
+$login__container-bp-xs--transform: translateY(0);
+
+$login__logo-container--marging-bottom: $container-spacing-default__base + $container-spacing-default__third;
+
+$login__content--min-height: 200px;
+$login__content-label--margin: $container-spacing-default__third 0;
+$login__content-label--min-height: 65px;
+$_login__content-label--line-height: 40px;
+$login__content-main-label--font-size: 28px;
+$login__content-main-label--color: $grey__dark--700;
+$login__content-info-label--font-size: $font-size__base;
+
+$login__footer--padding: $container-spacing-default__base;
+$login__footer-sso-link--margin-right: $container-spacing-default__half;
+$login__footer-sso-link--color: #0a6ed1;
+

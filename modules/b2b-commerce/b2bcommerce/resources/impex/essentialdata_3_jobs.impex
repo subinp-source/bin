@@ -1,0 +1,8 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+INSERT_UPDATE ServicelayerJob;code[unique=true];springId[unique=true]
+;generateB2BUnitPathsJob;generateB2BUnitPathsJob
+
+INSERT_UPDATE CronJob;code[unique=true];job(code);sessionLanguage(isocode)[default=en]
+;generateB2BUnitPathsCronJob;generateB2BUnitPathsJob;

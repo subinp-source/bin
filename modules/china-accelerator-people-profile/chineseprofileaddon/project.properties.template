@@ -1,0 +1,17 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+# you can put key/value pairs here.
+# Use Config.getParameter(..) to retrieve the values during runtime.
+
+chineseprofileaddon.key=value
+
+# Specifies the location of the spring context file added automatically to the global platform application context.
+chineseprofileaddon.application-context=chineseprofileaddon-spring.xml
+
+yb2bacceleratorstorefront.additionalWebSpringConfigs.chineseprofileaddon=classpath:/chineseprofileaddon/web/spring/chineseprofileaddon-web-spring.xml
+
+chineseprofileaddon.javascript.paths.responsive=/responsive/common/js/chineseprofileaddon.js
+chineseprofileaddon.css.paths.responsive=/responsive/common/css/chineseprofileaddon.css
+yacceleratorstorefront.additionalWebSpringConfigs.chineseprofileaddon=classpath:/chineseprofileaddon/web/spring/chineseprofileaddon-web-spring.xml

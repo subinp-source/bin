@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<widget-definition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widget-definition.xsd"
+                   id="de.hybris.platform.integrationbackoffice.widgets.AttributeDetailsModal">
+    <name>Attribute Details</name>
+    <description>Attribute Details</description>
+    <defaultTitle>Attribute Details</defaultTitle>
+    <author>Hybris</author>
+    <version>1.0</version>
+    <view src="AttributeDetailsModal.zul"/>
+    <keywords>
+        <keyword>Listitem Details Modal</keyword>
+    </keywords>
+    <controller
+            class="de.hybris.platform.integrationbackoffice.widgets.modals.controllers.AttributeDetailsModalController"/>
+
+    <sockets>
+        <input id="showModal" type="de.hybris.platform.integrationbackoffice.dto.ListItemAttributeDTO"/>
+    </sockets>
+</widget-definition>

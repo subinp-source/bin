@@ -1,0 +1,27 @@
+/****************************************************
+				iframe
+****************************************************/
+#js_iFrameWrapper {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 0;
+    padding-top: 130px; // default offset for the storefront. It will be overwritten with jQuery at runtime in smarteditcontainer.js
+    overflow: hidden;
+}
+
+/* -- end */
+
+/*override of bootstrap css*/
+#ySmartEditFrame {
+    box-sizing: content-box;
+    border: none;
+}
+#ySmartEditFrameDragArea {
+    display: none;
+    position: absolute;
+    opacity: 0.1;
+    background-color: @smartedit-white;
+}

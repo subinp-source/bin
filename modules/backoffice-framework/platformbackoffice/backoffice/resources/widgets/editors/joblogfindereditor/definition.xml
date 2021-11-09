@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<editor-definition id="de.hybris.platform.platformbackoffice.editors.joblogfindereditor.joblogfindereditor"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/editor-definition.xsd">
+
+	<name>Log Entry Finder Editor</name>
+	<description>Log Entry Finder Editor</description>
+	<author>hybris</author>
+	<version>0.1</version>
+
+	<type>java.lang.String</type>
+   <editorClassName>de.hybris.platform.platformbackoffice.editors.joblogfindereditor.JobLogFinderEditor</editorClassName>
+	<sockets>
+		<output id="finderOutput" type="com.hybris.backoffice.widgets.advancedsearch.impl.AdvancedSearchInitContext"/>
+        <output id="nodeOutput" type="com.hybris.backoffice.navigation.TreeNodeSelector"/>
+	</sockets>
+
+</editor-definition>

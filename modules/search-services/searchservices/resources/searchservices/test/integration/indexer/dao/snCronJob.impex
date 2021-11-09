@@ -1,0 +1,26 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+INSERT_UPDATE ServicelayerJob ; code[unique=true]       ; springid               
+                              ; fullSnIndexerJob        ; fullSnIndexerJob       
+                              ; incrementalSnIndexerJob ; incrementalSnIndexerJob
+                              
+INSERT FlexibleSearchSnIndexerItemSource ; &indexerItemSourceID           ; query                              
+                                         ; test-full-cronjob              ; "SELECT {p:pk} FROM {Product AS p}"
+                                         ; test-full-cronjob2             ; "SELECT {p:pk} FROM {Product AS p}"
+                                         ; test-full-cronjob-no-starttime ; "SELECT {p:pk} FROM {Product AS p}"
+
+INSERT_UPDATE FullSnIndexerCronJob ; code[unique=true]              ; job(code)        ; sessionLanguage(isocode) ; indexType(id)  ; indexerItemSource(&indexerItemSourceID) ; lastSuccessfulStartTime[dateformat='yyyy-MM-dd''T''HH:mm:ss']
+                                   ; test-full-cronjob              ; fullSnIndexerJob ; en                       ; testIndexType1 ; test-full-cronjob                       ; "2018-12-31T00:00:00"                                        
+                                   ; test-full-cronjob2             ; fullSnIndexerJob ; en                       ; testIndexType1 ; test-full-cronjob2                      ; "2019-01-01T00:00:00"                                        
+                                   ; test-full-cronjob-no-starttime ; fullSnIndexerJob ; en                       ; testIndexType2 ; test-full-cronjob-no-starttime          ;                                                              
+                                   
+INSERT FlexibleSearchSnIndexerItemSource ; &indexerItemSourceID ; query                                                                                            
+                                         ; test-inc-cronjob     ; "SELECT {p:pk} FROM {Product AS p} WHERE {p.modifiedtime} > ?startTime"
+                                         
+INSERT SnIndexerItemSourceOperation ; &indexerItemSourceOperationID ; documentOperationType(code) ; indexerItemSource(&indexerItemSourceID)
+                                    ; test-inc-cronjob              ; CREATE_UPDATE               ; test-inc-cronjob                       
+                                    
+INSERT_UPDATE IncrementalSnIndexerCronJob ; code[unique=true] ; job(code)               ; sessionLanguage(isocode) ; indexType(id) ; indexerItemSourceOperations(&indexerItemSourceOperationID) ; lastSuccessfulStartTime[dateformat='yyyy-MM-dd''T''HH:mm:ss']
+                                          ; test-inc-cronjob  ; incrementalSnIndexerJob ; en                       ; testIndexType ; test-inc-cronjob                                           ; "2018-12-30T00:00:00"                                        

@@ -1,0 +1,17 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+#
+# Import the Product Catalog and Classification Catalog
+#
+
+# Language
+$lang=zh
+
+# Create Catalog
+UPDATE Catalog;id[unique=true];name[lang=$lang]
+ ;globalMarketplaceProductCatalog;"全局商城产品目录"
+
+  # Marketplace Classification catalog
+UPDATE ClassificationSystem;id[unique=true];name[lang=$lang]
+;MarketplaceClassification;"商城类别"

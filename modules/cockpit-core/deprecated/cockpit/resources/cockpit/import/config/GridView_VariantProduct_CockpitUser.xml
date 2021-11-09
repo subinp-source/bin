@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<grid-view>
+	<imageslot>
+		<property qualifier="Product.thumbnail.URL"/>
+	</imageslot>
+	<labelslot>
+		<property qualifier="Product.name" />
+	</labelslot>
+	<descriptionslot>
+		<property qualifier="Product.code" prefix="# ID" />
+	</descriptionslot>
+	<shortinfoslot>
+		<property qualifier="Product.catalogVersion.mnemonic"/>
+	</shortinfoslot>
+	<actionslot spring-bean="CockpitProductContentBrowserActionColumn"/>
+<!--	<specialactionslot>-->
+<!--	</specialactionslot>-->
+</grid-view>

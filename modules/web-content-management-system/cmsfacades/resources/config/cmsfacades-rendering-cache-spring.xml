@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!-- Service for rendering cache -->
+    <alias name="defaultRenderingCacheService" alias="cmsRenderingCacheService"/>
+    <bean id="defaultRenderingCacheService"
+          class="de.hybris.platform.cmsfacades.rendering.cache.impl.DefaultRenderingCacheService">
+        <property name="cacheKeyProvider" ref="cmsRenderingCacheKeyProvider"/>
+        <property name="cacheController" ref="defaultCacheController"/>
+        <property name="configurationService" ref="configurationService"/>
+        <property name="sessionService" ref="sessionService"/>
+    </bean>
+
+    <!-- Generic rendering cache key provider. Uses item cache key providers for different item types. -->
+    <alias name="defaultRenderingCacheKeyProvider" alias="cmsRenderingCacheKeyProvider"/>
+    <bean id="defaultRenderingCacheKeyProvider"
+          class="de.hybris.platform.cmsfacades.rendering.cache.impl.DefaultRenderingCacheKeyProvider">
+        <property name="cacheKeyProviders" ref="cmsRenderingCacheKeyProviders"/>
+        <property name="typeService" ref="typeService"/>
+    </bean>
+
+    <!-- List of item cache key providers. Can be extended by custom item cache key providers. -->
+    <alias name="defaultRenderingCacheKeyProviders" alias="cmsRenderingCacheKeyProviders"/>
+    <util:map id="defaultRenderingCacheKeyProviders" key-type="java.lang.String">
+        <entry key="AbstractCMSComponent" value-ref="cmsItemRenderingCacheKeyProvider"/>
+    </util:map>
+
+
+    <!-- Default item cache key provider for ItemModel. -->
+    <alias name="defaultItemRenderingCacheKeyProvider" alias="cmsItemRenderingCacheKeyProvider"/>
+    <bean id="defaultItemRenderingCacheKeyProvider"
+          class="de.hybris.platform.cmsfacades.rendering.cache.keyprovider.item.DefaultItemRenderingCacheKeyProvider">
+        <property name="commerceCommonI18NService" ref="commerceCommonI18NService"/>
+    </bean>
+</beans>

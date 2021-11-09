@@ -1,0 +1,13 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+chineseproductsharingaddon.key=value
+
+# Specifies the location of the spring context file added automatically to the global platform application context.
+chineseproductsharingaddon.application-context=chineseproductsharingaddon-spring.xml
+
+yacceleratorstorefront.additionalWebSpringConfigs.chineseproductsharingaddon=classpath:/chineseproductsharingaddon/web/spring/chineseproductsharingaddon-web-spring.xml
+yb2bacceleratorstorefront.additionalWebSpringConfigs.chineseproductsharingaddon=classpath:/chineseproductsharingaddon/web/spring/chineseproductsharingaddon-web-spring.xml
+
+chineseproductsharingaddon.css.paths.responsive=/responsive/common/css/chineseproductsharingaddon.css

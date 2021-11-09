@@ -1,0 +1,72 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+$catalog-id=cms_Catalog
+$catalog-name=Cms_Catalog_Name
+$catalog-version=CatalogVersion
+$contentCV = catalogVersion(CatalogVersion.catalog(Catalog.id[default = $catalog-id]), CatalogVersion.version[default = $catalog-version])[default = $catalog-id:$catalog-version]
+$item=item(CMSItem.uid,CmsItem.$contentCV)
+
+$page-template-uid=LandingPage2Template
+
+$home-page-uid=homepage
+$page-in-workflow-uid=pageInWorkflow
+$faq-page-uid=faq
+
+$homepage-first-content-slot-id=FirstHomePageBodySlot
+$homepage-second-content-slot-id=SecondHomePageBodySlot
+$faq-content-slot-id=FaqPageBodySlot
+$page-in-workflow-content-slot-id=PageInWorkflowBodySlot
+$shared-content-slot-id=SharedSlotUid
+$content-slot-for-template-id=SharedSlotForTemplateUid
+
+$component-uid=cmsLinkComponent
+
+$workflowTemplateName=WorkflowTemplate
+
+INSERT_UPDATE ContentCatalog;id[unique=true];name[lang=en];
+                            ;$catalog-id;$catalog-name;
+
+INSERT_UPDATE CatalogVersion;catalog(id)[unique=true];version[unique=true];active;readPrincipals(uid)[mode=append]
+                            ;$catalog-id;$catalog-version;false;employeegroup
+
+
+INSERT_UPDATE PageTemplate; $contentCV[unique = true]; uid[unique = true]; name;
+                          ; ; $page-template-uid ; Landing Page 2 Template ;
+
+INSERT_UPDATE ContentPage;catalogVersion(catalog(id),version)[unique=true,allownull=true];defaultPage[allownull=true];homepage[allownull=true];label;masterTemplate(catalogVersion(catalog(id),version),uid)[allownull=true];name;uid[unique=true,allownull=true];title[lang=en];&componentRef
+                         ;$catalog-id:$catalog-version;true;true;homepage;$catalog-id:$catalog-version:$page-template-uid;Homepage;$home-page-uid;homePageTitle;homepageRef
+                         ;$catalog-id:$catalog-version;true;false;faq;$catalog-id:$catalog-version:$page-template-uid;FAQ;$faq-page-uid;faqPageTitle;
+                         ;$catalog-id:$catalog-version;true;true;pageInWorkflow;$catalog-id:$catalog-version:$page-template-uid;PageInWorkflow;$page-in-workflow-uid;PageInWorkflowTitle;
+
+INSERT_UPDATE ContentSlot;active[allownull=true];catalogVersion(catalog(id),version)[unique=true,allownull=true];name;uid[unique=true,allownull=true];cmsComponents(&componentRef)
+                         ;true;$catalog-id:$catalog-version;FirstHomePageBodySlot;$homepage-first-content-slot-id;
+                         ;true;$catalog-id:$catalog-version;SecondHomePageBodySlot;$homepage-second-content-slot-id;
+                         ;true;$catalog-id:$catalog-version;FaqPageBodySlot;$faq-content-slot-id;
+                         ;true;$catalog-id:$catalog-version;PageInWorkflowBodySlot;$page-in-workflow-content-slot-id;
+                         ;true;$catalog-id:$catalog-version;Shared Slot;$shared-content-slot-id;
+
+INSERT_UPDATE ContentSlotForPage;catalogVersion(catalog(id),version)[unique=true,allownull=true];contentSlot(catalogVersion(catalog(id),version),uid)[allownull=true];page(catalogVersion(catalog(id),version),uid)[allownull=true];position[allownull=true];uid[unique=true,allownull=true]
+                                ;$catalog-id:$catalog-version;$catalog-id:$catalog-version:$homepage-first-content-slot-id;$catalog-id:$catalog-version:$home-page-uid;0;$homepage-first-content-slot-id
+                                ;$catalog-id:$catalog-version;$catalog-id:$catalog-version:$homepage-second-content-slot-id;$catalog-id:$catalog-version:$home-page-uid;0;$homepage-second-content-slot-id
+                                ;$catalog-id:$catalog-version;$catalog-id:$catalog-version:$faq-content-slot-id;$catalog-id:$catalog-version:$faq-page-uid;0;$faq-content-slot-id
+                                ;$catalog-id:$catalog-version;$catalog-id:$catalog-version:$page-in-workflow-content-slot-id;$catalog-id:$catalog-version:$page-in-workflow-uid;0;$page-in-workflow-content-slot-id
+
+INSERT_UPDATE ContentSlotForTemplate;catalogVersion(catalog(id),version)[unique=true,allownull=true];contentSlot(catalogVersion(catalog(id),version),uid)[allownull=true];pageTemplate(catalogVersion(catalog(id),version),uid)[allownull=true];position[allownull=true];uid[unique=true,allownull=true]
+                                    ;$catalog-id:$catalog-version;$catalog-id:$catalog-version:$shared-content-slot-id;$catalog-id:$catalog-version:$page-template-uid;1;$content-slot-for-template-id
+
+INSERT_UPDATE CMSLinkComponent;catalogVersion(catalog(id),version)[unique=true,allownull=true];uid[unique=true];name;
+                              ;$catalog-id:$catalog-version;$component-uid;ComponentName;
+
+INSERT_UPDATE WorkflowTemplate; code[unique = true]; name[lang = en]; catalogVersions(catalog(id),version)[mode=append]; visibleForPrincipals(uid)[mode=append];
+                              ; $workflowTemplateName ; Workflow Template ; $catalog-id:$catalog-version ; employeegroup
+
+INSERT_UPDATE Workflow; code[unique = true]; job(code); status(code);
+                      ; workflow ; $workflowTemplateName ; RUNNING ;
+
+INSERT_UPDATE WorkflowItemAttachment; name[lang = en][unique=true]; workflow(code); $item;
+                                    ; attachment ; workflow ; pageInWorkflow
+
+INSERT_UPDATE CMSTimeRestriction;$contentCV[unique=true];uid[unique=true];name;activeFrom[dateformat='yyyy-MM-dd''T''HH:mm:ss'];activeUntil[dateformat='yyyy-MM-dd''T''HH:mm:ss'];
+                                ;;timeRestriction;Time Restriction;"2009-12-24T00:00:00";"2009-12-31T00:00:00";

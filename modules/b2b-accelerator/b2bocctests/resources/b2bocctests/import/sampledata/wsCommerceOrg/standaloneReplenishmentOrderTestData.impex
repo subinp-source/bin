@@ -1,0 +1,23 @@
+$defaultPassword = 1234
+
+INSERT_UPDATE B2BCustomer; description; uid[unique = true]         ; originalUid                ; email                      ; name        ; title(code); groups(uid)              ; permissionGroups(uid); sessionCurrency(isocode)[default = 'USD']; password[default = $defaultPassword]
+                         ; Customer A ; arthur.smith@rustic-hw.com ; arthur.smith@rustic-hw.com ; arthur.smith@rustic-hw.com ; Artur Smith ; mr         ; Rustic, b2bcustomergroup ;                      ;                                          ;
+                         ; Customer B ; peter.wiley@rustic-hw.com  ; peter.wiley@rustic-hw.com  ; peter.wiley@rustic-hw.com  ; Peter Wiley ; mr         ; Rustic, b2bcustomergroup ;                      ;                                          ;
+
+INSERT_UPDATE Cart; code[unique = true]; user(uid)                  ; date[dateformat = dd.MM.yyyy]; currency(isocode)[allownull = true]
+                  ; A111222AA          ; arthur.smith@rustic-hw.com ; 12.11.2019                   ; USD
+
+INSERT_UPDATE BatchJob; code[unique = true]
+                      ; AAA
+
+INSERT_UPDATE CartToOrderCronJob; code[unique = true]; startTime[dateformat = dd.MM.yyyy]; endTime[dateformat = dd.MM.yyyy]; cart(code); job(code); sessionLanguage(isoCode)[default = en]; active
+                                ; 000000RS           ; 12.12.2019                        ; 13.12.2019                      ; A111222AA ; AAA      ;                                       ; true
+                                ; 000000RT           ; 01.12.2019                        ; 02.12.2019                      ; A111222AA ; AAA      ;                                       ; false
+
+INSERT_UPDATE Trigger; activationTime[dateformat = dd.MM.yyyy]; creationtime[dateformat = dd.MM.yyyy]; cronJob(code)[unique = true]
+                     ; 12.12.2019                             ; 12.12.2019                           ; 000000RS
+                     ; 12.12.2019                             ; 12.12.2019                           ; 000000RT
+
+INSERT_UPDATE Order; code[unique = true]; user(uid)                  ; date[dateformat = dd.MM.yyyy]; currency(isocode); schedulingCronJob(code)
+                   ; 112233             ; arthur.smith@rustic-hw.com ; 12.12.2019                   ; EUR              ; 000000RS
+                   ; 445566             ; arthur.smith@rustic-hw.com ; 01.12.2019                   ; EUR              ; 000000RS

@@ -1,0 +1,16 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+# Macros / Replacement Parameter definitions
+$productCatalog=electronicsProductCatalog
+
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default=Staged])[unique=true,default=$productCatalog:Staged]
+
+INSERT_UPDATE Entitlement;id[unique=true]
+;cloud_storage
+;additional_filter
+
+INSERT_UPDATE ProductEntitlement;id[unique=true];entitlement(id);subscriptionProduct(code, $catalogVersion);quantity;timeUnit(code);timeUnitStart;timeUnitDuration;$catalogVersion
+;cloud_storage_3470545;cloud_storage;3470545;;month;1;12;
+;additional_filter_1391319;additional_filter;1391319;3

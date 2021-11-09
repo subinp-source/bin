@@ -1,0 +1,7248 @@
+[
+	{
+		"testId": 1,
+		"description": "single facet",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "price",
+					"expression": "price",
+					"buckets": [
+						{
+							"id": "0-22",
+							"name": "Range 0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"name": "Range 22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "price",
+					"name": "Price",
+					"expression": "price",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "0-22",
+							"name": "Range 0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "Range 22-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 2,
+		"description": "multiple facets",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "price",
+					"expression": "price",
+					"buckets": [
+						{
+							"id": "0-22",
+							"name": "Range 0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"name": "Range 22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				},
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "0-11",
+							"name": "Range 0-11",
+							"from": 0,
+							"to": 11
+						},
+						{
+							"id": "11-22",
+							"name": "Range 11-22",
+							"from": 11,
+							"to": 22
+						},
+						{
+							"id": "22-33",
+							"name": "Range 22-33",
+							"from": 22,
+							"to": 33
+						},
+						{
+							"id": "33-44",
+							"name": "Range 33-44",
+							"from": 33,
+							"to": 44
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "price",
+					"name": "Price",
+					"expression": "price",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "0-22",
+							"name": "Range 0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "Range 22-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				},
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"name": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "0-11",
+							"name": "Range 0-11",
+							"count": 1
+						},
+						{
+							"id": "11-22",
+							"name": "Range 11-22",
+							"count": 2
+						},
+						{
+							"id": "22-33",
+							"name": "Range 22-33",
+							"count": 2
+						},
+						{
+							"id": "33-44",
+							"name": "Range 33-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 4,
+		"description": "facet with query",
+		"data": {
+			"query": "RED",
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "price",
+					"expression": "price",
+					"buckets": [
+						{
+							"id": "0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"size": 1,
+			"totalSize": 1,
+			"searchHits": [
+				{
+					"id": "doc1"
+				}
+			],
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "price",
+					"name": "Price",
+					"expression": "price",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 5,
+		"description": "facet with filter",
+		"data": {
+			"filters": [
+				{
+					"query": {
+						"type": "matchTerm",
+						"expression": "color",
+						"value": "RED"
+					}
+				}
+			],
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "price",
+					"expression": "price",
+					"buckets": [
+						{
+							"id": "0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"size": 1,
+			"totalSize": 1,
+			"searchHits": [
+				{
+					"id": "doc1"
+				}
+			],
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "price",
+					"name": "Price",
+					"expression": "price",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 6,
+		"description": "facet with name",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "price",
+					"name": "Custom price",
+					"expression": "price",
+					"buckets": [
+						{
+							"id": "0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "price",
+					"name": "Custom price",
+					"expression": "price",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 7,
+		"description": "facet with INTEGER expression, include from and include to default values",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer",
+					"expression": "field_integer",
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20
+						},
+						{
+							"id": "20-PI",
+							"from": 20
+						},
+						{
+							"id": "0-0",
+							"from": 0,
+							"to": 0
+						},
+						{
+							"id": "20-20",
+							"from": 20,
+							"to": 20
+						},
+						{
+							"id": "100-200",
+							"from": 100,
+							"to": 200
+						},
+						{
+							"id": "30-10",
+							"from": 30,
+							"to": 10
+						},
+						{
+							"id": "0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer",
+					"name": "field_integer",
+					"expression": "field_integer",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 1
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 2
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 8,
+		"description": "facet with INTEGER expression, include from an include to",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer",
+					"expression": "field_integer",
+					"includeFrom": true,
+					"includeTo": true,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20
+						},
+						{
+							"id": "20-PI",
+							"from": 20
+						},
+						{
+							"id": "0-0",
+							"from": 0,
+							"to": 0
+						},
+						{
+							"id": "20-20",
+							"from": 20,
+							"to": 20
+						},
+						{
+							"id": "100-200",
+							"from": 100,
+							"to": 200
+						},
+						{
+							"id": "30-10",
+							"from": 30,
+							"to": 10
+						},
+						{
+							"id": "0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer",
+					"name": "field_integer",
+					"expression": "field_integer",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 2
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 2
+						},
+						{
+							"id": "20-20",
+							"name": "20-20",
+							"count": 1
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 9,
+		"description": "facet with INTEGER expression, include from",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer",
+					"expression": "field_integer",
+					"includeFrom": true,
+					"includeTo": false,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20
+						},
+						{
+							"id": "20-PI",
+							"from": 20
+						},
+						{
+							"id": "0-0",
+							"from": 0,
+							"to": 0
+						},
+						{
+							"id": "20-20",
+							"from": 20,
+							"to": 20
+						},
+						{
+							"id": "100-200",
+							"from": 100,
+							"to": 200
+						},
+						{
+							"id": "30-10",
+							"from": 30,
+							"to": 10
+						},
+						{
+							"id": "0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer",
+					"name": "field_integer",
+					"expression": "field_integer",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 1
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 2
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 10,
+		"description": "facet with INTEGER expression, include to",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer",
+					"expression": "field_integer",
+					"includeFrom": false,
+					"includeTo": true,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20
+						},
+						{
+							"id": "20-PI",
+							"from": 20
+						},
+						{
+							"id": "0-0",
+							"from": 0,
+							"to": 0
+						},
+						{
+							"id": "20-20",
+							"from": 20,
+							"to": 20
+						},
+						{
+							"id": "100-200",
+							"from": 100,
+							"to": 200
+						},
+						{
+							"id": "30-10",
+							"from": 30,
+							"to": 10
+						},
+						{
+							"id": "0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer",
+					"name": "field_integer",
+					"expression": "field_integer",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 2
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 1
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 11,
+		"description": "facet with INTEGER expression",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer",
+					"expression": "field_integer",
+					"includeFrom": false,
+					"includeTo": false,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20
+						},
+						{
+							"id": "20-PI",
+							"from": 20
+						},
+						{
+							"id": "0-0",
+							"from": 0,
+							"to": 0
+						},
+						{
+							"id": "20-20",
+							"from": 20,
+							"to": 20
+						},
+						{
+							"id": "100-200",
+							"from": 100,
+							"to": 200
+						},
+						{
+							"id": "30-10",
+							"from": 30,
+							"to": 10
+						},
+						{
+							"id": "0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer",
+					"name": "field_integer",
+					"expression": "field_integer",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 1
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 1
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 12,
+		"description": "facet with multi-valued INTEGER expression, include from and include to default values",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20
+						},
+						{
+							"id": "NI-25",
+							"to": 25
+						},
+						{
+							"id": "20-PI",
+							"from": 20
+						},
+						{
+							"id": "25-PI",
+							"from": 25
+						},
+						{
+							"id": "0-0",
+							"from": 0,
+							"to": 0
+						},
+						{
+							"id": "20-20",
+							"from": 20,
+							"to": 20
+						},
+						{
+							"id": "25-25",
+							"from": 25,
+							"to": 25
+						},
+						{
+							"id": "100-200",
+							"from": 100,
+							"to": 200
+						},
+						{
+							"id": "30-10",
+							"from": 30,
+							"to": 10
+						},
+						{
+							"id": "0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"name": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 1
+						},
+						{
+							"id": "NI-25",
+							"name": "NI-25",
+							"count": 2
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 2
+						},
+						{
+							"id": "25-PI",
+							"name": "25-PI",
+							"count": 2
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 2
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 13,
+		"description": "facet with multi-valued INTEGER expression, include from and include to",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"includeFrom": true,
+					"includeTo": true,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20
+						},
+						{
+							"id": "NI-25",
+							"to": 25
+						},
+						{
+							"id": "20-PI",
+							"from": 20
+						},
+						{
+							"id": "25-PI",
+							"from": 25
+						},
+						{
+							"id": "0-0",
+							"from": 0,
+							"to": 0
+						},
+						{
+							"id": "20-20",
+							"from": 20,
+							"to": 20
+						},
+						{
+							"id": "25-25",
+							"from": 25,
+							"to": 25
+						},
+						{
+							"id": "100-200",
+							"from": 100,
+							"to": 200
+						},
+						{
+							"id": "30-10",
+							"from": 30,
+							"to": 10
+						},
+						{
+							"id": "0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"name": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 2
+						},
+						{
+							"id": "NI-25",
+							"name": "NI-25",
+							"count": 2
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 2
+						},
+						{
+							"id": "25-PI",
+							"name": "25-PI",
+							"count": 2
+						},
+						{
+							"id": "20-20",
+							"name": "20-20",
+							"count": 1
+						},
+						{
+							"id": "25-25",
+							"name": "25-25",
+							"count": 1
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 2
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 14,
+		"description": "facet with multi-valued INTEGER expression, include from",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"includeFrom": true,
+					"includeTo": false,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20
+						},
+						{
+							"id": "NI-25",
+							"to": 25
+						},
+						{
+							"id": "20-PI",
+							"from": 20
+						},
+						{
+							"id": "25-PI",
+							"from": 25
+						},
+						{
+							"id": "0-0",
+							"from": 0,
+							"to": 0
+						},
+						{
+							"id": "20-20",
+							"from": 20,
+							"to": 20
+						},
+						{
+							"id": "25-25",
+							"from": 25,
+							"to": 25
+						},
+						{
+							"id": "100-200",
+							"from": 100,
+							"to": 200
+						},
+						{
+							"id": "30-10",
+							"from": 30,
+							"to": 10
+						},
+						{
+							"id": "0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"name": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 1
+						},
+						{
+							"id": "NI-25",
+							"name": "NI-25",
+							"count": 2
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 2
+						},
+						{
+							"id": "25-PI",
+							"name": "25-PI",
+							"count": 2
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 2
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 15,
+		"description": "facet with multi-valued INTEGER expression, include to",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"includeFrom": false,
+					"includeTo": true,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20
+						},
+						{
+							"id": "NI-25",
+							"to": 25
+						},
+						{
+							"id": "20-PI",
+							"from": 20
+						},
+						{
+							"id": "25-PI",
+							"from": 25
+						},
+						{
+							"id": "0-0",
+							"from": 0,
+							"to": 0
+						},
+						{
+							"id": "20-20",
+							"from": 20,
+							"to": 20
+						},
+						{
+							"id": "25-25",
+							"from": 25,
+							"to": 25
+						},
+						{
+							"id": "100-200",
+							"from": 100,
+							"to": 200
+						},
+						{
+							"id": "30-10",
+							"from": 30,
+							"to": 10
+						},
+						{
+							"id": "0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"name": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 2
+						},
+						{
+							"id": "NI-25",
+							"name": "NI-25",
+							"count": 2
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 2
+						},
+						{
+							"id": "25-PI",
+							"name": "25-PI",
+							"count": 1
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 2
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 16,
+		"description": "facet with multi-valued INTEGER expression",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"includeFrom": false,
+					"includeTo": false,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20
+						},
+						{
+							"id": "NI-25",
+							"to": 25
+						},
+						{
+							"id": "20-PI",
+							"from": 20
+						},
+						{
+							"id": "25-PI",
+							"from": 25
+						},
+						{
+							"id": "0-0",
+							"from": 0,
+							"to": 0
+						},
+						{
+							"id": "20-20",
+							"from": 20,
+							"to": 20
+						},
+						{
+							"id": "25-25",
+							"from": 25,
+							"to": 25
+						},
+						{
+							"id": "100-200",
+							"from": 100,
+							"to": 200
+						},
+						{
+							"id": "30-10",
+							"from": 30,
+							"to": 10
+						},
+						{
+							"id": "0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"name": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 1
+						},
+						{
+							"id": "NI-25",
+							"name": "NI-25",
+							"count": 2
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 2
+						},
+						{
+							"id": "25-PI",
+							"name": "25-PI",
+							"count": 1
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 2
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 17,
+		"description": "facet with LONG expression, include from and include to default values",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_long",
+					"expression": "field_long",
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20
+						},
+						{
+							"id": "20-PI",
+							"from": 20
+						},
+						{
+							"id": "0-0",
+							"from": 0,
+							"to": 0
+						},
+						{
+							"id": "20-20",
+							"from": 20,
+							"to": 20
+						},
+						{
+							"id": "100-200",
+							"from": 100,
+							"to": 200
+						},
+						{
+							"id": "30-10",
+							"from": 30,
+							"to": 10
+						},
+						{
+							"id": "0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_long",
+					"name": "field_long",
+					"expression": "field_long",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 1
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 2
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 18,
+		"description": "facet with LONG expression, include from an include to",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_long",
+					"expression": "field_long",
+					"includeFrom": true,
+					"includeTo": true,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20
+						},
+						{
+							"id": "20-PI",
+							"from": 20
+						},
+						{
+							"id": "0-0",
+							"from": 0,
+							"to": 0
+						},
+						{
+							"id": "20-20",
+							"from": 20,
+							"to": 20
+						},
+						{
+							"id": "100-200",
+							"from": 100,
+							"to": 200
+						},
+						{
+							"id": "30-10",
+							"from": 30,
+							"to": 10
+						},
+						{
+							"id": "0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_long",
+					"name": "field_long",
+					"expression": "field_long",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 2
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 2
+						},
+						{
+							"id": "20-20",
+							"name": "20-20",
+							"count": 1
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 19,
+		"description": "facet with LONG expression, include from",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_long",
+					"expression": "field_long",
+					"includeFrom": true,
+					"includeTo": false,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20
+						},
+						{
+							"id": "20-PI",
+							"from": 20
+						},
+						{
+							"id": "0-0",
+							"from": 0,
+							"to": 0
+						},
+						{
+							"id": "20-20",
+							"from": 20,
+							"to": 20
+						},
+						{
+							"id": "100-200",
+							"from": 100,
+							"to": 200
+						},
+						{
+							"id": "30-10",
+							"from": 30,
+							"to": 10
+						},
+						{
+							"id": "0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_long",
+					"name": "field_long",
+					"expression": "field_long",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 1
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 2
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 20,
+		"description": "facet with LONG expression, include to",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_long",
+					"expression": "field_long",
+					"includeFrom": false,
+					"includeTo": true,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20
+						},
+						{
+							"id": "20-PI",
+							"from": 20
+						},
+						{
+							"id": "0-0",
+							"from": 0,
+							"to": 0
+						},
+						{
+							"id": "20-20",
+							"from": 20,
+							"to": 20
+						},
+						{
+							"id": "100-200",
+							"from": 100,
+							"to": 200
+						},
+						{
+							"id": "30-10",
+							"from": 30,
+							"to": 10
+						},
+						{
+							"id": "0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_long",
+					"name": "field_long",
+					"expression": "field_long",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 2
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 1
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 21,
+		"description": "facet with LONG expression",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_long",
+					"expression": "field_long",
+					"includeFrom": false,
+					"includeTo": false,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20
+						},
+						{
+							"id": "20-PI",
+							"from": 20
+						},
+						{
+							"id": "0-0",
+							"from": 0,
+							"to": 0
+						},
+						{
+							"id": "20-20",
+							"from": 20,
+							"to": 20
+						},
+						{
+							"id": "100-200",
+							"from": 100,
+							"to": 200
+						},
+						{
+							"id": "30-10",
+							"from": 30,
+							"to": 10
+						},
+						{
+							"id": "0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_long",
+					"name": "field_long",
+					"expression": "field_long",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 1
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 1
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 22,
+		"description": "facet with multi-valued LONG expression, include from and include to default values",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_long_mv",
+					"expression": "field_long_mv",
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20
+						},
+						{
+							"id": "NI-25",
+							"to": 25
+						},
+						{
+							"id": "20-PI",
+							"from": 20
+						},
+						{
+							"id": "25-PI",
+							"from": 25
+						},
+						{
+							"id": "0-0",
+							"from": 0,
+							"to": 0
+						},
+						{
+							"id": "20-20",
+							"from": 20,
+							"to": 20
+						},
+						{
+							"id": "25-25",
+							"from": 25,
+							"to": 25
+						},
+						{
+							"id": "100-200",
+							"from": 100,
+							"to": 200
+						},
+						{
+							"id": "30-10",
+							"from": 30,
+							"to": 10
+						},
+						{
+							"id": "0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_long_mv",
+					"name": "field_long_mv",
+					"expression": "field_long_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 1
+						},
+						{
+							"id": "NI-25",
+							"name": "NI-25",
+							"count": 2
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 2
+						},
+						{
+							"id": "25-PI",
+							"name": "25-PI",
+							"count": 2
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 2
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 23,
+		"description": "facet with multi-valued LONG expression, include from and include to",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_long_mv",
+					"expression": "field_long_mv",
+					"includeFrom": true,
+					"includeTo": true,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20
+						},
+						{
+							"id": "NI-25",
+							"to": 25
+						},
+						{
+							"id": "20-PI",
+							"from": 20
+						},
+						{
+							"id": "25-PI",
+							"from": 25
+						},
+						{
+							"id": "0-0",
+							"from": 0,
+							"to": 0
+						},
+						{
+							"id": "20-20",
+							"from": 20,
+							"to": 20
+						},
+						{
+							"id": "25-25",
+							"from": 25,
+							"to": 25
+						},
+						{
+							"id": "100-200",
+							"from": 100,
+							"to": 200
+						},
+						{
+							"id": "30-10",
+							"from": 30,
+							"to": 10
+						},
+						{
+							"id": "0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_long_mv",
+					"name": "field_long_mv",
+					"expression": "field_long_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 2
+						},
+						{
+							"id": "NI-25",
+							"name": "NI-25",
+							"count": 2
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 2
+						},
+						{
+							"id": "25-PI",
+							"name": "25-PI",
+							"count": 2
+						},
+						{
+							"id": "20-20",
+							"name": "20-20",
+							"count": 1
+						},
+						{
+							"id": "25-25",
+							"name": "25-25",
+							"count": 1
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 2
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 24,
+		"description": "facet with multi-valued LONG expression, include from",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_long_mv",
+					"expression": "field_long_mv",
+					"includeFrom": true,
+					"includeTo": false,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20
+						},
+						{
+							"id": "NI-25",
+							"to": 25
+						},
+						{
+							"id": "20-PI",
+							"from": 20
+						},
+						{
+							"id": "25-PI",
+							"from": 25
+						},
+						{
+							"id": "0-0",
+							"from": 0,
+							"to": 0
+						},
+						{
+							"id": "20-20",
+							"from": 20,
+							"to": 20
+						},
+						{
+							"id": "25-25",
+							"from": 25,
+							"to": 25
+						},
+						{
+							"id": "100-200",
+							"from": 100,
+							"to": 200
+						},
+						{
+							"id": "30-10",
+							"from": 30,
+							"to": 10
+						},
+						{
+							"id": "0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_long_mv",
+					"name": "field_long_mv",
+					"expression": "field_long_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 1
+						},
+						{
+							"id": "NI-25",
+							"name": "NI-25",
+							"count": 2
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 2
+						},
+						{
+							"id": "25-PI",
+							"name": "25-PI",
+							"count": 2
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 2
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 25,
+		"description": "facet with multi-valued LONG expression, include to",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_long_mv",
+					"expression": "field_long_mv",
+					"includeFrom": false,
+					"includeTo": true,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20
+						},
+						{
+							"id": "NI-25",
+							"to": 25
+						},
+						{
+							"id": "20-PI",
+							"from": 20
+						},
+						{
+							"id": "25-PI",
+							"from": 25
+						},
+						{
+							"id": "0-0",
+							"from": 0,
+							"to": 0
+						},
+						{
+							"id": "20-20",
+							"from": 20,
+							"to": 20
+						},
+						{
+							"id": "25-25",
+							"from": 25,
+							"to": 25
+						},
+						{
+							"id": "100-200",
+							"from": 100,
+							"to": 200
+						},
+						{
+							"id": "30-10",
+							"from": 30,
+							"to": 10
+						},
+						{
+							"id": "0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_long_mv",
+					"name": "field_long_mv",
+					"expression": "field_long_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 2
+						},
+						{
+							"id": "NI-25",
+							"name": "NI-25",
+							"count": 2
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 2
+						},
+						{
+							"id": "25-PI",
+							"name": "25-PI",
+							"count": 1
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 2
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 26,
+		"description": "facet with multi-valued LONG expression",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_long_mv",
+					"expression": "field_long_mv",
+					"includeFrom": false,
+					"includeTo": false,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20
+						},
+						{
+							"id": "NI-25",
+							"to": 25
+						},
+						{
+							"id": "20-PI",
+							"from": 20
+						},
+						{
+							"id": "25-PI",
+							"from": 25
+						},
+						{
+							"id": "0-0",
+							"from": 0,
+							"to": 0
+						},
+						{
+							"id": "20-20",
+							"from": 20,
+							"to": 20
+						},
+						{
+							"id": "25-25",
+							"from": 25,
+							"to": 25
+						},
+						{
+							"id": "100-200",
+							"from": 100,
+							"to": 200
+						},
+						{
+							"id": "30-10",
+							"from": 30,
+							"to": 10
+						},
+						{
+							"id": "0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_long_mv",
+					"name": "field_long_mv",
+					"expression": "field_long_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 1
+						},
+						{
+							"id": "NI-25",
+							"name": "NI-25",
+							"count": 2
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 2
+						},
+						{
+							"id": "25-PI",
+							"name": "25-PI",
+							"count": 1
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 2
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 27,
+		"description": "facet with FLOAT expression, include from and include to default values",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_float",
+					"expression": "field_float",
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20.0
+						},
+						{
+							"id": "20-PI",
+							"from": 20.0
+						},
+						{
+							"id": "0-0",
+							"from": 0.0,
+							"to": 0.0
+						},
+						{
+							"id": "20-20",
+							"from": 20.0,
+							"to": 20.0
+						},
+						{
+							"id": "100-200",
+							"from": 100.0,
+							"to": 200.0
+						},
+						{
+							"id": "30-10",
+							"from": 30.0,
+							"to": 10.0
+						},
+						{
+							"id": "0-22",
+							"from": 0.0,
+							"to": 22.0
+						},
+						{
+							"id": "22-44",
+							"from": 22.0,
+							"to": 44.0
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_float",
+					"name": "field_float",
+					"expression": "field_float",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 1
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 2
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 28,
+		"description": "facet with FLOAT expression, include from an include to",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_float",
+					"expression": "field_float",
+					"includeFrom": true,
+					"includeTo": true,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20.0
+						},
+						{
+							"id": "20-PI",
+							"from": 20.0
+						},
+						{
+							"id": "0-0",
+							"from": 0.0,
+							"to": 0.0
+						},
+						{
+							"id": "20-20",
+							"from": 20.0,
+							"to": 20.0
+						},
+						{
+							"id": "100-200",
+							"from": 100.0,
+							"to": 200.0
+						},
+						{
+							"id": "30-10",
+							"from": 30.0,
+							"to": 10.0
+						},
+						{
+							"id": "0-22",
+							"from": 0.0,
+							"to": 22.0
+						},
+						{
+							"id": "22-44",
+							"from": 22.0,
+							"to": 44.0
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_float",
+					"name": "field_float",
+					"expression": "field_float",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 2
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 2
+						},
+						{
+							"id": "20-20",
+							"name": "20-20",
+							"count": 1
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 29,
+		"description": "facet with FLOAT expression, include from",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_float",
+					"expression": "field_float",
+					"includeFrom": true,
+					"includeTo": false,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20.0
+						},
+						{
+							"id": "20-PI",
+							"from": 20.0
+						},
+						{
+							"id": "0-0",
+							"from": 0.0,
+							"to": 0.0
+						},
+						{
+							"id": "20-20",
+							"from": 20.0,
+							"to": 20.0
+						},
+						{
+							"id": "100-200",
+							"from": 100.0,
+							"to": 200.0
+						},
+						{
+							"id": "30-10",
+							"from": 30.0,
+							"to": 10.0
+						},
+						{
+							"id": "0-22",
+							"from": 0.0,
+							"to": 22.0
+						},
+						{
+							"id": "22-44",
+							"from": 22.0,
+							"to": 44.0
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_float",
+					"name": "field_float",
+					"expression": "field_float",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 1
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 2
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 30,
+		"description": "facet with FLOAT expression, include to",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_float",
+					"expression": "field_float",
+					"includeFrom": false,
+					"includeTo": true,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20.0
+						},
+						{
+							"id": "20-PI",
+							"from": 20.0
+						},
+						{
+							"id": "0-0",
+							"from": 0.0,
+							"to": 0.0
+						},
+						{
+							"id": "20-20",
+							"from": 20.0,
+							"to": 20.0
+						},
+						{
+							"id": "100-200",
+							"from": 100.0,
+							"to": 200.0
+						},
+						{
+							"id": "30-10",
+							"from": 30.0,
+							"to": 10.0
+						},
+						{
+							"id": "0-22",
+							"from": 0.0,
+							"to": 22.0
+						},
+						{
+							"id": "22-44",
+							"from": 22.0,
+							"to": 44.0
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_float",
+					"name": "field_float",
+					"expression": "field_float",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 2
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 1
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 31,
+		"description": "facet with FLOAT expression",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_float",
+					"expression": "field_float",
+					"includeFrom": false,
+					"includeTo": false,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20.0
+						},
+						{
+							"id": "20-PI",
+							"from": 20.0
+						},
+						{
+							"id": "0-0",
+							"from": 0.0,
+							"to": 0.0
+						},
+						{
+							"id": "20-20",
+							"from": 20.0,
+							"to": 20.0
+						},
+						{
+							"id": "100-200",
+							"from": 100.0,
+							"to": 200.0
+						},
+						{
+							"id": "30-10",
+							"from": 30.0,
+							"to": 10.0
+						},
+						{
+							"id": "0-22",
+							"from": 0.0,
+							"to": 22.0
+						},
+						{
+							"id": "22-44",
+							"from": 22.0,
+							"to": 44.0
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_float",
+					"name": "field_float",
+					"expression": "field_float",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 1
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 1
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 32,
+		"description": "facet with multi-valued FLOAT expression, include from and include to default values",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_float_mv",
+					"expression": "field_float_mv",
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20.0
+						},
+						{
+							"id": "NI-25",
+							"to": 25.0
+						},
+						{
+							"id": "20-PI",
+							"from": 20.0
+						},
+						{
+							"id": "25-PI",
+							"from": 25.0
+						},
+						{
+							"id": "0-0",
+							"from": 0.0,
+							"to": 0.0
+						},
+						{
+							"id": "20-20",
+							"from": 20.0,
+							"to": 20.0
+						},
+						{
+							"id": "25-25",
+							"from": 25.0,
+							"to": 25.0
+						},
+						{
+							"id": "100-200",
+							"from": 100.0,
+							"to": 200.0
+						},
+						{
+							"id": "30-10",
+							"from": 30.0,
+							"to": 10.0
+						},
+						{
+							"id": "0-22",
+							"from": 0.0,
+							"to": 22.0
+						},
+						{
+							"id": "22-44",
+							"from": 22.0,
+							"to": 44.0
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_float_mv",
+					"name": "field_float_mv",
+					"expression": "field_float_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 1
+						},
+						{
+							"id": "NI-25",
+							"name": "NI-25",
+							"count": 2
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 2
+						},
+						{
+							"id": "25-PI",
+							"name": "25-PI",
+							"count": 2
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 2
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 33,
+		"description": "facet with multi-valued FLOAT expression, include from and include to",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_float_mv",
+					"expression": "field_float_mv",
+					"includeFrom": true,
+					"includeTo": true,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20.0
+						},
+						{
+							"id": "NI-25",
+							"to": 25.0
+						},
+						{
+							"id": "20-PI",
+							"from": 20.0
+						},
+						{
+							"id": "25-PI",
+							"from": 25.0
+						},
+						{
+							"id": "0-0",
+							"from": 0.0,
+							"to": 0.0
+						},
+						{
+							"id": "20-20",
+							"from": 20.0,
+							"to": 20.0
+						},
+						{
+							"id": "25-25",
+							"from": 25.0,
+							"to": 25.0
+						},
+						{
+							"id": "100-200",
+							"from": 100.0,
+							"to": 200.0
+						},
+						{
+							"id": "30-10",
+							"from": 30.0,
+							"to": 10.0
+						},
+						{
+							"id": "0-22",
+							"from": 0.0,
+							"to": 22.0
+						},
+						{
+							"id": "22-44",
+							"from": 22.0,
+							"to": 44.0
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_float_mv",
+					"name": "field_float_mv",
+					"expression": "field_float_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 2
+						},
+						{
+							"id": "NI-25",
+							"name": "NI-25",
+							"count": 2
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 2
+						},
+						{
+							"id": "25-PI",
+							"name": "25-PI",
+							"count": 2
+						},
+						{
+							"id": "20-20",
+							"name": "20-20",
+							"count": 1
+						},
+						{
+							"id": "25-25",
+							"name": "25-25",
+							"count": 1
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 2
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 34,
+		"description": "facet with multi-valued FLOAT expression, include from",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_float_mv",
+					"expression": "field_float_mv",
+					"includeFrom": true,
+					"includeTo": false,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20.0
+						},
+						{
+							"id": "NI-25",
+							"to": 25.0
+						},
+						{
+							"id": "20-PI",
+							"from": 20.0
+						},
+						{
+							"id": "25-PI",
+							"from": 25.0
+						},
+						{
+							"id": "0-0",
+							"from": 0.0,
+							"to": 0.0
+						},
+						{
+							"id": "20-20",
+							"from": 20.0,
+							"to": 20.0
+						},
+						{
+							"id": "25-25",
+							"from": 25.0,
+							"to": 25.0
+						},
+						{
+							"id": "100-200",
+							"from": 100.0,
+							"to": 200.0
+						},
+						{
+							"id": "30-10",
+							"from": 30.0,
+							"to": 10.0
+						},
+						{
+							"id": "0-22",
+							"from": 0.0,
+							"to": 22.0
+						},
+						{
+							"id": "22-44",
+							"from": 22.0,
+							"to": 44.0
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_float_mv",
+					"name": "field_float_mv",
+					"expression": "field_float_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 1
+						},
+						{
+							"id": "NI-25",
+							"name": "NI-25",
+							"count": 2
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 2
+						},
+						{
+							"id": "25-PI",
+							"name": "25-PI",
+							"count": 2
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 2
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 35,
+		"description": "facet with multi-valued FLOAT expression, include to",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_float_mv",
+					"expression": "field_float_mv",
+					"includeFrom": false,
+					"includeTo": true,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20.0
+						},
+						{
+							"id": "NI-25",
+							"to": 25.0
+						},
+						{
+							"id": "20-PI",
+							"from": 20.0
+						},
+						{
+							"id": "25-PI",
+							"from": 25.0
+						},
+						{
+							"id": "0-0",
+							"from": 0.0,
+							"to": 0.0
+						},
+						{
+							"id": "20-20",
+							"from": 20.0,
+							"to": 20.0
+						},
+						{
+							"id": "25-25",
+							"from": 25.0,
+							"to": 25.0
+						},
+						{
+							"id": "100-200",
+							"from": 100.0,
+							"to": 200.0
+						},
+						{
+							"id": "30-10",
+							"from": 30.0,
+							"to": 10.0
+						},
+						{
+							"id": "0-22",
+							"from": 0.0,
+							"to": 22.0
+						},
+						{
+							"id": "22-44",
+							"from": 22.0,
+							"to": 44.0
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_float_mv",
+					"name": "field_float_mv",
+					"expression": "field_float_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 2
+						},
+						{
+							"id": "NI-25",
+							"name": "NI-25",
+							"count": 2
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 2
+						},
+						{
+							"id": "25-PI",
+							"name": "25-PI",
+							"count": 1
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 2
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 36,
+		"description": "facet with multi-valued FLOAT expression",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_float_mv",
+					"expression": "field_float_mv",
+					"includeFrom": false,
+					"includeTo": false,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20.0
+						},
+						{
+							"id": "NI-25",
+							"to": 25.0
+						},
+						{
+							"id": "20-PI",
+							"from": 20.0
+						},
+						{
+							"id": "25-PI",
+							"from": 25.0
+						},
+						{
+							"id": "0-0",
+							"from": 0.0,
+							"to": 0.0
+						},
+						{
+							"id": "20-20",
+							"from": 20.0,
+							"to": 20.0
+						},
+						{
+							"id": "25-25",
+							"from": 25.0,
+							"to": 25.0
+						},
+						{
+							"id": "100-200",
+							"from": 100.0,
+							"to": 200.0
+						},
+						{
+							"id": "30-10",
+							"from": 30.0,
+							"to": 10.0
+						},
+						{
+							"id": "0-22",
+							"from": 0.0,
+							"to": 22.0
+						},
+						{
+							"id": "22-44",
+							"from": 22.0,
+							"to": 44.0
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_float_mv",
+					"name": "field_float_mv",
+					"expression": "field_float_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 1
+						},
+						{
+							"id": "NI-25",
+							"name": "NI-25",
+							"count": 2
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 2
+						},
+						{
+							"id": "25-PI",
+							"name": "25-PI",
+							"count": 1
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 2
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 37,
+		"description": "facet with DOUBLE expression, include from and include to default values",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_double",
+					"expression": "field_double",
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20.0
+						},
+						{
+							"id": "20-PI",
+							"from": 20.0
+						},
+						{
+							"id": "0-0",
+							"from": 0.0,
+							"to": 0.0
+						},
+						{
+							"id": "20-20",
+							"from": 20.0,
+							"to": 20.0
+						},
+						{
+							"id": "100-200",
+							"from": 100.0,
+							"to": 200.0
+						},
+						{
+							"id": "30-10",
+							"from": 30.0,
+							"to": 10.0
+						},
+						{
+							"id": "0-22",
+							"from": 0.0,
+							"to": 22.0
+						},
+						{
+							"id": "22-44",
+							"from": 22.0,
+							"to": 44.0
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_double",
+					"name": "field_double",
+					"expression": "field_double",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 1
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 2
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 38,
+		"description": "facet with DOUBLE expression, include from an include to",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_double",
+					"expression": "field_double",
+					"includeFrom": true,
+					"includeTo": true,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20.0
+						},
+						{
+							"id": "20-PI",
+							"from": 20.0
+						},
+						{
+							"id": "0-0",
+							"from": 0.0,
+							"to": 0.0
+						},
+						{
+							"id": "20-20",
+							"from": 20.0,
+							"to": 20.0
+						},
+						{
+							"id": "100-200",
+							"from": 100.0,
+							"to": 200.0
+						},
+						{
+							"id": "30-10",
+							"from": 30.0,
+							"to": 10.0
+						},
+						{
+							"id": "0-22",
+							"from": 0.0,
+							"to": 22.0
+						},
+						{
+							"id": "22-44",
+							"from": 22.0,
+							"to": 44.0
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_double",
+					"name": "field_double",
+					"expression": "field_double",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 2
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 2
+						},
+						{
+							"id": "20-20",
+							"name": "20-20",
+							"count": 1
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 39,
+		"description": "facet with DOUBLE expression, include from",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_double",
+					"expression": "field_double",
+					"includeFrom": true,
+					"includeTo": false,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20.0
+						},
+						{
+							"id": "20-PI",
+							"from": 20.0
+						},
+						{
+							"id": "0-0",
+							"from": 0.0,
+							"to": 0.0
+						},
+						{
+							"id": "20-20",
+							"from": 20.0,
+							"to": 20.0
+						},
+						{
+							"id": "100-200",
+							"from": 100.0,
+							"to": 200.0
+						},
+						{
+							"id": "30-10",
+							"from": 30.0,
+							"to": 10.0
+						},
+						{
+							"id": "0-22",
+							"from": 0.0,
+							"to": 22.0
+						},
+						{
+							"id": "22-44",
+							"from": 22.0,
+							"to": 44.0
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_double",
+					"name": "field_double",
+					"expression": "field_double",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 1
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 2
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 40,
+		"description": "facet with DOUBLE expression, include to",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_double",
+					"expression": "field_double",
+					"includeFrom": false,
+					"includeTo": true,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20.0
+						},
+						{
+							"id": "20-PI",
+							"from": 20.0
+						},
+						{
+							"id": "0-0",
+							"from": 0.0,
+							"to": 0.0
+						},
+						{
+							"id": "20-20",
+							"from": 20.0,
+							"to": 20.0
+						},
+						{
+							"id": "100-200",
+							"from": 100.0,
+							"to": 200.0
+						},
+						{
+							"id": "30-10",
+							"from": 30.0,
+							"to": 10.0
+						},
+						{
+							"id": "0-22",
+							"from": 0.0,
+							"to": 22.0
+						},
+						{
+							"id": "22-44",
+							"from": 22.0,
+							"to": 44.0
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_double",
+					"name": "field_double",
+					"expression": "field_double",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 2
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 1
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 41,
+		"description": "facet with DOUBLE expression",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_double",
+					"expression": "field_double",
+					"includeFrom": false,
+					"includeTo": false,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20.0
+						},
+						{
+							"id": "20-PI",
+							"from": 20.0
+						},
+						{
+							"id": "0-0",
+							"from": 0.0,
+							"to": 0.0
+						},
+						{
+							"id": "20-20",
+							"from": 20.0,
+							"to": 20.0
+						},
+						{
+							"id": "100-200",
+							"from": 100.0,
+							"to": 200.0
+						},
+						{
+							"id": "30-10",
+							"from": 30.0,
+							"to": 10.0
+						},
+						{
+							"id": "0-22",
+							"from": 0.0,
+							"to": 22.0
+						},
+						{
+							"id": "22-44",
+							"from": 22.0,
+							"to": 44.0
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_double",
+					"name": "field_double",
+					"expression": "field_double",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 1
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 1
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 42,
+		"description": "facet with multi-valued DOUBLE expression, include from and include to default values",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_double_mv",
+					"expression": "field_double_mv",
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20.0
+						},
+						{
+							"id": "NI-25",
+							"to": 25.0
+						},
+						{
+							"id": "20-PI",
+							"from": 20.0
+						},
+						{
+							"id": "25-PI",
+							"from": 25.0
+						},
+						{
+							"id": "0-0",
+							"from": 0.0,
+							"to": 0.0
+						},
+						{
+							"id": "20-20",
+							"from": 20.0,
+							"to": 20.0
+						},
+						{
+							"id": "25-25",
+							"from": 25.0,
+							"to": 25.0
+						},
+						{
+							"id": "100-200",
+							"from": 100.0,
+							"to": 200.0
+						},
+						{
+							"id": "30-10",
+							"from": 30.0,
+							"to": 10.0
+						},
+						{
+							"id": "0-22",
+							"from": 0.0,
+							"to": 22.0
+						},
+						{
+							"id": "22-44",
+							"from": 22.0,
+							"to": 44.0
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_double_mv",
+					"name": "field_double_mv",
+					"expression": "field_double_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 1
+						},
+						{
+							"id": "NI-25",
+							"name": "NI-25",
+							"count": 2
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 2
+						},
+						{
+							"id": "25-PI",
+							"name": "25-PI",
+							"count": 2
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 2
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 43,
+		"description": "facet with multi-valued DOUBLE expression, include from and include to",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_double_mv",
+					"expression": "field_double_mv",
+					"includeFrom": true,
+					"includeTo": true,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20.0
+						},
+						{
+							"id": "NI-25",
+							"to": 25.0
+						},
+						{
+							"id": "20-PI",
+							"from": 20.0
+						},
+						{
+							"id": "25-PI",
+							"from": 25.0
+						},
+						{
+							"id": "0-0",
+							"from": 0.0,
+							"to": 0.0
+						},
+						{
+							"id": "20-20",
+							"from": 20.0,
+							"to": 20.0
+						},
+						{
+							"id": "25-25",
+							"from": 25.0,
+							"to": 25.0
+						},
+						{
+							"id": "100-200",
+							"from": 100.0,
+							"to": 200.0
+						},
+						{
+							"id": "30-10",
+							"from": 30.0,
+							"to": 10.0
+						},
+						{
+							"id": "0-22",
+							"from": 0.0,
+							"to": 22.0
+						},
+						{
+							"id": "22-44",
+							"from": 22.0,
+							"to": 44.0
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_double_mv",
+					"name": "field_double_mv",
+					"expression": "field_double_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 2
+						},
+						{
+							"id": "NI-25",
+							"name": "NI-25",
+							"count": 2
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 2
+						},
+						{
+							"id": "25-PI",
+							"name": "25-PI",
+							"count": 2
+						},
+						{
+							"id": "20-20",
+							"name": "20-20",
+							"count": 1
+						},
+						{
+							"id": "25-25",
+							"name": "25-25",
+							"count": 1
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 2
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 44,
+		"description": "facet with multi-valued DOUBLE expression, include from",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_double_mv",
+					"expression": "field_double_mv",
+					"includeFrom": true,
+					"includeTo": false,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20.0
+						},
+						{
+							"id": "NI-25",
+							"to": 25.0
+						},
+						{
+							"id": "20-PI",
+							"from": 20.0
+						},
+						{
+							"id": "25-PI",
+							"from": 25.0
+						},
+						{
+							"id": "0-0",
+							"from": 0.0,
+							"to": 0.0
+						},
+						{
+							"id": "20-20",
+							"from": 20.0,
+							"to": 20.0
+						},
+						{
+							"id": "25-25",
+							"from": 25.0,
+							"to": 25.0
+						},
+						{
+							"id": "100-200",
+							"from": 100.0,
+							"to": 200.0
+						},
+						{
+							"id": "30-10",
+							"from": 30.0,
+							"to": 10.0
+						},
+						{
+							"id": "0-22",
+							"from": 0.0,
+							"to": 22.0
+						},
+						{
+							"id": "22-44",
+							"from": 22.0,
+							"to": 44.0
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_double_mv",
+					"name": "field_double_mv",
+					"expression": "field_double_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 1
+						},
+						{
+							"id": "NI-25",
+							"name": "NI-25",
+							"count": 2
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 2
+						},
+						{
+							"id": "25-PI",
+							"name": "25-PI",
+							"count": 2
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 2
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 45,
+		"description": "facet with multi-valued DOUBLE expression, include to",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_double_mv",
+					"expression": "field_double_mv",
+					"includeFrom": false,
+					"includeTo": true,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20.0
+						},
+						{
+							"id": "NI-25",
+							"to": 25.0
+						},
+						{
+							"id": "20-PI",
+							"from": 20.0
+						},
+						{
+							"id": "25-PI",
+							"from": 25.0
+						},
+						{
+							"id": "0-0",
+							"from": 0.0,
+							"to": 0.0
+						},
+						{
+							"id": "20-20",
+							"from": 20.0,
+							"to": 20.0
+						},
+						{
+							"id": "25-25",
+							"from": 25.0,
+							"to": 25.0
+						},
+						{
+							"id": "100-200",
+							"from": 100.0,
+							"to": 200.0
+						},
+						{
+							"id": "30-10",
+							"from": 30.0,
+							"to": 10.0
+						},
+						{
+							"id": "0-22",
+							"from": 0.0,
+							"to": 22.0
+						},
+						{
+							"id": "22-44",
+							"from": 22.0,
+							"to": 44.0
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_double_mv",
+					"name": "field_double_mv",
+					"expression": "field_double_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 2
+						},
+						{
+							"id": "NI-25",
+							"name": "NI-25",
+							"count": 2
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 2
+						},
+						{
+							"id": "25-PI",
+							"name": "25-PI",
+							"count": 1
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 2
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 46,
+		"description": "facet with multi-valued DOUBLE expression",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_double_mv",
+					"expression": "field_double_mv",
+					"includeFrom": false,
+					"includeTo": false,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-20",
+							"to": 20.0
+						},
+						{
+							"id": "NI-25",
+							"to": 25.0
+						},
+						{
+							"id": "20-PI",
+							"from": 20.0
+						},
+						{
+							"id": "25-PI",
+							"from": 25.0
+						},
+						{
+							"id": "0-0",
+							"from": 0.0,
+							"to": 0.0
+						},
+						{
+							"id": "20-20",
+							"from": 20.0,
+							"to": 20.0
+						},
+						{
+							"id": "25-25",
+							"from": 25.0,
+							"to": 25.0
+						},
+						{
+							"id": "100-200",
+							"from": 100.0,
+							"to": 200.0
+						},
+						{
+							"id": "30-10",
+							"from": 30.0,
+							"to": 10.0
+						},
+						{
+							"id": "0-22",
+							"from": 0.0,
+							"to": 22.0
+						},
+						{
+							"id": "22-44",
+							"from": 22.0,
+							"to": 44.0
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_double_mv",
+					"name": "field_double_mv",
+					"expression": "field_double_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-20",
+							"name": "NI-20",
+							"count": 1
+						},
+						{
+							"id": "NI-25",
+							"name": "NI-25",
+							"count": 2
+						},
+						{
+							"id": "20-PI",
+							"name": "20-PI",
+							"count": 2
+						},
+						{
+							"id": "25-PI",
+							"name": "25-PI",
+							"count": 1
+						},
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 2
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 47,
+		"description": "facet with DATE_TIME expression, include from and include to default values",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_date_time",
+					"expression": "field_date_time",
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-2020",
+							"to": "2020-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2020-PI",
+							"from": "2020-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2000-2000",
+							"from": "2000-01-01T00:00:00.000Z",
+							"to": "2000-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2020-2020",
+							"from": "2020-01-01T00:00:00.000Z",
+							"to": "2020-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2100-2200",
+							"from": "2100-01-01T00:00:00.000Z",
+							"to": "2200-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2030-2010",
+							"from": "2030-01-01T00:00:00.000Z",
+							"to": "2010-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2000-2022",
+							"from": "2000-01-01T00:00:00.000Z",
+							"to": "2022-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2022-2044",
+							"from": "2022-01-01T00:00:00.000Z",
+							"to": "2044-01-01T00:00:00.000Z"
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_date_time",
+					"name": "field_date_time",
+					"expression": "field_date_time",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-2020",
+							"name": "NI-2020",
+							"count": 1
+						},
+						{
+							"id": "2020-PI",
+							"name": "2020-PI",
+							"count": 2
+						},
+						{
+							"id": "2000-2022",
+							"name": "2000-2022",
+							"count": 2
+						},
+						{
+							"id": "2022-2044",
+							"name": "2022-2044",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 48,
+		"description": "facet with DATE_TIME expression, include from an include to",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_date_time",
+					"expression": "field_date_time",
+					"includeFrom": true,
+					"includeTo": true,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-2020",
+							"to": "2020-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2020-PI",
+							"from": "2020-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2000-2000",
+							"from": "2000-01-01T00:00:00.000Z",
+							"to": "2000-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2020-2020",
+							"from": "2020-01-01T00:00:00.000Z",
+							"to": "2020-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2100-2200",
+							"from": "2100-01-01T00:00:00.000Z",
+							"to": "2200-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2030-2010",
+							"from": "2030-01-01T00:00:00.000Z",
+							"to": "2010-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2000-2022",
+							"from": "2000-01-01T00:00:00.000Z",
+							"to": "2022-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2022-2044",
+							"from": "2022-01-01T00:00:00.000Z",
+							"to": "2044-01-01T00:00:00.000Z"
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_date_time",
+					"name": "field_date_time",
+					"expression": "field_date_time",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-2020",
+							"name": "NI-2020",
+							"count": 2
+						},
+						{
+							"id": "2020-PI",
+							"name": "2020-PI",
+							"count": 2
+						},
+						{
+							"id": "2020-2020",
+							"name": "2020-2020",
+							"count": 1
+						},
+						{
+							"id": "2000-2022",
+							"name": "2000-2022",
+							"count": 2
+						},
+						{
+							"id": "2022-2044",
+							"name": "2022-2044",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 49,
+		"description": "facet with DATE_TIME expression, include from",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_date_time",
+					"expression": "field_date_time",
+					"includeFrom": true,
+					"includeTo": false,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-2020",
+							"to": "2020-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2020-PI",
+							"from": "2020-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2000-2000",
+							"from": "2000-01-01T00:00:00.000Z",
+							"to": "2000-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2020-2020",
+							"from": "2020-01-01T00:00:00.000Z",
+							"to": "2020-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2100-2200",
+							"from": "2100-01-01T00:00:00.000Z",
+							"to": "2200-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2030-2010",
+							"from": "2030-01-01T00:00:00.000Z",
+							"to": "2010-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2000-2022",
+							"from": "2000-01-01T00:00:00.000Z",
+							"to": "2022-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2022-2044",
+							"from": "2022-01-01T00:00:00.000Z",
+							"to": "2044-01-01T00:00:00.000Z"
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_date_time",
+					"name": "field_date_time",
+					"expression": "field_date_time",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-2020",
+							"name": "NI-2020",
+							"count": 1
+						},
+						{
+							"id": "2020-PI",
+							"name": "2020-PI",
+							"count": 2
+						},
+						{
+							"id": "2000-2022",
+							"name": "2000-2022",
+							"count": 2
+						},
+						{
+							"id": "2022-2044",
+							"name": "2022-2044",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 50,
+		"description": "facet with DATE_TIME expression, include to",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_date_time",
+					"expression": "field_date_time",
+					"includeFrom": false,
+					"includeTo": true,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-2020",
+							"to": "2020-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2020-PI",
+							"from": "2020-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2000-2000",
+							"from": "2000-01-01T00:00:00.000Z",
+							"to": "2000-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2020-2020",
+							"from": "2020-01-01T00:00:00.000Z",
+							"to": "2020-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2100-2200",
+							"from": "2100-01-01T00:00:00.000Z",
+							"to": "2200-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2030-2010",
+							"from": "2030-01-01T00:00:00.000Z",
+							"to": "2010-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2000-2022",
+							"from": "2000-01-01T00:00:00.000Z",
+							"to": "2022-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2022-2044",
+							"from": "2022-01-01T00:00:00.000Z",
+							"to": "2044-01-01T00:00:00.000Z"
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_date_time",
+					"name": "field_date_time",
+					"expression": "field_date_time",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-2020",
+							"name": "NI-2020",
+							"count": 2
+						},
+						{
+							"id": "2020-PI",
+							"name": "2020-PI",
+							"count": 1
+						},
+						{
+							"id": "2000-2022",
+							"name": "2000-2022",
+							"count": 2
+						},
+						{
+							"id": "2022-2044",
+							"name": "2022-2044",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 51,
+		"description": "facet with DATE_TIME expression",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_date_time",
+					"expression": "field_date_time",
+					"includeFrom": false,
+					"includeTo": false,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-2020",
+							"to": "2020-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2020-PI",
+							"from": "2020-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2000-2000",
+							"from": "2000-01-01T00:00:00.000Z",
+							"to": "2000-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2020-2020",
+							"from": "2020-01-01T00:00:00.000Z",
+							"to": "2020-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2100-2200",
+							"from": "2100-01-01T00:00:00.000Z",
+							"to": "2200-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2030-2010",
+							"from": "2030-01-01T00:00:00.000Z",
+							"to": "2010-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2000-2022",
+							"from": "2000-01-01T00:00:00.000Z",
+							"to": "2022-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2022-2044",
+							"from": "2022-01-01T00:00:00.000Z",
+							"to": "2044-01-01T00:00:00.000Z"
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_date_time",
+					"name": "field_date_time",
+					"expression": "field_date_time",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-2020",
+							"name": "NI-2020",
+							"count": 1
+						},
+						{
+							"id": "2020-PI",
+							"name": "2020-PI",
+							"count": 1
+						},
+						{
+							"id": "2000-2022",
+							"name": "2000-2022",
+							"count": 2
+						},
+						{
+							"id": "2022-2044",
+							"name": "2022-2044",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 52,
+		"description": "facet with multi-valued DATE_TIME expression, include from and include to default values",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_date_time_mv",
+					"expression": "field_date_time_mv",
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-2020",
+							"to": "2020-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "NI-2025",
+							"to": "2025-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2020-PI",
+							"from": "2020-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2025-PI",
+							"from": "2025-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2000-2000",
+							"from": "2000-01-01T00:00:00.000Z",
+							"to": "2000-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2020-2020",
+							"from": "2020-01-01T00:00:00.000Z",
+							"to": "2020-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2025-2025",
+							"from": "2025-01-01T00:00:00.000Z",
+							"to": "2025-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2100-2200",
+							"from": "2100-01-01T00:00:00.000Z",
+							"to": "2200-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2030-2010",
+							"from": "2030-01-01T00:00:00.000Z",
+							"to": "2010-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2000-2022",
+							"from": "2000-01-01T00:00:00.000Z",
+							"to": "2022-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2022-2044",
+							"from": "2022-01-01T00:00:00.000Z",
+							"to": "2044-01-01T00:00:00.000Z"
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_date_time_mv",
+					"name": "field_date_time_mv",
+					"expression": "field_date_time_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-2020",
+							"name": "NI-2020",
+							"count": 1
+						},
+						{
+							"id": "NI-2025",
+							"name": "NI-2025",
+							"count": 2
+						},
+						{
+							"id": "2020-PI",
+							"name": "2020-PI",
+							"count": 2
+						},
+						{
+							"id": "2025-PI",
+							"name": "2025-PI",
+							"count": 2
+						},
+						{
+							"id": "2000-2022",
+							"name": "2000-2022",
+							"count": 2
+						},
+						{
+							"id": "2022-2044",
+							"name": "2022-2044",
+							"count": 2
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 53,
+		"description": "facet with multi-valued DATE_TIME expression, include from and include to",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_date_time_mv",
+					"expression": "field_date_time_mv",
+					"includeFrom": true,
+					"includeTo": true,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-2020",
+							"to": "2020-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "NI-2025",
+							"to": "2025-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2020-PI",
+							"from": "2020-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2025-PI",
+							"from": "2025-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2000-2000",
+							"from": "2000-01-01T00:00:00.000Z",
+							"to": "2000-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2020-2020",
+							"from": "2020-01-01T00:00:00.000Z",
+							"to": "2020-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2025-2025",
+							"from": "2025-01-01T00:00:00.000Z",
+							"to": "2025-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2100-2200",
+							"from": "2100-01-01T00:00:00.000Z",
+							"to": "2200-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2030-2010",
+							"from": "2030-01-01T00:00:00.000Z",
+							"to": "2010-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2000-2022",
+							"from": "2000-01-01T00:00:00.000Z",
+							"to": "2022-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2022-2044",
+							"from": "2022-01-01T00:00:00.000Z",
+							"to": "2044-01-01T00:00:00.000Z"
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_date_time_mv",
+					"name": "field_date_time_mv",
+					"expression": "field_date_time_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-2020",
+							"name": "NI-2020",
+							"count": 2
+						},
+						{
+							"id": "NI-2025",
+							"name": "NI-2025",
+							"count": 2
+						},
+						{
+							"id": "2020-PI",
+							"name": "2020-PI",
+							"count": 2
+						},
+						{
+							"id": "2025-PI",
+							"name": "2025-PI",
+							"count": 2
+						},
+						{
+							"id": "2020-2020",
+							"name": "2020-2020",
+							"count": 1
+						},
+						{
+							"id": "2025-2025",
+							"name": "2025-2025",
+							"count": 1
+						},
+						{
+							"id": "2000-2022",
+							"name": "2000-2022",
+							"count": 2
+						},
+						{
+							"id": "2022-2044",
+							"name": "2022-2044",
+							"count": 2
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 54,
+		"description": "facet with multi-valued DATE_TIME expression, include from",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_date_time_mv",
+					"expression": "field_date_time_mv",
+					"includeFrom": true,
+					"includeTo": false,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-2020",
+							"to": "2020-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "NI-2025",
+							"to": "2025-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2020-PI",
+							"from": "2020-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2025-PI",
+							"from": "2025-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2000-2000",
+							"from": "2000-01-01T00:00:00.000Z",
+							"to": "2000-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2020-2020",
+							"from": "2020-01-01T00:00:00.000Z",
+							"to": "2020-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2025-2025",
+							"from": "2025-01-01T00:00:00.000Z",
+							"to": "2025-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2100-2200",
+							"from": "2100-01-01T00:00:00.000Z",
+							"to": "2200-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2030-2010",
+							"from": "2030-01-01T00:00:00.000Z",
+							"to": "2010-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2000-2022",
+							"from": "2000-01-01T00:00:00.000Z",
+							"to": "2022-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2022-2044",
+							"from": "2022-01-01T00:00:00.000Z",
+							"to": "2044-01-01T00:00:00.000Z"
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_date_time_mv",
+					"name": "field_date_time_mv",
+					"expression": "field_date_time_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-2020",
+							"name": "NI-2020",
+							"count": 1
+						},
+						{
+							"id": "NI-2025",
+							"name": "NI-2025",
+							"count": 2
+						},
+						{
+							"id": "2020-PI",
+							"name": "2020-PI",
+							"count": 2
+						},
+						{
+							"id": "2025-PI",
+							"name": "2025-PI",
+							"count": 2
+						},
+						{
+							"id": "2000-2022",
+							"name": "2000-2022",
+							"count": 2
+						},
+						{
+							"id": "2022-2044",
+							"name": "2022-2044",
+							"count": 2
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 55,
+		"description": "facet with multi-valued DATE_TIME expression, include to",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_date_time_mv",
+					"expression": "field_date_time_mv",
+					"includeFrom": false,
+					"includeTo": true,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-2020",
+							"to": "2020-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "NI-2025",
+							"to": "2025-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2020-PI",
+							"from": "2020-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2025-PI",
+							"from": "2025-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2000-2000",
+							"from": "2000-01-01T00:00:00.000Z",
+							"to": "2000-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2020-2020",
+							"from": "2020-01-01T00:00:00.000Z",
+							"to": "2020-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2025-2025",
+							"from": "2025-01-01T00:00:00.000Z",
+							"to": "2025-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2100-2200",
+							"from": "2100-01-01T00:00:00.000Z",
+							"to": "2200-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2030-2010",
+							"from": "2030-01-01T00:00:00.000Z",
+							"to": "2010-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2000-2022",
+							"from": "2000-01-01T00:00:00.000Z",
+							"to": "2022-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2022-2044",
+							"from": "2022-01-01T00:00:00.000Z",
+							"to": "2044-01-01T00:00:00.000Z"
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_date_time_mv",
+					"name": "field_date_time_mv",
+					"expression": "field_date_time_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-2020",
+							"name": "NI-2020",
+							"count": 2
+						},
+						{
+							"id": "NI-2025",
+							"name": "NI-2025",
+							"count": 2
+						},
+						{
+							"id": "2020-PI",
+							"name": "2020-PI",
+							"count": 2
+						},
+						{
+							"id": "2025-PI",
+							"name": "2025-PI",
+							"count": 1
+						},
+						{
+							"id": "2000-2022",
+							"name": "2000-2022",
+							"count": 2
+						},
+						{
+							"id": "2022-2044",
+							"name": "2022-2044",
+							"count": 2
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 56,
+		"description": "facet with multi-valued DATE_TIME expression",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_date_time_mv",
+					"expression": "field_date_time_mv",
+					"includeFrom": false,
+					"includeTo": false,
+					"buckets": [
+						{
+							"id": "NI-PI"
+						},
+						{
+							"id": "NI-2020",
+							"to": "2020-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "NI-2025",
+							"to": "2025-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2020-PI",
+							"from": "2020-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2025-PI",
+							"from": "2025-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2000-2000",
+							"from": "2000-01-01T00:00:00.000Z",
+							"to": "2000-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2020-2020",
+							"from": "2020-01-01T00:00:00.000Z",
+							"to": "2020-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2025-2025",
+							"from": "2025-01-01T00:00:00.000Z",
+							"to": "2025-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2100-2200",
+							"from": "2100-01-01T00:00:00.000Z",
+							"to": "2200-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2030-2010",
+							"from": "2030-01-01T00:00:00.000Z",
+							"to": "2010-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2000-2022",
+							"from": "2000-01-01T00:00:00.000Z",
+							"to": "2022-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2022-2044",
+							"from": "2022-01-01T00:00:00.000Z",
+							"to": "2044-01-01T00:00:00.000Z"
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_date_time_mv",
+					"name": "field_date_time_mv",
+					"expression": "field_date_time_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "NI-PI",
+							"name": "NI-PI",
+							"count": 3
+						},
+						{
+							"id": "NI-2020",
+							"name": "NI-2020",
+							"count": 1
+						},
+						{
+							"id": "NI-2025",
+							"name": "NI-2025",
+							"count": 2
+						},
+						{
+							"id": "2020-PI",
+							"name": "2020-PI",
+							"count": 2
+						},
+						{
+							"id": "2025-PI",
+							"name": "2025-PI",
+							"count": 1
+						},
+						{
+							"id": "2000-2022",
+							"name": "2000-2022",
+							"count": 2
+						},
+						{
+							"id": "2022-2044",
+							"name": "2022-2044",
+							"count": 2
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 57,
+		"description": "facet with DATE_TIME expression",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_date_time",
+					"expression": "field_date_time",
+					"buckets": [
+						{
+							"id": "2000-2022",
+							"from": "2000-01-01T00:00:00.000Z",
+							"to": "2022-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2022-2044",
+							"from": "2022-01-01T00:00:00.000Z",
+							"to": "2044-01-01T00:00:00.000Z"
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_date_time",
+					"name": "field_date_time",
+					"expression": "field_date_time",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "2000-2022",
+							"name": "2000-2022",
+							"count": 2
+						},
+						{
+							"id": "2022-2044",
+							"name": "2022-2044",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 58,
+		"description": "facet with multi-valued DATE_TIME expression",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_date_time_mv",
+					"expression": "field_date_time_mv",
+					"buckets": [
+						{
+							"id": "2000-2022",
+							"from": "2000-01-01T00:00:00.000Z",
+							"to": "2022-01-01T00:00:00.000Z"
+						},
+						{
+							"id": "2022-2044",
+							"from": "2022-01-01T00:00:00.000Z",
+							"to": "2044-01-01T00:00:00.000Z"
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_date_time_mv",
+					"name": "field_date_time_mv",
+					"expression": "field_date_time_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "2000-2022",
+							"name": "2000-2022",
+							"count": 2
+						},
+						{
+							"id": "2022-2044",
+							"name": "2022-2044",
+							"count": 2
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 59,
+		"description": "facet default filter mode is REFINE",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"buckets": [
+						{
+							"id": "0-11",
+							"from": 0,
+							"to": 11
+						},
+						{
+							"id": "11-22",
+							"from": 11,
+							"to": 22
+						},
+						{
+							"id": "22-33",
+							"from": 22,
+							"to": 33
+						},
+						{
+							"id": "33-44",
+							"from": 33,
+							"to": 44
+						}
+					]
+				}
+			],
+			"facetFilters": [
+				{
+					"type": "buckets",
+					"facetId": "field_integer_mv",
+					"bucketIds": [
+						"11-22",
+						"22-33"
+					]
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 1,
+			"totalSize": 1,
+			"searchHits": [
+				{
+					"id": "doc2"
+				}
+			],
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"name": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "11-22",
+							"name": "11-22",
+							"count": 1
+						},
+						{
+							"id": "22-33",
+							"name": "22-33",
+							"count": 1
+						}
+					],
+					"selectedBuckets": [
+						{
+							"id": "11-22",
+							"name": "11-22",
+							"count": 1
+						},
+						{
+							"id": "22-33",
+							"name": "22-33",
+							"count": 1
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 60,
+		"description": "facet with REFINE filter mode without facet filters",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "0-11",
+							"name": "Range 0-11",
+							"from": 0,
+							"to": 11
+						},
+						{
+							"id": "11-22",
+							"name": "Range 11-22",
+							"from": 11,
+							"to": 22
+						},
+						{
+							"id": "22-33",
+							"name": "Range 22-33",
+							"from": 22,
+							"to": 33
+						},
+						{
+							"id": "33-44",
+							"name": "Range 33-44",
+							"from": 33,
+							"to": 44
+						}
+					]
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 4,
+			"totalSize": 4,
+			"searchHits": [
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc3"
+				},
+				{
+					"id": "doc4"
+				}
+			],
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"name": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "0-11",
+							"name": "Range 0-11",
+							"count": 1
+						},
+						{
+							"id": "11-22",
+							"name": "Range 11-22",
+							"count": 2
+						},
+						{
+							"id": "22-33",
+							"name": "Range 22-33",
+							"count": 2
+						},
+						{
+							"id": "33-44",
+							"name": "Range 33-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 61,
+		"description": "facet with REFINE filter mode with single bucket facet filter",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "0-11",
+							"name": "Range 0-11",
+							"from": 0,
+							"to": 11
+						},
+						{
+							"id": "11-22",
+							"name": "Range 11-22",
+							"from": 11,
+							"to": 22
+						},
+						{
+							"id": "22-33",
+							"name": "Range 22-33",
+							"from": 22,
+							"to": 33
+						},
+						{
+							"id": "33-44",
+							"name": "Range 33-44",
+							"from": 33,
+							"to": 44
+						}
+					]
+				}
+			],
+			"facetFilters": [
+				{
+					"type": "buckets",
+					"facetId": "field_integer_mv",
+					"bucketIds": [
+						"11-22"
+					]
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 2,
+			"totalSize": 2,
+			"searchHits": [
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc2"
+				}
+			],
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"name": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "0-11",
+							"name": "Range 0-11",
+							"count": 1
+						},
+						{
+							"id": "11-22",
+							"name": "Range 11-22",
+							"count": 2
+						},
+						{
+							"id": "22-33",
+							"name": "Range 22-33",
+							"count": 1
+						}
+					],
+					"selectedBuckets": [
+						{
+							"id": "11-22",
+							"name": "Range 11-22",
+							"count": 2
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 62,
+		"description": "facet with REFINE filter with multiple buckets facet filter (with intersection)",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "0-11",
+							"name": "Range 0-11",
+							"from": 0,
+							"to": 11
+						},
+						{
+							"id": "11-22",
+							"name": "Range 11-22",
+							"from": 11,
+							"to": 22
+						},
+						{
+							"id": "22-33",
+							"name": "Range 22-33",
+							"from": 22,
+							"to": 33
+						},
+						{
+							"id": "33-44",
+							"name": "Range 33-44",
+							"from": 33,
+							"to": 44
+						}
+					]
+				}
+			],
+			"facetFilters": [
+				{
+					"type": "buckets",
+					"facetId": "field_integer_mv",
+					"bucketIds": [
+						"11-22",
+						"22-33"
+					]
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 1,
+			"totalSize": 1,
+			"searchHits": [
+				{
+					"id": "doc2"
+				}
+			],
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"name": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "11-22",
+							"name": "Range 11-22",
+							"count": 1
+						},
+						{
+							"id": "22-33",
+							"name": "Range 22-33",
+							"count": 1
+						}
+					],
+					"selectedBuckets": [
+						{
+							"id": "11-22",
+							"name": "Range 11-22",
+							"count": 1
+						},
+						{
+							"id": "22-33",
+							"name": "Range 22-33",
+							"count": 1
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 63,
+		"description": "facet with REFINE filter with multiple buckets facet filter (without intersection)",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "0-11",
+							"name": "Range 0-11",
+							"from": 0,
+							"to": 11
+						},
+						{
+							"id": "11-22",
+							"name": "Range 11-22",
+							"from": 11,
+							"to": 22
+						},
+						{
+							"id": "22-33",
+							"name": "Range 22-33",
+							"from": 22,
+							"to": 33
+						},
+						{
+							"id": "33-44",
+							"name": "Range 33-44",
+							"from": 33,
+							"to": 44
+						}
+					]
+				}
+			],
+			"facetFilters": [
+				{
+					"type": "buckets",
+					"facetId": "field_integer_mv",
+					"bucketIds": [
+						"0-11",
+						"33-44"
+					]
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 0,
+			"totalSize": 0,
+			"searchHits": [],
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"name": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"filterMode": "REFINE",
+					"buckets": [],
+					"selectedBuckets": [
+						{
+							"id": "0-11",
+							"name": "Range 0-11",
+							"count": 0
+						},
+						{
+							"id": "33-44",
+							"name": "Range 33-44",
+							"count": 0
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 64,
+		"description": "facet with REFINE filter mode with single facet filter and filter",
+		"data": {
+			"filters": [
+				{
+					"query": {
+						"type": "matchTerm",
+						"expression": "size",
+						"value": "M"
+					}
+				}
+			],
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "0-11",
+							"name": "Range 0-11",
+							"from": 0,
+							"to": 11
+						},
+						{
+							"id": "11-22",
+							"name": "Range 11-22",
+							"from": 11,
+							"to": 22
+						},
+						{
+							"id": "22-33",
+							"name": "Range 22-33",
+							"from": 22,
+							"to": 33
+						},
+						{
+							"id": "33-44",
+							"name": "Range 33-44",
+							"from": 33,
+							"to": 44
+						}
+					]
+				}
+			],
+			"facetFilters": [
+				{
+					"type": "buckets",
+					"facetId": "field_integer_mv",
+					"bucketIds": [
+						"22-33"
+					]
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 1,
+			"totalSize": 1,
+			"searchHits": [
+				{
+					"id": "doc2"
+				}
+			],
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"name": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "11-22",
+							"name": "Range 11-22",
+							"count": 1
+						},
+						{
+							"id": "22-33",
+							"name": "Range 22-33",
+							"count": 1
+						}
+					],
+					"selectedBuckets": [
+						{
+							"id": "22-33",
+							"name": "Range 22-33",
+							"count": 1
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 65,
+		"description": "facet with REFINE filter mode with single facet filter and filter, no search hits",
+		"data": {
+			"filters": [
+				{
+					"query": {
+						"type": "matchTerm",
+						"expression": "size",
+						"value": "XXL"
+					}
+				}
+			],
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "0-11",
+							"name": "Range 0-11",
+							"from": 0,
+							"to": 11
+						},
+						{
+							"id": "11-22",
+							"name": "Range 11-22",
+							"from": 11,
+							"to": 22
+						},
+						{
+							"id": "22-33",
+							"name": "Range 22-33",
+							"from": 22,
+							"to": 33
+						},
+						{
+							"id": "33-44",
+							"name": "Range 33-44",
+							"from": 33,
+							"to": 44
+						}
+					]
+				}
+			],
+			"facetFilters": [
+				{
+					"type": "buckets",
+					"facetId": "field_integer_mv",
+					"bucketIds": [
+						"22-33"
+					]
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 0,
+			"totalSize": 0,
+			"searchHits": [],
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"name": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"filterMode": "REFINE",
+					"buckets": [],
+					"selectedBuckets": [
+						{
+							"id": "22-33",
+							"name": "Range 22-33",
+							"count": 0
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 66,
+		"description": "facet with MULTISELECT filter mode without facet filters",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"filterMode": "MULTISELECT",
+					"buckets": [
+						{
+							"id": "0-11",
+							"name": "Range 0-11",
+							"from": 0,
+							"to": 11
+						},
+						{
+							"id": "11-22",
+							"name": "Range 11-22",
+							"from": 11,
+							"to": 22
+						},
+						{
+							"id": "22-33",
+							"name": "Range 22-33",
+							"from": 22,
+							"to": 33
+						},
+						{
+							"id": "33-44",
+							"name": "Range 33-44",
+							"from": 33,
+							"to": 44
+						}
+					]
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 4,
+			"totalSize": 4,
+			"searchHits": [
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc3"
+				},
+				{
+					"id": "doc4"
+				}
+			],
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"name": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"filterMode": "MULTISELECT",
+					"buckets": [
+						{
+							"id": "0-11",
+							"name": "Range 0-11",
+							"count": 1
+						},
+						{
+							"id": "11-22",
+							"name": "Range 11-22",
+							"count": 2
+						},
+						{
+							"id": "22-33",
+							"name": "Range 22-33",
+							"count": 2
+						},
+						{
+							"id": "33-44",
+							"name": "Range 33-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 67,
+		"description": "facet with MULTISELECT filter mode with single facet filter",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"filterMode": "MULTISELECT",
+					"buckets": [
+						{
+							"id": "0-11",
+							"name": "Range 0-11",
+							"from": 0,
+							"to": 11
+						},
+						{
+							"id": "11-22",
+							"name": "Range 11-22",
+							"from": 11,
+							"to": 22
+						},
+						{
+							"id": "22-33",
+							"name": "Range 22-33",
+							"from": 22,
+							"to": 33
+						},
+						{
+							"id": "33-44",
+							"name": "Range 33-44",
+							"from": 33,
+							"to": 44
+						}
+					]
+				}
+			],
+			"facetFilters": [
+				{
+					"type": "buckets",
+					"facetId": "field_integer_mv",
+					"bucketIds": [
+						"11-22"
+					]
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 2,
+			"totalSize": 2,
+			"searchHits": [
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc2"
+				}
+			],
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"name": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"filterMode": "MULTISELECT",
+					"buckets": [
+						{
+							"id": "0-11",
+							"name": "Range 0-11",
+							"count": 1
+						},
+						{
+							"id": "11-22",
+							"name": "Range 11-22",
+							"count": 2
+						},
+						{
+							"id": "22-33",
+							"name": "Range 22-33",
+							"count": 2
+						},
+						{
+							"id": "33-44",
+							"name": "Range 33-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": [
+						{
+							"id": "11-22",
+							"name": "Range 11-22",
+							"count": 2
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 68,
+		"description": "facet with MULTISELECT filter with multiple facet filters (with intersection)",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"filterMode": "MULTISELECT",
+					"buckets": [
+						{
+							"id": "0-11",
+							"name": "Range 0-11",
+							"from": 0,
+							"to": 11
+						},
+						{
+							"id": "11-22",
+							"name": "Range 11-22",
+							"from": 11,
+							"to": 22
+						},
+						{
+							"id": "22-33",
+							"name": "Range 22-33",
+							"from": 22,
+							"to": 33
+						},
+						{
+							"id": "33-44",
+							"name": "Range 33-44",
+							"from": 33,
+							"to": 44
+						}
+					]
+				}
+			],
+			"facetFilters": [
+				{
+					"type": "buckets",
+					"facetId": "field_integer_mv",
+					"bucketIds": [
+						"11-22",
+						"22-33"
+					]
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 3,
+			"totalSize": 3,
+			"searchHits": [
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc3"
+				}
+			],
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"name": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"filterMode": "MULTISELECT",
+					"buckets": [
+						{
+							"id": "0-11",
+							"name": "Range 0-11",
+							"count": 1
+						},
+						{
+							"id": "11-22",
+							"name": "Range 11-22",
+							"count": 2
+						},
+						{
+							"id": "22-33",
+							"name": "Range 22-33",
+							"count": 2
+						},
+						{
+							"id": "33-44",
+							"name": "Range 33-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": [
+						{
+							"id": "11-22",
+							"name": "Range 11-22",
+							"count": 2
+						},
+						{
+							"id": "22-33",
+							"name": "Range 22-33",
+							"count": 2
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 69,
+		"description": "facet with MULTISELECT filter with multiple facet filters (without intersection)",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"filterMode": "MULTISELECT",
+					"buckets": [
+						{
+							"id": "0-11",
+							"name": "Range 0-11",
+							"from": 0,
+							"to": 11
+						},
+						{
+							"id": "11-22",
+							"name": "Range 11-22",
+							"from": 11,
+							"to": 22
+						},
+						{
+							"id": "22-33",
+							"name": "Range 22-33",
+							"from": 22,
+							"to": 33
+						},
+						{
+							"id": "33-44",
+							"name": "Range 33-44",
+							"from": 33,
+							"to": 44
+						}
+					]
+				}
+			],
+			"facetFilters": [
+				{
+					"type": "buckets",
+					"facetId": "field_integer_mv",
+					"bucketIds": [
+						"0-11",
+						"33-44"
+					]
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 2,
+			"totalSize": 2,
+			"searchHits": [
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc3"
+				}
+			],
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"name": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"filterMode": "MULTISELECT",
+					"buckets": [
+						{
+							"id": "0-11",
+							"name": "Range 0-11",
+							"count": 1
+						},
+						{
+							"id": "11-22",
+							"name": "Range 11-22",
+							"count": 2
+						},
+						{
+							"id": "22-33",
+							"name": "Range 22-33",
+							"count": 2
+						},
+						{
+							"id": "33-44",
+							"name": "Range 33-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": [
+						{
+							"id": "0-11",
+							"name": "Range 0-11",
+							"count": 1
+						},
+						{
+							"id": "33-44",
+							"name": "Range 33-44",
+							"count": 1
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 70,
+		"description": "facet with MULTISELECT filter mode with single facet filter and filter",
+		"data": {
+			"filters": [
+				{
+					"query": {
+						"type": "matchTerm",
+						"expression": "size",
+						"value": "M"
+					}
+				}
+			],
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"filterMode": "MULTISELECT",
+					"buckets": [
+						{
+							"id": "0-11",
+							"name": "Range 0-11",
+							"from": 0,
+							"to": 11
+						},
+						{
+							"id": "11-22",
+							"name": "Range 11-22",
+							"from": 11,
+							"to": 22
+						},
+						{
+							"id": "22-33",
+							"name": "Range 22-33",
+							"from": 22,
+							"to": 33
+						},
+						{
+							"id": "33-44",
+							"name": "Range 33-44",
+							"from": 33,
+							"to": 44
+						}
+					]
+				}
+			],
+			"facetFilters": [
+				{
+					"type": "buckets",
+					"facetId": "field_integer_mv",
+					"bucketIds": [
+						"22-33"
+					]
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 1,
+			"totalSize": 1,
+			"searchHits": [
+				{
+					"id": "doc2"
+				}
+			],
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"name": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"filterMode": "MULTISELECT",
+					"buckets": [
+						{
+							"id": "0-11",
+							"name": "Range 0-11",
+							"count": 1
+						},
+						{
+							"id": "11-22",
+							"name": "Range 11-22",
+							"count": 2
+						},
+						{
+							"id": "22-33",
+							"name": "Range 22-33",
+							"count": 1
+						}
+					],
+					"selectedBuckets": [
+						{
+							"id": "22-33",
+							"name": "Range 22-33",
+							"count": 1
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 71,
+		"description": "facet with MULTISELECT filter mode with single facet filter and filter, no search hits",
+		"data": {
+			"filters": [
+				{
+					"query": {
+						"type": "matchTerm",
+						"expression": "size",
+						"value": "XXL"
+					}
+				}
+			],
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"filterMode": "MULTISELECT",
+					"buckets": [
+						{
+							"id": "0-11",
+							"name": "Range 0-11",
+							"from": 0,
+							"to": 11
+						},
+						{
+							"id": "11-22",
+							"name": "Range 11-22",
+							"from": 11,
+							"to": 22
+						},
+						{
+							"id": "22-33",
+							"name": "Range 22-33",
+							"from": 22,
+							"to": 33
+						},
+						{
+							"id": "33-44",
+							"name": "Range 33-44",
+							"from": 33,
+							"to": 44
+						}
+					]
+				}
+			],
+			"facetFilters": [
+				{
+					"type": "buckets",
+					"facetId": "field_integer_mv",
+					"bucketIds": [
+						"22-33"
+					]
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 0,
+			"totalSize": 0,
+			"searchHits": [],
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "field_integer_mv",
+					"name": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"filterMode": "MULTISELECT",
+					"buckets": [],
+					"selectedBuckets": [
+						{
+							"id": "22-33",
+							"name": "Range 22-33",
+							"count": 0
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 72,
+		"description": "facet name uses request language",
+		"languages": [
+			"de"
+		],
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "price",
+					"expression": "price",
+					"buckets": [
+						{
+							"id": "0-22",
+							"name": "Range 0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"name": "Range 22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "price",
+					"name": "Preis",
+					"expression": "price",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "0-22",
+							"name": "Range 0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "Range 22-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	}
+]

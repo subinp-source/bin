@@ -1,0 +1,16 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+verticalnavigationaddon.key=value
+
+# Specifies the location of the spring context file added automatically to the global platform application context.
+verticalnavigationaddon.application-context=verticalnavigationaddon-spring.xml
+
+yacceleratorstorefront.additionalWebSpringConfigs.verticalnavigationaddon=classpath:/verticalnavigationaddon/web/spring/verticalnavigationaddon-web-spring.xml
+yb2bacceleratorstorefront.additionalWebSpringConfigs.verticalnavigationaddon=classpath:/verticalnavigationaddon/web/spring/verticalnavigationaddon-web-spring.xml
+
+verticalnavigationaddon.javascript.paths.responsive=/responsive/common/js/verticalnavigationaddon.js
+verticalnavigationaddon.css.paths.responsive=/responsive/common/css/verticalnavigationaddon.css
+
+verticalnavigationaddon.awareof.addons=personalizationsampledataaddon

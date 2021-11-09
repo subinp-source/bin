@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widgets.xsd">
+
+    <widget-connection inputId="input" outputId="nodeSelected" sourceWidgetId="backofficesolrsearch-explorer-tree" targetWidgetId="backofficesolrsearch-tree-node-adapter"/>
+    <widget-connection inputId="genericInput" outputId="true" sourceWidgetId="backofficesolrsearch-tree-node-adapter" targetWidgetId="backofficesolrsearch-typecode-extractor"/>
+    <widget-connection inputId="genericInput" outputId="true" sourceWidgetId="backofficesolrsearch-tree-node-adapter" targetWidgetId="backofficesolrsearch-search-enabler"/>
+    <widget-connection inputId="genericInput" outputId="false" sourceWidgetId="backofficesolrsearch-tree-node-adapter" targetWidgetId="backofficesolrsearch-search-disabler"/>
+    <widget-connection inputId="type" outputId="genericOutput" sourceWidgetId="backofficesolrsearch-typecode-extractor" targetWidgetId="backofficesolrsearch-search-logic"/>
+    <widget-connection inputId="enabled" outputId="genericOutput" sourceWidgetId="backofficesolrsearch-search-enabler" targetWidgetId="backofficesolrsearch-text-search"/>
+    <widget-connection inputId="enabled" outputId="genericOutput" sourceWidgetId="backofficesolrsearch-search-disabler" targetWidgetId="backofficesolrsearch-text-search"/>
+    <widget-connection inputId="searchtext" outputId="query" sourceWidgetId="backofficesolrsearch-text-search" targetWidgetId="backofficesolrsearch-search-logic"/>
+    <widget-connection inputId="pageable" outputId="pageable" sourceWidgetId="backofficesolrsearch-search-logic" targetWidgetId="backofficesolrsearch-simple-list"/>
+
+</widgets>

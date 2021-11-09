@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="OOTB" importedAsReadOnly="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundleocctests/lib" recursive="true" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="commercewebservicestests" exported="" />
+    <orderEntry type="module" module-name="configurablebundleocc" exported="" />
+    <orderEntry type="module" module-name="platform" exported="" />
+  </component>
+</module>

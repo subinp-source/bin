@@ -1,0 +1,227 @@
+[
+	{
+		"testId": 1,
+		"description": "null query without searchable field, all documents match",
+		"data": {
+			"query": null
+		},
+		"expectedData": {
+			"size": 4,
+			"totalSize": 4
+		}
+	},
+	{
+		"testId": 2,
+		"description": "null query with searchable field, all documents match",
+		"fields": [
+			{
+				"id": "color",
+				"searchable": true
+			}
+		],
+		"data": {
+			"query": null
+		},
+		"expectedData": {
+			"size": 4,
+			"totalSize": 4
+		}
+	},
+	{
+		"testId": 3,
+		"description": "query without searchable field doesn't match any document",
+		"data": {
+			"query": "RED"
+		},
+		"expectedData": {
+			"size": 0,
+			"totalSize": 0,
+			"searchHits": []
+		}
+	},
+	{
+		"testId": 4,
+		"description": "query with searchable field matches single document",
+		"fields": [
+			{
+				"id": "color",
+				"searchable": true
+			}
+		],
+		"data": {
+			"query": "RED"
+		},
+		"expectedData": {
+			"size": 1,
+			"totalSize": 1,
+			"searchHits": [
+				{
+					"id": "doc1"
+				}
+			]
+		}
+	},
+	{
+		"testId": 5,
+		"description": "query with searchable field matches multiple documents",
+		"fields": [
+			{
+				"id": "color",
+				"searchable": true
+			}
+		],
+		"data": {
+			"query": "GREEN",
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_score_",
+						"ascending": false
+					},
+					{
+						"expression": "_id_",
+						"ascending": true
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 2,
+			"totalSize": 2,
+			"searchHits": [
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc3"
+				}
+			]
+		}
+	},
+	{
+		"testId": 6,
+		"description": "query with multiple searchable fields 1",
+		"fields": [
+			{
+				"id": "color",
+				"searchable": true
+			},
+			{
+				"id": "size",
+				"searchable": true
+			}
+		],
+		"data": {
+			"query": "RED",
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_score_",
+						"ascending": false
+					},
+					{
+						"expression": "_id_",
+						"ascending": true
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 1,
+			"totalSize": 1,
+			"searchHits": [
+				{
+					"id": "doc1"
+				}
+			]
+		}
+	},
+	{
+		"testId": 7,
+		"description": "query with multiple searchable fields 2",
+		"fields": [
+			{
+				"id": "color",
+				"searchable": true
+			},
+			{
+				"id": "size",
+				"searchable": true
+			}
+		],
+		"data": {
+			"query": "L"
+		},
+		"expectedData": {
+			"size": 1,
+			"totalSize": 1,
+			"searchHits": [
+				{
+					"id": "doc3"
+				}
+			]
+		}
+	},
+	{
+		"testId": 8,
+		"description": "query with multiple searchable fields and weights 1",
+		"fields": [
+			{
+				"id": "color_text",
+				"searchable": true,
+				"weight": 2.5
+			},
+			{
+				"id": "size_text",
+				"searchable": true,
+				"weight": 1
+			}
+		],
+		"data": {
+			"query": "RED L"
+		},
+		"expectedData": {
+			"size": 2,
+			"totalSize": 2,
+			"searchHits": [
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc3"
+				}
+			]
+		}
+	},
+	{
+		"testId": 9,
+		"description": "query with multiple searchable fields and weights 2",
+		"fields": [
+			{
+				"id": "color_text",
+				"searchable": true,
+				"weight": 1
+			},
+			{
+				"id": "size_text",
+				"searchable": true,
+				"weight": 2.5
+			}
+		],
+		"data": {
+			"query": "RED L"
+		},
+		"expectedData": {
+			"size": 2,
+			"totalSize": 2,
+			"searchHits": [
+				{
+					"id": "doc3"
+				},
+				{
+					"id": "doc1"
+				}
+			]
+		}
+	}
+]

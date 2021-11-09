@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="items.xsd">
+
+	<collectiontypes>
+		<collectiontype code="SnStringList" elementtype="java.lang.String" type="list" autocreate="true"
+			generate="false" />
+	</collectiontypes>
+
+	<enumtypes>
+		<enumtype code="SnFieldType" autocreate="true" generate="true">
+			<value code="STRING" />
+			<value code="TEXT" />
+			<value code="BOOLEAN" />
+			<value code="INTEGER" />
+			<value code="LONG" />
+			<value code="FLOAT" />
+			<value code="DOUBLE" />
+			<value code="DATE_TIME" />
+		</enumtype>
+		<enumtype code="SnDocumentOperationType" autocreate="true" generate="true">
+			<value code="CREATE" />
+			<value code="CREATE_UPDATE" />
+			<value code="DELETE" />
+		</enumtype>
+		<enumtype code="SnDocumentOperationStatus" autocreate="true" generate="true">
+			<value code="CREATED" />
+			<value code="UPDATED" />
+			<value code="DELETED" />
+			<value code="FAILED" />
+		</enumtype>
+		<enumtype code="SnIndexerOperationType" autocreate="true" generate="true">
+			<value code="FULL" />
+			<value code="INCREMENTAL" />
+		</enumtype>
+		<enumtype code="SnIndexerOperationStatus" autocreate="true" generate="true">
+			<value code="RUNNING" />
+			<value code="COMPLETED" />
+			<value code="ABORTED" />
+			<value code="FAILED" />
+		</enumtype>
+	</enumtypes>
+
+	<maptypes>
+		<maptype code="SnParametersMap" argumenttype="java.lang.String" returntype="java.lang.String" />
+	</maptypes>
+
+	<relations>
+		<relation code="SnIndexConfiguration2Language" autocreate="true" generate="true" localized="false">
+			<deployment table="SnIndexConf2Language" typecode="2270" />
+			<sourceElement type="SnIndexConfiguration" cardinality="many" navigable="false" />
+			<targetElement type="Language" qualifier="languages" cardinality="many" collectiontype="list"
+				ordered="true" />
+		</relation>
+
+		<relation code="SnIndexConfiguration2Currency" autocreate="true" generate="true" localized="false">
+			<deployment table="SnIndexConf2Currency" typecode="2271" />
+			<sourceElement type="SnIndexConfiguration" cardinality="many" navigable="false" />
+			<targetElement type="Currency" qualifier="currencies" cardinality="many" collectiontype="list"
+				ordered="true" />
+		</relation>
+
+		<relation code="SnIndexConfiguration2SearchProviderConfiguration" autocreate="true" generate="true"
+			localized="false">
+			<sourceElement type="SnIndexConfiguration" qualifier="indexConfigurations" cardinality="many"
+				collectiontype="list" />
+			<targetElement type="AbstractSnSearchProviderConfiguration" qualifier="searchProviderConfiguration"
+				cardinality="one" />
+		</relation>
+
+		<relation code="SnIndexConfiguration2IndexType" autocreate="true" generate="true" localized="false">
+			<sourceElement type="SnIndexConfiguration" qualifier="indexConfiguration" cardinality="one" />
+			<targetElement type="SnIndexType" qualifier="indexTypes" cardinality="many" collectiontype="list"
+				ordered="true" />
+		</relation>
+
+		<relation code="SnIndexConfiguration2SynonymDictionary" autocreate="true" generate="true" localized="false">
+			<deployment table="SnIndexConf2SynonymDic" typecode="2272" />
+			<sourceElement type="SnIndexConfiguration" qualifier="indexConfigurations" cardinality="many"
+				collectiontype="list" />
+			<targetElement type="SnSynonymDictionary" qualifier="synonymDictionaries" cardinality="many"
+				collectiontype="list" ordered="true" />
+		</relation>
+
+		<relation code="SnIndexType2Field" autocreate="true" generate="true" localized="false">
+			<sourceElement type="SnIndexType" qualifier="indexType" cardinality="one">
+				<modifiers optional="false" initial="true" write="false" />
+			</sourceElement>
+			<targetElement type="SnField" qualifier="fields" cardinality="many" collectiontype="list"
+				ordered="true">
+				<modifiers partof="true" />
+			</targetElement>
+		</relation>
+
+		<relation code="SnIndexType2Catalog" autocreate="true" generate="true" localized="false">
+			<deployment table="SnIndexType2Catalog" typecode="2273" />
+			<sourceElement type="SnIndexType" cardinality="many" navigable="false" />
+			<targetElement type="Catalog" qualifier="catalogs" cardinality="many" collectiontype="list"
+				ordered="true" />
+		</relation>
+
+		<relation code="SnIndexType2CatalogVersion" autocreate="true" generate="true" localized="false">
+			<deployment table="SnIndexType2CatalogVer" typecode="2274" />
+			<sourceElement type="SnIndexType" cardinality="many" navigable="false" />
+			<targetElement type="CatalogVersion" qualifier="catalogVersions" cardinality="many"
+				collectiontype="list" ordered="true" />
+		</relation>
+
+		<relation code="SnIndexType2IndexerCronJob" autocreate="true" generate="true" localized="false">
+			<sourceElement type="SnIndexType" qualifier="indexType" cardinality="one">
+				<modifiers optional="false" initial="true" write="false" />
+			</sourceElement>
+			<targetElement type="AbstractSnIndexerCronJob" qualifier="indexerCronJobs" cardinality="many"
+				collectiontype="list" ordered="true" />
+		</relation>
+
+		<relation code="SnSynonymDictionary2SynonymEntry" autocreate="true" generate="true" localized="false">
+			<sourceElement type="SnSynonymDictionary" qualifier="synonymDictionary" cardinality="one">
+				<modifiers optional="false" initial="true" write="false" />
+			</sourceElement>
+			<targetElement type="SnSynonymEntry" qualifier="entries" cardinality="many" collectiontype="list"
+				ordered="true">
+				<modifiers partof="true" />
+			</targetElement>
+		</relation>
+
+		<relation code="SnIndex2IndexerOperation" autocreate="true" generate="true" localized="false">
+			<sourceElement type="SnIndex" qualifier="index" cardinality="one">
+				<modifiers optional="false" initial="true" write="false" />
+			</sourceElement>
+			<targetElement type="SnIndexerOperation" qualifier="indexerOperations" cardinality="many"
+				collectiontype="list">
+				<modifiers partof="true" />
+			</targetElement>
+		</relation>
+
+		<relation code="SnIncrementalIndexerCronJob2IndexerItemSourceOperation" autocreate="true" generate="true"
+			localized="false">
+			<sourceElement type="IncrementalSnIndexerCronJob" qualifier="cronJob" cardinality="one" />
+			<targetElement type="SnIndexerItemSourceOperation" qualifier="indexerItemSourceOperations"
+				cardinality="many" collectiontype="list" ordered="true">
+				<modifiers partof="true" />
+			</targetElement>
+		</relation>
+	</relations>
+
+	<itemtypes>
+		<itemtype code="AbstractSnSearchProviderConfiguration" extends="GenericItem" abstract="true"
+			autocreate="true" generate="true">
+			<deployment table="SnSearchProvConf" typecode="2260" />
+			<attributes>
+				<attribute qualifier="id" type="java.lang.String">
+					<persistence type="property" />
+					<modifiers optional="false" />
+				</attribute>
+				<attribute qualifier="name" type="localized:java.lang.String">
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="listeners" type="SnStringList">
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+			<indexes>
+				<index name="uniqueIdx" unique="true">
+					<key attribute="id" />
+				</index>
+			</indexes>
+		</itemtype>
+
+		<itemtype code="SnIndexConfiguration" extends="GenericItem" autocreate="true" generate="true">
+			<deployment table="SnIndexConf" typecode="2261" />
+			<attributes>
+				<attribute qualifier="id" type="java.lang.String">
+					<persistence type="property" />
+					<modifiers optional="false" />
+				</attribute>
+				<attribute qualifier="name" type="localized:java.lang.String">
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="user" type="User">
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="listeners" type="SnStringList">
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+			<indexes>
+				<index name="uniqueIdx" unique="true">
+					<key attribute="id" />
+				</index>
+			</indexes>
+		</itemtype>
+
+		<itemtype code="SnIndexType" extends="GenericItem" autocreate="true" generate="true">
+			<deployment table="SnIndexType" typecode="2262" />
+			<attributes>
+				<attribute qualifier="id" type="java.lang.String">
+					<persistence type="property" />
+					<modifiers optional="false" />
+				</attribute>
+				<attribute qualifier="name" type="localized:java.lang.String">
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="itemComposedType" type="ComposedType">
+					<persistence type="property" />
+					<modifiers optional="false" />
+				</attribute>
+				<attribute qualifier="identityProvider" type="java.lang.String">
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="identityProviderParameters" type="SnParametersMap">
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="defaultValueProvider" type="java.lang.String">
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="defaultValueProviderParameters" type="SnParametersMap">
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="listeners" type="SnStringList">
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+			<indexes>
+				<index name="uniqueIdx" unique="true">
+					<key attribute="id" />
+				</index>
+			</indexes>
+		</itemtype>
+
+		<itemtype code="SnField" extends="GenericItem" autocreate="true" generate="true">
+			<deployment table="SnField" typecode="2263" />
+			<attributes>
+				<attribute qualifier="id" type="java.lang.String">
+					<persistence type="property" />
+					<modifiers optional="false" />
+				</attribute>
+				<attribute qualifier="name" type="localized:java.lang.String">
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="fieldType" type="SnFieldType">
+					<persistence type="property" />
+					<modifiers optional="false" />
+				</attribute>
+				<attribute qualifier="valueProvider" type="java.lang.String">
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="valueProviderParameters" type="SnParametersMap">
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="retrievable" type="java.lang.Boolean">
+					<persistence type="property" />
+					<modifiers optional="false" />
+					<defaultvalue>java.lang.Boolean.FALSE</defaultvalue>
+				</attribute>
+				<attribute qualifier="searchable" type="java.lang.Boolean">
+					<persistence type="property" />
+					<modifiers optional="false" />
+					<defaultvalue>java.lang.Boolean.FALSE</defaultvalue>
+				</attribute>
+				<attribute qualifier="localized" type="java.lang.Boolean">
+					<persistence type="property" />
+					<modifiers optional="false" />
+					<defaultvalue>java.lang.Boolean.FALSE</defaultvalue>
+				</attribute>
+				<attribute qualifier="qualifierTypeId" type="java.lang.String">
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="multiValued" type="java.lang.Boolean">
+					<persistence type="property" />
+					<modifiers optional="false" />
+					<defaultvalue>java.lang.Boolean.FALSE</defaultvalue>
+				</attribute>
+				<attribute qualifier="useForSpellchecking" type="java.lang.Boolean">
+					<persistence type="property" />
+					<modifiers optional="false" />
+					<defaultvalue>java.lang.Boolean.FALSE</defaultvalue>
+				</attribute>
+				<attribute qualifier="useForSuggesting" type="java.lang.Boolean">
+					<persistence type="property" />
+					<modifiers optional="false" />
+					<defaultvalue>java.lang.Boolean.FALSE</defaultvalue>
+				</attribute>
+				<attribute qualifier="weight" type="java.lang.Float">
+					<persistence type="property" />
+					<defaultvalue>Float.valueOf(1.0f)</defaultvalue>
+				</attribute>
+			</attributes>
+			<indexes>
+				<index name="uniqueIdx" unique="true">
+					<key attribute="indexType" />
+					<key attribute="id" />
+				</index>
+			</indexes>
+		</itemtype>
+
+		<itemtype code="SnSynonymDictionary" extends="GenericItem" autocreate="true" generate="true">
+			<deployment table="SnSynonymDic" typecode="2264" />
+			<attributes>
+				<attribute qualifier="id" type="java.lang.String">
+					<persistence type="property" />
+					<modifiers optional="false" />
+				</attribute>
+				<attribute qualifier="name" type="localized:java.lang.String">
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="languages" type="LanguageList">
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+			<indexes>
+				<index name="uniqueIdx" unique="true">
+					<key attribute="id" />
+				</index>
+			</indexes>
+		</itemtype>
+
+		<itemtype code="SnSynonymEntry" extends="GenericItem" autocreate="true" generate="true">
+			<deployment table="SnSynonymEntry" typecode="2265" />
+			<attributes>
+				<attribute qualifier="id" type="java.lang.String">
+					<persistence type="property" />
+					<modifiers optional="false" />
+				</attribute>
+				<attribute qualifier="input" type="SnStringList">
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="synonyms" type="SnStringList">
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+			<indexes>
+				<index name="uniqueIdx" unique="true">
+					<key attribute="synonymDictionary" />
+					<key attribute="id" />
+				</index>
+			</indexes>
+		</itemtype>
+
+		<itemtype code="SnIndex" extends="GenericItem" autocreate="true" generate="true">
+			<deployment table="SnIndex" typecode="2266" />
+			<attributes>
+				<attribute qualifier="id" type="java.lang.String">
+					<persistence type="property" />
+					<modifiers optional="false" />
+				</attribute>
+			</attributes>
+			<indexes>
+				<index name="uniqueIdx" unique="true">
+					<key attribute="id" />
+				</index>
+			</indexes>
+		</itemtype>
+
+		<itemtype code="SnIndexerOperation" extends="GenericItem" autocreate="true" generate="true">
+			<deployment table="SnIndexerOp" typecode="2267" />
+			<attributes>
+				<attribute qualifier="id" type="java.lang.String">
+					<persistence type="property" />
+					<modifiers optional="false" />
+				</attribute>
+			</attributes>
+			<indexes>
+				<index name="uniqueIdx" unique="true">
+					<key attribute="id" />
+				</index>
+			</indexes>
+		</itemtype>
+
+		<itemtype code="AbstractSnIndexerItemSource" extends="GenericItem" abstract="true" autocreate="true"
+			generate="true">
+			<deployment table="SnIndexerItemSrc" typecode="2268" />
+		</itemtype>
+
+		<itemtype code="FlexibleSearchSnIndexerItemSource" extends="AbstractSnIndexerItemSource" autocreate="true"
+			generate="true">
+			<attributes>
+				<attribute qualifier="query" type="java.lang.String">
+					<persistence type="property">
+						<columntype>
+							<value>HYBRIS.LONG_STRING</value>
+						</columntype>
+					</persistence>
+					<modifiers optional="false" />
+				</attribute>
+			</attributes>
+		</itemtype>
+
+		<itemtype code="SnIndexerItemSourceOperation" extends="GenericItem" autocreate="true" generate="true">
+			<deployment table="SnIndexerItemSrcOp" typecode="2269" />
+			<attributes>
+				<attribute qualifier="documentOperationType" type="SnDocumentOperationType">
+					<persistence type="property" />
+					<modifiers optional="false" />
+					<defaultvalue>em().getEnumerationValue("SnDocumentOperationType","CREATE_UPDATE")</defaultvalue>
+				</attribute>
+				<attribute qualifier="indexerItemSource" type="AbstractSnIndexerItemSource">
+					<persistence type="property" />
+					<modifiers partof="true" />
+				</attribute>
+			</attributes>
+		</itemtype>
+
+		<itemtype code="AbstractSnIndexerCronJob" extends="CronJob" abstract="true" autocreate="true" generate="true">
+			<attributes>
+				<attribute qualifier="lastSuccessfulStartTime" type="java.util.Date">
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+		</itemtype>
+
+		<itemtype code="FullSnIndexerCronJob" extends="AbstractSnIndexerCronJob" autocreate="true" generate="true">
+			<attributes>
+				<attribute qualifier="indexerItemSource" type="AbstractSnIndexerItemSource">
+					<persistence type="property" />
+					<modifiers partof="true" />
+				</attribute>
+			</attributes>
+		</itemtype>
+
+		<itemtype code="IncrementalSnIndexerCronJob" extends="AbstractSnIndexerCronJob" autocreate="true"
+			generate="true" />
+
+		<typegroup name="validation">
+			<itemtype code="SnWeightConstraint" autocreate="true" generate="true" extends="AttributeConstraint">
+				<attributes>
+					<attribute qualifier="annotation" type="java.lang.Class" redeclare="true">
+						<modifiers write="false" initial="true" />
+						<defaultvalue>de.hybris.platform.searchservices.validation.constraints.SnWeight.class</defaultvalue>
+					</attribute>
+				</attributes>
+			</itemtype>
+
+			<itemtype code="SnCollectionPatternConstraint" autocreate="true" generate="true"
+				extends="AttributeConstraint">
+				<attributes>
+					<attribute qualifier="annotation" type="java.lang.Class" redeclare="true">
+						<modifiers write="false" initial="true" />
+						<defaultvalue>de.hybris.platform.searchservices.validation.constraints.SnCollectionPattern.class</defaultvalue>
+					</attribute>
+					<attribute qualifier="regexp" type="java.lang.String">
+						<modifiers read="true" write="true" search="true" optional="false" initial="true" />
+						<persistence type="property" />
+					</attribute>
+					<attribute qualifier="flags" type="FlagsCollection">
+						<modifiers read="true" write="true" search="false" optional="false" initial="true" />
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+			</itemtype>
+		</typegroup>
+	</itemtypes>
+</items>

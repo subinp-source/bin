@@ -1,0 +1,102 @@
+.yw-listLayout-widget {
+  overflow: auto;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0; }
+.yw-listLayout-container {
+  padding-bottom: 30px;
+  max-width: 1260px;
+  display: block;
+  box-sizing: border-box;
+  text-align: left;
+  width: auto;
+  height: auto;
+  margin: 0 auto; }
+  .yw-listLayout-container > .widget_children_list > .widget_cnt {
+    margin: 30px 30px 0;
+    box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.3);
+    padding: 0; }
+    .cng-adminmode .yw-listLayout-container > .widget_children_list > .widget_cnt, .yw-listLayout-container > .widget_children_list > .widget_cnt:empty {
+      margin: 0; }
+    .yw-listLayout-container > .widget_children_list > .widget_cnt:empty {
+      display: none; }
+.yw-listLayout-widget_flexible .yw-listLayout-container {
+  min-height: 100%;
+  box-sizing: border-box;
+  max-width: none; }
+  .yw-listLayout-widget_flexible .yw-listLayout-container > .widget_children_list {
+    padding-top: 30px; }
+    .yw-listLayout-widget_flexible .yw-listLayout-container > .widget_children_list:only-child {
+      top: 0;
+      position: absolute;
+      padding-top: 30px;
+      padding-bottom: 30px;
+      bottom: 0;
+      height: auto;
+      width: 100%;
+      overflow: auto; }
+      .yw-listLayout-widget_flexible .yw-listLayout-container > .widget_children_list:only-child > .widget_cnt:first-child {
+        margin-top: 0; }
+  .yw-listLayout-widget_flexible .yw-listLayout-container > .widget_children_list,
+  .yw-listLayout-widget_flexible .yw-listLayout-container .yw-collaboration-center-browser > .z-div:first-child {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column; }
+  .yw-listLayout-widget_flexible .yw-listLayout-container > .widget_children_list > .widget_cnt:only-child,
+  .yw-listLayout-widget_flexible .yw-listLayout-container .yw-collaboration-center-browser .yw-coll-browser-container {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1; }
+  .yw-listLayout-widget_flexible .yw-listLayout-container > .widget_children_list > .widget_cnt:only-child {
+    max-height: 100%; }
+  .yw-listLayout-widget_flexible .yw-listLayout-container .yw-collaboration-center-browser {
+    overflow: hidden; }
+    .yw-listLayout-widget_flexible .yw-listLayout-container .yw-collaboration-center-browser .yw-coll-browser-container {
+      overflow: hidden; }
+      .yw-listLayout-widget_flexible .yw-listLayout-container .yw-collaboration-center-browser .yw-coll-browser-container .yw-coll-browser-tree-view-table {
+        overflow: auto !important;
+        height: 100% !important;
+        max-height: 100%;
+        max-width: 100%; }
+        .yw-listLayout-widget_flexible .yw-listLayout-container .yw-collaboration-center-browser .yw-coll-browser-container .yw-coll-browser-tree-view-table > .z-tree-body {
+          height: auto !important;
+          overflow: visible !important; }
+      .yw-listLayout-widget_flexible .yw-listLayout-container .yw-collaboration-center-browser .yw-coll-browser-container > .z-listbox {
+        min-height: 100%;
+        max-height: 100%;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column; }
+        .yw-listLayout-widget_flexible .yw-listLayout-container .yw-collaboration-center-browser .yw-coll-browser-container > .z-listbox > .z-listbox-header {
+          -webkit-box-flex: 0;
+          -webkit-flex: 0 0 auto;
+          -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+          position: relative; }
+          .yw-listLayout-widget_flexible .yw-listLayout-container .yw-collaboration-center-browser .yw-coll-browser-container > .z-listbox > .z-listbox-header > table {
+            min-width: auto; }
+          .yw-listLayout-widget_flexible .yw-listLayout-container .yw-collaboration-center-browser .yw-coll-browser-container > .z-listbox > .z-listbox-header .z-listhead-bar {
+            height: 100%;
+            background-color: transparent;
+            border-color: transparent; }
+        .yw-listLayout-widget_flexible .yw-listLayout-container .yw-collaboration-center-browser .yw-coll-browser-container > .z-listbox > .z-listbox-body {
+          margin-bottom: -1px; }
+      .yw-listLayout-widget_flexible .yw-listLayout-container .yw-collaboration-center-browser .yw-coll-browser-container + .yw-listview-bottom-bar {
+        overflow: visible; }
+        .yw-listLayout-widget_flexible .yw-listLayout-container .yw-collaboration-center-browser .yw-coll-browser-container + .yw-listview-bottom-bar > div {
+          height: auto; }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<editor-definition id="de.hybris.platform.adaptivesearchbackoffice.editors.configurablemultireference" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/editor-definition.xsd">
+
+    <name>Configurable Multi Reference Editor</name>
+    <description>Configurable Multi Reference Editor</description>
+
+    <author>hybris</author>
+    <version>0.1</version>
+
+    <type>^List\((.*)\)$</type>
+    <editorClassName>de.hybris.platform.adaptivesearchbackoffice.editors.configurablemultireference.ConfigurableMultiReferenceEditor</editorClassName>
+
+    <sockets>
+        <output id="createRequest" type="java.util.Map" />
+        <input id="createResult" type="java.util.Map" />
+        <output id="updateRequest" type="com.hybris.cockpitng.data.TypeAwareSelectionContext" />
+        <input id="updateResult" type="java.lang.Object" />
+    </sockets>
+
+</editor-definition>

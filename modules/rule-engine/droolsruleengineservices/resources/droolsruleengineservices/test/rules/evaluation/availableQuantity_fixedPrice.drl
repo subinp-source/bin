@@ -1,0 +1,32 @@
+package de.hybris.platform.ruleengineservices.test
+
+import java.math.*;
+import de.hybris.platform.ruleengineservices.rao.*;
+import de.hybris.platform.ruleengineservices.rule.evaluation.*;
+import de.hybris.platform.ruleengineservices.rrd.*;
+import java.util.Map;
+import de.hybris.platform.droolsruleengineservices.compiler.impl.DefaultDroolsRuleActionContext;
+import de.hybris.platform.ruleengineservices.rule.evaluation.impl.RuleAndRuleGroupExecutionTracker;
+
+global de.hybris.platform.ruleengineservices.rule.evaluation.RuleExecutableAction ruleOrderEntryFixedPriceAction;
+
+salience 10;
+
+rule "availableQuantity_fixedPrice"
+@ruleCode("availableQuantity_fixedPrice.drl")
+@moduleName("rules-module-junit")
+dialect "mvel"
+
+    when
+        $entries : ArrayList(size > 0) from collect( OrderEntryRAO(productCode=="1422222", quantity > 0) )
+        $executionTracker := RuleAndRuleGroupExecutionTracker()
+		$result : RuleEngineResultRAO()
+
+    then
+    	Map variables = [
+      		"de.hybris.platform.ruleengineservices.rao.OrderEntryRAO" : $entries,
+      		"de.hybris.platform.ruleengineservices.rao.RuleEngineResultRAO" : $result
+   		];
+		ruleOrderEntryFixedPriceAction.executeAction(new DefaultDroolsRuleActionContext(variables, kcontext), ["value":["USD":new BigDecimal(50)]]);
+		$executionTracker.trackRuleExecution(kcontext);  	
+end

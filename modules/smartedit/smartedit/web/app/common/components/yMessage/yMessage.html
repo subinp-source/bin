@@ -1,0 +1,9 @@
+<se-message [message-id]="$ctrl.messageId" [type]="$ctrl.type">
+    <div se-message-title id="y-message-title"></div>
+    <div se-message-description id="y-message-description"></div>
+</se-message>
+
+<div ng-hide="true">
+    <div ng-transclude="messageTitle" id="y-message-title-source"></div>
+    <div ng-transclude="messageDescription" id="y-message-description-source"></div>
+</div>

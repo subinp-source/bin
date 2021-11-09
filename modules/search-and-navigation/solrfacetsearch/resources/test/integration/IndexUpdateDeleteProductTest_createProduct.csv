@@ -1,0 +1,5 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+INSERT_UPDATE Product;code[unique=true];catalogversion(catalog(id),version)[unique=true];name[lang=en];approvalStatus(code);description[lang=en]
+;producttesttwo;hwcatalog:Online${testId};nametesttwo;approved;descriptiontesttwo

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+
+
+<widget xmlns="http://www.zkoss.org/2005/zul"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.hybris.com/schema/cockpitng/zul/zul.xsd"
+        height="250px">
+    <style src="${wr}/registerdestinationtarget.css"/>
+    <vlayout>
+        <div class="yrb-modal-content">
+            <vbox>
+                <label value="${c:l('label.token.url')}" class="description" sclass="yrb-modal-label"/>
+                <textbox id="tokenUrl" cols="80" type="url" sclass="yrb-modal-textbox"/>
+                <label value="${c:l('label.destination.target.new.id')}" class="description" sclass="yrb-modal-label"/>
+                <textbox id="newDestinationTargetId" cols="80" sclass="yrb-modal-textbox"/>
+                <button id="registerDestinationTarget" label="${c:l('button.destinationtarget.register')}"
+                        sclass="y-btn-primary yrb-modal-button"/>
+            </vbox>
+        </div>
+    </vlayout>
+</widget>

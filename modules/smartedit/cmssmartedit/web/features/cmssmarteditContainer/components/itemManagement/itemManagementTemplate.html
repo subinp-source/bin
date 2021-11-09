@@ -1,0 +1,15 @@
+<div>
+    <se-generic-editor
+        [id]="$ctrl.editorId"
+        [smartedit-component-id]="$ctrl.itemId"
+        [smartedit-component-type]="$ctrl.componentType"
+        [structure-api]="$ctrl.structureApi"
+        [content]="$ctrl.item"
+        [content-api]="$ctrl.contentApi"
+        [(is-dirty)]="$ctrl.isDirtyInternal"
+        [(submit)]="$ctrl.submit"
+        [uri-context]="$ctrl.uriContext"
+        [(reset)]="$ctrl.reset"
+    >
+    </se-generic-editor>
+</div>

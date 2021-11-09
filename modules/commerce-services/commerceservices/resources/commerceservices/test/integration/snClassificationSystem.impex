@@ -1,0 +1,57 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+$classificationSystem=SnClassification
+$classificationSystemVersion=1.0
+
+$classCatalogVersion=catalogversion(catalog(id[default='$classificationSystem']),version[default='$classificationSystemVersion'])[unique=true]
+$classSystemVersion=systemVersion(catalog(id[default='$classificationSystem']),version[default='$classificationSystemVersion'])[unique=true]
+$classClass=classificationClass(ClassificationClass.code,$classCatalogVersion)[unique=true]
+$classAttribute=classificationAttribute(code,$classSystemVersion)[unique=true]
+
+
+INSERT_UPDATE ClassificationSystem ; id[unique=true]      
+                                   ; $classificationSystem
+
+INSERT_UPDATE ClassificationSystemVersion ; catalog(id)[unique=true] ; version[unique=true]         ; active
+                                          ; $classificationSystem    ; $classificationSystemVersion ; true  
+
+INSERT_UPDATE ClassificationClass ; code[unique=true] ; $classCatalogVersion
+                                  ; fields            ;                     
+
+INSERT_UPDATE ClassificationAttribute ; code[unique=true]  ; $classSystemVersion                    
+                                      ; field_string       ;                    
+                                      ; field_string_mv    ;                    
+                                      ; field_text         ;                    
+                                      ; field_text_mv      ;                    
+                                      ; field_boolean      ;                    
+                                      ; field_boolean_mv   ;                    
+                                      ; field_integer      ;                    
+                                      ; field_integer_mv   ;                    
+                                      ; field_long         ;                    
+                                      ; field_long_mv      ;                    
+                                      ; field_float        ;                    
+                                      ; field_float_mv     ;                    
+                                      ; field_double       ;                    
+                                      ; field_double_mv    ;                    
+                                      ; field_date_time    ;                    
+                                      ; field_date_time_mv ;                    
+
+INSERT_UPDATE ClassAttributeAssignment ; $classClass ; $classAttribute    ; position ; attributeType(code[default=string]) ; multiValued      
+                                       ; fields      ; field_string       ; 1        ; string                              ; false      
+                                       ; fields      ; field_string_mv    ; 2        ; string                              ; true       
+                                       ; fields      ; field_text         ; 3        ; string                              ; false      
+                                       ; fields      ; field_text_mv      ; 4        ; string                              ; true       
+                                       ; fields      ; field_boolean      ; 5        ; boolean                             ; false      
+                                       ; fields      ; field_boolean_mv   ; 6        ; boolean                             ; true       
+                                       ; fields      ; field_integer      ; 7        ; number                              ; false      
+                                       ; fields      ; field_integer_mv   ; 8        ; number                              ; true       
+                                       ; fields      ; field_long         ; 9        ; number                              ; false      
+                                       ; fields      ; field_long_mv      ; 10       ; number                              ; true       
+                                       ; fields      ; field_float        ; 11       ; number                              ; false      
+                                       ; fields      ; field_float_mv     ; 12       ; number                              ; true       
+                                       ; fields      ; field_double       ; 13       ; number                              ; false      
+                                       ; fields      ; field_double_mv    ; 14       ; number                              ; true       
+                                       ; fields      ; field_date_time    ; 15       ; date                                ; false      
+                                       ; fields      ; field_date_time_mv ; 16       ; date                                ; true       

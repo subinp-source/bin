@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<action-definition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   id="com.hybris.backoffice.widgets.actions.bulkedit"
+                   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/action-definition.xsd">
+
+    <name>Bulk Edit</name>
+    <description>Action which allows to edit many items at once</description>
+    <author>hybris</author>
+    <version>1.0</version>
+
+    <sockets>
+        <output id="bulkEditCtx" type="java.util.Map"/>
+    </sockets>
+
+    <iconUri>icons/icon_action_bulkedit_default.png</iconUri>
+    <iconHoverUri>icons/icon_action_bulkedit_hover.png</iconHoverUri>
+    <iconDisabledUri>icons/icon_action_bulkedit_disabled.png</iconDisabledUri>
+    <actionClassName>com.hybris.backoffice.widgets.actions.bulkedit.BulkEditAction</actionClassName>
+</action-definition>

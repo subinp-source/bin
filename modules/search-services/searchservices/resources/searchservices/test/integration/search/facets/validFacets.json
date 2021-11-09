@@ -1,0 +1,1205 @@
+[
+	{
+		"testId": 1,
+		"description": "facets are returned in the requested order 1",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"expression": "color"
+				},
+				{
+					"type": "rangeBuckets",
+					"id": "price",
+					"expression": "price",
+					"buckets": [
+						{
+							"id": "0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"name": "Color",
+					"expression": "color",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "GREEN",
+							"name": "GREEN",
+							"count": 2
+						},
+						{
+							"id": "RED",
+							"name": "RED",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				},
+				{
+					"type": "rangeBuckets",
+					"id": "price",
+					"name": "Price",
+					"expression": "price",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 2,
+		"description": "facets are returned in the requested order 2",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "price",
+					"expression": "price",
+					"buckets": [
+						{
+							"id": "0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				},
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"expression": "color"
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "price",
+					"name": "Price",
+					"expression": "price",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				},
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"name": "Color",
+					"expression": "color",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "GREEN",
+							"name": "GREEN",
+							"count": 2
+						},
+						{
+							"id": "RED",
+							"name": "RED",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 3,
+		"description": "facets using id (different from expression)",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "facet1",
+					"expression": "color"
+				},
+				{
+					"type": "rangeBuckets",
+					"id": "facet2",
+					"expression": "price",
+					"buckets": [
+						{
+							"id": "0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "facet1",
+					"name": "Color",
+					"expression": "color",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "GREEN",
+							"name": "GREEN",
+							"count": 2
+						},
+						{
+							"id": "RED",
+							"name": "RED",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				},
+				{
+					"type": "rangeBuckets",
+					"id": "facet2",
+					"name": "Price",
+					"expression": "price",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 4,
+		"description": "facets using id (different from expression) and facet filters",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "facet1",
+					"expression": "color"
+				},
+				{
+					"type": "rangeBuckets",
+					"id": "facet2",
+					"expression": "price",
+					"buckets": [
+						{
+							"id": "0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			],
+			"facetFilters": [
+				{
+					"type": "buckets",
+					"facetId": "facet1",
+					"bucketIds": [
+						"GREEN"
+					]
+				},
+				{
+					"type": "buckets",
+					"facetId": "facet2",
+					"bucketIds": [
+						"0-22"
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"size": 1,
+			"totalSize": 1,
+			"searchHits": [
+				{
+					"id": "doc2"
+				}
+			],
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "facet1",
+					"name": "Color",
+					"expression": "color",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "GREEN",
+							"name": "GREEN",
+							"count": 1
+						}
+					],
+					"selectedBuckets": [
+						{
+							"id": "GREEN",
+							"name": "GREEN",
+							"count": 1
+						}
+					]
+				},
+				{
+					"type": "rangeBuckets",
+					"id": "facet2",
+					"name": "Price",
+					"expression": "price",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 1
+						}
+					],
+					"selectedBuckets": [
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 1
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 5,
+		"description": "facets with REFINE and MULTISELECT filter modes without facet filters",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"expression": "color",
+					"filterMode": "REFINE",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				},
+				{
+					"type": "rangeBuckets",
+					"id": "price",
+					"expression": "price",
+					"filterMode": "MULTISELECT",
+					"buckets": [
+						{
+							"id": "0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 4,
+			"totalSize": 4,
+			"searchHits": [
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc3"
+				},
+				{
+					"id": "doc4"
+				}
+			],
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"name": "Color",
+					"expression": "color",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "GREEN",
+							"name": "GREEN",
+							"count": 2
+						},
+						{
+							"id": "RED",
+							"name": "RED",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				},
+				{
+					"type": "rangeBuckets",
+					"id": "price",
+					"name": "Price",
+					"expression": "price",
+					"filterMode": "MULTISELECT",
+					"buckets": [
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 6,
+		"description": "facets with REFINE and MULTISELECT filter modes with REFINE facet filter",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"expression": "color",
+					"filterMode": "REFINE",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				},
+				{
+					"type": "rangeBuckets",
+					"id": "price",
+					"expression": "price",
+					"filterMode": "MULTISELECT",
+					"buckets": [
+						{
+							"id": "0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			],
+			"facetFilters": [
+				{
+					"type": "buckets",
+					"facetId": "color",
+					"bucketIds": [
+						"GREEN"
+					]
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 2,
+			"totalSize": 2,
+			"searchHits": [
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc3"
+				}
+			],
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"name": "Color",
+					"expression": "color",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "GREEN",
+							"name": "GREEN",
+							"count": 2
+						}
+					],
+					"selectedBuckets": [
+						{
+							"id": "GREEN",
+							"name": "GREEN",
+							"count": 2
+						}
+					]
+				},
+				{
+					"type": "rangeBuckets",
+					"id": "price",
+					"name": "Price",
+					"expression": "price",
+					"filterMode": "MULTISELECT",
+					"buckets": [
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 1
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 7,
+		"description": "facets with REFINE and MULTISELECT filter modes with MULTISELECT facet filter",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"expression": "color",
+					"filterMode": "REFINE",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				},
+				{
+					"type": "rangeBuckets",
+					"id": "price",
+					"expression": "price",
+					"filterMode": "MULTISELECT",
+					"buckets": [
+						{
+							"id": "0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			],
+			"facetFilters": [
+				{
+					"type": "buckets",
+					"facetId": "price",
+					"bucketIds": [
+						"0-22"
+					]
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 2,
+			"totalSize": 2,
+			"searchHits": [
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc2"
+				}
+			],
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"name": "Color",
+					"expression": "color",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "GREEN",
+							"name": "GREEN",
+							"count": 1
+						},
+						{
+							"id": "RED",
+							"name": "RED",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				},
+				{
+					"type": "rangeBuckets",
+					"id": "price",
+					"name": "Price",
+					"expression": "price",
+					"filterMode": "MULTISELECT",
+					"buckets": [
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": [
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 8,
+		"description": "facets with REFINE and MULTISELECT filter modes with REFINE and MULTISELECT facet filters",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"expression": "color",
+					"filterMode": "REFINE",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				},
+				{
+					"type": "rangeBuckets",
+					"id": "price",
+					"expression": "price",
+					"filterMode": "MULTISELECT",
+					"buckets": [
+						{
+							"id": "0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			],
+			"facetFilters": [
+				{
+					"type": "buckets",
+					"facetId": "color",
+					"bucketIds": [
+						"GREEN"
+					]
+				},
+				{
+					"type": "buckets",
+					"facetId": "price",
+					"bucketIds": [
+						"0-22"
+					]
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 1,
+			"totalSize": 1,
+			"searchHits": [
+				{
+					"id": "doc2"
+				}
+			],
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"name": "Color",
+					"expression": "color",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "GREEN",
+							"name": "GREEN",
+							"count": 1
+						}
+					],
+					"selectedBuckets": [
+						{
+							"id": "GREEN",
+							"name": "GREEN",
+							"count": 1
+						}
+					]
+				},
+				{
+					"type": "rangeBuckets",
+					"id": "price",
+					"name": "Price",
+					"expression": "price",
+					"filterMode": "MULTISELECT",
+					"buckets": [
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 1
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": [
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 1
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 9,
+		"description": "facets with MULTISELECT and REFINE filter modes without facet filters",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"expression": "color",
+					"filterMode": "MULTISELECT",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				},
+				{
+					"type": "rangeBuckets",
+					"id": "price",
+					"expression": "price",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 4,
+			"totalSize": 4,
+			"searchHits": [
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc3"
+				},
+				{
+					"id": "doc4"
+				}
+			],
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"name": "Color",
+					"expression": "color",
+					"filterMode": "MULTISELECT",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "GREEN",
+							"name": "GREEN",
+							"count": 2
+						},
+						{
+							"id": "RED",
+							"name": "RED",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				},
+				{
+					"type": "rangeBuckets",
+					"id": "price",
+					"name": "Price",
+					"expression": "price",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 10,
+		"description": "facets with MULTISELECT and REFINE filter modes with MULTISELECT facet filter",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"expression": "color",
+					"filterMode": "MULTISELECT",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				},
+				{
+					"type": "rangeBuckets",
+					"id": "price",
+					"expression": "price",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			],
+			"facetFilters": [
+				{
+					"type": "buckets",
+					"facetId": "color",
+					"bucketIds": [
+						"GREEN"
+					]
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 2,
+			"totalSize": 2,
+			"searchHits": [
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc3"
+				}
+			],
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"name": "Color",
+					"expression": "color",
+					"filterMode": "MULTISELECT",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "GREEN",
+							"name": "GREEN",
+							"count": 2
+						},
+						{
+							"id": "RED",
+							"name": "RED",
+							"count": 1
+						}
+					],
+					"selectedBuckets": [
+						{
+							"id": "GREEN",
+							"name": "GREEN",
+							"count": 2
+						}
+					]
+				},
+				{
+					"type": "rangeBuckets",
+					"id": "price",
+					"name": "Price",
+					"expression": "price",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 1
+						},
+						{
+							"id": "22-44",
+							"name": "22-44",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 11,
+		"description": "facets with MULTISELECT and REFINE filter modes with REFINE facet filter",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"expression": "color",
+					"filterMode": "MULTISELECT",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				},
+				{
+					"type": "rangeBuckets",
+					"id": "price",
+					"expression": "price",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			],
+			"facetFilters": [
+				{
+					"type": "buckets",
+					"facetId": "price",
+					"bucketIds": [
+						"0-22"
+					]
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 2,
+			"totalSize": 2,
+			"searchHits": [
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc2"
+				}
+			],
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"name": "Color",
+					"expression": "color",
+					"filterMode": "MULTISELECT",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "GREEN",
+							"name": "GREEN",
+							"count": 1
+						},
+						{
+							"id": "RED",
+							"name": "RED",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				},
+				{
+					"type": "rangeBuckets",
+					"id": "price",
+					"name": "Price",
+					"expression": "price",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						}
+					],
+					"selectedBuckets": [
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 2
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 12,
+		"description": "facets with MULTISELECT and REFINE filter modes with MULTISELECT and REFINE facet filters",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"expression": "color",
+					"filterMode": "MULTISELECT",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				},
+				{
+					"type": "rangeBuckets",
+					"id": "price",
+					"expression": "price",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "0-22",
+							"from": 0,
+							"to": 22
+						},
+						{
+							"id": "22-44",
+							"from": 22,
+							"to": 44
+						}
+					]
+				}
+			],
+			"facetFilters": [
+				{
+					"type": "buckets",
+					"facetId": "color",
+					"bucketIds": [
+						"GREEN"
+					]
+				},
+				{
+					"type": "buckets",
+					"facetId": "price",
+					"bucketIds": [
+						"0-22"
+					]
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 1,
+			"totalSize": 1,
+			"searchHits": [
+				{
+					"id": "doc2"
+				}
+			],
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"name": "Color",
+					"expression": "color",
+					"filterMode": "MULTISELECT",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "GREEN",
+							"name": "GREEN",
+							"count": 1
+						},
+						{
+							"id": "RED",
+							"name": "RED",
+							"count": 1
+						}
+					],
+					"selectedBuckets": [
+						{
+							"id": "GREEN",
+							"name": "GREEN",
+							"count": 1
+						}
+					]
+				},
+				{
+					"type": "rangeBuckets",
+					"id": "price",
+					"name": "Price",
+					"expression": "price",
+					"filterMode": "REFINE",
+					"buckets": [
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 1
+						}
+					],
+					"selectedBuckets": [
+						{
+							"id": "0-22",
+							"name": "0-22",
+							"count": 1
+						}
+					]
+				}
+			]
+		}
+	}
+]

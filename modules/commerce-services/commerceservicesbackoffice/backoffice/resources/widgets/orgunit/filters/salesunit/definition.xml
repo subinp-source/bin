@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<widget-definition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widget-definition.xsd"
+	id="de.hybris.organizationbackoffice.widgets.OrgSalesUnit">
+	 	
+	<name>Organization Sales Units Advanced Search Initializer</name>
+	<description>Organization Sales Units Advanced Search Initializer</description>
+	<defaultTitle>Organization Sales Units Advanced Search Initializer</defaultTitle>
+	<author>hybris</author>
+	<version>1.0</version>
+
+	<sockets>
+		<input id="nodeSelected" type="com.hybris.backoffice.navigation.NavigationNode" />
+		<output id="outContext" type="com.hybris.backoffice.widgets.advancedsearch.impl.AdvancedSearchInitContext" />
+	</sockets>
+	<view src="none" />
+	<controller class="de.hybris.platform.commerceservices.backoffice.widgets.orgunits.search.initializer.sales.SalesUnitFilterController" />
+	<keywords>
+		<keyword>_hidden</keyword>
+	</keywords>
+</widget-definition>

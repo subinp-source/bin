@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <alias name="defaultSSOUserService" alias="ssoUserService"/>
+
+    <bean id="defaultSSOUserService" class="de.hybris.platform.samlsinglesignon.DefaultSSOService"
+          parent="abstractService">
+        <property name="modelService" ref="modelService"/>
+        <property name="userService" ref="userService"/>
+        <property name="samlUserGroupDAO" ref="samlUserGroupDAO"/>
+    </bean>
+
+    <alias name="defaultSamlUserGroupDAO" alias="samlUserGroupDAO"/>
+    <bean id="defaultSamlUserGroupDAO" class="de.hybris.platform.samlsinglesignon.DefaultSamlUserGroupDAO">
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+
+    <alias name="defaultSamlService" alias="samlService"/>
+    <bean id="defaultSamlService" class="de.hybris.platform.samlsinglesignon.DefaultSAMLService"/>
+
+    <alias name="defaultLoginSamlService" alias="samlLoginService"/>
+    <bean id="defaultLoginSamlService" class="de.hybris.platform.samlsinglesignon.DefaultSamlLoginService" />
+
+    <alias name="defaultRedirectionControllerBase" alias="redirectionControllerBase"/>
+    <bean id="defaultRedirectionControllerBase" class="de.hybris.platform.samlsinglesignon.RedirectionControllerBase" />
+</beans>

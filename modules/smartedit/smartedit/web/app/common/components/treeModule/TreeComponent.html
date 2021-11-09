@@ -1,0 +1,20 @@
+<div class="categoryTable se-tree">
+    <div class="se-tree__body">
+        <div class="desktopLayout">
+            <ol class="se-tree__nodes">
+                <li
+                    *ngIf="(this.treeService.dataSource.get() | async).length === 0"
+                    class="se-tree__nodes--nodata"
+                >
+                    {{ 'se.ytree.no.nodes.to.display' | translate }}
+                </li>
+
+                <li class="se-tree__nodes--item">
+                    <se-tree-node
+                        [source]="this.treeService.dataSource.get() | async"
+                    ></se-tree-node>
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,99 @@
+[
+	{
+		"testId": 1,
+		"description": "'match' query without expression",
+		"data": {
+			"type": "match",
+			"value": "green"
+		}
+	},
+	{
+		"testId": 2,
+		"description": "'match' query with empty expression",
+		"data": {
+			"type": "match",
+			"expression": "",
+			"value": "green"
+		}
+	},
+	{
+		"testId": 3,
+		"description": "'match' query with invalid expression",
+		"data": {
+			"type": "match",
+			"expression": "-$!#-",
+			"value": "car"
+		}
+	},
+	{
+		"testId": 4,
+		"description": "'match' query with not existing expression",
+		"data": {
+			"type": "match",
+			"expression": "notExisting",
+			"value": "car"
+		}
+	},
+	{
+		"testId": 5,
+		"description": "'match' query with BOOLEAN expression",
+		"data": {
+			"type": "match",
+			"expression": "field_boolean",
+			"value": "green"
+		}
+	},
+	{
+		"testId": 6,
+		"description": "'match' query with INTEGER expression",
+		"data": {
+			"type": "match",
+			"expression": "field_integer",
+			"value": "green"
+		}
+	},
+	{
+		"testId": 7,
+		"description": "'match' query with LONG expression",
+		"data": {
+			"type": "match",
+			"expression": "field_long",
+			"value": "green"
+		}
+	},
+	{
+		"testId": 8,
+		"description": "'match' query with FLOAT expression",
+		"data": {
+			"type": "match",
+			"expression": "field_float",
+			"value": "green"
+		}
+	},
+	{
+		"testId": 9,
+		"description": "'match' query with DOUBLE expression",
+		"data": {
+			"type": "match",
+			"expression": "field_double",
+			"value": "green"
+		}
+	},
+	{
+		"testId": 10,
+		"description": "'match' query with DATE_TIME expression",
+		"data": {
+			"type": "match",
+			"expression": "field_date_time",
+			"value": "green"
+		}
+	},
+	{
+		"testId": 11,
+		"description": "'match' query without value",
+		"data": {
+			"type": "match",
+			"expression": "field_text"
+		}
+	}
+]

@@ -1,0 +1,99 @@
+/* *
+/* This file is the parent of all the styles and the only variable converted to css and visible to the outside world.
+/* All the imports should go here only
+*/
+/* *
+/* *
+/* Imports of personalizationpromotions variables, common styles, fixes and re-usable components
+*/
+/* *
+/* This file will include all the constants for personalizationpromotionssmartedit (e.g. colors, fonts, etc)
+*/
+/** Colors
+/* all the colors used - write them once in this section so we can easier keep track and re-use
+*/
+/* *
+/* This file includes the common styles used in Personalization
+/* The styles follow the BEM principles - http://getbem.com/introduction/
+*/
+/* new: the active status is now called enabled
+ /* the inactive status is now called disabled 
+ */
+.status-active {
+  color: var(--sapPositiveColor, #107e3e);
+}
+.status-ignore,
+.status-inactive {
+  color: var(--sapContent_DisabledTextColor, rgba(50, 54, 58, 0.6));
+}
+.perso-list__status--value,
+.perso-cc-modal__title-status {
+  font-size: 14px;
+}
+/* * 
+/* Imports of the rest of personalizationpromotions styling
+*/
+/* *
+/* This file includes the styles used in Commerce Customization modal
+*/
+.perso-cc-modal {
+  min-height: 400px;
+}
+.perso-cc-modal .form-control {
+  border: none;
+  padding: 0;
+}
+.perso-cc-modal .select2-choices {
+  margin-top: 15px;
+}
+.perso-cc-modal .ui-select-match-item {
+  padding: 10px 20px;
+  display: inline-block !important;
+}
+.perso-cc-modal .ui-select-match-item.select2-search-choice {
+  background: rgba(10, 110, 209, 0.07);
+  border: 1px solid var(--sapGroup_ContentBorderColor, #d9d9d9);
+  border-radius: 4px;
+  border-style: none;
+  line-height: 22px;
+  margin: 5px 10px 5px 0;
+  min-height: auto;
+}
+.perso-cc-modal .select2-disabled {
+  opacity: 0.4;
+  background: none;
+  cursor: none;
+}
+.perso-cc-modal .select2-input::-ms-clear {
+  display: none;
+  width: 0;
+  height: 0;
+}
+.perso-cc-modal .ui-select-match-close {
+  position: inherit;
+  vertical-align: top;
+  padding-left: 10px;
+  color: var(--sapLinkColor, #0a6ed1);
+}
+.perso-cc-modal__title-layout {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 16px;
+  padding: 10px 0 20px 0;
+  border-bottom: 1px solid #eeeeef;
+}
+.perso-cc-modal__title-cname {
+  font-weight: 700;
+  max-width: 35%;
+}
+.perso-cc-modal__title-vname {
+  padding-left: 5px;
+  max-width: 60%;
+}
+.perso-cc-modal__title-status {
+  padding: 0 5px;
+  align-self: center;
+}
+.perso-cc-modal__content-layout {
+  margin: 30px 0;
+}

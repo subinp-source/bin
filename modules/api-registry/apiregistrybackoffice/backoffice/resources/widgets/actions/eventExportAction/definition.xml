@@ -1,0 +1,27 @@
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<action-definition id="de.hybris.platform.apiregistrybackoffice.actions.event.export" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/action-definition.xsd">
+
+    <name>Event Export Settings</name>
+    <description>Run a wizard for controlling event export activation</description>
+    <author>hybris</author>
+    <version>0.1</version>
+
+    <actionClassName>de.hybris.platform.apiregistrybackoffice.actions.EventExportingAction</actionClassName>
+
+    <inputType>Object</inputType>
+    <outputType>Object</outputType>
+
+    <sockets>
+        <output id="openWidget" />
+    </sockets>
+
+    <iconUri>icons/icon_action_default.png</iconUri>
+    <iconDisabledUri>icons/icon_action_disabled.png</iconDisabledUri>
+    <iconHoverUri>icons/icon_action_hover.png</iconHoverUri>
+
+</action-definition>
+
+

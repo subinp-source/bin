@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<widget-definition id="org.platformbackoffice.widgets.duplicatereport" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widget-definition.xsd">
+
+	<name>Duplicate items report widget</name>
+	<description>Duplicate items report widget</description>
+	<defaultTitle>Duplicate items report</defaultTitle>
+	<author>hybris</author>
+	<version>1.0</version>
+
+	<controller class="de.hybris.platform.platformbackoffice.widgets.DuplicatedIdentifiersReportController"/>
+
+	<sockets>
+		<input id="type" type="java.lang.String"/>
+		<input id="createContext" type="de.hybris.platform.platformbackoffice.data.DuplicatedItemsReport" />
+	</sockets>
+
+</widget-definition>

@@ -1,0 +1,104 @@
+.se-page-list,
+.se-trash-list {
+    background-color: fd-color('background', 1);
+    min-height: 100vh;
+    height: 100%; // if page is longer than the view height
+}
+.ySmartEditTrashPageToolbar {
+    background-color: fd-color('background', 2);
+}
+.se-page-list__page-link-ancor {
+    text-decoration: none !important;
+    color: fd-color('text', 2);
+    &:hover {
+        color: fd-color('action', 1);
+    }
+}
+.se-page-list__page-link-icon {
+    @include fd-type('-1');
+    color: fd-color('text', 2);
+}
+
+// Pages-list Header
+.se-page-list__header {
+    padding: fd-space('s') 30px;
+    background-color: fd-color('background', 2);
+}
+.se-page-list__catalog-name {
+    @include fd-type('4');
+    display: block;
+    margin-bottom: fd-space('base');
+}
+.se-page-list__sub-title {
+    color: fd-color('text', 3);
+}
+
+// Pages-list Table
+.se-page-list__body {
+    padding: 20px 20px 70px;
+}
+.se-page-list__table-header {
+    @include se-flex-row(space-between);
+    background-color: fd-color('background', 2);
+    height: 56px;
+    padding: 20px;
+    border-radius: fd-space('base') fd-space('base') 0 0;
+}
+.se-page-list__table-header--right {
+    @include se-flex-row();
+}
+.se-page-list__table-header .se-paged-list__page-count-wrapper {
+    @include fd-type('1');
+    margin-right: auto;
+}
+.se-page-list__table-body {
+    .se-data-table__arrow {
+        margin-left: 2px;
+    }
+    .se-paged-list-item {
+        cursor: default;
+    }
+    padding-bottom: fd-space('s');
+}
+.se-page-list__search {
+    margin-right: fd-space('s');
+    width: 250px;
+}
+.se-page-list__add {
+    text-transform: capitalize;
+}
+
+// Table cells
+.se-paged-list__header {
+    @include fd-type('0');
+}
+.se-paged-list__header-syncStatus,
+.se-paged-list__header-dropdownitems,
+.se-paged-list__header-pageStatus {
+    cursor: default;
+}
+.se-paged-list-item-uid,
+.se-paged-list-item-template {
+    overflow-wrap: break-word;
+    max-width: 20vw;
+}
+.fd-table {
+    th.se-paged-list__header-numberOfRestrictions,
+    td.se-paged-list-item-numberOfRestrictions,
+    td.se-paged-list-item-syncStatus,
+    th.se-paged-list__header-syncStatus {
+        text-align: center;
+    }
+    td.se-paged-list-item-syncStatus {
+        @include fd-type('1');
+    }
+}
+.se-paged-list-item-name a {
+    text-decoration: none !important;
+}
+.se-sync-btn__status--done {
+    color: fd-color('status', 1);
+}
+.se-sync-btn__status--not {
+    color: fd-color('status', 2);
+}

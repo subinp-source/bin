@@ -1,0 +1,32 @@
+{
+    "compilerOptions": {
+        "target": "es2017",
+        "module": "commonjs",
+        "typeRoots": ["./node_modules/@types"],
+        "allowJs": false,
+        "checkJs": false,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "strictNullChecks": true,
+        "forceConsistentCasingInFileNames": true,
+        "noEmitOnError": true,
+        "declaration": true,
+        "removeComments": true,
+        "traceResolution": false,
+        "listEmittedFiles": false,
+        "skipLibCheck": true,
+        "pretty": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "sourceMap": true,
+        "paths": {},
+        "importHelpers": true,
+        "outDir": "./dist",
+        "baseUrl": "./",
+        "incremental": true
+    },
+    "exclude": ["node_modules", "dist"],
+    "include": ["src/**/*", "**/*.ts"]
+}

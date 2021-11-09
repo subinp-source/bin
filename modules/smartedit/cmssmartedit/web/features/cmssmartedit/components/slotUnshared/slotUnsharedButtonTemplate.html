@@ -1,0 +1,41 @@
+<div class="slot-unshared-button-template" data-ng-if="ctrl.slotUnsharedFlag">
+    <div
+        class="se-slot-ctx-menu__dropdown-toggle-wrapper se-slot-ctx-menu__divider"
+        data-uib-dropdown
+        data-dropdown-append-to="'#smarteditoverlay'"
+        data-auto-close="outsideClick"
+        data-is-open="ctrl.isPopupOpened"
+    >
+        <button
+            type="button"
+            data-uib-dropdown-toggle
+            class="se-slot-ctx-menu__dropdown-toggle sap-icon--broken-link se-slot-ctx-menu__dropdown-toggle-icon"
+            data-ng-class="{'se-slot-ctx-menu__dropdown-toggle--open': ctrl.isPopupOpened}"
+            id="slot-unshared-button-{{::ctrl.slotUid}}"
+        ></button>
+        <div
+            class="dropdown-menu dropdown-menu-right se-toolbar-menu-content se-slot__dropdown-menu"
+            data-uib-dropdown-menu
+        >
+            <div
+                class="se-slot-contextual-menu__header"
+                data-translate="se.cms.unshared.slot.header"
+            ></div>
+            <div class="shared-slot__divider"></div>
+            <div class="se-shared-slot__body">
+                <div
+                    class="se-shared-slot__link-description se-shared-slot__link-description__unshared"
+                    data-translate="se.cms.slot.unshared.popover.message"
+                ></div>
+                <div data-has-operation-permission="'se.revert.to.shared.slot.link'">
+                    <a
+                        class="se-shared-slot__link fd-link"
+                        data-ng-click="ctrl.revertToSharedSlot()"
+                        data-translate="se.cms.slot.unshared.revert.to.shared.title"
+                    >
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

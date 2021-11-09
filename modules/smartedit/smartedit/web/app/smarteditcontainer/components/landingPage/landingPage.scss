@@ -1,0 +1,11 @@
+landing-page {
+    display: block;
+}
+.se-landing-page {
+    @include se-flex-column;
+    padding-top: 75px;
+}
+.se-landing-page-footer-logo {
+    align-self: flex-start;
+    margin: auto 50px 20px;
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+    Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+
+--><extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
+    	
+    <extension abstractclassprefix="Generated" classprefix="Merchandisingaddon" description="merchandisingaddon extension" managername="MerchandisingaddonManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="merchandisingaddon" usemaven="false">
+        		
+        <!-- you should add all required extensions to this list, except platform extensions which are automatically required -->
+                 
+		
+        <requires-extension name="addonsupport"/>
+        		
+        <requires-extension name="acceleratorstorefrontcommons"/>
+        		
+        <requires-extension name="apiregistryservices"/>
+        		
+        <requires-extension name="npmancillary"/>
+        		
+        <requires-extension name="profiletagaddon"/>
+        		
+        <requires-extension name="merchandisingservices"/>
+        		
+        <coremodule generated="true" manager="com.hybris.merchandising.jalo.MerchandisingaddonManager" packageroot="com.hybris.merchandising"/>
+        		
+	
+    </extension>
+    
+</extensioninfo>

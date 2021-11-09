@@ -1,0 +1,33 @@
+<div
+    class="se-catalog-details"
+    [ngClass]="{'se-catalog-for-current-site': isCatalogForCurrentSite}"
+>
+    <se-collapsible-container [configuration]="collapsibleConfiguration">
+        <se-collapsible-container-header class="se-catalog-details__header">
+            {{ catalog.name | seL10n | async }}
+        </se-collapsible-container-header>
+        <se-collapsible-container-content class="se-catalog-details__content">
+            <div class="se-catalog-details__panel se-catalog-details__panel--left">
+                <se-catalog-versions-thumbnail-carousel
+                    [catalog]="catalog"
+                    [siteId]="siteIdForCatalog"
+                ></se-catalog-versions-thumbnail-carousel>
+            </div>
+            <!-- Right Side -->
+            <div class="se-catalog-details__panel se-catalog-details__panel--right">
+                <div *ngFor="let catalogVersion of sortedCatalogVersions">
+                    <se-catalog-version-details
+                        [catalog]="catalog"
+                        [catalogVersion]="catalogVersion"
+                        [activeCatalogVersion]="activeCatalogVersion"
+                        [siteId]="siteIdForCatalog"
+                    ></se-catalog-version-details>
+                </div>
+            </div>
+        </se-collapsible-container-content>
+    </se-collapsible-container>
+</div>
+
+<div class="se-catalog-divider" *ngIf="!isCatalogForCurrentSite">
+    <img [src]="catalogDividerImage" />
+</div>

@@ -1,0 +1,352 @@
+[
+	{
+		"testId": 1,
+		"description": "'le' query doesn't match with INTEGER expression",
+		"data": {
+			"type": "le",
+			"expression": "field_integer",
+			"value": 0
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 2,
+		"description": "'le' query matches with INTEGER expression, single document matches",
+		"data": {
+			"type": "le",
+			"expression": "field_integer",
+			"value": 10
+		},
+		"matchingDocuments": [
+			"doc1"
+		]
+	},
+	{
+		"testId": 3,
+		"description": "'le' query matches with INTEGER expression, multiple documents match",
+		"data": {
+			"type": "le",
+			"expression": "field_integer",
+			"value": 20
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2"
+		]
+	},
+	{
+		"testId": 4,
+		"description": "'le' query doesn't match with multi-valued INTEGER expression",
+		"data": {
+			"type": "le",
+			"expression": "field_integer_mv",
+			"value": 0
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 5,
+		"description": "'le' query matches with multi-valued INTEGER expression, single document matches",
+		"data": {
+			"type": "le",
+			"expression": "field_integer_mv",
+			"value": 11
+		},
+		"matchingDocuments": [
+			"doc1"
+		]
+	},
+	{
+		"testId": 6,
+		"description": "'le' query matches with multi-valued INTEGER expression, multiple documents match",
+		"data": {
+			"type": "le",
+			"expression": "field_integer_mv",
+			"value": 25
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2"
+		]
+	},
+	{
+		"testId": 7,
+		"description": "'le' query doesn't match with LONG expression",
+		"data": {
+			"type": "le",
+			"expression": "field_long",
+			"value": 0
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 8,
+		"description": "'le' query matches with LONG expression, single document matches",
+		"data": {
+			"type": "le",
+			"expression": "field_long",
+			"value": 10
+		},
+		"matchingDocuments": [
+			"doc1"
+		]
+	},
+	{
+		"testId": 9,
+		"description": "'le' query matches with LONG expression, multiple documents match",
+		"data": {
+			"type": "le",
+			"expression": "field_long",
+			"value": 20
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2"
+		]
+	},
+	{
+		"testId": 10,
+		"description": "'le' query doesn't match with multi-valued LONG expression",
+		"data": {
+			"type": "le",
+			"expression": "field_long_mv",
+			"value": 0
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 11,
+		"description": "'le' query matches with multi-valued LONG expression, single document matches",
+		"data": {
+			"type": "le",
+			"expression": "field_long_mv",
+			"value": 11
+		},
+		"matchingDocuments": [
+			"doc1"
+		]
+	},
+	{
+		"testId": 12,
+		"description": "'le' query matches with multi-valued LONG expression, multiple documents match",
+		"data": {
+			"type": "le",
+			"expression": "field_long_mv",
+			"value": 25
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2"
+		]
+	},
+	{
+		"testId": 13,
+		"description": "'le' query doesn't match with FLOAT expression",
+		"data": {
+			"type": "le",
+			"expression": "field_float",
+			"value": 0
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 14,
+		"description": "'le' query matches with FLOAT expression, single document matches",
+		"data": {
+			"type": "le",
+			"expression": "field_float",
+			"value": 10
+		},
+		"matchingDocuments": [
+			"doc1"
+		]
+	},
+	{
+		"testId": 15,
+		"description": "'le' query matches with FLOAT expression, multiple documents match",
+		"data": {
+			"type": "le",
+			"expression": "field_float",
+			"value": 20
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2"
+		]
+	},
+	{
+		"testId": 16,
+		"description": "'le' query doesn't match with multi-valued FLOAT expression",
+		"data": {
+			"type": "le",
+			"expression": "field_float_mv",
+			"value": 0
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 17,
+		"description": "'le' query matches with multi-valued FLOAT expression, single document matches",
+		"data": {
+			"type": "le",
+			"expression": "field_float_mv",
+			"value": 11
+		},
+		"matchingDocuments": [
+			"doc1"
+		]
+	},
+	{
+		"testId": 18,
+		"description": "'le' query matches with multi-valued FLOAT expression, multiple documents match",
+		"data": {
+			"type": "le",
+			"expression": "field_float_mv",
+			"value": 25
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2"
+		]
+	},
+	{
+		"testId": 19,
+		"description": "'le' query doesn't match with DOUBLE expression",
+		"data": {
+			"type": "le",
+			"expression": "field_double",
+			"value": 0
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 20,
+		"description": "'le' query matches with DOUBLE expression, single document matches",
+		"data": {
+			"type": "le",
+			"expression": "field_double",
+			"value": 10
+		},
+		"matchingDocuments": [
+			"doc1"
+		]
+	},
+	{
+		"testId": 21,
+		"description": "'le' query matches with DOUBLE expression, multiple documents match",
+		"data": {
+			"type": "le",
+			"expression": "field_double",
+			"value": 20
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2"
+		]
+	},
+	{
+		"testId": 22,
+		"description": "'le' query doesn't match with multi-valued DOUBLE expression",
+		"data": {
+			"type": "le",
+			"expression": "field_double_mv",
+			"value": 0
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 23,
+		"description": "'le' query matches with multi-valued DOUBLE expression, single document matches",
+		"data": {
+			"type": "le",
+			"expression": "field_double_mv",
+			"value": 11
+		},
+		"matchingDocuments": [
+			"doc1"
+		]
+	},
+	{
+		"testId": 24,
+		"description": "'le' query matches with multi-valued DOUBLE expression, multiple documents match",
+		"data": {
+			"type": "le",
+			"expression": "field_double_mv",
+			"value": 25
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2"
+		]
+	},
+	{
+		"testId": 25,
+		"description": "'le' query doesn't match with DATE_TIME expression",
+		"data": {
+			"type": "le",
+			"expression": "field_date_time",
+			"value": "2000-01-01T00:00:00.000+00:00"
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 26,
+		"description": "'le' query matches with DATE_TIME expression, single document matches",
+		"data": {
+			"type": "le",
+			"expression": "field_date_time",
+			"value": "2010-01-01T00:00:00.000+00:00"
+		},
+		"matchingDocuments": [
+			"doc1"
+		]
+	},
+	{
+		"testId": 27,
+		"description": "'le' query matches with DATE_TIME expression, multiple documents match",
+		"data": {
+			"type": "le",
+			"expression": "field_date_time",
+			"value": "2020-01-01T00:00:00.000+00:00"
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2"
+		]
+	},
+	{
+		"testId": 28,
+		"description": "'le' query doesn't match with multi-valued DATE_TIME expression",
+		"data": {
+			"type": "le",
+			"expression": "field_date_time_mv",
+			"value": "2000-01-01T00:00:00.000+00:00"
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 29,
+		"description": "'le' query matches with multi-valued DATE_TIME expression, single document matches",
+		"data": {
+			"type": "le",
+			"expression": "field_date_time_mv",
+			"value": "2011-01-01T00:00:00.000+00:00"
+		},
+		"matchingDocuments": [
+			"doc1"
+		]
+	},
+	{
+		"testId": 30,
+		"description": "'le' query matches with multi-valued DATE_TIME expression, multiple documents match",
+		"data": {
+			"type": "le",
+			"expression": "field_date_time_mv",
+			"value": "2025-01-01T00:00:00.000+00:00"
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2"
+		]
+	}
+]

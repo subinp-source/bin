@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+--><extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
+            	
+    
+    <extension abstractclassprefix="Generated" classprefix="Chineselogisticoccaddon" description="chineselogisticoccaddon extension" managername="ChineselogisticoccaddonManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="chineselogisticoccaddon">
+                        		
+        
+        <requires-extension name="addonsupport"/>
+                
+        <requires-extension name="chinesecommercewebservicescommons"/>
+                
+        <requires-extension name="chineselogisticfacades"/>
+             		
+        
+        
+        <coremodule generated="true" manager="de.hybris.platform.chineselogisticoccaddon.jalo.ChineselogisticoccaddonManager" packageroot="de.hybris.platform.chineselogisticoccaddon"/>
+            
+    
+    </extension>
+            
+
+</extensioninfo>

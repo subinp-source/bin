@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<import resource="config/previewPersonalizationweb-field-mapping-spring.xml" />
+
+	<alias name="defaultPersonalizationPreviewTicketSupport" alias="personalizationPreviewTicketSupport" />
+	<bean name="defaultPersonalizationPreviewTicketSupport" class="de.hybris.platform.previewpersonalizationweb.populator.PersonalizationPreviewTicketSupport" >
+		<property name="catalogVersionService" ref="catalogVersionService" />
+	</bean>
+
+
+	<alias name="defaultPersonalizationPreviewTicketPopulator" alias="personalizationPreviewTicketPopulator" />
+    <bean id="defaultPersonalizationPreviewTicketPopulator" class="de.hybris.platform.previewpersonalizationweb.populator.PersonalizationPreviewTicketPopulator">
+		<property name="localViewExecutor" ref="localViewExecutor" />
+	</bean>
+
+	<bean name="personalizationPreviewTicketPopulatorAddToList" parent="modifyPopulatorList">
+		<property name="list" ref="previewTicketConverter"/>
+		<property name="add"  ref="personalizationPreviewTicketPopulator"/>
+	</bean>
+
+    <alias name="defaultPersonalizationPreviewTicketReversePopulator" alias="personalizationPreviewTicketReversePopulator" />
+	<bean id="defaultPersonalizationPreviewTicketReversePopulator" class="de.hybris.platform.previewpersonalizationweb.populator.PersonalizationPreviewTicketReversePopulator">
+		<property name="cxVariationService" ref="cxVariationService" />
+		<property name="catalogVersionService" ref="catalogVersionService" />
+		<property name="localViewExecutor" ref="localViewExecutor" />
+		<property name="cxSegmentService" ref="cxSegmentService" />
+		<property name="personalizationPreviewTicketSupport" ref="personalizationPreviewTicketSupport" />
+	</bean>
+
+	<bean name="personalizationPreviewTicketReversePopulatorAddToList" parent="modifyPopulatorList">
+		<property name="list" ref="previewTicketReverseConverter"/>
+		<property name="add"  ref="personalizationPreviewTicketReversePopulator"/>
+	</bean>
+			
+</beans>

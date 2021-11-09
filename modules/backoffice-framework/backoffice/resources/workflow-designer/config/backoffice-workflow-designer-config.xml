@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<config xmlns="http://www.hybris.com/cockpit/config"
+		xmlns:na="http://www.hybris.com/cockpitng/config/notifications"
+		xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config"
+		xmlns:df="http://www.hybris.com/cockpitng/component/dynamicForms"
+>
+
+	<context type="com.hybris.backoffice.workflow.designer.form.WorkflowTemplateCreateActionForm"
+			 component="workflow-designer-create-wizard">
+		<wz:flow id="WorkflowActionTemplateWizard" title="workflowactiontemplate.createwizard.title">
+			<wz:prepare id="itemPrepare">
+				<wz:initialize property="newObject" type="ctx.TYPE_CODE"/>
+				<wz:assign property="newObject.workflow" value="ctx.parentObject"/>
+				<wz:assign property="newObject.code" value="ctx.edit ? ctx.parentObject.code : null"/>
+				<wz:assign property="newObject.name" value="ctx.edit ? ctx.parentObject.name : null"/>
+				<wz:assign property="newObject.description" value="ctx.edit ? ctx.parentObject.description : null"/>
+				<wz:assign property="newObject.principalAssigned" value="ctx.parentObject.principalAssigned"/>
+				<wz:assign property="newObject.actionType" value="ctx.parentObject.actionType"/>
+			</wz:prepare>
+			<wz:step id="step1" label="flow.allmanadatory">
+				<wz:content id="step1.content">
+					<wz:property-list root="newObject">
+						<wz:property qualifier="code" type="java.lang.String"
+									 label="workflowdesigner.createwizard.action.code"/>
+						<wz:property qualifier="principalAssigned" type="Reference(Principal)"
+									 label="workflowdesigner.createwizard.action.assignedUser"
+									 editor="com.hybris.cockpitng.editor.defaultreferenceeditor">
+							<wz:editor-parameter>
+								<wz:name>availableValuesProvider</wz:name>
+								<wz:value>workflowAssigneeReferenceSearchFacade</wz:value>
+							</wz:editor-parameter>
+						</wz:property>
+						<wz:property qualifier="actionType" label="workflowdesigner.createwizard.action.type"
+									 type="java.lang.Enum(de.hybris.platform.workflow.enums.WorkflowActionType)"
+									 editor="com.hybris.cockpitng.editor.defaultenum"/>
+					</wz:property-list>
+				</wz:content>
+				<wz:navigation id="step1.navigation">
+					<wz:cancel/>
+					<wz:next/>
+					<wz:custom handler="workflowDesignerCreateActionHandler"
+							   label="com.hybris.cockpitng.widgets.configurableflow.flow.done"
+							   visible="newObject.code != null and newObject.principalAssigned != null and newObject.actionType != null"/>
+				</wz:navigation>
+			</wz:step>
+			<wz:step id="step2" label="flow.nomandatoryfields">
+				<wz:content id="step2.content">
+					<wz:property-list root="newObject">
+						<wz:property qualifier="name" type="Localized(java.lang.String)"
+									 label="workflowdesigner.createwizard.action.name"/>
+						<wz:property qualifier="description" type="Localized(java.lang.String)"
+									 label="workflowdesigner.createwizard.action.description"/>
+					</wz:property-list>
+				</wz:content>
+				<wz:navigation id="step2.navigation">
+					<wz:cancel/>
+					<wz:back/>
+					<wz:custom handler="workflowDesignerCreateActionHandler"
+							   label="com.hybris.cockpitng.widgets.configurableflow.flow.done"
+							   visible="newObject.code != null and newObject.principalAssigned != null and newObject.actionType != null"/>
+				</wz:navigation>
+			</wz:step>
+		</wz:flow>
+	</context>
+
+	<context
+			type="com.hybris.backoffice.workflow.designer.form.WorkflowTemplateCreateDecisionForm"
+			component="workflow-designer-create-wizard">
+		<wz:flow id="WorkflowDecisionTemplateWizard" title="workflowdecisiontemplate.createwizard.title">
+			<wz:prepare id="itemPrepare">
+				<wz:initialize property="newObject" type="ctx.TYPE_CODE"/>
+				<wz:assign property="newObject.workflow" value="ctx.parentObject"/>
+				<wz:assign property="newObject.code" value="ctx.edit ? ctx.parentObject.code : null"/>
+				<wz:assign property="newObject.name" value="ctx.edit ? ctx.parentObject.name : null"/>
+			</wz:prepare>
+			<wz:step id="step1" label="flow.allmanadatory">
+				<wz:content id="step1.content">
+					<wz:property-list root="newObject">
+						<wz:property qualifier="code" type="java.lang.String"
+									 label="workflowdesigner.createwizard.decision.code"/>
+						<wz:property qualifier="name" type="Localized(java.lang.String)"
+									 label="workflowdesigner.createwizard.decision.name"/>
+					</wz:property-list>
+				</wz:content>
+				<wz:navigation id="step1.navigation">
+					<wz:cancel/>
+					<wz:custom handler="workflowDesignerCreateDecisionHandler"
+							   label="com.hybris.cockpitng.widgets.configurableflow.flow.done"
+							   visible="newObject.code != null"/>
+				</wz:navigation>
+			</wz:step>
+		</wz:flow>
+	</context>
+
+	<context component="notification-area" source="workflowDesigner" merge-by="source">
+		<na:notification-area>
+			<na:notifications eventType="wrongConnection" level="WARNING" destination="TOPMOST">
+				<na:message>workflowdesigner.notification.wrongConnection.warning</na:message>
+			</na:notifications>
+			<na:notifications eventType="alreadyConnected" level="WARNING" destination="TOPMOST">
+				<na:message>workflowdesigner.notification.alreadyConnected.warning</na:message>
+			</na:notifications>
+			<na:notifications eventType="nonUniqueActionCode" level="FAILURE" destination="TOPMOST">
+				<na:message>workflowdesigner.notification.nonUniqueActionCode.error</na:message>
+			</na:notifications>
+			<na:notifications eventType="nonUniqueDecisionCode" level="FAILURE" destination="TOPMOST">
+				<na:message>workflowdesigner.notification.nonUniqueDecisionCode.error</na:message>
+			</na:notifications>
+			<na:notifications eventType="saveSuccess" level="SUCCESS" destination="TOPMOST">
+				<na:message>workflowdesigner.notification.save.success</na:message>
+			</na:notifications>
+			<na:notifications eventType="cannotSave" level="FAILURE" destination="TOPMOST">
+				<na:message>workflowdesigner.notification.save.error</na:message>
+			</na:notifications>
+			<na:notifications eventType="andNodeEdition" level="WARNING" destination="TOPMOST">
+				<na:message>workflowdesigner.notification.andNodeEdition.warning</na:message>
+			</na:notifications>
+			<na:notifications eventType="alreadyConnectedViaAnd" level="WARNING" destination="TOPMOST">
+				<na:message>workflowdesigner.notification.alreadyConnectedViaAnd.warning</na:message>
+				<na:timeout>5000</na:timeout>
+			</na:notifications>
+			<na:notifications eventType="nodesAlreadyConnectedDirectly" level="WARNING" destination="TOPMOST">
+				<na:message>workflowdesigner.notification.nodesAlreadyConnectedDirectly.warning</na:message>
+				<na:timeout>5000</na:timeout>
+			</na:notifications>
+			<na:notifications eventType="multipleAndNodesPointingToSameTarget" level="WARNING" destination="TOPMOST">
+				<na:message>workflowdesigner.notification.multipleAndNodesPointingToSameTarget.warning</na:message>
+			</na:notifications>
+			<na:notifications eventType="decisionOneIncomingConnection" level="WARNING" destination="TOPMOST">
+				<na:message>workflowdesigner.notification.decisionOneIncomingConnection.warning</na:message>
+			</na:notifications>
+		</na:notification-area>
+	</context>
+
+	<context type="com.hybris.backoffice.workflow.designer.form.AbstractWorkflowTemplateCreateForm"
+			 component="configurableFlowDynamicForms">
+		<df:dynamicForms modelProperty="newObject">
+			<df:attribute id="disableCode" qualifier="newObject.code" disabledIf="ctx.updateId"
+						  triggeredOn="ctx.updateId"
+						  modelProperty="*"/>
+		</df:dynamicForms>
+	</context>
+
+	<context type="com.hybris.backoffice.workflow.designer.form.WorkflowTemplateCreateActionForm"
+			 component="configurableFlowDynamicForms"
+			 parent="com.hybris.backoffice.workflow.designer.form.AbstractWorkflowTemplateCreateForm" merge-by="type">
+		<df:dynamicForms modelProperty="newObject">
+			<df:attribute id="disableActionType" qualifier="newObject.actionType" disabledIf="ctx.updateType"
+						  triggeredOn="ctx.updateType" modelProperty="*"/>
+		</df:dynamicForms>
+	</context>
+
+</config>

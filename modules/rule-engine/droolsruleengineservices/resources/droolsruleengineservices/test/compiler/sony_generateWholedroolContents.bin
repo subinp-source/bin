@@ -1,0 +1,54 @@
+package de.hybris.platform.droolsruleengine;
+
+import de.hybris.platform.droolsruleengineservices.compiler.impl.DefaultDroolsRuleActionContext;
+import de.hybris.platform.ruleengineservices.rule.evaluation.impl.RuleAndRuleGroupExecutionTracker;
+import de.hybris.platform.ruleengineservices.rao.CartRAO;
+import java.util.Map;
+import de.hybris.platform.ruleengineservices.rao.OrderEntryRAO;
+import java.math.BigDecimal;
+
+global de.hybris.platform.ruleengineservices.rule.evaluation.RuleExecutableAction ruleOrderFixedDiscountAction;
+
+query rule_a33dc30311ef471982f5ea6d8ae6dec9_query(OrderEntryRAO $v1, CartRAO $v2)
+   (
+      $v1 := OrderEntryRAO(quantity >= Integer.valueOf(1), availableQuantity >= Integer.valueOf(1))
+      and
+      $v2 := CartRAO(entries contains $v1)
+      and
+      $v1 := OrderEntryRAO(categoryCodes contains "brand_5:System.out.format(\u0022YYYYY Rule Then: Java remote code executed via Source Rule!\u0022)]]);//")
+   )
+end
+
+rule "a33dc303-11ef-4719-82f5-ea6d8ae6dec9"
+@ruleCode("sony_category_test")
+@moduleName("promotions-module-junit")
+@maxRuleExecutions("1")
+@ruleGroupCode("productPromotionRuleGroup")
+@ruleGroupExclusive("false")
+dialect "mvel" 
+salience 100
+when
+      (
+      $rao_v1 := OrderEntryRAO(quantity >= Integer.valueOf(1), availableQuantity >= Integer.valueOf(1))
+      and
+      exists (CartRAO(entries contains $rao_v1))
+      and
+      $rao_v1 := OrderEntryRAO(categoryCodes contains "brand_5:System.out.format(\u0022YYYYY Rule Then: Java remote code executed via Source Rule!\u0022)]]);//")
+   )
+   accumulate (
+      rule_a33dc30311ef471982f5ea6d8ae6dec9_query($v1, $v2;)
+   ;
+      $v1_set : collectSet($v1),
+      $v2_set : collectSet($v2),
+      $result_count : count(1)
+   )
+   $executionTracker := RuleAndRuleGroupExecutionTracker()
+   eval($result_count > 0)
+then
+   Map variables = [
+      "de.hybris.platform.ruleengineservices.rao.OrderEntryRAO" : $v1_set,
+      "de.hybris.platform.ruleengineservices.rao.CartRAO" : $v2_set
+   ];
+   ruleOrderFixedDiscountAction.executeAction(new DefaultDroolsRuleActionContext(variables, kcontext), ["value_uuid":"444e91e7-e598-45fc-ada8-0e051bc1617b", "value":["USD:System.out.format(\u0022YYYYY Rule Then: Java remote code executed via Source Rule!\u0022)]]);//":new BigDecimal("20")]]);
+   $executionTracker.trackRuleExecution(kcontext);
+end

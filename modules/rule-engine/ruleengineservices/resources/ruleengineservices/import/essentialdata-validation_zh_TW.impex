@@ -1,0 +1,26 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+$lang=zh_TW
+
+
+insert_update DynamicConstraint;id[unique=true,allownull=true];message[lang=$lang]
+;abstractRuleDateDiffConstraint;"結束日期必須晚於開始日期"
+
+insert_update NotNullConstraint;id[unique=true,allownull=true];message[lang=$lang]
+;sourceRuleCode;代碼不可為 Null 或為空
+
+insert_update NotNullConstraint;id[unique=true,allownull=true];message[lang=$lang]
+;sourceRuleTemplateCode;代碼不可為 Null 或為空
+
+insert_update ObjectPatternConstraint;id[unique=true,allownull=true];message[lang=$lang];
+;ruleCodeLengthMinValue;"值必須至少包含 2 個字元長";
+;ruleTemplateCodeLengthMinValue;"值必須至少包含 2 個字元長";
+;ruleEngineRuleCodeLengthMinValue;"值必須至少包含 2 個字元長";

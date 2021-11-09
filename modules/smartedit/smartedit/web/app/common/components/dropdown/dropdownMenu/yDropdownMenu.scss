@@ -1,0 +1,59 @@
+// Toggle
+.y-dropdown-more-menu__toggle {
+    color: fd-color('action', 1);
+    cursor: pointer;
+    &.sap-icon--overflow {
+        position: relative;
+        bottom: 3px;
+    }
+}
+
+// Dropdown Menu
+.y-dropdown-more-menu.open .se-y-dropdown-menu__list {
+    @include se-dropdown-menu('right', 'no-arrow');
+    @include se-flex-column;
+    min-width: 100px;
+
+    .se-dropdown-menu__item-wrapper {
+        border-top: fd-color('neutral', 2);
+    }
+
+    .se-dropdown-item {
+        text-decoration: none !important;
+        white-space: nowrap;
+        color: fd-color('text', 1);
+        padding-left: fd-space('s');
+        width: 100%;
+    }
+
+    .se-dropdown-item--delete,
+    .se-dropdown-item--delete a {
+        order: 99;
+        &,
+        &:hover {
+            color: fd-color('status', 3);
+        }
+        &.se-dropdown-item__disabled,
+        &.se-dropdown-item__disabled:hover {
+            opacity: 0.4;
+            padding-right: fd-space('xxs') !important;
+            background: fd-color('background', 2) !important;
+        }
+    }
+}
+.se-dropdown-item--delete-wrapper {
+    @include se-flex-row();
+    width: 100%;
+}
+.se-dropdown-item--delete-page-popover {
+    margin-right: fd-space('s');
+    .sap-icon--message-error {
+        color: fd-color(action, 1);
+    }
+}
+.se-dropdown-item--delete-link-wrapper {
+    width: 100%;
+}
+.se-dropdown-item--delete-link-wrapper--disabled {
+    cursor: not-allowed;
+}

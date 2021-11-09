@@ -1,0 +1,63 @@
+<div class="se-slider-panel-wrapper" *ngIf="isShown">
+    <div class="se-slider-panel-container slide-in">
+        <div class="se-slider-panel__header" *ngIf="sliderPanelConfiguration.modal">
+            <span class="se-slider-panel__title" *ngIf="sliderPanelConfiguration.modal.title">
+                {{ sliderPanelConfiguration.modal.title | translate }}</span
+            >
+            <button
+                type="button"
+                class="se-slider-panel__close-btn fd-button--light fd-modal__close"
+                aria-label="close"
+                *ngIf="sliderPanelConfiguration.modal.showDismissButton"
+                (click)="sliderPanelDismissAction()"
+            ></button>
+        </div>
+
+        <div class="se-slider-panel__body">
+            <!-- Use ng-template if projected content needs to be initialized on slider being visible -->
+
+            <ng-container *ngIf="!!content; else angularJSContent">
+                <ng-container *ngTemplateOutlet="content"></ng-container>
+            </ng-container>
+
+            <ng-template #angularJSContent>
+                <div
+                    *ngIf="sliderPanelConfiguration.template"
+                    [seCompileHtml]="sliderPanelConfiguration.template"
+                    [scope]="sliderPanelConfiguration.scope"
+                ></div>
+                <div
+                    *ngIf="sliderPanelConfiguration.templateUrl"
+                    [ngInclude]="sliderPanelConfiguration.templateUrl"
+                    [scope]="sliderPanelConfiguration.scope"
+                ></div>
+            </ng-template>
+
+            <ng-content></ng-content>
+        </div>
+
+        <div
+            class="se-slider-panel__footer"
+            *ngIf="sliderPanelConfiguration.modal && (sliderPanelConfiguration.modal.cancel || sliderPanelConfiguration.modal.save)"
+        >
+            <button
+                type="button"
+                class="fd-button--light se-slider-panel__footer-btn se-slider-panel__footer-btn--cancel"
+                *ngIf="sliderPanelConfiguration.modal.cancel"
+                (click)="sliderPanelConfiguration.modal.cancel.onClick()"
+            >
+                {{ sliderPanelConfiguration.modal.cancel.label | translate }}
+            </button>
+
+            <button
+                type="button"
+                class="fd-button--emphasized se-slider-panel__footer-btn se-slider-panel__footer-btn--save"
+                *ngIf="sliderPanelConfiguration.modal.save"
+                (click)="sliderPanelConfiguration.modal.save.onClick()"
+                [disabled]="isSaveDisabled()"
+            >
+                {{ sliderPanelConfiguration.modal.save.label | translate }}
+            </button>
+        </div>
+    </div>
+</div>

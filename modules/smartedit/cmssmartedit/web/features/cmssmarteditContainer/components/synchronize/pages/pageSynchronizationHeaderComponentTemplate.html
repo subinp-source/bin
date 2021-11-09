@@ -1,0 +1,31 @@
+<div data-ng-if="$ctrl.ready">
+    <div class="se-sync-panel-header">
+        <span
+            class="se-sync-panel__sub-header"
+            data-ng-if="$ctrl.isDefaultSubHeader()"
+            data-translate="se.cms.synchronization.page.header"
+        >
+        </span>
+
+        <div
+            data-ng-if="!$ctrl.isSyncOldHomeHeader()"
+            class="se-sync-panel__sub-header"
+            data-translate="se.cms.synchronization.page.header.old.homepage"
+        ></div>
+    </div>
+
+    <div data-ng-if="$ctrl.isNewPage()" class="se-sync-panel-header__new-page-message">
+        <div
+            data-translate="se.cms.synchronization.page.new.header"
+            class="se-sync-panel__message--new-page"
+        ></div>
+        <div class="se-sync-panel__message" data-ng-bind-html="$ctrl.headerText"></div>
+    </div>
+
+    <div class="se-sync-panel-header__timestamp" data-ng-if="!$ctrl.isNewPage()">
+        <div data-translate="se.cms.synchronization.panel.lastsync.text"></div>
+        <span class="se-sync-panel-header__timestamp-text">
+            {{$ctrl.syncStatus.lastSyncStatus | date:'short'}}
+        </span>
+    </div>
+</div>

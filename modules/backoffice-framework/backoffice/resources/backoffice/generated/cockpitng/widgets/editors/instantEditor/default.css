@@ -1,0 +1,53 @@
+/*================================
+    Default Instant Editor
+================================*/
+/*================================
+    instant-Editor Defaults
+================================*/
+.ye-instant-editor.z-div:after {
+  content: ' ';
+  display: block;
+  clear: both; }
+.ye-instant-editor-buttons-container {
+  z-index: 1;
+  text-align: right; }
+  .ye-instant-editor-buttons-container .z-button {
+    width: 40px;
+    height: 40px;
+    background: #ffffff;
+    padding: 7px 0;
+    text-align: center;
+    border: 1px solid #c4cedc;
+    border-top-width: 0; }
+    .ye-instant-editor-buttons-container .z-button:hover, .ye-instant-editor-buttons-container .z-button:focus {
+      background: #f6f8fa; }
+  .ye-instant-editor-buttons-container .ye-instant-editor-button-confirm {
+    color: #18bc33; }
+  .ye-instant-editor-buttons-container .ye-instant-editor-button-cancel {
+    color: #55667a;
+    border-right-width: 0; }
+.ye-instant-editor-editor-container .yw-loceditor-caption .y-icon-loceditor {
+  margin-bottom: 8px; }
+.ye-instant-editor-editor-container > .z-div > .yw-loceditor {
+  margin-top: -24px; }
+.ye-instant-editor-label-editable {
+  margin-top: 11px;
+  margin-left: 11px;
+  line-height: 19px; }
+  .ye-instant-editor-label-editable:hover {
+    text-decoration: underline;
+    cursor: pointer; }
+  .yw-editorarea-tabbox-tabpanels .ye-instant-editor-label-editable.z-label {
+    margin-bottom: 15px;
+    line-height: 19px; }
+.ye-instant-editor-component-hidden {
+  display: none !important; }
+.ye-instant-editor-attribute-label-container {
+  height: 40px;
+  display: table; }
+  .ye-instant-editor-attribute-label-container > span.z-label {
+    line-height: 19px;
+    vertical-align: middle;
+    display: table-cell;
+    word-break: break-all;
+    width: 100%; }

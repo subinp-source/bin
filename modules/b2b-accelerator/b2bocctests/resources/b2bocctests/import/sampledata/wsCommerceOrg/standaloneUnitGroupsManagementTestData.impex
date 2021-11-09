@@ -1,0 +1,59 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+$defaultPassword = 1234
+
+INSERT_UPDATE SearchRestriction; code[unique = true]      ; name[lang = en]                  ; query                                                                                                                                                               ; principal(UID); restrictedType(code); active; generate
+                               ; b2busergroup_restriction ; Restrict B2BUserGroup visibility ; {item:Unit} IN (?session.branch) and  EXISTS ( {{ select {ug:PK} from {UserGroup as ug} where {ug:PK} IN (?session.user.groups) and {ug:uid} = 'b2badmingroup' }} ) ; b2bgroup      ; B2BUserGroup        ; true  ; true
+
+###############################
+# Sample Organization I (Rustic)
+
+INSERT_UPDATE B2BOrderThresholdPermission; code[unique = true]  ; Unit(uid); threshold; currency(isocode)[default = 'USD'];
+                                         ; Rustic_0K_USD_ORDER  ; Rustic   ; 0        ;
+                                         ; Rustic_1K_USD_ORDER  ; Rustic   ; 1000     ;
+                                         ; Rustic_2K_USD_ORDER  ; Rustic   ; 2000     ;
+                                         ; Rustic 4K_USD_ORDER  ; Rustic   ; 4000     ;
+                                         ; Rustic_5K_USD_ORDER  ; Rustic   ; 5000     ;
+                                         ; Rustic_7K_USD_ORDER  ; Rustic   ; 7000     ;
+                                         ; Rustic_15K_USD_ORDER ; Rustic   ; 15000    ;
+                                         ; Rustic_20K_USD_ORDER ; Rustic   ; 20000    ;
+
+INSERT_UPDATE B2BOrderThresholdTimespanPermission; code[unique = true]       ; Unit(uid); threshold ; currency(isocode); range(code, itemtype(code));
+                                                 ; Rustic 3K_USD MONTH       ; Rustic   ; 3000      ; USD              ; MONTH:B2BPeriodRange       ;
+                                                 ; Rustic_10K_USD MONTH      ; Rustic   ; 10000     ; USD              ; MONTH:B2BPeriodRange       ;
+                                                 ; Rustic_15K_USD MONTH      ; Rustic   ; 15000     ; USD              ; MONTH:B2BPeriodRange       ;
+                                                 ; Rustic_20K_USD MONTH      ; Rustic   ; 20000     ; USD              ; MONTH:B2BPeriodRange       ;
+                                                 ; Rustic_25K_USD MONTH      ; Rustic   ; 25000     ; USD              ; MONTH:B2BPeriodRange       ;
+                                                 ; Rustic_Unlimited Timespan ; Rustic   ; 999999999 ; USD              ; MONTH:B2BPeriodRange       ;
+
+INSERT_UPDATE B2BUserGroup; uid[unique = true]     ; name                     ; unit(uid); permissions(code, unit(uid))                           ;
+                          ; goldPremiumPermissions ; Gold Premium Permissions ; Rustic   ; Rustic_7K_USD_ORDER:Rustic,Rustic_25K_USD MONTH:Rustic ;
+                          ; premiumPermissions     ; Premium Permissions      ; Rustic   ; Rustic_7K_USD_ORDER:Rustic,Rustic_25K_USD MONTH:Rustic ;
+                          ; standardPermissions    ; Standard Permissions     ; Rustic   ; Rustic_5K_USD_ORDER:Rustic,Rustic_15K_USD MONTH:Rustic ;
+                          ; limitedPermissions     ; Limited Permissions      ; Rustic   ; Rustic_0K_USD_ORDER:Rustic,Rustic_25K_USD MONTH:Rustic ;
+
+INSERT_UPDATE B2BCustomer; description; uid[unique = true]              ; originalUid                     ; customerID                           ; email                           ; name              ; title(code); groups(uid)                                                          ; permissionGroups(uid); sessionCurrency(isocode)[default = 'USD']; password[default = $defaultPassword];
+                         ; Customer B ; anthony.lombardi@rustic-hw.com  ; anthony.lombardi@rustic-hw.com  ; 7a2a41a3-c54c-4ce8-a2d2-0324e1c32a21 ; anthony.lombardi@rustic-hw.com  ; Anthony Lombardi  ; mr         ; Rustic, b2bcustomergroup,limitedPermissions                          ;                      ;                                          ;                                     ; ; ;
+                         ; Customer C ; william.hunter@rustic-hw.com    ; william.hunter@rustic-hw.com    ; 8a2a41a3-c54c-4ce8-a2d2-0324e1c32a21 ; william.hunter@rustic-hw.com    ; William Hunter    ; mr         ; Rustic, b2bcustomergroup,limitedPermissions,standardPermissions    ;                      ;                                          ;                                     ; ; ;
+                         ; Customer E ; axel.krause@rustic-hw.com       ; axel.krause@rustic-hw.com       ; 9a2a41a3-c54c-4ce8-a2d2-0324e1c32a21 ; axel.krause@rustic-hw.com       ; Axel Krause       ; mr         ; Rustic, b2bcustomergroup,standardPermissions,goldPremiumPermissions ;                      ;                                          ;                                     ; ; ;
+                         ; Customer G ; alejandro.navarro@rustic-hw.com ; alejandro.navarro@rustic-hw.com ; 0a2a41a3-c54c-4ce8-a2d2-0324e1c32a21 ; alejandro.navarro@rustic-hw.com ; Alejandro Navarro ; mr         ; Rustic, b2bcustomergroup,standardPermissions,goldPremiumPermissions  ;                      ;                                          ;                                     ; ; ;
+
+###############################
+#  Sample Organization II (Pronto)
+
+INSERT_UPDATE B2BOrderThresholdPermission; code[unique = true]  ; Unit(uid); threshold; currency(isocode);
+                                         ; Pronto_5K_USD_ORDER  ; Pronto   ; 5000     ; USD              ; -
+                                         ; Pronto_6K_USD_ORDER  ; Pronto   ; 6000     ; USD              ; -
+                                         ; Pronto_10K_USD_ORDER ; Pronto   ; 10000    ; USD              ; -
+                                         ; Pronto_12K_USD_ORDER ; Pronto   ; 12000    ; USD              ; -
+
+INSERT_UPDATE B2BOrderThresholdTimespanPermission; code[unique = true]                 ; Unit(uid); threshold ; currency(isocode); range(code, itemtype(code));
+                                                 ; Pronto_15K_USD MONTH                ; Pronto   ; 15000     ; USD              ; MONTH:B2BPeriodRange       ;
+                                                 ; Pronto_12K_USD MONTH                ; Pronto   ; 12000     ; USD              ; MONTH:B2BPeriodRange       ;
+                                                 ; Pronto_Unlimited_Threshold_Timespan ; Pronto   ; 999999999 ; USD              ; MONTH:B2BPeriodRange       ;
+
+INSERT_UPDATE B2BUserGroup; uid[unique = true]  ; name                 ; unit(uid); permissions(code, unit(uid))                            ;
+                          ; enhancedPermissions ; Enhanced Permissions ; Pronto   ; Pronto_12K_USD_ORDER:Pronto,Pronto_15K_USD MONTH:Pronto ;
+                          ; commonPermissions   ; Common Permissions   ; Pronto   ; Pronto_6K_USD_ORDER:Pronto,Pronto_12K_USD MONTH:Pronto  ;

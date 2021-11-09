@@ -1,0 +1,74 @@
+#* @vtlvariable name="model" type="de.hybris.platform.core.model.ItemModel" *#
+#* @vtlvariable name="class" type="java.lang.String" *#
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 244 100" width="244" height="100">
+	<style type="text/css">
+		div.node-container {
+			display: table-cell;
+			text-align: center;
+			vertical-align: middle;
+			width: 220px;
+			height: 100px;
+			line-height: 0;
+		}
+		.action-start-text {
+			margin: 0 25px;
+			max-height: 80pt;
+			max-width: 190px;
+			font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
+			font-size: 23pt;
+			line-height: 29pt;
+			overflow: hidden;
+			word-break: normal;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			fill: #008ADC;
+			color: #008ADC;
+		}
+		.action-start-outer {
+			stroke: #0486E0;
+			stroke-width: 4;
+			fill: #fff
+		}
+		.action-start-outer.selected {
+			fill: #D4E5FF;
+		}
+		.action-start-outer.in-progress {
+			stroke: #5F7084;
+			fill: #BEC8D3;
+		}
+		.action-start-text.in-progress {
+			fill: #fefefe;
+		}
+		.action-start-outer.completed {
+			stroke: #7ED321;
+		}
+		.action-start-text.completed {
+			fill: #7ED321;
+		}
+		.action-start-outer.terminated {
+			stroke: #ff3b30;
+		}
+		.action-start-text.terminated {
+			fill: #ff3b30;
+		}
+		.action-start-outer.pending {
+			stroke: #BEC8D3;
+		}
+		.action-start-text.pending {
+			fill: #5F7084;
+		}
+	</style>
+	<g>
+		<rect class="action-start-outer $class" ry="47" width="240" height="94" y="2" x="2" fill="#0486E0"/>
+		<text class="action-start-text $class" text-anchor="middle"
+			  font-family="Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;"
+			  font-size="18pt" x="50%" y="50%" dy="4.5pt">
+			#if (!$model.getName() || "$model.getName()" == "")
+				<tspan>[$model.getCode()]</tspan>
+			#else
+				<tspan>$model.getName()</tspan>
+			#end
+		</text>
+	</g>
+</svg>

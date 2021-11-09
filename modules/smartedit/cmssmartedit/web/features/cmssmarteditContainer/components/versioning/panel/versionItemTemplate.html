@@ -1,0 +1,29 @@
+<div
+    class="se-version-item"
+    data-ng-class="{ 'se-version-item--selected': $ctrl.isSelectedVersion() }"
+>
+    <div class="se-version-item__header" title="{{ $ctrl.pageVersion.label }}">
+        <div class="se-version-item__label" data-ng-click="$ctrl.selectVersion()">
+            {{ $ctrl.pageVersion.label }}
+        </div>
+        <version-item-menu
+            data-ng-if="$ctrl.isVersionMenuEnabled()"
+            data-item="$ctrl.pageVersion"
+        ></version-item-menu>
+    </div>
+    <div class="se-version-item__date">{{ $ctrl.pageVersion.creationtime | date:'short' }}</div>
+    <div class="se-version-item__description" data-ng-if="$ctrl.pageVersion.description">
+        <div
+            class="se-version-item__description-text"
+            data-ng-class="{'se-version-item__description-text--truncated': $ctrl.isTruncated()}"
+        >
+            {{$ctrl.pageVersion.description}}
+        </div>
+        <div
+            class="se-more-text__toggle"
+            data-ng-if="$ctrl.hasMoreText()"
+            data-ng-click="$ctrl.toggleTruncate()"
+            data-translate="{{$ctrl.getLinkLabel()}}"
+        ></div>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<grid-view>
+	<imageslot>
+		<property qualifier=""/>
+	</imageslot>
+	<labelslot>
+		<property qualifier="Principal.name"/>
+	</labelslot>
+	<descriptionslot>
+		<property qualifier="Principal.description"/>
+	</descriptionslot>
+	<shortinfoslot>
+		<property qualifier="Principal.uid"/>
+	</shortinfoslot>
+	<actionslot spring-bean="ItemContentBrowserActionColumn"/>
+<!--	<specialactionslot>-->
+<!--	</specialactionslot>-->
+</grid-view>

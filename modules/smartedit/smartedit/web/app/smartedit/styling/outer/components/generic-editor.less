@@ -1,0 +1,38 @@
+/****************************************************
+				genericeditor
+****************************************************/
+@import (reference) 'node_modules/bootstrap/less/bootstrap.less';
+@import (reference) 'node_modules/bootstrap/less/responsive-utilities.less';
+@import (reference) 'node_modules/bootstrap/less/utilities.less';
+@import (reference) 'node_modules/bootstrap/less/variables.less';
+
+se-localized-element {
+    ul.nav-tabs > .dropdown {
+        ul > li {
+            background-color: @smartedit-white;
+            a {
+                color: @smartedit-blue;
+            }
+        }
+
+        a.sm-tab-error {
+            color: @smartedit-red3;
+        }
+    }
+
+    &.multi-tabs-editor * {
+        transition: none;
+    }
+}
+
+se-generic-editor-field .ySEField .ySEFieldPostfix {
+    padding-top: 20px;
+}
+
+.mce-content-body {
+    padding-top: 0;
+}
+
+.se-ge-modal--messages {
+    margin-bottom: 1rem;
+}

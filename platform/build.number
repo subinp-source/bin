@@ -1,0 +1,9 @@
+#Ant properties
+#Tue Jun 01 00:25:25 CEST 2021
+version.api=2011
+vendor=hybris
+group.id=de.hybris.platform
+builddate=20210601 0020
+releasedate=20210601 0020
+version=2011.8
+module.name=platform-module

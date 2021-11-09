@@ -1,0 +1,12 @@
+@import url("/backoffice/widgetClasspathResource/widgets/navigationhistory/navigationhistory.css");
+
+.yw-pcmbackoffice .yw-editorarea-actioncontainer .yw-de_hybris_platform_configurablebundlebackoffice_widgets_deleteawarenavigationhistory {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+}
+
+.yw-de_hybris_platform_configurablebundlebackoffice_widgets_deleteawarenavigationhistory {
+	height: 100%;
+	vertical-align: middle;
+}

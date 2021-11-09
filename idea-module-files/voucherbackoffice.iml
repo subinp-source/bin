@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="OOTB" importedAsReadOnly="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/bin/voucherbackofficeserver.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/bin/voucherbackofficeserver.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../modules/base-commerce/voucherbackoffice/lib" recursive="true" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/backoffice-framework/backoffice/web/webroot/WEB-INF/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../modules/backoffice-framework/backoffice/web/webroot/WEB-INF/lib" recursive="true" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/backoffice-framework/backoffice/web/webroot/WEB-INF/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="backoffice" exported="" />
+    <orderEntry type="module" module-name="platform" exported="" />
+    <orderEntry type="module" module-name="platformbackoffice" exported="" />
+    <orderEntry type="module" module-name="voucher" exported="" />
+  </component>
+</module>

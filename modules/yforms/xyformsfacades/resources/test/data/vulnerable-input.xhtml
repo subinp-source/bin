@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<!DOCTYPE root [
+        <!ELEMENT root (#PCDATA)>
+        <!ENTITY xxe SYSTEM "file:///etc/resolv.conf" >
+        ]>
+<xh:html xmlns:xh="http://www.w3.org/1999/xhtml" xmlns:xf="http://www.w3.org/2002/xforms">
+    <xh:head>
+        <xf:model>
+            <xf:instance id="fr-form-metadata">
+                <metadata>
+                    <title>XXE Test</title>
+                    <description>This form triggers an XXE vulnerability</description>
+                    <application-name>xxetest</application-name>
+                    <form-name>test11</form-name>
+                </metadata>
+            </xf:instance>
+            <a>&xxe;</a>
+        </xf:model>
+    </xh:head>
+</xh:html>

@@ -1,0 +1,18 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+# you can put key/value pairs here.
+# Use Config.getParameter(..) to retrieve the values during runtime.
+
+profiletagaddon.key=value
+
+# Specifies the location of the spring context file added automatically to the global platform application context.
+profiletagaddon.application-context=profiletagaddon-spring.xml
+
+yacceleratorstorefront.additionalWebSpringConfigs.profiletagaddon=classpath:/profiletagaddon/web/spring/profiletagaddon-web-spring.xml
+
+
+
+profiletagaddon.javascript.paths.responsive=/responsive/common/js/profiletagaddon.js;/responsive/common/js/acc.product.js
+profiletagaddon.css.paths.responsive=/responsive/common/css/profiletagaddon.css

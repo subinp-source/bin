@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/util
+		   http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<!-- Services -->
+
+	<alias name="defaultSnSuggestContextFactory" alias="snSuggestContextFactory" />
+	<bean id="defaultSnSuggestContextFactory"
+		class="de.hybris.platform.searchservices.suggest.service.impl.DefaultSnSuggestContextFactory"
+		parent="snIndexContextFactory" />
+
+	<alias name="defaultSnSuggestService" alias="snSuggestService" />
+	<bean id="defaultSnSuggestService"
+		class="de.hybris.platform.searchservices.suggest.service.impl.DefaultSnSuggestService">
+		<property name="snSuggestStrategyFactory" ref="snSuggestStrategyFactory" />
+	</bean>
+
+	<alias name="defaultSnSuggestStrategyFactory" alias="snSuggestStrategyFactory" />
+	<bean id="defaultSnSuggestStrategyFactory"
+		class="de.hybris.platform.searchservices.suggest.service.impl.DefaultSnSuggestStrategyFactory">
+		<property name="defaultSuggestStrategy" ref="snSuggestStrategy" />
+	</bean>
+
+	<alias name="defaultSnSuggestStrategy" alias="snSuggestStrategy" />
+	<bean id="defaultSnSuggestStrategy"
+		class="de.hybris.platform.searchservices.suggest.service.impl.DefaultSnSuggestStrategy">
+		<property name="snSessionService" ref="snSessionService" />
+		<property name="snSuggestContextFactory" ref="snSuggestContextFactory" />
+		<property name="snIndexService" ref="snIndexService" />
+		<property name="snListenerFactory" ref="snListenerFactory" />
+		<property name="snSearchProviderFactory" ref="snSearchProviderFactory" />
+	</bean>
+
+</beans>

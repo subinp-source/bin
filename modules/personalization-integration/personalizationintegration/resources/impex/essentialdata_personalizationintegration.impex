@@ -1,0 +1,8 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+# Import essential data
+INSERT_UPDATE CxSegment; code[unique = true]
+; USER_ANONYMOUS  ;
+; USER_REGISTERED ;

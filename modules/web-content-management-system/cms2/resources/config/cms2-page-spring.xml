@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+   	http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <alias name="defaultRelatedPageRejectionService" alias="cmsRelatedPageRejectionService"/>
+    <bean id="defaultRelatedPageRejectionService" class="de.hybris.platform.cms2.relatedpages.service.impl.DefaultRelatedPageRejectionService">
+        <property name="modelService" ref="modelService"/>
+        <property name="relatedItemsService" ref="cmsRelatedItemsService"/>
+        <property name="pageTypePredicate" ref="abstractPageTypePredicate"/>
+        <property name="cmsAdminSiteService" ref="cmsAdminSiteService" />
+        <property name="cmsWorkflowService" ref="cmsWorkflowService"/>
+        <property name="cmsVersionSessionContextProvider" ref="cmsVersionSessionContextProvider"/>
+    </bean>
+
+    <!-- Interceptors -->
+    <alias name="defaultRelatedPagePrepareInterceptor" alias="cmsRelatedPagePrepareInterceptor"/>
+    <bean id="defaultRelatedPagePrepareInterceptor" class="de.hybris.platform.cms2.servicelayer.interceptor.impl.RelatedPagePrepareInterceptor">
+        <property name="relatedPageRejectionService" ref="cmsRelatedPageRejectionService"/>
+        <property name="cmsItemTypePredicate" ref="cmsItemTypePredicateForItemModel" />
+        <property name="contentSlotForPageModelPredicate" ref="cmsContentSlotForPagePredicate" />
+    </bean>
+
+    <alias name="defaultContentSlotForPageRemoveInterceptor" alias="cmsContentSlotForPageRemoveInterceptor" />
+    <bean id="defaultContentSlotForPageRemoveInterceptor" class="de.hybris.platform.cms2.servicelayer.interceptor.impl.ContentSlotForPageRemoveInterceptor">
+        <property name="relatedPagePrepareInterceptor" ref="cmsRelatedPagePrepareInterceptor" />
+    </bean>
+
+    <bean id="relatedPagePrepareInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+        <property name="interceptor" ref="defaultRelatedPagePrepareInterceptor"/>
+        <property name="typeCode" value="CMSItem"/>
+    </bean>
+
+    <bean id="relatedContentSlotPrepareInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+        <property name="interceptor" ref="defaultRelatedPagePrepareInterceptor"/>
+        <property name="typeCode" value="ContentSlotForPage"/>
+    </bean>
+
+    <bean id="relatedContentSlotForPageRemoveInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+        <property name="interceptor" ref="defaultContentSlotForPageRemoveInterceptor"/>
+        <property name="typeCode" value="ContentSlotForPage"/>
+    </bean>
+</beans>

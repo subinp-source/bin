@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+--><extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
+        	
+    
+    <extension abstractclassprefix="Generated" classprefix="Chinesepaymentoccaddon" description="chinesepaymentoccaddon extension" managername="ChinesepaymentoccaddonManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="chinesepaymentoccaddon">
+                		
+        
+        <requires-extension name="addonsupport"/>
+                
+        <requires-extension name="chinesepaymentfacades"/>
+                
+        <requires-extension name="chinesecommercewebservicescommons"/>
+                		
+        
+        <coremodule generated="true" manager="de.hybris.platform.chinesepaymentoccaddon.jalo.ChinesepaymentoccaddonManager" packageroot="de.hybris.platform.chinesepaymentoccaddon"/>
+                					
+    
+    </extension>
+        
+
+</extensioninfo>

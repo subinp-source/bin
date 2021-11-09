@@ -1,0 +1,26 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+$lang=cs
+
+
+insert_update DynamicConstraint;id[unique=true,allownull=true];message[lang=$lang]
+;abstractRuleDateDiffConstraint;"Koncové datum musí být po počátečním datu."
+
+insert_update NotNullConstraint;id[unique=true,allownull=true];message[lang=$lang]
+;sourceRuleCode;Kód nesmí být nula nebo prázdný.
+
+insert_update NotNullConstraint;id[unique=true,allownull=true];message[lang=$lang]
+;sourceRuleTemplateCode;Kód nesmí být nula nebo prázdný.
+
+insert_update ObjectPatternConstraint;id[unique=true,allownull=true];message[lang=$lang];
+;ruleCodeLengthMinValue;"Hodnota musí mít alespoň 2 znaky.";
+;ruleTemplateCodeLengthMinValue;"Hodnota musí mít alespoň 2 znaky.";
+;ruleEngineRuleCodeLengthMinValue;"Hodnota musí mít alespoň 2 znaky.";

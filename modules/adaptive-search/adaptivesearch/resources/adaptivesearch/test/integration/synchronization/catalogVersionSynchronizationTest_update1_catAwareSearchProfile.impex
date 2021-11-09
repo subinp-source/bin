@@ -1,0 +1,15 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+$indexType=testIndex
+$catalogVersion=catalogVersion(catalog(id[default='hwcatalog']),version[default='Staged'])[unique=true,default='hwcatalog:Staged']
+
+# global search configuration
+
+INSERT_UPDATE AsCategoryAwareSearchConfiguration;searchProfile(code,$catalogVersion)[unique=true];uid[unique=true];category(code,$catalogVersion);facetsMergeMode(code);boostItemsMergeMode(code);boostRulesMergeMode(code);sortsMergeMode(code);$catalogVersion[unique=true]
+;categoryAwareProfile;globalSearchConfiguration;;REPLACE;REPLACE;REPLACE;REPLACE;
+
+# category search configuration
+
+INSERT_UPDATE AsCategoryAwareSearchConfiguration;searchProfile(code,$catalogVersion)[unique=true];uid[unique=true];category(code,$catalogVersion);facetsMergeMode(code);boostItemsMergeMode(code);boostRulesMergeMode(code);sortsMergeMode(code);$catalogVersion[unique=true]
+;categoryAwareProfile;categorySearchConfiguration;cat10;ADD_AFTER;ADD_AFTER;ADD;ADD_AFTER;

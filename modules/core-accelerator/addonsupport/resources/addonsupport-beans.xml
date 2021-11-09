@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<!-- ATTENTION: This is just an example file. You have to edit it according 
+	to your needs. -->
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="beans.xsd">
+
+	<enum class="de.hybris.platform.addonsupport.impex.AddonConfigDataImportType">
+		<value>CONTENT</value>
+		<value>PRODUCT</value>
+		<value>SEARCH_SERVICES</value>
+		<value>SOLR</value>
+		<value>STORE</value>
+	</enum>
+
+	<bean class="de.hybris.platform.addonsupport.data.AddonExtensionMetadata">
+		<property name="baseExtensionName" type="String" />
+		<property name="suffixChannel" type="boolean" />
+	</bean>
+	
+</beans>

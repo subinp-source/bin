@@ -1,0 +1,12 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+#
+# Import the Electronics Content Catalog
+#
+
+
+# Create Content Catalog
+UPDATE ContentCatalog;id[unique=true];name[lang=de];catalogLevelName[lang=de]
+
+;electronics-deContentCatalog;"Elektronikkatalog DE";Land

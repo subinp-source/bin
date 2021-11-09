@@ -1,0 +1,19 @@
+.se-pagination {
+    .fd-pagination__link[aria-selected='true'] {
+        color: #7f90a4;
+    }
+
+    .fd-pagination__link {
+        transform: none;
+        font-weight: 600;
+        padding: 10px 15px;
+
+        &--previous,
+        &--next {
+            &:before {
+                font-weight: 900;
+                font-size: 7px;
+            }
+        }
+    }
+}

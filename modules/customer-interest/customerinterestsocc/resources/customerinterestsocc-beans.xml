@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
+
+    <bean class="de.hybris.platform.customerinterestsocc.dto.CustomerInterestsSearchResultWsDTO">
+    	<description>Customer interests search page</description>
+    	<hints>
+    		<hint name="wsRelated"/>
+			<hint name="alias">customerInterestsSearchPage</hint>
+    	</hints>
+		<property name="results" type="java.util.List&lt;de.hybris.platform.customerinterestsocc.dto.ProductInterestRelationWsDTO>">
+			<description>List of product interest relation</description>
+		</property>
+		<property name="sorts" type="java.util.List&lt;de.hybris.platform.webservicescommons.dto.SortWsDTO>">
+			<description>Sorting information</description>
+		</property>
+		<property name="pagination" type="de.hybris.platform.webservicescommons.dto.PaginationWsDTO"> 
+		   <description>Pagination information</description>
+		</property>
+    </bean> 
+	
+	<bean class="de.hybris.platform.customerinterestsocc.dto.ProductInterestRelationWsDTO">
+		<description>Product interest relation</description>
+		<hints>
+    		<hint name="wsRelated"/>
+			<hint name="alias">productInterestRelation</hint>
+    	</hints>
+		<property name="product" type="de.hybris.platform.commercewebservicescommons.dto.product.ProductWsDTO">
+			<description>Product</description>
+		</property>
+		<property name="productInterestEntry" type="java.util.List&lt;de.hybris.platform.customerinterestsocc.dto.ProductInterestEntryWsDTO>" >
+			<description>List of product interest entry</description>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.customerinterestsocc.dto.ProductInterestEntryWsDTO">
+		<description>Product interest entry</description>
+		<hints>
+    		<hint name="wsRelated"/>
+			<hint name="alias">productInterestEntry</hint>
+    	</hints>
+		<property name="interestType" type="String">
+			<description>Product interest type</description>
+		</property>
+		<property name="dateAdded" type="java.util.Date">
+			<description>Added date of product interest</description>
+		</property>
+		<property name="expirationDate" type="java.util.Date">
+			<description>Expiration date of product interest</description>
+		</property>
+	</bean>
+	
+</beans>

@@ -1,0 +1,273 @@
+[
+	{
+		"testId": 1,
+		"description": "'eq' query with true value matches with BOOLEAN expression",
+		"data": {
+			"type": "eq",
+			"expression": "field_boolean",
+			"value": true
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc3"
+		]
+	},
+	{
+		"testId": 2,
+		"description": "'eq' query with false value matches with BOOLEAN expression",
+		"data": {
+			"type": "eq",
+			"expression": "field_boolean",
+			"value": false
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	},
+	{
+		"testId": 3,
+		"description": "'eq' query with true value matches with multi-valued BOOLEAN expression",
+		"data": {
+			"type": "eq",
+			"expression": "field_boolean_mv",
+			"value": true
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2"
+		]
+	},
+	{
+		"testId": 4,
+		"description": "'eq' query with false value matches with multi-valued BOOLEAN expression",
+		"data": {
+			"type": "eq",
+			"expression": "field_boolean_mv",
+			"value": false
+		},
+		"matchingDocuments": [
+			"doc2",
+			"doc3"
+		]
+	},
+	{
+		"testId": 5,
+		"description": "'eq' query doesn't match with INTEGER expression",
+		"data": {
+			"type": "eq",
+			"expression": "field_integer",
+			"value": 0
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 6,
+		"description": "'eq' query matches with INTEGER expression",
+		"data": {
+			"type": "eq",
+			"expression": "field_integer",
+			"value": 20
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	},
+	{
+		"testId": 7,
+		"description": "'eq' query doesn't match with multi-valued INTEGER expression",
+		"data": {
+			"type": "eq",
+			"expression": "field_integer_mv",
+			"value": 0
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 8,
+		"description": "'eq' query matches with multi-valued INTEGER expression",
+		"data": {
+			"type": "eq",
+			"expression": "field_integer_mv",
+			"value": 20
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	},
+	{
+		"testId": 9,
+		"description": "'eq' query doesn't match with LONG expression",
+		"data": {
+			"type": "eq",
+			"expression": "field_long",
+			"value": 0
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 10,
+		"description": "'eq' query matches with LONG expression",
+		"data": {
+			"type": "eq",
+			"expression": "field_long",
+			"value": 20
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	},
+	{
+		"testId": 11,
+		"description": "'eq' query doesn't match with multi-valued INTEGER expression",
+		"data": {
+			"type": "eq",
+			"expression": "field_long_mv",
+			"value": 0
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 12,
+		"description": "'eq' query matches with multi-valued LONG expression",
+		"data": {
+			"type": "eq",
+			"expression": "field_long_mv",
+			"value": 20
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	},
+	{
+		"testId": 13,
+		"description": "'eq' query doesn't match with FLOAT expression",
+		"data": {
+			"type": "eq",
+			"expression": "field_float",
+			"value": 0
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 14,
+		"description": "'eq' query matches with FLOAT expression",
+		"data": {
+			"type": "eq",
+			"expression": "field_float",
+			"value": 20
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	},
+	{
+		"testId": 15,
+		"description": "'eq' query doesn't match with multi-valued FLOAT expression",
+		"data": {
+			"type": "eq",
+			"expression": "field_float_mv",
+			"value": 0
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 16,
+		"description": "'eq' query matches with multi-valued FLOAT expression",
+		"data": {
+			"type": "eq",
+			"expression": "field_float_mv",
+			"value": 20
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	},
+	{
+		"testId": 17,
+		"description": "'eq' query doesn't match with DOUBLE expression",
+		"data": {
+			"type": "eq",
+			"expression": "field_double",
+			"value": 0
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 18,
+		"description": "'eq' query matches with DOUBLE expression",
+		"data": {
+			"type": "eq",
+			"expression": "field_double",
+			"value": 20
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	},
+	{
+		"testId": 19,
+		"description": "'eq' query doesn't match with multi-valued DOUBLE expression",
+		"data": {
+			"type": "eq",
+			"expression": "field_double_mv",
+			"value": 0
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 20,
+		"description": "'eq' query matches with multi-valued DOUBLE expression",
+		"data": {
+			"type": "eq",
+			"expression": "field_double_mv",
+			"value": 20
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	},
+	{
+		"testId": 21,
+		"description": "'eq' query doesn't match with DOUBLE expression",
+		"data": {
+			"type": "eq",
+			"expression": "field_date_time",
+			"value": "2000-01-01T00:00:00.000+00:00"
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 22,
+		"description": "'eq' query matches with DATE_TIME expression",
+		"data": {
+			"type": "eq",
+			"expression": "field_date_time",
+			"value": "2020-01-01T00:00:00.000+00:00"
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	},
+	{
+		"testId": 23,
+		"description": "'eq' query doesn't match with multi-valued DATE_TIME expression",
+		"data": {
+			"type": "eq",
+			"expression": "field_date_time_mv",
+			"value": "2000-01-01T00:00:00.000+00:00"
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 24,
+		"description": "'eq' query matches with multi-valued DATE_TIME expression",
+		"data": {
+			"type": "eq",
+			"expression": "field_date_time_mv",
+			"value": "2020-01-01T00:00:00.000+00:00"
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	}
+]

@@ -1,0 +1,8 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+$siteUid=powertools
+
+# Base Store
+INSERT_UPDATE BaseStore;uid[unique=true];captchaCheckEnabled;
+;$siteUid;false;

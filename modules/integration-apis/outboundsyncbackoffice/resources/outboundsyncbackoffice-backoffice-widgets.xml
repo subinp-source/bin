@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widgets.xsd">
+	<widget-extension widgetId="integrationTypeCodeRouter">
+		<setting key="outboundContainers_expression" type="String">#root eq 'OutboundSyncStreamConfigurationContainer'</setting>
+		<setting key="outboundChannels_expression" type="String">#root eq 'OutboundChannelConfiguration'</setting>
+		<setting key="outboundStreams_expression" type="String">#root eq 'OutboundSyncStreamConfiguration'</setting>
+		<setting key="outboundJobs_expression" type="String">#root eq 'OutboundSyncJob'</setting>
+		<setting key="outboundCronJobs_expression" type="String">#root eq 'OutboundSyncCronJob'</setting>
+		<virtual-sockets>
+			<output id="outboundContainers" type="java.lang.String" />
+			<output id="outboundChannels" type="java.lang.String" />
+			<output id="outboundStreams" type="java.lang.String" />
+			<output id="outboundJobs" type="java.lang.String" />
+			<output id="outboundCronJobs" type="java.lang.String" />
+		</virtual-sockets>
+	</widget-extension>
+	<widget-extension widgetId="integrationBackofficeViewSwitcher">
+		<widget id="outboundContainer"
+				widgetDefinitionId="com.hybris.cockpitng.collapsiblecontainer"
+				slotId="views" template="false" title="Outbound Sync Stream Configuration Container">
+			<widget id="outboundContainerSearchEngine"
+					widgetDefinitionId="com.hybris.cockpitng.widgets.common.advancedsearchengine"
+					slotId="cockpitWidgetChildrenInvisible" template="false">
+				<virtual-sockets/>
+			</widget>
+			<widget id="outboundContainerSearchCondition" widgetDefinitionId="com.hybris.cockpitng.advancedsearch"
+					slotId="top" template="false">
+				<setting key="disableSubtypesCheckbox" type="Boolean">true</setting>
+				<setting key="disableAdvancedSearchToolbar" type="Boolean">true</setting>
+				<setting key="isNestedObjectCreationDisabled" type="Boolean">true</setting>
+				<virtual-sockets/>
+			</widget>
+			<widget id="outboundContainerSearchResult"
+					widgetDefinitionId="com.hybris.cockpitng.collectionBrowser"
+					slotId="center" template="false">
+				<setting key="socketDataType_$T" type="String">de.hybris.platform.outboundsync.model.OutboundSyncStreamConfigurationContainerModel</setting>
+			</widget>
+			<widget id="outboundContainerDetails"
+					widgetDefinitionId="com.hybris.cockpitng.backoffice.defaultEditorArea"
+					slotId="bottom" template="false">
+				<setting key="socketDataType_$T" type="String">de.hybris.platform.outboundsync.model.OutboundSyncStreamConfigurationContainerModel</setting>
+				<setting key="editorAreaConfigCtx" type="String">integration-editor-area</setting>
+				<virtual-sockets/>
+			</widget>
+			<setting key="topPanelCollapsed">true</setting>
+		</widget>
+		<widget id="outboundChannel"
+				widgetDefinitionId="com.hybris.cockpitng.collapsiblecontainer"
+				slotId="views" template="false" title="Outbound Channel">
+			<widget id="outboundChannelSearchEngine"
+					widgetDefinitionId="com.hybris.cockpitng.widgets.common.advancedsearchengine"
+					slotId="cockpitWidgetChildrenInvisible" template="false">
+				<virtual-sockets/>
+			</widget>
+			<widget id="outboundChannelSearchCondition" widgetDefinitionId="com.hybris.cockpitng.advancedsearch"
+					slotId="top" template="false">
+				<setting key="disableSubtypesCheckbox" type="Boolean">true</setting>
+				<setting key="disableAdvancedSearchToolbar" type="Boolean">true</setting>
+				<setting key="isNestedObjectCreationDisabled" type="Boolean">true</setting>
+				<virtual-sockets/>
+			</widget>
+			<widget id="outboundChannelSearchResult"
+					widgetDefinitionId="com.hybris.cockpitng.collectionBrowser"
+					slotId="center" template="false">
+				<setting key="socketDataType_$T" type="String">de.hybris.platform.outboundsync.model.OutboundChannelConfigurationModel</setting>
+				<setting key="actionSlotComponentId" type="String">listviewactions</setting>
+			</widget>
+			<widget id="outboundChannelDetails"
+					widgetDefinitionId="com.hybris.cockpitng.backoffice.defaultEditorArea"
+					slotId="bottom" template="false">
+				<setting key="socketDataType_$T" type="String">de.hybris.platform.outboundsync.model.OutboundChannelConfigurationModel</setting>
+				<setting key="editorAreaConfigCtx" type="String">integration-editor-area</setting>
+			</widget>
+			<setting key="topPanelCollapsed">true</setting>
+		</widget>
+		<widget id="outboundStream"
+				widgetDefinitionId="com.hybris.cockpitng.collapsiblecontainer"
+				slotId="views" template="false" title="Sync Stream">
+			<widget id="outboundStreamSearchEngine"
+					widgetDefinitionId="com.hybris.cockpitng.widgets.common.advancedsearchengine"
+					slotId="cockpitWidgetChildrenInvisible" template="false">
+				<virtual-sockets/>
+			</widget>
+			<widget id="outboundStreamSearchCondition" widgetDefinitionId="com.hybris.cockpitng.advancedsearch"
+					slotId="top" template="false">
+				<setting key="disableSubtypesCheckbox" type="Boolean">true</setting>
+				<setting key="disableAdvancedSearchToolbar" type="Boolean">true</setting>
+				<setting key="isNestedObjectCreationDisabled" type="Boolean">true</setting>
+				<virtual-sockets/>
+			</widget>
+			<widget id="outboundStreamSearchResult"
+					widgetDefinitionId="com.hybris.cockpitng.collectionBrowser"
+					slotId="center" template="false">
+				<setting key="socketDataType_$T" type="String">de.hybris.platform.outboundsync.model.OutboundSyncStreamConfigurationModel</setting>
+			</widget>
+			<widget id="outboundStreamDetails"
+					widgetDefinitionId="com.hybris.cockpitng.backoffice.defaultEditorArea"
+					slotId="bottom" template="false">
+				<setting key="socketDataType_$T" type="String">de.hybris.platform.outboundsync.model.OutboundSyncStreamConfigurationModel</setting>
+				<setting key="editorAreaConfigCtx" type="String">integration-editor-area</setting>
+			</widget>
+			<setting key="topPanelCollapsed">true</setting>
+		</widget>
+		<widget id="outboundJob"
+				widgetDefinitionId="com.hybris.cockpitng.collapsiblecontainer"
+				slotId="views" template="false" title="Sync Job">
+			<widget id="outboundJobSearchEngine"
+					widgetDefinitionId="com.hybris.cockpitng.widgets.common.advancedsearchengine"
+					slotId="cockpitWidgetChildrenInvisible" template="false">
+				<virtual-sockets/>
+			</widget>
+			<widget id="outboundJobSearchCondition" widgetDefinitionId="com.hybris.cockpitng.advancedsearch"
+					slotId="top" template="false">
+				<setting key="disableSubtypesCheckbox" type="Boolean">true</setting>
+				<setting key="disableAdvancedSearchToolbar" type="Boolean">true</setting>
+				<setting key="isNestedObjectCreationDisabled" type="Boolean">true</setting>
+				<virtual-sockets/>
+			</widget>
+			<widget id="outboundJobSearchResult"
+					widgetDefinitionId="com.hybris.cockpitng.collectionBrowser"
+					slotId="center" template="false">
+				<setting key="socketDataType_$T" type="String">de.hybris.platform.outboundsync.model.OutboundSyncJobModel</setting>
+			</widget>
+			<widget id="outboundJobDetails"
+					widgetDefinitionId="com.hybris.cockpitng.backoffice.defaultEditorArea"
+					slotId="bottom" template="false">
+				<setting key="socketDataType_$T" type="String">de.hybris.platform.outboundsync.model.OutboundSyncJobModel</setting>
+				<setting key="editorAreaConfigCtx" type="String">integration-editor-area</setting>
+			</widget>
+			<setting key="topPanelCollapsed">true</setting>
+		</widget>
+		<widget id="outboundCronJob"
+				widgetDefinitionId="com.hybris.cockpitng.collapsiblecontainer"
+				slotId="views" template="false" title="Sync CronJob">
+			<widget id="outboundCronJobSearchEngine"
+					widgetDefinitionId="com.hybris.cockpitng.widgets.common.advancedsearchengine"
+					slotId="cockpitWidgetChildrenInvisible" template="false">
+				<virtual-sockets/>
+			</widget>
+			<widget id="outboundCronJobSearchCondition" widgetDefinitionId="com.hybris.cockpitng.advancedsearch"
+					slotId="top" template="false">
+				<setting key="disableSubtypesCheckbox" type="Boolean">true</setting>
+				<setting key="disableAdvancedSearchToolbar" type="Boolean">true</setting>
+				<setting key="isNestedObjectCreationDisabled" type="Boolean">true</setting>
+				<virtual-sockets/>
+			</widget>
+			<widget id="outboundCronJobSearchResult"
+					widgetDefinitionId="com.hybris.cockpitng.collectionBrowser"
+					slotId="center" template="false">
+				<setting key="refreshAfterObjectCreation" type="Boolean" value="true" />
+				<setting key="socketDataType_$T" type="String">de.hybris.platform.outboundsync.model.OutboundSyncCronJobModel</setting>
+			</widget>
+			<widget id="outboundCronJobDetails"
+					widgetDefinitionId="com.hybris.cockpitng.backoffice.defaultEditorArea"
+					slotId="bottom" template="false">
+				<setting key="socketDataType_$T" type="String">de.hybris.platform.outboundsync.model.OutboundSyncCronJobModel</setting>
+				<setting key="editorAreaConfigCtx" type="String">integration-editor-area</setting>
+			</widget>
+			<setting key="topPanelCollapsed">true</setting>
+		</widget>
+		<setting key="selectOutboundContainer_eval" type="String" value="'outboundContainer'" />
+		<setting key="selectOutboundChannel_eval" type="String" value="'outboundChannel'" />
+		<setting key="selectOutboundStream_eval" type="String" value="'outboundStream'" />
+		<setting key="selectOutboundJob_eval" type="String" value="'outboundJob'" />
+		<setting key="selectOutboundCronJob_eval" type="String" value="'outboundCronJob'" />
+		<virtual-sockets>
+			<input id="selectOutboundContainer" type="java.lang.Object" />
+			<input id="selectOutboundChannel" type="java.lang.Object" />
+			<input id="selectOutboundStream" type="java.lang.Object" />
+			<input id="selectOutboundJob" type="java.lang.Object" />
+			<input id="selectOutboundCronJob" type="java.lang.Object" />
+		</virtual-sockets>
+	</widget-extension>
+
+	<!--###  Outbound Channel  ###-->
+	<widget-connection sourceWidgetId="integrationTypeCodeRouter" outputId="outboundChannels"
+					   targetWidgetId="integrationBackofficeViewSwitcher" inputId="selectOutboundChannel"/>
+	<widget-connection sourceWidgetId="integrationTypeCodeRouter" outputId="outboundChannels"
+					   targetWidgetId="outboundChannel" inputId="activate"/>
+	<widget-connection sourceWidgetId="integrationTypeCodeRouter" outputId="outboundChannels"
+					   targetWidgetId="outboundChannelSearchCondition" inputId="type"/>
+	<widget-connection sourceWidgetId="outboundChannelSearchCondition" outputId="searchData"
+					   targetWidgetId="outboundChannelSearchEngine" inputId="searchData"/>
+	<widget-connection sourceWidgetId="outboundChannelSearchEngine" outputId="pageable"
+					   targetWidgetId="outboundChannelSearchResult" inputId="pageable" />
+	<widget-connection sourceWidgetId="outboundChannelSearchResult" outputId="selectedItem"
+					   targetWidgetId="outboundChannelDetails" inputId="inputObject" />
+
+	<!-- Outbound Stream -->
+	<widget-connection sourceWidgetId="integrationTypeCodeRouter" outputId="outboundStreams"
+					   targetWidgetId="integrationBackofficeViewSwitcher" inputId="selectOutboundStream"/>
+	<widget-connection sourceWidgetId="integrationTypeCodeRouter" outputId="outboundStreams"
+					   targetWidgetId="outboundStream" inputId="activate"/>
+	<widget-connection sourceWidgetId="integrationTypeCodeRouter" outputId="outboundStreams"
+					   targetWidgetId="outboundStreamSearchCondition" inputId="type"/>
+	<widget-connection sourceWidgetId="outboundStreamSearchCondition" outputId="searchData"
+					   targetWidgetId="outboundStreamSearchEngine" inputId="searchData"/>
+	<widget-connection sourceWidgetId="outboundStreamSearchEngine" outputId="pageable"
+					   targetWidgetId="outboundStreamSearchResult" inputId="pageable" />
+	<widget-connection sourceWidgetId="outboundStreamSearchResult" outputId="selectedItem"
+					   targetWidgetId="outboundStreamDetails" inputId="inputObject" />
+
+	<!-- Outbound Job -->
+	<widget-connection sourceWidgetId="integrationTypeCodeRouter" outputId="outboundJobs"
+					   targetWidgetId="integrationBackofficeViewSwitcher" inputId="selectOutboundJob"/>
+	<widget-connection sourceWidgetId="integrationTypeCodeRouter" outputId="outboundJobs"
+					   targetWidgetId="outboundJob" inputId="activate"/>
+	<widget-connection sourceWidgetId="integrationTypeCodeRouter" outputId="outboundJobs"
+					   targetWidgetId="outboundJobSearchCondition" inputId="type"/>
+	<widget-connection sourceWidgetId="outboundJobSearchCondition" outputId="searchData"
+					   targetWidgetId="outboundJobSearchEngine" inputId="searchData"/>
+	<widget-connection sourceWidgetId="outboundJobSearchEngine" outputId="pageable"
+					   targetWidgetId="outboundJobSearchResult" inputId="pageable" />
+	<widget-connection sourceWidgetId="outboundJobSearchResult" outputId="selectedItem"
+					   targetWidgetId="outboundJobDetails" inputId="inputObject" />
+
+	<!-- Outbound Container -->
+	<widget-connection sourceWidgetId="integrationTypeCodeRouter" outputId="outboundContainers"
+					   targetWidgetId="integrationBackofficeViewSwitcher" inputId="selectOutboundContainer"/>
+	<widget-connection sourceWidgetId="integrationTypeCodeRouter" outputId="outboundContainers"
+					   targetWidgetId="outboundContainer" inputId="activate"/>
+	<widget-connection sourceWidgetId="integrationTypeCodeRouter" outputId="outboundContainers"
+					   targetWidgetId="outboundContainerSearchCondition" inputId="type"/>
+	<widget-connection sourceWidgetId="outboundContainerSearchCondition" outputId="searchData"
+					   targetWidgetId="outboundContainerSearchEngine" inputId="searchData"/>
+	<widget-connection sourceWidgetId="outboundContainerSearchEngine" outputId="pageable"
+					   targetWidgetId="outboundContainerSearchResult" inputId="pageable" />
+	<widget-connection sourceWidgetId="outboundContainerSearchResult" outputId="selectedItem"
+					   targetWidgetId="outboundContainerDetails" inputId="inputObject" />
+
+	<!-- Outbound CronJob -->
+	<widget-connection sourceWidgetId="integrationTypeCodeRouter" outputId="outboundCronJobs"
+					   targetWidgetId="integrationBackofficeViewSwitcher" inputId="selectOutboundCronJob"/>
+	<widget-connection sourceWidgetId="integrationTypeCodeRouter" outputId="outboundCronJobs"
+					   targetWidgetId="outboundCronJob" inputId="activate"/>
+	<widget-connection sourceWidgetId="integrationTypeCodeRouter" outputId="outboundCronJobs"
+					   targetWidgetId="outboundCronJobSearchCondition" inputId="type"/>
+	<widget-connection sourceWidgetId="outboundCronJobSearchCondition" outputId="searchData"
+					   targetWidgetId="outboundCronJobSearchEngine" inputId="searchData"/>
+	<widget-connection sourceWidgetId="outboundCronJobSearchEngine" outputId="pageable"
+					   targetWidgetId="outboundCronJobSearchResult" inputId="pageable" />
+	<widget-connection sourceWidgetId="outboundCronJobSearchResult" outputId="selectedItem"
+					   targetWidgetId="outboundCronJobDetails" inputId="inputObject" />
+</widgets>

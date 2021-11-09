@@ -1,0 +1,15 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+$defaultPassword=12341234
+
+INSERT_UPDATE UserGroup;uid[unique=true];locname[lang=en];
+;salesemployeegroup;Sales Employee;
+;salesadmingroup;Sales Admin;
+;salesmanagergroup;Sales Manager;
+;salesapprovergroup;Sales Approver;
+
+INSERT_UPDATE PrincipalGroupRelation;source(uid)[unique=true];target(uid)[unique=true]
+;salesadmingroup;salesemployeegroup;
+;salesmanagergroup;salesemployeegroup;
+;salesapprovergroup;salesemployeegroup;

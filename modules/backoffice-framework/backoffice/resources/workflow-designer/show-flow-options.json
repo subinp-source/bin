@@ -1,0 +1,153 @@
+{
+	"layout": {
+		"hierarchical": {
+			"sortMethod": "directed",
+			"nodeSpacing": 300,
+			"levelSeparation": 120
+		}
+	},
+	"nodes": {
+		"shape": "box",
+		"size": 22,
+		"font": {
+			"color": "#1a3263"
+		},
+		"borderWidth": 2,
+		"shadow": {
+			"enabled": false
+		},
+		"chosen": {
+			"node": false,
+			"label": false
+		}
+	},
+	"edges": {
+		"width": 2,
+		"shadow": {
+			"enabled": false
+		},
+		"color": {
+			"color": "#0486e0"
+		},
+		"smooth": {
+			"enabled": false
+		},
+		"arrows": {
+			"to": {
+				"enabled": true
+			}
+		},
+		"arrowStrikethrough": false,
+		"chosen": {
+			"edge": false,
+			"label": false
+		}
+	},
+	"groups": {
+		"decision": {
+			"shape": "circularImage",
+			"color": {
+				"background": "rgba(0,0,0,0)"
+			},
+			"borderWidth": 0,
+			"size": "54"
+		},
+		"andConnection": {
+			"shape": "circle",
+			"margin": {
+				"top": 15,
+				"bottom": 15,
+				"left": 15,
+				"right": 15
+			},
+			"borderWidth": 2,
+			"color": {
+				"background": "#fff",
+				"border": "#000"
+			}
+		},
+		"action": {
+			"margin": {
+				"top": 40,
+				"bottom": 40,
+				"left": 40,
+				"right": 40
+			},
+			"borderWidth": 2,
+			"color": {
+				"background": "#fff",
+				"border": "#000"
+			}
+		},
+		"startAction": {
+			"shape": "image"
+		},
+		"endAction": {
+			"shape": "image"
+		},
+		"actionPending": {
+			"margin": {
+				"top": 40,
+				"bottom": 40,
+				"left": 40,
+				"right": 40
+			},
+			"borderWidth": 2,
+			"color": {
+				"background": "#fff",
+				"border": "#BEC8D3"
+			}
+		},
+		"actionInProgress": {
+			"margin": {
+				"top": 40,
+				"bottom": 40,
+				"left": 40,
+				"right": 40
+			},
+			"borderWidth": 2,
+			"color": {
+				"background": "#BEC8D3",
+				"border": "#5F7084"
+			},
+			"font": {
+				"color": "#fff"
+			}
+		},
+		"actionCompleted": {
+			"margin": {
+				"top": 40,
+				"bottom": 40,
+				"left": 40,
+				"right": 40
+			},
+			"borderWidth": 2,
+			"color": {
+				"background": "#fff",
+				"border": "#7ED321"
+			},
+			"font": {
+				"color": "#5eb300"
+			}
+		},
+		"actionTerminated": {
+			"margin": {
+				"top": 40,
+				"bottom": 40,
+				"left": 40,
+				"right": 40
+			},
+			"borderWidth": 2,
+			"color": {
+				"background": "#fff",
+				"border": "#FF3B30"
+			},
+			"font": {
+				"color": "#ff3b30"
+			}
+		}
+	},
+	"physics": {
+		"enabled": false
+	}
+}

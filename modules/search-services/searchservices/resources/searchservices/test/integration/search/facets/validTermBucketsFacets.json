@@ -1,0 +1,2867 @@
+[
+	{
+		"testId": 1,
+		"description": "single facet",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"expression": "color"
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"name": "Color",
+					"expression": "color",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "GREEN",
+							"name": "GREEN",
+							"count": 2
+						},
+						{
+							"id": "RED",
+							"name": "RED",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 2,
+		"description": "multiple facets",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"expression": "color"
+				},
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"expression": "keywords",
+					"filterMode": "REFINE",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"name": "Color",
+					"expression": "color",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "GREEN",
+							"name": "GREEN",
+							"count": 2
+						},
+						{
+							"id": "RED",
+							"name": "RED",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				},
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"name": "Keywords",
+					"expression": "keywords",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "L",
+							"name": "L",
+							"count": 1
+						},
+						{
+							"id": "M",
+							"name": "M",
+							"count": 2
+						},
+						{
+							"id": "green",
+							"name": "green",
+							"count": 2
+						},
+						{
+							"id": "jacket",
+							"name": "jacket",
+							"count": 1
+						},
+						{
+							"id": "pullover",
+							"name": "pullover",
+							"count": 1
+						},
+						{
+							"id": "red",
+							"name": "red",
+							"count": 1
+						},
+						{
+							"id": "shirt",
+							"name": "shirt",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 4,
+		"description": "facet with query",
+		"data": {
+			"query": "RED",
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"expression": "color"
+				}
+			]
+		},
+		"expectedData": {
+			"size": 1,
+			"totalSize": 1,
+			"searchHits": [
+				{
+					"id": "doc1"
+				}
+			],
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"name": "Color",
+					"expression": "color",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "RED",
+							"name": "RED",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 5,
+		"description": "facet with filter",
+		"data": {
+			"filters": [
+				{
+					"query": {
+						"type": "matchTerm",
+						"expression": "color",
+						"value": "RED"
+					}
+				}
+			],
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"expression": "color"
+				}
+			]
+		},
+		"expectedData": {
+			"size": 1,
+			"totalSize": 1,
+			"searchHits": [
+				{
+					"id": "doc1"
+				}
+			],
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"name": "Color",
+					"expression": "color",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "RED",
+							"name": "RED",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 6,
+		"description": "facet with name",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"name": "Custom color",
+					"expression": "color"
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"name": "Custom color",
+					"expression": "color",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "GREEN",
+							"name": "GREEN",
+							"count": 2
+						},
+						{
+							"id": "RED",
+							"name": "RED",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 7,
+		"description": "facet with STRING expression",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "field_string",
+					"expression": "field_string",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "field_string",
+					"name": "field_string",
+					"expression": "field_string",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "GREEN L",
+							"name": "GREEN L",
+							"count": 1
+						},
+						{
+							"id": "GREEN M",
+							"name": "GREEN M",
+							"count": 1
+						},
+						{
+							"id": "RED M",
+							"name": "RED M",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 8,
+		"description": "facet with multi-valued STRING expression",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "field_string_mv",
+					"expression": "field_string_mv",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "field_string_mv",
+					"name": "field_string_mv",
+					"expression": "field_string_mv",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "GREEN jacket",
+							"name": "GREEN jacket",
+							"count": 1
+						},
+						{
+							"id": "GREEN pullover",
+							"name": "GREEN pullover",
+							"count": 1
+						},
+						{
+							"id": "RED shirt",
+							"name": "RED shirt",
+							"count": 1
+						},
+						{
+							"id": "size L",
+							"name": "size L",
+							"count": 1
+						},
+						{
+							"id": "size M",
+							"name": "size M",
+							"count": 2
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 9,
+		"description": "facet with BOOLEAN expression",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "field_boolean",
+					"expression": "field_boolean",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "field_boolean",
+					"name": "field_boolean",
+					"expression": "field_boolean",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "false",
+							"name": "false",
+							"count": 1
+						},
+						{
+							"id": "true",
+							"name": "true",
+							"count": 2
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 10,
+		"description": "facet with multi-valued BOOLEAN expression",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "field_boolean_mv",
+					"expression": "field_boolean_mv",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "field_boolean_mv",
+					"name": "field_boolean_mv",
+					"expression": "field_boolean_mv",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "false",
+							"name": "false",
+							"count": 2
+						},
+						{
+							"id": "true",
+							"name": "true",
+							"count": 2
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 11,
+		"description": "facet with INTEGER expression",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "field_integer",
+					"expression": "field_integer",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "field_integer",
+					"name": "field_integer",
+					"expression": "field_integer",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "10",
+							"name": "10",
+							"count": 1
+						},
+						{
+							"id": "20",
+							"name": "20",
+							"count": 1
+						},
+						{
+							"id": "30",
+							"name": "30",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 12,
+		"description": "facet with multi-valued INTEGER expression",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "field_integer_mv",
+					"name": "field_integer_mv",
+					"expression": "field_integer_mv",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "10",
+							"name": "10",
+							"count": 1
+						},
+						{
+							"id": "15",
+							"name": "15",
+							"count": 1
+						},
+						{
+							"id": "20",
+							"name": "20",
+							"count": 1
+						},
+						{
+							"id": "25",
+							"name": "25",
+							"count": 1
+						},
+						{
+							"id": "30",
+							"name": "30",
+							"count": 1
+						},
+						{
+							"id": "35",
+							"name": "35",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 13,
+		"description": "facet with LONG expression",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "field_long",
+					"expression": "field_long",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "field_long",
+					"name": "field_long",
+					"expression": "field_long",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "10",
+							"name": "10",
+							"count": 1
+						},
+						{
+							"id": "20",
+							"name": "20",
+							"count": 1
+						},
+						{
+							"id": "30",
+							"name": "30",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 14,
+		"description": "facet with multi-valued LONG expression",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "field_long_mv",
+					"expression": "field_long_mv",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "field_long_mv",
+					"name": "field_long_mv",
+					"expression": "field_long_mv",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "10",
+							"name": "10",
+							"count": 1
+						},
+						{
+							"id": "15",
+							"name": "15",
+							"count": 1
+						},
+						{
+							"id": "20",
+							"name": "20",
+							"count": 1
+						},
+						{
+							"id": "25",
+							"name": "25",
+							"count": 1
+						},
+						{
+							"id": "30",
+							"name": "30",
+							"count": 1
+						},
+						{
+							"id": "35",
+							"name": "35",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 15,
+		"description": "facet with FLOAT expression",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "field_float",
+					"expression": "field_float",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "field_float",
+					"name": "field_float",
+					"expression": "field_float",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "10.0",
+							"name": "10.0",
+							"count": 1
+						},
+						{
+							"id": "20.0",
+							"name": "20.0",
+							"count": 1
+						},
+						{
+							"id": "30.0",
+							"name": "30.0",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 16,
+		"description": "facet with multi-valued FLOAT expression",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "field_float_mv",
+					"expression": "field_float_mv",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "field_float_mv",
+					"name": "field_float_mv",
+					"expression": "field_float_mv",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "10.0",
+							"name": "10.0",
+							"count": 1
+						},
+						{
+							"id": "15.0",
+							"name": "15.0",
+							"count": 1
+						},
+						{
+							"id": "20.0",
+							"name": "20.0",
+							"count": 1
+						},
+						{
+							"id": "25.0",
+							"name": "25.0",
+							"count": 1
+						},
+						{
+							"id": "30.0",
+							"name": "30.0",
+							"count": 1
+						},
+						{
+							"id": "35.0",
+							"name": "35.0",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 17,
+		"description": "facet with DOUBLE expression",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "field_double",
+					"expression": "field_double",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "field_double",
+					"name": "field_double",
+					"expression": "field_double",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "10.0",
+							"name": "10.0",
+							"count": 1
+						},
+						{
+							"id": "20.0",
+							"name": "20.0",
+							"count": 1
+						},
+						{
+							"id": "30.0",
+							"name": "30.0",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 18,
+		"description": "facet with multi-valued DOUBLE expression",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "field_double_mv",
+					"expression": "field_double_mv",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "field_double_mv",
+					"name": "field_double_mv",
+					"expression": "field_double_mv",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "10.0",
+							"name": "10.0",
+							"count": 1
+						},
+						{
+							"id": "15.0",
+							"name": "15.0",
+							"count": 1
+						},
+						{
+							"id": "20.0",
+							"name": "20.0",
+							"count": 1
+						},
+						{
+							"id": "25.0",
+							"name": "25.0",
+							"count": 1
+						},
+						{
+							"id": "30.0",
+							"name": "30.0",
+							"count": 1
+						},
+						{
+							"id": "35.0",
+							"name": "35.0",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 19,
+		"description": "facet with DATE_TIME expression",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "field_date_time",
+					"expression": "field_date_time",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "field_date_time",
+					"name": "field_date_time",
+					"expression": "field_date_time",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "2010-01-01T00:00:00.000Z",
+							"name": "2010-01-01T00:00:00.000Z",
+							"count": 1
+						},
+						{
+							"id": "2020-01-01T00:00:00.000Z",
+							"name": "2020-01-01T00:00:00.000Z",
+							"count": 1
+						},
+						{
+							"id": "2030-01-01T00:00:00.000Z",
+							"name": "2030-01-01T00:00:00.000Z",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 20,
+		"description": "facet with multi-valued DATE_TIME expression",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "field_date_time_mv",
+					"expression": "field_date_time_mv",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "field_date_time_mv",
+					"name": "field_date_time_mv",
+					"expression": "field_date_time_mv",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "2010-01-01T00:00:00.000Z",
+							"name": "2010-01-01T00:00:00.000Z",
+							"count": 1
+						},
+						{
+							"id": "2015-01-01T00:00:00.000Z",
+							"name": "2015-01-01T00:00:00.000Z",
+							"count": 1
+						},
+						{
+							"id": "2020-01-01T00:00:00.000Z",
+							"name": "2020-01-01T00:00:00.000Z",
+							"count": 1
+						},
+						{
+							"id": "2025-01-01T00:00:00.000Z",
+							"name": "2025-01-01T00:00:00.000Z",
+							"count": 1
+						},
+						{
+							"id": "2030-01-01T00:00:00.000Z",
+							"name": "2030-01-01T00:00:00.000Z",
+							"count": 1
+						},
+						{
+							"id": "2035-01-01T00:00:00.000Z",
+							"name": "2035-01-01T00:00:00.000Z",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 21,
+		"description": "facet default filter mode is REFINE",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"expression": "keywords",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				}
+			],
+			"facetFilters": [
+				{
+					"type": "buckets",
+					"facetId": "keywords",
+					"bucketIds": [
+						"green",
+						"M"
+					]
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 1,
+			"totalSize": 1,
+			"searchHits": [
+				{
+					"id": "doc2"
+				}
+			],
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"name": "Keywords",
+					"expression": "keywords",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "M",
+							"name": "M",
+							"count": 1
+						},
+						{
+							"id": "green",
+							"name": "green",
+							"count": 1
+						},
+						{
+							"id": "jacket",
+							"name": "jacket",
+							"count": 1
+						}
+					],
+					"selectedBuckets": [
+						{
+							"id": "M",
+							"name": "M",
+							"count": 1
+						},
+						{
+							"id": "green",
+							"name": "green",
+							"count": 1
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 22,
+		"description": "facet with REFINE filter mode without facet filters",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"expression": "keywords",
+					"filterMode": "REFINE",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 4,
+			"totalSize": 4,
+			"searchHits": [
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc3"
+				},
+				{
+					"id": "doc4"
+				}
+			],
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"name": "Keywords",
+					"expression": "keywords",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "L",
+							"name": "L",
+							"count": 1
+						},
+						{
+							"id": "M",
+							"name": "M",
+							"count": 2
+						},
+						{
+							"id": "green",
+							"name": "green",
+							"count": 2
+						},
+						{
+							"id": "jacket",
+							"name": "jacket",
+							"count": 1
+						},
+						{
+							"id": "pullover",
+							"name": "pullover",
+							"count": 1
+						},
+						{
+							"id": "red",
+							"name": "red",
+							"count": 1
+						},
+						{
+							"id": "shirt",
+							"name": "shirt",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 23,
+		"description": "facet with REFINE filter mode with single bucket facet filter",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"expression": "keywords",
+					"filterMode": "REFINE",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				}
+			],
+			"facetFilters": [
+				{
+					"type": "buckets",
+					"facetId": "keywords",
+					"bucketIds": [
+						"green"
+					]
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 2,
+			"totalSize": 2,
+			"searchHits": [
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc3"
+				}
+			],
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"name": "Keywords",
+					"expression": "keywords",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "L",
+							"name": "L",
+							"count": 1
+						},
+						{
+							"id": "M",
+							"name": "M",
+							"count": 1
+						},
+						{
+							"id": "green",
+							"name": "green",
+							"count": 2
+						},
+						{
+							"id": "jacket",
+							"name": "jacket",
+							"count": 1
+						},
+						{
+							"id": "pullover",
+							"name": "pullover",
+							"count": 1
+						}
+					],
+					"selectedBuckets": [
+						{
+							"id": "green",
+							"name": "green",
+							"count": 2
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 24,
+		"description": "facet with REFINE filter with multiple multiple buckets facet filter (with intersection)",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"expression": "keywords",
+					"filterMode": "REFINE",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				}
+			],
+			"facetFilters": [
+				{
+					"type": "buckets",
+					"facetId": "keywords",
+					"bucketIds": [
+						"green",
+						"M"
+					]
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 1,
+			"totalSize": 1,
+			"searchHits": [
+				{
+					"id": "doc2"
+				}
+			],
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"name": "Keywords",
+					"expression": "keywords",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "M",
+							"name": "M",
+							"count": 1
+						},
+						{
+							"id": "green",
+							"name": "green",
+							"count": 1
+						},
+						{
+							"id": "jacket",
+							"name": "jacket",
+							"count": 1
+						}
+					],
+					"selectedBuckets": [
+						{
+							"id": "M",
+							"name": "M",
+							"count": 1
+						},
+						{
+							"id": "green",
+							"name": "green",
+							"count": 1
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 25,
+		"description": "facet with REFINE filter with multiple buckets facet filter (without intersection)",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"expression": "keywords",
+					"filterMode": "REFINE",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				}
+			],
+			"facetFilters": [
+				{
+					"type": "buckets",
+					"facetId": "keywords",
+					"bucketIds": [
+						"red",
+						"L"
+					]
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 0,
+			"totalSize": 0,
+			"searchHits": [],
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"name": "Keywords",
+					"expression": "keywords",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [],
+					"selectedBuckets": [
+						{
+							"id": "red",
+							"name": "red",
+							"count": 0
+						},
+						{
+							"id": "L",
+							"name": "L",
+							"count": 0
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 26,
+		"description": "facet with REFINE filter mode with single facet filter and filter",
+		"data": {
+			"filters": [
+				{
+					"query": {
+						"type": "matchTerm",
+						"expression": "size",
+						"value": "M"
+					}
+				}
+			],
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"expression": "keywords",
+					"filterMode": "REFINE",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				}
+			],
+			"facetFilters": [
+				{
+					"type": "buckets",
+					"facetId": "keywords",
+					"bucketIds": [
+						"green"
+					]
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 1,
+			"totalSize": 1,
+			"searchHits": [
+				{
+					"id": "doc2"
+				}
+			],
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"name": "Keywords",
+					"expression": "keywords",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "M",
+							"name": "M",
+							"count": 1
+						},
+						{
+							"id": "green",
+							"name": "green",
+							"count": 1
+						},
+						{
+							"id": "jacket",
+							"name": "jacket",
+							"count": 1
+						}
+					],
+					"selectedBuckets": [
+						{
+							"id": "green",
+							"name": "green",
+							"count": 1
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 27,
+		"description": "facet with REFINE filter mode with single facet filter and filter, no search hits",
+		"data": {
+			"filters": [
+				{
+					"query": {
+						"type": "matchTerm",
+						"expression": "size",
+						"value": "XXL"
+					}
+				}
+			],
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"expression": "keywords",
+					"filterMode": "REFINE",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				}
+			],
+			"facetFilters": [
+				{
+					"type": "buckets",
+					"facetId": "keywords",
+					"bucketIds": [
+						"green"
+					]
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 0,
+			"totalSize": 0,
+			"searchHits": [],
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"name": "Keywords",
+					"expression": "keywords",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [],
+					"selectedBuckets": [
+						{
+							"id": "green",
+							"name": "green",
+							"count": 0
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 28,
+		"description": "facet with MULTISELECT filter mode without facet filters",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"expression": "keywords",
+					"filterMode": "MULTISELECT",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 4,
+			"totalSize": 4,
+			"searchHits": [
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc3"
+				},
+				{
+					"id": "doc4"
+				}
+			],
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"name": "Keywords",
+					"expression": "keywords",
+					"filterMode": "MULTISELECT",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "L",
+							"name": "L",
+							"count": 1
+						},
+						{
+							"id": "M",
+							"name": "M",
+							"count": 2
+						},
+						{
+							"id": "green",
+							"name": "green",
+							"count": 2
+						},
+						{
+							"id": "jacket",
+							"name": "jacket",
+							"count": 1
+						},
+						{
+							"id": "pullover",
+							"name": "pullover",
+							"count": 1
+						},
+						{
+							"id": "red",
+							"name": "red",
+							"count": 1
+						},
+						{
+							"id": "shirt",
+							"name": "shirt",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 29,
+		"description": "facet with MULTISELECT filter mode with single facet filter",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"expression": "keywords",
+					"filterMode": "MULTISELECT",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				}
+			],
+			"facetFilters": [
+				{
+					"type": "buckets",
+					"facetId": "keywords",
+					"bucketIds": [
+						"green"
+					]
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 2,
+			"totalSize": 2,
+			"searchHits": [
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc3"
+				}
+			],
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"name": "Keywords",
+					"expression": "keywords",
+					"filterMode": "MULTISELECT",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "L",
+							"name": "L",
+							"count": 1
+						},
+						{
+							"id": "M",
+							"name": "M",
+							"count": 2
+						},
+						{
+							"id": "green",
+							"name": "green",
+							"count": 2
+						},
+						{
+							"id": "jacket",
+							"name": "jacket",
+							"count": 1
+						},
+						{
+							"id": "pullover",
+							"name": "pullover",
+							"count": 1
+						},
+						{
+							"id": "red",
+							"name": "red",
+							"count": 1
+						},
+						{
+							"id": "shirt",
+							"name": "shirt",
+							"count": 1
+						}
+					],
+					"selectedBuckets": [
+						{
+							"id": "green",
+							"name": "green",
+							"count": 2
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 30,
+		"description": "facet with MULTISELECT filter with multiple facet filters (with intersection)",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"expression": "keywords",
+					"filterMode": "MULTISELECT",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				}
+			],
+			"facetFilters": [
+				{
+					"type": "buckets",
+					"facetId": "keywords",
+					"bucketIds": [
+						"green",
+						"M"
+					]
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 3,
+			"totalSize": 3,
+			"searchHits": [
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc3"
+				}
+			],
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"name": "Keywords",
+					"expression": "keywords",
+					"filterMode": "MULTISELECT",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "L",
+							"name": "L",
+							"count": 1
+						},
+						{
+							"id": "M",
+							"name": "M",
+							"count": 2
+						},
+						{
+							"id": "green",
+							"name": "green",
+							"count": 2
+						},
+						{
+							"id": "jacket",
+							"name": "jacket",
+							"count": 1
+						},
+						{
+							"id": "pullover",
+							"name": "pullover",
+							"count": 1
+						},
+						{
+							"id": "red",
+							"name": "red",
+							"count": 1
+						},
+						{
+							"id": "shirt",
+							"name": "shirt",
+							"count": 1
+						}
+					],
+					"selectedBuckets": [
+						{
+							"id": "M",
+							"name": "M",
+							"count": 2
+						},
+						{
+							"id": "green",
+							"name": "green",
+							"count": 2
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 31,
+		"description": "facet with MULTISELECT filter with multiple facet filters (without intersection)",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"expression": "keywords",
+					"filterMode": "MULTISELECT",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				}
+			],
+			"facetFilters": [
+				{
+					"type": "buckets",
+					"facetId": "keywords",
+					"bucketIds": [
+						"red",
+						"L"
+					]
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 2,
+			"totalSize": 2,
+			"searchHits": [
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc3"
+				}
+			],
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"name": "Keywords",
+					"expression": "keywords",
+					"filterMode": "MULTISELECT",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "L",
+							"name": "L",
+							"count": 1
+						},
+						{
+							"id": "M",
+							"name": "M",
+							"count": 2
+						},
+						{
+							"id": "green",
+							"name": "green",
+							"count": 2
+						},
+						{
+							"id": "jacket",
+							"name": "jacket",
+							"count": 1
+						},
+						{
+							"id": "pullover",
+							"name": "pullover",
+							"count": 1
+						},
+						{
+							"id": "red",
+							"name": "red",
+							"count": 1
+						},
+						{
+							"id": "shirt",
+							"name": "shirt",
+							"count": 1
+						}
+					],
+					"selectedBuckets": [
+						{
+							"id": "L",
+							"name": "L",
+							"count": 1
+						},
+						{
+							"id": "red",
+							"name": "red",
+							"count": 1
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 32,
+		"description": "facet with MULTISELECT filter mode with single facet filter and filter",
+		"data": {
+			"filters": [
+				{
+					"query": {
+						"type": "matchTerm",
+						"expression": "size",
+						"value": "M"
+					}
+				}
+			],
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"expression": "keywords",
+					"filterMode": "MULTISELECT",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				}
+			],
+			"facetFilters": [
+				{
+					"type": "buckets",
+					"facetId": "keywords",
+					"bucketIds": [
+						"green"
+					]
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 1,
+			"totalSize": 1,
+			"searchHits": [
+				{
+					"id": "doc2"
+				}
+			],
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"name": "Keywords",
+					"expression": "keywords",
+					"filterMode": "MULTISELECT",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "M",
+							"name": "M",
+							"count": 2
+						},
+						{
+							"id": "green",
+							"name": "green",
+							"count": 1
+						},
+						{
+							"id": "jacket",
+							"name": "jacket",
+							"count": 1
+						},
+						{
+							"id": "red",
+							"name": "red",
+							"count": 1
+						},
+						{
+							"id": "shirt",
+							"name": "shirt",
+							"count": 1
+						}
+					],
+					"selectedBuckets": [
+						{
+							"id": "green",
+							"name": "green",
+							"count": 1
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 33,
+		"description": "facet with MULTISELECT filter mode with single facet filter and filter, no search hits",
+		"data": {
+			"filters": [
+				{
+					"query": {
+						"type": "matchTerm",
+						"expression": "size",
+						"value": "XXL"
+					}
+				}
+			],
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"expression": "keywords",
+					"filterMode": "MULTISELECT",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				}
+			],
+			"facetFilters": [
+				{
+					"type": "buckets",
+					"facetId": "keywords",
+					"bucketIds": [
+						"green"
+					]
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 0,
+			"totalSize": 0,
+			"searchHits": [],
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"name": "Keywords",
+					"expression": "keywords",
+					"filterMode": "MULTISELECT",
+					"topBuckets": [],
+					"buckets": [],
+					"selectedBuckets": [
+						{
+							"id": "green",
+							"name": "green",
+							"count": 0
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 34,
+		"description": "facet with top buckets size greater than buckets size",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"expression": "keywords",
+					"topBucketsSize": 10,
+					"sort": {
+						"id": "_id_asc_"
+					}
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"name": "Keywords",
+					"expression": "keywords",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "L",
+							"name": "L",
+							"count": 1
+						},
+						{
+							"id": "M",
+							"name": "M",
+							"count": 2
+						},
+						{
+							"id": "green",
+							"name": "green",
+							"count": 2
+						},
+						{
+							"id": "jacket",
+							"name": "jacket",
+							"count": 1
+						},
+						{
+							"id": "pullover",
+							"name": "pullover",
+							"count": 1
+						},
+						{
+							"id": "red",
+							"name": "red",
+							"count": 1
+						},
+						{
+							"id": "shirt",
+							"name": "shirt",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 35,
+		"description": "facet with top buckets size less than buckets size",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"expression": "keywords",
+					"topBucketsSize": 2,
+					"sort": {
+						"id": "_id_asc_"
+					}
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"name": "Keywords",
+					"expression": "keywords",
+					"filterMode": "REFINE",
+					"topBuckets": [
+						{
+							"id": "L",
+							"name": "L",
+							"count": 1
+						},
+						{
+							"id": "M",
+							"name": "M",
+							"count": 2
+						}
+					],
+					"buckets": [
+						{
+							"id": "L",
+							"name": "L",
+							"count": 1
+						},
+						{
+							"id": "M",
+							"name": "M",
+							"count": 2
+						},
+						{
+							"id": "green",
+							"name": "green",
+							"count": 2
+						},
+						{
+							"id": "jacket",
+							"name": "jacket",
+							"count": 1
+						},
+						{
+							"id": "pullover",
+							"name": "pullover",
+							"count": 1
+						},
+						{
+							"id": "red",
+							"name": "red",
+							"count": 1
+						},
+						{
+							"id": "shirt",
+							"name": "shirt",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 36,
+		"description": "facet with single promoted bucket",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"expression": "keywords",
+					"promotedBucketIds": [
+						"red"
+					],
+					"sort": {
+						"id": "_id_asc_"
+					}
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"name": "Keywords",
+					"expression": "keywords",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "red",
+							"name": "red",
+							"count": 1
+						},
+						{
+							"id": "L",
+							"name": "L",
+							"count": 1
+						},
+						{
+							"id": "M",
+							"name": "M",
+							"count": 2
+						},
+						{
+							"id": "green",
+							"name": "green",
+							"count": 2
+						},
+						{
+							"id": "jacket",
+							"name": "jacket",
+							"count": 1
+						},
+						{
+							"id": "pullover",
+							"name": "pullover",
+							"count": 1
+						},
+						{
+							"id": "shirt",
+							"name": "shirt",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 37,
+		"description": "facet with multiple promoted buckets",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"expression": "keywords",
+					"promotedBucketIds": [
+						"red",
+						"green"
+					],
+					"sort": {
+						"id": "_id_asc_"
+					}
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"name": "Keywords",
+					"expression": "keywords",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "red",
+							"name": "red",
+							"count": 1
+						},
+						{
+							"id": "green",
+							"name": "green",
+							"count": 2
+						},
+						{
+							"id": "L",
+							"name": "L",
+							"count": 1
+						},
+						{
+							"id": "M",
+							"name": "M",
+							"count": 2
+						},
+						{
+							"id": "jacket",
+							"name": "jacket",
+							"count": 1
+						},
+						{
+							"id": "pullover",
+							"name": "pullover",
+							"count": 1
+						},
+						{
+							"id": "shirt",
+							"name": "shirt",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 38,
+		"description": "facet with single excluded bucket",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"expression": "keywords",
+					"excludedBucketIds": [
+						"red"
+					],
+					"sort": {
+						"id": "_id_asc_"
+					}
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"name": "Keywords",
+					"expression": "keywords",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "L",
+							"name": "L",
+							"count": 1
+						},
+						{
+							"id": "M",
+							"name": "M",
+							"count": 2
+						},
+						{
+							"id": "green",
+							"name": "green",
+							"count": 2
+						},
+						{
+							"id": "jacket",
+							"name": "jacket",
+							"count": 1
+						},
+						{
+							"id": "pullover",
+							"name": "pullover",
+							"count": 1
+						},
+						{
+							"id": "shirt",
+							"name": "shirt",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 39,
+		"description": "facet with multiple excluded buckets",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"expression": "keywords",
+					"excludedBucketIds": [
+						"red",
+						"green"
+					],
+					"sort": {
+						"id": "_id_asc_"
+					}
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"name": "Keywords",
+					"expression": "keywords",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "L",
+							"name": "L",
+							"count": 1
+						},
+						{
+							"id": "M",
+							"name": "M",
+							"count": 2
+						},
+						{
+							"id": "jacket",
+							"name": "jacket",
+							"count": 1
+						},
+						{
+							"id": "pullover",
+							"name": "pullover",
+							"count": 1
+						},
+						{
+							"id": "shirt",
+							"name": "shirt",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 40,
+		"description": "facet with same bucket promoted and excluded",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"expression": "keywords",
+					"promotedBucketIds": [
+						"red"
+					],
+					"excludedBucketIds": [
+						"red"
+					],
+					"sort": {
+						"id": "_id_asc_"
+					}
+				}
+			],
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "keywords",
+					"name": "Keywords",
+					"expression": "keywords",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "L",
+							"name": "L",
+							"count": 1
+						},
+						{
+							"id": "M",
+							"name": "M",
+							"count": 2
+						},
+						{
+							"id": "green",
+							"name": "green",
+							"count": 2
+						},
+						{
+							"id": "jacket",
+							"name": "jacket",
+							"count": 1
+						},
+						{
+							"id": "pullover",
+							"name": "pullover",
+							"count": 1
+						},
+						{
+							"id": "shirt",
+							"name": "shirt",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 41,
+		"description": "facet with sort by count desc",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"expression": "color",
+					"sort": {
+						"id": "_count_desc_"
+					}
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"name": "Color",
+					"expression": "color",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "GREEN",
+							"name": "GREEN",
+							"count": 2
+						},
+						{
+							"id": "RED",
+							"name": "RED",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 42,
+		"description": "facet with sort by id asc",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"expression": "color",
+					"sort": {
+						"id": "_id_asc_"
+					}
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"name": "Color",
+					"expression": "color",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "GREEN",
+							"name": "GREEN",
+							"count": 2
+						},
+						{
+							"id": "RED",
+							"name": "RED",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 43,
+		"description": "facet with sort by id desc",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"expression": "color",
+					"sort": {
+						"id": "_id_desc_"
+					}
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"name": "Color",
+					"expression": "color",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "RED",
+							"name": "RED",
+							"count": 1
+						},
+						{
+							"id": "GREEN",
+							"name": "GREEN",
+							"count": 2
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 44,
+		"description": "facet with sort by name asc",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"expression": "color",
+					"sort": {
+						"id": "_name_asc_"
+					}
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"name": "Color",
+					"expression": "color",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "GREEN",
+							"name": "GREEN",
+							"count": 2
+						},
+						{
+							"id": "RED",
+							"name": "RED",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 45,
+		"description": "facet with sort by name desc",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"expression": "color",
+					"sort": {
+						"id": "_name_desc_"
+					}
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"name": "Color",
+					"expression": "color",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "RED",
+							"name": "RED",
+							"count": 1
+						},
+						{
+							"id": "GREEN",
+							"name": "GREEN",
+							"count": 2
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 46,
+		"description": "facet name uses request language",
+		"languages": [
+			"de"
+		],
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"expression": "color"
+				}
+			]
+		},
+		"expectedData": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "color",
+					"name": "Farbe",
+					"expression": "color",
+					"filterMode": "REFINE",
+					"topBuckets": [],
+					"buckets": [
+						{
+							"id": "GREEN",
+							"name": "GREEN",
+							"count": 2
+						},
+						{
+							"id": "RED",
+							"name": "RED",
+							"count": 1
+						}
+					],
+					"selectedBuckets": []
+				}
+			]
+		}
+	}
+]

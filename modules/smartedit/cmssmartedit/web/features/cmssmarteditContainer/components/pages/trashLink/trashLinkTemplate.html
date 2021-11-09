@@ -1,0 +1,12 @@
+<div
+    data-ng-if="$ctrl.isNonActiveCatalog"
+    data-ng-click="$ctrl.goToTrash()"
+    class="se-page-list__page-link--right"
+>
+    <a
+        data-translate="se.cms.pagelist.trashcan.link.text"
+        class="se-page-list__page-link-ancor"
+        data-translate-values="$ctrl.trashedPagesTranslationData"
+    ></a>
+    <span class="se-page-list__page-link-icon sap-icon--navigation-right-arrow"></span>
+</div>

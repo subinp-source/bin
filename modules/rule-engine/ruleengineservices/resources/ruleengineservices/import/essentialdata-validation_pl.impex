@@ -1,0 +1,26 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+$lang=pl
+
+
+insert_update DynamicConstraint;id[unique=true,allownull=true];message[lang=$lang]
+;abstractRuleDateDiffConstraint;"Data zakończenia musi przypadać po dacie rozpoczęcia"
+
+insert_update NotNullConstraint;id[unique=true,allownull=true];message[lang=$lang]
+;sourceRuleCode;Kod nie może mieć wartości null ani być pusty
+
+insert_update NotNullConstraint;id[unique=true,allownull=true];message[lang=$lang]
+;sourceRuleTemplateCode;Kod nie może mieć wartości null ani być pusty
+
+insert_update ObjectPatternConstraint;id[unique=true,allownull=true];message[lang=$lang];
+;ruleCodeLengthMinValue;"Wartość powinna mieć długość co najmniej 2 znaków";
+;ruleTemplateCodeLengthMinValue;"Wartość powinna mieć długość co najmniej 2 znaków";
+;ruleEngineRuleCodeLengthMinValue;"Wartość powinna mieć długość co najmniej 2 znaków";

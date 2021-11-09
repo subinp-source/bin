@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+--><extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
+    	
+    <extension abstractclassprefix="Generated" classprefix="Personalizationintegrationbackoffice" managername="PersonalizationintegrationbackofficeManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="personalizationintegrationbackoffice" usemaven="false">
+        		
+        <!-- you should add all required extensions to this list, except platform extensions which are automatically required -->
+        		
+        <!-- <requires-extension name="cms"/> -->
+        		
+        <requires-extension name="personalizationintegration"/>
+        		
+		
+        <requires-extension name="personalizationservicesbackoffice"/>
+        				
+
+		
+        <coremodule generated="true" manager="de.hybris.platform.personalizationintegrationbackoffice.jalo.PersonalizationintegrationbackofficeManager" packageroot="de.hybris.platform.personalizationintegrationbackoffice"/>
+        		
+        <meta key="backoffice-module" value="true"/>
+        		
+	
+    </extension>
+    
+</extensioninfo>

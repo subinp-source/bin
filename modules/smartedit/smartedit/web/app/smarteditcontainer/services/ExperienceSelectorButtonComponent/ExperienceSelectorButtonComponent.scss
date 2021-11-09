@@ -1,0 +1,51 @@
+.se-experience-selector {
+    @include se-flex-row();
+
+    .fd-popover-container-custom {
+        box-shadow: none;
+    }
+
+    &__control {
+        @include se-flex-row();
+    }
+
+    &__btn {
+        padding: 0;
+        text-decoration: none;
+        @include se-text-btn();
+
+        &--globe {
+            margin-right: fd-space('base');
+            color: fd-color('action', 1);
+        }
+    }
+
+    &__btn-text {
+        vertical-align: middle;
+        position: relative;
+        max-width: 40vw;
+        font-family: '72';
+        color: fd-color('text', 2);
+        text-transform: capitalize;
+        display: inline-block;
+    }
+
+    &__btn-arrow {
+        &.icon-navigation-down-arrow {
+            @include fd-type('0');
+            padding: 0 20px;
+            color: fd-color('action', 1);
+        }
+    }
+
+    &__dropdown {
+        min-width: 380px;
+        overflow: visible;
+        display: block;
+
+        &::before,
+        &::after {
+            display: none;
+        }
+    }
+}

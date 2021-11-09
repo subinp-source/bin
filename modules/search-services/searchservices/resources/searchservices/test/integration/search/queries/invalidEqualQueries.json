@@ -1,0 +1,63 @@
+[
+	{
+		"testId": 1,
+		"description": "'eq' query without expression",
+		"data": {
+			"type": "eq",
+			"value": 2
+		}
+	},
+	{
+		"testId": 2,
+		"description": "'eq' query with empty expression",
+		"data": {
+			"type": "eq",
+			"expression": "",
+			"value": 2
+		}
+	},
+	{
+		"testId": 3,
+		"description": "'eq' query with with invalid expression",
+		"data": {
+			"type": "eq",
+			"expression": "-$!#-",
+			"value": true
+		}
+	},
+	{
+		"testId": 4,
+		"description": "'eq' query with not existing expression",
+		"data": {
+			"type": "eq",
+			"expression": "notExisting",
+			"value": true
+		}
+	},
+	{
+		"testId": 5,
+		"description": "'eq' query with STRING expression",
+		"data": {
+			"type": "eq",
+			"expression": "field_string",
+			"value": 2
+		}
+	},
+	{
+		"testId": 6,
+		"description": "'eq' query with TEXT expression",
+		"data": {
+			"type": "eq",
+			"expression": "field_text",
+			"value": 2
+		}
+	},
+	{
+		"testId": 7,
+		"description": "'eq' query without value",
+		"data": {
+			"type": "eq",
+			"expression": "field_integer"
+		}
+	}
+]

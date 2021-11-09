@@ -1,0 +1,10 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+remove FutureConstraint;id[unique=true]
+;couponEndDate
+
+insert_update FutureConstraint;active[allownull=true];descriptor(enclosingType(code),qualifier);id[unique=true,allownull=true];message[lang=de];message[lang=en];qualifier;severity(code,itemtype(code));target;type(code)
+;true;SingleCodeCoupon:endDate;singleCodeCouponEndDate;End date cannot be in the past;End date cannot be in the past;endDate;ERROR:Severity;de.hybris.platform.couponservices.model.SingleCodeCouponModel;SingleCodeCoupon
+;true;MultiCodeCoupon:endDate;multiCodeCouponEndDate;End date cannot be in the past;End date cannot be in the past;endDate;ERROR:Severity;de.hybris.platform.couponservices.model.MultiCodeCouponModel;MultiCodeCoupon

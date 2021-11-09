@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="items.xsd">
+
+    <collectiontypes>
+        <collectiontype code="GenderList" elementtype="Gender" autocreate="true" generate="true" type="list"/>
+        <collectiontype code="SwatchColorSet" elementtype="SwatchColorEnum" autocreate="true" generate="true"
+                        type="set"/>
+    </collectiontypes>
+
+    <enumtypes>
+        <enumtype generate="true" code="SwatchColorEnum" autocreate="true" dynamic="true">
+            <value code="BLACK"/>
+            <value code="BLUE"/>
+            <value code="BROWN"/>
+            <value code="GREEN"/>
+            <value code="GREY"/>
+            <value code="ORANGE"/>
+            <value code="PINK"/>
+            <value code="PURPLE"/>
+            <value code="RED"/>
+            <value code="SILVER"/>
+            <value code="WHITE"/>
+            <value code="YELLOW"/>
+        </enumtype>
+    </enumtypes>
+
+
+
+
+    <relations>
+
+
+
+        <relation localized="false" code="DriverBase2DealerBase"
+                  autocreate="true" generate="true">
+
+            <deployment table="Driver2Dealer" typecode="11723" />
+
+            <sourceElement type="DriverBase" qualifier="driver"
+                           cardinality="many" collectiontype="set">
+
+                <description>Driver</description>
+
+            </sourceElement>
+
+            <targetElement type="DealerBase"
+                           qualifier="dealer" cardinality="many" collectiontype="set">
+
+                <description>Dealer</description>
+
+            </targetElement>
+
+        </relation>
+
+        <relation localized="false" code="VehicleBase2DealerBase"
+                  autocreate="true" generate="true">
+
+            <deployment table="Vehicle2Dealer" typecode="11724" />
+
+            <sourceElement type="VehicleBase" qualifier="vehicle"
+                           cardinality="many" collectiontype="set">
+
+                <description>Vehicle</description>
+
+            </sourceElement>
+
+            <targetElement type="DealerBase"
+                           qualifier="dealer" cardinality="many" collectiontype="set">
+
+                <description>Dealer</description>
+
+            </targetElement>
+
+        </relation>
+
+        <relation localized="false" code="DriverBase2VehicleBase"
+                  autocreate="true" generate="true">
+
+
+
+            <sourceElement type="DriverBase" qualifier="driver"
+                           cardinality="one" >
+
+                <description>Driver</description>
+
+                <modifiers read="true" write="true" optional="true" />
+
+            </sourceElement>
+
+            <targetElement type="VehicleBase"
+                           qualifier="vehicle" cardinality="many" collectiontype="set">
+
+                <description>Vehicle</description>
+
+            </targetElement>
+
+
+        </relation>
+    </relations>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <itemtypes>
+
+        <!-- Add your item definitions here -->
+
+
+        <!-- TypeGroups are for structure of this file only -->
+
+        <typegroup name="Apparel">
+            <itemtype code="ApparelProduct" extends="Product"
+                      autocreate="true" generate="true"
+                      jaloclass="de.hybris.training.core.jalo.ApparelProduct">
+                <description>Base apparel product extension that contains additional attributes.</description>
+                <attributes>
+
+                    <attribute qualifier="genders" type="GenderList">
+                        <description>List of genders that the ApparelProduct is designed for</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+
+                    <attribute qualifier="testAttribute" type="localized:java.lang.String">
+                        <description>labelTestAttribute</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+
+
+
+
+
+                </attributes>
+            </itemtype>
+
+            <itemtype code="ApparelStyleVariantProduct" extends="VariantProduct"
+                      autocreate="true" generate="true"
+                      jaloclass="de.hybris.training.core.jalo.ApparelStyleVariantProduct">
+                <description>Apparel style variant type that contains additional attribute describing variant style.
+                </description>
+                <attributes>
+                    <attribute qualifier="style" type="localized:java.lang.String"
+                               metatype="VariantAttributeDescriptor">
+                        <description>Color/Pattern of the product.</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+
+                    <attribute qualifier="swatchColors" type="SwatchColorSet">
+                        <description>A normalized color mapping to a standardized front-end navigable name.
+                        </description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+
+
+
+
+
+
+
+                </attributes>
+
+            </itemtype>
+
+            <itemtype code="ApparelSizeVariantProduct" extends="ApparelStyleVariantProduct"
+                      autocreate="true" generate="true"
+                      jaloclass="de.hybris.training.core.jalo.ApparelSizeVariantProduct">
+                <description>Apparel size variant type that contains additional attribute describing variant size.
+                </description>
+                <attributes>
+                    <attribute qualifier="size" type="localized:java.lang.String"
+                               metatype="VariantAttributeDescriptor">
+                        <description>Size of the product.</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+        </typegroup>
+
+        <typegroup name="Electronics">
+            <itemtype code="ElectronicsColorVariantProduct" extends="VariantProduct"
+                      autocreate="true" generate="true"
+                      jaloclass="de.hybris.training.core.jalo.ElectronicsColorVariantProduct">
+                <description>Electronics color variant type that contains additional attribute describing variant color.
+                </description>
+                <attributes>
+                    <attribute qualifier="color" type="localized:java.lang.String"
+                               metatype="VariantAttributeDescriptor">
+                        <description>Color of the product.</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+        </typegroup>
+
+
+
+
+
+        <typegroup name="Vehicle">
+            <itemtype code="VehicleBase"  extends="Product" autocreate="true" generate="true" jaloclass="de.hybris.training.core.jalo.VehicleBase">
+                <attributes>
+                 <attribute qualifier="vehicleRegistrationNumber" type="java.lang.String">
+
+                     <defaultvalue/>
+                     <description>vehicle number</description>
+                        <modifiers read="true" write="true"  unique="true" optional="false" />
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="vehicleId" type="java.lang.String">
+
+                        <defaultvalue/>
+                        <description>vehicle Id</description>
+                        <modifiers read="true" write="true"  unique="true" optional="false"/>
+                        <persistence type="property"/>
+                    </attribute>
+
+
+
+
+
+                    <!--<attribute qualifier="registrationNumber" type="java.lang.String">
+
+                        <description>vehicle number</description>
+                        <modifiers read="true" write="true"  unique="true" />
+                        <persistence type="property"/>
+                    </attribute>-->
+                    <attribute qualifier="vehicleDescription" type="localized:java.lang.String">
+                        <description>vehicle description</description>
+                        <modifiers read="true" write="true" optional="true" unique="true"/>
+                        <persistence type="property"/>
+                    </attribute>
+
+
+
+                    <attribute qualifier="vehicleReview" type="localized:java.lang.String">
+                        <description>vehicle review</description>
+                        <modifiers read="true" write="true" optional="true" unique="true"/>
+                        <persistence type="property"/>
+                    </attribute>
+
+                </attributes>
+            </itemtype>
+
+
+            <itemtype code="DealerBase" autocreate="true" generate="true" jaloclass="de.hybris.training.core.jalo.DealerBase">
+
+
+                <deployment table="DealerBase" typecode="12346"/>
+                <attributes>
+                    <attribute qualifier="address" type="localized:java.lang.String">
+                        <description>dealer address</description>
+                        <modifiers read="true" write="true" optional="true" />
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="localizeName" type="localized:java.lang.String">
+                        <description>name of the dealer</description>
+                        <modifiers read="true" write="true" optional="true" />
+                        <persistence type="property"/>
+                    </attribute>
+
+                    <attribute qualifier="uniqueId" type="java.lang.String">
+                        <defaultvalue>0001</defaultvalue>
+                        <description>dealer of unique id</description>
+                        <modifiers read="true" write="true" optional="false" unique="true"/>
+                        <persistence type="property"/>
+                    </attribute>
+
+
+
+                </attributes>
+            </itemtype>
+
+
+
+            <itemtype code="DriverBase" autocreate="true" generate="true" jaloclass="de.hybris.training.core.jalo.DriverBase">
+
+
+                <deployment table="DriverBase" typecode="12347"/>
+                <attributes>
+                    <attribute qualifier="nameOfDriver" type="localized:java.lang.String">
+                        <description>driver name</description>
+                        <modifiers read="true" write="true" optional="true"/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="driverId" type="java.lang.String">
+                        <defaultvalue/>
+                        <description>id of driver</description>
+                        <modifiers read="true" write="true" optional="false" unique="true"/>
+                        <persistence type="property"/>
+                    </attribute>
+
+                    <attribute qualifier="experience" type="java.lang.String">
+                        <description>experience in years</description>
+                        <modifiers read="true" write="true" optional="true"/>
+                        <persistence type="property"/>
+                    </attribute>
+
+
+
+                </attributes>
+            </itemtype>
+
+
+            <itemtype code="VehicleCountCronJob" extends="CronJob" jaloclass="de.hybris.training.core.jalo.VehicleCountCronJob"
+                      autocreate="true" generate="true">
+
+            </itemtype>
+        </typegroup>
+
+
+
+
+        
+        
+
+    </itemtypes>
+</items>

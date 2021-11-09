@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widgets.xsd">
+
+    
+
+    <widget-connection inputId="input" outputId="nodeSelected" sourceWidgetId="consignmenttrackingbackoffice-explorer-tree" targetWidgetId="consignmenttrackingbackoffice-tree-node-adapter"/>
+    <widget-connection inputId="genericInput" outputId="true" sourceWidgetId="consignmenttrackingbackoffice-tree-node-adapter" targetWidgetId="consignmenttrackingbackoffice-typecode-extractor"/>
+    <widget-connection inputId="genericInput" outputId="true" sourceWidgetId="consignmenttrackingbackoffice-tree-node-adapter" targetWidgetId="consignmenttrackingbackoffice-search-enabler"/>
+    <widget-connection inputId="genericInput" outputId="false" sourceWidgetId="consignmenttrackingbackoffice-tree-node-adapter" targetWidgetId="consignmenttrackingbackoffice-search-disabler"/>
+    <widget-connection inputId="type" outputId="genericOutput" sourceWidgetId="consignmenttrackingbackoffice-typecode-extractor" targetWidgetId="consignmenttrackingbackoffice-search-logic"/>
+    <widget-connection inputId="enabled" outputId="genericOutput" sourceWidgetId="consignmenttrackingbackoffice-search-enabler" targetWidgetId="consignmenttrackingbackoffice-text-search"/>
+    <widget-connection inputId="enabled" outputId="genericOutput" sourceWidgetId="consignmenttrackingbackoffice-search-disabler" targetWidgetId="consignmenttrackingbackoffice-text-search"/>
+    <widget-connection inputId="searchtext" outputId="query" sourceWidgetId="consignmenttrackingbackoffice-text-search" targetWidgetId="consignmenttrackingbackoffice-search-logic"/>
+    <widget-connection inputId="pageable" outputId="pageable" sourceWidgetId="consignmenttrackingbackoffice-search-logic" targetWidgetId="consignmenttrackingbackoffice-simple-list"/>
+
+</widgets>

@@ -1,0 +1,1123 @@
+[
+	{
+		"testId": 1,
+		"description": "sort with expression, default sort order is ascending",
+		"data": {
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_"
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"totalSize": 4,
+			"searchHits": [
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc3"
+				},
+				{
+					"id": "doc4"
+				}
+			]
+		}
+	},
+	{
+		"testId": 2,
+		"description": "sort with _id_ expression ascending",
+		"data": {
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_",
+						"ascending": true
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"totalSize": 4,
+			"searchHits": [
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc3"
+				},
+				{
+					"id": "doc4"
+				}
+			]
+		}
+	},
+	{
+		"testId": 3,
+		"description": "sort with _id_ expression descending",
+		"data": {
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_id_",
+						"ascending": false
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"totalSize": 4,
+			"searchHits": [
+				{
+					"id": "doc4"
+				},
+				{
+					"id": "doc3"
+				},
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc1"
+				}
+			]
+		}
+	},
+	{
+		"testId": 4,
+		"description": "sort with _score_ expression ascending",
+		"data": {
+			"query": "GREEN L",
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_score_",
+						"ascending": true
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"totalSize": 2,
+			"searchHits": [
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc3"
+				}
+			]
+		}
+	},
+	{
+		"testId": 5,
+		"description": "sort with _score_ expression descending",
+		"data": {
+			"query": "GREEN L",
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_score_",
+						"ascending": false
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"totalSize": 2,
+			"searchHits": [
+				{
+					"id": "doc3"
+				},
+				{
+					"id": "doc2"
+				}
+			]
+		}
+	},
+	{
+		"testId": 6,
+		"description": "sort with STRING expression ascending",
+		"data": {
+			"sort": {
+				"expressions": [
+					{
+						"expression": "field_string",
+						"ascending": true
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"totalSize": 4,
+			"searchHits": [
+				{
+					"id": "doc3"
+				},
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc4"
+				}
+			]
+		}
+	},
+	{
+		"testId": 7,
+		"description": "sort with STRING expression descending",
+		"data": {
+			"sort": {
+				"expressions": [
+					{
+						"expression": "field_string",
+						"ascending": false
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"totalSize": 4,
+			"searchHits": [
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc3"
+				},
+				{
+					"id": "doc4"
+				}
+			]
+		}
+	},
+	{
+		"testId": 8,
+		"description": "sort with BOOLEAN expression ascending",
+		"data": {
+			"sort": {
+				"expressions": [
+					{
+						"expression": "field_boolean",
+						"ascending": true
+					},
+					{
+						"expression": "_id_",
+						"ascending": true
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"totalSize": 4,
+			"searchHits": [
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc3"
+				},
+				{
+					"id": "doc4"
+				}
+			]
+		}
+	},
+	{
+		"testId": 9,
+		"description": "sort with BOOLEAN expression descending",
+		"data": {
+			"sort": {
+				"expressions": [
+					{
+						"expression": "field_boolean",
+						"ascending": false
+					},
+					{
+						"expression": "_id_",
+						"ascending": true
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"totalSize": 4,
+			"searchHits": [
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc3"
+				},
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc4"
+				}
+			]
+		}
+	},
+	{
+		"testId": 10,
+		"description": "sort with INTEGER expression ascending",
+		"data": {
+			"sort": {
+				"expressions": [
+					{
+						"expression": "field_integer",
+						"ascending": true
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"totalSize": 4,
+			"searchHits": [
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc3"
+				},
+				{
+					"id": "doc4"
+				}
+			]
+		}
+	},
+	{
+		"testId": 11,
+		"description": "sort with INTEGER expression descending",
+		"data": {
+			"sort": {
+				"expressions": [
+					{
+						"expression": "field_integer",
+						"ascending": false
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"totalSize": 4,
+			"searchHits": [
+				{
+					"id": "doc3"
+				},
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc4"
+				}
+			]
+		}
+	},
+	{
+		"testId": 12,
+		"description": "sort with LONG expression ascending",
+		"data": {
+			"sort": {
+				"expressions": [
+					{
+						"expression": "field_long",
+						"ascending": true
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"totalSize": 4,
+			"searchHits": [
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc3"
+				},
+				{
+					"id": "doc4"
+				}
+			]
+		}
+	},
+	{
+		"testId": 13,
+		"description": "sort with LONG expression descending",
+		"data": {
+			"sort": {
+				"expressions": [
+					{
+						"expression": "field_long",
+						"ascending": false
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"totalSize": 4,
+			"searchHits": [
+				{
+					"id": "doc3"
+				},
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc4"
+				}
+			]
+		}
+	},
+	{
+		"testId": 14,
+		"description": "sort with FLOAT expression ascending",
+		"data": {
+			"sort": {
+				"expressions": [
+					{
+						"expression": "field_float",
+						"ascending": true
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"totalSize": 4,
+			"searchHits": [
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc3"
+				},
+				{
+					"id": "doc4"
+				}
+			]
+		}
+	},
+	{
+		"testId": 15,
+		"description": "sort with FLOAT expression descending",
+		"data": {
+			"sort": {
+				"expressions": [
+					{
+						"expression": "field_float",
+						"ascending": false
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"totalSize": 4,
+			"searchHits": [
+				{
+					"id": "doc3"
+				},
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc4"
+				}
+			]
+		}
+	},
+	{
+		"testId": 16,
+		"description": "sort with DOUBLE expression ascending",
+		"data": {
+			"sort": {
+				"expressions": [
+					{
+						"expression": "field_double",
+						"ascending": true
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"totalSize": 4,
+			"searchHits": [
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc3"
+				},
+				{
+					"id": "doc4"
+				}
+			]
+		}
+	},
+	{
+		"testId": 17,
+		"description": "sort with DOUBLE expression descending",
+		"data": {
+			"sort": {
+				"expressions": [
+					{
+						"expression": "field_double",
+						"ascending": false
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"totalSize": 4,
+			"searchHits": [
+				{
+					"id": "doc3"
+				},
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc4"
+				}
+			]
+		}
+	},
+	{
+		"testId": 18,
+		"description": "sort with DATE_TIME expression ascending",
+		"data": {
+			"sort": {
+				"expressions": [
+					{
+						"expression": "field_date_time",
+						"ascending": true
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"totalSize": 4,
+			"searchHits": [
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc3"
+				},
+				{
+					"id": "doc4"
+				}
+			]
+		}
+	},
+	{
+		"testId": 19,
+		"description": "sort with DATE_TIME expression descending",
+		"data": {
+			"sort": {
+				"expressions": [
+					{
+						"expression": "field_date_time",
+						"ascending": false
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"totalSize": 4,
+			"searchHits": [
+				{
+					"id": "doc3"
+				},
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc4"
+				}
+			]
+		}
+	},
+	{
+		"testId": 20,
+		"description": "sort with multiple expressions",
+		"data": {
+			"sort": {
+				"expressions": [
+					{
+						"expression": "color",
+						"ascending": true
+					},
+					{
+						"expression": "size",
+						"ascending": false
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"totalSize": 4,
+			"searchHits": [
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc3"
+				},
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc4"
+				}
+			]
+		}
+	},
+	{
+		"testId": 21,
+		"description": "sort with available sorts, first available sort is selected",
+		"data": {
+			"availableSorts": [
+				{
+					"id": "id",
+					"name": "Sort by id",
+					"expressions": [
+						{
+							"expression": "_id_",
+							"ascending": false
+						}
+					]
+				},
+				{
+					"id": "color_size",
+					"name": "Sort by color and size",
+					"expressions": [
+						{
+							"expression": "color",
+							"ascending": true
+						},
+						{
+							"expression": "size",
+							"ascending": false
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"totalSize": 4,
+			"searchHits": [
+				{
+					"id": "doc4"
+				},
+				{
+					"id": "doc3"
+				},
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc1"
+				}
+			],
+			"sort": {
+				"id": "id",
+				"name": "Sort by id"
+			}
+		}
+	},
+	{
+		"testId": 22,
+		"description": "sort with available sorts and id, available sort with given id is selected",
+		"data": {
+			"availableSorts": [
+				{
+					"id": "id",
+					"name": "Sort by id",
+					"expressions": [
+						{
+							"expression": "_id_",
+							"ascending": false
+						}
+					]
+				},
+				{
+					"id": "color_size",
+					"name": "Sort by color and size",
+					"expressions": [
+						{
+							"expression": "color",
+							"ascending": true
+						},
+						{
+							"expression": "size",
+							"ascending": false
+						}
+					]
+				}
+			],
+			"sort": {
+				"id": "color_size"
+			}
+		},
+		"expectedData": {
+			"totalSize": 4,
+			"searchHits": [
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc3"
+				},
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc4"
+				}
+			],
+			"sort": {
+				"id": "color_size",
+				"name": "Sort by color and size"
+			}
+		}
+	},
+	{
+		"testId": 23,
+		"description": "sort with available sorts and id, sort with given id does not exist, first sort is selected",
+		"data": {
+			"availableSorts": [
+				{
+					"id": "id",
+					"name": "Sort by id",
+					"expressions": [
+						{
+							"expression": "_id_",
+							"ascending": false
+						}
+					]
+				},
+				{
+					"id": "color_size",
+					"name": "Sort by color and size",
+					"expressions": [
+						{
+							"expression": "color",
+							"ascending": true
+						},
+						{
+							"expression": "size",
+							"ascending": false
+						}
+					]
+				}
+			],
+			"sort": {
+				"id": "notExisting"
+			}
+		},
+		"expectedData": {
+			"totalSize": 4,
+			"searchHits": [
+				{
+					"id": "doc4"
+				},
+				{
+					"id": "doc3"
+				},
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc1"
+				}
+			],
+			"sort": {
+				"id": "id",
+				"name": "Sort by id"
+			}
+		}
+	},
+	{
+		"testId": 24,
+		"description": "sort with available sorts and id and expressions, available sort not used",
+		"data": {
+			"availableSorts": [
+				{
+					"id": "sort",
+					"name": "Available sort",
+					"expressions": [
+						{
+							"expression": "_id_",
+							"ascending": false
+						}
+					]
+				}
+			],
+			"sort": {
+				"id": "sort",
+				"name": "Custom sort",
+				"expressions": [
+					{
+						"expression": "color",
+						"ascending": true
+					},
+					{
+						"expression": "size",
+						"ascending": false
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"totalSize": 4,
+			"searchHits": [
+				{
+					"id": "doc2"
+				},
+				{
+					"id": "doc3"
+				},
+				{
+					"id": "doc1"
+				},
+				{
+					"id": "doc4"
+				}
+			],
+			"sort": {
+				"id": "sort",
+				"name": "Custom sort"
+			}
+		}
+	},
+	{
+		"testId": 25,
+		"description": "sort by relevance (default values of applyPromotedHits and highlightPromotedHits)",
+		"data": {
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_score_",
+						"ascending": false
+					},
+					{
+						"expression": "_id_",
+						"ascending": true
+					}
+				]
+			},
+			"rankRules": [
+				{
+					"type": "promotedHits",
+					"hits": [
+						{
+							"id": "doc4"
+						},
+						{
+							"id": "doc1"
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"totalSize": 4,
+			"searchHits": [
+				{
+					"id": "doc1",
+					"tags": []
+				},
+				{
+					"id": "doc2",
+					"tags": []
+				},
+				{
+					"id": "doc3",
+					"tags": []
+				},
+				{
+					"id": "doc4",
+					"tags": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 26,
+		"description": "sort by relevance (applyPromotedHits=true highlightPromotedHits=true)",
+		"data": {
+			"sort": {
+				"applyPromotedHits": true,
+				"highlightPromotedHits": true,
+				"expressions": [
+					{
+						"expression": "_score_",
+						"ascending": false
+					},
+					{
+						"expression": "_id_",
+						"ascending": true
+					}
+				]
+			},
+			"rankRules": [
+				{
+					"type": "promotedHits",
+					"hits": [
+						{
+							"id": "doc4"
+						},
+						{
+							"id": "doc1"
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"totalSize": 4,
+			"searchHits": [
+				{
+					"id": "doc4",
+					"tags": [
+						"highlighted",
+						"promoted"
+					]
+				},
+				{
+					"id": "doc1",
+					"tags": [
+						"highlighted",
+						"promoted"
+					]
+				},
+				{
+					"id": "doc2",
+					"tags": []
+				},
+				{
+					"id": "doc3",
+					"tags": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 27,
+		"description": "sort by relevance (applyPromotedHits=true highlightPromotedHits=false)",
+		"data": {
+			"sort": {
+				"applyPromotedHits": true,
+				"highlightPromotedHits": false,
+				"expressions": [
+					{
+						"expression": "_score_",
+						"ascending": false
+					},
+					{
+						"expression": "_id_",
+						"ascending": true
+					}
+				]
+			},
+			"rankRules": [
+				{
+					"type": "promotedHits",
+					"hits": [
+						{
+							"id": "doc4"
+						},
+						{
+							"id": "doc1"
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"totalSize": 4,
+			"searchHits": [
+				{
+					"id": "doc4",
+					"tags": [
+						"promoted"
+					]
+				},
+				{
+					"id": "doc1",
+					"tags": [
+						"promoted"
+					]
+				},
+				{
+					"id": "doc2",
+					"tags": []
+				},
+				{
+					"id": "doc3",
+					"tags": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 28,
+		"description": "sort by relevance (applyPromotedHits=false highlightPromotedHits=true)",
+		"data": {
+			"sort": {
+				"applyPromotedHits": false,
+				"highlightPromotedHits": true,
+				"expressions": [
+					{
+						"expression": "_score_",
+						"ascending": false
+					},
+					{
+						"expression": "_id_",
+						"ascending": true
+					}
+				]
+			},
+			"rankRules": [
+				{
+					"type": "promotedHits",
+					"hits": [
+						{
+							"id": "doc4"
+						},
+						{
+							"id": "doc1"
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"totalSize": 4,
+			"searchHits": [
+				{
+					"id": "doc1",
+					"tags": [
+						"highlighted"
+					]
+				},
+				{
+					"id": "doc2",
+					"tags": []
+				},
+				{
+					"id": "doc3",
+					"tags": []
+				},
+				{
+					"id": "doc4",
+					"tags": [
+						"highlighted"
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 29,
+		"description": "sort by relevance (applyPromotedHits=false highlightPromotedHits=false)",
+		"data": {
+			"sort": {
+				"applyPromotedHits": false,
+				"highlightPromotedHits": false,
+				"expressions": [
+					{
+						"expression": "_score_",
+						"ascending": false
+					},
+					{
+						"expression": "_id_",
+						"ascending": true
+					}
+				]
+			},
+			"rankRules": [
+				{
+					"type": "promotedHits",
+					"hits": [
+						{
+							"id": "doc4"
+						},
+						{
+							"id": "doc1"
+						}
+					]
+				}
+			]
+		},
+		"expectedData": {
+			"totalSize": 4,
+			"searchHits": [
+				{
+					"id": "doc1",
+					"tags": []
+				},
+				{
+					"id": "doc2",
+					"tags": []
+				},
+				{
+					"id": "doc3",
+					"tags": []
+				},
+				{
+					"id": "doc4",
+					"tags": []
+				}
+			]
+		}
+	}
+]

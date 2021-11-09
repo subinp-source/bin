@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="OOTB" importedAsReadOnly="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/b2b-accelerator/b2bocc/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="b2bacceleratorfacades" exported="" />
+    <orderEntry type="module" module-name="b2bwebservicescommons" exported="" />
+    <orderEntry type="module" module-name="platform" exported="" />
+  </component>
+</module>

@@ -1,0 +1,47 @@
+<ui-select
+    id="{{$ctrl.id}}-selector"
+    data-ng-model="$ctrl.model"
+    style="width:100%"
+    theme="<%= theme %>"
+    search-enabled="$ctrl.searchEnabled"
+    data-ng-change="$ctrl.internalOnChange()"
+    reset-search-input="$ctrl.resetSearchInput"
+    on-remove="$ctrl.internalOnRemove($item, $model)"
+    on-select="$ctrl.internalOnSelect($item, $model)"
+    data-ng-init="$ctrl.internalInit($select)"
+    data-ng-keyup="$ctrl.internalKeyup($event, $select.search)"
+    data-ng-class="{'se-generic-editor-dropdown__paged':$ctrl.requiresPaginatedStyling(), 'has-error': $ctrl.hasError(), 'has-warning': $ctrl.hasWarning() }"
+    class="se-generic-editor-dropdown"
+    ng-disabled="$ctrl.isReadOnly"
+>
+    <ui-select-match
+        placeholder="{{$ctrl.placeholder || 'se.genericeditor.sedropdown.placeholder' | translate}}"
+        class="se-generic-editor-dropdown__match2"
+    >
+        <span
+            data-ng-if="$ctrl.hasControls()"
+            class="input-group-addon glyphicon glyphicon-search ySESearchIcon__navigation"
+        ></span>
+        <item-printer
+            id="{{$ctrl.id}}-selected"
+            data-model="$select.selected"
+            data-template-url="$ctrl.itemTemplate"
+            class="y-select-item-printer"
+            data-ng-class="{'se-generic-editor-dropdown__item-printer':$ctrl.hasControls()}"
+        >
+        </item-printer>
+        <span
+            data-ng-if="$ctrl.hasControls() || $ctrl.showRemoveButton"
+            class="input-group-addon glyphicon glyphicon-remove-sign ySESearchIcon__navigation se-generic-editor-dropdown__remove-button"
+            data-ng-click="$ctrl.clear($select, $event)"
+        ></span>
+    </ui-select-match>
+    <!-- prettier-ignore -->
+    <ui-select-choices id="{{$ctrl.id}}-list"
+        {% filtering %} position="down" ui-disable-choice="$ctrl.disableChoice(item)" data-ng-click="$event.stopPropagation()" >
+        <div data-ng-include="$ctrl.itemTemplate"></div>
+    </ui-select-choices>
+    <ui-select-no-choice data-ng-if="$ctrl.noResultLabel" class="y-select-no-result-label">
+        {{$ctrl.noResultLabel | translate}}
+    </ui-select-no-choice>
+</ui-select>

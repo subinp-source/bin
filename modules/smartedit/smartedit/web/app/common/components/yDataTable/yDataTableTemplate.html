@@ -1,0 +1,6 @@
+<se-data-table
+    [items]="$ctrl.items"
+    [config]="$ctrl.config"
+    [columns]="$ctrl.columns"
+    (on-sort-column)="$ctrl.onSortColumn($event.$columnKey, $event.$columnSortMode)"
+></se-data-table>

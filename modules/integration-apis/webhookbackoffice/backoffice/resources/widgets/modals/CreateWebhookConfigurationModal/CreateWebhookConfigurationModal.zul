@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<widget xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.zkoss.org/2005/zul"
+        xmlns:n="http://www.zkoss.org/2005/zk/native"
+        xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.hybris.com/schema/cockpitng/zul/zul.xsd"
+        height="100%">
+
+    <style src="${wr}/CreateWebhookConfigurationModal.css"/>
+
+    <vlayout spacing="15px" sclass="yw-webhookbackoffice-modal-body">
+
+        <span sclass="yw-webhookbackoffice-modal-label">
+            ${labels.webhookbackoffice.createWebhookConfiguration.integrationObject.code}
+        </span>
+        <combobox id="integrationObjectComboBox"/>
+
+        <span sclass="yw-webhookbackoffice-modal-label">
+            ${labels.webhookbackoffice.createWebhookConfiguration.consumedDestination.code}
+        </span>
+        <combobox id="consumedDestinationComboBox"/>
+
+        <span sclass="yw-webhookbackoffice-modal-label">
+            ${labels.webhookbackoffice.createWebhookConfiguration.filterLocation.code}
+        </span>
+        <combobox id="filterLocationComboBox"/>
+
+    </vlayout>
+
+    <button id="createButton" label="${labels.webhookbackoffice.createWebhookConfiguration.createButton}"
+            sclass="y-btn-primary yw-webhookbackoffice-modal-button"/>
+
+</widget>

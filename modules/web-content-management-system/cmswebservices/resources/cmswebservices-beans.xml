@@ -1,0 +1,1481 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
+
+	<bean class="de.hybris.platform.webservicescommons.dto.error.ErrorWsDTO">
+		<description>Specifies properties of the web service error.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="language" type="String">
+			<hints>
+				<hint name="example">English</hint>
+			</hints>
+		</property>
+		<property name="position" type="Integer">
+			<hints>
+				<hint name="example">1</hint>
+			</hints>
+		</property>
+		<property name="exceptionMessage" type="String" />
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.data.OptionData">
+		<description>Specifies properties of the optional data.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="id" type="String" >
+			<hints>
+				<hint name="example">VARIATION</hint>
+			</hints>
+		</property>
+		<property name="label" type="String" >
+			<hints>
+				<hint name="example">page.displaycondition.variation</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.data.LanguageListData">
+		<description>Specifies a list of available languages.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="languages" type="java.util.List&lt;de.hybris.platform.commercefacades.storesession.data.LanguageData>" />
+	</bean>
+
+	<!-- Media beans -->
+	<bean class="de.hybris.platform.cmswebservices.data.MediaData">
+		<description>Specifies properties of a specific media.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="uuid" type="String" />
+		<property name="code" type="String">
+			<hints>
+				<hint name="example">PreviewData</hint>
+			</hints>
+		</property>
+		<property name="catalogId" type="String">
+			<hints>
+				<hint name="example">electronicsContentCatalog</hint>
+			</hints>
+		</property>
+		<property name="catalogVersion" type="String" >
+			<hints>
+				<hint name="example">Online</hint>
+			</hints>
+		</property>
+		<property name="mime" type="String" >
+			<hints>
+				<hint name="example">image/png</hint>
+			</hints>
+		</property>
+		<property name="altText" type="String" >
+			<hints>
+				<hint name="example">Text to display if media can't be loaded.</hint>
+			</hints>
+		</property>
+		<property name="description" type="String" >
+			<hints>
+				<hint name="example">Text that describes a media.</hint>
+			</hints>
+		</property>
+		<property name="url" type="String" />
+		<property name="downloadUrl" type="String" />
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.data.MediaListData">
+		<description>Specifies a list of available media.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="media" type="java.util.List&lt;de.hybris.platform.cmswebservices.data.MediaData>" />
+	</bean>
+
+	<!-- Named Query beans -->
+	<bean class="de.hybris.platform.cmswebservices.data.NamedQueryData">
+		<description>Specifies properties of the named query.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="namedQuery" type="String" >
+			<hints>
+				<hint name="example">Adapter</hint>
+			</hints>
+		</property>
+		<property name="params" type="String" />
+		<property name="sort" type="String" >
+			<hints>
+				<hint name="example">Name</hint>
+			</hints>
+		</property>
+		<property name="pageSize" type="String">
+			<hints>
+				<hint name="example">2</hint>
+			</hints>
+		</property>
+		<property name="currentPage" type="String" >
+			<hints>
+				<hint name="example">1</hint>
+			</hints>
+		</property>
+		<property name="queryType" type="java.lang.Class&lt;?>" />
+	</bean>
+
+	<!-- Content Slot beans -->
+	<bean class="de.hybris.platform.cmswebservices.data.PageContentSlotComponentData">
+		<description>Specifies properties of the page content slot component.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="pageId" type="String" >
+			<hints>
+				<hint name="example">homepage</hint>
+			</hints>
+		</property>
+		<property name="componentId" type="String" >
+			<hints>
+				<hint name="example">AbstractCMSComponent</hint>
+			</hints>
+		</property>
+		<property name="componentUuid" type="String" />
+		<property name="slotId" type="String" >
+			<hints>
+				<hint name="example">Section1Slot-Homepage</hint>
+			</hints>
+		</property>
+		<property name="position" type="Integer" >
+			<hints>
+				<hint name="example">1</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.data.PageContentSlotComponentListData">
+		<description>Specifies a list of available page content slot components.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="pageContentSlotComponentList" type="java.util.List&lt;de.hybris.platform.cmswebservices.data.PageContentSlotComponentData>" />
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.data.PageContentSlotData">
+		<description>Specifies properties of the page content slot.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="pageId" type="String" >
+			<hints>
+				<hint name="example">homepage</hint>
+			</hints>
+		</property>
+		<property name="slotId" type="String" >
+			<hints>
+				<hint name="example">Section1Slot-Homepage</hint>
+			</hints>
+		</property>
+		<property name="position" type="String" >
+			<hints>
+				<hint name="example">1</hint>
+			</hints>
+		</property>
+		<property name="slotShared" type="boolean" >
+			<hints>
+				<hint name="example">true</hint>
+			</hints>
+		</property>
+		<property name="slotStatus" type="String" />
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.data.PageContentSlotListData">
+		<description>Specifies a list of available page content slots.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="pageContentSlotList" type="java.util.List&lt;de.hybris.platform.cmswebservices.data.PageContentSlotData>" />
+	</bean>
+
+	<!-- Container data -->
+	<bean class="de.hybris.platform.cmswebservices.dto.PageContentSlotContainerListWsDTO">
+		<description>Specifies a list of available content slot containers.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="pageContentSlotContainerList" type="java.util.List&lt;de.hybris.platform.cmswebservices.dto.PageContentSlotContainerWsDTO>" />
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.dto.PageContentSlotContainerWsDTO">
+		<description>Specifies properties of the page content slot container.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="pageId" type="String" >
+			<hints>
+				<hint name="example">homepage</hint>
+			</hints>
+		</property>
+		<property name="slotId" type="String" >
+			<hints>
+				<hint name="example">Section1Slot-Homepage</hint>
+			</hints>
+		</property>
+		<property name="containerId" type="String" />
+		<property name="containerType" type="String" />
+		<property name="components" type="java.util.List&lt;String>" />
+	</bean>
+
+	<!-- Page Restriction beans -->
+	<bean class="de.hybris.platform.cmswebservices.data.PageRestrictionData">
+		<description>Specifies properties of the page restriction.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="pageId" type="String" >
+			<hints>
+				<hint name="example">homepage</hint>
+			</hints>
+		</property>
+		<property name="restrictionId" type="String" />
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.data.PageRestrictionListData">
+		<description>Specifies a list of available page restrictions.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="pageRestrictionList" type="java.util.List&lt;de.hybris.platform.cmswebservices.data.PageRestrictionData>" />
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.data.PageTypeRestrictionTypeData">
+		<description>Specifies a restriction type that can be applied to a given page type.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="pageType" type="String" >
+			<hints>
+				<hint name="example">ContentPage</hint>
+			</hints>
+		</property>
+		<property name="restrictionType" type="String" >
+			<hints>
+				<hint name="example">CMSUserGroupRestriction</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.data.PageTypeRestrictionTypeListData">
+		<description>Specifies a list of available restriction types for a given page type.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="pageTypeRestrictionTypeList" type="java.util.List&lt;de.hybris.platform.cmswebservices.data.PageTypeRestrictionTypeData>" />
+	</bean>
+
+	<!-- Page beans -->
+	<bean class="de.hybris.platform.cmswebservices.data.AbstractPageData" deprecated="no longer needed" deprecatedSince="6.6">
+		<description>Specifies properties of the page.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="uuid" type="String" />
+		<property name="pk" type="String" >
+			<hints>
+				<hint name="example">8796093056052</hint>
+			</hints>
+		</property>
+		<property name="creationtime" type="java.util.Date" >
+			<hints>
+				<hint name="example">yyyy-MM-dd HH:mm:ss+0000</hint>
+			</hints>
+		</property>
+		<property name="modifiedtime" type="java.util.Date" >
+			<hints>
+				<hint name="example">yyyy-MM-dd HH:mm:ss+0000</hint>
+			</hints>
+		</property>
+		<property name="uid" type="String" />
+		<property name="name" type="String" >
+			<hints>
+				<hint name="example">homepage</hint>
+			</hints>
+		</property>
+		<property name="title" type="java.util.Map&lt;String,String>" >
+			<hints>
+				<hint name="example">{\"EN\" : \"Homepage\", \"DE\" : \"Startseite\"}</hint>
+			</hints>
+		</property>
+		<property name="typeCode" type="String" >
+			<hints>
+				<hint name="example">ContentPage</hint>
+			</hints>
+		</property>
+		<property name="template" type="String" >
+			<hints>
+				<hint name="example">LandingPageTemplate</hint>
+			</hints>
+		</property>
+		<property name="defaultPage" type="Boolean" >
+			<hints>
+				<hint name="example">true</hint>
+			</hints>
+		</property>
+		<property name="onlyOneRestrictionMustApply" type="Boolean" >
+			<hints>
+				<hint name="example">false</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.data.ContentPageData" extends="AbstractPageData" deprecated="no longer needed" deprecatedSince="6.6">
+		<description>Specifies properties of the content page.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="label" type="String" />
+		<property name="path" type="String" />
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.data.ProductPageData" extends="AbstractPageData" deprecated="no longer needed" deprecatedSince="6.6">
+		<description>Specifies properties of the product page.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.data.EmailPageData" extends="AbstractPageData" deprecated="no longer needed" deprecatedSince="6.6">
+		<description>Specifies properties of the page email.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="fromEmail" type="java.util.Map&lt;String,String>" />
+		<property name="fromName" type="java.util.Map&lt;String,String>" />
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.data.CategoryPageData" extends="AbstractPageData" deprecated="no longer needed" deprecatedSince="6.6">
+		<description>Specifies properties of the page category.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.data.CatalogPageData" extends="AbstractPageData" deprecated="no longer needed" deprecatedSince="6.6">
+		<description>Specifies properties of the page catalog.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.data.PageListData" deprecated="no longer needed" deprecatedSince="6.6">
+		<description>Specifies a list of available pages.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="pages" type="java.util.List&lt;de.hybris.platform.cmswebservices.data.AbstractPageData>" />
+		<property name="pagination" type="de.hybris.platform.webservicescommons.dto.PaginationWsDTO" >
+			<hints>
+				<hint name="example">{\"count\" : \"0\", \"page\" : \"0\", \"totalCount\" : \"0\", \"totalPages\" : \"0\"}</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<!-- List beans -->
+	<bean class="de.hybris.platform.cmswebservices.data.UidListData">
+		<description>Specifies a list of available uids.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="uids" type="java.util.List&lt;String>" />
+	</bean>
+
+	<!-- Navigation beans -->
+	<bean class="de.hybris.platform.cmswebservices.data.NavigationEntryTypeData" deprecated="no longer needed" deprecatedSince="1811">
+		<description>Specifies properties of the navigation entry type.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="itemType" type="String" >
+			<hints>
+				<hint name="example">CMSParagraphComponent</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.data.NavigationEntryTypeListData" deprecated="no longer needed" deprecatedSince="1811">
+		<description>Specifies a list of navigation entry types.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="navigationEntryTypes" type="java.util.List&lt;de.hybris.platform.cmswebservices.data.NavigationEntryTypeData>" />
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.data.NavigationEntryData">
+		<description>Specifies properties of the navigation entry.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="name" type="String" >
+			<hints>
+				<hint name="example">My Account</hint>
+			</hints>
+		</property>
+		<property name="itemId" type="String" >
+			<hints>
+				<hint name="example">DigitalCompactsCategoryLink</hint>
+			</hints>
+		</property>
+		<property name="itemType" type="String" >
+			<hints>
+				<hint name="example">CMSNavigationNode</hint>
+			</hints>
+		</property>
+		<property name="itemSuperType" type="String" >
+			<hints>
+				<hint name="example">AbstractCMSComponent</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.data.NavigationNodeData">
+		<description>Specifies properties of the navigation node.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="uid" type="String" >
+			<hints>
+				<hint name="example">ElectronicsNavNode</hint>
+			</hints>
+		</property>
+		<property name="uuid" type="String" />
+		<property name="itemType" type="String" >
+			<hints>
+				<hint name="example">CMSNavigationNode</hint>
+			</hints>
+		</property>
+		<property name="parentUid" type="String" >
+			<hints>
+				<hint name="example">SiteRootNode</hint>
+			</hints>
+		</property>
+		<property name="name" type="String" >
+			<hints>
+				<hint name="example">My Account</hint>
+			</hints>
+		</property>
+		<property name="title" type="java.util.Map&lt;String,String>" >
+			<hints>
+				<hint name="example">{\"EN\" : \"Homepage\", \"DE\" : \"Startseite\"}</hint>
+			</hints>
+		</property>
+		<property name="hasChildren" type="Boolean" >
+			<hints>
+				<hint name="example">false</hint>
+			</hints>
+		</property>
+		<property name="position" type="Integer" >
+			<hints>
+				<hint name="example">3</hint>
+			</hints>
+		</property>
+		<property name="entries" type="java.util.List&lt;de.hybris.platform.cmswebservices.data.NavigationEntryData>" />
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.data.NavigationNodeListData">
+		<description>Specifies a list of available navigation nodes.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="navigationNodes" type="java.util.List&lt;de.hybris.platform.cmswebservices.data.NavigationNodeData>" />
+	</bean>
+
+	<!-- Site beans -->
+	<bean class="de.hybris.platform.cmswebservices.data.SiteData">
+		<description>Specifies properties of the site.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="uid" type="String" >
+			<hints>
+				<hint name="example">apparel-de</hint>
+			</hints>
+		</property>
+		<property name="previewUrl" type="String" >
+			<hints>
+				<hint name="example">/storefront/?site=apparel-de</hint>
+			</hints>
+		</property>
+		<property name="name" type="java.util.Map&lt;String, String>" >
+			<hints>
+				<hint name="example">{\"en\" : \"Apparel Site DE\", \"de\" : \"Bekleidungs-Website DE\"}</hint>
+			</hints>
+		</property>
+		<property name="contentCatalogs" type="java.util.List&lt;String>" >
+			<hints>
+				<hint name="example">[\"apparel-deContentCatalog\"]</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.data.SiteListData">
+		<description>Specified a list of available sites.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="sites" type="java.util.Collection&lt;SiteData>" />
+	</bean>
+
+	<!-- Composed Type beans -->
+	<bean class="de.hybris.platform.cmswebservices.data.ComposedTypeData">
+		<description>Specifies properties of the composed type.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="code" type="String" >
+			<hints>
+				<hint name="example">000000RW</hint>
+			</hints>
+		</property>
+		<property name="name" type="java.util.Map&lt;String,String>" />
+		<property name="description" type="java.util.Map&lt;String,String>" />
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.data.RestrictionTypeData" extends="de.hybris.platform.cmswebservices.data.ComposedTypeData">
+		<description>Specifies properties of the restriction type.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.data.PageTypeData" extends="de.hybris.platform.cmswebservices.data.ComposedTypeData">
+		<description>Specifies property of the page type.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="type" type="String" deprecated="no longer needed" deprecatedSince="1811">
+			<hints>
+				<hint name="example">ContentPage</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<!-- Page Template beans -->
+	<bean class="de.hybris.platform.cmswebservices.data.PageTemplateData">
+		<description>Specifies properties of the page template.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="uid" type="String" >
+			<hints>
+				<hint name="example">ProductDetailsPageTemplate</hint>
+			</hints>
+		</property>
+		<property name="uuid" type="String" />
+		<property name="name" type="String" >
+			<hints>
+				<hint name="example">homepage</hint>
+			</hints>
+		</property>
+		<property name="frontEndName" type="String" >
+			<hints>
+				<hint name="example">product/productLayout2Page</hint>
+			</hints>
+		</property>
+		<property name="previewIcon" type="String" />
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.data.PageTemplateDTO">
+		<description>Specifies properties of the page template for a given page.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="pageTypeCode" type="String" >
+			<hints>
+				<hint name="example">ContentPage</hint>
+			</hints>
+		</property>
+		<property name="active" type="Boolean" >
+			<hints>
+				<hint name="example">true</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.data.PageTemplateListData">
+		<description>Specifies a list of available page templates.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="templates" type="java.util.List&lt;de.hybris.platform.cmswebservices.data.PageTemplateData>" />
+	</bean>
+
+	<!-- Component Type beans -->
+	<bean class="de.hybris.platform.cmswebservices.data.ComponentTypeData">
+		<description>Specifies properties of the component type.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="code" type="String" >
+			<hints>
+				<hint name="example">ContentPage</hint>
+			</hints>
+		</property>
+		<property name="category" type="String" >
+			<hints>
+				<hint name="example">Page</hint>
+			</hints>
+		</property>
+		<property name="name" type="String" >
+			<hints>
+				<hint name="example">Link</hint>
+			</hints>
+		</property>
+		<property name="i18nKey" type="String" >
+			<hints>
+				<hint name="example">type.searchboxcomponent.name</hint>
+			</hints>
+		</property>
+		<property name="type" type="String" >
+			<hints>
+				<hint name="example">SearchBoxComponent</hint>
+			</hints>
+		</property>
+		<property name="attributes" type="java.util.List&lt;de.hybris.platform.cmswebservices.data.ComponentTypeAttributeData>" />
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.data.ComponentTypeAttributeData">
+		<description>Specifies properties of the component type attribute.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="qualifier" type="String" >
+			<hints>
+				<hint name="example">cmsComponents</hint>
+			</hints>
+		</property>
+		<property name="required" type="boolean" >
+			<hints>
+				<hint name="example">false</hint>
+			</hints>
+		</property>
+		<property name="localized" type="Boolean" >
+			<hints>
+				<hint name="example">false</hint>
+			</hints>
+		</property>
+		<property name="cmsStructureType" type="String" >
+			<hints>
+				<hint name="example">ShortString</hint>
+			</hints>
+		</property>
+		<property name="cmsStructureEnumType" type="String" />
+		<property name="i18nKey" type="String" >
+			<hints>
+				<hint name="example">type.searchboxcomponent.name</hint>
+			</hints>
+		</property>
+		<property name="dependsOn" type="String" />
+		<property name="options" type="java.util.List&lt;de.hybris.platform.cmsfacades.data.OptionData&gt;" />
+		<property name="idAttribute" type="String" >
+			<hints>
+				<hint name="example">value</hint>
+			</hints>
+		</property>
+		<property name="labelAttributes" type="java.util.List&lt;String>" >
+			<hints>
+				<hint name="example">[\"label\"]</hint>
+			</hints>
+		</property>
+		<property name="paged" type="boolean" >
+			<hints>
+				<hint name="example">false</hint>
+			</hints>
+		</property>
+		<property name="editable" type="boolean" >
+			<hints>
+				<hint name="example">false</hint>
+			</hints>
+		</property>
+		<property name="collection" type="boolean" >
+			<hints>
+				<hint name="example">false</hint>
+			</hints>
+		</property>
+		<property name="uri" type="String" />
+		<property name="params" type="java.util.Map&lt;String,String>" >
+			<hints>
+				<hint name="example">{\"typeCode\" : \"AbstractRestriction\"}</hint>
+			</hints>
+		</property>
+		<property name="subTypes" type="java.util.Map&lt;String,String>" >
+			<hints>
+				<hint name="example">{\"CMSUserGroupRestriction\" : \"type.cmsusergrouprestriction.name\", \"CMSCampaignRestriction\" : \"type.cmscampaignrestriction.name\"}</hint>
+			</hints>
+		</property>
+		<property name="containedTypes" type="java.util.Set&lt;String>" >
+			<hints>
+				<hint name="example">[\"MediaFormat\", \"MediaContainer\"]</hint>
+			</hints>
+		</property>
+		<property name="placeholder" type="String" >
+			<hints>
+				<hint name="example">Select or create an entry</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.data.ComponentTypeListData">
+		<description>Specifies a list of available component types.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="componentTypes" type="java.util.List&lt;de.hybris.platform.cmswebservices.data.ComponentTypeData>" />
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.data.RestrictionTypeListData">
+		<description>Specifies a list of available restriction types.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="restrictionTypes" type="java.util.List&lt;de.hybris.platform.cmswebservices.data.RestrictionTypeData>" />
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.data.PageTypeListData">
+		<description>Specifies a list of available page types.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="pageTypes" type="java.util.List&lt;de.hybris.platform.cmswebservices.data.PageTypeData>" />
+	</bean>
+
+	<!-- Catalog Version beans -->
+	<bean class="de.hybris.platform.cmswebservices.data.CatalogVersionData">
+		<description>Specifies properties of the content catalog version.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="uid" type="String" >
+			<hints>
+				<hint name="example">electronicsContentCatalog/Staged</hint>
+			</hints>
+		</property>
+		<property name="version" type="String" >
+			<hints>
+				<hint name="example">Staged</hint>
+			</hints>
+		</property>
+		<property name="active" type="Boolean" >
+			<hints>
+				<hint name="example">false</hint>
+			</hints>
+		</property>
+		<property name="pageDisplayConditions" type="java.util.List&lt;DisplayConditionData>" >
+			<hints>
+				<hint name="example">[{\"typecode\" : \"ProductPage\", \"options\" : {\"id\" : \"VARIATION\", \"label\" : \"page.displaycondition.variation\"}}]</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.data.CatalogVersionListData">
+		<description>Specifies a list of available catalog versions.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="versions" type="java.util.List&lt;de.hybris.platform.cmsfacades.data.CatalogVersionData>" />
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.data.DisplayConditionData">
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="options" type="java.util.List&lt;de.hybris.platform.cmswebservices.data.OptionData>" >
+			<hints>
+				<hint name="example">[{\"id\" : \"VARIATION\", \"label\" : \"page.displaycondition.variation\"}]</hint>
+			</hints>
+		</property>
+		<property name="typecode" type="String" >
+			<hints>
+				<hint name="example">ProductPage</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<!-- Sync Job beans -->
+	<bean class="de.hybris.platform.cmswebservices.data.SyncJobData">
+		<description>Specifies properties of the synchronization job.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="syncStatus" type="String" >
+			<hints>
+				<hint name="example">IN_SYNC</hint>
+			</hints>
+		</property>
+		<property name="startDate" type="java.util.Date" >
+			<hints>
+				<hint name="example">yyyy-MM-dd HH:mm:ss+0000</hint>
+			</hints>
+		</property>
+		<property name="endDate" type="java.util.Date" >
+			<hints>
+				<hint name="example">yyyy-MM-dd HH:mm:ss+0000</hint>
+			</hints>
+		</property>
+		<property name="creationDate" type="java.util.Date" >
+			<hints>
+				<hint name="example">yyyy-MM-dd HH:mm:ss+0000</hint>
+			</hints>
+		</property>
+		<property name="lastModifiedDate" type="java.util.Date" >
+			<hints>
+				<hint name="example">yyyy-MM-dd HH:mm:ss+0000</hint>
+			</hints>
+		</property>
+		<property name="syncResult" type="String" >
+			<hints>
+				<hint name="example">SUCCESS</hint>
+			</hints>
+		</property>
+		<property name="sourceCatalogVersion" type="String" >
+			<hints>
+				<hint name="example">electronicsContentCatalog/Staged</hint>
+			</hints>
+		</property>
+		<property name="targetCatalogVersion" type="String" >
+			<hints>
+				<hint name="example">electronicsContentCatalog/Online</hint>
+			</hints>
+		</property>
+		<property name="code" type="String" >
+			<hints>
+				<hint name="example">ProductPage</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.data.SyncJobRequestData">
+		<description>Specifies properties of the synchronization requests.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="catalogId" type="String" >
+			<hints>
+				<hint name="example">electronicsContentCatalog</hint>
+			</hints>
+		</property>
+		<property name="sourceVersionId" type="String" >
+			<hints>
+				<hint name="example">Staged</hint>
+			</hints>
+		</property>
+		<property name="targetVersionId" type="String" >
+			<hints>
+				<hint name="example">Online</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<!-- WsDTO beans  -->
+
+	<bean class="de.hybris.platform.cmswebservices.dto.CMSItemSearchWsDTO">
+		<description>Specifies properties of the cms item search.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="mask" type="String" />
+		<property name="typeCode" type="String" >
+			<hints>
+				<hint name="example">CMSParagraphComponent</hint>
+			</hints>
+		</property>
+		<property name="typeCodes" type="String" >
+			<hints>
+				<hint name="example">[\"CMSParagraphComponent\", \"CMSLinkComponent\"]</hint>
+			</hints>
+		</property>
+		<property name="catalogId" type="String" >
+			<hints>
+				<hint name="example">electronicsContentCatalog</hint>
+			</hints>
+		</property>
+		<property name="catalogVersion" type="String" >
+			<hints>
+				<hint name="example">Staged</hint>
+			</hints>
+		</property>
+		<property name="itemSearchParams" type="String" />
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.dto.CMSItemUuidListWsDTO">
+		<description>Specifies a list of available uuid for CMS item.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="uuids" type="java.util.List&lt;String>" />
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.dto.ContentSlotTypeRestrictionsListWsDTO">
+		<description>Specifies a list of available content slot type restrictions.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="typeRestrictionsList" type="java.util.List&lt;de.hybris.platform.cmswebservices.dto.ContentSlotTypeRestrictionsWsDTO>" />
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.dto.ContentSlotTypeRestrictionsWsDTO">
+		<description>Specifies a list of valid component types for a given content slot.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="contentSlotUid" type="String" >
+			<hints>
+				<hint name="example">Section1Slot-Homepage</hint>
+			</hints>
+		</property>
+		<property name="validComponentTypes" type="java.util.List&lt;String>" >
+			<hints>
+				<hint name="example">[\"ProductFeatureComponent\", \"CategoryFeatureComponent\"]</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.dto.CMSContentSlotIdListWsDTO">
+		<description>Specifies a list of slot ids.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="slotIds" type="java.util.List&lt;String>" >
+			<hints>
+				<hint name="example">[\"Section1Slot-Homepage\", \"Section2Footer-Homepage\"]</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.dto.PageableWsDTO">
+		<description>Specifies properties of the page.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="pageSize" type="int" >
+			<hints>
+				<hint name="example">2</hint>
+			</hints>
+		</property>
+		<property name="currentPage" type="int" >
+			<hints>
+				<hint name="example">1</hint>
+			</hints>
+		</property>
+		<property name="sort" type="String" >
+			<hints>
+				<hint name="example">Name</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.dto.CatalogDataListWsDTO">
+		<description>Specifies a list of available catalog data.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="catalogIds" type="java.util.List&lt;String>" >
+			<hints>
+				<hint name="example">[\"electronicsContentCatalog\", \"electronicsProductCatalog\"]</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<!-- Beans for Products and Product Categories -->
+	<bean class="de.hybris.platform.cmswebservices.dto.ProductDataListWsDTO">
+		<description>Specifies a list of available products.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="products" type="java.util.List&lt;ProductWsDTO>"/>
+		<property name="pagination" type="de.hybris.platform.webservicescommons.dto.PaginationWsDTO" >
+			<hints>
+				<hint name="example">{\"count\" : \"0\", \"page\" : \"0\", \"totalCount\" : \"0\", \"totalPages\" : \"0\"}</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.dto.CategoryDataListWsDTO">
+		<description>Specifies a list of available product categories.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="productCategories" type="java.util.List&lt;CategoryWsDTO>" />
+		<property name="pagination" type="de.hybris.platform.webservicescommons.dto.PaginationWsDTO" >
+			<hints>
+				<hint name="example">{\"count\" : \"0\", \"page\" : \"0\", \"totalCount\" : \"0\", \"totalPages\" : \"0\"}</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.dto.ProductWsDTO">
+		<description>Specifies properties of the product.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="code" type="String" >
+			<hints>
+				<hint name="example">489702</hint>
+			</hints>
+		</property>
+		<property name="name" type="java.util.Map&lt;String,String>" />
+		<property name="description" type="java.util.Map&lt;String,String>" />
+		<property name="thumbnailMediaCode" type="String" />
+		<property name="catalogId" type="String" >
+			<hints>
+				<hint name="example">electronicsContentCatalog</hint>
+			</hints>
+		</property>
+		<property name="catalogVersion" type="String" >
+			<hints>
+				<hint name="example">Online</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.dto.CategoryWsDTO">
+		<description>Specifies properties for the category.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="code" type="String" >
+			<hints>
+				<hint name="example">ProductPage</hint>
+			</hints>
+		</property>
+		<property name="name" type="java.util.Map&lt;String,String>" />
+		<property name="description" type="java.util.Map&lt;String,String>" />
+		<property name="thumbnailMediaCode" type="String" />
+		<property name="catalogId" type="String" >
+			<hints>
+				<hint name="example">electronicsContentCatalog</hint>
+			</hints>
+		</property>
+		<property name="catalogVersion" type="String" >
+			<hints>
+				<hint name="example">Staged</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.data.ItemTypeWsDTO">
+		<description>Specifies properties of the item type.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="itemType" type="String" >
+			<hints>
+				<hint name="example">ContentSlot</hint>
+			</hints>
+		</property>
+		<property name="i18nKey" type="String" >
+			<hints>
+				<hint name="example">type.searchboxcomponent.name</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.data.SyncItemStatusWsDTO">
+		<description>Specifies properties of the synchronization item status.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="itemId" type="String" />
+		<property name="itemType" type="String" >
+			<hints>
+				<hint name="example">ContentSlot</hint>
+			</hints>
+		</property>
+		<property name="name" type="String" >
+			<hints>
+				<hint name="example">SearchBoxSlot</hint>
+			</hints>
+		</property>
+		<property name="status" type="String" >
+			<hints>
+				<hint name="example">NOT_SYNC</hint>
+			</hints>
+		</property>
+		<property name="lastSyncStatus" type="Long" >
+			<hints>
+				<hint name="example">1575389256116</hint>
+			</hints>
+		</property>
+		<property name="lastModifiedDate" type="Long" >
+			<hints>
+				<hint name="example">1575388910281</hint>
+			</hints>
+		</property>
+		<property name="dependentItemTypesOutOfSync" type="java.util.List&lt;ItemTypeWsDTO>" ></property>
+		<property name="selectedDependencies" type="java.util.List&lt;SyncItemStatusWsDTO>" />
+		<property name="sharedDependencies" type="java.util.List&lt;SyncItemStatusWsDTO>" />
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.data.ItemSynchronizationWsDTO">
+		<description>Specifies properties of the item synchronization.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="itemId" type="String" />
+		<property name="itemType" type="String" >
+			<hints>
+				<hint name="example">ContentSlot</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.data.SynchronizationWsDTO">
+		<description>Specifies a list of available synchronization items.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="items" type="java.util.List&lt;ItemSynchronizationWsDTO>" />
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.dto.UserDataWsDTO">
+		<description>Specifies properties of the user data.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="uid" type="String" />
+		<property name="readableLanguages" type="java.util.Set&lt;String&gt;" >
+			<hints>
+				<hint name="example">[\"de\", \"hi\"]</hint>
+			</hints>
+		</property>
+		<property name="writeableLanguages" type="java.util.Set&lt;String&gt;" >
+			<hints>
+				<hint name="example">[\"de\", \"hi\"]</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.dto.UserGroupWsDTO">
+		<description>Specifies properties of the user group.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="uid" type="String" >
+			<hints>
+				<hint name="example">admin</hint>
+			</hints>
+		</property>
+		<property name="name" type="java.util.Map&lt;String, String&gt;" />
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.dto.UserGroupListWsDTO">
+		<description>Specifies a list of available user groups.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="userGroups" type="java.util.List&lt;UserGroupWsDTO>" />
+		<property name="pagination" type="de.hybris.platform.webservicescommons.dto.PaginationWsDTO" >
+			<hints>
+				<hint name="example">{\"count\" : \"0\", \"page\" : \"0\", \"totalCount\" : \"0\", \"totalPages\" : \"0\"}</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<!-- Media Container beans -->
+	<bean class="de.hybris.platform.cmswebservices.dto.MediaContainerWsDTO">
+		<description>Specifies properties of the media container.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="qualifier" type="String" >
+			<hints>
+				<hint name="example">summer-sales-media-container</hint>
+			</hints>
+		</property>
+		<property name="mediaContainerUuid" type="String" >
+			<hints>
+				<hint name="example">encoded-media-container-identifier</hint>
+			</hints>
+		</property>
+		<property name="medias" type="java.util.Map&lt;String, String&gt;" />
+		<property name="catalogVersion" type="String" >
+			<hints>
+				<hint name="example">Online</hint>
+			</hints>
+		</property>
+		<property name="thumbnailUrl" type="String" >
+			<hints>
+				<hint name="example">/images/summer-sales.jpeg</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.dto.MediaContainerListWsDTO">
+		<description>Specifies a list of available media containers.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="mediaContainers" type="java.util.List&lt;MediaContainerWsDTO>" />
+		<property name="pagination" type="de.hybris.platform.webservicescommons.dto.PaginationWsDTO" >
+			<hints>
+				<hint name="example">{\"count\" : \"0\", \"page\" : \"0\", \"totalCount\" : \"0\", \"totalPages\" : \"0\"}</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<!-- Version beans -->
+	<bean class="de.hybris.platform.cmswebservices.dto.CMSVersionWsDTO">
+		<description>Specifies properties of the CMS version.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="uid" type="String" >
+			<hints>
+				<hint name="example">00000000</hint>
+			</hints>
+		</property>
+		<property name="itemUUID" type="String" />
+		<property name="label" type="String" >
+			<hints>
+				<hint name="example">2.0</hint>
+			</hints>
+		</property>
+		<property name="description" type="String" />
+		<property name="creationtime" type="java.util.Date" >
+			<hints>
+				<hint name="example">yyyy-MM-dd HH:mm:ss+0000</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.dto.CMSVersionListWsDTO">
+		<description>Specifies a list of available CMS versions.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="results" type="java.util.List&lt;CMSVersionWsDTO>" >
+			<hints>
+				<hint name="example">[{\"creationtime\" : \"2019-12-23T19:35:35+0000\", \"itemUUID\" : \"eyJpd\", \"label\" : \"newVersion\", \"uid\" : \"00000000\"}]</hint>
+			</hints>
+		</property>
+		<property name="pagination" type="de.hybris.platform.webservicescommons.dto.PaginationWsDTO" >
+			<hints>
+				<hint name="example">{\"count\" : \"1\", \"page\" : \"0\", \"totalCount\" : \"1\", \"totalPages\" : \"1\"}</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<!-- Workflow beans -->
+	<bean class="de.hybris.platform.cmswebservices.dto.WorkflowTemplateWsDTO">
+		<description>Specifies properties of the workflow template.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="code" type="String">
+			<hints>
+				<hint name="example">000000RS</hint>
+			</hints>
+		</property>
+		<property name="name" type="String">
+			<hints>
+				<hint name="example">Page Translation</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.dto.WorkflowTemplateListWsDTO">
+		<description>Specifies a list of available workflow templates.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="templates" type="java.util.List&lt;WorkflowTemplateWsDTO>" />
+	</bean>
+
+	<bean abstract="true" class="de.hybris.platform.cmswebservices.dto.CMSCreateVersionWsDTO">
+		<description>Specifies properties of the CMS version on creation.</description>
+		<property name="createVersion" type="Boolean" >
+			<hints>
+				<hint name="example">true</hint>
+			</hints>
+		</property>
+		<property name="versionLabel" type="String" >
+			<hints>
+				<hint name="example">2.0</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.dto.CMSWorkflowOperationWsDTO" extends="CMSCreateVersionWsDTO">
+		<description>Specifies properties of the CMS workflow operation.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="operation" type="String" />
+		<property name="actionCode" type="String" >
+			<hints>
+				<hint name="example">000001JR</hint>
+			</hints>
+		</property>
+		<property name="decisionCode" type="String" >
+			<hints>
+				<hint name="example">000000RS</hint>
+			</hints>
+		</property>
+		<property name="comment" type="String" />
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.dto.CMSWorkflowWsDTO" extends="CMSCreateVersionWsDTO">
+		<description>Specifies properties of the CMS workflow.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="workflowCode" type="String" >
+			<hints>
+				<hint name="example">000000RV</hint>
+			</hints>
+		</property>
+		<property name="templateCode" type="String" >
+			<hints>
+				<hint name="example">PageTranslation</hint>
+			</hints>
+		</property>
+		<property name="description" type="String" />
+		<property name="attachments" type="java.util.List&lt;String>" />
+		<property name="status" type="String" >
+			<hints>
+				<hint name="example">RUNNING</hint>
+			</hints>
+		</property>
+		<property name="isAvailableForCurrentPrincipal" type="Boolean" >
+			<hints>
+				<hint name="example">true</hint>
+			</hints>
+		</property>
+		<property name="actions" type="java.util.List&lt;CMSWorkflowActionWsDTO>" />
+		<property name="canModifyItemInWorkflow" type="Boolean" >
+			<hints>
+				<hint name="example">true</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.dto.CMSWorkflowListWsDTO">
+		<description>Specifies a list of available CMS workflows.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="workflows" type="java.util.List&lt;CMSWorkflowWsDTO>" />
+		<property name="pagination" type="de.hybris.platform.webservicescommons.dto.PaginationWsDTO" >
+			<hints>
+				<hint name="example">{\"count\" : \"0\", \"page\" : \"0\", \"totalCount\" : \"0\", \"totalPages\" : \"0\"}</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.dto.CMSCommentWsDTO">
+		<description>Specifies properties of the CMS comment.</description>
+		<hints>
+			<hint name="wsRelated"></hint>
+		</hints>
+		<property name="text" type="String" />
+		<property name="code" type="String" />
+		<property name="creationtime" type="java.util.Date" >
+			<hints>
+				<hint name="example">yyyy-MM-dd HH:mm:ss+0000</hint>
+			</hints>
+		</property>
+		<property name="authorName" type="String" />
+		<property name="decisionName" type="String" />
+		<property name="decisionCode" type="String" />
+		<property name="originalActionCode" type="String" />
+		<property name="createdAgoInMillis" type="Long" >
+			<hints>
+				<hint name="example">128334524</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.dto.CMSCommentListWsDTO">
+		<description>Specifies a list of available CMS comments.</description>
+		<hints>
+			<hint name="wsRelated"></hint>
+		</hints>
+		<property name="comments" type="java.util.List&lt;CMSCommentWsDTO>" />
+		<property name="pagination" type="de.hybris.platform.webservicescommons.dto.PaginationWsDTO" >
+			<hints>
+				<hint name="example">{\"count\" : \"0\", \"page\" : \"0\", \"totalCount\" : \"0\", \"totalPages\" : \"0\"}</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.dto.CMSWorkflowActionWsDTO">
+		<description>Specifies properties of the CMS workflow action.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="code" type="String" >
+			<hints>
+				<hint name="example">0000000C</hint>
+			</hints>
+		</property>
+		<property name="name" type="String" >
+			<hints>
+				<hint name="example">Approve</hint>
+			</hints>
+		</property>
+		<property name="description" type="String" >
+			<hints>
+				<hint name="example">Decision for approving content</hint>
+			</hints>
+		</property>
+		<property name="actionType" type="String" >
+			<hints>
+				<hint name="example">START</hint>
+			</hints>
+		</property>
+		<property name="status" type="String" >
+			<hints>
+				<hint name="example">IN_PROGRESS</hint>
+			</hints>
+		</property>
+		<property name="isCurrentUserParticipant" type="boolean" >
+			<hints>
+				<hint name="example">true</hint>
+			</hints>
+		</property>
+		<property name="startedAgoInMillis" type="Long" >
+			<hints>
+				<hint name="example">5283</hint>
+			</hints>
+		</property>
+		<property name="decisions" type="java.util.List&lt;CMSWorkflowDecisionWsDTO>" >
+			<hints>
+				<hint name="example">[{ \"code\" : \"PageTranslationSendDEForReview\", \"description\" : \"Decision for sending DE language for review\", \"name\" : \"Send for Review\" }]</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.cmswebservices.dto.CMSWorkflowDecisionWsDTO">
+		<description>Specifies properties of the CMS workflow decision.</description>
+		<hints>
+			<hint name="wsRelated" />
+		</hints>
+		<property name="code" type="String" >
+			<hints>
+				<hint name="example">PageTranslationSendDEForReview</hint>
+			</hints>
+		</property>
+		<property name="name" type="String" >
+			<hints>
+				<hint name="example">Send for Review</hint>
+			</hints>
+		</property>
+		<property name="description" type="String" >
+			<hints>
+				<hint name="example">Decision for sending DE language for review</hint>
+			</hints>
+		</property>
+	</bean>
+
+</beans>

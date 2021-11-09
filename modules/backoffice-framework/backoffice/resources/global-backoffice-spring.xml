@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Object Label Value Cache -->
+	<alias alias="objectLabelCacheRegion" name="defaultObjectLabelCacheRegion"/>
+	<bean name="defaultObjectLabelCacheRegion" class="de.hybris.platform.regioncache.region.impl.EHCacheRegion">
+		<constructor-arg name="name" value="objectLabelCacheRegion"/>
+		<constructor-arg name="maxEntries" value="${backoffice.regioncache.objectlabel.maxEntries}" />
+		<constructor-arg name="evictionPolicy" value="${backoffice.regioncache.objectlabel.evictionpolicy}" />
+		<constructor-arg name="statsEnabled" value="${regioncache.stats.enabled}" />
+		<constructor-arg name="exclusiveComputation" value="${regioncache.exclusivecomputation}" />
+		<constructor-arg name="ttlSeconds" value="${backoffice.regioncache.objectlabel.timeToLive}"/>
+		<property name="handledTypes">
+			<array>
+				<value>__BACKOFFICE_OBJECT_LABEL__</value>
+			</array>
+		</property>
+	</bean>
+
+	<!-- Object Short Label Value Cache -->
+	<alias alias="objectShortLabelCacheRegion" name="defaultObjectShortLabelCacheRegion"/>
+	<bean name="defaultObjectShortLabelCacheRegion" class="de.hybris.platform.regioncache.region.impl.EHCacheRegion">
+		<constructor-arg name="name" value="objectShortLabelCacheRegion"/>
+		<constructor-arg name="maxEntries" value="${backoffice.regioncache.objectshortlabel.maxEntries}" />
+		<constructor-arg name="evictionPolicy" value="${backoffice.regioncache.objectshortlabel.evictionpolicy}" />
+		<constructor-arg name="statsEnabled" value="${regioncache.stats.enabled}" />
+		<constructor-arg name="exclusiveComputation" value="${regioncache.exclusivecomputation}" />
+		<constructor-arg name="ttlSeconds" value="${backoffice.regioncache.objectshortlabel.timeToLive}"/>
+		<property name="handledTypes">
+			<array>
+				<value>__BACKOFFICE_OBJECT_SHORT_LABEL__</value>
+			</array>
+		</property>
+	</bean>
+
+	<!-- Object Description Value Cache -->
+	<alias alias="objectDescriptionCacheRegion" name="defaultObjectDescriptionCacheRegion"/>
+	<bean name="defaultObjectDescriptionCacheRegion" class="de.hybris.platform.regioncache.region.impl.EHCacheRegion">
+		<constructor-arg name="name" value="objectDescriptionCacheRegion"/>
+		<constructor-arg name="maxEntries" value="${backoffice.regioncache.objectdescription.maxEntries}" />
+		<constructor-arg name="evictionPolicy" value="${backoffice.regioncache.objectdescription.evictionpolicy}" />
+		<constructor-arg name="statsEnabled" value="${regioncache.stats.enabled}" />
+		<constructor-arg name="exclusiveComputation" value="${regioncache.exclusivecomputation}" />
+		<constructor-arg name="ttlSeconds" value="${backoffice.regioncache.objectdescription.timeToLive}"/>
+		<property name="handledTypes">
+			<array>
+				<value>__BACKOFFICE_OBJECT_DESCRIPTION__</value>
+			</array>
+		</property>
+	</bean>
+
+	<!-- Object IconPath Value Cache -->
+	<alias alias="objectIconPathCacheRegion" name="defaultObjectIconPathCacheRegion"/>
+	<bean name="defaultObjectIconPathCacheRegion" class="de.hybris.platform.regioncache.region.impl.EHCacheRegion">
+		<constructor-arg name="name" value="objectIconPathCacheRegion"/>
+		<constructor-arg name="maxEntries" value="${backoffice.regioncache.objecticonpath.maxEntries}" />
+		<constructor-arg name="evictionPolicy" value="${backoffice.regioncache.objecticonpath.evictionpolicy}" />
+		<constructor-arg name="statsEnabled" value="${regioncache.stats.enabled}" />
+		<constructor-arg name="exclusiveComputation" value="${regioncache.exclusivecomputation}" />
+		<constructor-arg name="ttlSeconds" value="${backoffice.regioncache.objecticonpath.timeToLive}"/>
+		<property name="handledTypes">
+			<array>
+				<value>__BACKOFFICE_OBJECT_ICON_PATH__</value>
+			</array>
+		</property>
+	</bean>
+
+	<!-- Type Read Permission Cache -->
+	<alias alias="typeReadPermissionCacheRegion" name="defaultTypeReadPermissionCacheRegion"/>
+	<bean name="defaultTypeReadPermissionCacheRegion" class="de.hybris.platform.regioncache.region.impl.EHCacheRegion">
+		<constructor-arg name="name" value="typeReadPermissionCacheRegion"/>
+		<constructor-arg name="maxEntries" value="${backoffice.regioncache.typereadpermission.maxEntries}" />
+		<constructor-arg name="evictionPolicy" value="${backoffice.regioncache.typereadpermission.evictionpolicy}" />
+		<constructor-arg name="statsEnabled" value="${regioncache.stats.enabled}" />
+		<constructor-arg name="exclusiveComputation" value="${regioncache.exclusivecomputation}" />
+		<constructor-arg name="ttlSeconds" value="${backoffice.regioncache.typereadpermission.timeToLive}"/>
+		<property name="handledTypes">
+			<array>
+				<value>__BACKOFFICE_TYPE_READ_PERMISSION__</value>
+			</array>
+		</property>
+	</bean>
+
+	<!-- Type Attributes Read Permission Cache -->
+	<alias alias="typeAttributesReadPermissionCacheRegion" name="defaultTypeAttributesReadPermissionCacheRegion"/>
+	<bean name="defaultTypeAttributesReadPermissionCacheRegion" class="de.hybris.platform.regioncache.region.impl.EHCacheRegion">
+		<constructor-arg name="name" value="typeAttributesReadPermissionCacheRegion"/>
+		<constructor-arg name="maxEntries" value="${backoffice.regioncache.typeattributesreadpermission.maxEntries}" />
+		<constructor-arg name="evictionPolicy" value="${backoffice.regioncache.typeattributesreadpermission.evictionpolicy}" />
+		<constructor-arg name="statsEnabled" value="${regioncache.stats.enabled}" />
+		<constructor-arg name="exclusiveComputation" value="${regioncache.exclusivecomputation}" />
+		<constructor-arg name="ttlSeconds" value="${backoffice.regioncache.typeattributesreadpermission.timeToLive}"/>
+		<property name="handledTypes">
+			<array>
+				<value>__BACKOFFICE_TYPE_ATTRIBUTES_READ_PERMISSION__</value>
+			</array>
+		</property>
+	</bean>
+
+	<!-- Backoffice User Cache -->
+	<alias alias="backofficeUserCacheRegion" name="defaultBackofficeUserCacheRegion"/>
+	<bean name="defaultBackofficeUserCacheRegion" class="de.hybris.platform.regioncache.region.impl.EHCacheRegion">
+		<constructor-arg name="name" value="backofficeUserCacheRegion"/>
+		<constructor-arg name="maxEntries" value="${backoffice.regioncache.user.maxEntries}" />
+		<constructor-arg name="evictionPolicy" value="${backoffice.regioncache.user.evictionpolicy}" />
+		<constructor-arg name="statsEnabled" value="${regioncache.stats.enabled}" />
+		<constructor-arg name="exclusiveComputation" value="${regioncache.exclusivecomputation}" />
+		<constructor-arg name="ttlSeconds" value="${backoffice.regioncache.user.timeToLive}"/>
+		<property name="handledTypes">
+			<array>
+				<value>__BACKOFFICE_USER__</value>
+			</array>
+		</property>
+	</bean>
+
+	<!-- Add the cache region to the list displayed in the hac -->
+	<bean id="objectLabelCacheRegionRegistrar" class="de.hybris.platform.regioncache.region.CacheRegionRegistrar" c:region-ref="objectLabelCacheRegion" />
+	<bean id="objectShortLabelCacheRegionRegistrar" class="de.hybris.platform.regioncache.region.CacheRegionRegistrar" c:region-ref="objectShortLabelCacheRegion" />
+	<bean id="objectDescriptionCacheRegionRegistrar" class="de.hybris.platform.regioncache.region.CacheRegionRegistrar" c:region-ref="objectDescriptionCacheRegion" />
+	<bean id="objectIconPathCacheRegionRegistrar" class="de.hybris.platform.regioncache.region.CacheRegionRegistrar" c:region-ref="objectIconPathCacheRegion" />
+	<bean id="typeReadPermissionCacheRegionRegistrar" class="de.hybris.platform.regioncache.region.CacheRegionRegistrar" c:region-ref="typeReadPermissionCacheRegion" />
+	<bean id="typeAttributesReadPermissionCacheRegionRegistrar" class="de.hybris.platform.regioncache.region.CacheRegionRegistrar" c:region-ref="typeAttributesReadPermissionCacheRegion" />
+	<bean id="backofficeUserCacheRegionRegistrar" class="de.hybris.platform.regioncache.region.CacheRegionRegistrar" c:region-ref="backofficeUserCacheRegion" />
+
+</beans>

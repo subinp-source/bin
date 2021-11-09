@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<widget-definition id="de.hybris.platform.adaptivesearch.widgets.searchConfigurationAdapter"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widget-definition.xsd">
+
+	<name>Search Configuration Adapter</name>
+	<description>Adapter between search results and the editor area widget</description>
+	<defaultTitle>Search Configuration Adapter</defaultTitle>
+
+	<author>hybris</author>
+	<version>0.1</version>
+	<keywords>
+		<keyword>Adaptive Search</keyword>
+	</keywords>
+
+	<controller
+		class="de.hybris.platform.adaptivesearchbackoffice.widgets.searchconfigurationadapter.SearchConfigurationAdapterController" />
+
+	<sockets>
+		<input id="searchResult" type="de.hybris.platform.adaptivesearchbackoffice.data.SearchResultData" />
+		<input id="refreshSearchConfiguration" type="java.lang.Object" />
+		<input id="searchRequest" type="de.hybris.platform.adaptivesearchbackoffice.data.AbstractSearchRequestData" />
+		<output id="searchConfiguration" type="java.lang.Object" />
+		<output id="refreshSearch" type="java.lang.Object" />
+		<output id="searchRequest" type="de.hybris.platform.adaptivesearchbackoffice.data.AbstractSearchRequestData" />
+	</sockets>
+
+	<settings>
+		<setting key="autoSaveEnabled" type="Boolean" default-value="true" />
+	</settings>
+</widget-definition>

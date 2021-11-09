@@ -1,0 +1,16 @@
+<div [attr.validation-id]="field.qualifier" class="ySEField">
+    <!--    Legacy AngularJS support  -->
+
+    <div *ngIf="field.template"><div #widget></div></div>
+
+    <!--  Angular support  -->
+
+    <ng-container *ngIf="field.component">
+        <ng-container *ngComponentOutlet="field.component; injector: widgetInjector"></ng-container>
+    </ng-container>
+
+    <se-generic-editor-field-messages [field]="field" [qualifier]="qualifier">
+    </se-generic-editor-field-messages>
+
+    <div *ngIf="field.postfix" class="ySEText ySEFieldPostfix">{{ field.postfix | translate }}</div>
+</div>

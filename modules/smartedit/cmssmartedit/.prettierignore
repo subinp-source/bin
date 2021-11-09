@@ -1,0 +1,27 @@
+#########################
+# cmsSmartEdit
+#########################
+
+.tscache
+temp
+/jsTarget
+/backend-mock/dist/
+/backend-mock/tests/
+node_modules
+#**/static-resources/smartedit
+**/generated/**
+
+# BUNDLE
+smartedit-build
+build
+
+web/webroot/cmssmartedit
+**/protractor-conf.js
+**/.jshintrc
+jsTests/**/list.html
+jsTests/**/smartedit.html
+**/storefront.html
+/coverage/
+/classes/
+/backend-mock/
+**/generated_*

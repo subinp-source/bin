@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<widget-definition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widget-definition.xsd"
+                   id="com.hybris.backoffice.widgets.syncpopup">
+    <name>Synchronization Popup</name>
+    <description>Displays available synchronization jobs for given input object.</description>
+    <version>1.0</version>
+
+    <sockets>
+        <input id="inputObject" type="de.hybris.platform.core.model.ItemModel"/>
+        <input id="inputObjects" type="java.util.List"/>
+        <output id="cancel" type="java.lang.Object"/>
+        <output id="startedSyncCronJob" type="java.lang.String"/>
+        <output id="syncTaskExecutionInfo" type="com.hybris.backoffice.sync.SyncTaskExecutionInfo"/>
+    </sockets>
+
+    <controller class="com.hybris.backoffice.widgets.syncpopup.SyncPopupController"/>
+
+    <view src="syncpopup.zul" />
+    <keywords>
+        <keyword>Synchronization</keyword>
+    </keywords>
+
+</widget-definition>

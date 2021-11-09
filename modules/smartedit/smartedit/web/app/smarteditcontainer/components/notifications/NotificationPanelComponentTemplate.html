@@ -1,0 +1,16 @@
+<ng-container *ngIf="(notifications$ | async) as notifications">
+    <div
+        class="se-notification-panel"
+        *ngIf="notifications.length > 0"
+        [ngClass]="{'is-mouseover': isMouseOver}"
+        (mouseenter)="onMouseEnter()"
+    >
+        <div>
+            <se-notification
+                *ngFor="let notification of (notifications | seReverse)"
+                [notification]="notification"
+            >
+            </se-notification>
+        </div>
+    </div>
+</ng-container>

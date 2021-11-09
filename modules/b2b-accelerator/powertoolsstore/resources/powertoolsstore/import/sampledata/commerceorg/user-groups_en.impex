@@ -1,0 +1,35 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# Language
+$lang=en
+
+# B2BUnit
+UPDATE B2BUnit;uid[unique=true];locname[lang=$lang]
+ ;Custom Retail;Custom Retail
+ ;Pronto;Pronto
+ ;Pronto Goods;Pronto Goods
+ ;Pronto Services;Pronto Services
+ ;Rustic;Rustic
+ ;Rustic Retail;Rustic Retail
+ ;Rustic Services;Rustic Services
+ ;Services East;Services East
+ ;Services West;Services West
+
+UPDATE B2BCostCenter;code[unique=true];name[lang=$lang]
+ ;Custom_Retail;Custom Retail
+ ;Pronto_Goods;Pronto Goods;
+ ;Pronto_Services;Pronto Services;
+ ;Rustic_Global;Rustic Global
+ ;Rustic_Retail;Retail
+ ;Services_East;Services East
+ ;Services_West;Services West
+
+UPDATE B2BBudget;code[unique=true];name[lang=$lang]
+ ;20K_USD_MONTH;20K USD/MONTH;
+ ;30K_USD_MONTH;30K USD/MONTH;
+ ;Monthly_20K_USD;Monthly 20K USD
+ ;Monthly_2_5K_USD;Monthly 2.5K USD
+ ;Monthly_4K_USD;Monthly 4K USD
+ ;Monthly_50K_USD;Monthly 50K USD
+ ;Weekly_2_5K_USD;Weekly 2.5K USD

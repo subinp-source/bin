@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/aop
+			http://www.springframework.org/schema/aop/spring-aop.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+			http://www.springframework.org/schema/util
+			http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+	<import resource="merchandisingservices-field-mapping-spring.xml" />
+
+	<bean id="defaultProductDirectoryAfterSaveListener" class="com.hybris.merchandising.listeners.ProductDirectoryAfterSaveListener">
+		<property name="modelService" ref="modelService" />
+		<property name="productDirectoryProcessor" ref="productDirectoryProcessor" />
+	</bean>
+
+	<bean id="defaultProductDirectoryRemoveInterceptor" class="com.hybris.merchandising.listeners.ProductDirectoryRemoveInterceptor">
+		<property name="productDirectoryProcessor" ref="productDirectoryProcessor" />
+	</bean>
+
+	<bean id="productDirectoryInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="defaultProductDirectoryRemoveInterceptor" />
+		<property name="typeCode" value="MerchProductDirectoryConfig" />
+	</bean>
+
+	<!--DAOs-->
+	<alias name="defaultMerchIndexingConfigDao" alias="merchIndexingConfigDao"/>
+	<bean id="defaultMerchIndexingConfigDao" class="com.hybris.merchandising.dao.impl.DefaultMerchIndexingConfigDao"/>
+
+	<alias name="defaultMerchProductDirectoryConfigDao" alias="merchProductDirectoryConfigDao" />
+	<bean id="defaultMerchProductDirectoryConfigDao" class="com.hybris.merchandising.dao.impl.DefaultMerchProductDirectoryConfigDao" />
+
+	<!--Services-->
+	<alias name="defaultMerchIndexingConfigService" alias="merchIndexingConfigService"/>
+	<bean id="defaultMerchIndexingConfigService" class="com.hybris.merchandising.service.impl.DefaultMerchIndexingConfigService">
+		<property name="solrIndexedTypeDao" ref="solrIndexedTypeDao"/>
+		<property name="merchIndexingConfigDao" ref="merchIndexingConfigDao"/>
+	</bean>
+
+	<alias name="defaultMerchProductDirectoryConfigService" alias="merchProductDirectoryConfigService" />
+	<bean id="defaultMerchProductDirectoryConfigService" class="com.hybris.merchandising.service.impl.DefaultMerchProductDirectoryConfigService">
+		<property name="solrIndexedTypeDao" ref="solrIndexedTypeDao" />
+		<property name="merchProductDirectoryConfigDao" ref="merchProductDirectoryConfigDao" />
+		<property name="modelService" ref="modelService" />
+		<property name="baseSiteService" ref="baseSiteService" />
+	</bean>
+
+	<!-- listeners declaration -->
+	<bean id="merchIndexingListener" class="com.hybris.merchandising.indexer.listeners.MerchIndexingListener">
+		<property name="facetSearchService" ref="facetSearchService" />
+		<property name="fieldNameTranslator" ref="fieldNameTranslator" />
+		<property name="merchCatalogServiceClient" ref="merchCatalogServiceClient"/>
+		<property name="merchIndexingConfigService" ref="merchIndexingConfigService"/>
+		<property name="sessionService" ref="sessionService"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+		<property name="merchCategoryExporter" ref="merchCategoryExporter"/>
+	</bean>
+
+	<alias name="defaultMerchCatalogListener" alias="merchCatalogListener" />
+	<bean id="defaultMerchCatalogListener" class="com.hybris.merchandising.indexer.listeners.DefaultMerchCatalogListener">
+		<property name="merchProductDirectoryConfigService" ref="merchProductDirectoryConfigService" />
+		<property name="merchCatalogService" ref="merchCatalogService" />
+		<property name="merchCatalogServiceProductDirectoryClient" ref="merchCatalogServiceProductDirectoryClient" />
+		<property name="merchCategoryExporter" ref="merchProductDirectoryCategoryExporter" />
+		<property name="baseSiteService" ref="baseSiteService" />
+		  <property name="productDirectoryProcessor" ref="productDirectoryProcessor"/>
+	</bean>
+
+	<bean id="merchIndexingListenerDefinition" parent="solrListenerDefinition">
+		<property name="priority" value="1179" />
+		<property name="listener" ref="merchIndexingListener" />
+	</bean>
+
+	<bean id="merchCatalogListenerDefinition" parent="solrListenerDefinition">
+		<property name="priority" value="1180" />
+		<property name="listener" ref="merchCatalogListener" />
+	</bean>
+
+	 <!--YAAS Adapter-->
+	<alias name="defaultMerchCatalogServiceClient" alias="merchCatalogServiceClient"/>
+	<bean id="defaultMerchCatalogServiceClient" class="com.hybris.merchandising.client.MerchCatalogServiceClientAdapter">
+		<property name="apiRegistryClientService" ref="apiRegistryClientService"/>
+	</bean>
+
+	<alias name="defaultMerchCatalogServiceProductDirectoryClient" alias="merchCatalogServiceProductDirectoryClient" />
+	<bean id="defaultMerchCatalogServiceProductDirectoryClient" class="com.hybris.merchandising.client.MerchCatalogServiceProductDirectoryClientAdapter">
+		<property name="apiRegistryClientService" ref="apiRegistryClientService" />
+	</bean>
+
+	<alias name="defaultMerchSynchronizationConfigDao" alias="merchSynchronizationConfigDao"/>
+	<bean id="defaultMerchSynchronizationConfigDao" class="com.hybris.merchandising.dao.impl.DefaultMerchSynchronizationConfigDao"/>
+
+	<bean id="merchDataMapper"
+		  class="de.hybris.platform.webservicescommons.mapping.impl.DefaultDataMapper" >
+		<property name="fieldSetBuilder" ref="merchFieldSetBuilder" />
+	</bean>
+
+	<bean id="merchSubclassRegistry"
+		  class="de.hybris.platform.webservicescommons.mapping.impl.DefaultSubclassRegistry"
+		  init-method="init">
+	</bean>
+
+	<bean id="merchFieldSetBuilder"
+		  class="de.hybris.platform.webservicescommons.mapping.impl.DefaultFieldSetBuilder">
+		<property name="defaultRecurrencyLevel" value="4" />
+		<property name="defaultMaxFieldSetSize" value="50000" />
+		<property name="fieldSetLevelHelper" ref="merchFieldSetLevelHelper" />
+		<property name="subclassRegistry" ref="merchSubclassRegistry" />
+	</bean>
+
+	<bean id="merchFieldSetLevelHelper"
+		  class="de.hybris.platform.webservicescommons.mapping.impl.DefaultFieldSetLevelHelper">
+	</bean>
+
+	<alias name="defaultMerchCategoryExporter" alias="merchCategoryExporter"/>
+	<bean id="defaultMerchCategoryExporter" class="com.hybris.merchandising.exporter.DefaultMerchCategoryExporter">
+		<property name="merchSynchronizationConfigDao" ref="merchSynchronizationConfigDao"/>
+		<property name="merchCatalogService" ref="merchCatalogService"/>
+		<property name="client" ref="merchCatalogServiceClient"/>
+		<property name="typeService" ref="typeService"/>
+		<property name="changeDetectionService" ref="changeDetectionService"/>
+		<property name="modelService" ref="modelService" />
+		<property name="sessionService" ref="sessionService" />
+		<property name="flexibleSearchService" ref="flexibleSearchService" />
+		<property name="baseSiteService" ref="baseSiteService"/>
+	</bean>
+
+	<alias name="defaultMerchProductDirectoryCategoryExporter" alias="merchProductDirectoryCategoryExporter" />
+	<bean id="defaultMerchProductDirectoryCategoryExporter" class="com.hybris.merchandising.exporter.DefaultMerchProductDirectoryCategoryExporter">
+		<property name="merchCatalogService" ref="merchCatalogService" />
+		<property name="client" ref="merchCatalogServiceProductDirectoryClient" />
+		<property name="typeService" ref="typeService" />
+		<property name="changeDetectionService" ref="changeDetectionService" />
+		<property name="modelService" ref="modelService" />
+		<property name="sessionService" ref="sessionService" />
+		<property name="flexibleSearchService" ref="flexibleSearchService" />
+		<property name="baseSiteService" ref="baseSiteService" />
+		<property name="merchProductDirectoryConfigService" ref="merchProductDirectoryConfigService" />
+	</bean>
+
+	<alias name="defaultMerchCatalogService" alias="merchCatalogService" />
+	<bean id="defaultMerchCatalogService" class="com.hybris.merchandising.service.impl.DefaultMerchCatalogService">
+		<property name="baseSiteService" ref="baseSiteService" />
+		<property name="categoryUrlResolver" ref="categoryModelUrlResolver" />
+		<property name="fieldNameTranslator" ref="fieldNameTranslator" />
+		<property name="facetSearchService" ref="facetSearchService" />
+		<property name="searchQueryLanguageResolver" ref="searchQueryLanguageResolver" />
+		<property name="searchQueryCurrencyResolver" ref="searchQueryCurrencyResolver" />
+		<property name="merchProductConverter" ref="merchProductConverter" />
+	</bean>
+
+	<alias name="defaultMerchProductConverter" alias="merchProductConverter" />
+	<bean id="defaultMerchProductConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.hybris.merchandising.model.Product" />
+		<property name="populators">
+			<list>
+				<ref bean="productImagePopulator" />
+				<ref bean="productDetailsPopulator" />
+				<ref bean="productMetadataPopulator" />
+				<ref bean="merchFacetPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultMerchRollupStrategiesList" alias="merchRollupStrategiesList" />
+	<util:list id="defaultMerchRollupStrategiesList">
+		<ref bean="merchNoRollupStrategy" />
+		<ref bean="merchBaseProductRollupStrategy" />
+	</util:list>
+
+	<alias name="defaultProductImagePopulator" alias="productImagePopulator" />
+	<bean id="defaultProductImagePopulator" class="com.hybris.merchandising.converters.populators.ProductImagePopulator" />
+
+	<alias name="defaultProductDetailsPopulator" alias="productDetailsPopulator" />
+	<bean id="defaultProductDetailsPopulator" class="com.hybris.merchandising.converters.populators.ProductDetailsPopulator">
+		<property name="rollupStrategies" ref="merchRollupStrategiesList" />
+	</bean>
+
+	<alias name="defaultProductMetadataPopulator" alias="productMetadataPopulator" />
+	<bean id="defaultProductMetadataPopulator" class="com.hybris.merchandising.converters.populators.ProductMetadataPopulator" />
+
+	<alias name="defaultMerchFacetPopulator" alias="merchFacetPopulator" />
+	<bean id="defaultMerchFacetPopulator" class="com.hybris.merchandising.converters.populators.FacetPopulator" />
+
+	<alias name="defaultProductDirectoryProcessor" alias="productDirectoryProcessor" />
+	<bean id="defaultProductDirectoryProcessor" class="com.hybris.merchandising.processor.impl.DefaultProductDirectoryProcessor">
+		<property name="catalogServiceClient" ref="merchCatalogServiceProductDirectoryClient" />
+		<property name="merchProductDirectoryConfigService" ref="merchProductDirectoryConfigService" />
+		<property name="baseSiteService" ref="baseSiteService" />
+	</bean>
+
+	<alias name="defaultMerchNoRollupStrategy" alias="merchNoRollupStrategy" />
+	<bean id="defaultMerchNoRollupStrategy" class="com.hybris.merchandising.metric.rollup.strategies.impl.NoRollupMerchandisingMetricRollupStrategy" />
+
+	<alias name="defaultMerchBaseProductRollupStrategy" alias="merchBaseProductRollupStrategy" />
+	<bean id="defaultMerchBaseProductRollupStrategy" class="com.hybris.merchandising.metric.rollup.strategies.impl.BaseProductMerchandisingMetricRollupStrategy" />
+</beans>

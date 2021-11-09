@@ -1,0 +1,118 @@
+@import '~fiori-fundamentals/scss/icons/icon.scss';
+@import '~fiori-fundamentals/scss/components/token.scss';
+
+/****************************************************
+				restriction-Editor
+****************************************************/
+.se-restrictions-container__header {
+    @include se-flex-row(space-between);
+    border-bottom: se-border();
+    padding-bottom: fd-space('xs');
+
+    &--right {
+        @include se-flex-row();
+        > span,
+        > div {
+            margin-left: fd-space('xs');
+        }
+    }
+    &--empty {
+        border-bottom: none;
+    }
+}
+#restrictions-label {
+    display: none;
+}
+.se-restrictions__sub-header {
+    @include fd-weight('bold');
+    align-self: flex-start;
+    color: fd-color('text', 2);
+    margin: 0;
+}
+.se-restriction__clear-all__btn {
+    text-transform: capitalize;
+}
+.se-restriction__select {
+    text-transform: capitalize;
+    width: 100%;
+}
+
+/****************************************************
+			Restriction-Management-Select
+****************************************************/
+.se-restriction-management-select__restriction__editor {
+    border-top: se-border();
+    padding-top: fd-space('s');
+}
+.se-restriction-management-select__new-restriction-message {
+    @include fd-weight('bold');
+}
+.se-restriction-management-select__y-select,
+.se-restriction-management-select__restriction__info {
+    margin-bottom: fd-space('s');
+}
+
+/****************************************************
+			Restriction-Management-edit
+****************************************************/
+.se-restriction-management-edit__header {
+    margin-bottom: fd-space('s');
+}
+
+/****************************************************
+				Restriction-Table
+****************************************************/
+.se-restrictions-list--empty__message {
+    color: fd-color('text', 3);
+}
+.se-restrictions-list .se-restriction__item {
+    @include se-flex-row(space-between);
+    border-top-color: fd-color('neutral', 2) !important;
+    cursor: default;
+
+    &:last-child {
+        margin-bottom: 42px; // To display the dropdown properly without scrolling
+    }
+}
+.se-restrictions-list--content {
+    @include se-text-ellipsis();
+    cursor: default;
+    flex-grow: 1;
+}
+.se-restriction__item-name {
+    @include fd-weight('bold');
+    color: fd-color('text', 1);
+    margin: 0;
+}
+.se-restriction__item-description {
+    @include se-text-ellipsis;
+    color: fd-color('text', 3);
+    width: 90%;
+}
+.se-restriction__item-type-and-id {
+    color: fd-color('text', 2);
+    margin-top: 0;
+}
+
+// UserGroup Restriction Tags
+#userGroups-selector {
+    .se-generic-editor-multiple-dropdown__match li[draggable='true'] {
+        @include se-flex-row(center);
+        display: inline-flex !important;
+        border: se-border();
+        margin: 4px 0 4px 8px;
+        padding: 4px 8px;
+        border-radius: fd-space('base');
+        background-color: var(--fd-token-background-color);
+        color: fd-color('text', 2);
+        min-height: 28px;
+    }
+}
+
+.error-input {
+    &.se-restriction__item-description,
+    &.se-restriction__item-name,
+    &.se-restriction__item-type-and-id {
+        color: fd-color('status', 3);
+    }
+}

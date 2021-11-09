@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
+
+	<bean class="de.hybris.platform.addressfacades.data.CityData" >
+		<property name="code" type="String"/>
+		<property name="name" type="String"/>
+	</bean>
+	
+	<bean class="de.hybris.platform.addressfacades.data.DistrictData" >
+		<property name="code" type="String"/>
+		<property name="name" type="String"/>
+	</bean>
+	
+	<bean class="de.hybris.platform.commercefacades.user.data.AddressData" extends="de.hybris.platform.commercefacades.user.data.AddressData">
+		<property name="fullname" type="String"/>
+		<property name="city" type="de.hybris.platform.addressfacades.data.CityData" />
+		<property name="cityDistrict" type="de.hybris.platform.addressfacades.data.DistrictData" />
+		<property name="fullnameWithTitle" type="String"/>
+	</bean>
+	
+	<bean class="de.hybris.platform.addressfacades.data.CityDataList">
+		<property name="cities"
+		          type="java.util.List&lt;de.hybris.platform.addressfacades.data.CityData>"/>
+	</bean>
+	
+	<bean class="de.hybris.platform.addressfacades.data.DistrictDataList">
+		<property name="districts"
+		          type="java.util.List&lt;de.hybris.platform.addressfacades.data.DistrictData>"/>
+	</bean>
+
+</beans>

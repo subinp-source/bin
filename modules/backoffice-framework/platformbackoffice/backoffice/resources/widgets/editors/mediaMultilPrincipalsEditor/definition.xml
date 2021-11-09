@@ -1,0 +1,28 @@
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<editor-definition id="com.hybris.cockpitng.editor.mediamultiprincipalseditor"
+				   extends="com.hybris.cockpitng.editor.defaultmultireferenceeditor"
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/editor-definition.xsd">
+
+	<name>Media Multi Principals Editor</name>
+	<description>Media Multi Principals Editor</description>
+	<author>hybris</author>
+	<version>0.1</version>
+
+	<type>^MultiReference-(COLLECTION|LIST|SET)\((.*)\)$</type>
+	<editorClassName>de.hybris.platform.platformbackoffice.editors.mediamultiprincipalseditor.MediaMultiPrincipalsEditor</editorClassName>
+
+	<sockets>
+		<input id="referenceEditorInput"/>
+		<output id="referenceEditorOutput" type="java.util.Map"/>
+		<output id="referenceSelected" type="com.hybris.cockpitng.data.TypeAwareSelectionContext"/>
+		<output id="referenceSearchCtx" type="com.hybris.cockpitng.data.TypeAwareSelectionContext"/>
+	</sockets>
+
+	<settings>
+		<setting key="pageSize" default-value="5" type="java.lang.Integer"/>
+		<setting key="referenceAdvancedSearchEnabled" default-value="true" type="Boolean"/>
+	</settings>
+</editor-definition>

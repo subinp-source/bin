@@ -1,0 +1,133 @@
+/* *
+/* This file will include all the constants (e.g. colors, fonts, etc)
+*/
+/** Colors
+/* all the colors used - write them once in this section so we can easier keep track and re-use
+*/
+
+
+// Fundamentals colors
+@fd-color--text: var(--sapTextColor, #32363a);
+@fd-color--text-neutral: var(--sapNeutralTextColor, #6a6d70);
+@fd-color--text-disabled: var(--sapContent_DisabledTextColor, rgba(50,54,58,0.6));
+
+@fd-opacity--disabled: var(--sapContent_DisabledOpacity, 0.4);
+
+@fd-color--background-neutral: var(--sapBackgroundColor, #f7f7f7);
+@fd-color--background-hover: var(--sapBackgroundColor, #f7f7f7);
+@fd-color--background-selected: rgba(10, 110, 209, 0.07);
+
+@fd-color--status-1: var(--sapPositiveColor, #107e3e);
+@fd-color--status-2: var(--sapCriticalColor, #e9730c);
+@fd-color--status-3: var(--sapErrorColor, #bb0000);
+
+@fd-color--shell: var(--sapShellColor, #354a5f);    //used for the tooltips, including for the arrow
+
+@fd-color--action-1: var(--sapLinkColor, #0a6ed1);
+@fd-color--action-hover: var(--sapLink_Hover_Color, #0854a0);
+@fd-color--action-focus: var(--sapLinkColor, #0a6ed1);
+//-------------------------------------------------------------//
+//customized colors
+@blue: @fd-color--action-1; //used in combined view
+@light-blue: #00c6ff;       //personalization-ctx__icon, consistency with SE
+@light-green: #9dc75b;      //used in combined view
+@orange: @fd-color--status-2;
+@purple: #b831b4;       //used in combined view
+@yellow: #faba0d;       //used in combined view
+@cyan: #1ec8df;         //used in combined view
+@magenta: #de356b;      //used in combined view
+@white: #ffffff;        //don't change it, basic color
+@black: #000000;        //don't change it, basic color
+@dark-blue-grey: #1f4d70;   //used in combined view
+@very-light-grey: #c4cedc;      //used in empty container node, segments tree
+// border colors
+@border-color-light-grey: #eeeeef;  //update when fd updates;
+@border-color-light-grey1: var(--sapGroup_ContentBorderColor, #d9d9d9);
+@border-color-dark-grey: var(--sapContent_UnratedColor, #89919a);     //used in perso segments tree
+// combined view colors
+@personalizationComponentColor0: @blue;
+@personalizationComponentColor1: @light-green;
+@personalizationComponentColor2: @orange;
+@personalizationComponentColor3: @purple;
+@personalizationComponentColor4: @yellow;
+@personalizationComponentColor5: @cyan;
+@personalizationComponentColor6: @magenta;
+@personalizationComponentColor7: @dark-blue-grey;
+@personalizationComponentColor8: fadeout(
+    @personalizationComponentColor7,
+    @opacity_percent-ten
+);
+@personalizationComponentColor9: fadeout(
+    @personalizationComponentColor8,
+    @opacity_percent-ten
+);
+@personalizationComponentColor10: fadeout(
+    @personalizationComponentColor9,
+    @opacity_percent-ten
+);
+@personalizationComponentColor11: fadeout(
+    @personalizationComponentColor10,
+    @opacity_percent-ten
+);
+@personalizationComponentColor12: fadeout(
+    @personalizationComponentColor11,
+    @opacity_percent-ten
+);
+@personalizationComponentColor13: fadeout(
+    @personalizationComponentColor12,
+    @opacity_percent-ten
+);
+@personalizationComponentColor14: fadeout(
+    @personalizationComponentColor13,
+    @opacity_percent-ten
+);
+//combined view colors function variables
+@colorsNumber: 14;
+@index: 0;
+@increment: 1;
+@combinedview__letter--width: 44px;
+@combinedview__letter--height: 44px;
+// background colors
+@background-color-white: @white;
+// text colors
+@text-color-dark-blue: @fd-color--text;
+@text-color-red: @fd-color--status-3;
+@text-color-green: @fd-color--status-1;
+@text-color-white: @white;
+//font-weights
+@font-weight-semibold: 600;
+@font-weight-bold: 700;
+@font-weight-normal: 400;
+//font-family
+@perso--font-family: var(--sapFontFamily, "72", "72full", Arial, Helvetica, sans-serif);
+//opacity
+@opacity_one: 1;
+@opacity_point-eight: 0.8;
+@opacity_point-five: 0.5;
+@opacity_point-four: 0.4;
+@opacity_percent-ten: 10%;
+//flex variables
+@flex-grow: 2; //the flex container can grow up tp double its size
+@flex-shrink: 2; //the flex container can shrink up to half its size
+//padding, margins
+@perso-gutter: 20px; //the most common value for padding, margins or increments of it
+@techne__tooltip-inner--padding: 0.5 * @perso-gutter; //10px
+@pe-customization-modal__form-group--margin-bottom: 1.5 * @perso-gutter; //30px
+//font sizes
+@perso__xs-text--font-size: 11px; //for dates, warning messages
+@perso__sm-text--font-size: 12px; //for status, dates
+@perso__label--font-size: 13px;
+@techne__tooltip-inner--font-size: 14px;
+@perso__default-text--font-size: 15px;
+@perso-panel__title--font-size: 18px;
+// font sizes for icons
+@perso__more-icon--font-size: 20px;
+@perso-segments-tree__node-icon--font-size: 14px;
+@perso-library__back-to-top-icon--font-size: 25px;
+@perso__icon--default-font-size: 16px;
+// heights, widths
+@perso-panel--height: 55vh;
+@se-toolbar-menu-content--pe-customized-width: 275px; //consistent with SE panels (sync)
+@se-toolbar-menu-content--pe-combine-width: 450px; //consistent with SE panels (sync)
+@se-toolbar-menu-content--width: 780px; //consistent with SE panels
+@pe-contextual-menu-template--width: 350px;

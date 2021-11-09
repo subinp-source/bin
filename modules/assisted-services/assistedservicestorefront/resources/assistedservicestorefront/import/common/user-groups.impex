@@ -1,0 +1,59 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+
+INSERT_UPDATE UserGroup;UID[unique=true];groups[ignorenull=false,default= ];locname[lang=en];description
+;asagentgroup;;"Common Assisted Service Agent Group";
+;asagentsalesgroup;;"Assisted Service Customer Support Agent Group";"The ASM CS Support Agent can provide sales and service support to a customer, but may be restricted, so that they cannot checkout a customer's cart, or authorise a customer's quote request for example."
+;asagentsalesmanagergroup;;"Assisted Service Customer Support Manager Group";"The ASM CS Support Manager can do everything an 'ASM CS Support Agent' can do, and more, such as authorising a customer's quote request for example."
+
+
+INSERT_UPDATE Employee;uid[unique=true];name;description;groups[ignorenull=false,default= ]
+;asagent;"Assisted Service Agent";"Assisted Service Agent";
+;asagentsales;"Assisted Service Sales Agent";"Assisted Service Sales Agent";
+;asagentmanager;"Assisted Service CS Manager";"Assisted Service CS Manager";
+
+INSERT_UPDATE PrincipalGroupRelation;source(uid)[unique=true];target(uid)[unique=true]
+;asagentsalesgroup;asagentgroup
+;asagentsalesmanagergroup;asagentsalesgroup
+;asagent;asagentsalesmanagergroup
+;asagent;customermanagergroup
+;asagentsales;asagentsalesgroup
+;asagentmanager;asagentsalesmanagergroup
+
+# Access rights for asagentgroup
+# These are needed for rendering (cmsoccaddon).
+
+$START_USERRIGHTS;;;;;;;;;
+Type;UID;MemberOfGroups;Password;Target;read;change;create;remove;change_perm
+UserGroup;asagentgroup;;;;;;;;
+
+# general
+;;;;Item;+;;;;;
+;;;;Type;+;;;;;
+
+# access rights for Products, Store, Site and Catalogs
+;;;;Product;+;;;;;
+;;;;Category;+;;;;;
+;;;;VariantType;+;;;;;
+;;;;BaseSite;+;;;;;
+;;;;BaseStore;+;;;;;
+;;;;Catalog;+;;;;;
+;;;;CatalogVersion;+;;;;;
+;;;;ContentCatalog;+;;;;;
+;;;;MediaContainer;+;-;-;-;-;
+;;;;MediaContext;+;-;-;-;-;
+;;;;MediaFormat;+;-;-;-;-;
+;;;;MediaFormatMapping;+;-;-;-;-;
+
+# cms2 items
+;;;;CMSItem;+;-;-;-;-;
+
+$END_USERRIGHTS;;;;;

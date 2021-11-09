@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<action-definition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				   id="com.hybris.backoffice.widgets.actions.excel.import"
+				   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/action-definition.xsd">
+	<name>Excel Import Action</name>
+	<description>Action opening Excel import</description>
+	<author>hybris</author>
+	<version>1.0</version>
+	<actionClassName>com.hybris.backoffice.widgets.actions.excel.ExcelImportAction</actionClassName>
+	<sockets>
+		<output id="typeCode" type="java.lang.String"/>
+	</sockets>
+
+	<iconUri>icons/icon_action_import_excel_default.png</iconUri>
+	<iconDisabledUri>icons/icon_action_import_excel_disabled.png</iconDisabledUri>
+	<iconHoverUri>icons/icon_action_import_excel_hover.png</iconHoverUri>
+
+</action-definition>

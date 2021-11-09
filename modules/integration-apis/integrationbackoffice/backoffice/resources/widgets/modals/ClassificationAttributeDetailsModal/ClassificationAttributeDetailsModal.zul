@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<widget xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.zkoss.org/2005/zul"
+        xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.hybris.com/schema/cockpitng/zul/zul.xsd"
+        height="100%">
+
+    <style src="${wr}/ClassificationAttributeDetailsModal.css"/>
+
+    <vlayout spacing="15px" sclass="yw-integrationbackoffice-modal-body-no-button">
+        <span sclass="yw-integrationbackoffice-modal-label">
+            ${labels.integrationbackoffice.classificationAttributeDetailsModal.catalogVersion}
+        </span>
+        <textbox id="catalogVersion" readonly="true"/>
+
+        <span sclass="yw-integrationbackoffice-modal-label">
+            ${labels.integrationbackoffice.classificationAttributeDetailsModal.category}
+        </span>
+        <textbox id="category" readonly="true"/>
+
+        <span sclass="yw-integrationbackoffice-modal-label">
+            ${labels.integrationbackoffice.classificationAttributeDetailsModal.attributeName}
+        </span>
+        <textbox id="attributeName" readonly="true"/>
+
+        <span sclass="yw-integrationbackoffice-modal-label">
+            ${labels.integrationbackoffice.classificationAttributeDetailsModal.attributeType}
+        </span>
+        <textbox id="attributeType" readonly="true"/>
+        ${labels.integrationbackoffice.classificationAttributeDetailsModal.note}
+    </vlayout>
+
+</widget>

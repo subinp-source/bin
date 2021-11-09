@@ -1,0 +1,81 @@
+[
+	{
+		"testId": 1,
+		"description": "group without expression",
+		"data": {
+			"group": {
+				"limit": 10
+			}
+		}
+	},
+	{
+		"testId": 2,
+		"description": "group with empty expression",
+		"data": {
+			"group": {
+				"expression": "",
+				"limit": 10
+			}
+		}
+	},
+	{
+		"testId": 3,
+		"description": "group with invalid expression",
+		"data": {
+			"group": {
+				"expression": "-$!#-",
+				"limit": 10
+			}
+		}
+	},
+	{
+		"testId": 4,
+		"description": "group with not existing expression",
+		"data": {
+			"group": {
+				"expression": "notExisting",
+				"limit": 10
+			}
+		}
+	},
+	{
+		"testId": 5,
+		"description": "group with TEXT expression",
+		"data": {
+			"group": {
+				"expression": "field_text",
+				"limit": 10
+			}
+		}
+	},
+	{
+		"testId": 6,
+		"description": "group with BOOLEAN expression",
+		"data": {
+			"group": {
+				"expression": "field_boolean",
+				"limit": 10
+			}
+		}
+	},
+	{
+		"testId": 7,
+		"description": "group with DATE_TIME expression",
+		"data": {
+			"group": {
+				"expression": "field_date_time",
+				"limit": 10
+			}
+		}
+	},
+	{
+		"testId": 8,
+		"description": "group with multi-valued expression",
+		"data": {
+			"group": {
+				"expression": "field_string_mv",
+				"limit": 10
+			}
+		}
+	}
+]

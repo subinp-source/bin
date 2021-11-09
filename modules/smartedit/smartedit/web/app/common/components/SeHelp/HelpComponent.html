@@ -1,0 +1,14 @@
+<se-tooltip
+    [triggers]="trigger"
+    [placement]="placement"
+    [isChevronVisible]="true"
+    [title]="title"
+    class="se-help"
+>
+    <span se-tooltip-trigger class="sap-icon--sys-help se-y-help-icon"></span>
+
+    <ng-container se-tooltip-body>
+        <div *ngIf="template" [seCompileHtml]="template"></div>
+        <div *ngIf="templateUrl" [ngInclude]="templateUrl"></div>
+    </ng-container>
+</se-tooltip>

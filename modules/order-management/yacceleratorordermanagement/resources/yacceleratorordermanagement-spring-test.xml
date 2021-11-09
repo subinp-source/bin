@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company.
+ All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="de.hybris.platform.yacceleratorordermanagement.integration.util"/>
+    <import resource="classpath:warehousing-spring-test.xml"/>
+
+    <bean id="baseUtil" class="de.hybris.platform.yacceleratorordermanagement.integration.util.BaseUtil">
+        <property name="orders" ref="orders"/>
+        <property name="consignmentBusinessProcessService" ref="consignmentBusinessProcessService"/>
+        <property name="orderBusinessProcessService" ref="orderBusinessProcessService"/>
+        <property name="returnBusinessProcessService" ref="returnBusinessProcessService"/>
+        <property name="businessProcessService" ref="businessProcessService"/>
+        <property name="userService" ref="userService"/>
+        <property name="orderCancelService" ref="orderCancelService"/>
+        <property name="returnService" ref="returnService"/>
+        <property name="refundService" ref="refundService"/>
+        <property name="productService" ref="productService"/>
+        <property name="sourcingService" ref="sourcingService"/>
+        <property name="stockService" ref="stockService"/>
+        <property name="modelService" ref="modelService"/>
+        <property name="allocationService" ref="allocationService"/>
+        <property name="sourcingBanService" ref="sourcingBanService"/>
+        <property name="calculationService" ref="calculationService"/>
+        <property name="commonI18NService" ref="commonI18NService"/>
+        <property name="deliveryModeService" ref="deliveryModeService"/>
+        <property name="cartService" ref="cartService"/>
+        <property name="pointOfServiceService" ref="pointOfServiceService"/>
+        <property name="baseStoreService" ref="baseStoreService"/>
+        <property name="newestWorkflowService" ref="newestWorkflowService"/>
+        <property name="workflowTemplateService" ref="workflowTemplateService"/>
+        <property name="sourceOrderAction" ref="sourceOrderAction"/>
+        <property name="checkOrderAction" ref="checkOrderAction"/>
+        <property name="commerceStockService" ref="commerceStockService"/>
+        <property name="baseStores" ref="baseStores"/>
+        <property name="pointsOfService" ref="pointsOfService"/>
+        <property name="stockLevels" ref="stockLevels"/>
+        <property name="products" ref="products"/>
+        <property name="users" ref="users"/>
+        <property name="csAgentGroups" ref="csAgentGroups"/>
+        <property name="domains" ref="domains"/>
+        <property name="components" ref="components"/>
+        <property name="commentTypes" ref="commentTypes"/>
+        <property name="paymentInfos" ref="paymentInfos"/>
+        <property name="returnRequests" ref="returnRequests"/>
+        <property name="warehouses" ref="warehouses"/>
+        <property name="consignmentCancellationService" ref="consignmentCancellationService"/>
+        <property name="catalogVersionService" ref="catalogVersionService"/>
+        <property name="warehouseStockService" ref="warehouseStockService"/>
+        <property name="processDefinitionFactory" ref="processDefinitionFactory"/>
+        <property name="deliveryModes" ref="deliveryModes"/>
+        <property name="sourcingConfigs" ref="sourcingConfigs"/>
+        <property name="restockConfigs" ref="restockConfigs"/>
+        <property name="emailAddresses" ref="emailAddresses"/>
+        <property name="atpFormulas" ref="atpFormulas"/>
+        <property name="workflowTemplates" ref="workflowTemplates"/>
+        <property name="workflowActionTemplates" ref="workflowActionTemplates"/>
+        <property name="workflowDecisionTemplates" ref="workflowDecisionTemplates"/>
+        <property name="automatedWorkflowActionTemplates" ref="automatedWorkflowActionTemplates"/>
+        <property name="warehousingWorkflowDao" ref="warehousingWorkflowDao"/>
+    </bean>
+
+    <bean id="cancellationUtil" class="de.hybris.platform.yacceleratorordermanagement.integration.util.CancellationUtil" parent="processUtil"/>
+
+    <bean id="declineUtil" class="de.hybris.platform.yacceleratorordermanagement.integration.util.DeclineUtil" parent="processUtil"/>
+
+    <bean id="processUtil" class="de.hybris.platform.yacceleratorordermanagement.integration.util.ProcessUtil" parent="baseUtil"/>
+
+    <bean id="returnUtil" class="de.hybris.platform.yacceleratorordermanagement.integration.util.ReturnUtil" parent="processUtil"/>
+
+    <bean id="sourcingUtil" class="de.hybris.platform.yacceleratorordermanagement.integration.util.SourcingUtil" parent="workflowUtil"/>
+
+    <bean id="workflowUtil" class="de.hybris.platform.yacceleratorordermanagement.integration.util.WorkflowUtil" parent="processUtil">
+        <property name="warehousingConsignmentWorkflowService" ref="warehousingConsignmentWorkflowService"/>
+        <property name="userService" ref="userService"/>
+        <property name="impersonationService" ref="impersonationService"/>
+    </bean>
+
+    <!-- New DAOs -->
+    <bean id="warehousingReturnRequestDao" class="de.hybris.platform.warehousing.util.dao.impl.WarehousingConsignmentDaoImpl"
+          parent="abstractWarehousingDao"/>
+
+    <bean id="returnRequests" class="de.hybris.platform.warehousing.util.models.ReturnRequests" parent="abstractItems">
+        <property name="orders" ref="orders"/>
+        <property name="warehousingConsignmentDao" ref="warehousingConsignmentDao"/>
+        <property name="warehousingReturnRequestDao" ref="warehousingReturnRequestDao"/>
+    </bean>
+
+    <bean id="returnLabelEmailContext" class="de.hybris.platform.yacceleratorordermanagement.email.ReturnLabelEmailContext" parent="abstractEmailContext" scope="prototype" >
+        <property name="orderConverter" ref="orderConverter"/>
+    </bean>
+</beans>

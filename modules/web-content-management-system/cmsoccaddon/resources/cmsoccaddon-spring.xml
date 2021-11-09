@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/util
+           http://www.springframework.org/schema/util/spring-util.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+           
+    <context:annotation-config/> 
+    
+	<bean id="cmsoccaddonCoreDataImportedEventListener" parent="abstractCoreDataImportedEventListener">
+		<property name="supportedChannels">
+			<list value-type="de.hybris.platform.commerceservices.enums.SiteChannel">
+				<value>B2C</value>
+			</list>
+		</property>
+		<property name="addonExtensionMetadata">
+			<bean class="de.hybris.platform.addonsupport.data.AddonExtensionMetadata">
+				<property name="suffixChannel" value="false"/>
+				<property name="baseExtensionName" value="cmsoccaddon"/>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="cmsoccaddonSampleDataEventListener" parent="abstractGenericAddOnSampleDataEventListener"  >
+		<property name="extensionName" value="cmsoccaddon" />
+	</bean>
+
+	<!-- Tag properties -->
+
+	<alias name="defaultAbstractSmarteditItemPropertiesSupplier" alias="smarteditAbstractItemPropertiesSupplier" />
+	<bean id="defaultAbstractSmarteditItemPropertiesSupplier" class="de.hybris.platform.cmsoccaddon.properties.suppliers.AbstractSmarteditItemPropertiesSupplier" abstract="true">
+		<property name="uniqueItemIdentifierService" ref="cmsUniqueItemIdentifierService" />
+		<property name="sessionService" ref="sessionService" />
+	</bean>
+
+	<alias name="defaultSmartEditComponentPropertiesSupplier" alias="smartEditComponentPropertiesSupplier" />
+	<bean id="defaultSmartEditComponentPropertiesSupplier" class="de.hybris.platform.cmsoccaddon.properties.suppliers.SmartEditComponentPropertiesSupplier" parent="smarteditAbstractItemPropertiesSupplier">
+		<property name="itemModelPredicate" ref="cmsComponentPredicate" />
+	</bean>
+
+	<alias name="defaultSmartEditContentSlotPropertiesSupplier" alias="smartEditContentSlotPropertiesSupplier" />
+	<bean id="defaultSmartEditContentSlotPropertiesSupplier" class="de.hybris.platform.cmsoccaddon.properties.suppliers.SmartEditContentSlotPropertiesSupplier" parent="smarteditAbstractItemPropertiesSupplier">
+		<property name="itemModelPredicate" ref="cmsContentSlotPredicate" />
+	</bean>
+
+	<alias name="defaultSmartEditPagePropertiesSupplier" alias="smartEditPagePropertiesSupplier" />
+	<bean id="defaultSmartEditPagePropertiesSupplier" class="de.hybris.platform.cmsoccaddon.properties.suppliers.SmartEditPagePropertiesSupplier" parent="smarteditAbstractItemPropertiesSupplier">
+		<property name="itemModelPredicate" ref="abstractPageTypePredicate" />
+	</bean>
+
+	<bean depends-on="cmsItemPropertiesSupplierList" parent="listMergeDirective">
+		<property name="add" ref="smartEditComponentPropertiesSupplier"/>
+	</bean>
+	<bean depends-on="cmsItemPropertiesSupplierList" parent="listMergeDirective">
+		<property name="add" ref="smartEditContentSlotPropertiesSupplier"/>
+	</bean>
+	<bean depends-on="cmsItemPropertiesSupplierList" parent="listMergeDirective">
+		<property name="add" ref="smartEditPagePropertiesSupplier"/>
+	</bean>
+
+	<alias name="defaultPageRedirectStrategy" alias="cmsPageRedirectStrategy" />
+	<bean id="defaultPageRedirectStrategy" class="de.hybris.platform.cmsoccaddon.redirect.strategies.impl.DefaultPageRedirectStrategy">
+		<property name="pageRedirectSuppliers" ref="cmsPageRedirectSuppliers"/>
+	</bean>
+
+	<alias name="pageRedirectSuppliers" alias="cmsPageRedirectSuppliers" />
+	<util:list id="pageRedirectSuppliers">
+		<ref bean="cmsContentPageRedirectSupplier" />
+		<ref bean="cmsCategoryPageRedirectSupplier" />
+		<ref bean="cmsProductPageRedirectSupplier" />
+		<ref bean="cmsEmailPageRedirectSupplier" />
+	</util:list>
+
+	<alias name="contentPageRedirectSupplier" alias="cmsContentPageRedirectSupplier" />
+	<bean id="contentPageRedirectSupplier" class="de.hybris.platform.cmsoccaddon.redirect.suppliers.impl.ContentPageRedirectSupplier">
+		<property name="pagePredicate" ref="cmsContentPageTypePredicate" />
+		<property name="typeCodePredicate" ref="cmsContentPageTypeCodePredicate" />
+	</bean>
+
+	<alias name="categoryPageRedirectSupplier" alias="cmsCategoryPageRedirectSupplier" />
+	<bean id="categoryPageRedirectSupplier" class="de.hybris.platform.cmsoccaddon.redirect.suppliers.impl.CategoryPageRedirectSupplier">
+		<property name="pagePredicate" ref="cmsCategoryPageTypePredicate" />
+		<property name="typeCodePredicate" ref="cmsCategoryPageTypeCodePredicate" />
+	</bean>
+
+	<alias name="productPageRedirectSupplier" alias="cmsProductPageRedirectSupplier" />
+	<bean id="productPageRedirectSupplier" class="de.hybris.platform.cmsoccaddon.redirect.suppliers.impl.ProductPageRedirectSupplier">
+		<property name="pagePredicate" ref="cmsProductPageTypePredicate" />
+		<property name="typeCodePredicate" ref="cmsProductPageTypeCodePredicate" />
+	</bean>
+
+	<!-- deprecated since 2005, no longer needed -->
+	<alias name="emailPageRedirectSupplier" alias="cmsEmailPageRedirectSupplier" />
+	<bean id="emailPageRedirectSupplier" class="de.hybris.platform.cmsoccaddon.redirect.suppliers.impl.EmailPageRedirectSupplier">
+		<property name="pagePredicate" ref="cmsEmailPageTypePredicate" />
+		<property name="typeCodePredicate" ref="cmsEmailPageTypeCodePredicate" />
+	</bean>
+</beans>

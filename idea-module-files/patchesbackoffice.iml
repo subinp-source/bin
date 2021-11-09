@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="OOTB" importedAsReadOnly="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice/bin/patchesbackofficeserver.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../modules/backoffice-applications/patchesbackoffice/bin/patchesbackofficeserver.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/backoffice-framework/backoffice/web/webroot/WEB-INF/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../modules/backoffice-framework/backoffice/web/webroot/WEB-INF/lib" recursive="true" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/backoffice-framework/backoffice/web/webroot/WEB-INF/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="backoffice" exported="" />
+    <orderEntry type="module" module-name="patches" exported="" />
+    <orderEntry type="module" module-name="platform" exported="" />
+    <orderEntry type="module" module-name="platformbackoffice" exported="" />
+  </component>
+</module>

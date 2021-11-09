@@ -1,0 +1,7 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+INSERT_UPDATE Currency ; isocode[unique=true] ; active ; base  ; conversion ; digits ; symbol 
+                       ; EUR                  ; true   ; true  ; 1          ; 2      ; €     
+                       ; USD                  ; true   ; false ; 1,38       ; 2      ; $     

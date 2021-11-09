@@ -1,0 +1,139 @@
+@import '../../workflow.scss';
+
+.se-workflow-action-item,
+.se-workflow-action-item--started,
+.se-workflow-action-item--completed {
+    border-radius: 4px 0 0 4px;
+
+    .panel,
+    .panel-open {
+        border-radius: 4px;
+    }
+
+    .collapsible-container__header__button:before,
+    .collapsible-container__header__button--expanded:before {
+        font-size: 12px;
+    }
+}
+
+.se-workflow-action-item {
+    border-left: se-workflow-status-border($workflow-background-color);
+    &--started {
+        border-left: se-workflow-status-border($workflow-status-color-2);
+    }
+    &--completed {
+        border-left: se-workflow-status-border($workflow-status-color-1);
+    }
+}
+
+.se-workflow-action-item__content {
+    min-height: 30px;
+
+    &-status {
+        float: left;
+        overflow: hidden;
+    }
+
+    .se-version-item__y-more-text {
+        display: inline;
+    }
+
+    .se-infinite-scrolling__container {
+        max-height: none;
+        overflow-y: auto;
+        position: relative;
+        margin-top: -20px;
+        width: 100%;
+
+        &::before {
+            content: '';
+            height: 100%;
+            border-left: 1px solid $workflow-border-color;
+            position: absolute;
+            left: 20px;
+            top: 40px;
+            height: calc(100% - 120px);
+        }
+    }
+}
+
+.se-workflow-action-item__comments-list {
+    margin-left: 5%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.se-workflow-action-item-decisions-list {
+    min-width: 160px;
+    right: -38px;
+    background: fd-color('background', 2);
+
+    &__item:hover {
+        text-decoration: none;
+    }
+}
+
+.se-workflow-action-comment {
+    margin: 20px 15px 10px 45px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: $workflow-border-color;
+    border-radius: 3px;
+    position: relative;
+
+    &::before {
+        @include triangle(13px 8px, $workflow-border-color, left);
+        content: '';
+        position: absolute;
+        top: 14px;
+        left: -9px;
+    }
+
+    &::after {
+        @include triangle(13px 8px, $workflow-background-color, left);
+        content: '';
+        position: absolute;
+        top: 14px;
+        left: -7px;
+    }
+
+    &__header {
+        position: relative;
+        font-weight: bold;
+        font-size: 13px;
+        margin-bottom: 3px !important;
+
+        &:before {
+            position: absolute;
+            top: -8px;
+            left: -56px;
+            font-size: 18px;
+            background: $workflow-background-color;
+            padding: 8px;
+        }
+
+        .sap-icon--flip-h::before {
+            transform: scaleX(-1);
+        }
+    }
+}
+
+.se-page-workflow-menu-tabs li > a:hover {
+    text-decoration: none;
+    color: fd-color('text', 2);
+}
+
+.se-workflow-action-item__decision-btn {
+    .fd-button-split {
+        .menu-button {
+            border-left: 0;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+            &:focus {
+                box-shadow: none;
+            }
+        }
+    }
+}

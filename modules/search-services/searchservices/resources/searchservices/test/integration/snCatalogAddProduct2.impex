@@ -1,0 +1,9 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+$lang=en
+$catalogVersion=catalogVersion(catalog(id[default='hwcatalog']),version[default='Staged'])[unique=true,default='hwcatalog:Staged']
+
+INSERT_UPDATE Product ; code[unique=true] ; name[lang=$lang] ; catalogVersion(catalog(id),version)[unique=true]
+                      ; product5          ; Yellow shirt  ; hwcatalog:Staged
+                      ; product5          ; Yellow shirt  ; hwcatalog:Online

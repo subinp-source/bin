@@ -1,0 +1,7 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+UPDATE CatalogVersion;catalog(id)[unique=true];version[unique=true];writePrincipals(uid)[mode=append];readPrincipals(uid)[mode=append];
+;powertoolsProductCatalog;Online;cmsmanagergroup;cmsmanagergroup;
+;powertoolsProductCatalog;Staged;cmsmanagergroup;cmsmanagergroup;

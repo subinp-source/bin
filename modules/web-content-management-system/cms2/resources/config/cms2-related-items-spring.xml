@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+   	http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!-- Visitors -->
+    <alias name="componentRelatedItemVisitor" alias="cmsComponentRelatedItemVisitor" />
+    <bean id="componentRelatedItemVisitor" class="de.hybris.platform.cms2.relateditems.visitors.page.ComponentRelatedItemVisitor">
+        <property name="visitorPredicate" ref="cmsComponentPredicate" />
+        <property name="cmsPageService" ref="cmsPageService" />
+    </bean>
+
+    <alias name="pageRelatedItemVisitor" alias="cmsPageRelatedItemVisitor" />
+    <bean id="pageRelatedItemVisitor" class="de.hybris.platform.cms2.relateditems.visitors.page.PageRelatedItemVisitor">
+        <property name="visitorPredicate" ref="abstractPageTypePredicate" />
+    </bean>
+
+    <alias name="slotRelatedItemVisitor" alias="cmsSlotRelatedItemVisitor" />
+    <bean id="slotRelatedItemVisitor" class="de.hybris.platform.cms2.relateditems.visitors.page.SlotRelatedItemVisitor" >
+        <property name="visitorPredicate" ref="cmsContentSlotPredicate" />
+        <property name="cmsContentSlotDao" ref="cmsContentSlotDao" />
+    </bean>
+
+    <alias name="restrictionRelatedItemVisitor" alias="cmsRestrictionRelatedItemVisitor" />
+    <bean id="restrictionRelatedItemVisitor" class="de.hybris.platform.cms2.relateditems.visitors.page.RestrictionRelatedItemVisitor">
+        <property name="visitorPredicate" ref="cmsRestrictionPredicate" />
+        <property name="componentRelatedItemVisitor" ref="cmsComponentRelatedItemVisitor" />
+    </bean>
+
+    <alias name="contentSlotForPageRelatedItemVisitor" alias="cmsContentSlotForPageRelatedItemVisitor" />
+    <bean id="contentSlotForPageRelatedItemVisitor" class="de.hybris.platform.cms2.relateditems.visitors.page.ContentSlotForPageRelatedItemVisitor">
+        <property name="visitorPredicate" ref="cmsContentSlotForPagePredicate" />
+    </bean>
+
+    <!-- List of visitors -->
+    <alias name="relatedItemVisitorsList" alias="cmsRelatedItemVisitorsList" />
+    <util:list id="relatedItemVisitorsList">
+        <ref bean="componentRelatedItemVisitor"/>
+        <ref bean="pageRelatedItemVisitor"/>
+        <ref bean="slotRelatedItemVisitor" />
+        <ref bean="restrictionRelatedItemVisitor" />
+        <ref bean="contentSlotForPageRelatedItemVisitor" />
+    </util:list>
+
+    <!-- Registry -->
+    <alias name="defaultRelatedItemsService" alias="cmsRelatedItemsService" />
+    <bean id="defaultRelatedItemsService" class="de.hybris.platform.cms2.relateditems.impl.DefaultRelatedItemsService">
+        <property name="typeService" ref="typeService" />
+        <property name="visitors" ref="cmsRelatedItemVisitorsList" />
+    </bean>
+</beans>

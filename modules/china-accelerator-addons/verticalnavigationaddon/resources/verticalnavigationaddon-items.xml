@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+	xsi:noNamespaceSchemaLocation="items.xsd">
+
+	<itemtypes>
+		<typegroup name="CMS Components">			
+			<itemtype code="VerticalNavigationListComponent" generate="true"
+				extends="NavigationComponent" autocreate="true"
+				jaloclass="de.hybris.platform.verticalnavigationaddon.jalo.cms.components.VerticalNavigationListComponent">
+				<description>CMS component for vertical category navigation in the accelerator.</description>
+			</itemtype>
+			
+			<itemtype code="CMSLinkComponent" generate="false" autocreate="false">
+				<attributes>
+					<attribute qualifier="thumbnail" type="Media">
+						<persistence type="property" />
+						<modifiers />
+						<description>image of the Component</description>
+					</attribute>
+					<attribute qualifier="thumbnailOnly" type="boolean">
+						<defaultvalue>java.lang.Boolean.FALSE</defaultvalue>
+						<persistence type="property" />
+						<modifiers />
+						<description>Display only the thumbnail without text content for the Link component</description>
+					</attribute>
+				</attributes>				
+			</itemtype>
+		</typegroup>
+	</itemtypes>
+
+</items>

@@ -1,0 +1,15 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+chineselogisticoccaddon.key=value
+
+# Specifies the location of the spring context file added automatically to the global platform application context.
+chineselogisticoccaddon.application-context=chineselogisticoccaddon-spring.xml
+
+# Specifies the location of the spring context file which will be added to commerce web services web context
+ycommercewebservices.additionalWebSpringConfigs.chineselogisticoccaddon=classpath:/chineselogisticoccaddon/web/spring/chineselogisticoccaddon-web-spring.xml
+
+#Use for generating static swagger documentation
+chineselogisticoccaddon.documentation.static.generate=true
+ext.chineselogisticoccaddon.extension.webmodule.webroot=/rest/v2

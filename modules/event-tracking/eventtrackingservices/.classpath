@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+
+				
+				
+	<classpathentry exported="true" kind="src" path="/eventtrackingmodel" />
+	<classpathentry exported="true" kind="src" path="/eventtrackingpublisher" />
+	<classpathentry exported="true" kind="lib" path="lib/btf-1.2.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/jackson-coreutils-1.8.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/json-schema-core-1.2.5.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/json-schema-validator-2.2.6.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/libphonenumber-8.12.10.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/msg-simple-1.1.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/uri-template-0.9.jar" />
+	<classpathentry exported="true" kind="lib" path="resources" />
+	<classpathentry exported="true" output="eclipsebin/classes" kind="src" path="src" />
+	<classpathentry exported="true" output="eclipsebin/classes" kind="src" path="testsrc" />
+	<classpathentry exported="true" output="eclipsebin/classes" kind="src" path="gensrc" />
+	<classpathentry exported="false" kind="src" path="/platform" />
+				
+</classpath>
+				

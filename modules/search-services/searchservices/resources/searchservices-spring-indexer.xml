@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/util
+		   http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<!-- DAOs -->
+
+	<alias name="defaultSnIndexerCronJobDao" alias="snIndexerCronJobDao" />
+	<bean id="defaultSnIndexerCronJobDao"
+		class="de.hybris.platform.searchservices.indexer.dao.impl.DefaultSnIndexerCronJobDao">
+		<property name="flexibleSearchService" ref="flexibleSearchService" />
+	</bean>
+	
+	<!-- Services -->
+
+	<alias name="defaultSnIndexerContextFactory" alias="snIndexerContextFactory" />
+	<bean id="defaultSnIndexerContextFactory"
+		class="de.hybris.platform.searchservices.indexer.service.impl.DefaultSnIndexerContextFactory"
+		parent="snIndexContextFactory" />
+
+	<alias name="defaultSnIndexerService" alias="snIndexerService" />
+	<bean id="defaultSnIndexerService"
+		class="de.hybris.platform.searchservices.indexer.service.impl.DefaultSnIndexerService">
+		<property name="snIndexerStrategyFactory" ref="snIndexerStrategyFactory" />
+	</bean>
+
+	<alias name="defaultSnIndexerStrategyFactory" alias="snIndexerStrategyFactory" />
+	<bean id="defaultSnIndexerStrategyFactory"
+		class="de.hybris.platform.searchservices.indexer.service.impl.DefaultSnIndexerStrategyFactory">
+		<property name="defaultIndexerStrategy" ref="snIndexerStrategy" />
+	</bean>
+
+	<alias name="defaultSnIndexerStrategy" alias="snIndexerStrategy" />
+	<bean id="defaultSnIndexerStrategy"
+		class="de.hybris.platform.searchservices.indexer.service.impl.DefaultSnIndexerStrategy">
+		<property name="snSessionService" ref="snSessionService" />
+		<property name="snIndexerContextFactory" ref="snIndexerContextFactory" />
+		<property name="snIndexService" ref="snIndexService" />
+		<property name="snListenerFactory" ref="snListenerFactory" />
+		<property name="snSearchProviderFactory" ref="snSearchProviderFactory" />
+		<property name="indexerBatchRunnableId" value="snIndexerBatchRunnable" />
+	</bean>
+
+	<alias name="defaultSnIndexerBatchStrategyFactory" alias="snIndexerBatchStrategyFactory" />
+	<bean id="defaultSnIndexerBatchStrategyFactory"
+		class="de.hybris.platform.searchservices.indexer.service.impl.DefaultSnIndexerBatchStrategyFactory">
+		<property name="defaultIndexerBatchStrategy" ref="snIndexerBatchStrategy" />
+	</bean>
+
+	<alias name="defaultSnIndexerBatchStrategy" alias="snIndexerBatchStrategy" />
+	<bean id="defaultSnIndexerBatchStrategy"
+		class="de.hybris.platform.searchservices.indexer.service.impl.DefaultSnIndexerBatchStrategy">
+		<property name="flexibleSearchService" ref="flexibleSearchService" />
+		<property name="snSessionService" ref="snSessionService" />
+		<property name="snIndexerContextFactory" ref="snIndexerContextFactory" />
+		<property name="snIndexService" ref="snIndexService" />
+		<property name="snListenerFactory" ref="snListenerFactory" />
+		<property name="snSearchProviderFactory" ref="snSearchProviderFactory" />
+		<property name="snQualifierTypeFactory" ref="snQualifierTypeFactory" />
+	</bean>
+
+	<alias name="defaultSnIndexerBatchRunnable" alias="snIndexerBatchRunnable" />
+	<bean id="defaultSnIndexerBatchRunnable"
+		class="de.hybris.platform.searchservices.indexer.service.impl.DefaultSnIndexerBatchRunnable" scope="prototype">
+		<property name="tenantService" ref="tenantService" />
+		<property name="sessionService" ref="sessionService" />
+		<property name="userService" ref="userService" />
+		<property name="commonI18NService" ref="commonI18NService" />
+		<property name="snIndexTypeService" ref="snIndexTypeService" />
+		<property name="snIndexerBatchStrategyFactory" ref="snIndexerBatchStrategyFactory" />
+	</bean>
+
+	<alias name="defaultSnIndexerItemSourceFactory" alias="snIndexerItemSourceFactory" />
+	<bean id="defaultSnIndexerItemSourceFactory"
+		class="de.hybris.platform.searchservices.indexer.service.impl.DefaultSnIndexerItemSourceFactory" />
+
+	<bean id="snIndexerItemSourceMapping"
+		class="de.hybris.platform.searchservices.indexer.service.impl.DefaultSnIndexerItemSourceMapping" abstract="true" />
+
+	<alias name="defaultFlexibleSearchSnIndexerItemSourceLoadStrategy"
+		alias="flexibleSearchSnIndexerItemSourceLoadStrategy" />
+	<bean id="defaultFlexibleSearchSnIndexerItemSourceLoadStrategy"
+		class="de.hybris.platform.searchservices.indexer.service.impl.FlexibleSearchSnIndexerItemSourceLoadStrategy" />
+
+	<bean id="flexibleSearchSnIndexerItemSourceMapping" parent="snIndexerItemSourceMapping">
+		<property name="itemType"
+			value="de.hybris.platform.searchservices.model.FlexibleSearchSnIndexerItemSourceModel" />
+		<property name="loadStrategy" ref="flexibleSearchSnIndexerItemSourceLoadStrategy" />
+	</bean>
+	
+	<!-- Value providers & processors -->
+
+	<bean id="abstractSnIndexerValueProvider" abstract="true">
+		<property name="valueProcessors">
+			<util:list>
+				<ref bean="valueCoercionSnIndexerValueProcessor" />
+				<ref bean="splitParamSnIndexerValueProcessor" />
+				<ref bean="optionalParamSnIndexerValueProcessor" />
+			</util:list>
+		</property>
+	</bean>
+
+	<alias name="defaultModelAttributeSnIndexerValueProvider" alias="modelAttributeSnIndexerValueProvider" />
+	<bean id="defaultModelAttributeSnIndexerValueProvider"
+		class="de.hybris.platform.searchservices.indexer.service.impl.ModelAttributeSnIndexerValueProvider"
+		parent="abstractSnIndexerValueProvider">
+		<property name="snExpressionEvaluator" ref="snExpressionEvaluator" />
+	</bean>
+
+	<alias name="defaultCatalogVersionSnIndexerValueProvider" alias="catalogVersionSnIndexerValueProvider" />
+	<bean id="defaultCatalogVersionSnIndexerValueProvider"
+		class="de.hybris.platform.searchservices.indexer.service.impl.CatalogVersionSnIndexerValueProvider"
+		parent="abstractSnIndexerValueProvider">
+		<property name="catalogTypeService" ref="catalogTypeService" />
+	</bean>
+	
+	<!-- Value processors -->
+
+	<alias name="defaultValueCoercionSnIndexerValueProcessor" alias="valueCoercionSnIndexerValueProcessor" />
+	<bean id="defaultValueCoercionSnIndexerValueProcessor"
+		class="de.hybris.platform.searchservices.indexer.service.impl.ValueCoercionSnIndexerValueProcessor" />
+
+	<alias name="defaultSplitParamSnIndexerValueProcessor" alias="splitParamSnIndexerValueProcessor" />
+	<bean id="defaultSplitParamSnIndexerValueProcessor"
+		class="de.hybris.platform.searchservices.indexer.service.impl.SplitParamSnIndexerValueProcessor" />
+
+	<alias name="defaultOptionalParamSnIndexerValueProcessor" alias="optionalParamSnIndexerValueProcessor" />
+	<bean id="defaultOptionalParamSnIndexerValueProcessor"
+		class="de.hybris.platform.searchservices.indexer.service.impl.OptionalParamSnIndexerValueProcessor" />
+	
+	<!-- Jobs -->
+
+	<bean id="abstractSnIndexerJob"
+		class="de.hybris.platform.searchservices.indexer.service.impl.AbstractSnIndexerJob" parent="abstractJobPerformable"
+		abstract="true">
+		<property name="snIndexerService" ref="snIndexerService" />
+		<property name="snIndexerCronJobDao" ref="snIndexerCronJobDao" />
+		<property name="snIndexerItemSourceFactory" ref="snIndexerItemSourceFactory" />
+	</bean>
+
+	<bean id="fullSnIndexerJob" class="de.hybris.platform.searchservices.indexer.service.impl.FullSnIndexerJob"
+		parent="abstractSnIndexerJob" />
+
+	<bean id="incrementalSnIndexerJob"
+		  class="de.hybris.platform.searchservices.indexer.service.impl.IncrementalSnIndexerJob"
+		  parent="abstractSnIndexerJob" />
+
+</beans>

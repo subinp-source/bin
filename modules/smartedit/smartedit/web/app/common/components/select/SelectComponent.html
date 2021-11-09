@@ -1,0 +1,171 @@
+<!-- 
+    This component is using "fd-popover" component with the styles of "fd-select".
+    Render <fd-select> so that the styles for "fd-select-custom" class will be loaded into <style>.
+    Those styles are embedded in Fundamental SelectComponent with ViewEncapsulation set to None, so
+    here I reuse them.
+-->
+<fd-select [style.display]="'none'"></fd-select>
+
+<div
+    [attr.id]="id + '-selector'"
+    class="select-container"
+    [ngClass]="{
+        'has-warning': hasWarning(),
+        'has-error': hasError()
+    }"
+>
+    <ng-container *ngIf="multiSelect; then multi; else singleSelect"></ng-container>
+
+    <!-- Single Select -->
+    <ng-template #singleSelect>
+        <fd-popover
+            [triggers]="['click']"
+            [(isOpen)]="isOpen"
+            [placement]="'bottom'"
+            (isOpenChange)="onSingleSelectIsOpenChange($event)"
+        >
+            <!-- Select Button which toggles the dropdown -->
+            <fd-popover-control>
+                <div class="selected-container fd-select-custom">
+                    <button
+                        fd-button
+                        class="fd-select-button-custom toggle-button"
+                        [disabled]="isReadOnly"
+                    >
+                        <!-- Placeholder -->
+                        <span *ngIf="!selected; else selectedItem" class="selected-placeholder">
+                            {{ placeholder | translate }}
+                        </span>
+
+                        <ng-template #selectedItem>
+                            <div class="selected-item">
+                                <!-- Maginifier Icon -->
+                                <span *ngIf="controls" class="glyphicon glyphicon-search"></span>
+                                <!-- Selected Option -->
+                                <se-item-printer
+                                    *ngIf="selected"
+                                    [attr.id]="id + '-selected'"
+                                    [item]="selected"
+                                    [component]="itemComponent"
+                                    [selectComponentCtx]="this"
+                                ></se-item-printer>
+                                <!-- Remove Icon -->
+                                <span
+                                    *ngIf="controls || showRemoveButton"
+                                    class="sap-icon--sys-cancel selected-item__remove-button"
+                                    (click)="removeSelectedOption($event, selected)"
+                                ></span>
+                            </div>
+                        </ng-template>
+                    </button>
+                </div>
+            </fd-popover-control>
+            <fd-popover-body>
+                <fd-menu>
+                    <ng-container *ngIf="searchEnabled && isOpen">
+                        <ng-container *ngTemplateOutlet="searchInputTemplate"></ng-container>
+                    </ng-container>
+                    <ng-container *ngTemplateOutlet="resultsHeader"></ng-container>
+                    <!-- 
+                    <fd-popover> initializes each component inside <fd-menu/> (even if "isOpen" is set to false)
+                    and then reuses the same instance of initialized component each time dropdown is opened.
+                    Since <se-infinite-scrolling/> fetches some data on initialize, setting the "isOpen", will add or remove the component to the DOM ensuring proper data loading.
+                -->
+                    <ng-container *ngIf="isOpen">
+                        <!-- Select List -->
+                        <ng-container *ngTemplateOutlet="selectListTemplate"></ng-container>
+                    </ng-container>
+                </fd-menu>
+            </fd-popover-body>
+        </fd-popover>
+    </ng-template>
+
+    <!-- Multi Select -->
+    <ng-template #multi>
+        <fd-popover
+            class="se-multi-select"
+            [triggers]="[]"
+            [closeOnOutsideClick]="false"
+            [isOpen]="isOpen"
+            [placement]="'bottom'"
+        >
+            <fd-popover-control>
+                <div class="selected-container">
+                    <!-- Selected Options -->
+                    <ng-container *ngIf="selected && selected.length > 0">
+                        <ol class="selected-list" cdkDropList (cdkDropListDropped)="onDrop($event)">
+                            <li
+                                *ngFor="let item of selected; trackBy: itemTrackBy"
+                                cdkDrag
+                                class="selected-list__item selected-item"
+                            >
+                                <se-item-printer
+                                    [item]="item"
+                                    [component]="itemComponent"
+                                    [selectComponentCtx]="this"
+                                >
+                                </se-item-printer>
+                                <span
+                                    class="sap-icon--sys-cancel selected-item__remove-button"
+                                    (click)="removeSelectedOption($event, item)"
+                                ></span>
+                            </li>
+                        </ol>
+                    </ng-container>
+                    <ng-container *ngTemplateOutlet="searchInputTemplate"></ng-container>
+                </div>
+            </fd-popover-control>
+            <fd-popover-body>
+                <fd-menu>
+                    <ng-container *ngTemplateOutlet="resultsHeader"></ng-container>
+                    <ng-container *ngIf="isOpen">
+                        <ng-container *ngTemplateOutlet="selectListTemplate"></ng-container>
+                    </ng-container>
+                </fd-menu>
+            </fd-popover-body>
+        </fd-popover>
+    </ng-template>
+
+    <!-- Common templates  -->
+    <ng-template #resultsHeader>
+        <se-select-results-header
+            [search]="search"
+            [resultsHeaderComponent]="resultsHeaderComponent"
+            [resultsHeaderLabel]="resultsHeaderLabel"
+            [displayResultsHeaderLabel]="showResultsHeaderLabel()"
+            [actionableSearchItem]="actionableSearchItem"
+            (actionButtonClick)="closeAndReset()"
+        >
+        </se-select-results-header>
+    </ng-template>
+
+    <ng-template #searchInputTemplate>
+        <se-select-search-input
+            [isDisabled]="isReadOnly"
+            [isReadOnly]="multiSelect && !searchEnabled"
+            [placeholder]="showPlaceholder() ? (placeholder | translate) : ''"
+            [search]="search"
+            (searchKeyup)="onSearchInputKeyup($event.event, $event.value)"
+            (searchChange)="onSearchInputChange($event)"
+        >
+        </se-select-search-input>
+    </ng-template>
+
+    <ng-template #selectListTemplate>
+        <se-select-list
+            [id]="id"
+            [isPagedDropdown]="isPagedDropdown()"
+            [fetchPage]="fetchStrategy.fetchPage"
+            [search]="search"
+            [items]="items"
+            [selected]="selected"
+            [excludeSelected]="multiSelect"
+            [disableChoiceFn]="disableChoiceFn"
+            [itemComponent]="itemComponent"
+            [selectComponentCtx]="this"
+            (optionClick)="onOptionClick($event)"
+            (infiniteScrollItemsChange)="onInfiniteScrollItemsChange()"
+        >
+        </se-select-list>
+    </ng-template>
+</div>

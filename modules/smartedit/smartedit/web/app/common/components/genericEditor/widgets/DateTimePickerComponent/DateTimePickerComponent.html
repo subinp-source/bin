@@ -1,0 +1,39 @@
+<div
+    #dateTimePicker
+    *ngIf="isEditable"
+    class="input-group se-date-field"
+    id="date-time-picker-{{widget.field.qualifier}}"
+>
+    <input
+        type="text"
+        class="fd-form-control se-date-field--input"
+        [ngClass]="{
+            'is-invalid': widget.field.hasErrors,
+            'is-warning': widget.field.hasWarnings,
+            'se-input--is-disabled': !isEditable
+        }"
+        [placeholder]="placeholderText | translate"
+        [attr.name]="widget.field.qualifier"
+    />
+    <span
+        class="input-group-addon se-date-field--button"
+        [ngClass]="{ 'se-date-field--button-has-error': widget.field.hasErrors, 'se-date-field--button-has-warning': widget.field.hasWarnings }"
+    >
+        <span class="sap-icon--calendar se-date-field--button-icon"></span>
+    </span>
+</div>
+<div
+    class="input-group date se-date-field"
+    *ngIf="!isEditable"
+    id="date-time-picker-{{widget.field.qualifier}}"
+>
+    <input
+        type="text"
+        class="fd-form-control se-date-field--input"
+        [ngClass]="{'se-input--is-disabled': !isEditable}"
+        [(ngModel)]="widget.model[this.widget.qualifier]"
+        dateFormatter
+        formatType="short"
+        [disabled]="true"
+    />
+</div>

@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><testclasses><merchandisingcmswebservices><testclass>com.hybris.merchandising.service.impl.DefaultStrategyServiceTest</testclass><testclass>com.hybris.merchandising.service.impl.StrategyTest</testclass><testclass>com.hybris.merchandising.dto.DropdownElementTest</testclass></merchandisingcmswebservices></testclasses>

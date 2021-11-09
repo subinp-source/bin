@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<widget-definition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widget-definition.xsd" extends="com.hybris.cockpitng.widgets.compare">
+	<name>Classification-Aware Compare View</name>
+	<controller class="de.hybris.platform.platformbackoffice.widgets.compare.BackofficeCompareViewController" />
+	<settings>
+		<setting key="includeClassificationAttributes" type="java.lang.Boolean" default-value="true" />
+	</settings>
+</widget-definition>

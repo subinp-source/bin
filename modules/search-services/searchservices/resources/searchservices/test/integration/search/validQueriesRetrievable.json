@@ -1,0 +1,240 @@
+[
+	{
+		"testId": 1,
+		"description": "null query without retrievable field, no field returned",
+		"data": {
+			"query": null,
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_score_",
+						"ascending": false
+					},
+					{
+						"expression": "_id_",
+						"ascending": true
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 4,
+			"totalSize": 4,
+			"searchHits": [
+				{
+					"id": "doc1",
+					"fields": {
+						
+					}
+				},
+				{
+					"id": "doc2",
+					"fields": {
+						
+					}
+				},
+				{
+					"id": "doc3",
+					"fields": {
+						
+					}
+				},
+				{
+					"id": "doc4",
+					"fields": {
+						
+					}
+				}
+			]
+		}
+	},
+	{
+		"testId": 2,
+		"description": "null query with single retrievable field, field returned",
+		"fields": [
+			{
+				"id": "color",
+				"retrievable": true
+			}
+		],
+		"data": {
+			"query": null,
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_score_",
+						"ascending": false
+					},
+					{
+						"expression": "_id_",
+						"ascending": true
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 4,
+			"totalSize": 4,
+			"searchHits": [
+				{
+					"id": "doc1",
+					"fields": {
+						"color": "RED"
+					}
+				},
+				{
+					"id": "doc2",
+					"fields": {
+						"color": "GREEN"
+					}
+				},
+				{
+					"id": "doc3",
+					"fields": {
+						"color": "GREEN"
+					}
+				},
+				{
+					"id": "doc4",
+					"fields": {
+						
+					}
+				}
+			]
+		}
+	},
+	{
+		"testId": 3,
+		"description": "null query with multiple retrievable fields, fields returned",
+		"fields": [
+			{
+				"id": "color",
+				"retrievable": true
+			},
+			{
+				"id": "size",
+				"retrievable": true
+			}
+		],
+		"data": {
+			"query": null,
+			"sort": {
+				"expressions": [
+					{
+						"expression": "_score_",
+						"ascending": false
+					},
+					{
+						"expression": "_id_",
+						"ascending": true
+					}
+				]
+			}
+		},
+		"expectedData": {
+			"size": 4,
+			"totalSize": 4,
+			"searchHits": [
+				{
+					"id": "doc1",
+					"fields": {
+						"color": "RED",
+						"size": "M"
+					}
+				},
+				{
+					"id": "doc2",
+					"fields": {
+						"color": "GREEN",
+						"size": "M"
+					}
+				},
+				{
+					"id": "doc3",
+					"fields": {
+						"color": "GREEN",
+						"size": "L"
+					}
+				},
+				{
+					"id": "doc4",
+					"fields": {
+						
+					}
+				}
+			]
+		}
+	},
+	{
+		"testId": 4,
+		"description": "query without retrievable field, no field returned",
+		"data": {
+			"query": "RED"
+		},
+		"expectedData": {
+			"size": 1,
+			"totalSize": 1,
+			"searchHits": [
+				{
+					"id": "doc1",
+					"fields": {}
+				}
+			]
+		}
+	},
+	{
+		"testId": 5,
+		"description": "query without retrievable field, no field returned",
+		"fields": [
+			{
+				"id": "color",
+				"retrievable": true
+			}
+		],
+		"data": {
+			"query": "RED"
+		},
+		"expectedData": {
+			"size": 1,
+			"totalSize": 1,
+			"searchHits": [
+				{
+					"id": "doc1",
+					"fields": {
+						"color": "RED"
+					}
+				}
+			]
+		}
+	},
+	{
+		"testId": 6,
+		"description": "query without retrievable field, no field returned",
+		"fields": [
+			{
+				"id": "color",
+				"retrievable": true
+			},
+			{
+				"id": "size",
+				"retrievable": true
+			}
+		],
+		"data": {
+			"query": "RED"
+		},
+		"expectedData": {
+			"size": 1,
+			"totalSize": 1,
+			"searchHits": [
+				{
+					"id": "doc1",
+					"fields": {
+						"color": "RED",
+						"size": "M"
+					}
+				}
+			]
+		}
+	}
+]

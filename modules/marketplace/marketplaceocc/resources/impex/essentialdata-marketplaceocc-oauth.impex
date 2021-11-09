@@ -1,0 +1,7 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+INSERT_UPDATE OAuthClientDetails;clientId[unique=true];clientSecret;resourceIds;scope;authorizedGrantTypes;accessTokenValiditySeconds;authorities
+;marketplace;marketplace;;basic;password;1000;ROLE_VENDORADMINISTRATORGROUP,ROLE_VENDORPRODUCTMANAGERGROUP,ROLE_VENDORWAREHOUSESTAFFGROUP,ROLE_VENDORCONTENTMANAGERGROUP
+

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/util
+		   http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<import resource="searchservices-spring-core.xml" />
+	<import resource="searchservices-spring-admin.xml" />
+	<import resource="searchservices-spring-index.xml" />
+	<import resource="searchservices-spring-indexer.xml" />
+	<import resource="searchservices-spring-search.xml" />
+	<import resource="searchservices-spring-suggest.xml" />
+	<import resource="searchservices-spring-spi.xml" />
+	<import resource="searchservices-spring-test.xml" />
+
+</beans>

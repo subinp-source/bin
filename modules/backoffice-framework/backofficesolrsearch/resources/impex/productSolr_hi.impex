@@ -1,0 +1,19 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+# -----------------------------------------------------------------------
+
+$lang=hi
+$solrIndexedType=solrIndexedType(identifier)[unique=true,default='BackofficeProduct'];
+
+#Currencies
+UPDATE Currency;isocode[unique=true];name[lang=$lang];
+;EUR;यूरो;
+;USD;US डॉलर;
+
+UPDATE SolrIndexedProperty;name[unique=true];$solrIndexedType;backofficeDisplayName[lang=$lang];
+;catalogVersion;;कैटलॉग संस्करण;
+;facet_catalogVersion;;कैटलॉग संस्करण;
+;catalog;;कैटलॉग;
+;facet_catalog;;कैटलॉग;
+;itemtype;;आइटम प्रकार;
+;categoryLabel;;श्रेणी;

@@ -1,0 +1,27 @@
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/cockpitng/cng/scss/cockpitng-globals.scss';
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/backoffice/scss/backoffice-variables.scss';
+
+/*================================
+    Logo Action
+================================*/
+// Styling of the Logo Action
+@import "support/_logoaction-variables";
+
+.z-button.yw-logo-button {
+  width: $actionLogo__btn--width;
+  margin-left: $actionLogo__btn--margin-left;
+  margin-right: $actionLogo__btn--margin-right;
+  padding: $actionLogo__btn--padding;
+  background: $actionLogo__btn--bg;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: $actionLogo__btn-hover--bg;
+    box-shadow: none;
+  }
+
+  img {
+    height: $actionLogo__btn-img--height;
+  }
+}

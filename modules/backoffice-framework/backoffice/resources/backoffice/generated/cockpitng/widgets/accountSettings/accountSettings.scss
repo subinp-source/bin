@@ -1,0 +1,33 @@
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/cockpitng/cng/scss/cockpitng-globals.scss';
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/backoffice/scss/backoffice-variables.scss';
+
+
+
+.yw-account-settings {
+
+  &-change-password {
+
+    &-line {
+      display: block;
+	  padding-bottom: $container-spacing-default__third;
+
+	  &-notice {
+        font-size: $font-size__small;
+        color: $grey__default--200;
+      }
+	  &-label {
+		display: block;
+		padding-bottom: $container-spacing-default__third;
+		color: $grey__default--200;
+        font-weight: $font-weight-bold;
+	  }
+	  &-input {
+		display: block;
+	  }
+	  &-validation {
+        font-size: $font-size__small;
+      }
+    }
+
+  }
+}

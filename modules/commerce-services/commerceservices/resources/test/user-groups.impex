@@ -1,0 +1,11 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+INSERT_UPDATE UserGroup;uid[unique=true];locname[lang=en];
+;DefaultPagedFlexibleSearchServiceIntegrationTest-test0;group G
+;DefaultPagedFlexibleSearchServiceIntegrationTest-test1;group F
+;DefaultPagedFlexibleSearchServiceIntegrationTest-test2;group E
+;DefaultPagedFlexibleSearchServiceIntegrationTest-test3;group D
+;DefaultPagedFlexibleSearchServiceIntegrationTest-test4;group C
+;DefaultPagedFlexibleSearchServiceIntegrationTest-test5;group B
+;DefaultPagedFlexibleSearchServiceIntegrationTest-test6;group A

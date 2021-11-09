@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+--><extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
+    	
+    <extension abstractclassprefix="Generated" classprefix="Cmswebservices" managername="CmswebservicesManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="cmswebservices" usemaven="false">
+        		
+        <!-- for more information on maven managed libraries please consult https://wiki.hybris.com/x/Nq8sDQ -->
+        		
+        <requires-extension name="webservicescommons"/>
+        		
+        <requires-extension name="cmsfacades"/>
+        		
+        <requires-extension name="oauth2"/>
+        		
+        <coremodule generated="true" manager="de.hybris.platform.cmswebservices.jalo.CmswebservicesManager" packageroot="de.hybris.platform.cmswebservices"/>
+        		
+        <webmodule jspcompile="false" webroot="/cmswebservices"/>
+        	
+    </extension>
+    
+</extensioninfo>

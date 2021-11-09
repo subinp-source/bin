@@ -1,0 +1,62 @@
+<div class="btn-block pe-toolbar-action--include">
+    <div class="pe-toolbar-menu-content se-toolbar-menu-content--pe-customized-customizations-panel"
+        role="menu">
+        <div class="se-toolbar-menu-content--pe-customized__headers">
+            <div class="se-toolbar-menu-content--pe-customized__headers--wrapper">
+                <h2 class="se-toolbar-menu-content--pe-customized__headers--h2">
+                    <span data-translate="personalization.toolbar.pagecustomizations.header.title"></span>
+                    ({{$ctrl.pagination.totalCount}})
+                </h2>
+                <y-help class="se-toolbar-menu-content__y-help"
+                    data-template="'<span data-translate=personalization.toolbar.pagecustomizations.header.description></span>'"></y-help>
+            </div>
+            <div class="se-input-group se-component-search"
+                data-ng-class="$ctrl.customizationsList.length == 0 ? '':''">
+                <div class="perso-input-group">
+                    <input type="text"
+                        class="se-input-group--input se-component-search--input ng-pristine ng-untouched ng-valid"
+                        placeholder="{{ 'personalization.toolbar.pagecustomizations.search.placeholder' | translate}}"
+                        data-ng-model="$ctrl.nameFilter"
+                        data-ng-keyup="$ctrl.nameInputKeypress($event)" />
+
+                    <span class="sap-icon--search se-component-search--search-icon se-input-group__addon"></span>
+
+                    <div class="se-input-group__addon se-input-group__clear-btn"
+                        data-ng-click="$ctrl.nameFilter=''; $ctrl.nameInputKeypress($event)"
+                        data-ng-show="$ctrl.nameFilter">
+                        <span class="sap-icon--decline">
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div role="menuitem">
+            <div id="personalizationsmartedit-right-toolbar-item-template">
+                <div class="pe-customize-panel__filter-label-layout">
+                    <div class="pe-customize-panel__filter-layout">
+                        <page-filter-dropdown data-initial-value="$ctrl.pageFilter"
+                            data-on-select-callback="$ctrl.pageFilterChange(value)"
+                            class="perso-filter__wrapper perso-filter__wrapper--page"></page-filter-dropdown>
+                        <has-multicatalog class="perso-filter__wrapper perso-filter__wrapper--catalog">
+                            <catalog-filter-dropdown data-initial-value="$ctrl.catalogFilter"
+                                data-on-select-callback="$ctrl.catalogFilterChange(value)" />
+                        </has-multicatalog>
+                        <status-filter-dropdown data-initial-value="$ctrl.statusFilter"
+                            data-on-select-callback="$ctrl.statusFilterChange(value)"
+                            class="perso-filter__wrapper perso-filter__wrapper--status"></status-filter-dropdown>
+                    </div>
+
+                </div>
+
+                <personalization-infinite-scrolling [fetch-page]="$ctrl.getPage"
+                    [context]="$ctrl"
+                    [drop-down-container-class]="'pe-customize-panel__wrapper'">
+                    <customizations-list data-customizations-list="$ctrl.customizationsList"
+                        data-request-processing="$ctrl.moreCustomizationsRequestProcessing" />
+                </personalization-infinite-scrolling>
+
+            </div>
+        </div>
+    </div>
+</div>

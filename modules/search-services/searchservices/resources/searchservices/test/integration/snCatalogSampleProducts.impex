@@ -1,0 +1,10 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+$catalogVersion=catalogVersion(catalog(id[default='hwcatalog']),version[default='Staged'])[unique=true]
+                                                                           
+INSERT_UPDATE Product ; code[unique=true] ; $catalogVersion
+                      ; doc1              ;                
+                      ; doc2              ;                
+                      ; doc3              ;                
+                      ; doc4              ;                

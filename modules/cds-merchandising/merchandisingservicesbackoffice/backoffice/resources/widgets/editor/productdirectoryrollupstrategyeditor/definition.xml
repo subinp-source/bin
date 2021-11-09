@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+
+    Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<editor-definition id="de.hybris.platform.merchandisingservicesbackoffice.editor.DefaultProductDirectoryRollupStrategyEditor"
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/editor-definition.xsd">
+
+	<name>Product Directory Rollup Strategy Editor</name>
+	<description>Custom editor to allow a dropdown to be dynamically populated with a list of Merchandising Rollup Strategy beans</description>
+	<author>hybris</author>
+	<version>1.0</version>
+
+	<type>java.lang.String</type>
+	<editorClassName>de.hybris.platform.merchandisingservicesbackoffice.editor.DefaultProductDirectoryRollupStrategyEditor</editorClassName>
+</editor-definition>

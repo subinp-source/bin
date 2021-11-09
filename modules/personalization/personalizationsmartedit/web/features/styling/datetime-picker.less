@@ -1,0 +1,96 @@
+@pe-datetime__msg--font-size: 13px;
+@pe-input--border: 1px solid @border-color-light-grey;
+
+.has-error .pe-date-field .pe-date-field__input {
+    border-color: @fd-color--status-3;  //red
+}
+
+.has-warning .pe-date-field .pe-date-field__input {
+    border-color: @fd-color--status-2;  //orange
+}
+
+.pe-datetime__msg {
+    font-size: @pe-datetime__msg--font-size;
+}
+
+.pe-datetime__error-msg{
+    color: @fd-color--status-3 !important;  //red
+    font-style: italic;
+    &::before {
+        content: "";
+        font-family: "SAP-icons", @perso--font-family;
+        font-style: normal;
+        font-weight: normal;
+        padding-right: 5px;
+    }
+}
+
+.pe-datetime__warning-msg {
+    color: @fd-color--status-2 !important;  //orange
+    font-style: italic;
+    &::before {
+        content: "";
+        font-family: "SAP-icons", @perso--font-family;
+        font-style: normal;
+        font-weight: normal;
+        padding-right: 5px;
+    }
+
+}
+
+.pe-date-field{
+     width: 100%;
+}
+
+.pe-date-field__input {
+    &.pe-input--is-disabled {
+        border-right: @pe-input--border;
+        border-radius: 0;
+    }
+    & + .bootstrap-datetimepicker-widget {
+        background-color: @white;
+        color: @black; //IE
+        color: initial;
+    }
+    box-shadow: none;
+    border-right: none;
+    // ie/edge fix for the reset x when the user starts typing in the search input of an ui-select
+    &::-ms-clear {
+        display: none;
+        width: 0;
+        height: 0;
+    }
+ }
+
+.pe-datetime-range__picker__icon {
+    font-size: 1.1em;
+}
+
+.pe-datetime-range__picker {
+    box-shadow: none;
+    background-color: @white;
+    border-bottom: @pe-input--border;
+    border-top: @pe-input--border;
+    margin-top: 0;
+    border-radius: 0;
+}
+
+
+
+.perso__datetimepicker--error-text {
+    color: @text-color-red;
+    font-style: italic;
+    &::before {
+        content: "";
+        font-family: "SAP-icons", @perso--font-family;
+        font-style: normal;
+        font-weight: normal;
+        padding-right: 5px;
+    }
+}
+
+.perso__datetimepicker__label{
+    display: inline-block;
+    vertical-align: top;
+}
+

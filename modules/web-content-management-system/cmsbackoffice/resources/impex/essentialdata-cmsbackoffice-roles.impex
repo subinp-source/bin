@@ -1,0 +1,13 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+# Grant access rights to log in to Backoffice
+INSERT_UPDATE Employee;UID[unique=true];backOfficeLoginDisabled[default=false];
+;cmsmanager;;
+;cmseditor;;
+;cmspublisher;;
+;cmsreviewer;;
+;cmstranslator;;
+;cmstranslator-Annette;;
+;cmstranslator-Seb;;

@@ -1,0 +1,13 @@
+<se-tooltip
+    [append-to]="'body'"
+    [placement]="'bottom'"
+    [is-chevron-visible]="true"
+    [triggers]="['click']"
+    class="se-media-preview__tooltip"
+>
+    <span se-tooltip-trigger> <div class="sap-icon--search se-media-preview__icon"></div> </span>
+
+    <div se-tooltip-body>
+        <img class="se-media-preview__image" data-ng-src="{{ctrl.imageUrl}}" />
+    </div>
+</se-tooltip>

@@ -1,0 +1,23 @@
+.se-toolbar-menu-ddlb--button__icon {
+    position: relative;
+}
+.se-toolbar-menu-ddlb--button__caution {
+    position: absolute;
+    color: fd-color('status', 2);
+    right: -9px;
+    bottom: 1px;
+}
+.dropdown-menu-left {
+    @include se-dropdown-menu('left');
+}
+.se-sync-menu-content__header {
+    padding: 15px 20px 0;
+}
+.se-sync-menu-content__header-title {
+    text-transform: capitalize;
+    @include fd-type('1');
+    color: fd-color('text', 1);
+}
+.se-sync-menu-content__dropdown {
+    max-width: 400px;
+}

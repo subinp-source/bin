@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="OOTB" importedAsReadOnly="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../modules/commerce-services/yocctests">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../modules/commerce-services/yocctests/lib" recursive="true" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="commercewebservicestests" exported="" />
+    <orderEntry type="module" module-name="platform" exported="" />
+  </component>
+</module>

@@ -1,0 +1,51 @@
+<div data-has-operation-permission="'se.sync.catalog'">
+    <div
+        class="toolbar-action"
+        data-uib-dropdown
+        data-auto-close="outsideClick"
+        data-is-open="$ctrl.toolbarItem.isOpen"
+        data-item-key="{{ $ctrl.toolbarItem.key }}"
+    >
+        <button
+            type="button"
+            class="btn toolbar-action--button"
+            data-uib-dropdown-toggle
+            aria-pressed="false"
+        >
+            <span class="icon-synchronize se-toolbar-menu-ddlb--button__icon">
+                <span
+                    data-ng-if="$ctrl.isNotInSync"
+                    class="hyicon hyicon-caution se-toolbar-menu-ddlb--button__caution"
+                ></span>
+            </span>
+            <span
+                class="toolbar-action-button__txt"
+                data-ng-class="{'se-toolbar-menu-ddlb--button__txt': $ctrl.isNotInSync }"
+            >
+                {{ $ctrl.toolbarItem.name | translate }}
+            </span>
+        </button>
+        <div
+            data-uib-dropdown-menu
+            class="dropdown-menu-left toolbar-action--include se-sync-menu-content__dropdown"
+        >
+            <div ng-if="$ctrl.toolbarItem.isOpen && $ctrl.isReady">
+                <div class="se-sync-menu-content__header">
+                    <span
+                        data-translate="se.cms.synchronization.page.title"
+                        class="se-sync-menu-content__header-title"
+                    ></span>
+                    <se-help
+                        class="se-page-sync__y-help"
+                        data-ng-if="!$ctrl.syncPageConditions.canSyncHomepage && !$ctrl.syncPageConditions.pageHasNoDepOrNoSyncStatus"
+                        [template]="$ctrl.helpTemplate"
+                    ></se-help>
+                </div>
+                <page-synchronization-panel
+                    data-cms-page="$ctrl.cmsPage"
+                    data-uri-context="$ctrl.uriContext"
+                ></page-synchronization-panel>
+            </div>
+        </div>
+    </div>
+</div>

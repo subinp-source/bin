@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="base.xsd">
+	<label>
+		<property qualifier="SubscriptionPricePlan.name" />
+		<property qualifier="SubscriptionPricePlan.currency.name" />
+	</label>
+	<initial-properties source-object-template="Product">
+		<property-mapping source="src" target="SubscriptionPricePlan.product"/>
+		<property-mapping source="src.catalogVersion" target="SubscriptionPricePlan.catalogVersion"/>
+		<property-mapping source="src.unit" target="SubscriptionPricePlan.unit"/>
+	</initial-properties>
+</base>

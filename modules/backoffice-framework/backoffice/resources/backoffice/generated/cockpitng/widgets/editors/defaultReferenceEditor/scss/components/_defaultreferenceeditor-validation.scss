@@ -1,0 +1,81 @@
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/cockpitng/cng/scss/cockpitng-globals.scss';
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/backoffice/scss/backoffice-variables.scss';
+
+//    DefaultReferenceEditor Validation
+// ================================
+
+@import "../support/_defaultreferenceeditor-variables.scss";
+@import "../../../../defaultEditorArea/scss/support/_defaultEditorArea-mixins.scss";
+
+@mixin _addReferenceEditorElementsInValidationStates ($type, $color, $bg-color, $change-reference-editor-selected-listbox:true, $button-hover-bg-color:false) {
+    .ye-validation-#{$type} {
+        &.yw-loceditor-row .ye-default-reference-editor,
+        > .ye-default-reference-editor {
+            div.ye-default-reference-editor-selected {
+                &-item-container {
+                    @include _colored-background-border ($color, $bg-color, true);
+
+                    .z-label {
+                        color: $color;
+                    }
+                }
+                &-listbox .z-listitem:hover {
+                    div.ye-default-reference-editor-selected-item-container.ye-remove-enabled {
+                        background-color: $bg-color;
+                    }
+                }
+            }
+            .ye-default-reference-editor-selected-listbox .z-listitem div.ye-default-reference-editor-selected-item-container{
+                border-bottom: $default-reference-editor__box--border-width solid $color;
+            }
+            .ye-default-reference-editor-bandbox {
+                border-color: $color;
+                .z-bandbox-input {
+                    border-right-width: 0;
+                    background: $bg-color !important;
+                    color: $color !important;
+                    border-color: inherit;
+                }
+                .z-bandbox-button {
+                    border-color: inherit;
+                }
+                &.ye-create-only {
+                    + .z-bandbox-button.ye-create-only {
+                        border-color: $color;
+                    }
+                }
+            }
+            
+            @if $change-reference-editor-selected-listbox {
+                .ye-default-reference-editor-selected-listbox .ye-default-reference-editor-selected-item-container {
+                    background: $bg-color;
+                    color: $color;
+                }
+            }
+        }
+    }
+    @if $button-hover-bg-color {
+        .yw-loceditor-fixed-open, 
+        .yw-loceditor-fixed-closed,
+        .yw-loceditor-dynamic-content  {
+            .ye-validation-#{$type} .z-bandbox-button:hover {
+                background: $button-hover-bg-color;
+            }
+        }
+    }
+}
+
+@include _addReferenceEditorElementsInValidationStates(error, $validation__error--color, $validation__error--bg-color); //, true, $validation__error--color); //add (<-) for coloring bg in validation-state
+@include _addReferenceEditorElementsInValidationStates(warn, $validation__warn--color, $validation__warn--bg-color);
+@include _addReferenceEditorElementsInValidationStates(info, $validation__info--color, $validation__info--bg-color, false);
+
+.ye-validation-error,
+.ye-validation-warn,
+.ye-validation-info {
+    &.yw-loceditor-row .ye-default-reference-editor,
+    > .ye-default-reference-editor {
+        .ye-default-reference-editor-bandbox.ye-create-only + .z-bandbox-button.ye-create-only:focus {
+            border-color: $editor-area__box-focus--color;
+        }
+    }
+}

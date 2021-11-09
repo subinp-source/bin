@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<editor-definition id="com.hybris.cockpitng.editor.catalogsynchronization.syncJobSelection"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/editor-definition.xsd">
+
+    <name>SyncJob selection Editor</name>
+    <description>Sync Editor</description>
+    <author>hybris</author>
+    <version>0.1</version>
+    <type>de.hybris.platform.catalog.model.SyncItemJobModel</type>
+    <editorClassName>de.hybris.platform.platformbackoffice.widgets.catalogsynchronization.SyncJobSelectionEditor
+    </editorClassName>
+</editor-definition>

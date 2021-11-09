@@ -1,0 +1,160 @@
+@import "../support/_workflowdesigner-variables.scss";
+
+.yw-workflow-designer {
+	&-modal {
+		height: 100%;
+
+		.yw-visjs {
+			&-chart-container {
+				min-height: $workflowdesigner__chart-container--height;
+				height: 100%;
+			}
+			&-empty-chart {
+				background: $workflowdesigner__chart-empty--bg-image;
+			}
+		}
+		.vis-network {
+			.vis-manipulation {
+				border-top: $workflowdesigner__toolbar--border-top;
+				border-bottom: $workflowdesigner__toolbar--border-bottom;
+				padding: $workflowdesigner__toolbar--padding;
+				height: auto;
+				background: $workflowdesigner__toolbar--bg-color;
+				box-sizing: border-box;
+
+				.vis-button {
+					border-radius: 0;
+					padding: $workflowdesigner__toolbar-button--padding;
+					float: none;
+					height: auto;
+					color: $workflowdesigner__toolbar-button--color;
+					position: relative;
+					border: $workflowdesigner__toolbar-button--border;
+					margin-left: 0;
+
+					&:not(.vis-none) {
+						&:hover,
+						&:focus,
+						&:active {
+							box-shadow: none;
+							border-color: $workflowdesigner__toolbar-button-hover--border-color;
+							color: $workflowdesigner__toolbar-button-hover--color;
+						}
+
+						&:before {
+							content: '';
+							background-position: 50%;
+							background-repeat: no-repeat;
+							width: $workflowdesigner__toolbar-button-icon--size;
+							height: $workflowdesigner__toolbar-button-icon--size;
+							position: absolute;
+							top: $workflowdesigner__toolbar-button-icon--top;
+							left: $workflowdesigner__toolbar-button-icon--left;
+							transform: translateY(-50%);
+						}
+					}
+					&.vis-none {
+						.vis-label {
+							margin: 0;
+						}
+					}
+
+					&.vis-connect {
+						&:before {
+							background-image: $workflowdesigner__toolbar-button-icon-connect--bg-image;
+								&:hover {
+	  							background-image: $workflowdesigner__toolbar-button-icon-connect-hover--bg-image;
+							}
+						}
+					}
+					&.vis-add {
+						float: left;
+						&:before {
+							background-image: $workflowdesigner__toolbar-button-icon-add--bg-image;
+							&:hover {
+	  							background-image: $workflowdesigner__toolbar-button-icon-add-hover--bg-image;
+							}
+						}
+					}
+					&.vis-edit {
+						&:before {
+							background-image: $workflowdesigner__toolbar-button-icon-edit--bg-image;
+							&:hover {
+							  background-image: $workflowdesigner__toolbar-button-icon-edit-hover--bg-image;
+							}
+						}
+					}
+					&.vis-delete {
+						&:before {
+							background-image: $workflowdesigner__toolbar-button-icon-delete--bg-image;
+							&:hover {
+	  							background-image: $workflowdesigner__toolbar-button-icon-delete-hover--bg-image;
+							}
+						}
+					}
+					&.vis-back {
+						&:before {
+							background-image: $workflowdesigner__toolbar-button-icon-back--bg-image;
+							&:hover {
+	  							background-image: $workflowdesigner__toolbar-button-icon-back-hover--bg-image;
+							}
+						}
+					}
+					.vis-label {
+						font-size: $workflowdesigner__toolbar-button-label--font-size;
+						line-height: $workflowdesigner__toolbar-button-label--line-height;
+					}
+				}
+				.vis-separator-line {
+					float: none;
+					height: $workflowdesigner__toolbar-separator--height;
+					margin: $workflowdesigner__toolbar-separator--margin;
+					vertical-align: middle
+
+				}
+			}
+		}
+		.yw-button-container {
+			border-top: $workflowdesigner__button-container--border-top;
+			padding: $workflowdesigner__button-container--padding;
+		}
+
+		.yw-notification {
+			top: $workflowdesigner__notification-bar--top;
+			&-message {
+				box-shadow: none;
+			}
+		}
+	}
+	&-add-node-popup {
+		&.z-menupopup {
+			background: $workflowdesigner__add-popup--bg-color;
+			box-shadow: $workflowdesigner__add-popup--box-shadow;
+			border: 0;
+			min-width: $workflowdesigner__add-popup--min-width;
+			
+			.z-menuitem {	
+				border-top: $workflowdesigner__add-popup-item--border-top;
+				background-color: transparent;
+				color: $workflowdesigner__add-popup-item--color;
+
+				&:first-child {
+					border-top: none;
+				}
+
+				.z-menuitem-content {
+					color: $workflowdesigner__add-popup-item-content--color;
+
+					&:hover {
+						background-color: $workflowdesigner__add-popup-item-content-hover--bg-color;
+						color: $workflowdesigner__add-popup-item-text-hover--color;
+					}
+				}
+
+				&-image {
+					display: none;
+				}
+			}
+		}
+	}
+}

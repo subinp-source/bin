@@ -1,0 +1,73 @@
+.se-perspective-selector {
+    @include se-flex-row();
+    height: 40px;
+    border-right: se-border();
+}
+
+.se-perspective-selector__trigger {
+    display: flex;
+    align-items: center;
+}
+// Selector Button
+.se-perspective-selector__btn {
+    @include se-flex-row();
+    @include se-text-btn();
+    @include fd-type('0');
+    @include fd-weight('bold');
+    height: 39px;
+    position: relative;
+    text-transform: capitalize;
+    color: fd-color(text, 1);
+    margin-left: fd-space('s');
+
+    &:disabled {
+        color: fd-color(text, 4);
+        cursor: not-allowed;
+    }
+}
+.se-perspective-selector__btn-arrow {
+    margin: 0 fd-space('small') 0 fd-space('tiny');
+    color: fd-color(action, 1);
+
+    .se-perspective-selector__btn:disabled & {
+        color: fd-color(text, 4);
+    }
+}
+.se-perspective-selector__hotkey-tooltip--icon {
+    @include fd-type('1');
+    cursor: pointer;
+    color: fd-color(action, 1);
+}
+
+// Dropdown Content
+
+.se-perspective__list {
+    @include se-flex-column(flex-start);
+    padding: fd-space('base') 0;
+    min-width: 120px;
+}
+.se-perspective__list--tooltip {
+    left: 17px;
+}
+.se-perspective__list-item {
+    width: 100%;
+    cursor: pointer;
+
+    &:hover .se-perspective__list-item-text,
+    &:hover a {
+        color: fd-color(action, 1);
+    }
+    a,
+    .se-perspective__list-item-text {
+        text-decoration: none;
+    }
+}
+.se-perspective__list-item-text {
+    @include fd-weight('normal');
+    color: fd-color(text, 2);
+    padding: fd-space('tiny') + 2 fd-space('small');
+    white-space: nowrap;
+    width: 100%;
+    text-align: left;
+    text-transform: capitalize;
+}

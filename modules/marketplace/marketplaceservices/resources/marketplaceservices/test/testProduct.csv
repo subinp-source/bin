@@ -1,0 +1,51 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+$defaultCurrency=EUR
+
+$catalog-id=testCatalog
+$catalog-version=Online
+
+$testCategory0-id=testCategory0;
+$testCategory1-id=testCategory1;
+
+$catalogversion=catalogversion(catalog(id),version)[unique=true,default=$catalog-id:$catalog-version]
+
+$supercategories=supercategories(code,catalogversion(catalog(id[default=$catalog-id]),version[default=$catalog-version]))
+$prices=europe1prices[translator=de.hybris.platform.europe1.jalo.impex.Europe1PricesTranslator]
+
+INSERT_UPDATE Language;isocode[unique=true];active;
+;de;true;
+;en;true;
+
+UPDATE Language;isocode[unique=true];name[lang=de];name[lang=en]
+;de;Deutsch;German
+;en;Englisch;English
+
+INSERT_UPDATE Unit;unitType[unique=true];code[unique=true];name[lang=de];name[lang=en];conversion;;;;;
+;pieces;pieces;pieces;pieces;1;;;;;
+
+INSERT_UPDATE Currency;isocode[unique=true];name[lang=de];name[lang=en];active;base;conversion;digits;symbol;;
+;EUR;Euro;Euro;true;true;1;2;E;;
+;USD;US-Dollar;US Dollar;true;false;1,38;2;$;;
+
+INSERT_UPDATE Catalog;id[unique=true];name[lang=de];name[lang=en];defaultCatalog;;;;;;
+;$catalog-id;$catalog-id;$catalog-id;true;;;;;;
+
+INSERT_UPDATE CatalogVersion; catalog(id)[unique=true]; version[unique=true]; active;defaultCurrency(isocode);;;;;;
+;$catalog-id;$catalog-version;true;EUR;de,en;;;;;
+
+INSERT_UPDATE Category;code[unique=true];$catalogversion;name[lang=de];name[lang=en];$supercategories;;;;;
+;$testCategory0-id;;$testCategory0-id;$testCategory0-id;;;;;;
+;$testCategory1-id;;$testCategory1-id;$testCategory1-id;$testCategory0-id;;;;;
+
+INSERT_UPDATE Product;code[unique=true];$catalogversion;name[lang=de];name[lang=en];unit(code);$prices;approvalStatus(code);saleable;owner(Principal.uid);startLineNumber;$supercategories;vendors(code)
+;HW1210-3422;;testDE;testEN;pieces;57,95 EUR;approved;true;ahertz;0;$testCategory0-id;electro
+;HW1210-3423;;test2DE;test2EN;pieces;67,95 EUR;approved;false;ahertz;0;$testCategory1-id;electro
+;HW1210-3424;;test3DE;test3EN;pieces;32,95 EUR;approved;true;ahertz;0;$testCategory1-id;electro
+;HW1210-3425;;test3DE;test4EN;pieces;95 EUR;approved;true;ahertz;0;$testCategory1-id;electro
+;HW1210-3425promo;;test3DE;test4EN;pieces;95 EUR;approved;true;ahertz;0;$testCategory1-id;electro
+
+INSERT_UPDATE Vendor;code[unique=true];name[lang=en];name[lang=de];catalog(id);
+;electro;Electro;Electro;$catalog-id;

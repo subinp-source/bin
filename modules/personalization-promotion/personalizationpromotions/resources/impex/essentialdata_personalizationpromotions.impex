@@ -1,0 +1,14 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+$lang=en
+
+INSERT_UPDATE UserGroup;UID[unique=true];groups(uid)[mode=append]
+;cxmanagergroup;marketingManagerGroup
+ 
+INSERT_UPDATE RuleConditionDefinition	;id[unique=true]	;name[lang=$lang]	;priority	;breadcrumb[lang=$lang]									;allowsChildren	;translatorId							;translatorParameters	;categories(id)
+										;cx_aware_promotion	;Personalized		;200		;There is a personalization for this promotion rule		;false			;ruleCxPromotionActionResultTranslator	;						;customer
+ 
+INSERT_UPDATE RuleConditionDefinitionRuleTypeMapping	;definition(id)[unique=true]	;ruleType(code)[default=PromotionSourceRule][unique=true]
+														;cx_aware_promotion				;PromotionSourceRule

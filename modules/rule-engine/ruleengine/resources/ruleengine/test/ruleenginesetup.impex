@@ -1,0 +1,18 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+
+INSERT_UPDATE MediaFolder;qualifier[unique=true];path[unique=true]
+;kie-modules;kie-modules
+
+INSERT_UPDATE DroolsKIEModule;name[unique=true];mvnGroupId;mvnArtifactId;mvnVersion;ruleType(code);active;version;
+;kieModuleName;hybris-rules;kieModuleServiceTest-junit-1;1.0.0;DEFAULT;true;0;
+;kieModuleName2;hybris-rules;kieModuleServiceTest-junit-2;1.0.0;DEFAULT;true;0;
+;kieModuleName3;hybris-rules;kieModuleServiceTest-junit-3;1.0.0;DEFAULT;true;0;

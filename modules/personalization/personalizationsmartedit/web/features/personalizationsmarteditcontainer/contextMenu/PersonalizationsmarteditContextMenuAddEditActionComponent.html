@@ -1,0 +1,74 @@
+<div class="perso-customize-component">
+    <div class="perso-customize-component__title-layout">
+        <div *ngIf="letterIndicatorForElement"
+            class="perso-customize-component__title-layout__letter-block">
+            <span [ngClass]="colorIndicatorForElement">
+                {{letterIndicatorForElement}}
+            </span>
+        </div>
+        <div class="perso-customize-component__title-layout__cust-name perso-wrap-ellipsis"
+            title="{{selectedCustomization.name}}">
+            {{selectedCustomization.name}}
+        </div>
+        <div class="perso-customize-component__title-layout__target-group-name perso-wrap-ellipsis"
+            title="{{selectedVariation.name}}">
+            {{'> '+ selectedVariation.name}}
+        </div>
+    </div>
+
+    <dl class="perso-customize-component__data-list">
+        <label class="fd-form__label"
+            [translate]="'personalization.modal.addeditaction.selected.mastercomponent.title'"></label>
+        <dd>{{componentType}}</dd>
+    </dl>
+    <label class="fd-form__label se-control-label required"
+        [translate]="'personalization.modal.addeditaction.selected.actions.title'"></label>
+    <fd-inline-help [inlineHelpIconStyle]="{'margin-left': '10px', 'padding-top': '1px'}"
+        [inlineHelpContentStyle]="{'box-shadow': '0 0 4px 0 #d9d9d9', 'border': '1px solid #d9d9d9', 'border-radius': '4px', 'color': '#32363a', 'font-size': '14px', 'max-width': '200px', 'white-space': 'normal'}"
+        [placement]="'top-start'">
+        <span [translate]="'personalization.modal.addeditaction.selected.actions.help.label'"></span>
+    </fd-inline-help>
+    <se-select class="perso-customize-component__select2-container"
+        [placeholder]="'personalization.modal.addeditaction.dropdown.placeholder'"
+        [(model)]="actionSelected"
+        [searchEnabled]="false"
+        [showRemoveButton]="false"
+        [fetchStrategy]="actionFetchStrategy">
+    </se-select>
+
+    <div class="perso-customize-component__select-group-label-layout">
+        <div *ngIf="actionSelected == 'use'">
+            <label class="fd-form__label se-control-label required"
+                [translate]="'personalization.modal.addeditaction.selected.component.title'"></label>
+        </div>
+        <has-multicatalog *ngIf="actionSelected == 'use'">
+            <div class="perso-customize-component__filter-layout">
+                <label class="fd-form__label perso-customize-component__filter-label"
+                    [translate]="'personalization.commons.filter.label'"></label>
+                <catalog-version-filter-dropdown class="pe-customize-component__catalog-version-filter-dropdown"
+                    (onSelectCallback)="catalogVersionFilterChange($event)"></catalog-version-filter-dropdown>
+            </div>
+        </has-multicatalog>
+    </div>
+
+    <se-select class="perso-customize-component__select2-container"
+        *ngIf="actionSelected == 'use'"
+        [placeholder]="'personalization.modal.addeditaction.dropdown.componentlist.placeholder'"
+        [(model)]="idComponentSelected"
+        [onSelect]="componentSelectedEvent"
+        [searchEnabled]="true"
+        [showRemoveButton]="false"
+        [fetchStrategy]="componentsFetchStrategy"
+        [itemComponent]="itemComponent">
+    </se-select>
+
+    <se-select class="perso-customize-component__select2-container"
+        *ngIf="actionSelected == 'create'"
+        [placeholder]="'personalization.modal.addeditaction.dropdown.componenttype.placeholder'"
+        [(model)]="newComponentSelected"
+        [onSelect]="newComponentTypeSelectedEvent"
+        [searchEnabled]="false"
+        [fetchStrategy]="componentTypesFetchStrategy">
+    </se-select>
+
+</div>

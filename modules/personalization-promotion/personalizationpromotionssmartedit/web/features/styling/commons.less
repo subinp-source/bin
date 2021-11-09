@@ -1,0 +1,22 @@
+ /* *
+/* This file includes the common styles used in Personalization
+/* The styles follow the BEM principles - http://getbem.com/introduction/
+*/
+ /* new: the active status is now called enabled
+ /* the inactive status is now called disabled 
+ */
+ 
+.status-active {
+    color: @fd-color--status-1;
+}
+ 
+.status-ignore,
+.status-inactive {
+    color: @fd-color--text-disabled;
+}
+
+//consistent with perso-tree__status
+.perso-list__status--value {
+    font-size: @perso-list__status-value--font-size;
+}
+ 

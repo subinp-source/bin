@@ -1,0 +1,16 @@
+@import '~fiori-fundamentals/scss/_settings.scss';
+// Use Split Button in WorkflowActionItemComponent after it has been migrated to Angular.
+// https://sap.github.io/fundamental-ngx/#/core/splitButton
+@import '~@fundamental-ngx/core/node_modules/fundamental-styles/dist/button-split.css';
+
+// component level vars
+$workflow-background-color: fd-color('background', 2); //white
+$workflow-border-color: fd-color('neutral', 2); //netural grey
+$workflow-text-color: fd-color('text', 1); //netural grey
+$workflow-action-color: fd-color('action', 1); //(blue) Ready to Sync
+$workflow-status-color-1: fd-color('status', 1); //(green) Synched / Completed
+$workflow-status-color-2: fd-color('status', 2); //(orange) Started / In Progress
+
+@function se-workflow-status-border($color) {
+    @return 6px solid $color;
+}

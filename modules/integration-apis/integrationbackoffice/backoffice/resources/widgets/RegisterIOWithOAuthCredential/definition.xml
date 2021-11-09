@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+
+<widget-definition id="de.hybris.platform.integrationbackoffice.widgets.RegisterIOWithOAuthCredential"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widget-definition.xsd">
+
+    <name>Register Integration Object With OAuth Credential</name>
+    <defaultTitle>Register Integration Object With OAuth Credential</defaultTitle>
+    <author>hybris</author>
+    <version>0.1</version>
+    <sockets>
+        <input id="iccOAuth"  type="de.hybris.platform.inboundservices.model.InboundChannelConfigurationModel"/>
+        <output id="iccOAuthOutput" type="java.lang.Object"/>
+    </sockets>
+
+    <view src="RegisterIOWithOAuthCredential.zul"/>
+    <controller class="de.hybris.platform.integrationbackoffice.widgets.authentication.registration.RegisterIntegrationObjectWithOAuthCredentialController"/>
+
+</widget-definition>

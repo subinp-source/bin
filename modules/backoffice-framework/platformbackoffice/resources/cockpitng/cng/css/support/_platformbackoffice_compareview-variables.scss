@@ -1,0 +1,13 @@
+@import "cockpitng-globals.scss";
+
+$_compareview-container__toolbar--padding: 9px 0;
+$_compareview-container__toolbar-height: $globals__toolbar--height;
+$_compareview-container__toolbar--bg-color: $white; // $editor-area-centered__actioncontainer--bg-color;
+$_compareview-container__toolbar--border-bottom: $grey__light--700 solid $boxes--border__thin;
+$_compareview-history__back--margin: 0 5px 0 0;
+$_compareview-history__back--padding-left: 35px;
+$_compareview-history__title--line-height: 18px;
+$_compareview-history__title--height: 32px;
+$_compareview-history__title--color: $black__blueish--100; //#053263;
+$_compareview-history__title--font-size: $font-size__medium;
+$_compareview-history__title--font-weight: $font-weight-normal; //$font-weight-bold;

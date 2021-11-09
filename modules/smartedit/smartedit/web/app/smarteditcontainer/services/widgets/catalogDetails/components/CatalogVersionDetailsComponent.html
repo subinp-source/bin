@@ -1,0 +1,31 @@
+<div class="se-catalog-version-container">
+    <div class="se-catalog-version-container__left">
+        <div class="se-catalog-version-container__name">{{catalogVersion.version}}</div>
+        <div class="se-catalog-version-container__left__templates">
+            <div
+                class="se-catalog-version-container__left__template"
+                *ngFor="let item of leftItems; let isLast = last"
+            >
+                <se-catalog-version-item-renderer
+                    [item]="item"
+                    [siteId]="siteId"
+                    [catalog]="catalog"
+                    [catalogVersion]="catalogVersion"
+                    [activeCatalogVersion]="activeCatalogVersion"
+                ></se-catalog-version-item-renderer>
+                <div class="se-catalog-version-container__divider" *ngIf="!isLast"></div>
+            </div>
+        </div>
+    </div>
+    <div class="se-catalog-version-container__right">
+        <div class="se-catalog-version-container__right__template" *ngFor="let item of rightItems">
+            <se-catalog-version-item-renderer
+                [item]="item"
+                [siteId]="siteId"
+                [catalog]="catalog"
+                [catalogVersion]="catalogVersion"
+                [activeCatalogVersion]="activeCatalogVersion"
+            ></se-catalog-version-item-renderer>
+        </div>
+    </div>
+</div>

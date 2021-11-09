@@ -1,0 +1,16 @@
+<div
+    #container
+    class="se-infinite-scrolling__container ySEInfiniteScrolling-container"
+    [ngClass]="dropDownContainerClass"
+    fdInfiniteScroll
+    (onScrollAction)="nextPage()"
+    [scrollPercent]="distance"
+    *ngIf="initiated"
+>
+    <div class="se-infinite-scrolling__holder ySEInfiniteScrolling" [ngClass]="dropDownClass">
+        <div #content><ng-content></ng-content></div>
+        <div class="spinner-container">
+            <se-spinner [isSpinning]="isLoading" [isFluid]="false"></se-spinner>
+        </div>
+    </div>
+</div>

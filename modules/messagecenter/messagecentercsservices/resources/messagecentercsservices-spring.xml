@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<alias name="defaultConversationDao" alias="conversationDao"/>
+	<bean id="defaultConversationDao" class="de.hybris.platform.messagecentercsservices.daos.impl.DefaultConversationDao"/>
+			
+	<alias name="defaultConversationService" alias="conversationService"/>
+	<bean id="defaultConversationService" class="de.hybris.platform.messagecentercsservices.impl.DefaultConversationService">
+		<property name="userService" ref="userService"/>
+		<property name="modelService" ref="modelService"/>
+		<property name="conversationDao" ref="conversationDao"/>
+		<property name="conversationUidGenerator" ref="conversationUidGenerator"/>
+	</bean>	
+	
+	<bean id="conversationUidGenerator" class="de.hybris.platform.servicelayer.keygenerator.impl.PersistentKeyGenerator">
+        <property name="key" value="conversation_uid" />
+		<property name="digits" value="11" />
+		<property name="start" value="000" />
+    </bean>	
+	
+</beans>

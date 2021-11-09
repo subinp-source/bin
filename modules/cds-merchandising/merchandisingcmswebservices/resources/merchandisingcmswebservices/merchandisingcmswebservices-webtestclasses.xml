@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><testclasses><merchandisingcmswebservices><testclass>com.hybris.merchandising.controller.StrategyControllerTest</testclass><testclass>com.hybris.merchandising.interceptors.SiteLanguageInterceptorTest</testclass></merchandisingcmswebservices></testclasses>

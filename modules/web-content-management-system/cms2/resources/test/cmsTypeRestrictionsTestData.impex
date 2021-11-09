@@ -1,0 +1,36 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+# Create catalog
+$contentCatalog=TypeRestrictionsTestContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=StagedVersion])[default=$contentCatalog:StagedVersion]
+
+INSERT_UPDATE ContentCatalog;id[unique=true]
+;$contentCatalog
+
+INSERT_UPDATE CatalogVersion;version[unique=true];catalog(id)[unique=true];active
+;OnlineVersion;$contentCatalog;true
+;StagedVersion;$contentCatalog;false
+
+INSERT_UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];name;frontendTemplateName;active[default=true]
+;;TemplateOne;Template with all restrictions;;
+;;TemplateTwo;Template with ComponentTypeGroup restrictions;;
+;;TemplateThree;Template with ValidComponentType restrictions;;
+
+INSERT_UPDATE ComponentTypeGroup;code[unique=true]
+;main
+;footer
+
+INSERT_UPDATE ComponentTypeGroups2ComponentType;source(code)[unique=true];target(code)[unique=true]
+;main;CMSParagraphComponent
+;main;CMSImageComponent
+;footer;CMSParagraphComponent
+;footer;CMSFlexComponent
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='TemplateOne'];validComponentTypes(code);compTypeGroup(code)
+;Template1Header;TemplateOne;CMSParagraphComponent,CMSLinkComponent;
+;Template1Main;TemplateOne;CMSParagraphComponent,CMSFlexComponent;main
+;Template1Footer;TemplateOne;;footer
+;Template2Main;TemplateTwo;CMSParagraphComponent,CMSFlexComponent;
+;Template3Main;TemplateThree;;main

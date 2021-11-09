@@ -1,0 +1,685 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<config xmlns="http://www.hybris.com/cockpit/config"
+		xmlns:y="http://www.hybris.com/cockpit/config/hybris"
+		xmlns:df="http://www.hybris.com/cockpitng/component/dynamicForms"
+		xmlns:n="http://www.hybris.com/cockpitng/config/explorertree"
+		xmlns:list-view="http://www.hybris.com/cockpitng/component/listView"
+		xmlns:ea="http://www.hybris.com/cockpitng/component/editorArea"
+		xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config"
+		xmlns:advanced-search="http://www.hybris.com/cockpitng/config/advancedsearch"
+		xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea"
+		xmlns:grid-view="http://www.hybris.com/cockpitng/component/gridView"
+		xmlns:tree="http://www.hybris.com/cockpitng/component/treeCollection"
+		xmlns:sv="http://www.hybris.com/cockpitng/component/summaryview">
+
+	 <!--Navigation sidebar -->
+	<context component="pcmbackoffice-navibar-actions" principal="admin,backofficeproductmanagergroup,productmanagergroup" merge-by="module" parent="pcmbackoffice" module="configurablebundlebackoffice">
+		<y:actions>
+			<y:group qualifier="common">
+				<y:action action-id="com.hybris.cockpitng.action.toggle" merge-mode="append">
+					<y:parameter>
+						<y:name>outputValue</y:name>
+						<y:value>"pcmbackoffice-bundle-view"</y:value>
+					</y:parameter>
+					<y:parameter>
+						<y:name>defaultActive</y:name>
+						<y:value>false</y:value>
+					</y:parameter>
+					<y:parameter>
+						<y:name>toggleInput</y:name>
+						<y:value>selected</y:value>
+					</y:parameter>
+					<y:parameter>
+						<y:name>viewMode</y:name>
+						<y:value>iconAndText</y:value>
+					</y:parameter>
+					<y:parameter>
+						<y:name>iconUri</y:name>
+						<y:value>cng/images/icon_bundle.png</y:value>
+					</y:parameter>
+					<y:parameter>
+						<y:name>actionName</y:name>
+						<y:value>label.pcmbackoffice.bundles</y:value>
+					</y:parameter>
+				</y:action>
+			</y:group>
+		</y:actions>
+	</context>
+
+	<context component="pcmbackoffice-bundle-catalogFilterTree" merge-by="module" parent="pcmbackoffice" module="configurablebundlebackoffice">
+		<n:explorer-tree >
+			<n:dynamic-node id="Catalogs" indexing-depth="3" populator-bean-id="bundleTemplatesModelPopulator" expanded-by-default="true" hide-root-node="true"/>
+		</n:explorer-tree>
+	</context>
+
+	<context component="pcmbackoffice-bundle-packageExplorerTree" merge-by="module" parent="pcmbackoffice" module="configurablebundlebackoffice">
+		<n:explorer-tree>
+			<n:dynamic-node id="BundleTemplate" indexing-depth="3" populator-bean-id="bundleTemplatesTreeModelPopulator" expanded-by-default="true" hide-root-node="true"/>
+		</n:explorer-tree>
+	</context>
+
+	<context type="BundleTemplateStatus">
+		<context merge-by="type" component="editorareaactions"/>
+		<context merge-by="type" component="listviewactions" />
+		<context merge-by="type" component="base">
+			<y:base>
+				<y:labels>
+					<y:label> ( status ?: '' ) </y:label>
+				</y:labels>
+			</y:base>
+		</context>
+	</context>
+
+	<context type="BundleTemplate">
+		<context merge-by="type" component="base">
+			<y:base>
+				<y:labels>
+					<y:label> ( name ?: (id ?: '') ) </y:label>
+				</y:labels>
+			</y:base>
+		</context>
+		<context merge-by="type" component="pcmbackoffice-bundle-listview">
+			<list-view:list-view refresh-after-object-creation="true">
+				<list-view:column qualifier="id" />
+				<list-view:column qualifier="name"/>
+				<list-view:column qualifier="catalogVersion"/>
+				<list-view:column qualifier="syncStatus" spring-bean="configurableBundleSyncStatusCellRenderer" label="syncstatus.column.label"/>
+				<list-view:column qualifier="status"/>
+			</list-view:list-view>
+		</context>
+		<context merge-by="type" component="pcmbackoffice-bundle-grid-view">
+			<grid-view:grid-view>
+				<grid-view:additionalRenderer spring-bean="configurableBundleSyncStatusCellRenderer"/>
+			</grid-view:grid-view>
+		</context>
+		<context merge-by="type" component="pcmbackoffice-bundle-treeView" tree-context="_root_">
+			<tree:tree-collection-nodes >
+				<tree:node attribute="parentTemplate"/>
+				<tree:node attribute="childTemplates"/>
+				<tree:node attribute="components"/>
+				<tree:node attribute="products"/>
+				<tree:node attribute="bundleSelectionCriteria"/>
+				<tree:node attribute="changeProductPriceBundleRules"/>
+				<tree:node attribute="dependentBundleTemplates"/>
+				<tree:node attribute="disableProductBundleRules"/>
+				<tree:node attribute="requiredBundleTemplates"/>
+			</tree:tree-collection-nodes>
+		</context>
+		<context component="pcmbackoffice-bundle-listviewactions">
+			<y:actions>
+				<y:group qualifier="common">
+					<y:label>actiongroup.common</y:label>
+					<y:action action-id="de.hybris.platform.configurablebundlebackoffice.widgets.actions.delete" property="selectedObjects" triggerOnKeys="#del"/>
+					<y:action action-id="com.hybris.cockpitng.action.create" property="selectionContext">
+						<y:parameter>
+							<y:name>createdTypeKey</y:name>
+							<y:value>dataType.code</y:value>
+						</y:parameter>
+					</y:action>
+					<y:action action-id="de.hybris.platform.configurablebundlebackoffice.widgets.actions.synctreeaction" property="selectedObjects"/>
+					<y:action action-id="com.hybris.cockpitng.action.edit" property="selectedObjects" triggerOnKeys="^e">
+						<y:parameter>
+							<y:name>forwardSelectionToSocket</y:name>
+							<y:value>selectedItemsToEdit</y:value>
+						</y:parameter>
+						<y:parameter>
+							<y:name>forwardSelectionAs</y:name>
+							<y:value>list</y:value>
+						</y:parameter>
+					</y:action>
+					<y:action action-id="de.hybris.platform.configurablebundlebackoffice.widgets.actions.clone" property="selectedObjects"/>
+					<y:action action-id="de.hybris.platform.configurablebundlebackoffice.widgets.actions.refresh" property="selectedObjects"/>
+				</y:group>
+			</y:actions>
+		</context>
+		<context component="pcmbackoffice-editorareaactions">
+			<y:actions>
+				<y:group qualifier="common">
+					<y:label>actiongroup.common</y:label>
+					<y:action action-id="com.hybris.cockpitng.action.flexibletoggle">
+						<y:parameter>
+							<y:name>viewMode</y:name>
+							<y:value>hidden</y:value>
+						</y:parameter>
+						<y:parameter>
+							<y:name>breakpoint</y:name>
+							<y:value>m</y:value>
+						</y:parameter>
+					</y:action>
+				</y:group>
+			</y:actions>
+		</context>
+		<context component="pcmbackoffice-bundle-actions-packageExplorerTree-toolbar-primary">
+			<y:actions>
+				<y:group qualifier="common">
+					<y:label>actiongroup.common</y:label>
+					<y:action action-id="com.hybris.cockpitng.action.create" property="selectionContext">
+						<y:parameter>
+							<y:name>createdTypeKey</y:name>
+							<y:value>itemType</y:value>
+						</y:parameter>
+						<y:parameter>
+							<y:name>viewMode</y:name>
+							<y:value>iconOnly</y:value>
+						</y:parameter>
+					</y:action>
+					<y:action action-id="de.hybris.platform.configurablebundlebackoffice.widgets.actions.delete" property="selectionContext.selectedObject instanceof T(de.hybris.platform.core.model.ItemModel) ? selectionContext.selectedObject : null" triggerOnKeys="#del"/>
+					<y:action action-id="de.hybris.platform.configurablebundlebackoffice.widgets.actions.synctreeaction" property="selectionContext.selectedObject instanceof T(de.hybris.platform.core.model.ItemModel) ? selectionContext.selectedObject : null" />
+				</y:group>
+			</y:actions>
+		</context>
+		<context component="editor-area">
+			<ea:editorArea name="Default" logic-handler="nestedAttributeEditorAreaLogicHandler">
+				<ea:essentials>
+					<ea:essentialCustomSection name="hmc.essential" columns="2" spring-bean="nestedAttributeAwareEditorAreaSectionRenderer">
+						<ea:attribute qualifier="id"/>
+						<ea:attribute qualifier="name"/>
+						<ea:attribute qualifier="version"/>
+						<ea:attribute qualifier="status.status">
+							<ea:editor-parameter>
+								<ea:name>mandatory</ea:name>
+								<ea:value>true</ea:value>
+							</ea:editor-parameter>
+						</ea:attribute>
+						<ea:attribute qualifier="catalogVersion"/>
+					</ea:essentialCustomSection>
+				</ea:essentials>
+				<ea:tab name="configurablebundlebackoffice.tab.information">
+					<ea:section name="configurablebundlecockpits.section.bundletemplate.essentials.descriptions">
+						<ea:panel name="panel.description" colspan="2">
+							<ea:attribute qualifier="description" editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)"/>
+						</ea:panel>
+					</ea:section>
+				</ea:tab>
+				<ea:tab name="configurablebundlebackoffice.tab.products">
+					<ea:section name="configurablebundlecockpits.section.bundletemplate.products" columns="1" description="configurablebundlecockpits.section.bundletemplate.products.description">
+						<ea:panel name="name.panel2a">
+							<ea:attribute qualifier="products">
+								<ea:editor-parameter>
+									<ea:name>referenceSearchCondition_catalogVersion</ea:name>
+									<ea:value>{parentObject.catalogVersion}</ea:value>
+								</ea:editor-parameter>
+								<ea:editor-parameter>
+									<ea:name>referenceSearchCondition_code_doesNotContain</ea:name>
+									<ea:value>{parentObject.products.![code]?.size() == 0 ? T(java.util.Arrays).asList('code') : parentObject.products.![code]}</ea:value>
+								</ea:editor-parameter>
+							</ea:attribute>
+						</ea:panel>
+					</ea:section>
+				</ea:tab>
+				<ea:tab name="configurablebundlebackoffice.tab.dependencies">
+					<ea:section name="configurablebundlecockpits.section.bundletemplate.dependencies" columns="1" description="configurablebundlecockpits.section.bundletemplate.dependencies.description">
+						<ea:attribute qualifier="bundleSelectionCriteria" editor="com.hybris.cockpitng.editor.flattypehierarchyreferenceeditor"/>
+						<ea:attribute qualifier="requiredBundleTemplates">
+							<ea:editor-parameter>
+								<ea:name>referenceSearchCondition_catalogVersion</ea:name>
+								<ea:value>{parentObject.catalogVersion}</ea:value>
+							</ea:editor-parameter>
+							<ea:editor-parameter>
+								<ea:name>referenceSearchCondition_parentTemplate</ea:name>
+								<ea:value>{parentObject.parentTemplate}</ea:value>
+							</ea:editor-parameter>
+						</ea:attribute>
+					</ea:section>
+				</ea:tab>
+				<ea:tab name="configurablebundlebackoffice.tab.priceanddisablerules">
+					<ea:section name="configurablebundlecockpits.section.bundletemplate.priceanddisablerules" columns="1" description="configurablebundlecockpits.section.bundletemplate.priceanddisablerules.description">
+						<ea:attribute qualifier="changeProductPriceBundleRules"/>
+						<ea:attribute qualifier="disableProductBundleRules" />
+					</ea:section>
+				</ea:tab>
+				<ea:tab name="hmc.administration" position="99">
+					<ea:customSection name="hmc.unbound" spring-bean="unboundSectionRenderer"/>
+				</ea:tab>
+			</ea:editorArea>
+		</context>
+		<context component="create-wizard">
+			<wz:flow id="createBundleTemplate" title="create.title(ctx.TYPE_CODE)">
+				<wz:prepare id="createBundleTemplatePrepare">
+					<wz:initialize property="newBundleTemplate" type="ctx.TYPE_CODE" />
+					<wz:assign property="newBundleTemplate.catalogVersion" value="ctx.actionContext?.selectedObject?.catalogVersion"/>
+					<wz:assign property="newBundleTemplate.catalogVersion" value="ctx.actionContext?.selectedObject"/>
+					<wz:assign property="newBundleTemplate.parentTemplate" value="ctx.parentObject"/>
+					<wz:assign property="newBundleTemplate.parentTemplate" value="ctx.actionContext?.selectedObject"/>
+				</wz:prepare>
+				<wz:step id="step1" label="configurablebundlebackoffice.bundletemplate.wizard.create.label">
+					<wz:content id="step1.content">
+						<wz:property-list root="newBundleTemplate">
+							<wz:property qualifier="id" position="10"/>
+							<wz:property qualifier="name" position="20"/>
+							<wz:property qualifier="version" position="30"/>
+							<wz:property qualifier="catalogVersion" position="40"/>
+							<wz:property qualifier="parentTemplate" position="50"/>
+						</wz:property-list>
+					</wz:content>
+					<wz:navigation id="step1.navigation">
+						<wz:cancel />
+						<wz:done visible="!#empty(newBundleTemplate.id) and !#empty(newBundleTemplate.version)">
+							<wz:save property="newBundleTemplate"/>
+						</wz:done>
+					</wz:navigation>
+				</wz:step>
+			</wz:flow>
+		</context>
+		<context component="pcmbackoffice-bundle-editorarea-summary-view" merge-by="module">
+			<sv:summary-view display-default-image="false" display-thumbnail="false" display-title="false">
+				<sv:section>
+					<sv:data-quality-group domain-id="backoffice" label="configurablebundlebackoffice.bundle.coverage.label"/>
+				</sv:section>
+			</sv:summary-view>
+		</context>
+		<context component="editorAreaDynamicForms" merge-by="module">
+			<df:dynamicForms>
+				<df:tab id="bundleTemplate-products" qualifier="configurablebundlebackoffice.tab.products" visibleIf="childTemplates.isEmpty() and parentTemplate!=null" />
+				<df:tab id="bundleTemplate-dependencies" qualifier="configurablebundlebackoffice.tab.dependencies" visibleIf="childTemplates.isEmpty() and parentTemplate!=null" />
+				<df:tab id="bundleTemplate-priceanddisablerules" qualifier="configurablebundlebackoffice.tab.priceanddisablerules" visibleIf="childTemplates.isEmpty() and parentTemplate!=null" />
+				<df:visitor id="bundleTemplate-visitor" beanId="dynamicElementsProviderComponentsVisitor"/>
+			</df:dynamicForms>
+		</context>
+	</context>
+
+	<context type="BundleSelectionCriteria">
+		<context merge-by="type" component="editorareaactions"/>
+		<context merge-by="type" component="listviewactions" />
+		<context merge-by="type" component="base">
+			<y:base>
+				<y:labels>
+					<y:label> ( id ?: '' ) </y:label>
+				</y:labels>
+			</y:base>
+		</context>
+		<context component="editor-area">
+			<ea:editorArea>
+				<ea:essentials>
+					<ea:essentialSection name="hmc.essential" columns="2">
+						<ea:attribute qualifier="id"/>
+						<ea:attribute qualifier="catalogVersion"/>
+					</ea:essentialSection>
+				</ea:essentials>
+				<ea:tab name="hmc.properties">
+					<ea:section name="hmc.properties" columns="2">
+						<ea:panel name="hmc.properties">
+							<ea:attribute qualifier="starter"/>
+						</ea:panel>
+					</ea:section>
+				</ea:tab>
+			</ea:editorArea>
+		</context>
+	</context>
+
+	<context type="PickExactlyNBundleSelectionCriteria">
+        <context merge-by="type" component="base">
+            <y:base>
+                <y:labels>
+                    <y:label>
+                        T(org.zkoss.util.resource.Labels).getLabel('configurablebundlebackoffice.bundleselectioncriteria.pickexactly', new Object[] {n})
+                    </y:label>
+                </y:labels>
+            </y:base>
+        </context>
+		<context component="create-wizard">
+			<wz:flow id="PickExactlyNBundleSelectionCriteria" title="create.title(ctx.TYPE_CODE)">
+				<wz:prepare id="pickExactlyNBundleSelectionCriteriaPrepare">
+					<wz:initialize property="newPickExactlyNBundleSelectionCriteria" type="ctx.TYPE_CODE" />
+					<wz:assign property="newPickExactlyNBundleSelectionCriteria.catalogVersion" value="ctx.parentObject?.catalogVersion"/>
+				</wz:prepare>
+				<wz:step id="step1" label="configurablebundlebackoffice.pickexactlynbundleselectioncriteria.wizard.create.label">
+					<wz:content id="step1.content">
+						<wz:property-list root="newPickExactlyNBundleSelectionCriteria">
+							<wz:property qualifier="id" type="java.lang.String" position="10"/>
+							<wz:property qualifier="n" type="java.lang.Integer" position="20"/>
+							<wz:property qualifier="starter" position="30"/>
+						</wz:property-list>
+					</wz:content>
+					<wz:navigation id="step1.navigation">
+						<wz:cancel />
+						<wz:done visible="!#empty(newPickExactlyNBundleSelectionCriteria.id) and newPickExactlyNBundleSelectionCriteria.n != null">
+							<wz:save property="newPickExactlyNBundleSelectionCriteria" />
+						</wz:done>
+					</wz:navigation>
+				</wz:step>
+			</wz:flow>
+		</context>
+		<context component="editor-area" merge-by="type">
+			<ea:editorArea>
+				<ea:essentials>
+					<ea:essentialSection name="hmc.essential" columns="2">
+						<ea:attribute qualifier="n"/>
+					</ea:essentialSection>
+				</ea:essentials>
+			</ea:editorArea>
+		</context>
+	</context>
+
+	<context type="PickNToMBundleSelectionCriteria">
+        <context merge-by="type" parent="GenericItem" component="base">
+            <y:base>
+                <y:labels>
+                    <y:label>
+                        T(org.zkoss.util.resource.Labels).getLabel('configurablebundlebackoffice.bundleselectioncriteria.pickntom', new Object[] {n,m})
+                    </y:label>
+                </y:labels>
+            </y:base>
+        </context>
+		<context component="create-wizard">
+			<wz:flow id="PickNToMBundleSelectionCriteria" title="create.title(ctx.TYPE_CODE)">
+				<wz:prepare id="pickNToMBundleSelectionCriteriaPrepare">
+					<wz:initialize property="newPickNToMBundleSelectionCriteria" type="ctx.TYPE_CODE" />
+					<wz:assign property="newPickNToMBundleSelectionCriteria.catalogVersion" value="ctx.parentObject?.catalogVersion"/>
+				</wz:prepare>
+				<wz:step id="step1" label="configurablebundlebackoffice.pickntombundleselectioncriteria.wizard.create.label">
+					<wz:content id="step1.content">
+						<wz:property-list root="newPickNToMBundleSelectionCriteria">
+							<wz:property qualifier="id" type="java.lang.String" position="10"/>
+							<wz:property qualifier="n" type="java.lang.Integer" position="20"/>
+							<wz:property qualifier="m" type="java.lang.Integer" position="30"/>
+							<wz:property qualifier="starter" />
+						</wz:property-list>
+					</wz:content>
+					<wz:navigation id="step1.navigation">
+						<wz:cancel />
+						<wz:done visible="!#empty(newPickNToMBundleSelectionCriteria.id) and newPickNToMBundleSelectionCriteria.n != null and newPickNToMBundleSelectionCriteria.m != null">
+							<wz:save property="newPickNToMBundleSelectionCriteria" />
+						</wz:done>
+					</wz:navigation>
+				</wz:step>
+			</wz:flow>
+		</context>
+		<context component="editor-area" merge-by="type">
+			<ea:editorArea>
+			<ea:essentials>
+				<ea:essentialSection name="hmc.essential" columns="2">
+					<ea:attribute qualifier="m"/>
+				</ea:essentialSection>
+			</ea:essentials>
+			</ea:editorArea>
+		</context>
+	</context>
+
+	<context type="AbstractBundleRule">
+		<context merge-by="type" component="editorareaactions"/>
+		<context merge-by="type" component="listviewactions" />
+		<context merge-by="type" component="base">
+			<y:base>
+				<y:labels>
+					<y:label> ( id ?: '' ) </y:label>
+				</y:labels>
+			</y:base>
+		</context>
+        <context component="listview" merge-by="type">
+            <list-view:list-view>
+                <list-view:column qualifier="id" />
+                <list-view:column qualifier="name" />
+                <list-view:column qualifier="catalogVersion" />
+            </list-view:list-view>
+        </context>
+		<context component="advanced-search" merge-by="type">
+			<advanced-search:advanced-search>
+				<advanced-search:field-list>
+					<advanced-search:field name="id"/>
+					<advanced-search:field name="name"/>
+					<advanced-search:field name="catalogVersion"/>
+				</advanced-search:field-list>
+			</advanced-search:advanced-search>
+		</context>
+		<context component="editor-area">
+			<ea:editorArea>
+				<ea:essentials>
+					<ea:essentialSection name="hmc.essential" columns="2">
+						<ea:attribute qualifier="id"/>
+						<ea:attribute qualifier="name"/>
+						<ea:attribute qualifier="catalogVersion"/>
+					</ea:essentialSection>
+				</ea:essentials>
+				<ea:tab name="hmc.properties">
+					<ea:section name="hmc.conditions" columns="2">
+						<ea:panel name="hmc.conditions">
+							<ea:attribute qualifier="ruleType"/>
+							<ea:attribute qualifier="conditionalProducts">
+								<ea:editor-parameter>
+									<ea:name>referenceSearchCondition_catalogVersion</ea:name>
+									<ea:value>{parentObject.catalogVersion}</ea:value>
+								</ea:editor-parameter>
+							</ea:attribute>
+						</ea:panel>
+					</ea:section>
+					<ea:section name="hmc.action" columns="2">
+						<ea:panel name="hmc.action">
+							<ea:attribute qualifier="targetProducts">
+								<ea:editor-parameter>
+									<ea:name>referenceSearchCondition_catalogVersion</ea:name>
+									<ea:value>{parentObject.catalogVersion}</ea:value>
+								</ea:editor-parameter>
+							</ea:attribute>
+						</ea:panel>
+					</ea:section>
+				</ea:tab>
+			</ea:editorArea>
+		</context>
+		<context component="create-wizard">
+			<wz:flow id="ChangeProductPriceBundleRule" title="create.title(ctx.TYPE_CODE)">
+				<wz:prepare id="changeProductPriceBundleRulePrepare">
+					<wz:initialize property="newChangeProductPriceBundleRule" type="ctx.TYPE_CODE" />
+					<wz:assign property="newChangeProductPriceBundleRule.catalogVersion" value="ctx?.parentObject?.catalogVersion"/>
+					<wz:assign property="newChangeProductPriceBundleRule.bundleTemplate" value="ctx?.parentObject"/>
+				</wz:prepare>
+				<wz:step id="step1" label="configurablebundlebackoffice.changeproductpricebundlerule.wizard.create.label">
+					<wz:content id="step1.content">
+						<wz:property-list root="newChangeProductPriceBundleRule">
+							<wz:property qualifier="name" position="10"/>
+							<wz:property qualifier="price" position="20"/>
+							<wz:property qualifier="currency" position="30"/>
+							<wz:property qualifier="catalogVersion" position="40"/>
+							<wz:property qualifier="bundleTemplate" position="50"/>
+							<wz:property qualifier="ruleType" position="60"/>
+							<wz:property qualifier="conditionalProducts" position="70">
+								<wz:editor-parameter>
+									<wz:name>referenceSearchCondition_catalogVersion</wz:name>
+									<wz:value>{parentObject.catalogVersion}</wz:value>
+								</wz:editor-parameter>
+							</wz:property>
+							<wz:property qualifier="targetProducts" position="80">
+								<wz:editor-parameter>
+									<wz:name>referenceSearchCondition_catalogVersion</wz:name>
+									<wz:value>{parentObject.catalogVersion}</wz:value>
+								</wz:editor-parameter>
+							</wz:property>
+						</wz:property-list>
+					</wz:content>
+					<wz:navigation id="step1.navigation">
+						<wz:cancel />
+						<wz:done visible="!#empty(newChangeProductPriceBundleRule.id) and newChangeProductPriceBundleRule.price != null and newChangeProductPriceBundleRule.currency != null and !#empty(newChangeProductPriceBundleRule.targetProducts)">
+							<wz:save property="newChangeProductPriceBundleRule" />
+						</wz:done>
+					</wz:navigation>
+				</wz:step>
+			</wz:flow>
+		</context>
+	</context>
+
+	<context type="ChangeProductPriceBundleRule" merge-by="type">
+		<context parent="GenericItem" component="base">
+			<y:base>
+				<y:labels beanId="changeProductPriceBundleRuleLabelProvider"/>
+			</y:base>
+		</context>
+        <context component="listview" merge-by="type">
+            <list-view:list-view>
+                <list-view:column qualifier="price" position="98"/>
+                <list-view:column qualifier="currency" position="99"/>
+            </list-view:list-view>
+        </context>
+		<context component="advanced-search" merge-by="type">
+			<advanced-search:advanced-search>
+				<advanced-search:field-list>
+					<advanced-search:field name="targetProducts"/>
+					<advanced-search:field name="conditionalProducts"/>
+				</advanced-search:field-list>
+			</advanced-search:advanced-search>
+		</context>
+		<context component="editor-area" merge-by="type">
+			<ea:editorArea>
+				<ea:tab name="hmc.properties" merge-mode="append">
+					<ea:section name="hmc.properties" columns="2">
+						<ea:panel name="hmc.properties" merge-mode="append">
+							<ea:attribute qualifier="price">
+								<ea:editor-parameter>
+									<ea:name>numberFormat</ea:name>
+									<ea:value>##0.00</ea:value>
+								</ea:editor-parameter>
+							</ea:attribute>
+							<ea:attribute qualifier="currency"/>
+							<ea:attribute qualifier="bundleTemplate"/>
+						</ea:panel>
+					</ea:section>
+				</ea:tab>
+			</ea:editorArea>
+		</context>
+		<context component="create-wizard">
+			<wz:flow id="ChangeProductPriceBundleRule" title="create.title(ctx.TYPE_CODE)">
+				<wz:prepare id="changeProductPriceBundleRulePrepare">
+					<wz:initialize property="newChangeProductPriceBundleRule" type="ctx.TYPE_CODE" />
+					<wz:assign property="newChangeProductPriceBundleRule.catalogVersion" value="ctx?.parentObject?.catalogVersion"/>
+					<wz:assign property="newChangeProductPriceBundleRule.bundleTemplate" value="ctx?.parentObject"/>
+				</wz:prepare>
+				<wz:step id="step1" label="configurablebundlebackoffice.changeproductpricebundlerule.wizard.create.label">
+					<wz:content id="step1.content">
+						<wz:property-list root="newChangeProductPriceBundleRule">
+							<wz:property qualifier="name" position="10"/>
+							<wz:property qualifier="price" position="20"/>
+							<wz:property qualifier="currency" position="30"/>
+							<wz:property qualifier="catalogVersion" position="40"/>
+							<wz:property qualifier="bundleTemplate" position="50"/>
+							<wz:property qualifier="ruleType" position="60"/>
+							<wz:property qualifier="conditionalProducts" position="70">
+								<wz:editor-parameter>
+									<wz:name>referenceSearchCondition_catalogVersion</wz:name>
+									<wz:value>{parentObject.catalogVersion}</wz:value>
+								</wz:editor-parameter>
+							</wz:property>
+							<wz:property qualifier="targetProducts" position="80">
+								<wz:editor-parameter>
+									<wz:name>referenceSearchCondition_catalogVersion</wz:name>
+									<wz:value>{parentObject.catalogVersion}</wz:value>
+								</wz:editor-parameter>
+							</wz:property>
+						</wz:property-list>
+					</wz:content>
+					<wz:navigation id="step1.navigation">
+						<wz:cancel />
+						<wz:done visible="!#empty(newChangeProductPriceBundleRule.name) and newChangeProductPriceBundleRule.price != null and newChangeProductPriceBundleRule.currency != null and !newChangeProductPriceBundleRule.targetProducts?.isEmpty()">
+							<wz:save property="newChangeProductPriceBundleRule" />
+						</wz:done>
+					</wz:navigation>
+				</wz:step>
+			</wz:flow>
+		</context>
+	</context>
+
+	<context type="DisableProductBundleRule">
+		<context component="base">
+			<y:base>
+				<y:labels beanId="disableProductBundleRuleLabelProvider"/>
+			</y:base>
+		</context>
+		<context component="advanced-search" merge-by="type">
+			<advanced-search:advanced-search>
+				<advanced-search:field-list>
+					<advanced-search:field name="targetProducts"/>
+					<advanced-search:field name="conditionalProducts"/>
+				</advanced-search:field-list>
+			</advanced-search:advanced-search>
+		</context>
+		<context component="editor-area" merge-by="type">
+			<ea:editorArea>
+				<ea:tab name="hmc.properties" merge-mode="append">
+					<ea:section name="hmc.properties" columns="2">
+						<ea:panel name="hmc.properties" merge-mode="append">
+							<ea:attribute qualifier="bundleTemplate"/>
+						</ea:panel>
+					</ea:section>
+				</ea:tab>
+			</ea:editorArea>
+		</context>
+		<context component="create-wizard">
+			<wz:flow id="ChangeProductPriceBundleRule" title="create.title(ctx.TYPE_CODE)">
+				<wz:prepare id="disableProductBundleRulePrepare">
+					<wz:initialize property="newDisableProductBundleRule" type="ctx.TYPE_CODE" />
+					<wz:assign property="newDisableProductBundleRule.catalogVersion" value="ctx?.parentObject?.catalogVersion"/>
+					<wz:assign property="newDisableProductBundleRule.bundleTemplate" value="ctx?.parentObject"/>
+				</wz:prepare>
+				<wz:step id="step1" label="configurablebundlebackoffice.disableproductbundlerule.wizard.create.label">
+					<wz:content id="step1.content">
+						<wz:property-list root="newDisableProductBundleRule">
+							<wz:property qualifier="name" position="10"/>
+							<wz:property qualifier="catalogVersion" position="20"/>
+							<wz:property qualifier="bundleTemplate" position="30"/>
+							<wz:property qualifier="ruleType" position="40"/>
+							<wz:property qualifier="conditionalProducts" position="50">
+								<wz:editor-parameter>
+									<wz:name>referenceSearchCondition_catalogVersion</wz:name>
+									<wz:value>{parentObject.catalogVersion}</wz:value>
+								</wz:editor-parameter>
+							</wz:property>
+							<wz:property qualifier="targetProducts" position="60">
+								<wz:editor-parameter>
+									<wz:name>referenceSearchCondition_catalogVersion</wz:name>
+									<wz:value>{parentObject.catalogVersion}</wz:value>
+								</wz:editor-parameter>
+							</wz:property>
+						</wz:property-list>
+					</wz:content>
+					<wz:navigation id="step1.navigation">
+						<wz:cancel />
+						<wz:done visible="!#empty(newDisableProductBundleRule.name) and !newDisableProductBundleRule.targetProducts?.isEmpty()">
+							<wz:save property="newDisableProductBundleRule" />
+						</wz:done>
+					</wz:navigation>
+				</wz:step>
+			</wz:flow>
+		</context>
+	</context>
+
+	<context type="Product">
+		<context component="editor-area" merge-by="type">
+			<editorArea:editorArea>
+				<editorArea:tab name="configurablebundlebackoffice.tab.product.bundling" position="8">
+					<editorArea:section name="configurablebundlebackoffice.section.product.bundling">
+						<editorArea:attribute qualifier="soldIndividually" position="10"/>
+						<editorArea:attribute qualifier="bundleTemplates" position="20"/>
+						<editorArea:attribute qualifier="conditionalBundleRules" position="30"/>
+						<editorArea:attribute qualifier="targetBundleRules" position="40"/>
+					</editorArea:section>
+				</editorArea:tab>
+			</editorArea:editorArea>
+		</context>
+	</context>
+
+	<context component="pcmbackoffice-bundle-summary-view" type="BundleTemplate">
+		<sv:summary-view display-thumbnail="false">
+			<sv:section>
+				<sv:custom-attribute label="summaryview.field.approvalstatus" qualifier="approvalStatus" spring-bean="bundleTemplateSummaryViewApprovalStatusRenderer"/>
+				<sv:custom-attribute label="summaryview.catalog.synchronization" qualifier="syncStatus" spring-bean="bundleTemplateSummarySyncStatusRenderer"/>
+			</sv:section>
+			<sv:section name="summaryview.section.info">
+				<sv:attribute qualifier="itemtype"/>
+				<sv:attribute qualifier="catalogVersion"/>
+			</sv:section>
+			<sv:section name="summaryview.section.dataquality">
+				<sv:data-quality-group label="summaryview.qualitygroup.core" domain-id="pcmBundleTemplateCoreAttributesCoverageGroup" warning="0.7" error="0.3"/>
+				<sv:data-quality-group label="summaryview.qualitygroup.marketing" domain-id="pcmBundleTemplateMarketingAttributesCoverageGroup" warning="0.7" error="0.3"/>
+				<sv:data-quality-group label="configurablebundlebackoffice.summaryview.qualitygroup.childtemplate" domain-id="pcmBundleTemplateChildTemplatesCoverageGroup" warning="0.7" error="0.3"/>
+			</sv:section>
+		</sv:summary-view>
+	</context>
+</config>

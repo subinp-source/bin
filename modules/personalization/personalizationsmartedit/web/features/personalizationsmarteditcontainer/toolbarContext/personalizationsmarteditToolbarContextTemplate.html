@@ -1,0 +1,16 @@
+<div data-ng-show="$ctrl.visible"
+    class="pe-toolbar-item-context">
+    <span class="sap-icon--slim-arrow-right pe-toolbar-item-context__icon"></span>
+    <div class="pe-toolbar-item-context__btn">
+        <div class="pe-toolbar-item-context__btn-txt">
+            <div title="{{$ctrl.title}}"
+                class="perso-wrap-ellipsis pe-toolbar-item-context__btn-title">{{$ctrl.title}}</div>
+            <div title="{{$ctrl.subtitle}}"
+                class="perso-wrap-ellipsis pe-toolbar-item-context__btn-subtitle">{{$ctrl.subtitle}}</div>
+        </div>
+    </div>
+    <div class="pe-toolbar-item-context__btn-hyicon"
+        data-ng-click="$ctrl.clear()">
+        <span class="sap-icon--decline"></span>
+    </div>
+</div>

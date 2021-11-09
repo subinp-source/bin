@@ -1,0 +1,30 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+$storeUid=marketplace
+$defaultCurrency=USD
+$defaultLanguage=en
+$googleHost=setthethirdpartyhost
+$googleUserName=setgoogleusername
+$googlePassword=setgooglepassword
+
+
+INSERT_UPDATE ExportDataCronJob;code[unique=true];job(code);baseStore(uid);cmsSite(uid);language(isocode);currency(isocode);user(uid);thirdPartyHost;thirdPartyUsername;thirdPartyPassword;dataGenerationPipeline;sessionLanguage(isocode)
+;googleLocationsMarketplace;exportDataJobPerformable;$storeUid;$storeUid;$defaultLanguage;$defaultCurrency;anonymous;$googleHost;$googleUserName;$googlePassword;exportGooglePosPipeline;$defaultLanguage
+;googleProductsMarketplace;exportDataJobPerformable;$storeUid;$storeUid;$defaultLanguage;$defaultCurrency;anonymous;$googleHost;$googleUserName;$googlePassword;exportGoogleProductPipeline;$defaultLanguage
+
+INSERT_UPDATE CronJob;code[unique=true];job(code);baseStore(uid);cmsSite(uid);sessionLanguage(isocode);sessionCurrency(isocode);sessionUser(uid);
+;uploadExports;uploadDataJobPerformable;$siteUid;$siteUid;$defaultLanguage;$defaultCurrency;anonymous;
+
+INSERT_UPDATE ServicelayerJob;code[unique=true];springId
+;vendorRatingCalculationJob;vendorRatingCalculationJob
+;vendorOrderExportJob;vendorOrderExportJob
+
+INSERT_UPDATE CronJob;code[unique=true];job(code);singleExecutable;sessionLanguage(isocode)
+;vendorRatingCalculationJob;vendorRatingCalculationJob;false;en
+;vendorOrderExportJob;vendorOrderExportJob;false;en
+
+INSERT_UPDATE Trigger;cronjob(code)[unique=true];cronExpression
+;vendorRatingCalculationJob; 0 0 0 * * ?
+;vendorOrderExportJob; 0 0 0 * * ?

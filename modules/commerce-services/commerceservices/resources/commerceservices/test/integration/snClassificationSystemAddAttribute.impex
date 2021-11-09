@@ -1,0 +1,12 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+$classificationSystem=SnClassification
+$classificationSystemVersion=1.0
+
+$classSystemVersion=systemVersion(catalog(id[default='$classificationSystem']),version[default='$classificationSystemVersion'])[unique=true]
+
+
+INSERT_UPDATE ClassificationAttribute ; code[unique=true]   ; $classSystemVersion                    
+                                      ; field_unbound       ;                         

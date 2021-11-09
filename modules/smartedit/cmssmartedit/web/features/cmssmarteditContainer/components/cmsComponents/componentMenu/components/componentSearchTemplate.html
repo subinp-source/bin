@@ -1,0 +1,20 @@
+<div class="se-input-group se-component-menu__input-group">
+    <input
+        type="text"
+        class="se-input-group__input-area"
+        name="search-term"
+        data-ng-model="$ctrl.searchTerm"
+        data-ng-model-options="{debounce: 500}"
+        placeholder="{{$ctrl.placeholder | translate}}"
+    />
+
+    <span class="sap-icon--search se-input-group__addon"></span>
+
+    <div
+        data-ng-show="$ctrl.showResetButton"
+        class="se-input-group__addon se-input-group__clear-btn"
+        data-ng-click="$ctrl._resetSearchBox()"
+    >
+        <span class="sap-icon--decline"></span>
+    </div>
+</div>

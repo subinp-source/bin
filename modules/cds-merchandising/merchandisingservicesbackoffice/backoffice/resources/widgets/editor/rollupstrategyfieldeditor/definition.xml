@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+
+    Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<editor-definition id="de.hybris.platform.merchandisingservicesbackoffice.editor.DefaultRollupStrategyFieldEditor"
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/editor-definition.xsd">
+
+	<name>Rollup Strategy Field Editor</name>
+	<description>Custom editor to allow a dropdown to be dynamically populated with a list of properties relavant to the index type</description>
+	<author>hybris</author>
+	<version>1.0</version>
+
+	<type>java.lang.Object</type>
+	<editorClassName>de.hybris.platform.merchandisingservicesbackoffice.editor.DefaultRollupStrategyFieldEditor</editorClassName>
+</editor-definition>

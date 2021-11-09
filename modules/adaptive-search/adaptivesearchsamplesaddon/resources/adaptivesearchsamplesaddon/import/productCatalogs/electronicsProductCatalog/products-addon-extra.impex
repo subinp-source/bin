@@ -1,0 +1,82 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+"#% impex.setValidationMode(""import_relaxed"");"
+
+$catalogVersion = catalogVersion(catalog(id[default='electronicsProductCatalog']),version[default='Staged'])[unique=true,default='electronicsProductCatalog:Staged']
+#### solr - configuration ####
+$solrIndexType = electronicsProductType
+
+#### search services - configuration ####
+$snIndexType = electronics-product
+
+#### solr ####
+### ELECTRONICS ###
+
+INSERT_UPDATE AsSearchProfileActivationSet ; indexType[unique=true] ; $catalogVersion[unique=true]
+                                           ; $solrIndexType         ;
+
+INSERT_UPDATE AsCategoryAwareSearchProfile ; code[unique=true]  ; name[lang=en]                          ; indexType              ; $catalogVersion[unique=true] ; activationSet(indexType,$catalogVersion) ; activationSetPOS
+                                           ; defaultElectronics ; Default search profile for electronics ; $solrIndexType         ;                              ; $solrIndexType                           ; 0
+
+#### search services ####
+### ELECTRONICS ###
+
+INSERT_UPDATE AsSearchProfileActivationSet ; indexType[unique=true] ; $catalogVersion[unique=true]
+                                           ; $snIndexType           ;
+
+INSERT_UPDATE AsCategoryAwareSearchProfile ; code[unique=true]    ; name[lang=en]                          ; indexType    ; $catalogVersion[unique=true] ; activationSet(indexType,$catalogVersion) ; activationSetPOS
+                                           ; $snIndexType-default ; Default search profile for electronics ; $snIndexType ;                              ; $snIndexType                             ; 0
+
+INSERT_UPDATE AsCategoryAwareSearchConfiguration ; searchProfile(code,$catalogVersion)[unique=true] ; uid[unique=true]                     ; category(code,$catalogVersion) ; facetsMergeMode(code) ; boostItemsMergeMode(code) ; boostRulesMergeMode(code) ; sortsMergeMode(code) ; $catalogVersion[unique=true]
+                                                 ; $snIndexType-default                             ; 99b502fc-4219-4a1e-b9fc-2588004aaeff ;                                ; ADD_AFTER             ; ADD_AFTER                 ; ADD                       ; ADD_AFTER            ;
+
+INSERT_UPDATE AsFacet ; searchConfiguration(uid,$catalogVersion) ; uid[unique=true]                     ; indexProperty      ; facetType(code) ; priority ; $catalogVersion[unique=true] ; ranged[default=false] ; searchConfigurationPOS
+                      ; 99b502fc-4219-4a1e-b9fc-2588004aaeff     ; 0db5f63a-8dd0-4dcf-93c9-c687b828b427 ; category           ; REFINE          ; 100      ;                              ;                       ; 0
+                      ; 99b502fc-4219-4a1e-b9fc-2588004aaeff     ; 39f21d5e-05dd-4f2f-ac55-2f8f8e648a95 ; brand              ; REFINE          ; 100      ;                              ;                       ; 1
+                      ; 99b502fc-4219-4a1e-b9fc-2588004aaeff     ; 7d2976e7-dc15-425f-8912-2879fabb40e2 ; collection         ; REFINE          ; 100      ;                              ;                       ; 2
+                      ; 99b502fc-4219-4a1e-b9fc-2588004aaeff     ; 8c3e2d66-646f-11ea-bc55-0242ac130003 ; priceValue         ; REFINE          ; 100      ;                              ; true                  ; 3
+                      ; 99b502fc-4219-4a1e-b9fc-2588004aaeff     ; 095c04e1-6ff5-4371-aba2-ba95fd5d2d44 ; feature-megapixels ; MULTISELECT     ; 100      ;                              ;                       ; 4
+                      ; 99b502fc-4219-4a1e-b9fc-2588004aaeff     ; cd161544-c70a-4e06-963b-6e9c51b0d50f ; feature-mounting   ; REFINE          ; 100      ;                              ;                       ; 5
+                      ; 99b502fc-4219-4a1e-b9fc-2588004aaeff     ; e6db6742-e91d-466a-b0e1-29c9d3c37b85 ; feature-color      ; MULTISELECT     ; 100      ;                              ;                       ; 6
+                      ; 99b502fc-4219-4a1e-b9fc-2588004aaeff     ; dfbbcdc2-c6ac-4602-8196-6b72920c2549 ; feature-lens-type  ; MULTISELECT     ; 100      ;                              ;                       ; 7
+                      ; 99b502fc-4219-4a1e-b9fc-2588004aaeff     ; 98751d4c-dfd0-44e2-8244-b3c33470e69c ; feature-resolution ; REFINE          ; 100      ;                              ;                       ; 8
+
+INSERT_UPDATE AsFacetRange ; facetConfiguration(uid,$catalogVersion) ; uid[unique=true]                     ; id               ; qualifier ; name[lang=en]     ; from ; to     ; $catalogVersion[unique=true] ; facetConfigurationPOS
+                           ; 8c3e2d66-646f-11ea-bc55-0242ac130003    ; ede16d28-a0db-11ea-bb37-0242ac130002 ; USD-0-20         ; USD       ; USD 0-20          ; 0    ; 20     ;                              ; 0
+                           ; 8c3e2d66-646f-11ea-bc55-0242ac130003    ; ede16f44-a0db-11ea-bb37-0242ac130002 ; USD-20-50        ; USD       ; USD 20-50         ; 20   ; 50     ;                              ; 1
+                           ; 8c3e2d66-646f-11ea-bc55-0242ac130003    ; ede1703e-a0db-11ea-bb37-0242ac130002 ; USD-50-100       ; USD       ; USD 50-100        ; 50   ; 100    ;                              ; 2
+                           ; 8c3e2d66-646f-11ea-bc55-0242ac130003    ; ede17110-a0db-11ea-bb37-0242ac130002 ; USD-100-200      ; USD       ; USD 100-200       ; 100  ; 200    ;                              ; 3
+                           ; 8c3e2d66-646f-11ea-bc55-0242ac130003    ; ede171ce-a0db-11ea-bb37-0242ac130002 ; USD-200-300      ; USD       ; USD 200-300       ; 200  ; 300    ;                              ; 4
+                           ; 8c3e2d66-646f-11ea-bc55-0242ac130003    ; ede17322-a0db-11ea-bb37-0242ac130002 ; USD-300-400      ; USD       ; USD 300-400       ; 300  ; 400    ;                              ; 5
+                           ; 8c3e2d66-646f-11ea-bc55-0242ac130003    ; ede173f4-a0db-11ea-bb37-0242ac130002 ; USD-400-500      ; USD       ; USD 400-500       ; 400  ; 500    ;                              ; 6
+                           ; 8c3e2d66-646f-11ea-bc55-0242ac130003    ; ede176a6-a0db-11ea-bb37-0242ac130002 ; USD-500-600      ; USD       ; USD 500-600       ; 500  ; 600    ;                              ; 7
+                           ; 8c3e2d66-646f-11ea-bc55-0242ac130003    ; ede17778-a0db-11ea-bb37-0242ac130002 ; USD-600-700      ; USD       ; USD 600-700       ; 600  ; 700    ;                              ; 8
+                           ; 8c3e2d66-646f-11ea-bc55-0242ac130003    ; ede17836-a0db-11ea-bb37-0242ac130002 ; USD-700-800      ; USD       ; USD 700-800       ; 700  ; 800    ;                              ; 9
+                           ; 8c3e2d66-646f-11ea-bc55-0242ac130003    ; ede178f4-a0db-11ea-bb37-0242ac130002 ; USD-800-900      ; USD       ; USD 800-900       ; 800  ; 900    ;                              ; 10
+                           ; 8c3e2d66-646f-11ea-bc55-0242ac130003    ; ede179a8-a0db-11ea-bb37-0242ac130002 ; USD-900-1000     ; USD       ; USD 900-1,000     ; 900  ; 1000   ;                              ; 11
+                           ; 8c3e2d66-646f-11ea-bc55-0242ac130003    ; ede17a5c-a0db-11ea-bb37-0242ac130002 ; USD-1000-1000000 ; USD       ; USD 1,000-100,000 ; 1000 ; 100000 ;                              ; 12
+                           ; 8c3e2d66-646f-11ea-bc55-0242ac130003    ; ede17b10-a0db-11ea-bb37-0242ac130002 ; JPY-0-20         ; JPY       ; JPY 0-20          ; 0    ; 20     ;                              ; 13
+                           ; 8c3e2d66-646f-11ea-bc55-0242ac130003    ; ede17bc4-a0db-11ea-bb37-0242ac130002 ; JPY-20-50        ; JPY       ; JPY 20-50         ; 20   ; 50     ;                              ; 14
+                           ; 8c3e2d66-646f-11ea-bc55-0242ac130003    ; ede17da4-a0db-11ea-bb37-0242ac130002 ; JPY-50-100       ; JPY       ; JPY 50-100        ; 50   ; 100    ;                              ; 15
+                           ; 8c3e2d66-646f-11ea-bc55-0242ac130003    ; ede17e62-a0db-11ea-bb37-0242ac130002 ; JPY-100-200      ; JPY       ; JPY 100-200       ; 100  ; 200    ;                              ; 16
+                           ; 8c3e2d66-646f-11ea-bc55-0242ac130003    ; ede17f20-a0db-11ea-bb37-0242ac130002 ; JPY-200-300      ; JPY       ; JPY 200-300       ; 200  ; 300    ;                              ; 17
+                           ; 8c3e2d66-646f-11ea-bc55-0242ac130003    ; ede17fd4-a0db-11ea-bb37-0242ac130002 ; JPY-300-400      ; JPY       ; JPY 300-400       ; 300  ; 400    ;                              ; 18
+                           ; 8c3e2d66-646f-11ea-bc55-0242ac130003    ; ede18092-a0db-11ea-bb37-0242ac130002 ; JPY-400-500      ; JPY       ; JPY 400-500       ; 400  ; 500    ;                              ; 19
+                           ; 8c3e2d66-646f-11ea-bc55-0242ac130003    ; ede18240-a0db-11ea-bb37-0242ac130002 ; JPY-500-600      ; JPY       ; JPY 500-600       ; 500  ; 600    ;                              ; 20
+                           ; 8c3e2d66-646f-11ea-bc55-0242ac130003    ; ede18308-a0db-11ea-bb37-0242ac130002 ; JPY-600-700      ; JPY       ; JPY 600-700       ; 600  ; 700    ;                              ; 21
+                           ; 8c3e2d66-646f-11ea-bc55-0242ac130003    ; ede183c6-a0db-11ea-bb37-0242ac130002 ; JPY-700-800      ; JPY       ; JPY 700-800       ; 700  ; 800    ;                              ; 22
+                           ; 8c3e2d66-646f-11ea-bc55-0242ac130003    ; ede1847a-a0db-11ea-bb37-0242ac130002 ; JPY-800-900      ; JPY       ; JPY 800-900       ; 800  ; 900    ;                              ; 23
+                           ; 8c3e2d66-646f-11ea-bc55-0242ac130003    ; ede18538-a0db-11ea-bb37-0242ac130002 ; JPY-900-1000     ; JPY       ; JPY 900-1,000     ; 900  ; 1000   ;                              ; 24
+                           ; 8c3e2d66-646f-11ea-bc55-0242ac130003    ; ede18600-a0db-11ea-bb37-0242ac130002 ; JPY-1000-1000000 ; JPY       ; JPY 1,000-100,000 ; 1000 ; 100000 ;                              ; 25
+
+INSERT_UPDATE AsSort ; searchConfiguration(uid,$catalogVersion) ; uid[unique=true]                     ; code       ; name[lang=en]         ; priority ; $catalogVersion[unique=true] ; applyPromotedItems[default=false] ; highlightPromotedItems[default=false] ; searchConfigurationPOS
+                     ; 99b502fc-4219-4a1e-b9fc-2588004aaeff     ; 48e6e6f2-268c-4678-af48-d27901452dd8 ; relevance  ; Relevance             ; 100      ;                              ; true                              ; true                                  ; 0
+                     ; 99b502fc-4219-4a1e-b9fc-2588004aaeff     ; a7b31bcb-a66e-449b-8518-22929715cf59 ; price-asc  ; Price (lowest first)  ; 100      ;                              ;                                   ; true                                  ; 1
+                     ; 99b502fc-4219-4a1e-b9fc-2588004aaeff     ; a5f6cd23-e087-473e-a77d-65c98ba9b195 ; price-desc ; Price (highest first) ; 100      ;                              ;                                   ; true                                  ; 2
+
+INSERT_UPDATE AsSortExpression ; sortConfiguration(uid,$catalogVersion) ; uid[unique=true]                     ; expression ; order(code) ; $catalogVersion[unique=true] ; sortConfigurationPOS
+                               ; 48e6e6f2-268c-4678-af48-d27901452dd8   ; 9be58051-ed60-42fb-b112-c01054b02bb6 ; _score_    ; DESCENDING  ;                              ; 0
+                               ; a7b31bcb-a66e-449b-8518-22929715cf59   ; f9006027-be28-4521-a13f-040be27f4cb4 ; price      ; ASCENDING   ;                              ; 1
+                               ; a5f6cd23-e087-473e-a77d-65c98ba9b195   ; 11c661ee-83ba-4515-9dae-2609a0ba8da3 ; price      ; DESCENDING  ;                              ; 2

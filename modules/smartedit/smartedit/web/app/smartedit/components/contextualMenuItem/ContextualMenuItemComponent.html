@@ -1,0 +1,14 @@
+<div
+    *ngIf="mode === 'small'"
+    id="{{itemConfig.i18nKey | translate}}-{{componentAttributes.smarteditComponentId}}-{{componentAttributes.smarteditComponentType}}-{{index}}"
+    class="se-ctx-menu-element__btn {{itemConfig.displayIconClass}} {{itemConfig.displayClass}}"
+    [ngClass]="{'is-active': itemConfig.isOpen }"
+    [title]="itemConfig.i18nKey | translate"
+></div>
+<div
+    *ngIf="mode === 'compact'"
+    class="se-ctx-menu-element__label {{itemConfig.displayClass}}"
+    id="{{itemConfig.i18nKey | translate}}-{{componentAttributes.smarteditComponentId}}-{{componentAttributes.smarteditComponentType}}-{{index}}"
+>
+    {{itemConfig.i18nKey | translate}}
+</div>

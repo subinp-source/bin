@@ -1,0 +1,46 @@
+<div class="se-media-selector" data-ng-if="selected">
+    <span class="se-media-selector__left-section">
+        <se-media-preview data-image-url="item.url"></se-media-preview>{{printer.imagePreviewUrl}}
+        <img class="se-media-preview__image-thumbnail" data-ng-src="{{item.url}}" />
+    </span>
+
+    <span class="se-media-selector__right-section">
+        <se-media-advanced-properties
+            data-code="item.code"
+            data-description="item.description"
+            data-alt-text="item.altText"
+        ></se-media-advanced-properties>
+        <button
+            class="se-media-printer__btn replace-image se-file-selector__btn"
+            data-ng-disabled="ySelect.isReadOnly"
+            data-ng-click="ySelect.clear($select, $event)"
+        >
+            <span class="sap-icon--share se-media__action-icon"></span>
+            <span
+                class="se-media-printer__btn-txt se-media-format__label"
+                data-ng-class="{'se-media-format__label--disabled':ySelect.isReadOnly}"
+                data-translate="se.upload.image.replace"
+            ></span>
+        </button>
+        <button
+            class="se-media-printer__btn remove-image se-media__remove-btn"
+            data-ng-disabled="ySelect.isReadOnly"
+            data-ng-click="ySelect.clear($select, $event)"
+        >
+            <span
+                class="se-media__action-icon se-media__action-icon--delete sap-icon--delete"
+            ></span>
+            <span
+                class="se-media__remove-btn-txt"
+                data-ng-class="{'se-media__remove-btn-txt--disabled':ySelect.isReadOnly}"
+                data-translate="se.media.format.remove"
+            ></span>
+        </button>
+    </span>
+</div>
+<div class="se-media-selector__search" data-ng-if="!selected">
+    <div class="se-media-selector__search-img-wrapper">
+        <img data-ng-src="{{item.url}}" class="se-media-selector__search-img" />
+    </div>
+    <div class="se-media-selector__search-name">{{item.code}}</div>
+</div>

@@ -1,0 +1,50 @@
+<div
+    role="tab"
+    class="collapsible-container__header"
+    [ngClass]="{
+        'collapsible-container__header--icon-right': isIconRight(),
+        'collapsible-container__header--icon-left': isIconLeft()
+    }"
+    [attr.id]="headingId"
+    [attr.aria-selected]="isOpen"
+    (keypress)="handleKeypress($event)"
+>
+    <a
+        role="button"
+        tabindex="0"
+        class="collapsible-container__header__title"
+        (click)="toggle()"
+        [attr.aria-expanded]="isOpen"
+        [attr.aria-controls]="panelId"
+    >
+        <ng-content select="se-collapsible-container-header"></ng-content>
+    </a>
+
+    <a
+        class="collapsible-container__header__button btn btn-link"
+        *ngIf="configuration.iconVisible"
+        [ngClass]="{
+            'collapsible-container__header__button--expanded': isOpen
+        }"
+        [title]="isOpen
+            ? 'se.ycollapsible.action.collapse'
+            : ('se.ycollapsible.action.expand' | translate)
+        "
+        [attr.aria-expanded]="isOpen"
+        (click)="toggle()"
+    >
+        <span class="sap-icon--navigation-down-arrow collapsible-container__header__icon"></span>
+    </a>
+</div>
+
+<div
+    #container
+    class="collapsible-container__content panel"
+    [ngStyle]="{ 'max-height.px': isOpen ? containerHeight : 0 }"
+    [attr.id]="panelId"
+    [attr.aria-labelledby]="headingId"
+    [attr.aria-hidden]="!isOpen"
+    role="tabpanel"
+>
+    <ng-content select="se-collapsible-container-content"></ng-content>
+</div>

@@ -1,0 +1,48 @@
+<div
+    class="toolbar-action"
+    data-uib-dropdown
+    data-auto-close="outsideClick"
+    data-is-open="$ctrl.actionItem.isOpen"
+    data-item-key="{{ $ctrl.actionItem.key }}"
+    data-on-toggle="$ctrl.onDropdownToggle(open)"
+>
+    <button
+        type="button"
+        class="btn toolbar-action--button"
+        data-uib-dropdown-toggle
+        aria-pressed="false"
+    >
+        <span class="hyicon hyicon-pageinfo se-toolbar-menu-ddlb--button__icon"></span>
+        <div class="se-toolbar-page-info-wrapper">
+            <span class="toolbar-action-button__txt">{{ $ctrl.actionItem.name | translate}}</span>
+        </div>
+    </button>
+
+    <div data-uib-dropdown-menu class="se-page-info__dropdown-menu toolbar-action--include">
+        <div class="se-page-info-menu" ng-if="$ctrl.actionItem.isOpen">
+            <div class="se-page-info-menu__header">
+                <span
+                    class="se-page-info-menu__header-title"
+                    data-translate="se.cms.pageinfo.information.title"
+                ></span>
+                <div data-has-operation-permission="$ctrl.editPagePermission">
+                    <button
+                        class="se-page-info__edit-btn fd-button--compact"
+                        data-ng-if="$ctrl.isComponentReady"
+                        data-translate="se.cms.contextmenu.title.edit"
+                        data-ng-click="$ctrl.onEditPageClick()"
+                    ></button>
+                </div>
+            </div>
+            <div data-ng-if="$ctrl.isComponentReady" class="se-page-info-menu__body fe_page_scroll">
+                <se-generic-editor
+                    [smartedit-component-id]="$ctrl.pageInfo.uid"
+                    [smartedit-component-type]="$ctrl.pageInfo.typeCode"
+                    [structure]="$ctrl.pageStructure"
+                    [content]="$ctrl.pageInfo"
+                >
+                </se-generic-editor>
+            </div>
+        </div>
+    </div>
+</div>

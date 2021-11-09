@@ -1,0 +1,40 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+#
+#	ImpEx for Apparel DE Site Email CMS Content
+#
+
+$contentCatalog=apparel-deContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$lang=de
+
+# CMS Image Components
+INSERT_UPDATE CMSImageComponent;$contentCV[unique=true];uid[unique=true];name
+;;EmailBannerSaleNowOnImage;EmailBannerSaleNowOnImage
+;;EmailBannerFreeDeliveryImage;EmailBannerFreeDeliveryImage
+;;EmailSiteLogoImage;Email Site Logo Image;
+
+#%import de.hybris.platform.apparelstore.setup.ApparelStoreSystemSetup
+#%impex.enableCodeExecution(true)
+#%impex.enableExternalSyntaxParsing(true)
+#%impex.includeExternalData(ApparelStoreSystemSetup.class.getResourceAsStream("/apparelstore/import/sampledata/contentCatalogs/email-paragraphs.impex"), "utf-8", 0, 0);;
+
+# Content Slots
+UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV)
+;;CustomerRegistrationEmailTopSlot;EmailBannerSaleNowOnImage,CustomerRegistrationEmailBody
+;;DeliverySentEmailTopSlot;EmailBannerSaleNowOnImage,DeliverySentEmailBody
+;;ForgottenPasswordEmailTopSlot;EmailBannerSaleNowOnImage,ForgottenPasswordEmailBody
+;;NotPickedUpConsignmentCanceledEmailTopSlot;EmailBannerSaleNowOnImage,NotPickedUpConsignmentCanceledEmailBody
+;;OrderCancelledEmailTopSlot;EmailBannerSaleNowOnImage,OrderCancelledEmailBody
+;;OrderCollectionReminderEmailTopSlot;EmailBannerSaleNowOnImage,OrderCollectionReminderEmailBody
+;;OrderConfirmationEmailTopSlot;EmailBannerSaleNowOnImage,OrderConfirmationEmailBody
+;;OrderMoveToCsEmailTopSlot;EmailBannerSaleNowOnImage,OrderMoveToCsEmailBody
+;;OrderPartiallyCanceledEmailTopSlot;EmailBannerSaleNowOnImage,OrderPartiallyCanceledEmailBody
+;;OrderPartiallyRefundedEmailTopSlot;EmailBannerSaleNowOnImage,OrderPartiallyRefundedEmailBody
+;;OrderRefundEmailTopSlot;EmailBannerSaleNowOnImage,OrderRefundEmailBody
+;;QuoteBuyerCancellationEmailTopSlot;EmailBannerSaleNowOnImage,QuoteBuyerCancellationEmailBody
+;;QuoteBuyerSubmissionEmailTopSlot;EmailBannerSaleNowOnImage,QuoteBuyerSubmissionEmailBody
+;;QuoteExpiredEmailTopSlot;EmailBannerSaleNowOnImage,QuoteExpiredEmailBody
+;;QuoteToExpireSoonEmailTopSlot;EmailBannerSaleNowOnImage,QuoteToExpireSoonEmailBody
+;;EmailBottomSlot;EmailBannerFreeDeliveryImage

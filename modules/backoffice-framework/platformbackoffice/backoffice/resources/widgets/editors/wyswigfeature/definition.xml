@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<editor-definition id="com.hybris.cockpitng.editor.wysiwygfeature"
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/editor-definition.xsd">
+
+	<name>Wysiwyg Feature Editor</name>
+	<description>Feature Editor with support for using Wysiwyg editor for text</description>
+	<type>Feature</type>
+	<editorClassName>de.hybris.platform.platformbackoffice.classification.editor.WysiwygFeatureEditor</editorClassName>
+
+</editor-definition>

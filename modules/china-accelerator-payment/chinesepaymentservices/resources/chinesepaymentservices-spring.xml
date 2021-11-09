@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/aop
+			http://www.springframework.org/schema/aop/spring-aop.xsd
+			http://www.springframework.org/schema/util
+			http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<bean id="chineseStockLevelReservationHistoryEntryDao" class="de.hybris.platform.chinesepaymentservices.stocklevel.dao.impl.ChineseStockLevelReservationHistoryEntryDao">
+		<property name="flexibleSearchService" ref="flexibleSearchService"></property>
+	</bean>
+	
+	<bean id="chineseStockLevelReservationHistoryEntryService" class="de.hybris.platform.chinesepaymentservices.stocklevel.impl.ChineseStockLevelReservationHistoryEntryService">
+		<property name="chineseStockLevelReservationHistoryEntryDao" ref="chineseStockLevelReservationHistoryEntryDao"></property>
+	</bean>
+	
+	<util:map id="chinesePaymentServicesMap" key-type="java.lang.String" value-type="de.hybris.platform.chinesepaymentservices.payment.ChinesePaymentService" map-class="java.util.HashMap"/>
+	
+	<alias name="defaultChinesePaymentServicesStrategy" alias="chinesePaymentServicesStrategy"/>
+	<bean id="defaultChinesePaymentServicesStrategy" class="de.hybris.platform.chinesepaymentservices.checkout.strategies.impl.DefaultChinesePaymentServicesStrategy">
+		<property name="chinesePaymentServicesMap" ref="chinesePaymentServicesMap"/>
+	</bean>
+	
+	<bean id="chineseCheckoutService" class="de.hybris.platform.chinesepaymentservices.checkout.impl.DefaultChineseCheckoutService">
+		<!-- deprecated since 1905 -->
+		<property name="stockService" ref="stockService" ></property>
+		<property name="productService" ref="productService"></property>
+		<property name="modelService" ref="modelService"></property>
+		<property name="baseStoreService" ref="baseStoreService"></property>
+		<property name="defaultWarehouseSelectionStrategy" ref="defaultWarehouseSelectionStrategy"></property>
+		<property name="checkoutCustomerStrategy" ref="checkoutCustomerStrategy"></property>
+		<property name="chineseStockLevelReservationHistoryEntryService" ref="chineseStockLevelReservationHistoryEntryService"></property>
+		<property name="chineseOrderDao" ref="chineseOrderDao"></property>
+	</bean>
+			
+	
+	<bean id="chineseCommercePlaceOrderMethodHook" class="de.hybris.platform.chinesepaymentservices.order.ChineseCommercePlaceOrderMethodHook">		
+		<property name="modelService" ref="modelService"></property>
+	</bean>
+
+	<bean id="chinesepaymentCommercePlaceOrderMethodHooksListMergeDirective" depends-on="commercePlaceOrderMethodHooks" parent="listMergeDirective">
+    	<property name="add" ref="chineseCommercePlaceOrderMethodHook"/>
+	</bean>
+
+	<bean id="chineseOrderDao" class="de.hybris.platform.chinesepaymentservices.order.dao.impl.DefaultChineseOrderDao" parent="orderDao">
+	</bean>
+	
+	<bean id="chineseOrderService" class="de.hybris.platform.chinesepaymentservices.order.service.impl.DefaultChineseOrderService" parent="defaultOrderService">
+		<property name="chineseOrderDao" ref="chineseOrderDao"></property>
+		<!-- deprecated since 1905 -->
+		<property name="configurationService" ref="configurationService" ></property>
+		<property name="chineseCheckoutService" ref="chineseCheckoutService"></property>
+		<property name="chinesePaymentServicesStrategy" ref="chinesePaymentServicesStrategy"></property>
+	</bean>
+
+	<alias name="chineseCheckAuthorizeOrderPaymentAction" alias="checkAuthorizeOrderPaymentAction"/>
+	<bean id="chineseCheckAuthorizeOrderPaymentAction" class="de.hybris.platform.chinesepaymentservices.action.order.ChineseCheckAuthorizeOrderPaymentAction"/>
+	
+	<alias name="chineseTakePaymentAction" alias="takePaymentAction"/>
+	<bean id="chineseTakePaymentAction" class="de.hybris.platform.chinesepaymentservices.action.order.ChineseTakePaymentAction">
+	</bean>
+	
+	<alias name="chineseFraudCheckOrderInternalAction" alias="fraudCheckOrderInternalAction"/>
+	<bean id="chineseFraudCheckOrderInternalAction" class="de.hybris.platform.chinesepaymentservices.action.order.ChineseFraudCheckOrderInternalAction">
+	</bean>
+</beans>

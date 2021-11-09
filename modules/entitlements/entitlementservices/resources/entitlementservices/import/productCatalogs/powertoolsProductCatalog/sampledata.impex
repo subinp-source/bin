@@ -1,0 +1,18 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+# ImpEx for Importing Entitlements
+
+# Macros / Replacement Parameter definitions
+$productCatalog=powertoolsProductCatalog
+
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default=Staged])[unique=true,default=$productCatalog:Staged]
+
+INSERT_UPDATE Entitlement;id[unique=true]
+;care_pack
+;extra_battery_pack
+
+INSERT_UPDATE ProductEntitlement;id[unique=true];entitlement(id);subscriptionProduct(code, $catalogVersion);quantity;timeUnit(code);timeUnitStart;timeUnitDuration;$catalogVersion
+;care_pack_4567162;care_pack;4567162;;month;1;24;
+;extra_battery_pack_3791317;extra_battery_pack;3791317;1

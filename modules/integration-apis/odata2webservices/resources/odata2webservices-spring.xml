@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+  -->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="defaultODataFacade" class="de.hybris.platform.odata2webservices.odata.impl.DefaultODataFacade">
+        <property name="ODataServiceFactory" ref="oDataServiceFactory"/>
+        <property name="edmxProviderValidator" ref="oDataEdmxProviderValidator"/>
+        <property name="integrationObjectMetadataPermissionService" ref="integrationObjectMetadataPermissionService"/>
+    </bean>
+    
+    <alias name="oDataFacadeMonitoringPersistenceProxy" alias="oDataWebMonitoringFacade"/>
+    <bean id="oDataFacadeMonitoringPersistenceProxy"
+          class="de.hybris.platform.odata2webservices.odata.ODataFacadeMonitoringPersistenceProxy">
+        <property name="inboundServicesConfiguration" ref="inboundServicesConfiguration"/>
+        <property name="oDataFacade" ref="defaultODataFacade"/>
+        <property name="mediaPersistenceService" ref="integrationServicesMediaPersistenceService"/>
+        <property name="userService" ref="userService"/>
+        <property name="inboundRequestService" ref="oDataInboundRequestService"/>
+        <property name="requestEntityExtractor" ref="oDataRequestEntityExtractor"/>
+        <property name="responseEntityExtractor" ref="oDataResponseEntityExtractor"/>
+    </bean>
+
+    <alias name="defaultHttpServletRequestToOdataRequestConverter" alias="oDataWebServletToOdataRequestConverter"/>
+    <bean name="defaultHttpServletRequestToOdataRequestConverter"
+          class="de.hybris.platform.odata2webservices.converter.HttpServletRequestToODataRequestConverter"/>
+
+    <alias name="defaultResponseToResponseEntityConverter" alias="oDataResponseToResponseEntityConverter"/>
+    <bean id="defaultResponseToResponseEntityConverter"
+          class="de.hybris.platform.odata2webservices.converter.ODataResponseToResponseEntityConverter">
+    </bean>
+
+    <bean id="httpServletRequestToODataContextConverter"
+          class="de.hybris.platform.odata2webservices.converter.HttpServletRequestToODataContextConverter">
+        <property name="ODataContextGenerator" ref="oDataContextGenerator"/>
+        <property name="requestConverter" ref="oDataWebServletToOdataRequestConverter"/>
+    </bean>
+
+    <alias name="defaultIntegrationDataFacade" alias="integrationDataFacade"/>
+    <bean id="defaultIntegrationDataFacade"
+          class="de.hybris.platform.odata2webservices.facade.impl.DefaultIntegrationDataFacade">
+        <property name="oDataFacade" ref="oDataWebMonitoringFacade"/>
+        <property name="httpServletRequestToODataContextConverter" ref="httpServletRequestToODataContextConverter"/>
+        <property name="oDataResponseToResponseEntityConverter" ref="oDataResponseToResponseEntityConverter"/>
+    </bean>
+
+    <bean id="inboundChannelConfigurationSystemUpdater"
+          class="de.hybris.platform.odata2webservices.update.InboundChannelConfigurationSystemUpdater">
+        <constructor-arg name="modelService" ref = "modelService" />
+        <constructor-arg name="flexibleSearchService" ref = "flexibleSearchService" />
+        <constructor-arg name="inboundServicesConfiguration" ref = "inboundServicesConfiguration" />
+    </bean>
+
+</beans>

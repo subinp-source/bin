@@ -1,0 +1,19 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+# you can put key/value pairs here.
+# Use Config.getParameter(..) to retrieve the values during runtime.
+
+# Specifies the location of the spring context file added automatically to the global platform application context.
+cmsoccaddon.application-context=cmsoccaddon-spring.xml
+
+# Specifies the location of the spring context file which will be added to commerce web services web context
+ycommercewebservices.additionalWebSpringConfigs.cmsoccaddon=classpath:/cmsoccaddon/web/spring/cmsoccaddon-web-spring.xml
+
+#Use for generating static swagger documentation
+cmsoccaddon.documentation.static.generate=true
+ext.cmsoccaddon.extension.webmodule.webroot=/rest/v2
+
+webservicescommons.resthandlerexceptionresolver.CMSItemNotFoundException.status=404
+webservicescommons.resthandlerexceptionresolver.CMSItemNotFoundException.logstack=false

@@ -1,0 +1,13 @@
+<div class="search">
+    <input
+        #searchInput
+        type="search"
+        class="search__input"
+        [disabled]="isDisabled"
+        [readOnly]="isReadOnly"
+        [placeholder]="placeholder"
+        [ngModel]="search"
+        (ngModelChange)="onChange($event)"
+        (keyup)="onKeyup($event)"
+    />
+</div>

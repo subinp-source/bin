@@ -1,0 +1,15 @@
+################################################################
+# Set up Outbound Sync retry cleanup rule and jobs
+# ##############################################################
+INSERT_UPDATE AfterRetentionCleanupRule; code[unique = true]      ; retirementItemType(code); itemFilterExpression         ; actionReference          ; retentionTimeSeconds; retirementDateAttribute(enclosingType(code), qualifier)
+                                       ; outboundRetryCleanupRule ; OutboundSyncRetry       ; {remainingSyncAttempts} <= 0 ; basicRemoveCleanupAction ; 604800              ; OutboundSyncRetry:modifiedtime
+
+INSERT_UPDATE RetentionJob; code[unique = true]     ; retentionRule(code)      ; batchSize
+                          ; outboundRetryCleanupJob ; outboundRetryCleanupRule ; 100
+
+INSERT_UPDATE CronJob; code[unique = true]         ; job(code)               ; sessionLanguage(isoCode)[default = en]
+                     ; outboundRetryCleanupCronJob ; outboundRetryCleanupJob ;
+
+# CronJob Triggers set to run every day at midnight
+INSERT_UPDATE Trigger; cronJob(code)[unique = true]; cronExpression
+                     ; outboundRetryCleanupCronJob ; 0 0 0 * * ?

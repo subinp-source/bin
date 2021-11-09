@@ -1,0 +1,11 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+# Do not translate; Do not translate; To be translated; To be translated;
+# ImpEx for Importing English Localisations for the personalizationservices;;;;
+$lang=ko
+
+UPDATE MaxConstraint;id[unique = true];message[lang = $lang]
+#% beforeEach: de.hybris.platform.personalizationservices.configuration.ImpexConfigService.ignoreIfLanguageIsMissing(line, "$lang");
+;cxOccTTLMaxTime;개인 설정 계산 유효 기간은 일년(ms)(31536000000)을 초과할 수 없습니다.

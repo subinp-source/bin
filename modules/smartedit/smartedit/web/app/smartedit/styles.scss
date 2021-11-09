@@ -1,0 +1,34 @@
+@import './styling/inner/styling.css';
+
+// Sets global font size in order for fd-type mixin to work within Smartedit. Do Not Remove!!!
+html {
+    font-size: $fd-font-size;
+}
+
+#smarteditoverlay {
+    height: initial;
+    font-family: $font-sap !important;
+
+    @import '../vendor/styles';
+
+    a {
+        display: initial;
+    }
+
+    h1,
+    h2,
+    h3 {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+    }
+}
+
+.owl-prev::before,
+.owl-next::before,
+.carousel__item--name::after {
+    display: none;
+}
+
+.carousel__item--name::before {
+    background-color: transparent !important;
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<!--
+	ATTENTION: This is just an example file. You have to edit it according to your needs.
+-->
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
+
+	<bean class="de.hybris.platform.customercouponfacades.customercoupon.data.CustomerCouponData" 
+	extends = "de.hybris.platform.commercefacades.coupon.data.CouponData">
+		<property name="status" type="java.lang.String"/>
+		<property name="description" type="java.lang.String"/>
+		<property name="notificationOn" type="boolean"/>
+		<property name="productUrl" type="java.lang.String"/>
+		<property name="solrFacets" type="java.lang.String" deprecated="true"/>
+		<property name="allProductsApplicable" type="boolean"/>
+	</bean>
+	
+	<enum class="de.hybris.platform.customercouponfacades.emums.AssignCouponResult">
+		<value>SUCCESS</value>
+		<value>ASSIGNED</value>
+		<value>INEXISTENCE</value>
+	</enum>
+	
+	<bean class="de.hybris.platform.customercouponfacades.customercoupon.data.CustomerCouponSearchPageData">
+		<property name="coupons" type="java.util.List&lt;de.hybris.platform.customercouponfacades.customercoupon.data.CustomerCouponData>"/>
+		<property name="sorts" type="java.util.List&lt;de.hybris.platform.core.servicelayer.data.SortData>"/>
+		<property name="pagination" type="de.hybris.platform.core.servicelayer.data.PaginationData"/>
+	</bean>
+	
+	<bean class="de.hybris.platform.customercouponfacades.customercoupon.data.CustomerCouponNotificationData">
+		<property name="coupon" type="de.hybris.platform.customercouponfacades.customercoupon.data.CustomerCouponData"/>
+		<property name="customer" type="de.hybris.platform.commercefacades.user.data.CustomerData"/>
+		<property name="status" type="java.lang.String"/>
+	</bean>
+
+</beans>

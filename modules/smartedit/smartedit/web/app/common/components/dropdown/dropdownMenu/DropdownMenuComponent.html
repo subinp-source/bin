@@ -1,0 +1,22 @@
+<fd-popover
+    [triggers]="[]"
+    [closeOnOutsideClick]="false"
+    [isOpen]="isOpen"
+    [placement]="placement || 'bottom-end'"
+    class="se-dropdown-more-menu"
+>
+    <fd-popover-control>
+        <div #toggleMenu class="sap-icon--overflow se-dropdown-more-menu__toggle"></div>
+    </fd-popover-control>
+    <fd-popover-body>
+        <fd-menu>
+            <ul fd-menu-list class="se-dropdown-menu__list">
+                <se-dropdown-menu-item
+                    *ngFor="let dropdownItem of clonedDropdownItems"
+                    [dropdownItem]="dropdownItem"
+                    [selectedItem]="selectedItem"
+                ></se-dropdown-menu-item>
+            </ul>
+        </fd-menu>
+    </fd-popover-body>
+</fd-popover>

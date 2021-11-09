@@ -1,0 +1,22 @@
+/* Tree */
+.yw-integrationbackoffice-editor-tree .z-treecol {
+    height: 54px;
+    background: white;
+    padding-left: 15px;
+}
+
+.yw-integrationbackoffice-editor-tree .z-treecol-content {
+    color: #151c22;
+    font-size: 14px;
+}
+
+.yw-integrationbackoffice-editor-tree .z-treecell {
+    height: 45px;
+    padding-left: 15px;
+    border-bottom: 1px solid #d5d8dc;
+}
+
+.yw-integrationbackoffice-editor-tree .z-treecols-bar {
+    background: white;
+    border: none;
+}

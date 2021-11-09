@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
+
+	<enum class="de.hybris.platform.cmscockpit.session.script.ScriptGroup">
+		<value>LIVEEDIT,LIVEEDIT_SCRIPT_FILE</value>
+	</enum>
+	
+	<bean class="de.hybris.platform.cmscockpit.session.impl.FrontendAttributes" />
+
+</beans>

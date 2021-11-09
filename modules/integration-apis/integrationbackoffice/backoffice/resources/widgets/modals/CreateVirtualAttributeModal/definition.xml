@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<widget-definition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widget-definition.xsd"
+                   id="de.hybris.platform.integrationbackoffice.widgets.CreateVirtualAttributeModal">
+    <name>Create Virtual Attribute Modal</name>
+    <description>Window for the fields to define when creating a virtual attribute</description>
+    <defaultTitle>Create Virtual Attribute Modal</defaultTitle>
+    <author>Hybris</author>
+    <version>1.0</version>
+    <view src="CreateVirtualAttributeModal.zul"/>
+    <keywords>
+        <keyword>CreateVirtualAttributeModal</keyword>
+    </keywords>
+    <controller
+            class="de.hybris.platform.integrationbackoffice.widgets.modals.controllers.CreateVirtualAttributeModalController"/>
+    <sockets>
+        <input id="openVirtualAttributeModelEvent" type="java.util.List"/>
+        <output id="createButtonClick"
+                type="de.hybris.platform.integrationbackoffice.widgets.modals.data.CreateVirtualAttributeModalData"/>
+    </sockets>
+</widget-definition>

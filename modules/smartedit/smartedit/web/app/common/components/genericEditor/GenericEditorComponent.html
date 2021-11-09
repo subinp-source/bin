@@ -1,0 +1,62 @@
+<ng-template
+    let-state
+    [formBuilder]="{schema$: editor.schema$, data$: editor.data$}"
+    (stateCreated)="setFormState($event)"
+>
+    <div class="se-generic-editor">
+        <se-generic-editor-breadcrumb></se-generic-editor-breadcrumb>
+        <ng-container *ngIf="state; else noSupport">
+            <form
+                novalidate
+                #nativeForm
+                class="no-enter-submit se-generic-editor__form"
+                [contentManager]="{onSave: editor.submit$}"
+                (onSuccess)="editor.onSuccess($event)"
+                (onError)="editor.onFailure($event)"
+            >
+                <div class="modal-header se-generic-editor__header" *ngIf="modalHeaderTitle">
+                    <h4 class="modal-title">{{modalHeaderTitle| translate}}</h4>
+                </div>
+
+                <div class="se-generic-editor__body">
+                    <ng-template [formRenderer]="state.group"></ng-template>
+                </div>
+
+                <div
+                    class="se-generic-editor__footer modal-footer"
+                    *ngIf="editor && showCommands()"
+                >
+                    <button
+                        fd-button
+                        id="cancel"
+                        type="button"
+                        options="light"
+                        *ngIf="showCancel()"
+                        (click)="_reset()"
+                    >
+                        {{editor.cancelButtonText | translate}}
+                    </button>
+                    <button
+                        fd-button
+                        id="submit"
+                        name="submit"
+                        options="emphasized"
+                        *ngIf="showSubmit()"
+                        [seSubmitBtn]="editor.isSubmitDisabled"
+                    >
+                        {{editor.submitButtonText | translate}}
+                    </button>
+                </div>
+            </form>
+        </ng-container>
+        <ng-template #noSupport>
+            <div class="se-generic-editor__body">
+                <se-message type="info" id="GenericEditor.NoEditingSupportDisclaimer">
+                    <ng-container se-message-description>
+                        {{ 'se.editor.notification.editing.not.supported' | translate }}
+                    </ng-container>
+                </se-message>
+            </div>
+        </ng-template>
+    </div>
+</ng-template>

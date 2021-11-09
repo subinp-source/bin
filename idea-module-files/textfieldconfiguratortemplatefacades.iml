@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="OOTB" importedAsReadOnly="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../modules/text-field-configurator-template/textfieldconfiguratortemplatefacades/lib" recursive="true" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="commercefacades" exported="" />
+    <orderEntry type="module" module-name="commerceservices" exported="" />
+    <orderEntry type="module" module-name="platform" exported="" />
+    <orderEntry type="module" module-name="textfieldconfiguratortemplateservices" exported="" />
+  </component>
+</module>

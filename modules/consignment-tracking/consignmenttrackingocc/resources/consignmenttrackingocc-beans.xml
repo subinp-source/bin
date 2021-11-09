@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
+
+<bean class="de.hybris.platform.consignmenttrackingocc.dto.consignmenttracking.ConsignmentTrackingWsDTO">
+		<description>Consignment tracking data</description>
+		<hints>
+		    <hint name="wsRelated"/>
+		    <hint name="alias">consignmentTracking</hint>
+		</hints>
+        <property name="statusDisplay" type="String">
+        	<description>Consignment status</description>
+        	<hints> 			
+    			<hint name="example">inTransit</hint>
+            </hints>
+        </property>
+        <property name="carrierDetails" type="de.hybris.platform.consignmenttrackingocc.dto.consignmenttracking.CarrierWsDTO">
+        	<description>Carrier details</description>
+        </property>
+        <property name="trackingID" type="String">
+        	<description>Tracking identifier</description>
+        </property>
+        <property name="trackingUrl" type="String">
+        	<description>The tracking url provided by the carrier</description>
+        </property>
+		<property name="targetArrivalDate" type="java.util.Date">
+			<description>Target arrival date</description>
+		</property>
+		<property name="trackingEvents"
+		          type="java.util.List&lt;de.hybris.platform.consignmenttrackingocc.dto.consignmenttracking.ConsignmentTrackingEventDataWsDTO>">
+			<description>Logistics tracking information</description>
+		</property>
+		          
+	</bean>
+
+	<bean class="de.hybris.platform.consignmenttrackingocc.dto.consignmenttracking.CarrierWsDTO">
+		<description>Carrier</description>
+	    <hints>
+		    <hint name="wsRelated"/>
+		    <hint name="alias">carrier</hint>
+		</hints>
+		<property name="code" type="String">
+			<description>Carrier code</description>
+		</property>
+		<property name="name" type="String">
+			<description>Carrier name</description>
+		</property>		
+	</bean>
+	
+	<bean class="de.hybris.platform.consignmenttrackingocc.dto.consignmenttracking.ConsignmentTrackingEventDataWsDTO">
+		<description>Consignment tracking event</description>
+	    <hints>
+		    <hint name="wsRelated"/>
+		    <hint name="alias">consignmentTrackingEvent</hint>
+		</hints>
+		<property name="eventDate" type="java.util.Date">
+			<description>Date of tracking event</description>
+		</property>
+		<property name="detail" type="String">
+			<description>Tracking detail</description>
+		</property>
+		<property name="location" type="String">
+			<description>Consignment location</description>
+		</property>
+		<property name="referenceCode" type="String">	
+			<description>Logistics status</description>
+		</property>		
+	</bean>
+
+</beans>

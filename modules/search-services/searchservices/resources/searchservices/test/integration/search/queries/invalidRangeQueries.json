@@ -1,0 +1,85 @@
+[
+	{
+		"testId": 1,
+		"description": "'range' query without expression",
+		"data": {
+			"type": "range",
+			"from": 0,
+			"includeFrom": true,
+			"to": 0,
+			"includeTo": true
+		}
+	},
+	{
+		"testId": 2,
+		"description": "'range' query with empty expression",
+		"data": {
+			"type": "range",
+			"expression": "",
+			"from": 0,
+			"includeFrom": true,
+			"to": 0,
+			"includeTo": true
+		}
+	},
+	{
+		"testId": 3,
+		"description": "'range' query with not allowed expression",
+		"data": {
+			"type": "range",
+			"expression": "-$!#-",
+			"from": 2,
+			"includeFrom": true,
+			"to": 2,
+			"includeTo": true
+		}
+	},
+	{
+		"testId": 4,
+		"description": "'range' query with not existing expression",
+		"data": {
+			"type": "range",
+			"expression": "notExisting",
+			"from": 2,
+			"includeFrom": true,
+			"to": 2,
+			"includeTo": true
+		}
+	},
+	{
+		"testId": 5,
+		"description": "'range' query with STRING expression",
+		"data": {
+			"type": "range",
+			"expression": "field_string",
+			"from": 0,
+			"includeFrom": true,
+			"to": 0,
+			"includeTo": true
+		}
+	},
+	{
+		"testId": 6,
+		"description": "'range' query with TEXT expression",
+		"data": {
+			"type": "range",
+			"expression": "field_text",
+			"from": 0,
+			"includeFrom": true,
+			"to": 0,
+			"includeTo": true
+		}
+	},
+	{
+		"testId": 7,
+		"description": "'range' query with BOOLEAN expression",
+		"data": {
+			"type": "range",
+			"expression": "field_boolean",
+			"from": 0,
+			"includeFrom": true,
+			"to": 0,
+			"includeTo": true
+		}
+	}
+]

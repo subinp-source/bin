@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+
+<widget-definition id="de.hybris.platform.integrationbackoffice.widgets.RegisterIOWithBasicCredential"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widget-definition.xsd">
+
+    <name>Register Integration Object With Basic Credential</name>
+    <defaultTitle>Register Integration Object With Basic Credential</defaultTitle>
+    <author>hybris</author>
+    <version>0.1</version>
+    <sockets>
+        <input id="iccBasic"  type="de.hybris.platform.inboundservices.model.InboundChannelConfigurationModel"/>
+        <output id="iccBasicOutput" type="java.lang.Object"/>
+    </sockets>
+
+    <view src="RegisterIOWithBasicCredential.zul"/>
+    <controller class="de.hybris.platform.integrationbackoffice.widgets.authentication.registration.RegisterIntegrationObjectWithBasicCredentialController"/>
+
+</widget-definition>

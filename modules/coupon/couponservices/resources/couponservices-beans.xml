@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
+
+	<bean class="de.hybris.platform.couponservices.rao.CouponRAO" template="resources/stdrao-template.vm">
+	    <property name="couponId" type="String" equals="true"/>
+		<property name="couponCode" type="String" equals="true"/>
+	</bean>
+	
+	<bean class="de.hybris.platform.ruleengineservices.rao.AbstractOrderRAO">
+		<property name="coupons" type="java.util.List&lt;de.hybris.platform.couponservices.rao.CouponRAO&gt;" />		
+	</bean>
+
+	<bean class="de.hybris.platform.couponservices.service.data.CouponResponse">
+		<property name="couponId" type="String" />
+		<property name="success" type="Boolean" />
+		<property name="message" type="String" />
+	</bean>
+
+	<bean class="de.hybris.platform.ruleengineservices.rao.AddCouponRAO" extends="de.hybris.platform.ruleengineservices.rao.AbstractRuleActionRAO" template="resources/stdrao-template.vm">
+	    <property name="couponId" type="String" equals="true"/>
+	</bean>
+
+	<enum class="de.hybris.platform.ruleengineservices.rao.providers.RAOProviderOption">
+		<value>EXPAND_COUPONS</value>
+	</enum>
+
+</beans>

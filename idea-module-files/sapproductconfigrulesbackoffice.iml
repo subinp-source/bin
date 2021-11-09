@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="OOTB" importedAsReadOnly="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigrulesbackoffice/lib" recursive="true" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/backoffice-framework/backoffice/web/webroot/WEB-INF/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../modules/backoffice-framework/backoffice/web/webroot/WEB-INF/lib" recursive="true" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/backoffice-framework/backoffice/web/webroot/WEB-INF/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="backoffice" exported="" />
+    <orderEntry type="module" module-name="platform" exported="" />
+    <orderEntry type="module" module-name="platformbackoffice" exported="" />
+    <orderEntry type="module" module-name="rulebuilderbackoffice" exported="" />
+    <orderEntry type="module" module-name="sapproductconfigrules" exported="" />
+    <orderEntry type="module" module-name="sapproductconfigservices" exported="" />
+  </component>
+</module>

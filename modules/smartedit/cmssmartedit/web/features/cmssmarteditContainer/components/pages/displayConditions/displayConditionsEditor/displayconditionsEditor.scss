@@ -1,0 +1,13 @@
+.se-edit-page-info-display-conditions__basic-info {
+    @include se-grid-columns(2);
+    margin-bottom: fd-space('s');
+}
+.se-edit-page-info__display-conditions {
+    margin-bottom: fd-space('s');
+}
+.se-display-conditions__replace-home-message {
+    padding-top: fd-space('xxs');
+}
+.se-control-label.se-display-conditions__home-page-label {
+    margin: 0 fd-space('base');
+}

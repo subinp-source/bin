@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="items.xsd">
+
+    <enumtypes>
+        <enumtype code="OutboundSource" dynamic="true">
+            <description>Indicates the source from where an outbound request is made.</description>
+            <value code="UNKNOWN"/>
+            <value code="OUTBOUNDSYNC"/>
+            <value code="WEBHOOKSERVICES"/>
+        </enumtype>
+    </enumtypes>
+
+    <itemtypes>
+        <itemtype code="OutboundRequest" extends="MonitoredRequest">
+            <deployment table="OutboundRequests" typecode="8406"/>
+            <attributes>
+                <attribute qualifier="destination" type="java.lang.String">
+                    <modifiers optional="false" read="true" initial="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="source" type="OutboundSource">
+                    <modifiers optional="true" read="true" initial="true"/>
+                    <defaultvalue>em().getEnumerationValue("OutboundSource", "unknown")</defaultvalue>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="error" type="java.lang.String">
+                    <modifiers optional="true" read="true" write="true"/>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <itemtype code="OutboundRequestMedia" extends="IntegrationApiMedia">
+            <description>Item that represents media specific for Outbound Integration APIs.
+                It extends IntegrationApiMedia type without adding any new attribute.
+            </description>
+        </itemtype>
+
+    </itemtypes>
+</items>

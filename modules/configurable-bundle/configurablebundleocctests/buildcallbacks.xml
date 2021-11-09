@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<project name="configurablebundleocctests_buildcallbacks">
+
+    <macrodef name="configurablebundleocctests_clean_classpath_file">
+        <sequential>
+            <copy file="${ext.configurablebundleocctests.path}/.classpath" tofile="${ext.configurablebundleocctests.path}/.classpath.edit"
+                  overwrite="true"
+                  failonerror="true">
+                <filterchain>
+                    <linecontainsregexp negate="true">
+                        <regexp pattern="^(\t\t\t\t|)$" />  <!-- added by script -->
+                    </linecontainsregexp>
+                </filterchain>
+            </copy>
+            <move file="${ext.configurablebundleocctests.path}/.classpath.edit" tofile="${ext.configurablebundleocctests.path}/.classpath"
+                  overwrite="true"
+                  failonerror="true" />
+        </sequential>
+    </macrodef>
+
+    <macrodef name="configurablebundleocctests_after_clean">
+        <sequential>
+            <echo level="info" message="Generating .classpath file for configurablebundleocctests" />
+            <create_extension_classpath_file extname="configurablebundleocctests" />
+            <configurablebundleocctests_clean_classpath_file />
+        </sequential>
+    </macrodef>
+
+    <macrodef name="configurablebundleocctests_importwstestdata">
+        <sequential>
+            <yrun>
+                de.hybris.platform.configurablebundleocctests.setup.BundleTestSetupUtils.loadExtensionDataInJunit();
+                de.hybris.platform.util.RedeployUtilities.shutdown();
+            </yrun>
+        </sequential>
+    </macrodef>
+</project>

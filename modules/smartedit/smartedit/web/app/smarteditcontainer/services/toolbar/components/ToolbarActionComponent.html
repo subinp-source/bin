@@ -1,0 +1,106 @@
+<div *ngIf="item.isPermissionGranted">
+    <div *ngIf="item.type == type.ACTION" class="toolbar-action">
+        <button
+            type="button"
+            [ngClass]="{
+                'toolbar-action--button--compact': isCompact,
+                'toolbar-action--button': !isCompact
+            }"
+            class="btn"
+            (click)="toolbar.triggerAction(item, $event)"
+            [attr.aria-pressed]="false"
+            [attr.aria-haspopup]="true"
+            [attr.aria-expanded]="false"
+            id="{{toolbar.toolbarName}}_option_{{item.key}}_btn"
+        >
+            <span
+                *ngIf="item.iconClassName"
+                id="{{toolbar.toolbarName}}_option_{{item.key}}_btn_iconclass"
+                class="{{item.iconClassName}}"
+                [ngClass]="{ 'se-toolbar-actions__icon': isCompact }"
+            ></span>
+            <img
+                *ngIf="!item.iconClassName && item.icons"
+                id="{{toolbar.toolbarName}}_option_{{item.key}}"
+                src="{{toolbar.imageRoot}}{{item.icons[0]}}"
+                class="file"
+                title="{{item.name | translate}}"
+                alt="{{item.name | translate}}"
+            />
+            <span
+                *ngIf="!isCompact"
+                class="toolbar-action-button__txt"
+                id="{{toolbar.toolbarName}}_option_{{item.key}}_btn_lbl"
+                >{{item.name | translate}}</span
+            >
+        </button>
+    </div>
+    <fd-popover
+        class="se-toolbar-action__wrapper toolbar-action toolbar-action--hybrid"
+        *ngIf="item.type === type.HYBRID_ACTION"
+        [attr.data-item-key]="item.key"
+        [triggers]="['click']"
+        [noArrow]="false"
+        [isOpen]="item.isOpen"
+        (isOpenChange)="onOpenChange()"
+        [placement]="placement"
+        seClickOutside
+        (clickOutside)="onOutsideClicked()"
+    >
+        <fd-popover-control>
+            <button
+                *ngIf="item.iconClassName || item.icons"
+                type="button"
+                class="btn"
+                [ngClass]="{
+                    'toolbar-action--button--compact': isCompact,
+                    'toolbar-action--button': !isCompact
+                }"
+                [disabled]="disabled"
+                [attr.aria-pressed]="false "
+                (click)="toolbar.triggerAction(item, $event)"
+            >
+                <span
+                    *ngIf="item.iconClassName"
+                    class="{{item.iconClassName}}"
+                    [ngClass]="{ 'se-toolbar-actions__icon': isCompact }"
+                ></span>
+                <img
+                    *ngIf="!item.iconClassName && item.icons"
+                    id="{{toolbar.toolbarName}}_option_{{item.key}}"
+                    src="{{toolbar.imageRoot}}{{item.icons[0]}}"
+                    class="file"
+                    title="{{item.name | translate}}"
+                    alt="{{item.name | translate}}"
+                />
+                <span *ngIf="!isCompact" class="toolbar-action-button__txt"
+                    >{{item.name | translate}}</span
+                >
+            </button>
+        </fd-popover-control>
+        <fd-popover-body
+            class="se-toolbar-action__body"
+            [ngClass]="{
+                'toolbar-action--include--compact': isCompact,
+                'toolbar-action--include': !isCompact
+              
+            }"
+        >
+            <!-- AngularJS-->
+
+            <div
+                *ngIf="toolbar.getItemVisibility(item) && item.include"
+                [ngInclude]="item.include"
+                [scope]="{ item: item }"
+                [compileHtmlNgController]="legacyController"
+            ></div>
+
+            <!-- Angular-->
+
+            <ng-container *ngIf="toolbar.getItemVisibility(item) && item.component">
+                <ng-container *ngComponentOutlet="item.component; injector: actionInjector">
+                </ng-container>
+            </ng-container>
+        </fd-popover-body>
+    </fd-popover>
+</div>

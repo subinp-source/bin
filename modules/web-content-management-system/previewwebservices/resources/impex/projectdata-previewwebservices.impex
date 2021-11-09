@@ -1,0 +1,7 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+
+UPDATE Employee;UID[unique=true];groups(uid)[mode=append];
+;cmsmanager;previewmanagergroup,cmsmanagergroup;

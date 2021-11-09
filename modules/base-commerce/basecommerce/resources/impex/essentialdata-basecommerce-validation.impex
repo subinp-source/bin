@@ -1,0 +1,22 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+
+INSERT_UPDATE FutureConstraint;active[allownull=true];descriptor(enclosingType(code),qualifier);id[unique=true,allownull=true];qualifier;severity(code,itemtype(code));target;type(code)
+;true;Campaign:endDate;campaignEndDate;endDate;ERROR:Severity;de.hybris.platform.campaigns.model.CampaignModel;Campaign
+
+INSERT_UPDATE NotEmptyConstraint;active[allownull=true];descriptor(enclosingType(code),qualifier);id[unique=true,allownull=true];qualifier;severity(code,itemtype(code));target;type(code)
+;true;Campaign:code;campaignCodeNotEmpty;code;ERROR:Severity;de.hybris.platform.campaigns.model.CampaignModel;Campaign
+
+INSERT_UPDATE DynamicConstraint;active[allownull=true];id[unique=true,allownull=true];language(code);expression;severity(code,itemtype(code));target;type(code);annotation
+;true;campaignDateDiffConstraint;BEANSHELL;"return getEndDate() == null || getStartDate() == null || getEndDate().after(getStartDate());";ERROR:Severity;de.hybris.platform.campaigns.model.CampaignModel;Campaign;de.hybris.platform.validation.annotations.Dynamic
+
+INSERT_UPDATE SizeConstraint;descriptor(enclosingType(code),qualifier);id[unique=true,allownull=true];max[allownull=true];min[allownull=true];qualifier[allownull=true];severity(code,itemtype(code));target[allownull=true];type(code)
+;Campaign:code;campaignCodeMinLength;255;2;code;ERROR:Severity;de.hybris.platform.campaigns.model.CampaignModel;Campaign

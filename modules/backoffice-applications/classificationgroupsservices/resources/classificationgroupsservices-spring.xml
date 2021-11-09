@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<alias name="defaultClassFeatureGroupAssignmentIndexHandler"
+		   alias="classFeatureGroupAssignmentIndexHandler"/>
+	<bean id="defaultClassFeatureGroupAssignmentIndexHandler"
+		  class="com.hybris.classificationgroupsservices.handlers.ClassFeatureGroupAssignmentIndexHandler"/>
+
+	<alias name="defaultClassFeatureGroupAssignmentFullQualifierHandler"
+		   alias="classFeatureGroupAssignmentFullQualifierHandler"/>
+	<bean id="defaultClassFeatureGroupAssignmentFullQualifierHandler"
+		  class="com.hybris.classificationgroupsservices.handlers.ClassFeatureGroupAssignmentFullQualifierHandler"/>
+
+	<alias name="defaultClassificationClassCreateInheritedFeatureGroupAssignmentPrepareInterceptor"
+		   alias="classificationClassCreateInheritedFeatureGroupAssignmentPrepareInterceptor"/>
+	<bean name="defaultClassificationClassCreateInheritedFeatureGroupAssignmentPrepareInterceptor"
+		  class="com.hybris.classificationgroupsservices.interceptors.classificationclass.ClassificationClassCreateInheritedFeatureGroupAssignmentPrepareInterceptor">
+		<property name="classFeatureGroupAssignmentService" ref="classFeatureGroupAssignmentService"/>
+		<property name="modelService" ref="modelService"/>
+	</bean>
+	<alias name="defaultClassificationClassCreateInheritedFeatureGroupAssignmentPrepareInterceptorMapping"
+		   alias="classificationClassCreateInheritedFeatureGroupAssignmentPrepareInterceptorMapping"/>
+	<bean id="defaultClassificationClassCreateInheritedFeatureGroupAssignmentPrepareInterceptorMapping"
+		  class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="classificationClassCreateInheritedFeatureGroupAssignmentPrepareInterceptor"/>
+		<property name="typeCode"
+				  value="#{T(de.hybris.platform.catalog.model.classification.ClassificationClassModel)._TYPECODE}"/>
+		<property name="order" value="#{T(org.springframework.core.Ordered).LOWEST_PRECEDENCE - 1}"/>
+	</bean>
+
+	<alias name="defaultClassificationClassAttributeAssignmentRemovalPrepareInterceptor"
+		   alias="classificationClassAttributeAssignmentRemovalPrepareInterceptor"/>
+	<bean name="defaultClassificationClassAttributeAssignmentRemovalPrepareInterceptor"
+		  class="com.hybris.classificationgroupsservices.interceptors.classificationclass.ClassificationClassAttributeAssignmentRemovalPrepareInterceptor">
+		<property name="modelService" ref="modelService"/>
+		<property name="classFeatureGroupAssignmentService" ref="classFeatureGroupAssignmentService"/>
+	</bean>
+	<alias name="defaultClassificationClassAttributeAssignmentRemovalPrepareInterceptorMapping"
+		   alias="classificationClassAttributeAssignmentRemovalPrepareInterceptorMapping"/>
+	<bean id="defaultClassificationClassAttributeAssignmentRemovalPrepareInterceptorMapping"
+		  class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="classificationClassAttributeAssignmentRemovalPrepareInterceptor"/>
+		<property name="typeCode"
+				  value="#{T(de.hybris.platform.catalog.model.classification.ClassificationClassModel)._TYPECODE}"/>
+		<property name="order" value="#{T(org.springframework.core.Ordered).LOWEST_PRECEDENCE - 1}"/>
+	</bean>
+
+	<alias name="defaultClassificationClassSupercategoriesUnassigningPrepareInterceptor"
+		   alias="classificationClassSupercategoriesUnassigningPrepareInterceptor"/>
+	<bean name="defaultClassificationClassSupercategoriesUnassigningPrepareInterceptor"
+		  class="com.hybris.classificationgroupsservices.interceptors.classificationclass.ClassificationClassSupercategoriesUnassigningPrepareInterceptor">
+		<property name="modelService" ref="modelService"/>
+		<property name="classFeatureGroupAssignmentService" ref="classFeatureGroupAssignmentService"/>
+	</bean>
+	<alias name="defaultClassificationClassSupercategoriesUnassigningPrepareInterceptorMapping"
+		   alias="classificationClassSupercategoriesUnassigningPrepareInterceptorMapping"/>
+	<bean id="defaultClassificationClassSupercategoriesUnassigningPrepareInterceptorMapping"
+		  class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="classificationClassSupercategoriesUnassigningPrepareInterceptor"/>
+		<property name="typeCode"
+				  value="#{T(de.hybris.platform.catalog.model.classification.ClassificationClassModel)._TYPECODE}"/>
+		<property name="order" value="#{T(org.springframework.core.Ordered).LOWEST_PRECEDENCE - 1}"/>
+	</bean>
+
+	<alias name="defaultClassAttributeAssignmentCreateGroupAssignmentPrepareInterceptor"
+		   alias="classAttributeAssignmentCreateGroupAssignmentPrepareInterceptor"/>
+	<bean name="defaultClassAttributeAssignmentCreateGroupAssignmentPrepareInterceptor"
+		  class="com.hybris.classificationgroupsservices.interceptors.classattributeassignment.ClassAttributeAssignmentCreateGroupAssignmentPrepareInterceptor">
+		<property name="modelService" ref="modelService"/>
+		<property name="classFeatureGroupAssignmentService" ref="classFeatureGroupAssignmentService"/>
+	</bean>
+	<alias name="defaultClassAttributeAssignmentCreateGroupAssignmentPrepareInterceptorMapping"
+		   alias="classAttributeAssignmentCreateGroupAssignmentPrepareInterceptorMapping"/>
+	<bean id="defaultClassAttributeAssignmentCreateGroupAssignmentPrepareInterceptorMapping"
+		  class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="classAttributeAssignmentCreateGroupAssignmentPrepareInterceptor"/>
+		<property name="typeCode"
+				  value="#{T(de.hybris.platform.catalog.model.classification.ClassAttributeAssignmentModel)._TYPECODE}"/>
+		<property name="order" value="#{T(org.springframework.core.Ordered).LOWEST_PRECEDENCE - 1}"/>
+	</bean>
+
+	<alias name="defaultClassificationClassRemoveGroupAssignmentsRemoveInterceptor"
+		   alias="classificationClassRemoveGroupAssignmentsRemoveInterceptor"/>
+	<bean name="defaultClassificationClassRemoveGroupAssignmentsRemoveInterceptor"
+		  class="com.hybris.classificationgroupsservices.interceptors.classificationclass.ClassificationClassRemoveGroupAssignmentsRemoveInterceptor">
+		<property name="classFeatureGroupAssignmentService" ref="classFeatureGroupAssignmentService"/>
+	</bean>
+	<alias name="defaultClassificationClassRemoveGroupAssignmentsRemoveInterceptorMapping"
+		   alias="classificationClassRemoveGroupAssignmentsRemoveInterceptorMapping"/>
+	<bean id="defaultClassificationClassRemoveGroupAssignmentsRemoveInterceptorMapping"
+		  class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="classificationClassRemoveGroupAssignmentsRemoveInterceptor"/>
+		<property name="typeCode"
+				  value="#{T(de.hybris.platform.catalog.model.classification.ClassificationClassModel)._TYPECODE}"/>
+		<property name="order" value="#{T(org.springframework.core.Ordered).LOWEST_PRECEDENCE - 1}"/>
+	</bean>
+
+	<alias name="defaultClassAttributeAssignmentRemoveClassFeatureGroupAssignmentRemoveInterceptor"
+		   alias="classAttributeAssignmentRemoveClassFeatureGroupAssignmentRemoveInterceptor"/>
+	<bean name="defaultClassAttributeAssignmentRemoveClassFeatureGroupAssignmentRemoveInterceptor"
+		  class="com.hybris.classificationgroupsservices.interceptors.classattributeassignment.ClassAttributeAssignmentRemoveClassFeatureGroupAssignmentRemoveInterceptor">
+		<property name="modelService" ref="modelService"/>
+		<property name="classFeatureGroupAssignmentService" ref="classFeatureGroupAssignmentService"/>
+	</bean>
+	<alias name="defaultClassAttributeAssignmentRemoveClassFeatureGroupAssignmentRemoveInterceptorMapping"
+		   alias="classAttributeAssignmentRemoveClassFeatureGroupAssignmentRemoveInterceptorMapping"/>
+	<bean id="defaultClassAttributeAssignmentRemoveClassFeatureGroupAssignmentRemoveInterceptorMapping"
+		  class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="classAttributeAssignmentRemoveClassFeatureGroupAssignmentRemoveInterceptor"/>
+		<property name="typeCode"
+				  value="#{T(de.hybris.platform.catalog.model.classification.ClassAttributeAssignmentModel)._TYPECODE}"/>
+		<property name="order" value="#{T(org.springframework.core.Ordered).LOWEST_PRECEDENCE - 1}"/>
+	</bean>
+
+	<alias name="defaultClassificationAttributeRemoveClassFeatureGroupAssignmentRemoveInterceptor"
+		   alias="classificationAttributeRemoveClassFeatureGroupAssignmentRemoveInterceptor"/>
+	<bean name="defaultClassificationAttributeRemoveClassFeatureGroupAssignmentRemoveInterceptor"
+		  class="com.hybris.classificationgroupsservices.interceptors.classificationattribute.ClassificationAttributeRemoveClassFeatureGroupAssignmentRemoveInterceptor">
+		<property name="modelService" ref="modelService"/>
+		<property name="classFeatureGroupAssignmentService" ref="classFeatureGroupAssignmentService"/>
+	</bean>
+	<alias name="defaultClassificationAttributeRemoveClassFeatureGroupAssignmentRemoveInterceptorMapping"
+		   alias="classificationAttributeRemoveClassFeatureGroupAssignmentRemoveInterceptorMapping"/>
+	<bean id="defaultClassificationAttributeRemoveClassFeatureGroupAssignmentRemoveInterceptorMapping"
+		  class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="classificationAttributeRemoveClassFeatureGroupAssignmentRemoveInterceptor"/>
+		<property name="typeCode"
+				  value="#{T(de.hybris.platform.catalog.model.classification.ClassificationAttributeModel)._TYPECODE}"/>
+		<property name="order" value="#{T(org.springframework.core.Ordered).LOWEST_PRECEDENCE - 1}"/>
+	</bean>
+
+	<alias name="defaultClassFeatureGroupIndexHandler" alias="classFeatureGroupIndexHandler"/>
+	<bean id="defaultClassFeatureGroupIndexHandler"
+		  class="com.hybris.classificationgroupsservices.handlers.ClassFeatureGroupIndexHandler"/>
+
+	<alias name="defaultClassFeatureGroupAssignmentService" alias="classFeatureGroupAssignmentService"/>
+	<bean id="defaultClassFeatureGroupAssignmentService"
+		  class="com.hybris.classificationgroupsservices.services.DefaultClassFeatureGroupAssignmentService">
+		<property name="modelService" ref="modelService"/>
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+	</bean>
+			
+</beans>

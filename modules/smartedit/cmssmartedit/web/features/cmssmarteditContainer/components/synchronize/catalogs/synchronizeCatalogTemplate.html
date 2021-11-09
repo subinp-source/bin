@@ -1,0 +1,47 @@
+<div class="se-synchronize-catalog">
+    <div class="se-synchronize-catalog__item se-synchronize-catalog__sync-info">
+        <div data-ng-if="ctrl.isSyncJobFinished()">
+            <label
+                class="se-synchronize-catalog__sync-info__sync-label"
+                data-ng-if="ctrl.catalogVersion.active"
+            >
+                <span data-translate="se.cms.cataloginfo.lastsyncedfrom"></span>
+                <span class="se-synchronize-catalog__sync-info__sync-cata-name"
+                    >{{ctrl.getSyncFromLabels().sourceCatalogVersion}}</span
+                >
+            </label>
+            <label
+                class="se-synchronize-catalog__sync-info__sync-label"
+                data-ng-if="!ctrl.catalogVersion.active"
+                data-translate="se.cms.cataloginfo.lastsynced"
+            ></label>
+            <span class="catalog-last-synced"
+                >{{ctrl.syncJobStatus.syncEndTime| date:'short'}}</span
+            >
+        </div>
+        <span
+            data-ng-if="ctrl.isSyncJobInProgress()"
+            class="se-synchronize-catalog__in-progress"
+            data-translate="se.sync.status.synced.inprogress"
+        ></span>
+        <span
+            data-ng-if="ctrl.isSyncJobFailed()"
+            class="label-error se-synchronize-catalog__sync-failed"
+            data-translate="se.sync.status.synced.syncfailed"
+        ></span>
+    </div>
+
+    <div
+        class="se-synchronize-catalog__item se-synchronize-catalog__sync-btn"
+        data-ng-if="!ctrl.catalogVersion.active && ctrl.syncCatalogPermission"
+        data-has-operation-permission="ctrl.syncCatalogPermission"
+    >
+        <button
+            class="fd-button--emphasized"
+            data-ng-disabled="!ctrl.isButtonEnabled()"
+            data-ng-click="ctrl.syncCatalog()"
+        >
+            {{ 'se.cms.cataloginfo.btn.sync' | translate }}
+        </button>
+    </div>
+</div>

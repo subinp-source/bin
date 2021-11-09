@@ -1,0 +1,20 @@
+# -----------------------------------------------------------------------
+#
+#	Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+#
+# -----------------------------------------------------------------------
+
+# you can put key/value pairs here.
+# Use Config.getParameter(..) to retrieve the values during runtime.
+
+merchandisingaddon.key=value
+
+# Specifies the location of the spring context file added automatically to the global platform application context.
+merchandisingaddon.application-context=merchandisingaddon-spring.xml
+
+yacceleratorstorefront.additionalWebSpringConfigs.merchandisingaddon=classpath:/merchandisingaddon/web/spring/merchandisingaddon-web-spring.xml
+
+
+
+merchandisingaddon.javascript.paths.responsive=/responsive/common/js/merchandisingaddon.js
+merchandisingaddon.css.paths.responsive=/responsive/common/css/merchandisingaddon.css

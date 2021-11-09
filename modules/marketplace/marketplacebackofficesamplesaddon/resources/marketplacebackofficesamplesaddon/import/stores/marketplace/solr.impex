@@ -1,0 +1,8 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+$solrIndexedType=solrIndexedType(identifier)[unique=true,default='BackofficeProduct'];
+
+INSERT_UPDATE SolrIndexedProperty;name[unique=true];backofficeDisplayName[lang=en];$solrIndexedType[unique=true];type(code);facet[default=true];localized[default=false];currency[default=false];multiValue[default=false];rangeSet(name);facetDisplayNameProvider;fieldValueProvider;includeInResponse[default=false];rangeSets(name);facetType(code)[unique=true,default='MultiSelectOr'];
+;category;Category;;string;true;;;true;;;categoryNameValueProvider;;;;

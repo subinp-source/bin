@@ -1,0 +1,15 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+$snIndexType=testIndexType
+
+INSERT_UPDATE SnIndexType ; id[unique=true] ; identityProvider   ; identityProviderParameters[map-delimiter=|] ; defaultValueProvider                    ; defaultValueProviderParameters[map-delimiter=|]                              
+                          ; $snIndexType    ; snIdentityProvider ; expression->code                            ; documentsResourceSnIndexerValueProvider ; resource->/searchservices/test/integration/snCatalogSampleDocuments.json
+
+INSERT_UPDATE SnField ; indexType(id)[unique=true] ; id[unique=true] ; searchable[default=false] ; valueProvider ; valueProviderParameters[map-delimiter=|]
+                      ; $snIndexType               ; code            ; true                      ;               ;                                         
+                      ; $snIndexType               ; name            ; true                      ;               ;                                         
+                      ; $snIndexType               ; color           ; true                      ;               ;                                         
+                      ; $snIndexType               ; size            ; true                      ;               ;                                         
+                         

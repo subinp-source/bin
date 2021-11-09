@@ -1,0 +1,147 @@
+/* *
+/* This file includes the styles used in Combined View Ranking
+*/
+
+@pe-combinedview-config__ui-select-layout--margin: @perso-gutter 0 @perso-gutter 0;
+@pe-combinedview-config__list-layout--margin-top: -1px;
+@pe-combinedview-config__cname--padding-right: 0.5*@perso-gutter;   //10px
+@pe-combinedview-config__vname--padding: 0 0.5*@perso-gutter;    //0 10px
+@pe-combinedview-config__ui-select-choices-col2--padding-left: 0.5*@perso-gutter;   //10px
+
+.pe-combinedview-config__form{
+    min-height:300px;
+    margin: -20px;
+    padding: 20px;
+}
+
+.pe-combinedview-config__select-group-layout {
+    margin: @pe-combinedview-config__ui-select-layout--margin;
+    .select2-disabled {
+        opacity: @opacity_point-four;
+        background: none;
+        cursor: none;
+    }
+    // ie/edge fix for the reset x when the user starts typing in the search input of an ui-select
+    .select2-input::-ms-clear {
+        display: none;
+        width: 0;
+        height: 0;
+    }
+
+    .fd-form__control{
+        width: 100%;
+    }
+}
+
+.pe-combinedview-config__select-group-label-layout {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pe-combinedview-config__filter-layout {
+    display: flex;
+
+    .select2-arrow{
+        margin-left: 10px;
+    }
+
+    .perso-filter .se-generic-editor-dropdown {
+        z-index: 3000;  //fix to display the catalog options hidden behind the select options when both dropdowns are open
+    }
+}
+
+.pe-combinedview-config__ui-select-item--selected {
+    font-weight: @font-weight-bold;
+}
+
+.pe-combinedview-config__ui-select-choices-layout {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.pe-combinedview-config__ui-select-choices-col1 {
+    width: 60%;
+}
+
+.pe-combinedview-config__ui-select-choices-col2 {
+    padding-left: @pe-combinedview-config__ui-select-choices-col2--padding-left;
+    width: 40%;
+}
+
+.pe-combinedview-config__divider {
+    border-top: 1px solid @border-color-light-grey;
+}
+
+.pe-combinedview-config__list-layout {
+    border: 1px solid @border-color-light-grey;
+    margin-top: @pe-combinedview-config__list-layout--margin-top;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pe-combinedview-config__letter-layout {
+    width: 8%
+}
+
+.pe-combinedview-config__names-layout {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+    flex: 1;
+    min-width: 0;
+    padding-left: 20px;
+}
+
+.pe-combinedview-config__cname  {
+    font-weight: @font-weight-bold;
+    flex: 5;
+    padding-right: @pe-combinedview-config__cname--padding-right;
+}
+.pe-combinedview-config__vname {
+    padding: @pe-combinedview-config__vname--padding;
+    flex: 7;
+}
+
+.pe-combinedview-config__hyicon-globe {
+    width: 5%;
+    align-self: center;
+    text-align: center;
+}
+
+.pe-combinedview-config__hyicon-remove {
+    width: 5%;
+    align-self: center;
+    text-align: center;
+    color: @fd-color--action-1;
+}
+
+@media (max-width: 700px) {
+    .pe-combinedview-config__select-group-label-layout {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .pe-combinedview-config__filter-layout {
+        justify-content: flex-start;
+    }
+
+    .pe-combinedview-config__letter-layout {
+        width: 20%
+    }
+
+    .pe-combinedview-config__names-layout {
+        width: 65%
+    }
+
+    .pe-combinedview-config__hyicon-globe, .pe-combinedview-config__hyicon-remove {
+        width: 8%;
+    }
+}
+
+@media (max-width: 600px) {
+    .pe-combinedview-config__filter-layout {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+}

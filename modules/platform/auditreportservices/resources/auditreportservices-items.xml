@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="items.xsd">
+	<relations>
+		<relation code="AuditReportData2AuditReportConfigRelation" localized="false" >
+			<sourceElement type="AuditReportData" qualifier="auditReportData" cardinality="many" />
+			<targetElement type="AuditReportConfig" qualifier="auditReportConfig" cardinality="one" />
+		</relation>
+	</relations>
+	
+	<itemtypes>
+		<itemtype code="AuditReportData" extends="CatalogUnawareMedia">
+			<attributes>
+				<attribute qualifier="auditRootItem" type="Item">
+					<modifiers initial="true" optional="false" write="true" read="true"/>
+					<persistence type="property"/>
+				</attribute>
+			</attributes>
+		</itemtype>
+		<itemtype code="CreateAuditReportCronJob" extends="CronJob">
+			<attributes>
+				<attribute qualifier="rootItem" type="Item">
+					<modifiers read="true" write="true" optional="false" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="configName" type="java.lang.String">
+					<modifiers read="true" write="true" optional="false" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="reportId" type="java.lang.String">
+					<modifiers read="true" write="true" optional="false" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="audit" type="java.lang.Boolean">
+					<modifiers read="true" write="true" optional="false"/>
+					<persistence type="property"/>
+					<defaultvalue>java.lang.Boolean.FALSE</defaultvalue>
+				</attribute>
+				<attribute qualifier="includedLanguages" type="LanguageCollection">
+					<modifiers read="true" write="true" search="false" optional="true"/>
+					<persistence type="property"/>
+					<defaultvalue>Collections.EMPTY_LIST</defaultvalue>
+				</attribute>
+				<attribute qualifier="auditReportTemplate" type="AuditReportTemplate">
+					<modifiers optional="false" read="true" write="true"/>
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+		</itemtype>
+		<itemtype code="CreateAuditReportJob" extends="ServicelayerJob" />
+		<itemtype code="AuditReportTemplate" extends="RendererTemplate">
+			<attributes>
+				<attribute qualifier="includeText" type="java.lang.Boolean" >
+					<modifiers read="true" write="true" optional="false" />
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+		</itemtype>
+	</itemtypes>
+</items>

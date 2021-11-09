@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+  ~
+  -->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:c="http://www.springframework.org/schema/c"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd"
+	   default-lazy-init="true">
+	
+	<alias name="defaultOutboundServicesRestTemplateCacheRegion" alias="outboundServicesRestTemplateCacheRegion" />
+	<bean name="defaultOutboundServicesRestTemplateCacheRegion" class="de.hybris.platform.regioncache.region.impl.EHCacheRegion" lazy-init="true">
+		<constructor-arg name="name" value="outboundServicesRestTemplateCacheRegion" />
+		<constructor-arg name="maxEntries" value="${outboundservices.cache.resttemplate.maxEntries:1000}" />
+		<constructor-arg name="evictionPolicy" value="${outboundservices.cache.resttemplate.eviction.policy:LFU}" />
+		<constructor-arg name="exclusiveComputation" value="${outboundservices.cache.resttemplate.exclusiveComputation:false}" />
+		<constructor-arg name="statsEnabled" value="${outboundservices.cache.resttemplate.statsEnabled:true}" />
+		<constructor-arg name="ttlSeconds" value="${outboundservices.cache.resttemplate.ttlSeconds:7200}" />
+		<property name="handledTypes">
+			<array>
+			</array>
+		</property>
+	</bean>
+
+	<alias name="defaultOutboundServicesCsrfTokenCacheRegion" alias="outboundServicesCsrfTokenCacheRegion" />
+	<bean name="defaultOutboundServicesCsrfTokenCacheRegion" class="de.hybris.platform.regioncache.region.impl.EHCacheRegion" lazy-init="true">
+		<constructor-arg name="name" value="outboundServicesCsrfTokenCacheRegion" />
+		<constructor-arg name="maxEntries" value="${outboundservices.cache.csrf.maxEntries:1000}" />
+		<constructor-arg name="evictionPolicy" value="${outboundservices.cache.csrf.eviction.policy:LFU}" />
+		<constructor-arg name="exclusiveComputation" value="${outboundservices.cache.csrf.exclusiveComputation:false}" />
+		<constructor-arg name="statsEnabled" value="${outboundservices.cache.csrf.statsEnabled:true}" />
+		<constructor-arg name="ttlSeconds" value="${outboundservices.cache.csrf.ttlSeconds:60}" />
+		<property name="handledTypes">
+			<array>
+			</array>
+		</property>
+	</bean>
+	
+	<bean id="outboundRestTemplateCacheRegionRegistrar" class="de.hybris.platform.regioncache.region.CacheRegionRegistrar"
+		  c:region-ref="outboundServicesRestTemplateCacheRegion"/>
+	<bean id="outboundCsrfTokenCacheRegionRegistrar" class="de.hybris.platform.regioncache.region.CacheRegionRegistrar"
+		  c:region-ref="outboundServicesCsrfTokenCacheRegion"/>
+</beans>

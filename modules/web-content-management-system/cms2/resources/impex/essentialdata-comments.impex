@@ -1,0 +1,15 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+$cms-workflow-domain-code=cmsWorkflowDomain
+
+INSERT_UPDATE Domain;code[unique=true];name
+                    ;$cms-workflow-domain-code;CMS Workflow Domain
+
+INSERT_UPDATE Component;code[unique=true];name;domain(code)
+                       ;cmsWorkflowActionComponent; CMS Workflow Action Component; $cms-workflow-domain-code
+
+INSERT_UPDATE CommentType;code[unique=true];name;domain(code);
+                         ;cmsWorkflowActionComment; CMS Workflow Action Comment; $cms-workflow-domain-code
+                         ;cmsWorkflowDecisionComment; CMS Workflow Decision Comment; $cms-workflow-domain-code

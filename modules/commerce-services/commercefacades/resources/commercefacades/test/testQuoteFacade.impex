@@ -1,0 +1,14 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+INSERT_UPDATE UserGroup;uid[unique=true];locname[lang=en];
+;orgadmingroup;Organization Admin;
+;orgmanagergroup;Organization Manager;
+;orgapprovergroup;Organization Approver;
+;salesapprovergroup;Sales Approver;
+
+INSERT_UPDATE PrincipalGroupRelation;source(uid)[unique=true];target(uid)[unique=true]
+;orgadmingroup;orgemployeegroup;
+;orgmanagergroup;orgemployeegroup;
+;orgapprovergroup;orgemployeegroup;
+;salesapprovergroup;salesemployeegroup;

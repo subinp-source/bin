@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<!--
+ All hybris buildcallbacks.xml macrodefinitions:
+ 
+ Build/Documentation
+ 
+	 before/after ant macro "clean"
+		 <macrodef name="powertoolsstore_before_clean"/>
+		 <macrodef name="powertoolsstore_after_clean"/>
+	 
+	 before/after ant macro "build"
+		 <macrodef name="powertoolsstore_before_build"/>
+		 <macrodef name="powertoolsstore_after_build"/>
+		 
+	 before/after ant macro "compile_core" - the core module of the extension
+		 <macrodef name="powertoolsstore_before_compile_core">
+		 <macrodef name="powertoolsstore_after_compile_core">
+	 
+	 before/after ant macro "compile_web" - the web module of the extension
+		 <macrodef name="powertoolsstore_before_compile_web" />
+		 <macrodef name="powertoolsstore_after_compile_web" />
+ 
+ Preparing extension
+ 
+	 will be called in the beginning of the ant call and only once (also when using multiple 
+	 ant targets e.g. ant build yunittest)	
+		 <macrodef name="powertoolsstore_only_once_prepare"/>
+ 
+ Creating ear module/production
+ 
+	 before/after ant macro "ear"
+		 <macrodef name="powertoolsstore_before_ear"/>
+		 <macrodef name="powertoolsstore_after_ear"/>
+
+	 before/after ant macro "production" - for hybris server only
+		 <macrodef name="powertoolsstore_before_production" />
+		 <macrodef name="powertoolsstore_after_production" />
+ 
+ JUnit Test
+ 
+	 before/after ant macro "yunitinit" 
+		 <macrodef name="powertoolsstore_before_yunitinit" />
+		 <macrodef name="powertoolsstore_after_yunitinit" />
+	 
+	 before/after ant macro "yunit"
+		 <macrodef name="powertoolsstore_before_yunit" />
+		 <macrodef name="powertoolsstore_after_yunit" /> 
+		 
+ Distribution package
+ 
+	 before/after ant macro "dist" - internal target; only for use when platform is available in source code
+		 <macrodef name="powertoolsstore_after_dist"/>
+		 <macrodef name="powertoolsstore_before_dist"/>
+	 
+	 before/after ant macro "dist_copy" - internal target; only for use when platform is available in source code
+		 <macrodef name="powertoolsstore_before_dist_copy"/>
+		 <macrodef name="powertoolsstore_after_dist_copy"/>
+		  
+	 With these filters you can override the default extension filters defined in platform/resources/ant/dist/filtersets.xml
+		 <patternset id="extension.powertoolsstore.binary.filter">
+			 <patternset refid="extension.filter" />
+			 <exclude name="**/*-source.jar" />
+		 </patternset>
+		 <patternset id="extension.powertoolsstore.source.filter">
+			 <exclude name="**/bin/**" />
+		 </patternset>
+ 
+-->
+<project name="powertoolsstore_buildcallbacks">
+
+	<!-- 
+		Called whenever 'ant ear' is used. this callback can be used to modify the content of the ear file
+	
+		 ${ear.path}: 			path to ear
+	 -->
+	<macrodef name="powertoolsstore_before_ear">
+		<sequential>
+
+			<!-- you can do anything before the EAR file is being packed -->
+
+		</sequential>
+	</macrodef>
+
+	<macrodef name="powertoolsstore_after_build">
+		<sequential>
+			<impexGenerate extname="powertoolsstore"/>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="powertoolsstore_clean_classpath_file">
+		<sequential>
+			<copy file="${ext.powertoolsstore.path}/.classpath" tofile="${ext.powertoolsstore.path}/.classpath.edit"
+				  overwrite="true"
+				  failonerror="true">
+				<filterchain>
+					<linecontainsregexp negate="true">
+						<regexp pattern="^(\t\t\t\t|)$" />  <!-- added by script -->
+					</linecontainsregexp>
+				</filterchain>
+			</copy>
+			<move file="${ext.powertoolsstore.path}/.classpath.edit" tofile="${ext.powertoolsstore.path}/.classpath"
+				  overwrite="true"
+				  failonerror="true" />
+		</sequential>
+	</macrodef>
+
+	<macrodef name="powertoolsstore_after_clean">
+		<sequential>
+			<echo level="info" message="Generating .classpath file for powertoolsstore" />
+			<create_extension_classpath_file extname="powertoolsstore" />
+			<powertoolsstore_clean_classpath_file />
+
+			<delete file="${ext.powertoolsstore.path}/resources-lang/touch_impexgen" failonerror="false"/>
+		</sequential>
+	</macrodef>
+	
+	<!-- exclude impex files from localization --> 
+	<patternset id="powertoolsstore.localization.pattern">
+		<patternset refid="localization.defaultpattern" />
+		<exclude name="**/*.impex"/>
+	</patternset>
+
+</project>

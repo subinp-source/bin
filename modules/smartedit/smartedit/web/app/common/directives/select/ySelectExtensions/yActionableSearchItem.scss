@@ -1,0 +1,14 @@
+y-actionable-search-item {
+    .se-actionable-search-item {
+        @include se-flex-row(space-between);
+        border-bottom: se-border(2);
+        border-top: se-border(2);
+        border-bottom: none;
+        padding-left: fd-space('s');
+    }
+    .se-actionable-search-item__create-btn {
+        @include fd-weight('bold');
+        border-left: se-border(2) !important;
+        border-radius: 0 fd-space('base') fd-space('base') 0 !important;
+    }
+}

@@ -1,0 +1,8 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+$facetSearchConfigName=testFacetSearchConfig${testId}
+
+INSERT_UPDATE SolrSynonymConfig;facetSearchConfig(name)[unique=true,default=$facetSearchConfigName];language(isocode)[unique=true];synonymFrom[unique=true];synonymTo
+;;de;bank;sparkasse,bank
+;;en;basic;primary

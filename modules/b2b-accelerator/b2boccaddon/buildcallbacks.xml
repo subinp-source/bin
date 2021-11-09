@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<project name="b2boccaddon_buildcallbacks">
+
+	<macrodef name="b2boccaddon_clean_classpath_file">
+		<sequential>
+			<copy file="${ext.b2boccaddon.path}/.classpath" tofile="${ext.b2boccaddon.path}/.classpath.edit"
+			      overwrite="true"
+			      failonerror="true">
+				<filterchain>
+					<linecontainsregexp negate="true">
+						<regexp pattern="^(\t\t\t\t|)$" />  <!-- added by script -->
+					</linecontainsregexp>
+				</filterchain>
+			</copy>
+			<move file="${ext.b2boccaddon.path}/.classpath.edit" tofile="${ext.b2boccaddon.path}/.classpath"
+			      overwrite="true"
+			      failonerror="true" />
+		</sequential>
+	</macrodef>
+
+	<macrodef name="b2boccaddon_after_clean">
+		<sequential>
+			<echo level="info" message="Generating .classpath file for b2boccaddon" />
+			<create_extension_classpath_file extname="b2boccaddon" />
+			<b2boccaddon_clean_classpath_file />
+		</sequential>
+	</macrodef>
+
+</project>

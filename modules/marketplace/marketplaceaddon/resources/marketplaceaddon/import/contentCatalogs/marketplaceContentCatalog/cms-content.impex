@@ -1,0 +1,25 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+$contentCatalog=marketplaceContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+INSERT_UPDATE OrderReviewAction;$contentCV[unique=true];uid[unique=true];url;name;restrictions(uid,$contentCV);&actionRef
+;;OrderReviewAction;;Order Review Action;ActionRestriction;OrderReviewAction
+
+INSERT_UPDATE VendorHomepageAction;$contentCV[unique=true];uid[unique=true];url;name;restrictions(uid,$contentCV);&actionRef
+;;VendorHomepageAction;;Vendor Homepage Action;ActionRestriction;VendorHomepageAction
+
+INSERT_UPDATE ApplicableCmsActionsTypeForCmsComponent;target(code)[unique=true];source(code)[unique=true]
+;JspIncludeComponent;OrderReviewAction
+;JspIncludeComponent;VendorHomepageAction
+
+INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];page
+;;AccountOrderDetailsItemsComponent;/WEB-INF/views/addons/marketplaceaddon/responsive/pages/account/accountOrderDetailItems.jsp
+
+INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];actions(uid,$contentCV)[cellDecorator=de.hybris.platform.marketplaceaddon.decorator.MarketplaceCellDecorator]
+;;AccountOrderDetailsItemsComponent;VendorHomepageAction,OrderReviewAction
+
+INSERT_UPDATE JspIncludeComponent;$contentCV[unique=true];uid[unique=true];page
+;;CartComponent;/WEB-INF/views/addons/marketplaceaddon/responsive/pages/cart/cartDisplay.jsp

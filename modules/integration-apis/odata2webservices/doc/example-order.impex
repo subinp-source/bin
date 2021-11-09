@@ -1,0 +1,21 @@
+INSERT_UPDATE IntegrationObject; code[unique = true]
+                               ; Order
+
+INSERT_UPDATE IntegrationObjectItem; integrationObject(code)[unique = true]; code[unique = true]; type(code); root[default = false]
+                                   ; Order                                 ; Order              ; Order     ; true
+                                   ; Order                                 ; Product            ; Product   ;
+                                   ; Order                                 ; User               ; User      ;
+                                   ; Order                                 ; Currency           ; Currency  ;
+
+INSERT_UPDATE IntegrationObjectItemAttribute; integrationObjectItem(integrationObject(code), code)[unique = true]; attributeName[unique = true]; attributeDescriptor(enclosingType(code), qualifier); returnIntegrationObjectItem(integrationObject(code), code); unique[default = false]; autoCreate[default = false]
+                                            ; Order:Order                                                        ; code                        ; Order:code                                         ;                                                           ; true
+                                            ; Order:Order                                                        ; user                        ; Order:user                                         ; Order:User                                                ;                        ; true
+                                            ; Order:Order                                                        ; date                        ; Order:date                                         ;                                                           ;                        ;
+                                            ; Order:Order                                                        ; currency                    ; Order:currency                                     ; Order:Currency                                            ;                        ; true
+
+                                            ; Order:Product                                                      ; code                        ; Product:code                                       ;
+
+                                            ; Order:User                                                         ; uid                         ; User:uid                                           ;                                                           ; true                   ;
+
+                                            ; Order:Currency                                                     ; isocode                     ; Currency:isocode                                   ;                                                           ; true                   ;
+

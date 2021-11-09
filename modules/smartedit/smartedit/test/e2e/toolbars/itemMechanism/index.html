@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <base href="/web/webroot/" />
+
+        <!--3rd prty libs-->
+        <script src="static-resources/dist/smarteditcontainer/js/thirdparties.js"></script>
+        <script src="static-resources/dist/smarteditcommons/js/vendor_chunk.js"></script>
+        <script src="static-resources/thirdparties/ckeditor/ckeditor.js"></script>
+
+        <!--libs-->
+        <script src="static-resources/dist/smarteditcommons/js/smarteditcommons.js"></script>
+
+        <script src="static-resources/dist/smarteditcontainer/js/smarteditcontainer.js"></script>
+        <script src="../../test/e2e/utils/generated_outerLegacyCustomAppBootstrap.js"></script>
+
+        <script src="../../test/e2e/utils/commonMockedModules/generated_outerGlobalBasePathFetchMock.js"></script>
+        <script src="../../test/e2e/toolbars/itemMechanism/generated_outerMocks.js"></script>
+    </head>
+    <style>
+        .outer-app-root {
+            z-index: 1000;
+            position: absolute;
+            width: 100%;
+            background: white;
+            top: 200px;
+            left: 0;
+        }
+    </style>
+    <body>
+        <div><outer-app-root></outer-app-root></div>
+    </body>
+</html>

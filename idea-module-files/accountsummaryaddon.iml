@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="OOTB" importedAsReadOnly="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/web/webroot/WEB-INF/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/web/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../modules/b2b-accelerator-addons/accountsummaryaddon/lib" recursive="true" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="acceleratorstorefrontcommons" exported="" />
+    <orderEntry type="module" module-name="addonsupport" exported="" />
+    <orderEntry type="module" module-name="b2bacceleratorfacades" exported="" />
+    <orderEntry type="module" module-name="cms2" exported="" />
+    <orderEntry type="module" module-name="commerceorgaddon" exported="" />
+    <orderEntry type="module" module-name="platform" exported="" />
+  </component>
+</module>

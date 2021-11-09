@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <alias name="defaultIntegrationServicesConfiguration" alias="integrationServicesConfiguration"/>
+    <bean id="defaultIntegrationServicesConfiguration"
+          class="de.hybris.platform.integrationservices.config.DefaultIntegrationServicesConfiguration">
+        <property name="configurationService" ref="configurationService"/>
+        <property name="itemTypeMatch" value="${integrationservices.flexsearch.itemtypematch}"/>
+    </bean>
+
+    <alias name="defaultIntegrationServicesDescriptorFactory" alias="integrationServicesDescriptorFactory"/>
+    <bean name="defaultIntegrationServicesDescriptorFactory"
+          class="de.hybris.platform.integrationservices.model.impl.DefaultDescriptorFactory">
+        <property name="attributeValueAccessorFactory" ref="integrationServicesAttributeValueAccessorFactory"/>
+        <property name="attributeValueGetterFactory" ref="integrationServicesAttributeValueGetterFactory"/>
+        <property name="attributeValueSetterFactory" ref="integrationServicesAttributeValueSetterFactory"/>
+        <property name="attributeSettableCheckerFactory" ref="integrationServicesAttributeSettableCheckerFactory"/>
+    </bean>
+
+    <alias name="defaultAttributeValueAccessorFactory" alias="integrationServicesAttributeValueAccessorFactory"/>
+    <bean name="defaultAttributeValueAccessorFactory"
+          class="de.hybris.platform.integrationservices.model.impl.DefaultAttributeValueAccessorFactory">
+        <property name="getterFactory" ref="integrationServicesAttributeValueGetterFactory"/>
+        <property name="setterFactory" ref="integrationServicesAttributeValueSetterFactory"/>
+        <property name="classificationService" ref="classificationService"/>
+        <property name="modelService" ref="modelService"/>
+    </bean>
+
+    <alias name="defaultAttributeValueGetterFactory" alias="integrationServicesAttributeValueGetterFactory"/>
+    <bean name="defaultAttributeValueGetterFactory"
+          class="de.hybris.platform.integrationservices.model.impl.DefaultAttributeValueGetterFactory">
+        <property name="classificationService" ref="classificationService"/>
+        <property name="modelService" ref="modelService"/>
+        <property name="logicExecutorFactory" ref="logicExecutorFactory" />
+    </bean>
+
+    <alias name="defaultAllowedItemTypeMatchesAttributeHandler"
+           alias="allowedItemTypeMatchesAttributeHandler"/>
+    <bean name="defaultAllowedItemTypeMatchesAttributeHandler"
+          class="de.hybris.platform.integrationservices.model.AllowedItemTypeMatchesAttributeHandler"/>
+
+    <alias name="defaultAttributeValueSetterFactory" alias="integrationServicesAttributeValueSetterFactory"/>
+    <bean name="defaultAttributeValueSetterFactory"
+          class="de.hybris.platform.integrationservices.model.impl.DefaultAttributeValueSetterFactory">
+        <property name="modelService" ref="modelService"/>
+        <property name="valueConverters">
+            <list>
+                <ref bean="integrationServicesSingleClassificationAttributeValueConverter"/>
+                <ref bean="integrationServicesLocalizedClassificationAttributeValueConverter"/>
+                <ref bean="integrationServicesCollectionClassificationAttributeValueConverter"/>
+            </list>
+        </property>
+        <property name="valueHandlers">
+            <list>
+                <ref bean="integrationServicesRemoveClassificationAttributeValueHandler"/>
+                <ref bean="integrationServicesLocalizedClassificationAttributeValueHandler"/>
+                <ref bean="integrationServicesCollectionClassificationAttributeValueHandler"/>
+                <ref bean="integrationServicesSingleClassificationAttributeValueHandler"/>
+            </list>
+        </property>
+    </bean>
+
+    <alias name="defaultAbstractClassificationAttributeValueConverter"
+           alias="integrationServicesAbstractClassificationAttributeValueConverter"/>
+    <bean id="defaultAbstractClassificationAttributeValueConverter"
+          class="de.hybris.platform.integrationservices.model.impl.AbstractClassificationAttributeValueConverter"
+          abstract="true">
+        <property name="attributeValueService" ref="integrationServicesClassificationAttributeValueService"/>
+    </bean>
+
+    <alias name="defaultSingleClassificationAttributeValueConverter"
+           alias="integrationServicesSingleClassificationAttributeValueConverter"/>
+    <bean id="defaultSingleClassificationAttributeValueConverter"
+          class="de.hybris.platform.integrationservices.model.impl.SingleClassificationAttributeValueConverter"
+          parent="integrationServicesAbstractClassificationAttributeValueConverter"/>
+
+    <alias name="defaultCollectionClassificationAttributeValueConverter"
+           alias="integrationServicesCollectionClassificationAttributeValueConverter"/>
+    <bean id="defaultCollectionClassificationAttributeValueConverter"
+          class="de.hybris.platform.integrationservices.model.impl.CollectionClassificationAttributeValueConverter"
+          parent="integrationServicesAbstractClassificationAttributeValueConverter"/>
+
+    <alias name="defaultLocalizedClassificationAttributeValueConverter"
+           alias="integrationServicesLocalizedClassificationAttributeValueConverter"/>
+    <bean id="defaultLocalizedClassificationAttributeValueConverter"
+          class="de.hybris.platform.integrationservices.model.impl.LocalizedClassificationAttributeValueConverter"
+          parent="integrationServicesAbstractClassificationAttributeValueConverter"/>
+
+    <alias name="defaultAbstractClassificationAttributeValueHandler"
+           alias="integrationServicesAbstractClassificationAttributeValueHandler"/>
+    <bean id="defaultAbstractClassificationAttributeValueHandler"
+          class="de.hybris.platform.integrationservices.model.impl.AbstractClassificationAttributeValueHandler"
+          abstract="true">
+        <property name="modelService" ref="modelService"/>
+        <property name="featureFactory" ref="integrationServicesProductFeatureModelFactory"/>
+    </bean>
+
+    <alias name="defaultSingleClassificationAttributeValueHandler"
+           alias="integrationServicesSingleClassificationAttributeValueHandler"/>
+    <bean id="defaultSingleClassificationAttributeValueHandler"
+          class="de.hybris.platform.integrationservices.model.impl.SingleClassificationAttributeValueHandler"
+          parent="defaultAbstractClassificationAttributeValueHandler"/>
+
+    <alias name="defaultRemoveClassificationAttributeValueHandler"
+           alias="integrationServicesRemoveClassificationAttributeValueHandler"/>
+    <bean id="defaultRemoveClassificationAttributeValueHandler"
+          class="de.hybris.platform.integrationservices.model.impl.RemoveClassificationAttributeValueHandler"
+          parent="defaultAbstractClassificationAttributeValueHandler"/>
+
+    <alias name="defaultCollectionClassificationAttributeValueHandler"
+           alias="integrationServicesCollectionClassificationAttributeValueHandler"/>
+    <bean id="defaultCollectionClassificationAttributeValueHandler"
+          class="de.hybris.platform.integrationservices.model.impl.CollectionClassificationAttributeValueHandler"
+          parent="defaultAbstractClassificationAttributeValueHandler"/>
+
+    <alias name="defaultLocalizedClassificationAttributeValueHandler"
+           alias="integrationServicesLocalizedClassificationAttributeValueHandler"/>
+    <bean id="defaultLocalizedClassificationAttributeValueHandler"
+          class="de.hybris.platform.integrationservices.model.impl.LocalizedClassificationAttributeValueHandler"
+          parent="defaultAbstractClassificationAttributeValueHandler">
+        <property name="i18NService" ref="commonI18NService"/>
+    </bean>
+
+    <alias name="defaultClassificationAttributeValueService"
+           alias="integrationServicesClassificationAttributeValueService"/>
+    <bean id="defaultClassificationAttributeValueService"
+          class="de.hybris.platform.integrationservices.model.impl.DefaultClassificationAttributeValueService">
+        <constructor-arg name="classificationSystemService" ref="classificationSystemService"/>
+        <constructor-arg name="modelService" ref="modelService"/>
+    </bean>
+
+    <alias name="defaultIntegrationObjectService" alias="integrationObjectService"/>
+    <bean name="defaultIntegrationObjectService"
+          class="de.hybris.platform.integrationservices.service.impl.DefaultIntegrationObjectService">
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+        <property name="typeService" ref="typeService"/>
+    </bean>
+
+    <alias name="defaultItemTypeDescriptorService" alias="itemTypeDescriptorService"/>
+    <bean name="defaultItemTypeDescriptorService"
+          class="de.hybris.platform.integrationservices.service.impl.DefaultItemTypeDescriptorService">
+        <property name="integrationObjectService" ref="integrationObjectService"/>
+        <property name="descriptorFactory" ref="integrationServicesDescriptorFactory"/>
+    </bean>
+
+    <alias name="defaultIntegrationObjectItemPartOfAttributeHandler"
+           alias="integrationObjectItemPartOfAttributeHandler"/>
+    <bean name="defaultIntegrationObjectItemPartOfAttributeHandler"
+          class="de.hybris.platform.integrationservices.model.PartOfAttributeHandler"/>
+
+    <alias name="defaultIntegrationObjectRootItemAttributeHandler" alias="integrationObjectRootItemAttributeHandler"/>
+    <bean name="defaultIntegrationObjectRootItemAttributeHandler"
+          class="de.hybris.platform.integrationservices.model.IntegrationObjectRootItemAttributeHandler"/>
+
+    <alias name="defaultIntegrationObjectClassificationAttributesPresentAttributeHandler"
+           alias="integrationObjectClassificationAttributesPresentAttributeHandler"/>
+    <bean name="defaultIntegrationObjectClassificationAttributesPresentAttributeHandler"
+          class="de.hybris.platform.integrationservices.model.IntegrationObjectClassificationAttributesPresentAttributeHandler"/>
+
+    <alias name="defaultIntegrationObjectItemUniqueAttributesHandler"
+           alias="integrationObjectItemUniqueAttributesHandler"/>
+    <bean name="defaultIntegrationObjectItemUniqueAttributesHandler"
+          class="de.hybris.platform.integrationservices.model.UniqueAttributesAttributeHandler"/>
+
+    <alias name="defaultIntegrationObjectItemKeyAttributesHandler" alias="integrationObjectItemKeyAttributesHandler"/>
+    <bean name="defaultIntegrationObjectItemKeyAttributesHandler"
+          class="de.hybris.platform.integrationservices.model.KeyAttributesAttributeHandler"/>
+
+    <alias name="defaultMediaPersistenceService" alias="integrationServicesMediaPersistenceService"/>
+    <bean name="defaultMediaPersistenceService"
+          class="de.hybris.platform.integrationservices.service.impl.DefaultMediaPersistenceService">
+        <property name="mediaService" ref="mediaService"/>
+        <property name="modelService" ref="modelService"/>
+        <property name="integrationServicesConfiguration" ref="integrationServicesConfiguration"/>
+    </bean>
+
+    <alias name="defaultSapPassportService" alias="sapPassportService"/>
+    <bean id="defaultSapPassportService"
+          class="de.hybris.platform.integrationservices.service.impl.DefaultSapPassportService">
+        <property name="configuration" ref="integrationServicesConfiguration"/>
+    </bean>
+
+    <alias name="defaultAlphabeticalIntegrationKeyGenerator" alias="integrationKeyMetadataGenerator"/>
+    <bean id="defaultAlphabeticalIntegrationKeyGenerator"
+          class="de.hybris.platform.integrationservices.integrationkey.impl.DefaultAlphabeticalIntegrationKeyMetadataGenerator"/>
+
+    <alias name="defaultJsonMonitoredRequestErrorParser" alias="jsonMonitoredRequestErrorParser"/>
+    <bean id="defaultJsonMonitoredRequestErrorParser"
+          class="de.hybris.platform.integrationservices.monitoring.JsonMonitoredRequestErrorParser"/>
+
+    <alias name="defaultXmlMonitoredRequestErrorParser" alias="xmlMonitoredRequestErrorParser"/>
+    <bean id="defaultXmlMonitoredRequestErrorParser"
+          class="de.hybris.platform.integrationservices.monitoring.XmlMonitoredRequestErrorParser"/>
+
+    <alias name="defaultAbstractIntegrationKeyValueGenerator" alias="abstractIntegrationKeyValueGenerator"/>
+    <bean id="defaultAbstractIntegrationKeyValueGenerator" abstract="true"
+          class="de.hybris.platform.integrationservices.integrationkey.impl.AbstractIntegrationKeyValueGenerator">
+        <property name="encoding" value="UTF-8"/>
+    </bean>
+
+    <alias name="defaultIntegrationObjectConversionService" alias="integrationObjectConversionService"/>
+    <bean id="defaultIntegrationObjectConversionService"
+          class="de.hybris.platform.integrationservices.service.impl.DefaultIntegrationObjectConversionService">
+        <property name="integrationObjectService" ref="integrationObjectService"/>
+        <property name="itemToIntegrationObjectMapConverter" ref="itemToIntegrationObjectMapConverter"/>
+        <property name="descriptorFactory" ref="integrationServicesDescriptorFactory"/>
+    </bean>
+
+    <alias name="defaultMapToIntegrationKeyGenerator" alias="mapToIntegrationKeyGenerator"/>
+    <bean name="defaultMapToIntegrationKeyGenerator" parent="abstractIntegrationKeyValueGenerator"
+          class="de.hybris.platform.integrationservices.integrationkey.impl.DefaultMapToIntegrationKeyValueGenerator"/>
+
+    <bean name="integrationItemToIntegrationKeyGenerator"
+          class="de.hybris.platform.integrationservices.integrationkey.impl.DelegatingIntegrationItemToIntegrationKeyValueGenerator">
+        <property name="integrationItemToMapConverter" ref="integrationItemToMapConverter"/>
+        <property name="mapToIntegrationKeyGenerator" ref="mapToIntegrationKeyGenerator"/>
+    </bean>
+
+    <alias name="defaultAbstractItemToMapPopulator" alias="abstractItemToMapPopulator"/>
+    <bean id="defaultAbstractItemToMapPopulator" abstract="true"
+          class="de.hybris.platform.integrationservices.populator.AbstractItemToMapPopulator">
+        <property name="modelService" ref="modelService"/>
+    </bean>
+
+    <alias name="defaultAtomicType2MapPopulator" alias="atomicType2MapPopulator"/>
+    <bean id="defaultAtomicType2MapPopulator" parent="abstractItemToMapPopulator"
+          class="de.hybris.platform.integrationservices.populator.DefaultAtomicType2MapPopulator">
+        <property name="converter" ref="atomicTypeValueConverter"/>
+    </bean>
+
+    <alias name="defaultAtomicTypeValueConverter" alias="atomicTypeValueConverter"/>
+    <bean id="defaultAtomicTypeValueConverter"
+          class="de.hybris.platform.integrationservices.populator.AtomicTypeValueConverter">
+    </bean>
+
+    <alias name="defaultMapType2MapPopulator" alias="mapType2MapPopulator"/>
+    <bean id="defaultMapType2MapPopulator" parent="abstractItemToMapPopulator"
+          class="de.hybris.platform.integrationservices.populator.DefaultMapType2MapPopulator">
+        <property name="i18NService" ref="i18NService"/>
+    </bean>
+
+    <alias name="defaultCollectionType2MapPopulator" alias="collectionType2MapPopulator"/>
+    <bean id="defaultCollectionType2MapPopulator" parent="abstractItemToMapPopulator"
+          class="de.hybris.platform.integrationservices.populator.DefaultCollectionType2MapPopulator">
+        <property name="conversionService" ref="integrationObjectConversionService"/>
+        <property name="atomicTypeValueConverter" ref="atomicTypeValueConverter"/>
+    </bean>
+
+    <alias name="defaultComposedType2MapPopulator" alias="composedType2MapPopulator"/>
+    <bean id="defaultComposedType2MapPopulator" parent="abstractItemToMapPopulator"
+          class="de.hybris.platform.integrationservices.populator.DefaultComposedType2MapPopulator">
+        <property name="conversionService" ref="integrationObjectConversionService"/>
+    </bean>
+
+    <alias name="defaultEnumerationMetaType2MapPopulator" alias="enumerationMetaType2MapPopulator"/>
+    <bean id="defaultEnumerationMetaType2MapPopulator" parent="abstractItemToMapPopulator"
+          class="de.hybris.platform.integrationservices.populator.DefaultEnumerationMetaType2MapPopulator">
+    </bean>
+
+    <alias name="defaultLocalizedAttribute2MapPopulator" alias="localizedAttribute2MapPopulator"/>
+    <bean id="defaultLocalizedAttribute2MapPopulator" parent="abstractItemToMapPopulator"
+          class="de.hybris.platform.integrationservices.populator.LocalizedAttribute2MapPopulator">
+        <property name="commonI18NService" ref="commonI18NService"/>
+    </bean>
+
+    <alias name="defaultIntegrationKeyPopulator" alias="integrationKeyPopulator"/>
+    <bean id="defaultIntegrationKeyPopulator"
+          class="de.hybris.platform.integrationservices.populator.DefaultIntegrationKeyPopulator">
+        <property name="integrationKeyValueGenerator" ref="mapToIntegrationKeyGenerator"/>
+    </bean>
+
+    <alias name="defaultItemToIntegrationObjectMapConverter" alias="itemToIntegrationObjectMapConverter"/>
+    <bean id="defaultItemToIntegrationObjectMapConverter" parent="abstractPopulatingConverter">
+        <property name="targetClass" value="java.util.HashMap"/>
+        <property name="populators">
+            <list>
+                <ref bean="atomicType2MapPopulator"/>
+                <ref bean="mapType2MapPopulator"/>
+                <ref bean="composedType2MapPopulator"/>
+                <ref bean="enumerationMetaType2MapPopulator"/>
+                <ref bean="collectionType2MapPopulator"/>
+                <ref bean="integrationKeyPopulator"/>
+                <ref bean="localizedAttribute2MapPopulator"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="singleRootItemValidator"
+          class="de.hybris.platform.integrationservices.validator.SingleRootItemValidator"/>
+    <bean id="singleRootItemValidatorMapping"
+          class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+        <property name="interceptor" ref="singleRootItemValidator"/>
+        <property name="typeCode" value="IntegrationObjectItem"/>
+    </bean>
+
+    <alias name="integrationServicesRootItemSystemUpdate" alias="integrationRootItemSystemUpdate"/>
+    <bean id="integrationServicesRootItemSystemUpdate"
+          class="de.hybris.platform.integrationservices.update.RootItemSystemUpdate">
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+        <property name="modelService" ref="modelService"/>
+    </bean>
+
+    <alias name="defaultIntegrationLocalizationService" alias="integrationLocalizationService"/>
+    <bean name="defaultIntegrationLocalizationService"
+          class="de.hybris.platform.integrationservices.service.impl.DefaultIntegrationLocalizationService">
+        <property name="internationalizationService" ref="commonI18NService"/>
+    </bean>
+
+    <alias name="defaultClassificationAssociatesToProductOnlyValidateInterceptor"
+           alias="classificationAssociatesToProductOnlyValidateInterceptor"/>
+    <bean id="defaultClassificationAssociatesToProductOnlyValidateInterceptor"
+          class="de.hybris.platform.integrationservices.interceptor.ClassificationAssociatesToProductOnlyValidateInterceptor"/>
+    <bean id="classificationAssociatesToProductOnlyValidateInterceptorMapping"
+          class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+        <property name="interceptor" ref="classificationAssociatesToProductOnlyValidateInterceptor"/>
+        <property name="typeCode" value="IntegrationObjectItemClassificationAttribute"/>
+    </bean>
+
+    <alias name="defaultIntegrationAttributeUniqueNameValidateInterceptor"
+           alias="integrationAttributeUniqueNameValidateInterceptor"/>
+    <bean id="defaultIntegrationAttributeUniqueNameValidateInterceptor"
+          class="de.hybris.platform.integrationservices.interceptor.IntegrationAttributeUniqueNameValidateInterceptor"/>
+    <bean id="integrationAttributeUniqueNameValidateInterceptorMapping"
+          class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+        <property name="interceptor" ref="integrationAttributeUniqueNameValidateInterceptor"/>
+        <property name="typeCode" value="IntegrationObjectItemAttribute"/>
+    </bean>
+
+    <alias name="defaultIntegrationObjectItemItemTypeMatchValidateInterceptor"
+           alias="integrationObjectItemItemTypeMatchValidateInterceptor"/>
+    <bean id="defaultIntegrationObjectItemItemTypeMatchValidateInterceptor"
+          class="de.hybris.platform.integrationservices.interceptor.IntegrationObjectItemItemTypeMatchValidateInterceptor"/>
+    <bean id="integrationObjectItemItemTypeMatchValidateInterceptorMapping"
+          class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+        <property name="interceptor" ref="integrationObjectItemItemTypeMatchValidateInterceptor"/>
+        <property name="typeCode" value="IntegrationObjectItem"/>
+    </bean>
+
+    <alias name="defaultIntegrationClassificationAttributeUniqueNameValidateInterceptor"
+           alias="integrationClassificationAttributeUniqueNameValidateInterceptor"/>
+    <bean id="defaultIntegrationClassificationAttributeUniqueNameValidateInterceptor"
+          class="de.hybris.platform.integrationservices.interceptor.IntegrationClassificationAttributeUniqueNameValidateInterceptor"/>
+    <bean id="integrationClassificationAttributeUniqueNameValidateInterceptorMapping"
+          class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+        <property name="interceptor" ref="integrationClassificationAttributeUniqueNameValidateInterceptor"/>
+        <property name="typeCode" value="IntegrationObjectItemClassificationAttribute"/>
+    </bean>
+
+    <alias name="defaultClassificationMultipleValueValidateInterceptor"
+           alias="classificationMultipleValueValidateInterceptor"/>
+    <bean id="defaultClassificationMultipleValueValidateInterceptor"
+          class="de.hybris.platform.integrationservices.interceptor.ClassificationMultipleValueValidateInterceptor"/>
+    <bean id="classificationMultipleValueValidateInterceptorMapping"
+          class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+        <property name="interceptor" ref="classificationMultipleValueValidateInterceptor"/>
+        <property name="typeCode" value="IntegrationObjectItemClassificationAttribute"/>
+    </bean>
+
+    <alias name="defaultClassificationRangeValidateInterceptor" alias="classificationRangeValidateInterceptor"/>
+    <bean id="defaultClassificationRangeValidateInterceptor"
+          class="de.hybris.platform.integrationservices.interceptor.ClassificationRangeValidateInterceptor"/>
+    <bean id="classificationRangeValidateInterceptorMapping"
+          class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+        <property name="interceptor" ref="classificationRangeValidateInterceptor"/>
+        <property name="typeCode" value="IntegrationObjectItemClassificationAttribute"/>
+    </bean>
+
+    <alias name="defaultClassificationAttributeReturnIntegrationObjectItemValidateInterceptor"
+           alias="classificationAttributeReturnIntegrationObjectItemValidateInterceptor"/>
+    <bean id="defaultClassificationAttributeReturnIntegrationObjectItemValidateInterceptor"
+          class="de.hybris.platform.integrationservices.interceptor.ClassificationAttributeReturnIntegrationObjectItemValidateInterceptor"/>
+    <bean id="classificationAttributeReturnIntegrationObjectItemValidateInterceptorMapping"
+          class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+        <property name="interceptor" ref="classificationAttributeReturnIntegrationObjectItemValidateInterceptor"/>
+        <property name="typeCode" value="IntegrationObjectItemClassificationAttribute"/>
+    </bean>
+
+    <alias name="defaultClassificationLocalizedReferenceValidateInterceptor"
+           alias="classificationLocalizedReferenceValidateInterceptor"/>
+    <bean id="defaultClassificationLocalizedReferenceValidateInterceptor"
+          class="de.hybris.platform.integrationservices.interceptor.ClassificationLocalizedReferenceValidateInterceptor"/>
+    <bean id="classificationLocalizedReferenceValidateInterceptorMapping"
+          class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+        <property name="interceptor" ref="classificationLocalizedReferenceValidateInterceptor"/>
+        <property name="typeCode" value="IntegrationObjectItemClassificationAttribute"/>
+    </bean>
+
+
+    <alias name="defaultMapTypeValidateInterceptor" alias="integrationServiceMapTypeValidateInterceptor"/>
+    <bean id="defaultMapTypeValidateInterceptor"
+          class="de.hybris.platform.integrationservices.interceptor.MapTypeValidateInterceptor"/>
+    <bean id="integrationServiceMapTypeValidateInterceptorMapping"
+          class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+        <property name="interceptor" ref="integrationServiceMapTypeValidateInterceptor"/>
+        <property name="typeCode" value="IntegrationObjectItemAttribute"/>
+    </bean>
+
+    <alias name="defaultStandardAttributeReturnIntObjValidateInterceptor"
+           alias="standardAttributeReturnIntObjValidateInterceptor"/>
+    <bean id="defaultStandardAttributeReturnIntObjValidateInterceptor"
+          class="de.hybris.platform.integrationservices.interceptor.StandardAttributeReturnIntegrationObjectItemValidateInterceptor"/>
+    <bean id="standardAttrReturnIntObjValidateInterceptorMapping"
+          class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+        <property name="interceptor" ref="standardAttributeReturnIntObjValidateInterceptor"/>
+        <property name="typeCode" value="IntegrationObjectItemAttribute"/>
+    </bean>
+
+    <alias name="defaultVirtualAttributeDescriptorTypeValidateInterceptor"
+           alias="virtualAttributeDescriptorTypeValidateInterceptor"/>
+    <bean id="defaultVirtualAttributeDescriptorTypeValidateInterceptor"
+          class="de.hybris.platform.integrationservices.interceptor.VirtualAttributeDescriptorValidateInterceptor">
+        <constructor-arg ref="atomicTypeRetriever"/>
+    </bean>
+    <bean id="virtualAttrDescriptorTypeValidateInterceptorMapping"
+          class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+        <property name="interceptor" ref="virtualAttributeDescriptorTypeValidateInterceptor"/>
+        <property name="typeCode" value="IntegrationObjectVirtualAttributeDescriptor"/>
+    </bean>
+
+    <alias name="defaultIntegrationObjectItemVirtualAttributeModelInterceptor"
+           alias="integrationObjectItemVirtualAttributeModelInterceptor"/>
+    <bean id="defaultIntegrationObjectItemVirtualAttributeModelInterceptor"
+          class="de.hybris.platform.integrationservices.interceptor.IntegrationObjectItemVirtualAttributeModelInterceptor"/>
+    <bean id="integrationObjectItemVirtualAttributeValidateInterceptorMapping"
+          class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+        <property name="interceptor" ref="integrationObjectItemVirtualAttributeModelInterceptor"/>
+        <property name="typeCode" value="IntegrationObjectItemVirtualAttribute"/>
+    </bean>
+
+    <alias name="defaultRootExistsValidateInterceptor" alias="rootExistsValidateInterceptor"/>
+    <bean id="defaultRootExistsValidateInterceptor"
+          class="de.hybris.platform.integrationservices.validator.RootExistsValidator"/>
+    <bean id="rootExistsValidateInterceptorMapping"
+          class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+        <property name="interceptor" ref="rootExistsValidateInterceptor"/>
+        <property name="typeCode" value="IntegrationObject"/>
+    </bean>
+
+    <alias name="defaultStandardAttributeSettableChecker" alias="standardAttributeSettableChecker"/>
+    <bean id="defaultStandardAttributeSettableChecker"
+          class="de.hybris.platform.integrationservices.model.impl.DefaultAttributeSettableChecker">
+        <constructor-arg ref="typeService"/>
+        <property name="settableHandlers">
+            <list>
+                <bean class="de.hybris.platform.integrationservices.model.impl.SettableForNewItemAttributeHandler">
+                    <constructor-arg ref="modelService"/>
+                </bean>
+                <bean class="de.hybris.platform.integrationservices.model.impl.SettableForExistingItemAttributeHandler">
+                    <constructor-arg ref="modelService"/>
+                </bean>
+                <bean class="de.hybris.platform.integrationservices.model.impl.SettableForReadOnlyAttributeHandler">
+                    <constructor-arg ref="defaultIntegrationServicesConfiguration"/>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <alias name="defaultClassificationAttributeSettableChecker" alias="classificationAttributeSettableChecker"/>
+    <bean id="defaultClassificationAttributeSettableChecker"
+          class="de.hybris.platform.integrationservices.model.impl.ClassificationAttributeSettableChecker"/>
+
+    <alias name="defaultAttributeSettableCheckerFactory" alias="integrationServicesAttributeSettableCheckerFactory"/>
+    <bean id="defaultAttributeSettableCheckerFactory"
+          class="de.hybris.platform.integrationservices.model.impl.DefaultAttributeSettableCheckerFactory">
+        <property name="standardAttributeSettableChecker" ref="standardAttributeSettableChecker"/>
+        <property name="classificationAttributeSettableChecker" ref="classificationAttributeSettableChecker"/>
+    </bean>
+
+    <alias name="defaultProductFeatureModelFactory" alias="integrationServicesProductFeatureModelFactory"/>
+    <bean id="defaultProductFeatureModelFactory"
+          class="de.hybris.platform.integrationservices.model.impl.DefaultProductFeatureModelFactory">
+        <property name="modelService" ref="modelService"/>
+    </bean>
+
+    <bean name="defaultItemSearchService"
+          class="de.hybris.platform.integrationservices.search.impl.DefaultItemSearchService">
+        <property name="flexSearchQueryGenerator" ref="integrationServicesFlexSearchQueryGenerator"/>
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+
+    <alias name="defaultAccessRightsService" alias="accessRightsService"/>
+    <bean id="defaultAccessRightsService"
+          class="de.hybris.platform.integrationservices.security.impl.DefaultAccessRightsService"/>
+
+    <alias name="defaultTypePermissionService" alias="typePermissionService" />
+    <bean id="defaultTypePermissionService"
+          class="de.hybris.platform.integrationservices.security.impl.DefaultTypePermissionService">
+    </bean>
+
+    <alias name="defaultFlexSearchQueryGenerator" alias="integrationServicesFlexSearchQueryGenerator"/>
+    <bean name="defaultFlexSearchQueryGenerator"
+          class="de.hybris.platform.integrationservices.search.impl.DefaultFlexSearchQueryGenerator">
+        <property name="queryBuilderFactory" ref="integrationServicesFlexSearchQueryBuilderFactory"/>
+    </bean>
+
+    <alias name="defaultFlexSearchQueryBuilderFactory" alias="integrationServicesFlexSearchQueryBuilderFactory"/>
+    <bean name="defaultFlexSearchQueryBuilderFactory"
+          class="de.hybris.platform.integrationservices.search.impl.DefaultFlexSearchQueryBuilderFactory">
+        <property name="itemSearchService" ref="integrationServicesItemSearchService"/>
+        <property name="integrationObjectService" ref="integrationObjectService"/>
+        <property name="integrationItemToMapConverter" ref="integrationItemToMapConverter"/>
+        <property name="itemSearchConfiguration" ref="defaultIntegrationServicesConfiguration"/>
+    </bean>
+
+    <alias name="defaultIntegrationItemToMapConverter" alias="integrationItemToMapConverter"/>
+    <bean name="defaultIntegrationItemToMapConverter"
+          class="de.hybris.platform.integrationservices.search.impl.DefaultIntegrationItemToMapConverter"/>
+
+    <alias name="validatingItemSearchService" alias="integrationServicesItemSearchService"/>
+    <bean name="validatingItemSearchService"
+          class="de.hybris.platform.integrationservices.search.impl.ValidatingItemSearchService">
+        <constructor-arg ref="defaultItemSearchService"/>
+        <property name="uniqueItemSearchValidators" ref="integrationServicesUniqueItemSearchValidators"/>
+        <property name="itemsSearchValidators" ref="integrationServicesItemsSearchValidators"/>
+        <property name="countSearchValidators" ref="integrationServicesCountSearchValidators"/>
+        <property name="uniqueItemSearchEnrichers" ref="integrationServicesUniqueItemSearchEnrichers"/>
+        <property name="itemsSearchEnrichers" ref="integrationServicesItemsSearchEnrichers"/>
+        <property name="countSearchEnrichers" ref="integrationServicesCountItemSearchEnrichers"/>
+    </bean>
+    <util:list id="integrationServicesUniqueItemSearchValidators">
+        <ref bean="integrationServicesNotNullSearchRequestValidator"/>
+        <ref bean="integrationServicesItemSearchPermissionValidator"/>
+        <bean class="de.hybris.platform.integrationservices.search.validation.RequestedItemPresenceValidator"/>
+        <bean class="de.hybris.platform.integrationservices.search.validation.KeyPropertyValuePresenceValidator"/>
+    </util:list>
+    <util:list id="integrationServicesUniqueItemSearchEnrichers">
+        <ref bean="integrationServicesScriptItemSearchRequestEnricher"/>
+    </util:list>
+    <util:list id="integrationServicesItemsSearchValidators">
+        <ref bean="integrationServicesNotNullSearchRequestValidator"/>
+        <ref bean="integrationServicesItemSearchPermissionValidator"/>
+    </util:list>
+    <util:list id="integrationServicesItemsSearchEnrichers">
+        <ref bean="integrationServicesScriptItemSearchRequestEnricher"/>
+    </util:list>
+    <util:list id="integrationServicesCountSearchValidators">
+        <ref bean="integrationServicesNotNullSearchRequestValidator"/>
+        <ref bean="integrationServicesItemSearchPermissionValidator"/>
+    </util:list>
+    <util:list id="integrationServicesCountItemSearchEnrichers">
+        <ref bean="integrationServicesScriptItemSearchRequestEnricher"/>
+    </util:list>
+    <bean name="integrationServicesNotNullSearchRequestValidator"
+          class="de.hybris.platform.integrationservices.search.validation.NotNullSearchRequestValidator"/>
+    <alias name="defaultItemSearchPermissionValidator" alias="integrationServicesItemSearchPermissionValidator"/>
+    <bean name="defaultItemSearchPermissionValidator"
+          class="de.hybris.platform.integrationservices.search.validation.ItemSearchPermissionValidator">
+        <constructor-arg ref="accessRightsService"/>
+    </bean>
+    <alias name="defaultItemDeleteRequestValidator" alias="integrationServicesItemDeleteRequestValidator"/>
+    <bean name="defaultItemDeleteRequestValidator"
+          class="de.hybris.platform.integrationservices.search.validation.ItemDeleteRequestValidator">
+        <constructor-arg ref="accessRightsService"/>
+    </bean>
+
+    <alias name="defaultScriptItemSearchRequestEnricher" alias="integrationServicesScriptItemSearchRequestEnricher" />
+    <bean name="defaultScriptItemSearchRequestEnricher" class="de.hybris.platform.integrationservices.search.enricher.ScriptServiceItemSearchRequestEnricher" />
+
+    <alias name="defaultLogicExecutorFactory" alias="logicExecutorFactory" />
+    <bean id="defaultLogicExecutorFactory" class="de.hybris.platform.integrationservices.virtualattributes.impl.DefaultLogicExecutorFactory">
+        <constructor-arg ref="scriptingLanguagesService" />
+    </bean>
+
+    <alias alias="typeRetriever" name="atomicTypeRetriever" />
+    <bean id="atomicTypeRetriever" class="de.hybris.platform.integrationservices.util.AtomicTypeModelRetriever">
+        <constructor-arg ref="flexibleSearchService" />
+    </bean>
+
+	<alias name="defaultIntegrationTimeoutService" alias="integrationTimeoutService"/>
+	<bean id="defaultIntegrationTimeoutService" class="de.hybris.platform.integrationservices.util.timeout.impl.DefaultTimeoutService"/>
+
+	<alias name="defaultTenantLifecycle" alias="integrationTenantLifecycle" />
+	<bean id="defaultTenantLifecycle" class="de.hybris.platform.integrationservices.util.lifecycle.DefaultTenantLifecycle"
+		  parent="abstractEventListener">
+		<constructor-arg name="tenant" ref="tenantFactory"/>
+	</bean>
+
+    <alias name="defaultItemModelSearchService" alias="itemModelSearchService"/>
+    <bean id="defaultItemModelSearchService" class="de.hybris.platform.integrationservices.service.impl.DefaultItemModelSearchService">
+        <constructor-arg name="modelService" ref="modelService"/>
+    </bean>
+</beans>

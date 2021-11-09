@@ -1,0 +1,23 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+$catalog-id=cms_Catalog
+$catalog-name=Cms_Catalog_Name
+$catalog-version=CatalogVersion
+$contentCV = catalogVersion(CatalogVersion.catalog(Catalog.id[default = $catalog-id]), CatalogVersion.version[default = $catalog-version])[default = $catalog-id:$catalog-version]
+
+INSERT_UPDATE ContentCatalog;id[unique=true];name[lang=en];
+                            ;$catalog-id;$catalog-name;
+
+INSERT_UPDATE CatalogVersion;catalog(id)[unique=true];version[unique=true];active;readPrincipals(uid)[mode=append]
+                            ;$catalog-id;$catalog-version;false;employeegroup
+
+INSERT_UPDATE CMSNavigationEntry;uid[unique=true];$contentCV[unique=true];name;navigationNode(&nodeRef);item(&linkRef);
+                                ;SignOutNavNodeEntry;;SignOutNavNodeEntry;SignOutNavNode;SignOutLink;
+
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;links(&linkRef);&nodeRef
+                               ;SignOutNavNode;;Sign Out;;SignOutNavNode
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;target(code)[default='sameWindow']
+                              ;;SignOutLink;SignOutLink;;SignOutLink;

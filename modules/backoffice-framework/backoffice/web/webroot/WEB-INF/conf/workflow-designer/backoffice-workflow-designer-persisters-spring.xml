@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<alias name="defaultLinkCreator" alias="linkCreator"/>
+	<bean id="defaultLinkCreator" class="com.hybris.backoffice.workflow.designer.persistence.LinkCreator"/>
+
+	<!-- Workflow Designer persistence -->
+	<alias name="defaultAbstractWorkflowPreprocessor" alias="abstractWorkflowPreprocessor"/>
+	<bean id="defaultAbstractWorkflowPreprocessor" abstract="true">
+		<property name="workflowModelFinder" ref="workflowModelFinder"/>
+	</bean>
+
+	<alias name="defaultActionFromContextPreprocessor" alias="actionFromContextPreprocessor"/>
+	<bean id="defaultActionFromContextPreprocessor"
+		  class="com.hybris.backoffice.workflow.designer.persistence.ActionFromContextPreprocessor"
+		  parent="abstractWorkflowPreprocessor">
+		<property name="networkEntityFinder" ref="networkEntityFinder"/>
+	</bean>
+
+	<alias name="defaultDecisionFromContextPreprocessor" alias="decisionFromContextPreprocessor"/>
+	<bean id="defaultDecisionFromContextPreprocessor"
+		  class="com.hybris.backoffice.workflow.designer.persistence.DecisionFromContextPreprocessor"
+		  parent="abstractWorkflowPreprocessor">
+		<property name="networkEntityFinder" ref="networkEntityFinder"/>
+	</bean>
+
+	<alias name="defaultAndLinkFromContextPostProcessor" alias="andLinkFromContextPostProcessor"/>
+	<bean id="defaultAndLinkFromContextPostProcessor"
+		  class="com.hybris.backoffice.workflow.designer.persistence.AndLinkFromContextPostProcessor"
+		  parent="abstractWorkflowPreprocessor">
+		<property name="workflowTemplateService" ref="workflowTemplateService"/>
+		<property name="nodeTypeService" ref="workflowDesignerNodeTypeService"/>
+		<property name="modelService" ref="modelService"/>
+		<property name="workflowModelFinder" ref="workflowModelFinder"/>
+		<property name="networkEntityFinder" ref="networkEntityFinder"/>
+		<property name="connectionFinder" ref="workflowDesignerConnectionFinder"/>
+		<property name="linkCreator" ref="linkCreator"/>
+	</bean>
+
+	<alias name="defaultLinkFromContextPreprocessor" alias="linkFromContextPreprocessor"/>
+	<bean id="defaultLinkFromContextPreprocessor"
+		  class="com.hybris.backoffice.workflow.designer.persistence.LinkFromContextPreprocessor"
+		  parent="abstractWorkflowPreprocessor">
+		<property name="linkCreator" ref="linkCreator"/>
+		<property name="connectionFinder" ref="workflowDesignerConnectionFinder"/>
+	</bean>
+
+	<alias name="defaultWorkflowTemplatePersistenceService" alias="workflowTemplatePersistenceService"/>
+	<bean id="defaultWorkflowTemplatePersistenceService"
+		  class="com.hybris.backoffice.workflow.designer.persistence.DefaultWorkflowDesignerPersistenceService">
+		<property name="preprocessors">
+			<list>
+				<ref bean="actionFromContextPreprocessor"/>
+				<ref bean="decisionFromContextPreprocessor"/>
+				<ref bean="linkFromContextPreprocessor"/>
+			</list>
+		</property>
+		<property name="postprocessors">
+			<list>
+				<ref bean="andLinkFromContextPostProcessor"/>
+			</list>
+		</property>
+		<property name="sessionService" ref="sessionService"/>
+		<property name="modelService" ref="modelService"/>
+		<property name="workflowModelFinder" ref="workflowModelFinder"/>
+	</bean>
+</beans>

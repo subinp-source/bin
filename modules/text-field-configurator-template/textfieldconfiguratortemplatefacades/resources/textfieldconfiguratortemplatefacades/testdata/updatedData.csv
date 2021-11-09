@@ -1,0 +1,14 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+$lang=en
+$catalog-id=testCatalog
+$catalog-version=Online
+$catalogversion=catalogversion(catalog(id),version)[unique=true,default=$catalog-id:$catalog-version]
+$supercategories=supercategories(code,catalogversion(catalog(id[default=$catalog-id]),version[default=$catalog-version]))
+
+INSERT_UPDATE StockLevel;productCode[unique=true];inStockStatus(code)[default=forceInStock];warehouse(code)[default=warehouse]
+;P2;;warehouse
+
+INSERT_UPDATE TextFieldConfiguratorSetting;id[unique=true];$catalogversion;textFieldLabel[lang=$lang];textFieldDefaultValue[lang=$lang]
+;testTextFieldConf;;fontSize;12

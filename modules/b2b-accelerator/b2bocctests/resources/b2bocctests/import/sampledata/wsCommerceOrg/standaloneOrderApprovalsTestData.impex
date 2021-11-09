@@ -1,0 +1,130 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+$defaultPassword = 1234
+
+$catalog-id = wsTestCatalog
+$catalog-version = Online
+
+$catalogversion = catalogversion(catalog(id), version)[unique=true, default=$catalog-id:$catalog-version]
+$supercategories = supercategories(code, catalogversion(catalog(id[default=$catalog-id]), version[default=$catalog-version]))
+
+$testCategory0-id = testCategory0;
+
+$prices = europe1prices[translator=de.hybris.platform.europe1.jalo.impex.Europe1PricesTranslator]
+
+
+###############################
+# Sample data for Order Approval
+INSERT_UPDATE User; uid[unique = true]; &userId;
+                  ; admin             ; admin  ;
+
+INSERT_UPDATE B2BUnit; uid[unique = true]; &B2BUnitID;
+                     ; Rustic            ; Rustic    ;
+
+INSERT_UPDATE B2BCostCenter; code[unique = true]; name[lang = en]    ; Unit(uid); currency(isocode)[default = 'USD'];
+                           ; Rustic_Cost_Center ; Rustic Cost Center ; Rustic   ;
+
+INSERT_UPDATE B2BBudgetExceededPermission; code[unique = true]             ; Unit(uid);
+                                         ; Rustic_Budget_Exceeded_Approval ; Rustic   ;
+
+
+INSERT_UPDATE Address; streetname[unique = true]; postalcode[unique = true]; town    ; country(isocode); billingAddress; contactAddress; shippingAddress; unloadingAddress; firstname; lastname; email                                ; owner(&B2BUnitID)[unique = true]; &addId;
+                     ; 1000 South Wacker Drive  ; 60606                    ; Chicago ; US              ; TRUE          ; TRUE          ; TRUE           ; TRUE            ; Hanna    ; Schmidt ; hanna.schmidt.approval@rustic-hw.com ; Rustic                          ; Addr1 ;
+
+INSERT_UPDATE B2BCustomer; description             ; uid[unique = true]                        ; originalUid                               ; email                                     ; name                 ; title(code); groups(uid)[mode = append]; sessionCurrency(isocode)[default = 'USD']; password[default = $defaultPassword];
+                         ; Approver for Approval   ; hanna.schmidt.approval@rustic-hw.com      ; hanna.schmidt.approval@rustic-hw.com      ; hanna.schmidt.approval@rustic-hw.com      ; Hanna Schmidt        ; ms         ; Rustic,b2bapprovergroup   ;                                          ;                                     ;
+                         ; Approver 2 for Approval ; hanna.schmidt.2.approval@rustic-hw.com    ; hanna.schmidt.2.approval@rustic-hw.com    ; hanna.schmidt.2.approval@rustic-hw.com    ; Hanna Schmidt 2      ; ms         ; Rustic,b2bapprovergroup   ;                                          ;                                     ;
+                         ; Customer for Approval   ; mark.rivers.approval@rustic-retail-hw.com ; mark.rivers.approval@rustic-retail-hw.com ; mark.rivers.approval@rustic-retail-hw.com ; Mark Rivers Approval ; mr         ; Rustic,b2bcustomergroup   ;                                          ;                                     ;
+
+INSERT_UPDATE Product; code[unique = true]; $catalogversion; name[lang = de]; name[lang = en]; unit(code); $prices   ; approvalStatus(code); startLineNumber; $supercategories
+                     ; HW1210-3422        ;                ; testDE         ; testEN         ; pieces    ; 57,95 EUR ; approved            ; 0              ; $testCategory0-id
+
+INSERT_UPDATE Cart; code[unique = true]; user(uid)                                 ; date[dateformat = dd.MM.yyyy]; currency(isocode)[allownull = true]
+                  ; testCart           ; mark.rivers.approval@rustic-retail-hw.com ; 12.11.2019                   ; USD
+
+
+INSERT_UPDATE BatchJob; code[unique = true]
+                      ; testBatchJob
+
+INSERT_UPDATE CartToOrderCronJob; code[unique = true]    ; startTime[dateformat = dd.MM.yyyy]; endTime[dateformat = dd.MM.yyyy]; cart(code); job(code)    ; sessionLanguage(isoCode)[default = en]; active
+                                ; testCartToOrderCronJob ; 12.12.2019                        ; 13.12.2019                      ; testCart  ; testBatchJob ;                                       ; true
+
+INSERT_UPDATE Trigger; activationTime[dateformat = dd.MM.yyyy]; creationtime[dateformat = dd.MM.yyyy]; cronJob(code)[unique = true]; timeTable
+                     ; 12.12.2019                             ; 12.12.2019                           ; testCartToOrderCronJob      ; Every Monday at 00:00:00
+
+
+INSERT_UPDATE WorkflowTemplate; code[unique = true]                                                  ; name[lang = en]                                                      ; owner(uid); description[lang = en];
+                              ; SAMPLE_B2B_APPROVAL_WORKFLOW[hanna.schmidt.approval@rustic-hw.com]   ; SAMPLE_B2B_APPROVAL_WORKFLOW[hanna.schmidt.approval@rustic-hw.com]   ; admin     ; Generated B2B Order Approval Workflow
+                              ; SAMPLE_B2B_APPROVAL_WORKFLOW[hanna.schmidt.2.approval@rustic-hw.com] ; SAMPLE_B2B_APPROVAL_WORKFLOW[hanna.schmidt.2.approval@rustic-hw.com] ; admin     ; Generated B2B Order Approval Workflow
+
+
+INSERT_UPDATE Workflow; code[unique = true] ; job(code)                                                            ; owner(uid);
+                      ; approval_workflow_1 ; SAMPLE_B2B_APPROVAL_WORKFLOW[hanna.schmidt.approval@rustic-hw.com]   ; admin
+                      ; approval_workflow_2 ; SAMPLE_B2B_APPROVAL_WORKFLOW[hanna.schmidt.2.approval@rustic-hw.com] ; admin
+
+
+INSERT_UPDATE Order; code[unique = true]; user(uid)                                 ; date[dateformat = dd.MM.yyyy HH:mm]; currency(isocode); net  ; deliveryMode(code); calculated; site(uid); store(uid); status(code)     ; workflow(code)      ; purchaseOrderNumber; totalPrice; paymentType(code); deliveryAddress(&addId); versionID[unique = true]; schedulingCronJob(code); &orderRef
+                   ; testOrder1         ; mark.rivers.approval@rustic-retail-hw.com ; 27.09.2019 16:07                   ; USD              ; true ; standard-net      ; true      ; wsTest   ; wsTest    ; PENDING_APPROVAL ; approval_workflow_1 ; P.O. number        ; 100       ; ACCOUNT          ; Addr1                  ; testOrder1              ;                        ; previousOrder
+                   ; testOrder1         ; mark.rivers.approval@rustic-retail-hw.com ; 27.09.2019 16:07                   ; USD              ; true ; standard-net      ; true      ; wsTest   ; wsTest    ; PENDING_APPROVAL ; approval_workflow_1 ; P.O. number        ; 100       ; ACCOUNT          ; Addr1                  ;                         ; testCartToOrderCronJob ; currentOrder
+                   ; testOrder2         ; mark.rivers.approval@rustic-retail-hw.com ; 27.09.2019 16:07                   ; USD              ; true ; standard-net      ; true      ; wsTest   ; wsTest    ; PENDING_APPROVAL ; approval_workflow_2 ; P.O. number        ; 100       ; ACCOUNT          ; Addr1                  ; testOrder2              ;                        ; previousOrder2
+                   ; testOrder2         ; mark.rivers.approval@rustic-retail-hw.com ; 27.09.2019 16:07                   ; USD              ; true ; standard-net      ; true      ; wsTest   ; wsTest    ; PENDING_APPROVAL ; approval_workflow_2 ; P.O. number        ; 100       ; ACCOUNT          ; Addr1                  ;                         ;                        ; currentOrder2
+
+
+INSERT_UPDATE OrderHistoryEntry; order(&orderRef)[unique = true]; previousOrderVersion(&orderRef); timestamp[dateformat = dd.MM.yyyy HH:mm]; owner(&userId); description                                                                                                                                  ;
+                               ; currentOrder                   ; previousOrder                  ; 27.09.2019 16:07                        ; admin         ; Submitted for approval, the order exceeds customer permission(s): Allowed Order Threshold (per timespan),Allowed Order Threshold (per order) ;
+                               ; currentOrder2                  ; previousOrder2                 ; 27.09.2019 16:07                        ; admin         ; Submitted for approval, the order exceeds customer permission(s): Allowed Order Threshold (per timespan),Allowed Order Threshold (per order) ;
+
+
+INSERT_UPDATE OrderEntry; order(&orderRef)[unique = true]; product(code, catalogVersion(catalog(id), version))[unique = true]; quantity; calculated; unit(code); entryNumber; costCenter(code)   ; basePrice; totalPrice;
+                        ; previousOrder                  ; HW1210-3422:$catalog-id:$catalog-version                          ; 4       ; false     ; pieces    ; 0          ; Rustic_Cost_Center ; 25       ; 100
+                        ; currentOrder                   ; HW1210-3422:$catalog-id:$catalog-version                          ; 4       ; false     ; pieces    ; 0          ; Rustic_Cost_Center ; 25       ; 100
+                        ; previousOrder2                 ; HW1210-3422:$catalog-id:$catalog-version                          ; 4       ; false     ; pieces    ; 0          ; Rustic_Cost_Center ; 25       ; 100
+                        ; currentOrder2                  ; HW1210-3422:$catalog-id:$catalog-version                          ; 4       ; false     ; pieces    ; 0          ; Rustic_Cost_Center ; 25       ; 100
+
+
+INSERT_UPDATE B2BPermissionResult; Order(&orderRef)[unique = true]; approver(uid)                          ; permissionTypeCode[unique = true]; permission(code)                ; status(code)[unique = true]; &permissionResultRef
+                                 ; currentOrder                   ; hanna.schmidt.approval@rustic-hw.com   ; B2BBudgetExceededPermission      ; Rustic_Budget_Exceeded_Approval ; PENDING_APPROVAL           ; previousPermissionResult
+                                 ; previousOrder                  ; hanna.schmidt.approval@rustic-hw.com   ; B2BBudgetExceededPermission      ; Rustic_Budget_Exceeded_Approval ; PENDING_APPROVAL           ; currentPermissionResult
+                                 ; currentOrder2                  ; hanna.schmidt.2.approval@rustic-hw.com ; B2BBudgetExceededPermission      ; Rustic_Budget_Exceeded_Approval ; PENDING_APPROVAL           ; previousPermissionResult2
+                                 ; previousOrder2                 ; hanna.schmidt.2.approval@rustic-hw.com ; B2BBudgetExceededPermission      ; Rustic_Budget_Exceeded_Approval ; PENDING_APPROVAL           ; currentPermissionResult2
+
+
+INSERT_UPDATE B2BApprovalProcess; code[unique = true]; processDefinitionName[unique = true]; order(&orderRef); &b2bApprovalProcessRef
+                                ; approval_process_1 ; accApproval                         ; currentOrder    ; approval_process_1
+                                ; approval_process_2 ; accApproval                         ; currentOrder2   ; approval_process_2
+
+
+INSERT_UPDATE WorkflowItemAttachment; code[unique = true]; workflow(code)      ; item(&b2bApprovalProcessRef)[unique = true]; typeOfItem(code)   ; &workflowItemAttachmentRef
+                                    ; toCheck            ; approval_workflow_1 ; approval_process_1                         ; B2BApprovalProcess ; approval_workflow_attachment_1
+                                    ; toCheck            ; approval_workflow_2 ; approval_process_2                         ; B2BApprovalProcess ; approval_workflow_attachment_2
+
+INSERT_UPDATE WorkflowActionTemplate; code[unique = true]                                                  ; name[lang = en]; description[lang = en]; principalAssigned(uid)                 ; workflow(code)[unique = true]                                        ; sendEmail; actionType(code)
+                                    ; SAMPLE_B2B_APPROVAL_WORKFLOW[hanna.schmidt.approval@rustic-hw.com]   ; APPROVAL       ;                       ; hanna.schmidt.approval@rustic-hw.com   ; SAMPLE_B2B_APPROVAL_WORKFLOW[hanna.schmidt.approval@rustic-hw.com]   ; false    ; start
+                                    ; SAMPLE_B2B_APPROVAL_WORKFLOW[hanna.schmidt.2.approval@rustic-hw.com] ; APPROVAL       ;                       ; hanna.schmidt.2.approval@rustic-hw.com ; SAMPLE_B2B_APPROVAL_WORKFLOW[hanna.schmidt.2.approval@rustic-hw.com] ; false    ; start
+
+INSERT_UPDATE WorkflowAction; code[unique = true]                           ; principalAssigned(uid)[unique = true]  ; actionType(code)[unique = true]; workflow(code)[unique = true]; attachments(&workflowItemAttachmentRef)[mode = append]; template(code)[unique = true]                                        ; status(code);
+                            ; approval_process_workflow_code                ; hanna.schmidt.approval@rustic-hw.com   ; start                          ; approval_workflow_1          ; approval_workflow_attachment_1                        ; SAMPLE_B2B_APPROVAL_WORKFLOW[hanna.schmidt.approval@rustic-hw.com]   ; in_progress ;
+                            ; approval_process_workflow_code_approval       ; hanna.schmidt.approval@rustic-hw.com   ; normal                         ; approval_workflow_1          ; approval_workflow_attachment_1                        ; SAMPLE_B2B_APPROVAL_WORKFLOW[hanna.schmidt.approval@rustic-hw.com]   ; pending     ;
+                            ; approval_process_workflow_code_approval_end   ; admin                                  ; normal                         ; approval_workflow_1          ; approval_workflow_attachment_1                        ; SAMPLE_B2B_APPROVAL_WORKFLOW[hanna.schmidt.approval@rustic-hw.com]   ; pending     ;
+                            ; approval_process_workflow_code_rejected       ; hanna.schmidt.approval@rustic-hw.com   ; normal                         ; approval_workflow_1          ; approval_workflow_attachment_1                        ; SAMPLE_B2B_APPROVAL_WORKFLOW[hanna.schmidt.approval@rustic-hw.com]   ; pending     ;
+                            ; approval_process_workflow_code_rejected_end   ; admin                                  ; normal                         ; approval_workflow_1          ; approval_workflow_attachment_1                        ; SAMPLE_B2B_APPROVAL_WORKFLOW[hanna.schmidt.approval@rustic-hw.com]   ; pending     ;
+                            ; approval_process_workflow_code_2              ; hanna.schmidt.2.approval@rustic-hw.com ; start                          ; approval_workflow_2          ; approval_workflow_attachment_2                        ; SAMPLE_B2B_APPROVAL_WORKFLOW[hanna.schmidt.2.approval@rustic-hw.com] ; in_progress ;
+                            ; approval_process_workflow_code_approval_2     ; hanna.schmidt.2.approval@rustic-hw.com ; normal                         ; approval_workflow_2          ; approval_workflow_attachment_2                        ; SAMPLE_B2B_APPROVAL_WORKFLOW[hanna.schmidt.2.approval@rustic-hw.com] ; pending     ;
+                            ; approval_process_workflow_code_approval_end_2 ; admin                                  ; normal                         ; approval_workflow_2          ; approval_workflow_attachment_2                        ; SAMPLE_B2B_APPROVAL_WORKFLOW[hanna.schmidt.2.approval@rustic-hw.com] ; pending     ;
+                            ; approval_process_workflow_code_rejected_2     ; hanna.schmidt.2.approval@rustic-hw.com ; normal                         ; approval_workflow_2          ; approval_workflow_attachment_2                        ; SAMPLE_B2B_APPROVAL_WORKFLOW[hanna.schmidt.2.approval@rustic-hw.com] ; pending     ;
+                            ; approval_process_workflow_code_rejected_end_2 ; admin                                  ; normal                         ; approval_workflow_2          ; approval_workflow_attachment_2                        ; SAMPLE_B2B_APPROVAL_WORKFLOW[hanna.schmidt.2.approval@rustic-hw.com] ; pending     ;
+
+
+INSERT_UPDATE WorkflowDecision; qualifier[unique = true]; name         ; action[unique = true](code)               ; toActions(code)
+                              ; APPROVE                 ; APPROVE      ; approval_process_workflow_code            ; approval_process_workflow_code_approval
+                              ; REJECT                  ; REJECT       ; approval_process_workflow_code            ; approval_process_workflow_code_rejected
+                              ; APPROVED_END            ; APPROVED_END ; approval_process_workflow_code_approval   ; approval_process_workflow_code_approval_end
+                              ; REJECT_END              ; REJECT_END   ; approval_process_workflow_code_rejected   ; approval_process_workflow_code_rejected_end
+                              ; APPROVE                 ; APPROVE      ; approval_process_workflow_code_2          ; approval_process_workflow_code_approval_2
+                              ; REJECT                  ; REJECT       ; approval_process_workflow_code_2          ; approval_process_workflow_code_rejected_2
+                              ; APPROVED_END            ; APPROVED_END ; approval_process_workflow_code_approval_2 ; approval_process_workflow_code_approval_end_2
+                              ; REJECT_END              ; REJECT_END   ; approval_process_workflow_code_rejected_2 ; approval_process_workflow_code_rejected_end_2
+
+

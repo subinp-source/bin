@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+	<!-- Workflow Designer validation -->
+	<alias name="defaultWorkflowDesignerAbstractValidator" alias="abstractValidator"/>
+	<bean id="defaultWorkflowDesignerAbstractValidator"
+		  class="com.hybris.backoffice.workflow.designer.validation.AbstractValidator"
+		  abstract="true">
+		<property name="nodeTypeService" ref="workflowDesignerNodeTypeService"/>
+		<property name="connectionFinder" ref="workflowDesignerConnectionFinder"/>
+		<property name="networkEntityFinder" ref="networkEntityFinder"/>
+	</bean>
+
+	<alias name="defaultWorkflowDesignerDecisionValidator" alias="workflowDesignerDecisionValidator"/>
+	<bean id="defaultWorkflowDesignerDecisionValidator"
+		  class="com.hybris.backoffice.workflow.designer.validation.DecisionValidator"
+		  parent="abstractValidator">
+	</bean>
+	<alias name="defaultWorkflowDesignerAndNodeValidator" alias="workflowDesignerAndNodeValidator"/>
+	<bean id="defaultWorkflowDesignerAndNodeValidator"
+		  class="com.hybris.backoffice.workflow.designer.validation.AndNodeValidator"
+		  parent="abstractValidator">
+	</bean>
+	<alias name="defaultWorkflowDesignerStartActionValidator" alias="workflowDesignerStartActionValidator"/>
+	<bean id="defaultWorkflowDesignerStartActionValidator"
+		  class="com.hybris.backoffice.workflow.designer.validation.StartActionValidator"
+		  parent="abstractValidator">
+	</bean>
+	<alias name="defaultWorkflowDesignerEndActionValidator" alias="workflowDesignerEndActionValidator"/>
+	<bean id="defaultWorkflowDesignerEndActionValidator"
+		  class="com.hybris.backoffice.workflow.designer.validation.EndActionValidator"
+		  parent="abstractValidator">
+	</bean>
+	<alias name="defaultCombinedWorkflowDesignerValidator" alias="workflowDesignerValidator"/>
+	<bean id="defaultCombinedWorkflowDesignerValidator"
+		  class="com.hybris.backoffice.workflow.designer.validation.CombinedWorkflowDesignerValidator">
+		<property name="validators">
+			<list>
+				<ref bean="workflowDesignerAndNodeValidator"/>
+				<ref bean="workflowDesignerDecisionValidator"/>
+				<ref bean="workflowDesignerStartActionValidator"/>
+				<ref bean="workflowDesignerEndActionValidator"/>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="workflowDesignerValidationPopupFactory" alias="networkChartValidationPopupFactory"/>
+	<bean name="workflowDesignerValidationPopupFactory"
+		  class="com.hybris.backoffice.workflow.designer.validation.WorkflowDesignerValidationPopupFactory">
+		<property name="validationRenderer" ref="configurableFlowValidationRenderer"/>
+		<property name="validator" ref="workflowDesignerValidator"/>
+	</bean>
+
+	<!-- Workflow Connections -->
+	<util:constant id="constWorkflowAnd"
+				   static-field="com.hybris.backoffice.workflow.designer.handler.connection.WorkflowDesignerGroup.AND"/>
+	<util:constant id="constWorkflowDecision"
+				   static-field="com.hybris.backoffice.workflow.designer.handler.connection.WorkflowDesignerGroup.DECISION"/>
+	<util:constant id="constWorkflowAction"
+				   static-field="com.hybris.backoffice.workflow.designer.handler.connection.WorkflowDesignerGroup.ACTION"/>
+	<util:constant id="constWorkflowStartAction"
+				   static-field="com.hybris.backoffice.workflow.designer.handler.connection.WorkflowDesignerGroup.START_ACTION"/>
+	<util:constant id="constWorkflowEndAction"
+				   static-field="com.hybris.backoffice.workflow.designer.handler.connection.WorkflowDesignerGroup.END_ACTION"/>
+
+	<bean id="connectionFromActionToDecision"
+		  class="com.hybris.backoffice.workflow.designer.handler.connection.WorkflowConnection"
+		  factory-method="of">
+		<constructor-arg name="from" ref="constWorkflowAction"/>
+		<constructor-arg name="to" ref="constWorkflowDecision"/>
+	</bean>
+
+	<bean id="connectionFromDecisionToAction"
+		  class="com.hybris.backoffice.workflow.designer.handler.connection.WorkflowConnection"
+		  factory-method="of">
+		<constructor-arg name="from" ref="constWorkflowDecision"/>
+		<constructor-arg name="to" ref="constWorkflowAction"/>
+	</bean>
+
+	<bean id="connectionFromDecisionToAnd"
+		  class="com.hybris.backoffice.workflow.designer.handler.connection.WorkflowConnection"
+		  factory-method="of">
+		<constructor-arg name="from" ref="constWorkflowDecision"/>
+		<constructor-arg name="to" ref="constWorkflowAnd"/>
+	</bean>
+
+	<bean id="connectionFromAndToAction"
+		  class="com.hybris.backoffice.workflow.designer.handler.connection.WorkflowConnection"
+		  factory-method="of">
+		<constructor-arg name="from" ref="constWorkflowAnd"/>
+		<constructor-arg name="to" ref="constWorkflowAction"/>
+	</bean>
+
+	<bean id="connectionFromAndToStart"
+		  class="com.hybris.backoffice.workflow.designer.handler.connection.WorkflowConnection"
+		  factory-method="of">
+		<constructor-arg name="from" ref="constWorkflowAnd"/>
+		<constructor-arg name="to" ref="constWorkflowStartAction"/>
+	</bean>
+
+	<bean id="connectionFromAndToEnd"
+		  class="com.hybris.backoffice.workflow.designer.handler.connection.WorkflowConnection"
+		  factory-method="of">
+		<constructor-arg name="from" ref="constWorkflowAnd"/>
+		<constructor-arg name="to" ref="constWorkflowEndAction"/>
+	</bean>
+
+	<bean id="connectionFromDecisionToStart"
+		  class="com.hybris.backoffice.workflow.designer.handler.connection.WorkflowConnection"
+		  factory-method="of">
+		<constructor-arg name="from" ref="constWorkflowDecision"/>
+		<constructor-arg name="to" ref="constWorkflowStartAction"/>
+	</bean>
+
+	<bean id="connectionFromStartToDecision"
+		  class="com.hybris.backoffice.workflow.designer.handler.connection.WorkflowConnection"
+		  factory-method="of">
+		<constructor-arg name="from" ref="constWorkflowStartAction"/>
+		<constructor-arg name="to" ref="constWorkflowDecision"/>
+	</bean>
+
+	<bean id="connectionFromStartToAnd"
+		  class="com.hybris.backoffice.workflow.designer.handler.connection.WorkflowConnection"
+		  factory-method="of">
+		<constructor-arg name="from" ref="constWorkflowStartAction"/>
+		<constructor-arg name="to" ref="constWorkflowAnd"/>
+	</bean>
+
+	<bean id="connectionFromDecisionToEnd"
+		  class="com.hybris.backoffice.workflow.designer.handler.connection.WorkflowConnection"
+		  factory-method="of">
+		<constructor-arg name="from" ref="constWorkflowDecision"/>
+		<constructor-arg name="to" ref="constWorkflowEndAction"/>
+	</bean>
+
+	<alias name="defaultNodesAlreadyConnectedPartialValidator" alias="nodesAlreadyConnectedPartialValidator"/>
+	<bean id="defaultNodesAlreadyConnectedPartialValidator"
+		  class="com.hybris.backoffice.workflow.designer.handler.connection.validator.NodesAlreadyConnectedPartialValidator">
+		<property name="connectionFinder" ref="workflowDesignerConnectionFinder"/>
+		<property name="nodeTypeService" ref="workflowDesignerNodeTypeService"/>
+		<property name="order" value="100"/>
+	</bean>
+
+	<alias name="defaultCircularConnectionPartialValidator" alias="circularConnectionPartialValidator"/>
+	<bean id="defaultCircularConnectionPartialValidator"
+		  class="com.hybris.backoffice.workflow.designer.handler.connection.validator.CircularConnectionPartialValidator">
+		<property name="connectionFinder" ref="workflowDesignerConnectionFinder"/>
+		<property name="nodeTypeService" ref="workflowDesignerNodeTypeService"/>
+		<property name="order" value="200"/>
+	</bean>
+
+	<alias name="defaultWorkflowDesignerAvailableConnections" alias="workflowDesignerAvailableConnections"/>
+	<util:list id="defaultWorkflowDesignerAvailableConnections">
+		<ref bean="connectionFromActionToDecision"/>
+		<ref bean="connectionFromDecisionToAction"/>
+		<ref bean="connectionFromDecisionToAnd"/>
+		<ref bean="connectionFromDecisionToEnd"/>
+		<ref bean="connectionFromDecisionToStart"/>
+		<ref bean="connectionFromAndToAction"/>
+		<ref bean="connectionFromAndToStart"/>
+		<ref bean="connectionFromAndToEnd"/>
+		<ref bean="connectionFromStartToDecision"/>
+		<ref bean="connectionFromStartToAnd"/>
+	</util:list>
+
+	<alias name="defaultAvailableConnectionPartialValidator" alias="availableConnectionPartialValidator"/>
+	<bean id="defaultAvailableConnectionPartialValidator"
+		  class="com.hybris.backoffice.workflow.designer.handler.connection.validator.AvailableConnectionPartialValidator">
+		<property name="availableConnections" ref="workflowDesignerAvailableConnections"/>
+		<property name="order" value="300"/>
+	</bean>
+
+	<alias name="defaultDuplicateConnectionViaAndPartialValidator" alias="duplicateConnectionViaAndPartialValidator"/>
+	<bean id="defaultDuplicateConnectionViaAndPartialValidator"
+		  class="com.hybris.backoffice.workflow.designer.handler.connection.validator.DuplicateConnectionViaAndPartialValidator">
+		<property name="connectionFinder" ref="workflowDesignerConnectionFinder"/>
+		<property name="nodeTypeService" ref="workflowDesignerNodeTypeService"/>
+		<property name="order" value="400"/>
+	</bean>
+
+	<alias name="defaultMultipleConnectionsIncomingToDecisionPartialValidator"
+		   alias="multipleConnectionsIncomingToDecisionPartialValidator"/>
+	<bean id="defaultMultipleConnectionsIncomingToDecisionPartialValidator"
+		  class="com.hybris.backoffice.workflow.designer.handler.connection.validator.MultipleConnectionsIncomingToDecisionPartialValidator">
+		<property name="connectionFinder" ref="workflowDesignerConnectionFinder"/>
+		<property name="nodeTypeService" ref="workflowDesignerNodeTypeService"/>
+		<property name="order" value="500"/>
+	</bean>
+
+	<alias name="defaultWorkflowConnectionPartialValidators" alias="workflowConnectionPartialValidators"/>
+	<util:list id="defaultWorkflowConnectionPartialValidators">
+		<ref bean="circularConnectionPartialValidator"/>
+		<ref bean="nodesAlreadyConnectedPartialValidator"/>
+		<ref bean="availableConnectionPartialValidator"/>
+		<ref bean="duplicateConnectionViaAndPartialValidator"/>
+		<ref bean="multipleConnectionsIncomingToDecisionPartialValidator"/>
+	</util:list>
+
+	<alias name="defaultWorkflowConnectionValidator" alias="workflowConnectionValidator"/>
+	<bean id="defaultWorkflowConnectionValidator"
+		  class="com.hybris.backoffice.workflow.designer.handler.connection.validator.WorkflowConnectionValidator">
+		<property name="partialValidators" ref="workflowConnectionPartialValidators"/>
+	</bean>
+
+	<alias name="defaultWorkflowDesignerConnectionHandler" alias="workflowDesignerConnectionHandler"/>
+	<bean id="defaultWorkflowDesignerConnectionHandler"
+		  class="com.hybris.backoffice.workflow.designer.handler.connection.DefaultWorkflowDesignerConnectionHandler">
+		<property name="notificationService" ref="notificationService"/>
+		<property name="workflowConnectionValidator" ref="workflowConnectionValidator"/>
+	</bean>
+</beans>

@@ -1,0 +1,23 @@
+<div class="se-version-item-context">
+    <span class="sap-icon--navigation-right-arrow"></span>
+    <div
+        class="se-version-item-context__info"
+        data-y-popover
+        data-placement="'bottom'"
+        data-template="$ctrl.getPopoverTemplate()"
+        data-trigger="'hover'"
+    >
+        <div class="se-version-item-context__info-label" title="{{ $ctrl.getPageVersion().label }}">
+            {{ $ctrl.getPageVersion().label }}
+        </div>
+        <div class="se-version-item-context__info-date">
+            {{ $ctrl.getPageVersion().creationtime | date:'short' }}
+        </div>
+    </div>
+    <button
+        type="button"
+        data-uib-dropdown-toggle
+        data-ng-click="$ctrl.deselectPageVersion()"
+        class="se-version-item-context__remove-btn fd-button--light sap-icon--decline"
+    ></button>
+</div>

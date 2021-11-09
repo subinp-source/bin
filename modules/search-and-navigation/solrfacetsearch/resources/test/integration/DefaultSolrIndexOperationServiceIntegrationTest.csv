@@ -1,0 +1,17 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+INSERT_UPDATE SolrSearchConfig;description[unique=true];pageSize
+;testSearchConfig;20
+
+INSERT_UPDATE SolrIndexConfig;name[unique=true];indexMode(code);batchSize
+;testIndexConfig;DIRECT;100
+
+INSERT_UPDATE SolrServerConfig;name[unique=true];mode(code)
+;testServerConfig;standalone
+
+INSERT_UPDATE SolrIndexedType;identifier[unique=true];type(code);indexName
+;testIndexedType;Product;testIndexedType
+
+INSERT_UPDATE SolrFacetSearchConfig;name[unique=true];solrIndexedTypes(identifier);solrSearchConfig(description);solrIndexConfig(name);solrServerConfig(name)
+;testFacetSearchConfig;testIndexedType;testSearchConfig;testIndexConfig;testServerConfig

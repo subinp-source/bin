@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<base>
+	<search>
+		<search-properties>
+			<property qualifier="Country.name"/>
+			<property qualifier="Country.isocode"/>
+			<property qualifier="Country.active"/>
+		</search-properties>
+		<sort-properties>
+		<property qualifier="Item.modifiedtime"/>
+			<property qualifier="Country.name"/>
+			<property qualifier="Country.isocode"/>
+			<property qualifier="Country.active"/>
+		</sort-properties>
+	</search>
+	<label spring-bean="countryLabelProvider"/>
+</base>

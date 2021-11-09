@@ -1,0 +1,11 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+adaptivesearchsamplesaddon.application-context=adaptivesearchsamplesaddon-spring.xml
+
+yacceleratorstorefront.additionalWebSpringConfigs.adaptivesearchsamplesaddon=classpath:/adaptivesearchsamplesaddon/web/spring/adaptivesearchsamplesaddon-web-spring.xml
+
+
+
+adaptivesearchsamplesaddon.javascript.paths.responsive=/responsive/common/js/adaptivesearchsamplesaddon.js
+adaptivesearchsamplesaddon.css.paths.responsive=/responsive/common/css/adaptivesearchsamplesaddon.css

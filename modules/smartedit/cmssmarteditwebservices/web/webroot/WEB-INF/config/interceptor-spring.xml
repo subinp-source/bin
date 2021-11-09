@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/mvc
+           http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+
+	<bean id="catalogVersionInterceptor"  class="de.hybris.platform.cmssmarteditwebservices.interceptor.CatalogVersionInterceptor">
+		<property name="cmsAdminSiteService" ref="cmsAdminSiteService" />
+		<property name="catalogVersionService" ref="catalogVersionService" />
+		<property name="catalogVersionPermissionService" ref="cmsCatalogVersionPermissionService" />
+	</bean>
+	
+	<bean id="pageOperationsInterceptor"  class="de.hybris.platform.cmssmarteditwebservices.interceptor.PageOperationsInterceptor">
+		<property name="catalogVersionService" ref="catalogVersionService" />
+		<property name="userService" ref="userService" />
+		<property name="catalogSynchronizationService" ref="catalogSynchronizationService" />
+	</bean>
+
+	<bean id="siteLanguageInterceptor" class="de.hybris.platform.cmssmarteditwebservices.interceptor.SiteLanguageInterceptor">
+		<property name="baseSiteService" ref="baseSiteService" />
+		<property name="adminSiteService" ref="cmsAdminSiteService" />
+	</bean>
+
+	<bean id="permissionCacheInitializerInterceptor" class="de.hybris.platform.cmssmarteditwebservices.interceptor.PermissionCacheInitializerInterceptor">
+		<property name="permissionCachedCRUDService" ref="defaultCMSPermissionCachedCRUDService" />
+	</bean>
+
+	<mvc:interceptors>
+		<bean class="de.hybris.platform.webservicescommons.interceptors.CacheControlHandlerInterceptor"/>
+		<mvc:interceptor>
+			<mvc:mapping path="/v1/sites/*/catalogs/*/versions/**"/>
+			<ref bean="catalogVersionInterceptor"/>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/v1/sites/*/catalogs/*/versions/**"/>
+			<ref bean="siteLanguageInterceptor"/>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/v1/productcatalogs/*/versions/**"/>
+			<ref bean="catalogVersionInterceptor"/>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/v1/catalogs/*/versions/**"/>
+			<ref bean="catalogVersionInterceptor"/>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/v1/sites/*/catalogs/*/pages/*/operations/**"/>
+			<ref bean="pageOperationsInterceptor"/>
+		</mvc:interceptor>
+
+		<mvc:interceptor>
+			<mvc:mapping path="/v1/**"/>
+			<ref bean="permissionCacheInitializerInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+</beans>

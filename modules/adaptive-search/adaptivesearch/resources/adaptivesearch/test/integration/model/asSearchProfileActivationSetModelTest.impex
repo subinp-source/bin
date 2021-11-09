@@ -1,0 +1,11 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+$lang=en
+
+INSERT_UPDATE Catalog;id[unique=true];name[lang=en];defaultCatalog
+;hwcatalog;Computer hardware;false
+
+INSERT_UPDATE CatalogVersion;catalog(id)[unique=true];version[unique=true];languages(isocode)
+;hwcatalog;Staged;en
+;hwcatalog;Online;en

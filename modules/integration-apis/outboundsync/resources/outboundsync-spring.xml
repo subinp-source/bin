@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:int="http://www.springframework.org/schema/integration"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/integration
+           http://www.springframework.org/schema/integration/spring-integration.xsd">
+
+    <alias name="defaultOutboundSyncCronJobPerformable" alias="outboundSyncCronJobPerformable"/>
+    <bean id="defaultOutboundSyncCronJobPerformable"
+          class="de.hybris.platform.outboundsync.job.impl.OutboundSyncCronJobPerformable"
+          parent="abstractJobPerformable">
+        <property name="changeDetectionService" ref="changeDetectionService"/>
+        <property name="changesCollectorFactory" ref="outboundSyncChangesCollectorFactory"/>
+        <property name="eventService" ref="eventService"/>
+        <property name="jobRegister" ref="outboundSyncJobRegister"/>
+    </bean>
+
+    <alias name="defaultChangesCollectorFactory" alias="outboundSyncChangesCollectorFactory"/>
+    <bean id="defaultChangesCollectorFactory"
+          class="de.hybris.platform.outboundsync.job.impl.DefaultChangesCollectorFactory">
+        <property name="itemChangeSender" ref="itemChangeSender"/>
+    </bean>
+
+    <alias name="defaultOutboundSyncJobRegister" alias="outboundSyncJobRegister"/>
+    <bean id="defaultOutboundSyncJobRegister"
+          class="de.hybris.platform.outboundsync.job.impl.DefaultOutboundSyncJobRegister">
+        <constructor-arg ref="modelService"/>
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+        <property name="outboundSyncConfiguration" ref="outboundSyncConfiguration"/>
+    </bean>
+
+    <alias name="defaultOutboundSyncItemChangeTaskExecutor" alias="outboundSyncItemChangeTaskExecutor"/>
+    <bean id="defaultOutboundSyncItemChangeTaskExecutor"
+          class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <property name="corePoolSize" value="${outboundsync.taskexecutor.pool.size:5}"/>
+        <property name="keepAliveSeconds" value="5"/>
+        <property name="maxPoolSize" value="${outboundsync.taskexecutor.pool.size:5}"/>
+        <property name="queueCapacity" value="${outboundsync.taskexecutor.queue.capacity:10000}"/>
+        <property name="threadFactory" ref="outboundSyncThreadFactory"/>
+        <property name="rejectedExecutionHandler">
+            <bean class="java.util.concurrent.ThreadPoolExecutor.CallerRunsPolicy"/>
+        </property>
+    </bean>
+
+    <!-- the tenant thread factory provides the tenant to the threads so we don't get a "no tenant" error when synchronizing -->
+    <alias name="defaultOutboundSyncThreadFactory" alias="outboundSyncThreadFactory"/>
+    <bean id="defaultOutboundSyncThreadFactory"
+          class="de.hybris.platform.integrationservices.util.TenantAdminUserAwareThreadFactory">
+        <constructor-arg name="tenant" ref="tenantFactory"/>
+    </bean>
+
+    <int:gateway id="itemChangeSender"
+                 service-interface="de.hybris.platform.outboundsync.job.ItemChangeSender"
+                 default-request-channel="outboundSyncChannel"/>
+
+    <int:channel id="outboundSyncChannel"/>
+
+    <int:service-activator input-channel="outboundSyncChannel" ref="outboundItemDTORouter" method="route"/>
+
+    <alias name="defaultOutboundItemDTORouter" alias="outboundItemDTORouter"/>
+    <bean id="defaultOutboundItemDTORouter"
+          class="de.hybris.platform.outboundsync.router.impl.DefaultOutboundItemDTORouter">
+        <property name="changeConsumer" ref="outboundItemConsumer"/>
+        <property name="rootItemChangeSender" ref="rootItemChangeSender"/>
+        <property name="populator" ref="rootItemPkPopulator"/>
+        <property name="eventService" ref="eventService"/>
+    </bean>
+
+    <int:gateway id="rootItemChangeSender"
+                 service-interface="de.hybris.platform.outboundsync.job.RootItemChangeSender"
+                 default-request-channel="outboundSyncAggregatorChannel"/>
+
+    <int:channel id="outboundSyncAggregatorChannel"/>
+
+    <int:aggregator id="rootItemGroupAggregator"
+                    input-channel="outboundSyncAggregatorChannel"
+                    output-channel="outboundSyncAggregatedChannel"
+                    release-strategy-expression="size() == #{outboundSyncConfiguration.getItemGroupSizeMax()}"
+                    send-partial-result-on-expiry="true"
+                    group-timeout="#{outboundSyncConfiguration.getItemGroupingTimeout()}"
+                    expire-groups-upon-completion="true"
+                    scheduler="aggregatorScheduler"
+                    correlation-strategy="changeItemCorrelationStrategy"
+                    correlation-strategy-method="correlationKey"/>
+
+    <alias name="rootItemChannelCorrelationStrategy" alias="changeItemCorrelationStrategy"/>
+    <bean id="rootItemChannelCorrelationStrategy"
+          class="de.hybris.platform.outboundsync.RootItemChannelCorrelationStrategy"/>
+
+    <alias name="defaultAggregatorScheduler" alias="aggregatorScheduler"/>
+    <bean id="defaultAggregatorScheduler"
+          class="org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler">
+        <property name="threadFactory" ref="outboundSyncThreadFactory"/>
+    </bean>
+
+    <int:channel id="outboundSyncAggregatedChannel">
+        <int:dispatcher task-executor="outboundSyncItemChangeTaskExecutor"/>
+        <int:interceptors>
+            <int:wire-tap channel="outboundSyncAggregatedChannelLogger"/>
+        </int:interceptors>
+    </int:channel>
+
+    <int:logging-channel-adapter level="DEBUG" log-full-message="true" id="outboundSyncAggregatedChannelLogger"/>
+
+    <int:service-activator input-channel="outboundSyncAggregatedChannel" ref="outboundSyncService" method="sync"/>
+
+    <alias name="defaultOutboundSyncService" alias="outboundSyncService"/>
+    <bean id="defaultOutboundSyncService"
+          class="de.hybris.platform.outboundsync.activator.impl.DefaultOutboundSyncService">
+        <property name="modelService" ref="modelService"/>
+        <property name="outboundServiceFacade" ref="outboundServiceFacade"/>
+        <property name="outboundItemConsumer" ref="outboundItemConsumer"/>
+        <property name="syncRetryService" ref="syncRetryService"/>
+        <property name="outboundItemFactory" ref="outboundItemFactory"/>
+        <property name="eventService" ref="eventService"/>
+        <property name="itemModelSearchService" ref="itemModelSearchService"/>
+    </bean>
+
+    <alias name="defaultSyncRetryService" alias="syncRetryService"/>
+    <bean name="defaultSyncRetryService" class="de.hybris.platform.outboundsync.retry.impl.DefaultSyncRetryService">
+        <property name="modelService" ref="modelService"/>
+        <property name="outboundSyncConfiguration" ref="outboundSyncConfiguration"/>
+        <property name="retrySearchService" ref="retrySearchService"/>
+    </bean>
+
+    <alias name="defaultOutboundSyncConfiguration" alias="outboundSyncConfiguration"/>
+    <bean id="defaultOutboundSyncConfiguration"
+          class="de.hybris.platform.outboundsync.config.impl.DefaultOutboundSyncConfiguration">
+        <property name="configurationService" ref="configurationService"/>
+    </bean>
+
+
+    <alias name="deltaDetectionOutboundItemConsumer" alias="outboundItemConsumer"/>
+    <bean name="deltaDetectionOutboundItemConsumer"
+          class="de.hybris.platform.outboundsync.activator.impl.DeltaDetectionOutboundItemConsumer">
+        <property name="changeDetectionService" ref="changeDetectionService"/>
+    </bean>
+
+    <alias name="defaultRetrySearchService" alias="retrySearchService"/>
+    <bean name="defaultRetrySearchService" class="de.hybris.platform.outboundsync.retry.impl.DefaultRetrySearchService">
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+
+    <alias name="defaultRootItemPkPopulator" alias="rootItemPkPopulator"/>
+    <bean id="defaultRootItemPkPopulator" class="de.hybris.platform.outboundsync.router.impl.RootItemPKPopulator">
+        <property name="itemFactory" ref="outboundItemFactory"/>
+    </bean>
+
+    <alias name="defaultOutboundItemFactory" alias="outboundItemFactory"/>
+    <bean name="defaultOutboundItemFactory" class="de.hybris.platform.outboundsync.job.impl.DefaultOutboundItemFactory">
+        <property name="modelService" ref="modelService"/>
+    </bean>
+
+    <alias name="defaultChannelConfigurationFactory" alias="channelConfigurationFactory"/>
+    <bean id="defaultChannelConfigurationFactory"
+          class="de.hybris.platform.outboundsync.config.impl.DefaultChannelConfigurationFactory">
+        <property name="streamContainerIdentifierGenerator" ref="streamContainerIdentifierGenerator"/>
+        <property name="streamIdentifierGenerator" ref="streamIdentifierGenerator"/>
+        <property name="jobIdentifierGenerator" ref="jobIdentifierGenerator"/>
+        <property name="cronJobIdentifierGenerator" ref="cronJobIdentifierGenerator"/>
+        <property name="internationalizationService" ref="commonI18NService"/>
+        <property name="sessionService" ref="sessionService"/>
+    </bean>
+
+    <alias name="defaultChannelConfigurationPrepareInterceptor" alias="channelConfigurationPrepareInterceptor"/>
+    <bean id="defaultChannelConfigurationPrepareInterceptor"
+          class="de.hybris.platform.outboundsync.config.impl.DefaultChannelConfigurationPrepareInterceptor">
+        <property name="factory" ref="channelConfigurationFactory"/>
+    </bean>
+
+    <bean id="channelConfigurationPrepareMapping"
+          class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+        <property name="interceptor" ref="channelConfigurationPrepareInterceptor"/>
+        <property name="typeCode" value="OutboundChannelConfiguration"/>
+    </bean>
+
+    <alias name="defaultStreamContainerIdentifierGenerator" alias="streamContainerIdentifierGenerator"/>
+    <bean id="defaultStreamContainerIdentifierGenerator"
+          class="de.hybris.platform.outboundsync.config.impl.StreamContainerIdentifierGenerator"/>
+
+    <alias name="defaultStreamIdentifierGenerator" alias="streamIdentifierGenerator"/>
+    <bean id="defaultStreamIdentifierGenerator"
+          class="de.hybris.platform.outboundsync.config.impl.DefaultStreamIdentifierGenerator"/>
+
+    <alias name="defaultJobIdentifierGenerator" alias="jobIdentifierGenerator"/>
+    <bean id="defaultJobIdentifierGenerator"
+          class="de.hybris.platform.outboundsync.config.impl.JobIdentifierGenerator"/>
+
+    <alias name="defaultCronJobIdentifierGenerator" alias="cronJobIdentifierGenerator"/>
+    <bean id="defaultCronJobIdentifierGenerator"
+          class="de.hybris.platform.outboundsync.config.impl.CronJobIdentifierGenerator"/>
+
+    <alias name="outboundSyncEventListener" alias="integrationServicesOutboundSyncEventListener"/>
+    <bean name="outboundSyncEventListener" class="de.hybris.platform.outboundsync.listeners.OutboundSyncEventListener"
+          parent="abstractEventListener">
+        <constructor-arg ref="outboundSyncJobRegister"/>
+    </bean>
+</beans>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.zkoss.org/2005/zul" sclass="yw-account-settings">
+	<toolbarbutton id="openAccountSettingsButton" image="${wr}/images/accountsettings.svg"
+				   tooltiptext="${labels.openAccountSettingsButton.tooltip}"
+				   if="${widgetSettings.changePasswordEnabled}"/>
+</widget>

@@ -1,0 +1,177 @@
+/********************************************************
+                    Contextual Menu
+*********************************************************/
+@cms-external-component-decorator--border: 1px solid @smartedit-grey2;
+
+.smartEditComponentX {
+    z-index: @z-index-level-1;
+}
+
+// elements contained by hovered slot are rendered above all other slots
+.smartEditComponentX:hover {
+    z-index: @z-index-level-2;
+}
+
+.smartEditComponentX > * {
+    height: 100%;
+    width: 100%;
+}
+
+.cms-external-component-decorator {
+    border: @cms-external-component-decorator--border;
+    height: 100%;
+}
+
+.cms-external-component-decorator__popover {
+    display: inline-block;
+}
+
+.cms-external-component-decorator > .se-ctx-menu__overlay {
+    left: 1px;
+    top: 1px;
+}
+
+.decorative-panel-basic-slot-contextual-menu {
+    position: static;
+    margin-top: -42px;
+}
+
+.decorator-basic-slot-border {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border: 2px dashed @smartedit-grey15;
+}
+
+// Padding added to the body when se-decorative-panel-area is too small to display all the buttons
+.se-decorative-body__padding--left,
+.se-decorative-body__padding--right {
+    background-image: url('@{dist-images-path}/slot_background_v2.png');
+    flex-grow: 1;
+    display: none;
+    box-shadow: inset 0 0 0 2px @smartedit-blue;
+    height: 50px;
+}
+.se-decorative-body__padding--right.active,
+.se-decorative-body__padding--left.active {
+    display: flex;
+}
+
+.se-page-sensitive,
+.se-decorator-wrap {
+    height: 100%;
+}
+
+.se-decorator-wrap {
+    display: block; /* mandatory for proper positioning of decorator */
+    > slot-disabled-component {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+    }
+    &.ng-transclude {
+        position: absolute;
+    }
+}
+
+@disabled-shared-slot__icon--outer-background: fade(@smartedit-grey4, 50%);
+@disabled-shared-slot-popover-border-radius: 3px;
+
+.disabled-shared-slot-versioning-mode,
+.disabled-shared-slot {
+    background-color: fade(@smartedit-grey24, 35%);
+    width: 100%;
+    height: 100%;
+    color: @smartedit-grey25;
+    text-align: center;
+    word-wrap: break-word;
+    text-overflow: clip;
+    position: relative;
+}
+
+.disabled-shared-slot-versioning-mode {
+    background-color: none;
+    background-image: repeating-linear-gradient(
+        45deg,
+        @smartedit-opacity-grey1,
+        @smartedit-opacity-grey1 10px,
+        @smartedit-opacity-grey2 5px,
+        @smartedit-opacity-grey2 25px
+    );
+}
+
+.disabled-shared-slot__icon--outer,
+.disabled-shared-slot__icon--outer-hovered {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: @z-index-level-5;
+    opacity: 0.5;
+
+    &.disabled-shared-slot__icon--outer-globe,
+    &.disabled-shared-slot__icon--outer-linked {
+        border: 2px solid @smartedit-white;
+        opacity: 0.5;
+    }
+}
+
+.disabled-shared-slot__icon--inner {
+    font-weight: bold;
+    color: @smartedit-white;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: @z-index-level-5;
+    opacity: 0.5;
+
+    &.hyicon-lock:before {
+        font-size: 42px;
+        position: relative;
+        left: 5px;
+    }
+    &.hyicon-linked:before {
+        font-size: 11px;
+    }
+    &.hyicon-globe:before {
+        font-size: 24px;
+    }
+}
+
+.disabled-shared-slot-hovered {
+    background-color: fade(@smartedit-grey24, 55%);
+
+    .disabled-shared-slot__icon--inner,
+    .disabled-shared-slot__icon--outer {
+        opacity: 1;
+    }
+}
+
+.disabled-shared-slot-tooltip__wrapper {
+    background: @default-greyblue;
+    display: flex;
+    align-items: center;
+    border-radius: @disabled-shared-slot-popover-border-radius;
+}
+
+.disabled-shared-slot-tooltip__info {
+    color: @smartedit-white;
+    padding: 0.4 * @smartedit-gutter;
+}
+
+.cms-external-component-decorator--versioning .hyicon-globe {
+    cursor: default;
+    position: relative;
+    width: 44px;
+    height: 44px;
+    display: inline-block;
+}

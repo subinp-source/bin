@@ -1,0 +1,66 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+$lang=en
+$indexType=testIndexType
+$catalogVersion=catalogVersion(catalog(id[default='hwcatalog']),version[default='Staged'])[unique=true,default='hwcatalog:Staged']
+
+# search profile               
+
+INSERT_UPDATE AsCategoryAwareSearchProfile ; code[unique=true] ; name[lang=$lang] ; indexType[default=$indexType] ; $catalogVersion[unique=true]
+                                           ; searchProfile     ; Search Profile   ;                               ;                             
+
+# global search configuration              
+
+INSERT_UPDATE AsCategoryAwareSearchConfiguration ; searchProfile(code,$catalogVersion)[unique=true] ; uid[unique=true]          ; category(code,$catalogVersion) ; facetsMergeMode(code) ; boostItemsMergeMode(code) ; boostRulesMergeMode(code) ; sortsMergeMode(code) ; $catalogVersion[unique=true]
+                                                 ; searchProfile                                    ; searchConfigurationGlobal ;                                ; ADD_AFTER             ; ADD_AFTER                 ; ADD                       ; ADD_AFTER            ;                             
+
+INSERT_UPDATE AsFacet ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true]
+                            
+INSERT_UPDATE AsPromotedItem ; searchConfiguration(uid,$catalogVersion)[unique=true] ; item(Product.code,Product.$catalogVersion)[unique=true] ; $catalogVersion[unique=true]
+                             ; searchConfigurationGlobal                             ; doc4                                                    ;                             
+
+INSERT_UPDATE AsExcludedItem ; searchConfiguration(uid,$catalogVersion)[unique=true] ; item(Product.code,Product.$catalogVersion)[unique=true] ; $catalogVersion[unique=true]
+                             
+INSERT_UPDATE AsBoostRule ; searchConfiguration(uid,$catalogVersion)[unique=true] ; uid[unique=true] ; indexProperty ; operator(code) ; value ; boost ; boostType(code) ; $catalogVersion[unique=true]
+
+INSERT_UPDATE AsSort ; searchConfiguration(uid,$catalogVersion)[unique=true] ; uid[unique=true] ; code ; name[lang=en] ; $catalogVersion[unique=true]
+
+INSERT_UPDATE AsSortExpression ; sortConfiguration(uid,$catalogVersion)[unique=true] ; uid[unique=true] ; expression ; order(code) ; $catalogVersion[unique=true]
+
+# category cat10 search configuration
+
+INSERT_UPDATE AsCategoryAwareSearchConfiguration ; searchProfile(code,$catalogVersion)[unique=true] ; uid[unique=true]         ; category(code,$catalogVersion) ; facetsMergeMode(code) ; boostItemsMergeMode(code) ; boostRulesMergeMode(code) ; sortsMergeMode(code) ; $catalogVersion[unique=true]
+                                                 ; searchProfile                                    ; searchConfigurationCat10 ; cat10                          ; ADD_AFTER             ; ADD_AFTER                 ; ADD                       ; ADD_AFTER            ;                             
+
+INSERT_UPDATE AsFacet ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true]
+                            
+INSERT_UPDATE AsPromotedItem ; searchConfiguration(uid,$catalogVersion)[unique=true] ; item(Product.code,Product.$catalogVersion)[unique=true] ; $catalogVersion[unique=true]
+                             ; searchConfigurationCat10                              ; doc3                                                    ;                             
+
+INSERT_UPDATE AsExcludedItem ; searchConfiguration(uid,$catalogVersion)[unique=true] ; item(Product.code,Product.$catalogVersion)[unique=true] ; $catalogVersion[unique=true]
+                             
+INSERT_UPDATE AsBoostRule ; searchConfiguration(uid,$catalogVersion)[unique=true] ; uid[unique=true] ; indexProperty ; operator(code) ; value ; boost ; boostType(code) ; $catalogVersion[unique=true]
+
+INSERT_UPDATE AsSort ; searchConfiguration(uid,$catalogVersion)[unique=true] ; uid[unique=true] ; code ; name[lang=en] ; $catalogVersion[unique=true]
+
+INSERT_UPDATE AsSortExpression ; sortConfiguration(uid,$catalogVersion)[unique=true] ; uid[unique=true] ; expression ; order(code) ; $catalogVersion[unique=true]
+
+# category cat12 search configuration
+
+INSERT_UPDATE AsCategoryAwareSearchConfiguration ; searchProfile(code,$catalogVersion)[unique=true] ; uid[unique=true]         ; category(code,$catalogVersion) ; facetsMergeMode(code) ; boostItemsMergeMode(code) ; boostRulesMergeMode(code) ; sortsMergeMode(code) ; $catalogVersion[unique=true]
+                                                 ; searchProfile                                    ; searchConfigurationCat12 ; cat12                          ; ADD_AFTER             ; ADD_AFTER                 ; ADD                       ; ADD_AFTER            ;                             
+
+INSERT_UPDATE AsFacet ; searchConfiguration(uid,$catalogVersion)[unique=true] ; indexProperty[unique=true] ; facetType(code) ; priority ; $catalogVersion[unique=true]
+                            
+INSERT_UPDATE AsPromotedItem ; searchConfiguration(uid,$catalogVersion)[unique=true] ; item(Product.code,Product.$catalogVersion)[unique=true] ; $catalogVersion[unique=true]
+                             ; searchConfigurationCat12                              ; doc2                                                    ;                             
+
+INSERT_UPDATE AsExcludedItem ; searchConfiguration(uid,$catalogVersion)[unique=true] ; item(Product.code,Product.$catalogVersion)[unique=true] ; $catalogVersion[unique=true]
+                             
+INSERT_UPDATE AsBoostRule ; searchConfiguration(uid,$catalogVersion)[unique=true] ; uid[unique=true] ; indexProperty ; operator(code) ; value ; boost ; boostType(code) ; $catalogVersion[unique=true]
+
+INSERT_UPDATE AsSort ; searchConfiguration(uid,$catalogVersion)[unique=true] ; uid[unique=true] ; code ; name[lang=en] ; $catalogVersion[unique=true]
+
+INSERT_UPDATE AsSortExpression ; sortConfiguration(uid,$catalogVersion)[unique=true] ; uid[unique=true] ; expression ; order(code) ; $catalogVersion[unique=true]

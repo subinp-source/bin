@@ -1,0 +1,18 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+INSERT_UPDATE BackofficeRole;UID[unique=true];locname[lang=en];backOfficeLoginDisabled;authorities
+;merchantvendormanagerrole;Merchant Vendor Manager Role;FALSE;merchantvendormanagerrole
+;vendoradministratorrole;Vendor Administrator Role;FALSE;vendoradministratorrole
+;vendorwarehousestaffrole;Vendor Warehouse Staff Role;FALSE;vendorwarehousestaffrole
+;vendorproductmanagerrole;Vendor Product Manager Role;FALSE;vendorproductmanagerrole
+;vendorcontentmanagerrole;Vendor Content Manager Role;FALSE;vendorcontentmanagerrole
+
+INSERT_UPDATE PrincipalGroupRelation;source(uid)[unique=true];target(uid)[unique=true]
+;merchantvendormanagerrole;employeegroup
+;merchantvendormanagergroup;merchantvendormanagerrole
+;vendoradministratorgroup;vendoradministratorrole
+;vendorwarehousestaffgroup;vendorwarehousestaffrole
+;vendorproductmanagergroup;vendorproductmanagerrole
+;vendorcontentmanagergroup;vendorcontentmanagerrole

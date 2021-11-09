@@ -1,0 +1,109 @@
+<div class="se-sync-panel">
+    <div
+        class="se-sync-panel__sync-status"
+        data-ng-if="$ctrl.headerTemplateUrl"
+        data-ng-include="$ctrl.headerTemplateUrl"
+    ></div>
+
+    <se-message
+        data-ng-if="$ctrl.message"
+        [type]="$ctrl.message.type"
+        [message-id]="'sync-panel-message-{{$index}}'"
+    >
+        <ng-container se-message-description> {{$ctrl.message.description}} </ng-container>
+    </se-message>
+
+    <div class="se-sync-panel__sync-info" data-ng-show="$ctrl.showItemList">
+        <div data-ng-if="$ctrl.isLoading">
+            <div class="spinner-sm spinner-light">Loading...</div>
+        </div>
+        <div
+            data-ng-if="!$ctrl.isLoading"
+            data-ng-repeat="dependency in $ctrl.getRows()"
+            data-ng-class="{active: $index==0, 'se-sync-panel--item__external': dependency.isExternal}"
+            class="se-sync-panel__sync-info__row"
+        >
+            <div class="se-sync-panel__info-checkbox fd-form__item">
+                <input
+                    type="checkbox"
+                    class="fd-form__control"
+                    data-ng-if="!dependency.isExternal"
+                    data-ng-model="dependency.selected"
+                    data-ng-disabled="$ctrl.isDisabled(dependency)"
+                    data-ng-change="$ctrl.selectionChange($index)"
+                    id="sync-info__checkbox_{{$index}}"
+                />
+                <label
+                    data-ng-if="$index===0"
+                    for="sync-info__checkbox_{{$index}}"
+                    class="se-sync-panel__info-checkbox-label se-sync-panel__info-checkbox-label--select-all fd-form__label"
+                    title="{{::dependency.selectAll | translate}}"
+                >
+                    {{::dependency.selectAll | translate}}</label
+                >
+
+                <label
+                    data-ng-if="$index!==0 && !dependency.isExternal"
+                    for="sync-info__checkbox_{{$index}}"
+                    class="se-sync-panel__info-checkbox-label fd-form__label"
+                    title="{{::dependency.name | translate}}"
+                >
+                    {{::dependency.name | translate}}</label
+                >
+
+                <label
+                    data-ng-if="$index!==0 && dependency.isExternal"
+                    data-y-popover
+                    data-trigger="'hover'"
+                    data-template="$ctrl.getTemplateInfoForExternalComponent()"
+                    for="sync-info__checkbox_{{$index}}"
+                    class="se-sync-panel__info-checkbox-label fd-form__label"
+                >
+                    {{::dependency.name | translate}}
+                </label>
+            </div>
+
+            <span
+                data-ng-if="$ctrl.buildInfoTemplate(dependency)"
+                data-y-popover
+                data-trigger="'hover'"
+                data-title="$ctrl.getInfoTitle(dependency)"
+                data-template="$ctrl.buildInfoTemplate(dependency)"
+                class="pull-right se-sync-panel__sync-info__right-icon"
+                data-ng-class="{'se-sync-panel--icon-globe': dependency.isExternal} "
+            >
+                <span
+                    data-status="{{dependency.status}}"
+                    data-ng-if="!dependency.isExternal"
+                    class="se-sync-panel__sync-info-icon"
+                    data-ng-class="{
+                        'sap-icon--accept':$ctrl.isInSync(dependency), 
+                        'sap-icon--message-warning':!$ctrl.isInSync(dependency)}"
+                ></span>
+                <span data-ng-if="dependency.isExternal" class="sap-icon--globe"></span>
+            </span>
+
+            <span
+                data-ng-if="!$ctrl.buildInfoTemplate(dependency)"
+                class="pull-right se-sync-panel__sync-info__right-icon"
+            >
+                <span
+                    data-status="{{dependency.status}}"
+                    class="se-sync-panel__sync-info-icon"
+                    data-ng-class="{
+                        'sap-icon--accept':$ctrl.isInSync(dependency), 
+                        'sap-icon--message-warning':!$ctrl.isInSync(dependency)}"
+                ></span>
+            </span>
+        </div>
+    </div>
+
+    <div class="se-sync-panel__footer" data-ng-if="$ctrl.showSyncButton">
+        <button
+            class="fd-button--emphasized se-sync-panel__footer__btn se-sync-panel__sync-btn"
+            data-ng-disabled="$ctrl.isSyncButtonDisabled()"
+            data-ng-click="$ctrl.syncItems()"
+            data-translate="se.cms.actionitem.page.sync"
+        ></button>
+    </div>
+</div>

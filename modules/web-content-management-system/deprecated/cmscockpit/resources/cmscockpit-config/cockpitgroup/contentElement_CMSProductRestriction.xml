@@ -1,0 +1,7 @@
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<content-elements>
+	<content-element type="CMSProductRestriction" name="type.cmsproductrestriction.name" description="type.cmsproductrestriction.description"
+		image="cmscockpit/images/RestrictionProduct.gif" refImage="cmscockpit/images/RestrictionProductReference.gif" />
+</content-elements>	

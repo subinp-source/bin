@@ -1,0 +1,16 @@
+<div data-ng-if="!$ctrl.showLastSyncTime" class="se-page-status">
+    <div class="se-page-status-icon" data-ng-class="[$ctrl.getStatusIconCssClass()]"></div>
+    <div class="se-page-status-label">{{$ctrl.getCurrentStatusKey() | translate}}</div>
+</div>
+
+<div
+    data-ng-if="$ctrl.showLastSyncTime"
+    class="se-page-status"
+    data-y-popover
+    data-placement="'left'"
+    data-template="$ctrl.getTooltipTemplate()"
+    data-trigger="'hover'"
+>
+    <div class="se-page-status-icon" data-ng-class="[$ctrl.getStatusIconCssClass()]"></div>
+    <div class="se-page-status-label">{{$ctrl.getCurrentStatusKey() | translate}}</div>
+</div>

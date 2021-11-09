@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<widget-definition id="de.hybris.platform.adaptivesearch.widgets.searchProfileContext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widget-definition.xsd">
+
+	<name>Search Profile Context</name>
+	<description>Search Profile Context</description>
+	<defaultTitle>Search Profile Context</defaultTitle>
+
+	<author>hybris</author>
+	<version>0.1</version>
+	<keywords>
+		<keyword>Adaptive Search</keyword>
+	</keywords>
+
+	<controller class="de.hybris.platform.adaptivesearchbackoffice.widgets.searchprofilecontext.SearchProfileContextViewModel" />
+
+	<sockets>
+		<input id="searchResult" type="de.hybris.platform.adaptivesearchbackoffice.data.SearchResultData" />
+		<output id="searchProfile" type="de.hybris.platform.adaptivesearch.model.AbstractAsSearchProfileModel" />
+	</sockets>
+</widget-definition>

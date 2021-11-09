@@ -1,0 +1,14 @@
+# Create Test Users
+INSERT_UPDATE Employee; UID[unique = true]            ; name                             ; description
+                      ; integrationmonitoringtestuser ; Integration Monitoring Test User ; This test user will have permissions to access the Inbound and Outbound Integration Monitoring OData2 web services
+                      ; integrationservicetestuser    ; Integration Service Test User    ; This test user will have permissions to access the Integration Services OData2 web service
+
+# Assign Test Users to Groups
+INSERT_UPDATE Employee; UID[unique = true]            ; groups(uid)[mode = append]
+                      ; integrationmonitoringtestuser ; integrationadmingroup
+                      ; integrationservicetestuser    ; integrationadmingroup
+
+# Asign Test Users to Integration Object specific Groups
+INSERT_UPDATE Employee; UID[unique = true]            ; groups(uid)[mode = append]
+                      ; integrationmonitoringtestuser ; integrationmonitoringgroup
+                      ; integrationservicetestuser    ; integrationservicegroup

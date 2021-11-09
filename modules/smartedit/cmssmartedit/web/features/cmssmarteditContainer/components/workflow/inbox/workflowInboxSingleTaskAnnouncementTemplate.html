@@ -1,0 +1,8 @@
+<div data-ng-click="$announcementCtrl.onClick($event)">
+    <div class="se-announcement__title">{{$announcementCtrl.task.action.name}}</div>
+    <div class="se-announcement__message">
+        {{$announcementCtrl.task.attachments[0].catalogName}} |
+        {{$announcementCtrl.task.attachments[0].pageName}}
+    </div>
+    <div class="se-announcement__time-stamp">{{$announcementCtrl.getStartedAgo()}}</div>
+</div>

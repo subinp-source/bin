@@ -1,0 +1,56 @@
+.se-config {
+    max-height: 70vh;
+    width: 600px;
+    max-width: 80vw;
+}
+
+.se-config__sub-header {
+    @include se-flex-row(space-between);
+    align-items: center;
+}
+.se-config__sub-title {
+    color: fd-color('text', 2);
+}
+.se-config__add-entry-btn.fd-button--compact {
+    @include se-flex-row();
+    text-transform: capitalize;
+    color: fd-color('text', 2);
+    border: se-border(2);
+    &:hover {
+        color: fd-color-state('hover', 'action');
+        border: se-border(fd-color-state('hover', 'action'));
+        background: transparent;
+    }
+}
+
+// Entry list
+.se-config__entry {
+    @include se-flex-row(center);
+    margin: 0;
+    padding: fd-space('s') 0;
+    border-bottom: se-border();
+    &:last-child {
+        border-bottom: none;
+    }
+}
+.se-config__entry-data {
+    flex: 1 1 auto;
+    margin-right: fd-space('xxs');
+}
+input.se-config__entry-key-input {
+    border: se-border();
+}
+.se-config__entry-key {
+    margin-bottom: fd-space('base');
+}
+.se-config__entry-key--disabled {
+    background-color: fd-color('neutral', 1) !important;
+}
+.se-config__entry-remove-btn::before {
+    margin: 0 !important;
+}
+.se-config__entry-text-area {
+    overflow: auto;
+    min-height: 52px;
+    border: se-border();
+}

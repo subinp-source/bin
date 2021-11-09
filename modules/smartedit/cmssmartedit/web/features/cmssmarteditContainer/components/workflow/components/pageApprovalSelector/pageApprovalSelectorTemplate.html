@@ -1,0 +1,28 @@
+<div
+    data-uib-dropdown
+    class="se-page-approval"
+    data-is-open="$ctrl.isOpen"
+    data-ng-if="$ctrl.showDropdown"
+    auto-close="outsideClick"
+>
+    <button
+        class="fd-button--light sap-icon--navigation-down-arrow se-page-approval__btn"
+        data-uib-dropdown-toggle
+        data-ng-click="$ctrl.onDropdownClick()"
+        data-ng-disabled="disabled"
+        aria-pressed="false"
+    ></button>
+    <ul class="dropdown-menu bottom btn-block se-page-approval--list" role="menu">
+        <li
+            ng-repeat="choice in $ctrl.getPageApprovalOptions()"
+            class="item se-page-approval--item"
+        >
+            <a href data-ng-click="$ctrl.selectApprovalStatus(choice);">
+                <div
+                    data-ng-class="{'se-page-approval__icon--ready-to-sync': choice.key==='APPROVED', 'se-page-approval__icon--draft': choice.key==='CHECK'}"
+                ></div>
+                {{choice.i18nKey | translate}}</a
+            >
+        </li>
+    </ul>
+</div>

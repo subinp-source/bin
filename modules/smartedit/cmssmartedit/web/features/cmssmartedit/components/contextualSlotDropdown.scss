@@ -1,0 +1,206 @@
+#smarteditoverlay {
+    .se-slot-ctx-menu__divider::after {
+        content: '';
+        background-color: fd-color('background', 2);
+        display: block;
+        position: absolute;
+        width: 1px;
+        height: 16px;
+        top: 8px;
+        left: -2px;
+        opacity: 0.6;
+    }
+    .se-slot-ctx-menu__dropdown-toggle-wrapper {
+        margin-right: 3px;
+        position: relative;
+    }
+    .se-slot-ctx-menu__dropdown-toggle {
+        @include se-flex-row(center);
+        @include fd-type('2');
+        background-color: transparent;
+        color: fd-color('text', 5);
+        width: 55px;
+        height: 32px;
+        border: none;
+
+        &:hover:not(.se-slot-ctx-menu__dropdown-toggle--open) {
+            opacity: 0.6;
+        }
+        &--open {
+            background-color: fd-color('background', 2);
+            color: fd-color('action', 1) !important; // Override Techne
+
+            .se-slot-ctx-menu__dropdown-toggle-add-on {
+                color: fd-color('action', 1);
+            }
+        }
+        &-icon {
+            @include fd-type('2');
+        }
+        &-icon--disabled {
+            cursor: not-allowed;
+        }
+        &-add-on {
+            margin-left: fd-space('base');
+            @include fd-type('0');
+            color: fd-color('text', 5);
+        }
+    }
+    .se-slot-ctx-menu__popover-ancor {
+        position: absolute;
+        display: block;
+        cursor: not-allowed;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+    }
+
+    // Dropdown Menus
+    .se-slot-contextual-menu__header {
+        @include se-container-section('header');
+    }
+    .se-slot__dropdown-menu.dropdown-menu {
+        border: none;
+        border-radius: 0;
+        transform: translateY(-2px);
+        min-width: 265px;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    // Slot Sync
+    .se-sync-panel__info-checkbox input {
+        margin: 0;
+    }
+    &::before {
+        margin-right: 0 !important; // Override default margin in Fundamental
+        @include fd-type('4');
+    }
+    .se-sync-panel__sync-btn {
+        color: fd-color('text', 5);
+    }
+
+    // Slot Visibility
+    .se-slot-visility__component-list {
+        padding: 16px 20px;
+        list-style: none;
+    }
+    .se-slot-visility__component-list-item {
+        margin-bottom: fd-space('s');
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    .se-slot-visibility-wrapper {
+        @include se-flex-row;
+        align-items: flex-start;
+    }
+    .se-slot-visiblity-component__content {
+        @include se-flex-row;
+        flex-grow: 1;
+    }
+    .se-slot-visiblity-component__description {
+        margin-right: fd-space('s');
+    }
+    .se-slot-visibility__icon-wrapper {
+        position: relative;
+    }
+    .se-slot-visibility__icon {
+        @include se-flex-row(center);
+        @include fd-type('4');
+        height: 48px;
+        width: 48px;
+        border-radius: fd-space('base');
+        background-color: fd-color('accent', 13);
+        color: fd-color('text', 5);
+        margin-right: fd-space('s');
+
+        &--shared {
+            color: fd-type('text', 5);
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    }
+    .se-slot-visibility__icon--shared {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 14px;
+        border-color: fd-color('shell', 1) transparent transparent fd-color('shell', 1);
+        border-radius: fd-space('base') 0px 0px 0px;
+
+        &::before {
+            @include fd-type('1');
+            position: absolute;
+            left: -12px;
+            top: -15px;
+            color: fd-color('text', 5);
+        }
+    }
+    .se-slot-visiblity-component {
+        &__name,
+        &__visibility {
+            color: fd-color('text', 1);
+        }
+        &__name--link {
+            cursor: pointer;
+            color: fd-color('action', 1);
+        }
+        &__type {
+            color: fd-color('text', 3);
+        }
+    }
+    .slot-visiblity-component--globe-icon {
+        margin-left: fd-space('base');
+    }
+
+    // Hidden Component Menu
+    .se-hidden-component-menu__toggle {
+        cursor: pointer;
+        color: fd-color('action', 1);
+    }
+    .se-hidden-component-menu {
+        @include se-dropdown-menu('right', 'no-arrow');
+    }
+    .se-hidden-component-menu__item {
+        @include se-flex-row;
+    }
+    .se-hidden-component-menu__item-icon {
+        @include fd-type('-1');
+        margin-right: fd-space('xxs');
+    }
+
+    // Slot Shared
+    .se-shared-slot__body {
+        padding: 16px 20px;
+        width: 350px;
+    }
+    .se-shared-slot__sub-header {
+        margin-bottom: fd-space('xs');
+    }
+    .se-shared-slot__option {
+        margin-bottom: fd-space('xxs');
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    .se-shared-slot__description {
+        margin-bottom: fd-space('s');
+    }
+    .se-shared-slot__link {
+        cursor: pointer;
+        color: fd-color('action', 1);
+        text-decoration: none;
+        text-transform: capitalize;
+        &:hover {
+            text-decoration: none;
+            color: fd-color-state('hover', 'action');
+        }
+    }
+}

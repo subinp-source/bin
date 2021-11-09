@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<config xmlns="http://www.hybris.com/cockpit/config"
+		xmlns:et="http://www.hybris.com/cockpitng/config/explorertree"
+		xmlns:y="http://www.hybris.com/cockpit/config/hybris"
+		xmlns:yc="http://www.hybris.com/cockpitng/config/common"
+		xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config"
+		xmlns:ea="http://www.hybris.com/cockpitng/component/editorArea"
+		xmlns:lv="http://www.hybris.com/cockpitng/component/listView"
+		xmlns:cb="http://www.hybris.com/cockpitng/config/collectionbrowser"
+		xmlns:sv="http://www.hybris.com/cockpitng/component/summaryview"
+		xmlns:cv="http://www.hybris.com/cockpitng/component/compareview"
+		xmlns:df="http://www.hybris.com/cockpitng/component/dynamicForms"
+		xmlns:ful="http://www.hybris.com/cockpitng/config/fulltextsearch"
+		xmlns:ss="http://www.hybris.com/cockpitng/config/simplesearch"
+		xmlns:as="http://www.hybris.com/cockpitng/config/advancedsearch"
+		xmlns:na="http://www.hybris.com/cockpitng/config/notifications">
+
+	<context component="bulk-edit-wizard">
+		<context type="Product">
+			<wz:flow id="bulkEditWizard" title="bulkedit.wizard.title" size="large">
+			<wz:prepare id="initbulkedit" merge-mode="replace">
+				<wz:initialize property="bulkEditForm" template-bean="classificationBulkEditForm"/>
+				<wz:initialize property="bulkEditForm.attributesForm" template-bean="attributesForm"/>
+				<wz:initialize property="bulkEditForm.templateObject" type="ctx.TYPE_CODE"/>
+				<wz:assign property="bulkEditForm.itemsToEdit" value="ctx.bulkEditItems"/>
+				<wz:assign property="bulkEditForm.templateObject"
+						   value="bulkEditForm.templateObject == null ? ctx.templateObject : bulkEditForm.templateObject"/>
+			</wz:prepare>
+			<wz:step id="step1" label="bulkedit.product.wizard.step.select.attributes"
+					 sublabel="bulkedit.product.wizard.step.select.sublabel" merge-mode="replace">
+				<wz:content id="step1.content">
+					<wz:custom-view id="attributesSelector" lang="zul">
+						<wz:renderer spring-bean="bulkEditAttributesSelectorRenderer">
+							<wz:parameter>
+								<wz:name>bulkEditFormModelKey</wz:name>
+								<wz:value>bulkEditForm</wz:value>
+							</wz:parameter>
+							<wz:parameter>
+								<wz:name>excludedQualifiers</wz:name>
+								<wz:value>code,modifiedtime</wz:value>
+							</wz:parameter>
+						</wz:renderer>
+					</wz:custom-view>
+				</wz:content>
+				<wz:navigation>
+					<wz:cancel/>
+					<wz:next/>
+				</wz:navigation>
+			</wz:step>
+			<wz:step id="step2" label="bulkedit.product.wizard.step.select.classification"
+					 sublabel="bulkedit.product.wizard.step.select.classification.sublabel" merge-mode="replace">
+				<wz:content id="step2.content">
+					<wz:custom-view lang="zul">
+						<wz:renderer spring-bean="bulkEditClassificationExportRenderer">
+							<wz:parameter>
+								<wz:name>itemsToExport</wz:name>
+								<wz:value>bulkEditForm.itemsToEdit</wz:value>
+							</wz:parameter>
+							<wz:parameter>
+								<wz:name>classificationAttributesFormModelKey</wz:name>
+								<wz:value>bulkEditForm.classificationAttributesForm</wz:value>
+							</wz:parameter>
+							<wz:parameter>
+								<wz:name>emptyAttributesMessageKey</wz:name>
+								<wz:value>attributechooser.excel.no.union</wz:value>
+							</wz:parameter>
+							<wz:parameter>
+								<wz:name>retrieveMode</wz:name>
+								<wz:value>ITEMS_UNION</wz:value>
+							</wz:parameter>
+						</wz:renderer>
+					</wz:custom-view>
+				</wz:content>
+				<wz:navigation id="step2.navigation">
+					<wz:cancel/>
+					<wz:back/>
+					<wz:next
+							visible="bulkEditForm.attributesForm.hasSelectedAttributes() || bulkEditForm.classificationAttributesForm.hasSelectedAttributes()"/>
+				</wz:navigation>
+			</wz:step>
+			<wz:step id="step3" label="bulkedit.wizard.step.change.attributes"
+					 sublabel="bulkedit.wizard.step.change.sublabel" merge-mode="replace">
+				<wz:content id="step3.content">
+					<wz:custom-view id="attributesEdit" lang="zul">
+						<wz:renderer spring-bean="bulkEditRenderer">
+							<wz:parameter>
+								<wz:name>bulkEditFormModelKey</wz:name>
+								<wz:value>bulkEditForm</wz:value>
+							</wz:parameter>
+							<wz:parameter>
+								<wz:name>bulkEditRequiresSelectedAttributes</wz:name>
+								<wz:value>false</wz:value>
+							</wz:parameter>
+							<wz:parameter>
+								<wz:name>editor:description</wz:name>
+								<wz:value>com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)
+								</wz:value>
+							</wz:parameter>
+							<wz:parameter>
+								<wz:name>showGrayArea</wz:name>
+								<wz:value>true</wz:value>
+							</wz:parameter>
+						</wz:renderer>
+					</wz:custom-view>
+				</wz:content>
+				<wz:navigation>
+					<wz:cancel/>
+					<wz:back/>
+					<wz:next/>
+					<wz:custom label="bulkedit.wizard.button.update" handler="classificationBulkEditHandler"
+							   validate-visible-only="true">
+						<wz:parameter>
+							<wz:name>bulkEditFormModelKey</wz:name>
+							<wz:value>bulkEditForm</wz:value>
+						</wz:parameter>
+						<wz:parameter>
+							<wz:name>validate</wz:name>
+							<wz:value>wholeObject</wz:value>
+						</wz:parameter>
+					</wz:custom>
+				</wz:navigation>
+			</wz:step>
+			<wz:step id="step4" label="bulkedit.wizard.step.change.classification.attributes"
+					 sublabel="bulkedit.wizard.step.change.sublabel" merge-mode="replace">
+				<wz:content id="step4.content">
+					<wz:custom-view id="classificationAttributesEdit" lang="zul">
+						<wz:renderer spring-bean="classificationBulkEditRenderer">
+							<wz:parameter>
+								<wz:name>bulkEditFormModelKey</wz:name>
+								<wz:value>bulkEditForm</wz:value>
+							</wz:parameter>
+							<wz:parameter>
+								<wz:name>bulkEditRequiresSelectedAttributes</wz:name>
+								<wz:value>false</wz:value>
+							</wz:parameter>
+							<wz:parameter>
+								<wz:name>showValidateAllAttributesSwitch</wz:name>
+								<wz:value>false</wz:value>
+							</wz:parameter>
+							<wz:parameter>
+								<wz:name>showGrayArea</wz:name>
+								<wz:value>true</wz:value>
+							</wz:parameter>
+						</wz:renderer>
+					</wz:custom-view>
+				</wz:content>
+				<wz:navigation>
+					<wz:cancel/>
+					<wz:back/>
+					<wz:custom label="bulkedit.wizard.button.update" handler="classificationBulkEditHandler"
+							   validate-visible-only="true">
+						<wz:parameter>
+							<wz:name>bulkEditFormModelKey</wz:name>
+							<wz:value>bulkEditForm</wz:value>
+						</wz:parameter>
+						<wz:parameter>
+							<wz:name>validate</wz:name>
+							<wz:value>wholeObject</wz:value>
+						</wz:parameter>
+					</wz:custom>
+				</wz:navigation>
+			</wz:step>
+			<wz:step id="step5" label="bulkedit.wizard.step.validation.label"
+					 sublabel="bulkedit.wizard.step.validation.sublabel" merge-mode="replace">
+				<wz:content id="step5.content">
+					<wz:custom-view id="validation" lang="zul">
+						<wz:renderer spring-bean="bulkEditValidationRenderer">
+							<wz:parameter>
+								<wz:name>bulkEditFormModelKey</wz:name>
+								<wz:value>bulkEditForm</wz:value>
+							</wz:parameter>
+						</wz:renderer>
+					</wz:custom-view>
+				</wz:content>
+				<wz:navigation>
+					<wz:back/>
+					<wz:cancel/>
+				</wz:navigation>
+			</wz:step>
+		</wz:flow>
+		</context>
+	</context>
+
+</config>

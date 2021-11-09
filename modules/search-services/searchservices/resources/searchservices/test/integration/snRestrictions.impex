@@ -1,0 +1,6 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+INSERT_UPDATE SearchRestriction ; code[unique=true]               ; principal(uid) ; query                                               ; restrictedType(code) ; active ; generate
+                                ; ProductInSessionCatalogVersions ; anonymous      ; {item:catalogVersion} IN (?session.catalogversions) ; Product              ; true   ; true    

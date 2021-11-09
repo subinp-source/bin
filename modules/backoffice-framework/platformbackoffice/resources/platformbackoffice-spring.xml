@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:annotation-config />
+
+	<alias name="defaultCatalogVersionCompareService" alias="catalogVersionCompareService"/>
+	<bean id="defaultCatalogVersionCompareService" class="de.hybris.platform.platformbackoffice.services.catalogversion.CatalogVersionCompareService">
+		<property name="modelService" ref="modelService"/>
+		<property name="typeService" ref="typeService"/>
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+	</bean>
+
+	<alias name="defaultAbstractTaxDiscountValueParser" alias="abstractTaxDiscountValueParser"/>
+    <bean id="defaultAbstractTaxDiscountValueParser" class="de.hybris.platform.platformbackoffice.taxdiscountvalueparser.TaxDiscountValueParser" abstract="true">
+        <property name="currencyDao" ref="currencyDao"/>
+        <property name="formatFactory" ref="formatFactory"/>
+        <property name="commonI18NService" ref="commonI18NService"/>
+        <property name="pattern" value="(?&lt;code&gt;^\w+?) *?: *?(?&lt;value&gt;[0-9]+[,|\.]?[0-9]*.*?)(?:(?&lt;percent&gt;%)| *?(?&lt;currency&gt;[a-zA-Z]{3}))(?: *?= *?(?&lt;appliedValue&gt;[0-9]+[,|\.]?[0-9]*.*?))*"/>
+        <property name="patternExplained" value="&lt;code&gt; : &lt;value&gt;(%| &lt;CUR&gt;)[ = &lt;appliedValue&gt;] for example taxName : 19.00% = 0.19 or taxName : 19 EUR"/>
+    </bean>
+
+    <alias name="defaultDiscountValueParser" alias="discountValueParser"/>
+    <bean id="defaultDiscountValueParser" class="de.hybris.platform.platformbackoffice.taxdiscountvalueparser.DiscountValueParser" parent="abstractTaxDiscountValueParser">
+        <property name="pattern" value="(?&lt;code&gt;^\w+?) *?: *?(?&lt;tgt&gt;[tT])? *?(?&lt;value&gt;-?[0-9]+[,|\.]?[0-9]*.*?)(?:(?&lt;percent&gt;%)| *?(?&lt;currency&gt;[a-zA-Z]{3}))(?: *?= *?(?&lt;appliedValue&gt;[0-9]+[,|\.]?[0-9]*.*?))*"/>
+        <property name="patternExplained" value="&lt;code&gt; : -?&lt;value&gt;T?(%| &lt;CUR&gt;)[ = &lt;appliedValue&gt;] for example discount code : 29 % or discount code : 45 EUR"/>
+    </bean>
+    
+    <alias name="defaultTaxValueParser" alias="taxValueParser"/>
+    <bean id="defaultTaxValueParser" class="de.hybris.platform.platformbackoffice.taxdiscountvalueparser.TaxValueParser" parent="abstractTaxDiscountValueParser"/>
+
+	<alias name="defaultBackofficeSavedQueryDAO" alias="backofficeSavedQueryDAO"/>
+	<bean id="defaultBackofficeSavedQueryDAO" class="de.hybris.platform.platformbackoffice.dao.impl.DefaultBackofficeSavedQueryDAO">
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+	</bean>
+
+    <alias name="defaultClassificationAttributeAssignmentDAO" alias="classificationAttributeAssignmentDAO"/>
+    <bean id="defaultClassificationAttributeAssignmentDAO" class="de.hybris.platform.platformbackoffice.dao.impl.DefaultClassificationAttributeAssignmentDAO">
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+
+
+    <alias name="defaultClassificationAttributeAssignmentService" alias="classificationAttributeAssignmentService"/>
+    <bean id="defaultClassificationAttributeAssignmentService" class="de.hybris.platform.platformbackoffice.services.impl.DefaultClassificationAttributeAssignmentService">
+        <property name="classificationAttributeAssignmentDAO" ref="classificationAttributeAssignmentDAO"/>
+    </bean>
+
+	<bean id="hybrisEnumValueCodeConstraintValidator"
+		  class="de.hybris.platform.platformbackoffice.validation.interceptors.HybrisEnumValueCodeConstraintValidator"/>
+
+	<bean id="enumValueConstraintValidatorMapping"
+		  class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="hybrisEnumValueCodeConstraintValidator"/>
+		<property name="typeCode" value="HybrisEnumValueCodeConstraint"/>
+	</bean>
+
+	<alias name="defaultFeatureOfReferenceTypePrepareInterceptorMapping"
+		   alias="featureOfReferenceTypePrepareInterceptorMapping"/>
+	<bean name="defaultFeatureOfReferenceTypePrepareInterceptorMapping"
+		  class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="featureOfReferenceTypePrepareInterceptor"/>
+		<property name="typeCode"
+				  value="#{T(de.hybris.platform.catalog.model.classification.ClassAttributeAssignmentModel)._TYPECODE}"/>
+		<property name="order" value="100"/>
+	</bean>
+
+	<alias name="defaultFeatureOfReferenceTypePrepareInterceptor" alias="featureOfReferenceTypePrepareInterceptor"/>
+	<bean id="defaultFeatureOfReferenceTypePrepareInterceptor"
+		  class="de.hybris.platform.platformbackoffice.interceptors.FeatureOfReferenceTypePrepareInterceptor"/>
+
+	<alias name="backofficeCatalogVersionPrepareInterceptor" alias="catalogVersionPrepareInterceptor"/>
+	<bean id="backofficeCatalogVersionPrepareInterceptor"
+		  class="de.hybris.platform.platformbackoffice.interceptors.BackofficeCatalogVersionPrepareInterceptor">
+		<property name="userService" ref="userService"/>
+	</bean>
+
+</beans>

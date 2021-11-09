@@ -1,0 +1,30 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+# ImpEx for Importing Products stock levels into wsTest Store
+
+# Macros / Replacement Parameter definitions
+$productCatalog=wsTestProductCatalog
+$productCatalogName=wsTest Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$vendor=wsTestVendor
+
+INSERT_UPDATE StockLevel;available;warehouse(code)[unique=true];inStockStatus(code);maxPreOrder;maxStockLevelHistoryCount;overSelling;preOrder;productCode[unique=true];reserved
+;45;ws_warehouse_n;notSpecified;1;-1;0;0;805693;0
+;45;ws_warehouse_n;notSpecified;1;-1;0;0;872912a;0
+;45;ws_warehouse_n;notSpecified;1;-1;0;0;1641905;0
+
+INSERT_UPDATE StockLevel;available;warehouse(code)[unique=true];inStockStatus(code);maxPreOrder;maxStockLevelHistoryCount;overSelling;preOrder;productCode[unique=true];reserved
+;45;wsi_warehouse_n;notSpecified;1;-1;0;0;805693;0
+;45;wsi_warehouse_n;notSpecified;1;-1;0;0;872912a;0
+;45;wsi_warehouse_n;notSpecified;1;-1;0;0;1641905;0
+
+UPDATE Product;code[unique=true];$catalogVersion;stockLevels(productCode,warehouse(code))[mode=append];vendors(code)
+;805693;;805693:ws_warehouse_n;$vendor
+;872912a;;872912a:ws_warehouse_n;$vendor
+;1641905;;1641905:ws_warehouse_n;$vendor
+
+UPDATE Product;code[unique=true];$catalogVersion;stockLevels(productCode,warehouse(code))[mode=append];vendors(code)
+;805693;;805693:wsi_warehouse_n;$vendor
+;872912a;;872912a:wsi_warehouse_n;$vendor
+;1641905;;1641905:wsi_warehouse_n;$vendor

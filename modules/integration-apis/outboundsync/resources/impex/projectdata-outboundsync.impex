@@ -1,0 +1,60 @@
+################################################################
+# Define the OutboundProduct integration object
+# ##############################################################
+INSERT_UPDATE IntegrationObject; code[unique = true]; integrationType(code)
+                               ; OutboundProduct    ; INBOUND
+
+INSERT_UPDATE IntegrationObjectItem; integrationObject(code)[unique = true]; code[unique = true]; type(code)     ; root[default = false]
+                                   ; OutboundProduct                       ; Product            ; Product        ; true
+                                   ; OutboundProduct                       ; Catalog            ; Catalog        ;
+                                   ; OutboundProduct                       ; CatalogVersion     ; CatalogVersion ;
+                                   ; OutboundProduct                       ; Category           ; Category       ;
+
+INSERT_UPDATE IntegrationObjectItemAttribute; integrationObjectItem(integrationObject(code), code)[unique = true]; attributeName[unique = true]; attributeDescriptor(enclosingType(code), qualifier); returnIntegrationObjectItem(integrationObject(code), code); unique[default = false]
+                                            ; OutboundProduct:Catalog                                            ; id                          ; Catalog:id                                         ;
+                                            ; OutboundProduct:CatalogVersion                                     ; catalog                     ; CatalogVersion:catalog                             ; OutboundProduct:Catalog
+                                            ; OutboundProduct:CatalogVersion                                     ; version                     ; CatalogVersion:version                             ;
+                                            ; OutboundProduct:CatalogVersion                                     ; active                      ; CatalogVersion:active                              ;
+                                            ; OutboundProduct:Product                                            ; code                        ; Product:code                                       ;
+                                            ; OutboundProduct:Product                                            ; catalogVersion              ; Product:catalogVersion                             ; OutboundProduct:CatalogVersion
+                                            ; OutboundProduct:Product                                            ; name                        ; Product:name                                       ;
+                                            ; OutboundProduct:Product                                            ; supercategories             ; Product:supercategories                            ; OutboundProduct:Category
+                                            ; OutboundProduct:Category                                           ; code                        ; Category:code                                      ;
+                                            ; OutboundProduct:Category                                           ; name                        ; Category:name                                      ;
+
+
+################################################################
+# This sets up the credential (username/password) called "testBasicCredential"
+# ##############################################################
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$password=$config-initialpassword.admin
+INSERT_UPDATE BasicCredential; id[unique = true]   ; username; password
+                             ; testBasicCredential ; admin   ; $password
+
+###############################################################
+# This sets up the endpoint called "local-hybris."
+# #############################################################
+INSERT_UPDATE Endpoint; id[unique = true]; version[unique = true]; name         ; specUrl
+                      ; local-hybris     ; unknown               ; local-hybris ; https://localhost:9002/odata2webservices/OutboundProduct/$metadata?Product
+
+##############################################################
+# This sets up a ConsumedDestination called "platform-basic."
+# It uses the Endpoint and BasicCredential created above. The user calls
+# the Outbound Service with the destination ID (e.g. "platform-basic").
+# The Outbound Service looks up the details of the destination by ID,
+# so it knows where to send the data
+# ############################################################
+INSERT_UPDATE DestinationTarget; id[unique = true]
+                               ; stoutoutboundtest
+
+INSERT_UPDATE ConsumedDestination; id[unique = true]; url                                                               ; endpoint(id, version); credential(id); destinationTarget(id)[default = stoutoutboundtest]
+                                 ; platform-basic   ; https://localhost:9002/odata2webservices/OutboundProduct/Products ; local-hybris:unknown ; testBasicCredential
+
+
+# Set up a product stream that will detect changes made to the Product type and include it in the outboundSyncDataStreams OutboundSyncStreamConfigurationContainer
+# NOTE: The whereClause is an example of how to filter out Product changes that don't have catalogVersion.version as 'Online'
+INSERT_UPDATE OutboundSyncStreamConfiguration; streamId[unique = true]; container(id)           ; itemTypeForStream(code); outboundChannelConfiguration(code)
+                                             ; productStream          ; outboundSyncDataStreams ; Product                ; outboundExample
+
+INSERT_UPDATE OutboundChannelConfiguration; code[unique = true]; integrationObject(code); destination(id)
+                                          ; outboundExample    ; OutboundProduct        ; platform-basic

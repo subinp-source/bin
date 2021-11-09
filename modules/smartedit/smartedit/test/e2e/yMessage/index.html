@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <base href="/web/webroot/" />
+
+        <!--3rd prty libs-->
+        <script src="static-resources/dist/smarteditcontainer/js/thirdparties.js"></script>
+        <script src="static-resources/dist/smarteditcommons/js/vendor_chunk.js"></script>
+        <script src="static-resources/thirdparties/ckeditor/ckeditor.js"></script>
+
+        <script src="static-resources/dist/smarteditcommons/js/smarteditcommons.js"></script>
+        <script src="static-resources/dist/smarteditcontainer/js/smarteditcontainer.js"></script>
+
+        <script src="/test/e2e/utils/commonMockedModules/generated_outerI18nMock.js"></script>
+        <script src="/test/e2e/utils/commonMockedModules/generated_outerGlobalBasePathFetchMock.js"></script>
+        <script src="/test/e2e/utils/commonMockedModules/outerMocksForPermissions.js"></script>
+        <script src="/test/e2e/utils/commonMockedModules/whoAmIMock.js"></script>
+
+        <script src="/test/e2e/utils/commonMockedModules/SitesMock.js"></script>
+
+        <script src="/test/e2e/yMessage/yMessageApp.js"></script>
+        <script src="/test/e2e/yMessage/backendMocks.js"></script>
+    </head>
+
+    <body>
+        <y-message data-message-id="y-message-id" data-type="info">
+            <message-title> {{ 'test.title' | translate }} </message-title>
+            <message-description> {{ 'test.description' | translate }} </message-description>
+        </y-message>
+
+        <y-message data-message-id="y-message-without-type-id">
+            <message-title> {{ 'test.title' | translate }} </message-title>
+            <message-description> {{ 'test.description' | translate }} </message-description>
+        </y-message>
+
+        <y-message> </y-message>
+
+        <y-message data-message-id="y-message-with-complex-description-id">
+            <message-title> {{ 'test.title' | translate }} </message-title>
+            <message-description>
+                <div>
+                    <strong>Some test</strong> value <a href="link/">link</a>.
+                    <code> <span class="inner-class">data</span> </code> test.
+                </div>
+            </message-description>
+        </y-message>
+    </body>
+</html>

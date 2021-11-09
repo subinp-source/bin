@@ -1,0 +1,34 @@
+.yw-modal-itemTypeMatchIOIModal {
+     min-height: 482px !important;
+
+ }
+
+.yw-modal-itemTypeMatchIOIModal .z-listheader-content {
+    display: inline-block;
+}
+
+.yw-modal-itemTypeMatchIOIModal .z-listheader-sorticon {
+    color: #151c22;
+    position: static;
+    float: right;
+    margin-left: 3px;
+}
+
+.yw-modal-itemTypeMatchIOIModal .z-icon-caret-up {
+    position: relative;
+    bottom: 5px;
+}
+
+.yw-modal-itemTypeMatchIOIModal .z-icon-caret-down {
+    position: relative;
+    bottom: 5px;
+}
+
+.yw-modal-itemTypeMatchIOIModal-toolTip {
+    cursor: pointer;
+}
+
+
+.yw-modal-itemTypeMatchIOIModal .z-listbox-body .z-select{
+    width: 212px !important;
+}

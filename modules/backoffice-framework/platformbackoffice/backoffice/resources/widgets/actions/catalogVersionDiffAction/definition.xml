@@ -1,0 +1,24 @@
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<action-definition id="com.hybris.cockpitng.action.catalogversiondiff" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/action-definition.xsd">
+
+    <name>Catalog Version Diff</name>
+    <description>Generate Catalog Version Diff</description>
+    <author>hybris</author>
+    <version>1.0</version>
+
+    <actionClassName>de.hybris.platform.platformbackoffice.actions.catalogversion.CatalogVersionDiffAction</actionClassName>
+
+    <inputType>de.hybris.platform.catalog.model.CatalogVersionModel</inputType>
+    <outputType>de.hybris.platform.platformbackoffice.data.CatalogVersionDiffDTO</outputType>
+    <sockets>
+        <output id="catalogversiondiff" type="de.hybris.platform.platformbackoffice.data.CatalogVersionDiffDTO"/>
+    </sockets>
+
+    <iconUri>icons/Version-Diff_default.png</iconUri>
+    <iconHoverUri>icons/Version-Diff_active.png</iconHoverUri>
+    <iconDisabledUri>icons/Version-Diff_disabled.png</iconDisabledUri>
+
+</action-definition>

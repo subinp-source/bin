@@ -1,0 +1,15 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+chinesepaymentoccaddon.key=value
+
+# Specifies the location of the spring context file added automatically to the global platform application context.
+chinesepaymentoccaddon.application-context=chinesepaymentoccaddon-spring.xml
+
+# Specifies the location of the spring context file which will be added to commerce web services web context
+ycommercewebservices.additionalWebSpringConfigs.chinesepaymentoccaddon=classpath:/chinesepaymentoccaddon/web/spring/chinesepaymentoccaddon-web-spring.xml
+
+#Use for generating static swagger documentation
+chinesepaymentoccaddon.documentation.static.generate=true
+ext.chinesepaymentoccaddon.extension.webmodule.webroot=/rest/v2

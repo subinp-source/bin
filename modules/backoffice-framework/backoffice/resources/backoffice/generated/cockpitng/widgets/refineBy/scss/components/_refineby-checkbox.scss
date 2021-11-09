@@ -1,0 +1,30 @@
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/cockpitng/cng/scss/cockpitng-globals.scss';
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/backoffice/scss/backoffice-variables.scss';
+
+/*================================
+    Refine By Checkboxes
+================================*/
+@import "../support/_refineby-variables.scss";
+
+.yw-refineby {
+    .z-checkbox {
+        display: block;
+        padding-left: $refineby__checkbox--padding-left;
+
+        label {
+            vertical-align: top;
+
+            &:before {
+                width: $refineby__checkbox-label-after--width;
+                height: $refineby__checkbox-label-after--height;
+                margin-top: $refineby__checkbox-label-after--margin-top;
+                top: 0;
+                line-height: inherit;
+            }
+        }
+
+        input:checked ~ label.z-checkbox-content:before {
+            background-size: $refineby__checkbox-label-before--bg-size;
+        }
+    }
+}

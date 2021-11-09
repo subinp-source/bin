@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<project name="webservicecommons_buildcallbacks" xmlns:artifact="antlib:org.apache.maven.artifact.ant">
+
+	<target name="wsOverwriteJson" description="Overwrite the host and security definition URLs in the JSON file.">
+		<sequential>
+			<checkSwaggerOverwriteJsonProperties/>
+			<property name="swaggerModifyJson.inputSpec" location="${inputSpec}"/>
+			<swaggerOverwriteOAuth2UrlInJson jsonfile="${swaggerModifyJson.inputSpec}"/>
+			<swaggerOverwriteHostInJson jsonfile="${swaggerModifyJson.inputSpec}"/>
+		</sequential>
+	</target>
+
+	<target name="wsGenerateYaml" description="Generates a YAML file for the input file given in JSON/YAML format.">
+		<sequential>
+			<checkSwaggerGetYamlProperties />
+			<property name="swaggerGenerateYaml.inputSpec" location="${inputSpec}" />
+			<property name="swaggerGenerateYaml.outputDir" location="${outputDir}" />
+			<swaggerGetYaml inputSpec="${swaggerGenerateYaml.inputSpec}" outputDir="${swaggerGenerateYaml.outputDir}"/>
+		</sequential>
+	</target>
+
+	<target name="wsStaticDoc" description="Generates static html documentation as well as a YAML file with OpenAPI definition for webservices. Needs a running server.">
+	    <var name="docDir" value="${HYBRIS_TEMP_DIR}/swagger"/>
+
+		<for list="${extension.names}" param="extName" delimiter=";">
+			<sequential>
+				<if>
+					<and>
+						<isset property="ext.@{extName}.webmodule.available" />			
+						<equals arg1="${@{extName}.documentation.static.generate}" arg2="true" />
+				    </and>
+					<then>
+						<var name="jsonFile" value="${docDir}/@{extName}.json" />
+						<swaggerGetJson docdir="${docDir}" extname="@{extName}" destfile="${jsonFile}" />
+						<if>
+							<not>
+								<isset property="disableParametersOverwrite"/>
+							</not>
+							<then>
+								<swaggerOverwriteOAuth2UrlInJson jsonfile="${jsonFile}"/>
+								<swaggerOverwriteHostInJson jsonfile="${jsonFile}"/>
+							</then>
+						</if>
+						<swaggerGetYaml inputSpec="${jsonFile}" outputDir="${HYBRIS_DATA_DIR}/doc/@{extName}"/>
+						<swaggerMavenPlugin swaggerInput="${jsonFile}" tempDir="${docDir}" outputdir="${HYBRIS_DATA_DIR}/doc/@{extName}"/>
+				    </then>
+				</if>
+			</sequential>
+		</for>
+		<delete dir="${docDir}" failonerror="false" />
+	</target>
+		
+	<macrodef name="swaggerGetJson">
+		<attribute name="docDir" />
+		<attribute name="extName" /> 
+		<attribute name="destFile" />
+		
+		<sequential>
+			<mkdir dir="@{docDir}"/>
+			<var name="webroot" value="${ext.@{extName}.extension.webmodule.webroot}"/>
+			<echo message="@{extName} -> http://localhost:${tomcat.http.port}${webroot}/api-docs"/>
+			<get src="http://localhost:${tomcat.http.port}${webroot}/api-docs" dest="@{destFile}"/>
+		</sequential>	
+	</macrodef>
+	
+	<macrodef name="swaggerMavenPlugin">
+		<attribute name="swaggerInput" />
+		<attribute name="tempDir" />
+		<attribute name="templateDir" default="${ext.webservicescommons.path}/resources/swagger" />
+		<attribute name="outputDir" default="${HYBRIS_DATA_DIR}/doc/" />
+		<sequential>
+			<echo message="transforming [@{swaggerInput}] to [@{outputDir}]"/>
+			<artifact:mvn pom="@{templateDir}/pom.xml" fork="true" failonerror="true" mavenVersion="3.2.5">
+				<arg value="io.github.swagger2markup:swagger2markup-maven-plugin:convertSwagger2markup" />
+				<arg value="org.asciidoctor:asciidoctor-maven-plugin:process-asciidoc" />
+				<arg value="-Dswagger.input=@{swaggerInput}" />
+				<arg value="-Ddoc.generated=@{tempDir}" />
+				<arg value="-Dasciidoctor.input.directory=@{templateDir}/asciidoc" />
+				<arg value="-Ddoc.output=@{outputDir}" />
+				<jvmarg line="${env.MAVEN_OPTS} ${env.JAVA_OPTS}" />
+			</artifact:mvn>	
+		</sequential>
+	</macrodef>
+
+	<macrodef name="swaggerGetYaml">
+		<attribute name="inputSpec" />
+		<attribute name="language" default="swagger-yaml" />
+		<attribute name="templateDir" default="${ext.webservicescommons.path}/resources/swagger" />
+		<attribute name="outputDir" />
+		<sequential>
+			<echo message="Generating a YAML file. Transforming [@{inputSpec}] to [@{outputDir}/swagger.yaml] " />
+			<artifact:mvn pom="@{templateDir}/pom.xml" fork="true" failonerror="true" mavenVersion="3.2.5">
+				<arg value="io.swagger:swagger-codegen-maven-plugin:generate" />
+				<arg value="-Dswaggercodegen.inputSpec=@{inputSpec}" />
+				<arg value="-Dswaggercodegen.outputDir=@{outputDir}" />
+				<arg value="-Dswaggercodegen.language=@{language}" />
+				<jvmarg line="${env.MAVEN_OPTS} ${env.JAVA_OPTS}" />
+			</artifact:mvn>	
+		</sequential>
+	</macrodef>
+	
+	<macrodef name="checkSwaggerGetYamlProperties">
+		<sequential>
+			<var name="failMsg" value="Generating the YAML file failed!" />
+			<var name="invocationMsg" value="(Invocation: wsGenerateYaml -DinputSpec={input json/yaml file path} -DoutputDir={output directory})" />
+			<fail message="${failMsg} The value of the inputSpec property is required! ${invocationMsg}">
+				<condition>
+					<not>
+						<isset property="inputSpec" />
+					</not>
+				</condition>
+			</fail>
+			<fail message="${failMsg} The value of the outputDir property is required! ${invocationMsg}">
+				<condition>
+					<not>
+						<isset property="outputDir" />
+					</not>
+				</condition>
+			</fail>
+			<fail message="${failMsg} File not found: ${inputSpec}. ${invocationMsg}">
+				<condition>
+					<not>
+						<available file="${inputSpec}" />
+					</not>
+				</condition>
+			</fail>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="checkSwaggerOverwriteJsonProperties">
+		<sequential>
+			<local name="failMsg"/>
+			<property name="failMsg" value="Overwriting properties of the JSON file failed!"/>
+			<local name="invocationMsg"/>
+			<property name="invocationMsg" value="(Invocation: wsOverwriteJson -DinputSpec={input json file path}"/>
+			<fail message="${failMsg} The value of the inputSpec property is required! ${invocationMsg}">
+				<condition>
+					<not>
+						<isset property="inputSpec"/>
+					</not>
+				</condition>
+			</fail>
+			<fail message="${failMsg} File not found: ${inputSpec}. ${invocationMsg}">
+				<condition>
+					<not>
+						<available file="${inputSpec}"/>
+					</not>
+				</condition>
+			</fail>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="swaggerOverwriteHostInJson">
+		<attribute name="jsonFile"/>
+		<sequential>
+			<if>
+				<isset property="webservicescommons.apiEnv.host"/>
+				<then>
+					<echo message="Overwriting the host value. New host value: ${webservicescommons.apiEnv.host}. The input JSON file: @{jsonFile}"/>
+					<!--
+					Replace the first occurrence of the host parameter
+					Used regexp pattern: ,"host":"[^"]+"
+					Example match: ,"host":"localhost:9001"
+					-->
+					<replaceregexp file="@{jsonFile}"
+								   match=",&quot;host&quot;\:&quot;[^&quot;]+&quot;"
+								   replace=",&quot;host&quot;\:&quot;${webservicescommons.apiEnv.host}&quot;"/>
+				</then>
+				<else>
+					<echo message="Ignored host value overwrite - the 'webservicescommons.apiEnv.host' property is not set"
+						  level="warning"/>
+				</else>
+			</if>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="swaggerOverwriteOAuth2UrlInJson">
+		<attribute name="jsonFile"/>
+		<sequential>
+
+			<!--  TokenUrl pattern: "tokenUrl":"/[^"]+" -->
+			<var name="swaggerOverwriteOAuth2UrlInJson.tokenUrlPattern" value="&quot;tokenUrl&quot;:&quot;\/[^&quot;]+&quot;"/>
+			<!--  Security definitions pattern: ,"securityDefinitions":{.+"tokenUrl":"/[^"]+".*?}+ -->
+			<var name="swaggerOverwriteOAuth2UrlInJson.securityDefinitionsPattern"
+				 value="\,&quot;securityDefinitions&quot;:\{.+&quot;tokenUrl&quot;:&quot;\/[^&quot;]+&quot;.*?\}+"/>
+
+			<if>
+				<isset property="webservicescommons.apiEnv.oauth2.tokenUrl"/>
+				<then>
+					<local name="swaggerOverwriteOAuth2UrlInJson.file"/>
+					<local name="swaggerOverwriteOAuth2UrlInJson.securityDefinitions"/>
+					<loadfile property="swaggerOverwriteOAuth2UrlInJson.file" srcFile="@{jsonFile}"/>
+
+					<!-- Search for the securityDefinitions section in the JSON file -->
+					<propertyregex property="swaggerOverwriteOAuth2UrlInJson.securityDefinitions"
+								   input="${swaggerOverwriteOAuth2UrlInJson.file}"
+								   regexp="(${swaggerOverwriteOAuth2UrlInJson.securityDefinitionsPattern})"
+								   select="\1"
+								   override="true"/>
+
+					<if>
+						<isset property="swaggerOverwriteOAuth2UrlInJson.securityDefinitions"/>
+						<then>
+							<echo message="Overwriting the relative values of the security definition tokenUrl. New tokenUrl value: ${webservicescommons.apiEnv.oauth2.tokenUrl}. The input JSON file: @{jsonFile}"/>
+							<echo message="SecurityDefinitions section before overwriting: ${swaggerOverwriteOAuth2UrlInJson.securityDefinitions}"
+								  level="debug"/>
+
+							<!--
+							Replace all relative URLs in the tokenUrl parameter of the securityDefinitions section with the value
+							read from the webservicescommons.apiEnv.oauth2.tokenUrl property.
+							-->
+							<propertyregex property="swaggerOverwriteOAuth2UrlInJson.securityDefinitions"
+										   input="${swaggerOverwriteOAuth2UrlInJson.securityDefinitions}"
+										   regexp="${swaggerOverwriteOAuth2UrlInJson.tokenUrlPattern}"
+										   replace="&quot;tokenUrl&quot;:&quot;${webservicescommons.apiEnv.oauth2.tokenUrl}&quot;"
+										   override="true"/>
+
+							<echo message="SecurityDefinitions section after overwriting: ${swaggerOverwriteOAuth2UrlInJson.securityDefinitions}"
+								  level="debug"/>
+
+							<!--
+							Replace the securityDefinitions section in the JSON file with the swaggerOverwriteOAuth2UrlInJson.securityDefinition property value.
+							-->
+							<replaceregexp file="@{jsonFile}"
+										   match="${swaggerOverwriteOAuth2UrlInJson.securityDefinitionsPattern}"
+										   replace="${swaggerOverwriteOAuth2UrlInJson.securityDefinitions}"/>
+						</then>
+						<else>
+							<echo message="Ignored security definition tokenUrl overwrite - no SecurityDefinitions section containing relative URLs"/>
+						</else>
+					</if>
+				</then>
+				<else>
+					<echo message="Ignored security definition tokenUrl overwrite - the webservicescommons.apiEnv.oauth2.tokenUrl property is not set"
+						  level="warning"/>
+				</else>
+			</if>
+		</sequential>
+	</macrodef>
+
+</project>

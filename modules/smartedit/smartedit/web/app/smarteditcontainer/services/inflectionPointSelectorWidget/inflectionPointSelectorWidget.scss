@@ -1,0 +1,38 @@
+.se-inflection-point__toggle {
+    width: 80px;
+    height: 45px;
+    border: inherit;
+    border-left: thin solid fd-color('neutral', 3);
+    background-color: transparent;
+    &:hover {
+        background-color: fd-color-state('hover');
+    }
+}
+.se-inflection-point___selected {
+    color: fd-color('action', 1);
+    @include fd-type('4');
+}
+.se-inflection-point.open .se-inflection-point-dropdown {
+    display: block;
+}
+.se-inflection-point-dropdown {
+    @include se-dropdown-menu('center');
+    display: none;
+    min-width: 60px;
+}
+.inflection-point__device.fd-menu__item {
+    width: 100%;
+    padding: 0;
+    @include se-flex-row(center);
+    margin: auto;
+    text-decoration: none;
+    height: 46px;
+    @include fd-type('4');
+    color: fd-color('text', 3);
+    &.selected {
+        background-color: fd-color-state('selected');
+    }
+    &:hover {
+        color: fd-color('action', 1);
+    }
+}

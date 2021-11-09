@@ -1,0 +1,10 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+INSERT_UPDATE CxUpdateSegmentsCronJob; code[unique = true]     ; job(code)           ; singleExecutable; sessionLanguage(isocode); fullUpdate; allBaseSites; allProviders
+                                     ; cxUpdateSegmentsCronJob ; cxUpdateSegmentsJob ; false           ; en                      ; true      ; true        ; true
+
+# Run the CxUpdateSegmentsCronJob at 4:00 AM every day
+INSERT_UPDATE Trigger; cronJob(code)[unique = true]; second; minute; hour; day; month; year; relative; active; maxAcceptableDelay
+                     ; cxUpdateSegmentsCronJob     ; 0     ; 0     ; 4   ; -1 ; -1   ; -1  ; false   ; true  ; 600

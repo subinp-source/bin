@@ -1,0 +1,14 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved
+# -----------------------------------------------------------------------
+
+INSERT_UPDATE Domain;code[unique=true];name;;;;;
+;cockpit;Cockpit Domain;;;;;
+;;;;;;;
+INSERT_UPDATE Component;code[unique=true];name;domain(code)[unique=true];readPermitted(uid)[lang=en];writePermitted(uid)[lang=en];createPermitted(uid)[lang=en];removePermitted(uid)[lang=en]
+;cockpit;Cockpit;cockpit;cockpitgroup;cockpitgroup;cockpitgroup;cockpitgroup
+;;;;;;;
+INSERT_UPDATE CommentType;code[unique=true];name;domain(code)[unique=true];;;;
+;comment;Cockpit Comment;cockpit;;;;
+;message;Cockpit Message;cockpit;;;;
+;workflow;Workflow Comment;cockpit;;;;

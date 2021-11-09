@@ -1,0 +1,10 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+INSERT_UPDATE UserGroup;UID[unique=true];groups(uid)[mode=append];description;name 
+;previewmanagergroup;employeegroup;Preview Manager Group;Preview Manager Group
+
+INSERT_UPDATE UserGroup;UID[unique=true];groups(uid)[mode=append];
+;cmsmanagergroup;employeegroup;
+

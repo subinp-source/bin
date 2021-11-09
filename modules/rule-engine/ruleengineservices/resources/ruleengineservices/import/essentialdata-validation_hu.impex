@@ -1,0 +1,26 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+$lang=hu
+
+
+insert_update DynamicConstraint;id[unique=true,allownull=true];message[lang=$lang]
+;abstractRuleDateDiffConstraint;"A záró dátum csak a kezdő dátum utáni lehet"
+
+insert_update NotNullConstraint;id[unique=true,allownull=true];message[lang=$lang]
+;sourceRuleCode;A kód nem lehet null értékű vagy üres
+
+insert_update NotNullConstraint;id[unique=true,allownull=true];message[lang=$lang]
+;sourceRuleTemplateCode;A kód nem lehet null értékű vagy üres
+
+insert_update ObjectPatternConstraint;id[unique=true,allownull=true];message[lang=$lang];
+;ruleCodeLengthMinValue;"Az értéknek legalább 2 karakterből kell állnia";
+;ruleTemplateCodeLengthMinValue;"Az értéknek legalább 2 karakterből kell állnia";
+;ruleEngineRuleCodeLengthMinValue;"Az értéknek legalább 2 karakterből kell állnia";

@@ -1,0 +1,23 @@
+.se-dynamic-paged-list th {
+    text-transform: capitalize;
+    white-space: nowrap;
+}
+.se-dynamic-paged-list .fd-panel__footer {
+    border-radius: 0 0 fd-space('base') fd-space('base');
+    background-color: fd-color('background', 2);
+    height: 56px;
+    border-top: none !important;
+    padding: 0 fd-space('s');
+    position: relative;
+    @include se-flex-row(flex-end);
+
+    .se-paged-list__page-count-wrapper--footer {
+        @include fd-type('0');
+    }
+    .se-dynamic-list__pagination {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}

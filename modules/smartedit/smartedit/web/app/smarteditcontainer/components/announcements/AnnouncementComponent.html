@@ -1,0 +1,40 @@
+<div class="se-announcement-content">
+    <span
+        *ngIf="isCloseable()"
+        class="sap-icon--decline se-announcement-close"
+        (click)="closeAnnouncement()"
+    ></span>
+
+    <ng-container *ngIf="!isLegacyAngularJS; else legacyAngularJS">
+        <div *ngIf="hasMessage()">
+            <h4 *ngIf="hasMessageTitle()">{{ announcement.messageTitle | translate }}</h4>
+            <span>{{ announcement.message | translate }}</span>
+        </div>
+        <ng-container *ngIf="hasComponent()">
+            <ng-container
+                *ngComponentOutlet="announcement.component; injector: announcementInjector"
+            ></ng-container>
+        </ng-container>
+    </ng-container>
+
+    <!-- Legacy AngularJS support -->
+    <ng-template #legacyAngularJS>
+        <div *ngIf="hasController()">
+            <div
+                *ngIf="hasTemplate()"
+                [seCompileHtml]="announcement.template"
+                [compileHtmlNgController]="legacyCompileHtmlNgController"
+            ></div>
+            <div
+                *ngIf="hasTemplateUrl()"
+                [ngInclude]="announcement.templateUrl"
+                [compileHtmlNgController]="legacyCompileHtmlNgController"
+            ></div>
+        </div>
+
+        <div *ngIf="!hasController()">
+            <div *ngIf="hasTemplate()" [seCompileHtml]="announcement.template"></div>
+            <div *ngIf="hasTemplateUrl()" [ngInclude]="announcement.templateUrl"></div>
+        </div>
+    </ng-template>
+</div>

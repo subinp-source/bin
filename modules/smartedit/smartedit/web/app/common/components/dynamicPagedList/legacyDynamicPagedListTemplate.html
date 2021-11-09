@@ -1,0 +1,6 @@
+<se-dynamic-paged-list
+    [config]="$ctrl.config"
+    [mask]="$ctrl.mask"
+    (get-api)="$ctrl.getApi($event)"
+    (on-items-update)="$ctrl.onItemsUpdate($event)"
+></se-dynamic-paged-list>

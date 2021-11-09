@@ -1,0 +1,14 @@
+VariableNameSuccess<->Dkdjede_<->BUYMORE16
+VariableNameSuccessExpected<->Dkdjede_<->BUYMORE16
+VariableNameFail<->null<->1_de
+FQCNSuccess<->de.hybris.platform.ruleengineservices.util.test<->Map
+FQCNSuccessExpected<->de.hybris.platform.ruleengineservices.util.test<->Map
+FQCNFail<->testde.import.dr
+SpringBeanNameSuccess<->ruleExectionAction<->RUleExectionAction
+SpringBeanNameSuccessExpected<->ruleExectionAction<->RUleExectionAction
+SpringBeanNameFail<->RuleExectionAction
+IndentationSuccess<->  <-> <->
+IndentationSuccessExpected<->  <-> <->
+IndentationFail<->d<->
+encodeMvelStringLiteral<->\U0001D7F6<->c<->ɖ<->支持<->"d*e<->d*e"<->dede<->USD":System.out.format("YYYYY Rule Then: Java remote code executed via Source Rule!")]]);//<->\b<->\t<->\f<->$
+encodeMvelStringLiteralExpected<->\\U0001D7F6<->c<->\u0256<->\u652F\u6301<->\u0022d*e<->d*e\u0022<->dede<->USD\u0022:System.out.format(\u0022YYYYY Rule Then: Java remote code executed via Source Rule!\u0022)]]);//<->\\b<->\\t<->\\f<->$

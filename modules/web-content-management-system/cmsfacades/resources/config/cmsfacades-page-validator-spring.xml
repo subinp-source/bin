@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+	<!-- Page Validators -->
+		
+	<alias name="defaultFindVariationPageValidator" alias="cmsFindVariationPageValidator" />
+	<bean id="defaultFindVariationPageValidator" class="de.hybris.platform.cmsfacades.pages.validator.FindVariationPageValidator">
+		<description>deprecated since 6.6</description>
+		<property name="typeCodeExistsPredicate" ref="typeCodeExistsPredicate" />
+		<property name="typeService" ref="typeService" />
+	</bean>
+
+</beans>

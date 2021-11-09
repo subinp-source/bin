@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<alias alias="cmsMediaContainerService" name="defaultCmsMediaContainerService" />
+	<bean id="defaultCmsMediaContainerService" class="de.hybris.platform.cmsfacades.media.service.impl.DefaultCMSMediaContainerService">
+		<property name="cmsMediaContainerDao" ref="cmsMediaContainerDao" />
+	</bean>
+	
+	<alias name="defaultCmsMediaContainerFacade" alias="cmsMediaContainerFacade" />
+	<bean id="defaultCmsMediaContainerFacade" class="de.hybris.platform.cmsfacades.mediacontainers.impl.DefaultMediaContainerFacade">
+		<property name="mediaQualifierIdGenerator" ref="mediaQualifierIdGenerator" />
+		<property name="cmsAdminSiteService" ref="cmsAdminSiteService" />
+		<property name="permissionCRUDService" ref="cmsPermissionCachedCRUDService" />
+		<property name="cmsMediaContainerService" ref="cmsMediaContainerService" />
+		<property name="uniqueItemIdentifierService" ref="cmsUniqueItemIdentifierService" />
+		<property name="cmsRequiredMediaFormatQualifiers" ref="cmsRequiredMediaFormatQualifiers" />
+	</bean>
+
+	<bean id="mediaQualifierIdGenerator" class="de.hybris.platform.servicelayer.keygenerator.impl.PersistentKeyGenerator" init-method="init">
+		<property name="key" value="${keygen.mediacontainer.uid.key}" />
+		<property name="digits" value="${keygen.mediacontainer.uid.digits}" />
+		<property name="start" value="${keygen.mediacontainer.uid.start}" />
+		<property name="type" value="${keygen.mediacontainer.uid.type}" />
+	</bean>
+	
+</beans>

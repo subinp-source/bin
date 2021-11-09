@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<action-definition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				   id="com.hybris.backoffice.widgets.actions.enumeration"
+				   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/action-definition.xsd">
+	<name>Enumeration Action</name>
+	<description>Action for bulk update of items with given enum value</description>
+	<author>hybris</author>
+	<version>1.0</version>
+	<actionClassName>com.hybris.backoffice.widgets.actions.enumeration.EnumerationAction</actionClassName>
+
+	<iconUri>icons/icon_action_enumeration_default.png</iconUri>
+	<iconDisabledUri>icons/icon_action_enumeration_disabled.png</iconDisabledUri>
+	<iconHoverUri>icons/icon_action_enumeration_hover.png</iconHoverUri>
+
+	<customRendererClassName>com.hybris.backoffice.widgets.actions.enumeration.EnumerationActionRenderer</customRendererClassName>
+
+</action-definition>

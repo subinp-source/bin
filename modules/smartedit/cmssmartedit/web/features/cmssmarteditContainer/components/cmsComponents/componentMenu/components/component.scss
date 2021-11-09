@@ -1,0 +1,85 @@
+.se-component-item {
+    @include se-flex-row();
+    position: relative;
+    width: 270px;
+    padding: fd-space('xxs');
+    margin: fd-space('base') fd-space('xxs') 0;
+    border: 2px solid transparent;
+    cursor: grab;
+    &:active,
+    &:hover {
+        border: 2px dashed fd-color('neutral', 3);
+        border-radius: fd-space('base');
+    }
+    &:active {
+        cursor: grabbing;
+    }
+}
+.se-component-item--disabled {
+    &,
+    &:active,
+    &:hover {
+        border: 2px solid transparent;
+    }
+}
+.se-component-item--disabled-overlay {
+    cursor: not-allowed;
+    position: absolute;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background: fd-color('neutral', 3);
+    border-radius: fd-space('base');
+    opacity: 0.5;
+}
+.se-component-item--details-type {
+    color: fd-color('text', 2);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.se-component-item--image {
+    @include se-flex-row(center);
+    @include fd-type('3');
+    height: 36px;
+    width: 36px;
+    position: relative;
+    background: fd-color('accent', 13);
+    margin-right: fd-space('xxs');
+    color: fd-color('text', 5);
+    border-radius: fd-space('base');
+}
+.se-component-item--image-shared {
+    @include fd-type('-1');
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transform: rotate(3deg);
+}
+.se-component-item--image-shared--background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 13px;
+    border-color: fd-color('shell', 1) transparent transparent fd-color('shell', 1);
+    border-radius: fd-space('base') 0px 0px 0px;
+}
+.se-component-item--details-container {
+    display: flex;
+}
+.se-component-item--details {
+    @include se-text-ellipsis();
+    width: 200px;
+}
+.se-component-item--details-name {
+    @include se-text-ellipsis();
+    color: fd-color('text', 2);
+    width: 100%;
+}
+.se-component-item--details-type {
+    color: fd-color('text', 3);
+}

@@ -1,0 +1,47 @@
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/cockpitng/cng/scss/cockpitng-globals.scss';
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/backoffice/scss/backoffice-variables.scss';
+
+/*================================
+    QuickLocaleToggle Popup (Systembar)
+================================*/
+// Relevant Changes applied to the Quick Locale Toggle Popup
+
+@import "../systemBarWidget/scss/support/_systembar-variables.scss";
+
+.yw-quickToggleLocale {
+    &-cl {
+        width: 100%;
+        padding: $systembar-popup__list-cell--padding;
+        border-top: $systembar-popup__list-cell--border-top;
+
+        &-value,
+        &-label {
+            display: inline-block;
+            padding: $systembar-popup__list-cell-content--padding;
+        }
+    }
+    .z-tabpanel{
+        border-width: $systembar-popup__tabpanel--border-width;
+        padding: $systembar-popup__tabpanel--padding;
+
+        .z-listitem-radio {
+            display: none;
+        }
+    }
+    .z-tabs {
+        padding: $systembar-popup__tabs--padding;
+        border-bottom: $systembar-popup__tabs--border-bottom;
+        
+    }
+    .z-tab {
+        &,
+        &:first-child,
+        &:last-child {
+            padding: $systembar-popup__tab--padding;
+        }
+    }
+    .z-tab-text {
+        padding: $systembar-popup__tabs-tab-text--padding;
+        text-transform: $systembar-popup__tabs-tab-text--text-transform;
+    }
+}

@@ -1,0 +1,7 @@
+<div class="popover se-popover" data-ng-class="$ctrl.placement">
+    <div class="arrow" x-arrow></div>
+    <div class="popover-inner">
+        <h3 class="se-popover__title" data-ng-if="$ctrl.title">{{ $ctrl.title | translate }}</h3>
+        <div class="se-popover__content" data-compile-html="$ctrl.template"></div>
+    </div>
+</div>

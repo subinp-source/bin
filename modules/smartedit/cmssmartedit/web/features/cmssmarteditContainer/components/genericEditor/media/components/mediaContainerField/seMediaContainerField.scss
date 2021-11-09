@@ -1,0 +1,23 @@
+.se-media-container-row {
+    display: grid;
+    grid-template-columns: 2fr 4fr;
+    grid-column-gap: 12px;
+    width: 100%;
+    align-items: center;
+    padding: 0 8px;
+}
+
+.se-item-printer .se-media-container-row .se-default-media-container-img {
+    height: 100%;
+    max-width: 35%;
+}
+
+.select2-result-label .se-media-container-row .se-default-media-container-img {
+    max-width: 90%;
+    max-height: 100%;
+    margin: 12px;
+}
+
+.se-media-container-name-label {
+    margin-top: 9px;
+}

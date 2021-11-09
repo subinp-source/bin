@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+
+<widget-definition id="com.hybris.widgets.registerdestinationtargetwidget"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widget-definition.xsd">
+
+    <name>Register Destination Target</name>
+    <defaultTitle>Register Destination Target</defaultTitle>
+    <author>hybris</author>
+    <version>0.1</version>
+
+    <sockets>
+        <input type="de.hybris.platform.apiregistryservices.model.DestinationTargetModel" id="templateDestinationTarget" />
+    </sockets>
+
+    <view src="registerdestinationtarget.zul" />
+    <controller class="de.hybris.platform.kymaintegrationbackoffice.widgets.RegisterDestinationTargetController"/>
+</widget-definition>

@@ -1,0 +1,68 @@
+{
+  "code": "Test_code",
+  "catalogVersion": {
+    "catalog": {
+      "id": "Test_id",
+      "integrationKey": "TEST_KEY"
+    },
+    "version": "Test_version",
+    "integrationKey": "TEST_KEY"
+  },
+  "bool": true,
+  "valueList": "enum_TEST",
+  "ReferenceTypeM": [
+    {
+      "uid": "Test_uid",
+      "integrationKey": "TEST_KEY"
+    }
+  ],
+  "depth": "123.0",
+  "tester": {
+    "uid": "Test_uid",
+    "integrationKey": "TEST_KEY"
+  },
+  "dateM": [
+    {
+      "value": "2019-01-01T00:00:00"
+    },
+    {
+      "value": "2019-01-01T00:00:00"
+    }
+  ],
+  "valueListM": [
+    {
+      "value": "enum_abc"
+    },
+    {
+      "value": "enum_def"
+    }
+  ],
+  "stringType": "Test_stringType",
+  "numberM": [
+    {
+      "value": "123.0"
+    },
+    {
+      "value": "34"
+    }
+  ],
+  "stringTypeM": [
+    {
+      "value": "abc"
+    },
+    {
+      "value": "def"
+    }
+  ],
+  "date": "2019-01-01T00:00:00",
+  "boolM": [
+    {
+      "value": true
+    },
+    {
+      "value": false
+    }
+  ],
+  "classificationName": "Test_classificationName",
+  "integrationKey": "TEST_KEY"
+}

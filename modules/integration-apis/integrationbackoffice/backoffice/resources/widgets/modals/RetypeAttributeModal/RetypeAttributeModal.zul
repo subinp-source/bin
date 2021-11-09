@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<widget xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.zkoss.org/2005/zul"
+        xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.hybris.com/schema/cockpitng/zul/zul.xsd"
+        height="100%">
+
+    <style src="${wr}/RetypeAttributeModal.css"/>
+
+    <vlayout spacing="15px" sclass="yw-integrationbackoffice-modal-body">
+        <span sclass="yw-integrationbackoffice-modal-label">
+            ${labels.integrationbackoffice.retypeAttributeModal.attributeName}
+        </span>
+        <textbox id="attributeName" readonly="true"/>
+        <span sclass="yw-integrationbackoffice-modal-label">
+            ${labels.integrationbackoffice.retypeAttributeModal.baseType}
+        </span>
+        <textbox id="attributeBaseType" readonly="true"/>
+        <span sclass="yw-integrationbackoffice-modal-label">
+            ${labels.integrationbackoffice.retypeAttributeModal.currentSubtype}
+        </span>
+        <textbox id="attributeCurrentSubtype" readonly="true"/>
+        <span sclass="yw-integrationbackoffice-modal-label">
+            ${labels.integrationbackoffice.retypeAttributeModal.selectSubtype}
+        </span>
+        <combobox id="subtypeComboBox"/>
+    </vlayout>
+
+    <button id="confirmButton" label="${labels.integrationbackoffice.retypeAttributeModal.confirmButton}"
+            sclass="y-btn-primary yw-integrationbackoffice-modal-button"/>
+
+</widget>

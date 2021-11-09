@@ -1,0 +1,32 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+
+INSERT_UPDATE SearchRestriction; code[unique = true]       ; name[lang = en]                                     ; query                                                                                                                                                                                       ; principal(UID); restrictedType(code); active; generate
+                               ; b2bpermission_restriction ; Restrict B2BPermission visibility based on its Unit ; {item:Unit} IN (?session.branch) and  ( {item:active} = 1 OR EXISTS ( {{ select {ug:PK} from {UserGroup as ug} where {ug:PK} IN (?session.user.groups) and {ug:uid} = 'b2badmingroup' }} )) ; b2bgroup      ; B2BPermission       ; true  ; true
+
+###############################
+# Sample Organization I (Rustic)
+
+INSERT_UPDATE B2BOrderThresholdPermission; code[unique = true] ; Unit(uid); threshold; currency(isocode)[default = 'USD'];
+                                         ; Rustic_1K_USD_ORDER ; Rustic   ; 1000     ;
+                                         ; Rustic_2K_USD_ORDER ; Rustic   ; 2000     ;
+
+INSERT_UPDATE B2BOrderThresholdTimespanPermission; code[unique = true] ; Unit(uid); threshold; range(code, itemtype(code)); currency(isocode)[default = 'USD']; active[default = true];
+                                                 ; Rustic_3K_USD_MONTH ; Rustic   ; 3000     ; MONTH:B2BPeriodRange       ;                                   ;                       ;
+                                                 ; Rustic_4K_USD_DAY   ; Rustic   ; 4000     ; DAY:B2BPeriodRange         ;                                   ;                       ;
+                                                 ; Rustic_5K_USD_YEAR  ; Rustic   ; 5000     ; YEAR:B2BPeriodRange        ;                                   ; false                 ;
+
+INSERT_UPDATE B2BBudgetExceededPermission; code[unique = true]    ; Unit(uid);
+                                         ; Rustic_Budget_Exceeded ; Rustic   ;
+
+###############################
+#  Sample Organization II (Pronto)
+
+INSERT_UPDATE B2BOrderThresholdPermission; code[unique = true] ; Unit(uid); threshold; currency(isocode);
+                                         ; Pronto_5K_USD_ORDER ; Pronto   ; 5000     ; USD              ;
+
+
+
+

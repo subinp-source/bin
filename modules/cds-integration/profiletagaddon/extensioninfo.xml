@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+--><extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
+    	
+    <extension abstractclassprefix="Generated" classprefix="Profiletagaddon" description="profiletagaddon extension" managername="ProfiletagaddonManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="profiletagaddon">
+        		
+        <!-- you should add all required extensions to this list, except platform extensions which are automatically required -->
+                 
+		
+        <requires-extension name="addonsupport"/>
+        		
+        <requires-extension name="cms2"/>
+        		
+        <requires-extension name="profileservices"/>
+        		
+        <requires-extension name="acceleratorstorefrontcommons"/>
+        		
+        <coremodule generated="true" manager="com.hybris.yprofile.profiletagaddon.jalo.ProfiletagaddonManager" packageroot="com.hybris.yprofile.profiletagaddon"/>
+        		
+		
+        <meta key="classpathgen" value="false"/>
+        	
+    </extension>
+    
+</extensioninfo>

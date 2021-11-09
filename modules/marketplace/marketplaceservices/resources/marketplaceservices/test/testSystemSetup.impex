@@ -1,0 +1,41 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+$globalMarketplaceProductCatalog=globalMarketplaceProductCatalog
+$defaultCurrency=EUR
+$languages=en
+$defaultLanguage=en
+$prices=europe1prices[translator=de.hybris.platform.europe1.jalo.impex.Europe1PricesTranslator]
+$stagedProduct=catalogVersion(catalog(id[default=$globalMarketplaceProductCatalog]),version[default='Staged'])[unique=true,default='$globalMarketplaceProductCatalog:Staged']
+$onlineProduct=catalogVersion(catalog(id[default=$globalMarketplaceProductCatalog]),version[default='Online'])[unique=true,default='$globalMarketplaceProductCatalog:Online']
+
+$sourceProductCV=sourceVersion(catalog(id[default=$globalMarketplaceProductCatalog]),version[default='Staged'])[unique=true,default='$globalMarketplaceProductCatalog:Staged']
+$targetProductCV=targetVersion(catalog(id[default=$globalMarketplaceProductCatalog]),version[default='Online'])[unique=true,default='$globalMarketplaceProductCatalog:Online']
+
+INSERT_UPDATE Language;isoCode[unique=true];active
+;$languages;true
+
+INSERT_UPDATE Currency;isoCode[unique=true];name[lang=$languages];active;base;conversion;digits;symbol
+;$defaultCurrency;Euro;true;true;1;2;€
+
+INSERT_UPDATE Catalog;id[unique=true];name[lang=$languages];defaultCatalog
+;$globalMarketplaceProductCatalog;$globalMarketplaceProductCatalog;true
+
+INSERT_UPDATE CatalogVersion;catalog(id)[unique=true];version[unique=true];active;defaultCurrency(isoCode);languages(isoCode)
+;$globalMarketplaceProductCatalog;Staged;false;$defaultCurrency;$languages
+;$globalMarketplaceProductCatalog;Online;true;$defaultCurrency;$languages
+
+INSERT_UPDATE Product;$onlineProduct;code[unique=true]
+;;product1
+;;product2
+
+INSERT_UPDATE Category;$stagedProduct;code[unique=true];products(code)
+;;category1;product1,product2
+;;category2;product1,product2
+INSERT_UPDATE Category;$onlineProduct;code[unique=true];products(code)
+;;category1;product1,product2
+;;category2;product1
+
+INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];$sourceProductCV;$targetProductCV;
+;sync globalMarketplaceProductCatalog:Staged->Online;;;;

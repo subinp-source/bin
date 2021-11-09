@@ -1,0 +1,67 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+#
+# Import the search services CronJob Trigger configuration for the Electronics Product Catalog
+#
+$snIndexType=electronics-product
+
+INSERT FlexibleSearchSnIndexerItemSource ; &indexerItemSourceID ; query
+                                         ; $snIndexType-full    ; "SELECT {p:pk} FROM {Product AS p LEFT JOIN ArticleApprovalStatus AS a ON {p:approvalStatus} = {a:pk}} WHERE {a:code} = 'approved'"
+
+INSERT_UPDATE FullSnIndexerCronJob ; code[unique=true]         ; job(code)        ; sessionLanguage(isocode) ; indexType(id) ; indexerItemSource(&indexerItemSourceID)
+                                   ; indexer-$snIndexType-full ; fullSnIndexerJob ; en                       ; $snIndexType  ; $snIndexType-full
+
+# Run the full indexer cron job at 3:00 AM every day
+INSERT_UPDATE Trigger ; cronJob(code)[unique=true] ; second ; minute ; hour ; day ; month ; year ; relative ; active ; maxAcceptableDelay
+"#%beforeEach:
+import de.hybris.platform.core.Registry;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.apache.commons.lang3.StringUtils;
+import de.hybris.platform.util.Config;
+
+Logger LOG = LoggerFactory.getLogger(""ImpExImportReader"");
+extensionNames = Registry.getCurrentTenant().getTenantSpecificExtensionNames();
+extensionName = ""searchprovidercssearchservices"";
+cronJobCode = line.get(1);
+    if(!extensionNames.contains(extensionName))
+    {
+        LOG.info(""CronJob [{}] was skipped because the extension [{}] is not included in the setup"", cronJobCode, extensionName);
+        line.clear();
+    }
+"
+                      ; indexer-$snIndexType-full  ; 0      ; 0      ; 3    ; -1  ; -1    ; -1   ; false    ; false  ; -1
+
+INSERT FlexibleSearchSnIndexerItemSource ; &indexerItemSourceID                   ; query
+                                         ; $snIndexType-incremental-create-update ; "SELECT {p:pk} FROM {Product AS p LEFT JOIN ArticleApprovalStatus AS a ON {p:approvalStatus} = {a:pk}} WHERE {a:code} = 'approved' AND {p.modifiedtime} > ?startTime"
+                                         ; $snIndexType-incremental-delete        ; "SELECT {p:pk} FROM {Product AS p LEFT JOIN ArticleApprovalStatus AS a ON {p:approvalStatus} = {a:pk}} WHERE NOT {a:code} = 'approved' AND {p.modifiedtime} > ?startTime"
+
+INSERT SnIndexerItemSourceOperation ; &indexerItemSourceOperationID          ; documentOperationType(code) ; indexerItemSource(&indexerItemSourceID)
+                                    ; $snIndexType-incremental-create-update ; CREATE_UPDATE               ; $snIndexType-incremental-create-update
+                                    ; $snIndexType-incremental-delete        ; DELETE                      ; $snIndexType-incremental-delete
+
+INSERT_UPDATE IncrementalSnIndexerCronJob ; code[unique=true]                ; job(code)               ; sessionLanguage(isocode) ; indexType(id) ; indexerItemSourceOperations(&indexerItemSourceOperationID)
+                                          ; indexer-$snIndexType-incremental ; incrementalSnIndexerJob ; en                       ; $snIndexType  ; $snIndexType-incremental-create-update,$snIndexType-incremental-delete
+
+# Run the incremental indexer cron job every 5 minutes
+INSERT_UPDATE Trigger ; cronJob(code)[unique=true]       ; active ; cronExpression
+"#%beforeEach:
+import de.hybris.platform.core.Registry;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.apache.commons.lang3.StringUtils;
+import de.hybris.platform.util.Config;
+
+Logger LOG = LoggerFactory.getLogger(""ImpExImportReader"");
+extensionNames = Registry.getCurrentTenant().getTenantSpecificExtensionNames();
+extensionName = ""searchprovidercssearchservices"";
+cronJobCode = line.get(1);
+    if(!extensionNames.contains(extensionName))
+    {
+        LOG.info(""CronJob [{}] was skipped because the extension [{}] is not included in the setup"", cronJobCode, extensionName);
+        line.clear();
+    }
+"
+                      ; indexer-$snIndexType-incremental ; false  ; 0 0/5 * * * ?
+

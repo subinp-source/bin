@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><testclasses><timedaccesspromotionenginefacades><testclass>de.hybris.platform.timedaccesspromotionenginefacades.impl.DefaultFlashBuyFacadeTest</testclass><testclass>de.hybris.platform.timedaccesspromotionenginefacades.product.converters.populator.TimedAccessProductPopulatorUnitTest</testclass></timedaccesspromotionenginefacades></testclasses>

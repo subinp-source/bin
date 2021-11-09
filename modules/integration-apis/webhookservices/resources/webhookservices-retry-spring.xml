@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <alias name="fixedWebhookServicesBackoffPolicy" alias="webhookServicesBackoffPolicy"/>
+    <bean id="fixedWebhookServicesBackoffPolicy" class="org.springframework.retry.backoff.FixedBackOffPolicy">
+        <property name="backOffPeriod" value="${webhookservices.retry.backOffPeriod}"/>
+    </bean>
+
+    <alias name="defaultWebhookServicesRetryPolicy" alias="webhookServicesRetryPolicy"/>
+    <bean id="defaultWebhookServicesRetryPolicy" class="org.springframework.retry.policy.SimpleRetryPolicy">
+        <constructor-arg  name="maxAttempts"  value="2"/>
+        <constructor-arg name="retryableExceptions" >
+            <map>
+                <entry key="de.hybris.platform.webhookservices.service.impl.WebhookRetryableException" value="true"/>
+            </map>
+        </constructor-arg>
+        <constructor-arg name="traverseCauses" value="true"/>
+    </bean>
+
+    <alias name="defaultWebhookServicesRetryTemplate" alias="webhookServicesRetryTemplate"/>
+    <bean id="defaultWebhookServicesRetryTemplate" class="org.springframework.retry.support.RetryTemplate">
+        <property name="backOffPolicy" ref="webhookServicesBackoffPolicy"/>
+        <property name="retryPolicy" ref="webhookServicesRetryPolicy"/>
+    </bean>
+
+</beans>

@@ -1,0 +1,12 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+REMOVE ValidComponentTypesForContentSlots[batchMode=true];target(code)[unique=true]
+;CMSImageComponent
+
+REMOVE ComponentTypeGroups2ComponentType[batchMode=true];target(code)[unique=true]
+;CMSImageComponent
+
+INSERT_UPDATE ComponentTypeGroups2ComponentType;source(code)[unique=true];target(code)[unique=true]
+;email;CMSImageComponent

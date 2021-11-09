@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+--><extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
+          
+    <extension abstractclassprefix="Generated" classprefix="Profileservices" managername="ProfileservicesManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="profileservices" usemaven="false">
+                    
+        <requires-extension name="apiregistrybackoffice"/>
+                    
+        <requires-extension name="commerceservices"/>
+                    
+        <requires-extension name="commercefacades"/>
+                    
+        <coremodule generated="true" manager="com.hybris.yprofile.jalo.ProfileservicesManager" packageroot="com.hybris.yprofile"/>
+           
+    </extension>
+    
+</extensioninfo>

@@ -1,0 +1,6 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+INSERT_UPDATE Customer ; uid[unique=true]                         ; name[default=testName]  
+                       ; eu\com\r01_00_030_country_[$country]                      

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<widget-definition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widget-definition.xsd"
+                   id="de.hybris.platform.integrationbackoffice.widgets.IntegrationObjectSelector">
+    <name>Integration Object Selector</name>
+    <description>Combobox with label to select an existing IntegrationObject</description>
+    <defaultTitle>Integration Object Selector</defaultTitle>
+    <author>Hybris</author>
+    <version>1.0</version>
+    <view src="IntegrationObjectSelector.zul"/>
+    <keywords>
+        <keyword>IntegrationObjectSelector</keyword>
+    </keywords>
+    <controller
+            class="de.hybris.platform.integrationbackoffice.widgets.editor.controllers.IntegrationObjectSelectorController"/>
+
+    <settings>
+        <setting key="actions" type="java.lang.String"/>
+    </settings>
+
+    <sockets>
+        <input type="java.lang.String" id="receiveRefresh"/>
+        <input type="de.hybris.platform.core.model.type.ComposedTypeModel" id="selectedItem"/>
+        <input type="de.hybris.platform.integrationservices.model.IntegrationObjectModel" id="receiveSyncNotice"/>
+        <output type="de.hybris.platform.integrationservices.model.IntegrationObjectModel" id="comboBoxOnChange"/>
+    </sockets>
+</widget-definition>

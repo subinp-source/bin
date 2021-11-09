@@ -1,0 +1,7 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+INSERT_UPDATE ConsignmentTrackingIdValidConstraint;id[unique=true,allownull=true];severity(code,itemtype(code));target[allownull=true];type(code);constraintGroups(id)
+;ConsignmentTrackingIdValidConstraint;ERROR:Severity;de.hybris.platform.ordersplitting.model.ConsignmentModel;Consignment;defaultBackofficeValidationGroup
+$de.hybris.platform.core.Registry.getApplicationContext().getBean(de.hybris.platform.validation.services.ValidationService.class).reloadValidationEngine()

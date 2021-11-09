@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/util
+		   http://www.springframework.org/schema/util/spring-util.xsd">
+		   
+	<!-- Services -->
+
+	<alias name="defaultSnSearchContextFactory" alias="snSearchContextFactory" />
+	<bean id="defaultSnSearchContextFactory"
+		class="de.hybris.platform.searchservices.search.service.impl.DefaultSnSearchContextFactory"
+		parent="snIndexContextFactory" />
+
+	<alias name="defaultSnSearchService" alias="snSearchService" />
+	<bean id="defaultSnSearchService"
+		class="de.hybris.platform.searchservices.search.service.impl.DefaultSnSearchService">
+		<property name="snSearchStrategyFactory" ref="snSearchStrategyFactory" />
+	</bean>
+
+	<alias name="defaultSnSearchStrategyFactory" alias="snSearchStrategyFactory" />
+	<bean id="defaultSnSearchStrategyFactory"
+		class="de.hybris.platform.searchservices.search.service.impl.DefaultSnSearchStrategyFactory">
+		<property name="defaultSearchStrategy" ref="snSearchStrategy" />
+	</bean>
+
+	<alias name="defaultSnSearchStrategy" alias="snSearchStrategy" />
+	<bean id="defaultSnSearchStrategy"
+		class="de.hybris.platform.searchservices.search.service.impl.DefaultSnSearchStrategy">
+		<property name="snSessionService" ref="snSessionService" />
+		<property name="snSearchContextFactory" ref="snSearchContextFactory" />
+		<property name="snIndexService" ref="snIndexService" />
+		<property name="snListenerFactory" ref="snListenerFactory" />
+		<property name="snSearchProviderFactory" ref="snSearchProviderFactory" />
+	</bean>
+
+	<alias name="defaultCatalogVersionFilterSnSearchListener" alias="catalogVersionFilterSnSearchListener" />
+	<bean id="defaultCatalogVersionFilterSnSearchListener"
+		class="de.hybris.platform.searchservices.search.service.impl.CatalogVersionFilterSnSearchListener">
+		<property name="catalogTypeService" ref="catalogTypeService" />
+		<property name="catalogVersionService" ref="catalogVersionService" />
+	</bean>
+
+</beans>

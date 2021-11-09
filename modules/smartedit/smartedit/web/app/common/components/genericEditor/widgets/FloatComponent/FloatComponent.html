@@ -1,0 +1,12 @@
+<input
+    pattern="^[-]?([0-9]*)(\.[0-9]{1,5})?$"
+    type="number"
+    id="{{widget.field.qualifier}}-float"
+    class="fd-form-control"
+    [ngClass]="{ 'is-invalid': widget.field.hasErrors, 'is-warning': widget.field.hasWarnings }"
+    [placeholder]="(widget.field.tooltip || '') | translate"
+    [attr.name]="widget.field.qualifier"
+    [disabled]="widget.isFieldDisabled()"
+    [(ngModel)]="widget.model[widget.qualifier]"
+    [step]="precision"
+/>

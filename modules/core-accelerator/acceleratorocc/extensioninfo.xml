@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+--><extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
+    	
+    <extension abstractclassprefix="Generated" classprefix="Acceleratorocc" description="acceleratorocc extension" managername="AcceleratoroccManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="acceleratorocc">
+        		
+		
+        <requires-extension name="acceleratorfacades"/>
+        		
+        <requires-extension name="commercewebservices"/>
+        		
+        <coremodule generated="true" manager="de.hybris.platform.acceleratorocc.jalo.AcceleratoroccManager" packageroot="de.hybris.platform.acceleratorocc"/>
+        		
+		
+        <meta key="backoffice-module" value="true"/>
+        			
+		
+	
+    </extension>
+    
+</extensioninfo>

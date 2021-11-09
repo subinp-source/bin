@@ -1,0 +1,261 @@
+[
+	{
+		"testId": 1,
+		"description": "facet without id",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"expression": "price",
+					"buckets": [
+						{
+							"id": "0-24",
+							"from": 0,
+							"to": 24
+						},
+						{
+							"id": "24-48",
+							"from": 24,
+							"to": 48
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 2,
+		"description": "facet without expression",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "testFacet",
+					"buckets": [
+						{
+							"id": "0-24",
+							"from": 0,
+							"to": 24
+						},
+						{
+							"id": "24-48",
+							"from": 24,
+							"to": 48
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 3,
+		"description": "facet with empty expression",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "testFacet",
+					"expression": "",
+					"buckets": [
+						{
+							"id": "0-24",
+							"from": 0,
+							"to": 24
+						},
+						{
+							"id": "24-48",
+							"from": 24,
+							"to": 48
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 4,
+		"description": "facet with invalid expression",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "testFacet",
+					"expression": "-$!#-",
+					"buckets": [
+						{
+							"id": "0-24",
+							"from": 0,
+							"to": 24
+						},
+						{
+							"id": "24-48",
+							"from": 24,
+							"to": 48
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 5,
+		"description": "facet with not existing expression",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "testFacet",
+					"expression": "notExisting",
+					"buckets": [
+						{
+							"id": "0-24",
+							"from": 0,
+							"to": 24
+						},
+						{
+							"id": "24-48",
+							"from": 24,
+							"to": 48
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 6,
+		"description": "facet with STRING expression",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "testFacet",
+					"expression": "field_string",
+					"buckets": [
+						{
+							"id": "0-24",
+							"from": 0,
+							"to": 24
+						},
+						{
+							"id": "24-48",
+							"from": 24,
+							"to": 48
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 7,
+		"description": "facet with TEXT expression",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "testFacet",
+					"expression": "field_text",
+					"buckets": [
+						{
+							"id": "0-24",
+							"from": 0,
+							"to": 24
+						},
+						{
+							"id": "24-48",
+							"from": 24,
+							"to": 48
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 8,
+		"description": "facet with BOOLEAN expression",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "testFacet",
+					"expression": "field_boolean",
+					"buckets": [
+						{
+							"id": "0-24",
+							"from": 0,
+							"to": 24
+						},
+						{
+							"id": "24-48",
+							"from": 24,
+							"to": 48
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"testId": 13,
+		"description": "facet without buckets",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "testFacet",
+					"expression": "price"
+				}
+			]
+		}
+	},
+	{
+		"testId": 14,
+		"description": "facet with empty buckets",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "testFacet",
+					"expression": "price",
+					"buckets": []
+				}
+			]
+		}
+	},
+	{
+		"testId": 15,
+		"description": "facet with facet filter for not existing bucket id",
+		"data": {
+			"facets": [
+				{
+					"type": "rangeBuckets",
+					"id": "testFacet",
+					"expression": "price",
+					"buckets": [
+						{
+							"id": "0-24",
+							"from": 0,
+							"to": 24
+						},
+						{
+							"id": "24-48",
+							"from": 24,
+							"to": 48
+						}
+					]
+				}
+			],
+			"facetFilters": [
+				{
+					"type": "buckets",
+					"facetId": "testFacet",
+					"bucketIds": [
+						"0-48"
+					]
+				}
+			]
+		}
+	}
+]

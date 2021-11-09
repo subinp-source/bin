@@ -1,0 +1,55 @@
+.se-modal-wizard-template {
+    min-height: 480px;
+    width: 600px;
+    max-width: 80vw;
+}
+.se-modal-wizard__steps-container,
+.se-modal-wizard__step {
+    @include se-flex-row();
+}
+.se-modal-wizard__steps-container {
+    border-bottom: se-border();
+}
+.se-modal-wizard__content {
+    padding-top: fd-space('s');
+    padding-bottom: 16px;
+}
+.se-modal-wizard-step__action {
+    @include se-text-btn();
+    @include fd-type('1');
+    margin-bottom: 10px;
+    position: relative;
+
+    &--disabled[disabled] {
+        color: fd-color-state('disabled', 'action');
+        cursor: not-allowed;
+    }
+    &--enabled {
+        cursor: pointer;
+        color: fd-color('action', 1);
+    }
+    &--current {
+        cursor: default;
+        color: fd-color('action', 1);
+        &::before {
+            @include se-active-link;
+            content: '';
+            position: absolute;
+            bottom: -11px;
+            height: 0;
+            left: 0;
+            width: 100%;
+        }
+    }
+}
+.se-modal-wizard__step-icon-next {
+    color: fd-color('text', 3);
+    margin-bottom: 10px;
+    padding: 0 fd-space('s');
+    &--enabled {
+        color: fd-color('action', 1);
+    }
+    &--disabled {
+        color: fd-color-state('disabled', 'action');
+    }
+}

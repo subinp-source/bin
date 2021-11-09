@@ -1,0 +1,7 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+$hubCode=TEST_$code
+$lowercaseHubCode=test_hub
+$languages=en_US,fr_FR

@@ -1,0 +1,144 @@
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/cockpitng/cng/scss/cockpitng-globals.scss';
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/backoffice/scss/backoffice-variables.scss';
+
+@import "scss/support/_listlayout_variables.scss";
+
+.yw-listLayout {
+	&-widget {
+		overflow: auto;
+		text-align: center;
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+	}
+	&-container {
+		padding-bottom: $listlayout__list-container--padding-bottom;
+		max-width: $listlayout__list-container--max-width;
+		display: block;
+		box-sizing: border-box;
+		text-align: left;
+		width: auto;		
+		height: auto;
+		margin: 0 auto;
+
+		> .widget_children_list > .widget_cnt {
+			margin: $listlayout__list-child--margin;
+			box-shadow: $listlayout__list-child--box-shadow;
+			padding: 0;
+
+			.cng-adminmode &,
+			&:empty {
+				margin: 0;
+			}
+			&:empty {
+				display: none;
+			}
+		}
+	}
+	&-widget_flexible &-container {
+		min-height: 100%;
+		box-sizing: border-box;
+		max-width: none;
+
+		> .widget_children_list {
+			padding-top: $listlayout__list-flexible-container--padding-top;
+
+			&:only-child {
+				top: 0;
+				position: absolute;
+				padding-top: $listlayout__list-flexible-container--padding-top;
+				padding-bottom: $listlayout__list-container--padding-bottom;
+				bottom: 0;
+				height: auto;
+				width: 100%;
+				overflow: auto;
+
+				> .widget_cnt:first-child {
+					margin-top: 0;
+				}
+			}
+		}
+		> .widget_children_list,
+		.yw-collaboration-center-browser > .z-div:first-child {
+			display: -webkit-box;
+			display: -webkit-flex;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-orient: vertical;
+			-webkit-box-direction: normal;
+			-webkit-flex-direction: column;
+			-ms-flex-direction: column;
+			flex-direction: column;
+		}
+		> .widget_children_list > .widget_cnt:only-child,
+		.yw-collaboration-center-browser .yw-coll-browser-container {
+			-webkit-box-flex: 1;
+			-webkit-flex: 1;
+			-ms-flex: 1;
+			flex: 1;
+		}
+		> .widget_children_list > .widget_cnt:only-child {
+			max-height: 100%;
+		}
+		.yw-collaboration-center-browser {
+			overflow: hidden;
+
+			.yw-coll-browser-container {
+				overflow: hidden;
+
+				.yw-coll-browser-tree-view-table {
+					overflow: auto !important;
+					height: 100% !important;
+					max-height: 100%;
+					max-width: 100%;
+
+					> .z-tree-body {
+						height: auto !important;
+						overflow: visible !important;
+					}
+				}
+				> .z-listbox {
+					min-height: 100%;
+					max-height: 100%;
+					display: -webkit-box;
+    				display: -webkit-flex;
+    				display: -ms-flexbox;
+    				display: flex;
+    				-webkit-box-orient: vertical;
+    				-webkit-box-direction: normal;
+    				-webkit-flex-direction: column;
+    				-ms-flex-direction: column;
+    				flex-direction: column;
+
+    				> .z-listbox-header {
+    					-webkit-box-flex: 0;
+						-webkit-flex: 0 0 auto;
+						-ms-flex: 0 0 auto;
+						flex: 0 0 auto;
+    					position: relative;
+
+    					> table {
+    						min-width: auto;
+    					}
+    					.z-listhead-bar {
+    						height: 100%;
+    						background-color: transparent;
+    						border-color: transparent;
+    					}
+    				}
+    				> .z-listbox-body {
+						margin-bottom: $listlayout__list-defaults--border-width * -1;
+    				}
+				}
+
+				+ .yw-listview-bottom-bar {
+					overflow: visible;
+					> div {
+						height: auto;
+					}
+				}
+			}
+		}
+	}
+}

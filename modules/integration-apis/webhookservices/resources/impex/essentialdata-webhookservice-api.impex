@@ -1,0 +1,73 @@
+################################################################
+# Create WebhookService API
+# ##############################################################
+## PLEASE, check whether more cleaning is needed in WebhookServicesEssentialData class
+## whenever the content of this impex changes
+
+INSERT_UPDATE IntegrationObject; code[unique = true]
+                               ; WebhookService
+
+INSERT_UPDATE IntegrationObjectItem; integrationObject(code)[unique = true]; code[unique = true]     ; type(code)              ; root[default = false]
+                                   ; WebhookService                        ; WebhookConfiguration    ; WebhookConfiguration    ; true
+                                   ; WebhookService                        ; IntegrationObject       ; IntegrationObject       ;
+                                   ; WebhookService                        ; ConsumedDestination     ; ConsumedDestination     ;
+                                   ; WebhookService                        ; DestinationTarget       ; DestinationTarget       ;
+                                   ; WebhookService                        ; DestinationChannel      ; DestinationChannel      ;
+                                   ; WebhookService                        ; EventConfiguration      ; EventConfiguration      ;
+                                   ; WebhookService                        ; Endpoint                ; Endpoint                ;
+                                   ; WebhookService                        ; BasicCredential         ; BasicCredential         ;
+                                   ; WebhookService                        ; ConsumedOAuthCredential ; ConsumedOAuthCredential ;
+
+$integrationObjectItem = integrationObjectItem(integrationObject(code), code)
+$attributeDescriptor = attributeDescriptor(enclosingType(code), qualifier)
+$returnIntegrationObjectItem = returnIntegrationObjectItem(integrationObject(code), code)
+INSERT_UPDATE IntegrationObjectItemAttribute; $integrationObjectItem[unique = true]  ; attributeName[unique = true]; $attributeDescriptor                     ; $returnIntegrationObjectItem           ; unique[default = false]; autoCreate[default = false]
+                                            ; WebhookService:WebhookConfiguration    ; eventType                   ; WebhookConfiguration:eventType           ;                                        ; true                   ;
+                                            ; WebhookService:WebhookConfiguration    ; integrationObject           ; WebhookConfiguration:integrationObject   ; WebhookService:IntegrationObject       ; true                   ;
+                                            ; WebhookService:WebhookConfiguration    ; destination                 ; WebhookConfiguration:destination         ; WebhookService:ConsumedDestination     ; true                   ; true
+                                            ; WebhookService:WebhookConfiguration    ; filterLocation              ; WebhookConfiguration:filterLocation      ;                                        ;                        ;
+                                            ; WebhookService:IntegrationObject       ; code                        ; IntegrationObject:code                   ;                                        ; true                   ;
+                                            ; WebhookService:ConsumedDestination     ; id                          ; ConsumedDestination:id                   ;                                        ; true                   ;
+                                            ; WebhookService:ConsumedDestination     ; url                         ; ConsumedDestination:url                  ;                                        ;                        ;
+                                            ; WebhookService:ConsumedDestination     ; endpoint                    ; ConsumedDestination:endpoint             ; WebhookService:Endpoint                ;                        ; true
+                                            ; WebhookService:ConsumedDestination     ; destinationTarget           ; ConsumedDestination:destinationTarget    ; WebhookService:DestinationTarget       ; true                   ; true
+                                            ; WebhookService:ConsumedDestination     ; credentialBasic             ; ConsumedDestination:credential           ; WebhookService:BasicCredential         ;                        ; true
+                                            ; WebhookService:ConsumedDestination     ; credentialConsumedOAuth     ; ConsumedDestination:credential           ; WebhookService:ConsumedOAuthCredential ;                        ; true
+                                            ; WebhookService:ConsumedDestination     ; additionalProperties        ; ConsumedDestination:additionalProperties ;                                        ;                        ;
+                                            ; WebhookService:DestinationTarget       ; id                          ; DestinationTarget:id                     ;                                        ; true                   ;
+                                            ; WebhookService:DestinationTarget       ; destinationChannel          ; DestinationTarget:destinationChannel     ; WebhookService:DestinationChannel      ;                        ;
+                                            ; WebhookService:DestinationTarget       ; eventConfigurations         ; DestinationTarget:eventConfigurations    ; WebhookService:EventConfiguration      ;                        ; true
+                                            ; WebhookService:DestinationChannel      ; code                        ; DestinationChannel:code                  ;                                        ; true                   ;
+                                            ; WebhookService:EventConfiguration      ; eventClass                  ; EventConfiguration:eventClass            ;                                        ; true                   ;
+                                            ; WebhookService:EventConfiguration      ; destinationTarget           ; EventConfiguration:destinationTarget     ; WebhookService:DestinationTarget       ;                        ;
+                                            ; WebhookService:EventConfiguration      ; exportName                  ; EventConfiguration:exportName            ;                                        ;                        ;
+                                            ; WebhookService:Endpoint                ; id                          ; Endpoint:id                              ;                                        ; true                   ;
+                                            ; WebhookService:Endpoint                ; version                     ; Endpoint:version                         ;                                        ;                        ;
+                                            ; WebhookService:Endpoint                ; specUrl                     ; Endpoint:specUrl                         ;                                        ;                        ;
+                                            ; WebhookService:Endpoint                ; name                        ; Endpoint:name                            ;                                        ;                        ;
+                                            ; WebhookService:BasicCredential         ; id                          ; BasicCredential:id                       ;                                        ; true                   ;
+                                            ; WebhookService:BasicCredential         ; password                    ; BasicCredential:password                 ;                                        ;                        ;
+                                            ; WebhookService:BasicCredential         ; username                    ; BasicCredential:username                 ;                                        ;                        ;
+                                            ; WebhookService:ConsumedOAuthCredential ; id                          ; ConsumedOAuthCredential:id               ;                                        ; true                   ;
+                                            ; WebhookService:ConsumedOAuthCredential ; clientId                    ; ConsumedOAuthCredential:clientId         ;                                        ;                        ;
+                                            ; WebhookService:ConsumedOAuthCredential ; clientSecret                ; ConsumedOAuthCredential:clientSecret     ;                                        ;                        ;
+
+
+INSERT_UPDATE InboundChannelConfiguration; integrationObject(code)[unique = true]
+                                         ; WebhookService
+
+$START_USERRIGHTS
+Type      ; UID                   ; MemberOfGroups ; Password ; Target                  ; read ; change ; create ; remove
+UserGroup ; integrationadmingroup ;                ;          ;                         ;      ;        ;        ;
+
+# Access Rights for IntegrationAdministrator Users
+          ;                       ;                ;          ; WebhookConfiguration    ; +    ; +      ; +      ; +
+          ;                       ;                ;          ; IntegrationObject       ; +    ; +      ; +      ; +
+          ;                       ;                ;          ; ConsumedDestination     ; +    ; +      ; +      ; +
+          ;                       ;                ;          ; DestinationTarget       ; +    ; +      ; +      ; +
+          ;                       ;                ;          ; DestinationChannel      ; +    ;        ;        ;
+          ;                       ;                ;          ; EventConfiguration      ; +    ; +      ; +      ; +
+          ;                       ;                ;          ; Endpoint                ; +    ; +      ; +      ; +
+          ;                       ;                ;          ; BasicCredential         ; +    ; +      ; +      ; +
+          ;                       ;                ;          ; ConsumedOAuthCredential ; +    ; +      ; +      ; +
+$END_USERRIGHTS

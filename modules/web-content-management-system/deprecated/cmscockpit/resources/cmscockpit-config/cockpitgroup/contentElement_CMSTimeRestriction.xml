@@ -1,0 +1,7 @@
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<content-elements>
+	<content-element type="CMSTimeRestriction" name="type.cmstimerestriction.name" description="type.cmstimerestriction.description"
+		image="cmscockpit/images/RestrictionTime.gif" refImage="cmscockpit/images/RestrictionTimeReference.gif" />
+</content-elements>	

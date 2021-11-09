@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="OOTB" importedAsReadOnly="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/configurable-bundle/configurablebundlefacades/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="commercefacades" exported="" />
+    <orderEntry type="module" module-name="configurablebundleservices" exported="" />
+    <orderEntry type="module" module-name="platform" exported="" />
+  </component>
+</module>

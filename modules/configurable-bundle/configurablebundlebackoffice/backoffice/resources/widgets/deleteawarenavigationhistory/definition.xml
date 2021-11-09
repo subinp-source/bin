@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<widget-definition id="de.hybris.platform.configurablebundlebackoffice.widgets.deleteawarenavigationhistory"
+                   extends="com.hybris.cockpitng.navigationhistory"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widget-definition.xsd">
+
+    <name>Navigation history</name>
+    <description>Navigation history widget with delete even handling</description>
+    <defaultTitle>Navigation History</defaultTitle>
+    <controller class="de.hybris.platform.configurablebundlebackoffice.widgets.navigation.DeleteAwareNavigationHistoryController"/>
+
+</widget-definition>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<action-definition id="de.hybris.platform.b2bcommerce.backoffice.actions.generatereportingsetaction"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/action-definition.xsd">
+	
+	<name>Generate Reporting Set</name>
+	<description>Action to Generate Reporting Set.</description>
+	<author>hybris</author>
+	<version>1.0</version>
+	
+	<actionClassName>de.hybris.platform.b2bcommerce.backoffice.actions.GenerateReportingSetAction</actionClassName>
+
+	
+    <inputType>de.hybris.platform.b2b.model.B2BUnitModel</inputType>
+	<outputType>java.lang.Object</outputType>
+	
+    <iconUri>icons/header_refresh.gif</iconUri>
+    <iconDisabledUri>icons/header_refresh_inactive.gif</iconDisabledUri>
+
+</action-definition>

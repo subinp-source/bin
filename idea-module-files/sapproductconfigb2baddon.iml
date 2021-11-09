@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="OOTB" importedAsReadOnly="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/configurator-complex-products/sapproductconfigb2baddon/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="acceleratorstorefrontcommons" exported="" />
+    <orderEntry type="module" module-name="addonsupport" exported="" />
+    <orderEntry type="module" module-name="b2bacceleratorfacades" exported="" />
+    <orderEntry type="module" module-name="platform" exported="" />
+    <orderEntry type="module" module-name="sapproductconfigb2bservices" exported="" />
+    <orderEntry type="module" module-name="sapproductconfigfacades" exported="" />
+  </component>
+</module>

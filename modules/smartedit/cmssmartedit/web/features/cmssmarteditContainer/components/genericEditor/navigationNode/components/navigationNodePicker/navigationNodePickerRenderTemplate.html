@@ -1,0 +1,12 @@
+<div></div>
+<div class="se-tree-node__name col-xs-6"><span> {{node.name | l10n}} </span></div>
+<div
+    class="col-sm-4 pull-right tree-node se-navigation-picker-renderer"
+    data-ng-click="$ctrl.pick(node)"
+    data-ng-show="$ctrl.isEditable()"
+>
+    <a
+        data-translate="se.cms.navigationcomponent.management.node.selection.select.action"
+        class="btn btn-link se-navigation-picker-renderer__btn"
+    />
+</div>

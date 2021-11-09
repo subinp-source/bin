@@ -1,0 +1,14 @@
+<div class="se-page-workflow-tasks-wrapper">
+    <div data-ng-repeat="action in model.activeActions">
+        <div class="se-page-workflow-task fd-panel">
+            <div>
+                <workflow-action-item
+                    data-workflow="model.workflow"
+                    data-workflow-action="action"
+                    data-can-make-decisions="true"
+                ></workflow-action-item>
+            </div>
+        </div>
+        <br />
+    </div>
+</div>

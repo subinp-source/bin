@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<widget xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.zkoss.org/2005/zul"
+        xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.hybris.com/schema/cockpitng/zul/zul.xsd"
+        height="100%"
+        width="100%">
+
+    <style src="${wr}/IntegrationObjectEditorContainer.css"/>
+
+    <div style="padding: 20px; background: #dce6ee;" height="100%">
+        <splitlayout vflex="1" hflex="1" orient="horizontal" sclass="yw-integrationbackoffice-editor-splitlayout">
+            <div sclass="yw-integrationbackoffice-editor-white-background" vflex="1" hflex="1">
+                <widgetslot slotID="treeSlot" width="100%" height="100%"/>
+            </div>
+            <div sclass="yw-integrationbackoffice-editor-white-background" vflex="1" hflex="2">
+                <widgetslot slotID="listboxSlot" width="100%" height="100%"/>
+            </div>
+        </splitlayout>
+    </div>
+
+</widget>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<action-definition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   id="com.hybris.backoffice.widgets.actions.registerdestinationtarget"
+                   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/action-definition.xsd">
+    <name>Register Destination Target Action</name>
+    <description>Creates a new destination target and register it assigned destinations</description>
+    <author>hybris</author>
+    <version>0.1</version>
+    <actionClassName>de.hybris.platform.kymaintegrationbackoffice.actions.RegisterDestinationTargetAction</actionClassName>
+
+    <inputType>de.hybris.platform.apiregistryservices.model.DestinationTargetModel</inputType>
+    <outputType>de.hybris.platform.apiregistryservices.model.DestinationTargetModel</outputType>
+
+    <iconUri>icons/icon_action_register_destination_target_default.png</iconUri>
+    <iconDisabledUri>icons/icon_action_register_destination_target_disabled.png</iconDisabledUri>
+    <iconHoverUri>icons/icon_action_register_destination_target_hover.png</iconHoverUri>
+
+    <sockets>
+        <output id="templateDestinationTarget" type="de.hybris.platform.apiregistryservices.model.DestinationTargetModel" />
+    </sockets>
+
+</action-definition>

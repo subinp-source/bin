@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<!--
+	ATTENTION: This is just an example file. You have to edit it according to your needs.
+-->
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
+    <!-- DTO -->
+    <bean class="de.hybris.platform.permissionswebservices.dto.PermissionsListWsDTO">
+        <description>List of permissions</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">PermissionsList</hint>
+        </hints>
+        <property name="permissionsList"
+                  type="java.util.List&lt;de.hybris.platform.permissionswebservices.dto.PermissionsWsDTO>"/>
+    </bean>
+
+    <bean class="de.hybris.platform.permissionswebservices.dto.PermissionsWsDTO">
+        <description>Permissions for principal</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">Permissions</hint>
+        </hints>
+        <property name="id" type="String">
+            <description>Principal identifier</description>
+            <hints>
+                <hint name="required">true</hint>
+            </hints>
+        </property>
+        <property name="permissions" type="java.util.Map&lt;String, String>">
+            <description>Permissions map.</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.permissionswebservices.dto.CatalogPermissionsWsDTO">
+        <description>Permissions for catalog</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">CatalogPermissions</hint>
+        </hints>
+        <property name="catalogId" type="String">
+            <description>Catalog identifier</description>
+            <hints>
+                <hint name="required">true</hint>
+            </hints>
+        </property>
+        <property name="catalogVersion" type="String">
+            <description>Catalog version identifier</description>
+            <hints>
+                <hint name="required">true</hint>
+            </hints>
+        </property>
+        <property name="permissions" type="java.util.Map&lt;String, String>">
+            <description>Permissions map</description>
+        </property>
+        <property name="syncPermissions" type="java.util.List&lt;SyncPermissionsWsDTO>">
+            <description>Sync Permissions list</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.permissionswebservices.dto.SyncPermissionsWsDTO">
+        <description>Sync permission</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">SyncPermissions</hint>
+        </hints>
+        <property name="targetCatalogVersion" type="String"/>
+        <property name="canSynchronize" type="boolean"/>
+    </bean>
+
+    <bean class="de.hybris.platform.permissionswebservices.dto.CatalogPermissionsListWsDTO">
+        <description>Catalog permissions list</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">CatalogPermissionsList</hint>
+        </hints>
+        <property name="permissionsList"
+                  type="java.util.List&lt;de.hybris.platform.permissionswebservices.dto.CatalogPermissionsWsDTO>"/>
+    </bean>
+
+    <bean class="de.hybris.platform.permissionswebservices.dto.PermissionsDataList">
+        <property name="permissionsList" type="java.util.List&lt;de.hybris.platform.permissionsfacades.data.PermissionsData>"/>
+    </bean>
+
+    <bean class="de.hybris.platform.permissionswebservices.dto.CatalogPermissionsDataList">
+        <property name="permissionsList"
+                  type="java.util.List&lt;de.hybris.platform.permissionsfacades.data.CatalogPermissionsData>"/>
+    </bean>
+
+</beans>

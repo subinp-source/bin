@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+           
+    <context:component-scan base-package="de.hybris.platform.sap.productconfig.occ.controllers"/>
+
+    <alias name="sapProductConfigDefaultOCCSessionAttributesFilter" alias="sapProductConfigOCCSessionAttributesFilter"/>
+    <bean id="sapProductConfigDefaultOCCSessionAttributesFilter" class="de.hybris.platform.sap.productconfig.occ.filter.ProductConfigurationOCCSessionAttributesFilter">
+        <property name="sessionService" ref="sessionService" />
+    </bean>
+
+<!-- Ensure that the filter that states that configurations are not session bound is fired before the cart matching filter -->
+
+    <bean id="sapProductConfigDefaultOCCAddFilterDirective" depends-on="commerceWebServicesFilterChainListV2" parent="listMergeDirective" >
+        <property name="add" ref="sapProductConfigOCCSessionAttributesFilter" />
+        <property name="beforeBeanNames">
+            <list value-type="java.lang.String">
+                <value>cartMatchingFilter</value>
+            </list>
+        </property>
+    </bean>
+    
+
+
+   <alias name="sapProductConfigDefaultImageHandler" alias="sapProductConfigImageHandler" />
+	<bean id="sapProductConfigDefaultImageHandler" class="de.hybris.platform.sap.productconfig.occ.util.impl.ImageHandlerImpl">
+	</bean>
+    
+	<!-- Orika : Mappers -->
+	<bean class="de.hybris.platform.sap.productconfig.occ.mappers.ConfigurationDataMapper"
+	      parent="abstractCustomMapper"/>
+	
+	<bean class="de.hybris.platform.sap.productconfig.occ.mappers.CsticDataMapper"
+	      parent="abstractCustomMapper"/>	
+
+	<bean id="ccpAttributeValueMapper" parent="fieldMapper">
+		<property name="sourceClass"
+		          value="de.hybris.platform.sap.productconfig.facades.CsticValueData"/>
+		<property name="destClass"
+		          value="de.hybris.platform.sap.productconfig.occ.CsticValueWsDTO"/>
+		<property name="fieldMapping">
+			<map>		 
+				<entry key="langdepname" value="langDepName"/>				
+			</map>
+		</property>
+	</bean>	 
+	
+	<bean id="ccpGroupMapper" parent="fieldMapper">
+		<property name="sourceClass"
+		          value="de.hybris.platform.sap.productconfig.facades.UiGroupData"/>
+		<property name="destClass"
+		          value="de.hybris.platform.sap.productconfig.occ.GroupWsDTO"/>
+		<property name="fieldMapping">
+			<map>		 
+				<entry key="cstics" value="attributes"/>				
+			</map>
+		</property>
+	</bean>		   
+	      
+
+
+</beans>

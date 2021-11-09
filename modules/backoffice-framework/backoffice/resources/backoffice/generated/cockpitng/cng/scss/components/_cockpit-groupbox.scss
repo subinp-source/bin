@@ -1,0 +1,48 @@
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/cockpitng/cng/scss/cockpitng-globals.scss';
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/backoffice/scss/backoffice-variables.scss';
+
+/*================================
+    z-Groupbox
+================================*/
+// Basic Defintions of Groupboxes
+
+
+.z-groupbox {
+    border-top: $editor-area__groupbox--border-top;
+    border: none;
+    
+    &-content {
+        border: none;
+
+        .z-tablechildren > input {
+            margin-bottom: 2px;
+        }
+    }
+
+    > .z-groupbox-header {
+        padding: $editor-area__groupbox--padding-y 0 0 0;
+        border: none;
+    }
+    .z-groupbox .z-groupbox-header {
+        padding: $editor-area__groupbox--padding-y 0 $editor-area__groupbox--padding-y 0;
+
+        .z-caption-content {
+            padding: 0;
+        }
+    }
+    &-header .z-caption-content,
+    &-title-content {
+        color: $editor-defaults__headline--color;
+        font-weight: $editor-defaults__headline--font-weight;
+        background: transparent;
+        font-style: normal;
+    }
+}
+
+.z-tablelayout {
+    border-spacing: 0;
+}
+
+.z-caption-content {
+    padding: 3px 0 0;
+}

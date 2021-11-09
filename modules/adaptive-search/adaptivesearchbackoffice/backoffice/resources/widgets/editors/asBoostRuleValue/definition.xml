@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<editor-definition id="de.hybris.platform.adaptivesearchbackoffice.editors.boostrulevalue" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/editor-definition.xsd">
+
+    <name>Boost Rule Value Editor</name>
+    <description>Boost Rule Value Editor</description>
+
+    <author>hybris</author>
+    <version>0.1</version>
+
+    <type>java.lang.Object</type>
+    <editorClassName>de.hybris.platform.adaptivesearchbackoffice.editors.boostrulevalue.BoostRuleValueEditor</editorClassName>
+
+</editor-definition>

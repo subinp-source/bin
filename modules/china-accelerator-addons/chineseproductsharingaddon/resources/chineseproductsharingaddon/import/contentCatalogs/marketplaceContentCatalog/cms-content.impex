@@ -1,0 +1,23 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+$contentCatalog=marketplaceContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$siteResource=jar:de.hybris.platform.chineseproductsharingaddon.constants.ChineseproductsharingaddonConstants&/chineseproductsharingaddon/import/contentCatalogs/marketplaceContentCatalogs
+
+
+# this relation is used by CMSActionRestriction, by adding ActionRestriction to your action
+INSERT_UPDATE ApplicableCmsActionsTypeForCmsComponent;target(code)[unique=true];source(code)[unique=true]
+;ProductAddToCartComponent;ChineseProductSharingAction
+  
+# CMS Action Restrictions
+INSERT_UPDATE CMSActionRestriction;$contentCV[unique=true];uid[unique=true];name
+;;ActionRestriction;A CMSAction restriction
+
+# ChineseProductSharingAction
+INSERT_UPDATE ChineseProductSharingAction;$contentCV[unique=true];uid[unique=true];url;name;restrictions(uid,$contentCV)
+;;ChineseProductSharingAction;/;ChineseProductSharing Action;ActionRestriction
+
+INSERT_UPDATE ProductAddToCartComponent;$contentCV[unique=true];uid[unique=true];actions(uid,$contentCV)[mode=append]
+;;AddToCart;ChineseProductSharingAction

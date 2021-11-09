@@ -1,0 +1,21 @@
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<action-definition id="integrationbackoffice.actions.itemTypeMatchIOIAction" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/action-definition.xsd">
+
+<name>Item Type Match</name>
+<description>Action to open a modal that allows to set the Item Type Match Restrictions for the Integration Object Items of the selected Integration Object</description>
+<version>1.0</version>
+
+<actionClassName>de.hybris.platform.integrationbackoffice.widgets.actions.ItemTypeMatchIOIAction</actionClassName>
+
+<iconUri>/icons/icon_action_item_type_match_default.png</iconUri>
+<iconHoverUri>/icons/icon_action_item_type_match_hover.png</iconHoverUri>
+<iconDisabledUri>/icons/icon_action_item_type_match_disabled.png</iconDisabledUri>
+
+<sockets>
+    <output type="java.lang.String" id="openItemTypeIOIModal"/>
+</sockets>
+
+</action-definition>

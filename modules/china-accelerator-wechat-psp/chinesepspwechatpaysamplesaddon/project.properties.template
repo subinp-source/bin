@@ -1,0 +1,13 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+chinesepspwechatpaysamplesaddon.key=value
+
+# Specifies the location of the spring context file added automatically to the global platform application context.
+chinesepspwechatpaysamplesaddon.application-context=chinesepspwechatpaysamplesaddon-spring.xml
+
+yacceleratorstorefront.additionalWebSpringConfigs.chinesepspwechatpaysamplesaddon=classpath:/chinesepspwechatpaysamplesaddon/web/spring/chinesepspwechatpaysamplesaddon-web-spring.xml
+
+#chinesepspwechatpaysamplesaddon.javascript.paths.responsive=/responsive/common/js/chinesepspwechatpaysamplesaddon.js
+#chinesepspwechatpaysamplesaddon.css.paths.responsive=/responsive/common/css/chinesepspwechatpaysamplesaddon.css

@@ -1,0 +1,45 @@
+.se-select-list {
+    .fd-menu {
+        &__list {
+            position: relative;
+            outline: none;
+
+            &--basic {
+                max-height: 200px;
+                overflow-x: hidden;
+                overflow-y: auto;
+            }
+        }
+    }
+
+    &__item {
+        .menu-option.fd-menu__item {
+            color: inherit;
+            background: inherit;
+            padding: 8px 12px;
+            &:hover {
+                background-color: #f5f5f5;
+            }
+        }
+
+        &.is-selected {
+            color: var(--fd-color-action-selected, #0254a7);
+        }
+
+        &.is-active {
+            outline: 0;
+            background: rgba(10, 110, 209, 0.07);
+            color: var(--fd-color-text-1, #32363a);
+        }
+
+        &.is-disabled {
+            .menu-option {
+                cursor: not-allowed;
+                opacity: 0.65;
+                &:hover {
+                    background: none;
+                }
+            }
+        }
+    }
+}

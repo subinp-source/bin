@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<widget-definition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widget-definition.xsd"
+                   id="de.hybris.platform.integrationbackoffice.widgets.CreateIntegrationObjectModal">
+    <name>Create Integration Object Modal</name>
+    <description>Window for the fields to define when creating an integration object</description>
+    <defaultTitle>Create Integration Object Modal</defaultTitle>
+    <author>Hybris</author>
+    <version>1.0</version>
+    <view src="CreateIntegrationObjectModal.zul"/>
+    <keywords>
+        <keyword>CreateIntegrationObjectModal</keyword>
+    </keywords>
+    <controller
+            class="de.hybris.platform.integrationbackoffice.widgets.modals.controllers.CreateIntegrationObjectModalController"/>
+    <sockets>
+        <input id="showModal" type="java.lang.String"/>
+        <output id="createButtonClick"
+                type="de.hybris.platform.integrationbackoffice.widgets.modals.data.CreateIntegrationObjectModalData"/>
+    </sockets>
+</widget-definition>

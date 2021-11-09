@@ -1,0 +1,44 @@
+<se-tooltip
+    [append-to]="'body'"
+    [placement]="'bottom'"
+    [is-chevron-visible]="true"
+    [triggers]="['click']"
+    class="se-media__advanced-info"
+>
+    <span se-tooltip-trigger class="se-media__advanced-info__trigger">
+        <span
+            class="se-media-format__icon sap-icon--message-information se-media__action-icon"
+            alt="{{ctrl.i18nKeys.INFORMATION | translate}}"
+        ></span>
+        <span class="se-media-format__label">{{ctrl.i18nKeys.INFORMATION | translate}}</span>
+    </span>
+
+    <div se-tooltip-body>
+        <div class="se-adv-media-info">
+            <div
+                class="se-adv-media-info-row advanced-information-description"
+                data-ng-if="ctrl.description"
+            >
+                <div class="se-adv-media-info-row__label se-control-label">
+                    {{ctrl.i18nKeys.DESCRIPTION | translate }}
+                </div>
+                <div class="se-adv-media-info-row__description">{{ctrl.description}}</div>
+            </div>
+            <div class="se-adv-media-info-row advanced-information-code">
+                <div class="se-adv-media-info-row__label se-control-label">
+                    {{ctrl.i18nKeys.CODE | translate }}
+                </div>
+                <div class="se-adv-media-info-row__description">{{ctrl.code}}</div>
+            </div>
+            <div
+                class="se-adv-media-info-row advanced-information-alt-text"
+                data-ng-if="ctrl.altText"
+            >
+                <div class="se-adv-media-info-row__label se-control-label">
+                    {{ctrl.i18nKeys.ALT_TEXT | translate }}
+                </div>
+                <div class="se-adv-media-info-row__description">{{ctrl.altText}}</div>
+            </div>
+        </div>
+    </div>
+</se-tooltip>

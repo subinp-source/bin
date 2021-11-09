@@ -1,0 +1,22 @@
+{
+  "code": "Test_code",
+  "catalogVersion": {
+    "generationDate": "2019-01-01T00:00:00",
+    "version": "Test_version",
+    "generatorInfo": "Test_generatorInfo",
+    "inclAssurance": true,
+    "catalog": {
+      "id": "Test_id",
+      "integrationKey": "TEST_KEY"
+    },
+    "integrationKey": "TEST_KEY"
+  },
+  "averageRating": "123.0",
+  "localizedAttributes": [
+    {
+      "language": "en",
+      "articleStatus": "Map of map type value is not supported by JSON generation."
+    }
+  ],
+  "integrationKey": "TEST_KEY"
+}

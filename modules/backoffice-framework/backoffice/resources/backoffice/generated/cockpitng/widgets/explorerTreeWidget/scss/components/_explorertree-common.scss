@@ -1,0 +1,114 @@
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/cockpitng/cng/scss/cockpitng-globals.scss';
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/backoffice/scss/backoffice-variables.scss';
+
+/*================================
+    Explorer Tree
+================================*/
+@import "../support/_explorerTree-mixins.scss";
+
+.yw-explorerTree {
+	&-widget {
+		border: none;
+	}
+
+	&-filterDiv {
+		background: none;
+		padding: $explorertree__filter-box--padding;
+
+		.z-bandbox {
+			&-input {
+				border-right-width: $_explorertree__filter-input--border-right-width;
+				overflow: hidden;
+	    		text-overflow: ellipsis;
+	    		white-space: nowrap;
+		  	}
+
+			&-button {
+				display: none;
+				background-color: transparent;
+				border-left: none;
+
+				&:hover {
+					.z-bandbox-icon {
+						color: $_explorertree__filter-button-icon-hover--color;
+					}
+				}
+			}
+
+			&-open {
+				.z-bandbox-icon {
+					color: $_explorertree__filter-button-icon-selected--color !important;
+				}
+			}
+			
+			&-open,
+			&:hover {
+				.z-bandbox-input {
+					border-right: none;
+				}
+
+				.z-bandbox-button {
+					display: table-cell;
+
+				}
+			}
+			&-icon {
+				color: $_explorertree__filter-button-icon--color;
+			}
+		}
+	}
+
+	&-filterTextbox {
+		
+		&.z-bandbox-popup {
+			overflow: visible;
+			transform: $_explorerTree__filter-popup--transform;
+		}
+
+		&-options {
+			position: relative;
+
+			.z-vlayout {
+				padding: $_explorerTree__filter-popup--padding;
+			}
+
+			&:after,
+			&:before {
+				position: absolute;
+				right: $_explorerTree__filter-popup-arrow--right;
+				bottom: $_explorerTree__filter-popup-arrow--bottom;
+				content: '';
+				width: 0;
+				height: 0;
+				border-style: solid;
+				border-color: transparent;
+				z-index: -1;
+			}
+
+			&:before {
+    			margin-left: $_explorerTree__filter-popup-arrow-shadow--margin;
+				margin-right: $_explorerTree__filter-popup-arrow-shadow--margin;
+				transform: $_explorerTree__filter-popup-arrow-shadow--transform;
+    			border-width: $_explorerTree__filter-popup-arrow-shadow--border-width;
+    			border-bottom-color: $_explorerTree__filter-popup-arrow-shadow--border-bottom-color;
+			}
+
+			&:after {
+    			border-width: $_explorerTree__filter-popup-arrow--border-width;
+    			border-bottom-color: $_explorerTree__filter-popup-arrow--border-bottom-color;
+			}
+		}
+	}
+
+
+	&-hideTextBoxDiv {
+		float: right;
+	}
+
+	&-inlineActions {
+		display: table-cell;
+		float: right;
+	}
+
+}
+

@@ -1,0 +1,6 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+INSERT_UPDATE AsSearchProfileActivationSet ; indexType[unique=true] ; catalogVersion(catalog(id),version)[unique=true] ; searchProfiles(code,catalogVersion(catalog(id),version))
+                                           ; testIndexType          ; hwcatalog:Staged                                 ; searchProfile:hwcatalog:Staged                          

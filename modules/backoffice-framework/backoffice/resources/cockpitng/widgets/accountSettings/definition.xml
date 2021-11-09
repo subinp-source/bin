@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<widget-definition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+						 xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widget-definition.xsd"
+						 id="com.hybris.backoffice.widgets.accountSettings">
+	<name>Account Settings</name>
+	<description>Account Settings</description>
+	<defaultTitle>Account Settings</defaultTitle>
+	<author>hybris</author>
+	<version>1.0</version>
+	<sockets>
+		<output id="accountSettingsOutput" type="java.util.Map" />
+	</sockets>
+	<controller class="com.hybris.backoffice.widgets.accountsettings.AccountSettingsController"/>
+	<view src="accountSettings.zul"/>
+	<settings>
+		<setting key="changePasswordEnabled" type="Boolean" default-value="true"/>
+	</settings>
+	<keywords>
+		<keyword>Account</keyword>
+	</keywords>
+</widget-definition>

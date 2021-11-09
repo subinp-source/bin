@@ -1,0 +1,10 @@
+<div *ngIf="search" class="se-actionable-search-item">
+    <div class="se-actionable-search-item__name">{{ search }}</div>
+    <button
+        type="button"
+        class="fd-button--light se-actionable-search-item__action-btn"
+        (click)="onButtonClick()"
+    >
+        {{ getActionText() | translate }}
+    </button>
+</div>

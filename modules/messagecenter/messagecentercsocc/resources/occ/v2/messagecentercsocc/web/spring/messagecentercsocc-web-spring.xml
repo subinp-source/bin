@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+           
+    <context:component-scan base-package="de.hybris.platform.messagecentercsocc"/>
+	
+	
+	<bean id="messageCenterCSOauth2UserFilter" class="de.hybris.platform.messagecentercsocc.filters.Oauth2UserFilter">
+		<property name="validGroups">
+			<list value-type="java.lang.String">
+				<value>ROLE_CUSTOMERSUPPORTAGENTGROUP</value>
+			</list>
+		</property>	
+	</bean>
+	
+	<bean depends-on="defaultCommerceWebServicesFilterChainListV2" parent="listMergeDirective">
+		<property name="add" ref="messageCenterCSOauth2UserFilter"/>
+	</bean>
+	
+	<alias alias="conversationMessageListValidator" name="defaultConversationMessageDTOValidator"/>
+	<bean id="defaultConversationMessageDTOValidator" class="de.hybris.platform.messagecentercsocc.validation.ConversationMessageListValidator">
+		<property name="canBeEmpty" value="false"/>
+	</bean>
+</beans>

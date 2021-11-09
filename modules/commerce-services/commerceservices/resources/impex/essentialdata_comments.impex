@@ -1,0 +1,13 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# Quote comments clasifiers
+INSERT_UPDATE Domain;code[unique=true];name
+;quoteDomain;Quote Domain
+
+INSERT_UPDATE Component;code[unique=true];name;domain(code)
+;quoteComponent;Quote Component;quoteDomain
+
+INSERT_UPDATE CommentType;code[unique=true];name;domain(code);metaType(code)
+;quoteComment;Quote Comment;quoteDomain;
+;quoteEntryComment;Quote Entry Comment;quoteDomain;

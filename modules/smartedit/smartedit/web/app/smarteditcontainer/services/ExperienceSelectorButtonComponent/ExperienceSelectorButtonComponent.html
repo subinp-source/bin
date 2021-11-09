@@ -1,0 +1,45 @@
+<fd-popover
+    class="se-experience-selector"
+    [(isOpen)]="status.isOpen"
+    (isOpenChange)="resetExperienceSelector()"
+    [closeOnOutsideClick]="false"
+    [triggers]="['click']"
+    [placement]="'bottom-end'"
+>
+    <fd-popover-control>
+        <div class="se-experience-selector__control">
+            <se-tooltip
+                [placement]="'bottom'"
+                [triggers]="['mouseenter', 'mouseleave']"
+                *ngIf="isCurrentPageFromParent"
+                class="se-experience-selector__tooltip"
+            >
+                <span se-tooltip-trigger class="se-experience-selector__btn--globe">
+                    <span
+                        class="hyicon hyicon-globe se-experience-selector__btn--globe--icon"
+                    ></span>
+                </span>
+
+                <div se-tooltip-body>{{ parentCatalogVersion }}</div>
+            </se-tooltip>
+            <button class="se-experience-selector__btn" id="experience-selector-btn">
+                <span
+                    [attr.title]="buildExperienceText()"
+                    class="se-experience-selector__btn-text se-nowrap-ellipsis"
+                >
+                    {{ buildExperienceText() }}
+                </span>
+                <span class="se-experience-selector__btn-arrow icon-navigation-down-arrow"></span>
+            </button>
+        </div>
+    </fd-popover-control>
+    <fd-popover-body>
+        <div class="se-experience-selector__dropdown fd-modal fd-modal__content" role="menu">
+            <se-experience-selector
+                [experience]="experience"
+                [dropdownStatus]="status"
+                [(resetExperienceSelector)]="resetExperienceSelector"
+            ></se-experience-selector>
+        </div>
+    </fd-popover-body>
+</fd-popover>

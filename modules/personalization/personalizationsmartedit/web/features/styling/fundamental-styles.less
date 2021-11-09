@@ -1,0 +1,172 @@
+//Partial Solution: delete this file when the fundamentals import works or when the library is installed and updated in npmancillary
+//For now we can copy over here the fundamentals styles in order to fix bugs
+
+.fd-form-item {
+    font-size: 14px;
+    line-height: 1.42857;
+    color: #32363a;
+    color: var(--fd-color-text-1, #32363a);
+    font-family: "72", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    margin-bottom: 16px
+}
+
+.fd-form-item:after,
+.fd-form-item:before {
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+    font-size: inherit
+}
+
+.fd-form-item--inline {
+    float: left;
+    margin-right: 16px
+}
+
+@media (min-width:320px) {
+    .fd-form-item--inline {
+        margin-bottom: 0
+    }
+}
+
+.fd-form-item--inline[dir=rtl],
+[dir=rtl] .fd-form-item--inline {
+    float: right;
+    margin-right: 0;
+    margin-left: 16px
+}
+
+.fd-form-item--inline .fd-form-message {
+    -webkit-transform: translateY(8px);
+    transform: translateY(8px);
+    margin-bottom: 8px
+}
+
+.fd-checkbox {
+    color: #32363a;
+    color: var(--fd-color-text-1, #32363a);
+    font-family: "72", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -webkit-box-sizing: border-box;
+    padding: 0;
+    border: 0;
+    font-size: 14px;
+    line-height: 1.42857;
+    font-weight: 400;
+    appearance: none;
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    box-sizing: border-box;
+    outline: 0;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #89919a;
+    border-color: var(--fd-forms-border-color, #89919a);
+    background-color: #fff;
+    background-color: var(--fd-forms-background-color, #fff);
+    border-radius: 4px;
+    -webkit-transition: border-color 125ms;
+    transition: border-color 125ms;
+    height: 16px;
+    width: 16px;
+    margin: 0;
+    vertical-align: middle;
+    position: relative;
+    cursor: pointer
+}
+
+.fd-checkbox:after,
+.fd-checkbox:before {
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+    font-size: inherit
+}
+
+.fd-checkbox .is-hover,
+.fd-checkbox:hover {
+    border-color: #085caf;
+    border-color: var(--fd-color-action-hover, #085caf)
+}
+
+.fd-checkbox.is-focus,
+.fd-checkbox:focus {
+    -webkit-box-shadow: 0 0 0 1px #085caf;
+    -webkit-box-shadow: 0 0 0 1px var(--fd-color-action-focus, #085caf);
+    box-shadow: 0 0 0 1px #085caf;
+    box-shadow: 0 0 0 1px var(--fd-color-action-focus, #085caf);
+    z-index: 5;
+    border-color: #085caf;
+    border-color: var(--fd-color-action-focus, #085caf)
+}
+
+.fd-checkbox:before {
+    content: "";
+    width: 10px;
+    height: 5px;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 0 0 2px 2px;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    position: absolute;
+    z-index: 2;
+    top: calc(50% - 4px);
+    left: calc(50% - 5px)
+}
+
+.fd-checkbox:checked {
+    border-color: #0854a0;
+    border-color: var(--fd-color-action-3, #0854a0)
+}
+
+.fd-checkbox:checked:before {
+    border-color: #0854a0;
+    border-color: var(--fd-color-action-3, #0854a0)
+}
+
+.fd-checkbox:checked.is-disabled,
+.fd-checkbox:checked:disabled,
+.fd-checkbox:checked[aria-disabled=true] {
+    border-color: #eeeeef;
+    border-color: var(--fd-color-neutral-2, #eeeeef)
+}
+
+.fd-checkbox:checked.is-disabled:before,
+.fd-checkbox:checked:disabled:before,
+.fd-checkbox:checked[aria-disabled=true]:before {
+    border-color: #eeeeef;
+    border-color: var(--fd-color-neutral-2, #eeeeef)
+}
+
+.fd-checkbox:indeterminate {
+    border-width: 3px;
+    border-style: solid;
+    border-color: #fff;
+    border-color: var(--fd-color-background-2, #fff);
+    background-color: #0854a0;
+    background-color: var(--fd-color-action-3, #0854a0);
+    -webkit-box-shadow: 0 0 0 1px #0854a0;
+    box-shadow: 0 0 0 1px #0854a0
+}
+
+.fd-checkbox:indeterminate .is-hover,
+.fd-checkbox:indeterminate:hover {
+    border-width: 3px
+}
+
+.fd-checkbox:indeterminate.is-disabled,
+.fd-checkbox:indeterminate:disabled,
+.fd-checkbox:indeterminate[aria-disabled=true] {
+    background-color: #eeeeef;
+    background-color: var(--fd-color-neutral-2, #eeeeef);
+    border-color: #fff;
+    border-color: var(--fd-color-background-2, #fff);
+    -webkit-box-shadow: 0 0 0 1px #eeeeef;
+    box-shadow: 0 0 0 1px #eeeeef
+}

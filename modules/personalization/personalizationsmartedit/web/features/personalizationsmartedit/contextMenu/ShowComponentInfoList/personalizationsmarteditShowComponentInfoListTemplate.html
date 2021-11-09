@@ -1,0 +1,67 @@
+<div class="pe-component-info">
+    <div class="pe-component-info__info-layout">
+        <div data-ng-show="!$ctrl.isPageBlocked">
+            <div data-ng-show="!$ctrl.isPersonalizationAllowedInWorkflow">
+                <div class="pe-component-info__title"
+                    data-translate="personalization.modal.showcomponentinfolist.help.noactionsinworkflow.title"></div>
+                <div class="perso__page-level-help-message"
+                    data-translate="personalization.modal.showcomponentinfolist.help.noactionsinworkflow"></div>
+            </div>
+            <div data-ng-show="$ctrl.isContextualMenuInfoEnabled()">
+                <div class="pe-component-info__title"
+                    data-translate="personalization.modal.showcomponentinfolist.title"></div>
+                <div class="perso__page-level-help-message"
+                    data-ng-show="!$ctrl.isPersonalizationAllowedInWorkflow"
+                    data-translate="personalization.modal.showcomponentinfolist.help.noactionsinworkflow.componentinfo"></div>
+                <div class="perso__page-level-help-message"
+                    data-ng-show="$ctrl.pagination.totalCount > 0 && $ctrl.isPersonalizationAllowedInWorkflow"
+                    data-translate="personalization.modal.showcomponentinfolist.help.label"></div>
+                <div class="perso__page-level-help-message"
+                    data-ng-show="$ctrl.pagination.totalCount === 0 && $ctrl.isPersonalizationAllowedInWorkflow"
+                    data-translate="personalization.modal.showcomponentinfolist.help.nocustomizations">
+                </div>
+            </div>
+        </div>
+        <div data-ng-show="$ctrl.isPageBlocked">
+            <div class="pe-component-info__title"
+                data-translate="personalization.modal.showcomponentinfolist.blocked.title"></div>
+            <div class="perso__page-level-help-message"
+                data-translate="personalization.modal.showcomponentinfolist.blocked.label"></div>
+        </div>
+    </div>
+    <div class="perso__page-level-help-message pe-component-info__info-layout"
+        data-ng-show="$ctrl.pagination.totalCount > 0 && $ctrl.isContextualMenuInfoEnabled()">
+        <span data-translate="personalization.modal.showcomponentinfolist.help.numberofenabledcustomizations"></span>
+        <span data-ng-bind="$ctrl.pagination.totalCount"></span>
+    </div>
+
+    <div data-ng-show="$ctrl.pagination.totalCount > 0 && $ctrl.isContextualMenuInfoEnabled()">
+        <personalization-infinite-scrolling [fetch-page]="$ctrl.getPage"
+            [context]="$ctrl"
+            [drop-down-container-class]="'pe-component-info__wrapper'">
+            <personalization-prevent-parent-scroll>
+                <div data-ng-class="$ctrl.customizationVisible() ? 'pe-component-info__list-item':''"
+                    data-ng-repeat="item in $ctrl.actions">
+                    <div class="pe-component-info__names-layout">
+                        <div class="perso-wrap-ellipsis"
+                            data-ng-bind="item.customizationName"
+                            title="{{item.customizationName}}"></div>
+                        <div class="perso-wrap-ellipsis perso-tree__primary-data"
+                            data-ng-bind="item.variationName"
+                            title="{{item.variationName}}"></div>
+                    </div>
+                    <div data-ng-class="$ctrl.customizationVisible() ? 'pe-component-info__icon':''">
+                        <span data-ng-class="$ctrl.customizationVisible()?'perso__globe-icon sap-icon--globe':''"
+                            data-ng-show="!$ctrl.isCustomizationFromCurrentCatalog(item.customization)"
+                            data-tooltip-placement="top right"
+                            data-uib-tooltip="{{item.customization.catalogVersionNameL10N}}"></span>
+                    </div>
+                </div>
+                <div class="pe-spinner--inner"
+                    data-ng-show="$ctrl.moreCustomizationsRequestProcessing">
+                    <div class="spinner-md spinner-light"></div>
+                </div>
+            </personalization-prevent-parent-scroll>
+        </personalization-infinite-scrolling>
+    </div>
+</div>

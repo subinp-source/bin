@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+
+
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+
+    <!--picks up EmailPageController and injects @Resources-->
+    <context:component-scan base-package="de.hybris.platform.smarteditaddon"/>
+
+    <!-- Expose /smarteditaddon/web/webroot/WEB-INF/messages/base.js.properties  resource bundle as javascript variables -->
+    <bean id="defaultSmarteditaddonJavaScriptMessageResourceAccessor" parent="abstractJavaScriptMessageResourceAccessor">
+        <property name="addOnName" value="smarteditaddon"/>
+    </bean>
+
+    <bean id="defaultSmarteditaddonBeforeViewJsPropsHandlerAdaptee" parent="abstractBeforeViewJsPropsHandlerAdaptee"
+          class="de.hybris.platform.addonsupport.interceptors.ExportJsPropertiesBeforeViewHandler">
+        <property name="messageSource" ref="defaultSmarteditaddonJavaScriptMessageResourceAccessor"/>
+    </bean>
+
+    <bean id="getSmarteditaddonBeforeViewHandler" parent="beforeViewHandlerAdapter">
+        <property name="adaptee">
+            <ref bean="defaultSmarteditaddonBeforeViewJsPropsHandlerAdaptee"/>
+        </property>
+    </bean>
+
+    <bean id="smarteditaddonCmsPageBeforeViewHandler"
+          class="de.hybris.platform.smarteditaddon.interceptors.beforeview.SmarteditaddonCmsPageBeforeViewHandler">
+        <property name="uniqueItemIdentifierService" ref="cmsUniqueItemIdentifierService"/>
+    </bean>
+
+    <bean id="SmarteditaddonBeforeViewHandlerListMergeDirective" depends-on="beforeViewHandlersList" parent="listMergeDirective">
+        <property name="add" ref="getSmarteditaddonBeforeViewHandler"/>
+    </bean>
+
+    <bean id="smarteditaddonCmsPageBeforeViewHandlerListMergeDirective" depends-on="beforeViewHandlersList"
+          parent="listMergeDirective">
+        <property name="add" ref="smarteditaddonCmsPageBeforeViewHandler"/>
+    </bean>
+
+</beans>

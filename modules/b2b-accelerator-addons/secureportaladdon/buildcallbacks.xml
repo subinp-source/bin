@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<!--
+ All hybris buildcallbacks.xml macrodefinitions:
+ 
+ Build/Documentation
+ 
+	 before/after ant macro "clean"
+		 <macrodef name="secureportaladdon_before_clean"/>
+		 <macrodef name="secureportaladdon_after_clean"/>
+	 
+	 before/after ant macro "build"
+		 <macrodef name="secureportaladdon_before_build"/>
+		 <macrodef name="secureportaladdon_after_build"/>
+		 
+	 before/after ant macro "compile_core" - the core module of the extension
+		 <macrodef name="secureportaladdon_before_compile_core">
+		 <macrodef name="secureportaladdon_after_compile_core">
+	 
+	 before/after ant macro "compile_web" - the web module of the extension
+		 <macrodef name="secureportaladdon_before_compile_web" />
+		 <macrodef name="secureportaladdon_after_compile_web" />
+ 
+ Preparing extension
+ 
+	 will be called in the beginning of the ant call and only once (also when using multiple 
+	 ant targets e.g. ant build yunittest)	
+		 <macrodef name="secureportaladdon_only_once_prepare"/>
+ 
+ Creating ear module/production
+ 
+	 before/after ant macro "ear"
+		 <macrodef name="secureportaladdon_before_ear"/>
+		 <macrodef name="secureportaladdon_after_ear"/>
+
+	 before/after ant macro "production" - for hybris server only
+		 <macrodef name="secureportaladdon_before_production" />
+		 <macrodef name="secureportaladdon_after_production" />
+ 
+ JUnit Test
+ 
+	 before/after ant macro "yunitinit" 
+		 <macrodef name="secureportaladdon_before_yunitinit" />
+		 <macrodef name="secureportaladdon_after_yunitinit" />
+	 
+	 before/after ant macro "yunit"
+		 <macrodef name="secureportaladdon_before_yunit" />
+		 <macrodef name="secureportaladdon_after_yunit" /> 
+		 
+ Distribution package
+ 
+ 	 before/after ant macro "dist" - internal target; only for use when platform is available in source code
+		 <macrodef name="secureportaladdon_after_dist"/>
+		 <macrodef name="secureportaladdon_before_dist"/>
+	 
+	 before/after ant macro "dist_copy" - internal target; only for use when platform is available in source code
+		 <macrodef name="secureportaladdon_before_dist_copy"/>
+		 <macrodef name="secureportaladdon_after_dist_copy"/>
+ 
+-->
+<project name="secureportaladdon_buildcallbacks">
+
+    <macrodef name="secureportaladdon_clean_classpath_file">
+        <sequential>
+            <copy file="${ext.secureportaladdon.path}/.classpath" tofile="${ext.secureportaladdon.path}/.classpath.edit"
+                  overwrite="true"
+                  failonerror="true">
+                <filterchain>
+                    <linecontainsregexp negate="true">
+                        <regexp pattern="^(\t\t\t\t|)$" />  <!-- added by script -->
+                    </linecontainsregexp>
+                </filterchain>
+            </copy>
+            <move file="${ext.secureportaladdon.path}/.classpath.edit" tofile="${ext.secureportaladdon.path}/.classpath"
+                  overwrite="true"
+                  failonerror="true" />
+        </sequential>
+    </macrodef>
+
+    <macrodef name="secureportaladdon_after_build">
+        <sequential>
+            <impexGenerate extname="secureportaladdon"/>
+        </sequential>
+    </macrodef>
+
+    <macrodef name="secureportaladdon_after_clean">
+        <sequential>
+            <echo level="info" message="Generating .classpath file for secureportaladdon" />
+            <create_extension_classpath_file extname="secureportaladdon" />
+            <secureportaladdon_clean_classpath_file />
+
+            <delete file="${ext.secureportaladdon.path}/resources-lang/touch_impexgen" failonerror="false"/>
+        </sequential>
+    </macrodef>
+
+	<patternset id="secureportaladdon.localization.pattern">
+		<patternset refid="localization.defaultpattern" />
+		<exclude name="**/*.impex"/>
+	</patternset>
+
+</project>

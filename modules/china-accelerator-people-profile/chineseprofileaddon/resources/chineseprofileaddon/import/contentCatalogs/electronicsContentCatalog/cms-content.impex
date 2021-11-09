@@ -1,0 +1,23 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+$contentCatalog=electronicsContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+
+# Component
+INSERT_UPDATE ChineseUpdateEmailComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+;;ChineseUpdateEmailComponent;Chinese Update Email Component;ChineseUpdateEmailComponent
+
+INSERT_UPDATE ChineseUpdateProfileComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+;;ChineseUpdateProfileComponent;Chinese Update Mobile Number Component;ChineseUpdateProfileComponent
+
+# ContentSlot
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);;;
+;;BodyContent-update-email;Body Content Slot for Update Email;true;ChineseUpdateEmailComponent;;;
+;;BodyContent-update-profile;Body Content Slot for Update Profile;true;ChineseUpdateProfileComponent;;;
+
+# ContentSlotForPage
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true];contentSlot(uid,$contentCV)[unique=true];;;
+;;BodyContent-update-email;BodyContent;update-email;BodyContent-update-email;;;

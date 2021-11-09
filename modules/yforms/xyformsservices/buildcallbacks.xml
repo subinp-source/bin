@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<project name="xyformsservices_buildcallbacks">
+
+	<macrodef name="xyformsservices_before_build">
+		<sequential>
+		</sequential>
+	</macrodef>
+
+</project>

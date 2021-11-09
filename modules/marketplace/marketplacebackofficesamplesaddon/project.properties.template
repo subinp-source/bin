@@ -1,0 +1,13 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+marketplacebackofficesamplesaddon.key=value
+
+# Specifies the location of the spring context file added automatically to the global platform application context.
+marketplacebackofficesamplesaddon.application-context=marketplacebackofficesamplesaddon-spring.xml
+
+yacceleratorstorefront.additionalWebSpringConfigs.marketplacebackofficesamplesaddon=classpath:/marketplacebackofficesamplesaddon/web/spring/marketplacebackofficesamplesaddon-web-spring.xml
+
+# marketplacebackofficesamplesaddon.javascript.paths.responsive=/responsive/common/js/marketplacebackofficesamplesaddon.js
+# marketplacebackofficesamplesaddon.css.paths.responsive=/responsive/common/css/marketplacebackofficesamplesaddon.css

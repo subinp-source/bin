@@ -1,0 +1,184 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+$catalog-id=subscriptionSampleCatalog
+$catalog-version=Staged
+$catalogversion=catalogVersion(catalog(id[default=$catalog-id]),version[default=$catalog-version])[unique=true,default=$catalog-id:$catalog-version]
+$sourceversion=sourceversion(catalog(id[default=$catalog-id]),version[default=Staged])[unique=true,default=$catalog-id:Staged]
+$targetversion=targetversion(catalog(id[default=$catalog-id]),version[default=Online])[unique=true,default=$catalog-id:Online]
+$syncJobCode=sync $catalog-id:Staged->Online
+$ruleType=ruleType(code)[default='ANY']
+$supercategories=supercategories(code,catalogversion(catalog(id[default=$catalog-id]),version[default=$catalog-version]))
+$approved=approvalstatus(code)[default='approved']
+$lang=en
+
+# Subscription Sample catalog
+INSERT_UPDATE Catalog;id[unique=true]
+                     ;$catalog-id
+
+# Catalog versions for Subscription Sample catalogs
+INSERT_UPDATE CatalogVersion;catalog(id)[unique=true];version[unique=true];active;languages(isoCode);readPrincipals(uid)
+                            ;$catalog-id;Staged;false;$lang;employeegroup
+                            ;$catalog-id;Online;true;$lang;employeegroup
+
+INSERT_UPDATE Product;code[unique=true];manufacturerName;manufacturerAID;description[lang=en];unit(code)[default=pieces];ean;variantType(code);$catalogversion
+                     ;2047052;Apple;MB496T/A;21.03.2009;;
+                     ;3417125;Apple;MC131T/A;27.06.2009;;885909362059
+                     ;3417130;Apple;MC134T/A;27.06.2009;;885909319596
+                     ;GALAXY_NEXUS;Samsung;Samsung;27.06.2009;;8806071785585
+                     ;GALAXY_S2;Samsung;Samsung;27.06.2009;;8806071648507
+                     ;APPLE_IPHONE_4S_16GB;Apple;Apple;27.06.2009;;802971153485
+                     ;APPLE_IPHONE_4S_32GB;Apple;Apple;27.06.2009;;802971153486
+                     ;MOTOROLA_RAZR;Motorola;Motorola;27.06.2009;;6947681511507
+                     ;HTC_INCREDIBLE_S;htc;htc;27.06.2009;;843163074606
+                     ;NO_STOCK_PRODUCT;isnich;isnich;27.06.2009;;000000000000
+
+
+INSERT_UPDATE Product;code[unique=true];manufacturerAID;subscriptionTerm(id);unit(code);ean;$approved;$catalogversion
+                     ;SMART_STANDARD_1Y;SMART_STANDARD_1Y;annually_1;pieces;
+                     ;SMART_STANDARD_2Y;SMART_STANDARD_2Y;annually_2;pieces;
+                     ;SMART_STANDARD_3Y;SMART_STANDARD_3Y;annually_3;pieces;
+                     ;SMART_ADVANCED_1000_12M;SMART_ADVANCED_1000_12M;monthly_12;pieces;
+                     ;SMART_ADVANCED_1000_24M;SMART_ADVANCED_1000_24M;monthly_24;pieces;
+                     ;SMART_ADVANCED_1000_36M;SMART_ADVANCED_1000_36M;monthly_36;pieces;
+                     ;SMART_ADVANCED_2000_12M;SMART_ADVANCED_2000_12M;monthly_12;pieces;
+                     ;SMART_ADVANCED_2000_24M;SMART_ADVANCED_2000_24M;monthly_24;pieces;
+                     ;SMART_ADVANCED_2000_36M;SMART_ADVANCED_2000_36M;monthly_36;pieces;
+                     ;SMART_ADVANCED_5000_12M;SMART_ADVANCED_5000_12M;monthly_12;pieces;
+                     ;SMART_ADVANCED_5000_24M;SMART_ADVANCED_5000_24M;monthly_24;pieces;
+                     ;SMART_ADVANCED_5000_36M;SMART_ADVANCED_5000_36M;monthly_36;pieces;
+                     ;SMART_ADVANCED_NOLIM_12M;SMART_ADVANCED_NOLIM_12M;monthly_12;pieces;
+                     ;SMART_ADVANCED_NOLIM_24M;SMART_ADVANCED_NOLIM_24M;monthly_24;pieces;
+                     ;SMART_ADVANCED_NOLIM_36M;SMART_ADVANCED_NOLIM_36M;monthly_36;pieces;
+                     ;INTERNET_PACK_1G;INTERNET_PACK_1G;annually_1;pieces;
+                     ;INTERNET_PACK_MAX;INTERNET_PACK_MAX;annually_1;pieces;
+                     ;FRIENDS_AND_FAMILY;FRIENDS_AND_FAMILY;annually_1;pieces;
+                     ;WEEKENDER;WEEKENDER;annually_1;pieces;
+                     ;HOTSPOT_OPTION;HOTSPOT_OPTION;annually_1;pieces;
+                     ;TV_MOBILE_BASIC;TV_MOBILE_BASIC;annually_1;pieces;
+                     ;TV_MOBILE_EXTRAS_NEWS;TV_MOBILE_EXTRAS_NEWS;annually_1;pieces;
+                     ;TV_MOBILE_EXTRAS_DOCU;TV_MOBILE_EXTRAS_DOCU;annually_1;pieces;
+
+INSERT_UPDATE BundleTemplateStatus;id[unique=true];status(code)[default=approved];$catalogversion
+;Status_SMART
+
+# Subscription pricing
+# Repeat from subscription's sampledata for sake of safety
+INSERT_UPDATE UsageUnit;id[unique=true];accumulative[default=false];name[lang=$lang];namePlural[lang=$lang]
+;phone_minutes;;minute;minutes
+;sms;;text message;text messages
+;mobile_data;;MB;MBs
+
+INSERT_UPDATE BundleTemplate;id[unique=true];version[default=1.0][unique=true];$catalogversion;parentTemplate(id,version[default=1.0],$catalogversion);status(id, $catalogversion)
+;SmartPhonePackage;;;;Status_SMART
+;SmartPhoneDeviceSelection;;;SmartPhonePackage;Status_SMART
+;SmartPhonePlanSelection;;;SmartPhonePackage;Status_SMART
+;SmartPhoneInternetSelection;;;SmartPhonePackage;Status_SMART
+;SmartPhoneAddonSelection;;;SmartPhonePackage;Status_SMART
+;SmartPhoneTvBasicSelection;;;SmartPhonePackage;Status_SMART
+;SmartPhoneTvExtrasSelection;;;SmartPhonePackage;Status_SMART
+
+UPDATE BundleTemplate;id[unique=true];version[default=1.0][unique=true];products(code, $catalogversion);$catalogversion
+;SmartPhoneDeviceSelection;;GALAXY_NEXUS,GALAXY_S2,MOTOROLA_RAZR,HTC_INCREDIBLE_S,APPLE_IPHONE_4S_16GB,APPLE_IPHONE_4S_32GB
+;SmartPhonePlanSelection;;SMART_STANDARD_1Y,SMART_STANDARD_2Y,SMART_STANDARD_3Y,SMART_ADVANCED_1000_12M,SMART_ADVANCED_1000_24M,SMART_ADVANCED_1000_36M,SMART_ADVANCED_2000_12M,SMART_ADVANCED_2000_24M,SMART_ADVANCED_2000_36M,SMART_ADVANCED_5000_12M,SMART_ADVANCED_5000_24M,SMART_ADVANCED_5000_36M,SMART_ADVANCED_NOLIM_12M,SMART_ADVANCED_NOLIM_24M,SMART_ADVANCED_NOLIM_36M
+;SmartPhoneInternetSelection;;INTERNET_PACK_1G,INTERNET_PACK_MAX
+;SmartPhoneAddonSelection;;FRIENDS_AND_FAMILY,WEEKENDER,HOTSPOT_OPTION
+;SmartPhoneTvBasicSelection;;TV_MOBILE_BASIC
+;SmartPhoneTvExtrasSelection;;TV_MOBILE_EXTRAS_NEWS,TV_MOBILE_EXTRAS_DOCU
+
+UPDATE BundleTemplate;id[unique=true];name[lang=$lang];$catalogversion
+;SmartPhonePackage;"SmartPhone Package";
+;SmartPhoneDeviceSelection;"SmartPhone Device Component";
+;SmartPhonePlanSelection;"SmartPhone Plan Component";
+;SmartPhoneInternetSelection;"SmartPhone Internet Component";
+;SmartPhoneAddonSelection;"SmartPhone Addon Component";
+;SmartPhoneTvBasicSelection;"SmartPhone TvBasic Component";
+;SmartPhoneTvExtrasSelection;"SmartPhone TvExtras Component";
+
+INSERT_UPDATE PickExactlyNBundleSelectionCriteria;id[unique=true];n;$catalogversion
+;SmartPhoneDeviceSelection_PickExactly1;1
+;SmartPhonePlanSelection_PickExactly1;1
+
+INSERT_UPDATE PickNToMBundleSelectionCriteria;id[unique=true];n;m;$catalogversion
+;SmartPhoneInternetSelection_Pick0To1;0;1
+;SmartPhoneAddonSelection_Pick0To100;0;100
+;SmartPhoneTvBasicSelection_Pick0To1;0;1
+;SmartPhoneTvExtrasSelection_Pick0To2;0;2
+
+UPDATE BundleTemplate;id[unique=true];version[default=1.0];bundleSelectionCriteria(id, $catalogversion);$catalogversion
+;SmartPhoneDeviceSelection;;SmartPhoneDeviceSelection_PickExactly1
+;SmartPhonePlanSelection;;SmartPhonePlanSelection_PickExactly1
+;SmartPhoneInternetSelection;;SmartPhoneInternetSelection_Pick0To1
+;SmartPhoneAddonSelection;;SmartPhoneAddonSelection_Pick0To100
+;SmartPhoneTvBasicSelection;;SmartPhoneTvBasicSelection_Pick0To1
+;SmartPhoneTvExtrasSelection;;SmartPhoneTvExtrasSelection_Pick0To2
+
+# Bundle dependencies
+UPDATE BundleTemplate;id[unique=true];version[default=1.0][unique=true];requiredBundleTemplates(id,version[default=1.0], $catalogversion);$catalogversion
+;SmartPhoneInternetSelection;;SmartPhonePlanSelection
+;SmartPhoneAddonSelection;;SmartPhonePlanSelection
+;SmartPhoneTvBasicSelection;;SmartPhonePlanSelection
+;SmartPhoneTvExtrasSelection;;SmartPhonePlanSelection,SmartPhoneTvBasicSelection
+
+INSERT_UPDATE ChangeProductPriceBundleRule;$catalogversion;id[unique=true];currency(isocode)[default=USD, unique=true];bundleTemplate(id, version, $catalogversion)[unique=true];ruleType(code)[default=ANY];conditionalProducts(code, $catalogversion);targetProducts(code, $catalogversion);price
+;;price_IPHONE4S32GB_with_SMART_ADVANCED_2000_12M;;SmartPhoneDeviceSelection:1.0;ALL;SMART_ADVANCED_2000_12M;APPLE_IPHONE_4S_32GB;350
+;;price_IPHONE4S32GB_with_SMART_ADVANCED_5000_12M;;SmartPhoneDeviceSelection:1.0;ALL;SMART_ADVANCED_5000_12M;APPLE_IPHONE_4S_32GB;330
+;;price_IPHONE4S32GB_with_SMART_ADVANCED_NOLIM_12M;;SmartPhoneDeviceSelection:1.0;ALL;SMART_ADVANCED_NOLIM_12M;APPLE_IPHONE_4S_32GB;310
+
+INSERT_UPDATE DisableProductBundleRule;id[unique=true];$catalogversion;bundleTemplate(id,version[default=1.0],$catalogversion);conditionalProducts(code,$catalogversion);targetProducts(code,$catalogversion);$ruleType
+;SmartPhoneAddonSelection_Disable_FRIENDS_AND_FAMILY_When_WEEKENDER;;SmartPhoneAddonSelection;WEEKENDER;FRIENDS_AND_FAMILY
+;SmartPhoneDeviceSelection_Disable_IPHONE_When_CheapPlans;;SmartPhoneDeviceSelection;SMART_STANDARD_1Y,SMART_STANDARD_2Y,SMART_STANDARD_3Y,SMART_ADVANCED_1000_12M,SMART_ADVANCED_1000_24M,SMART_ADVANCED_1000_36M;APPLE_IPHONE_4S_16GB,APPLE_IPHONE_4S_32GB
+
+$START_USERRIGHTS;;;;;;;;;
+Type;UID;MemberOfGroups;Password;Target;read;change;create;remove;change_perm
+UserGroup;productmanagergroup;cockpitgroup;;;;;;;
+
+# Access Rights for Products & Catalog;;;;;;;;;
+;;;;ItemSyncTimestamp;+;;;
+;;;;SyncItemJob;+;;;
+;;;;Type;+;;;
+;;;;Product;+;+;+;+;+;
+;;;;Category;+;+;+;+;+;
+;;;;variantType;+;+;+;+;+;
+;;;;Catalog;+;;;
+;;;;CatalogVersion;+;;;
+;;;;Media;+;+;+;+;+;
+;;;;MediaContainer;+;+;+;+;+;
+;;;;MediaFormat;+;+;+;+;+;
+;;;;MediaFolder;+;+;+;+;+;
+;;;;Vendor;+;+;+;+;+;
+;;;;StockLevel;+;+;+;+;+;
+;;;;Tax;+;+;+;+;+;
+;;;;TaxRow;+;+;+;+;+;
+;;;;PriceRow;+;+;+;+;+;
+;;;;ProductFeature;+;+;+;+;+;
+;;;;ProductReference;+;+;+;+;+;
+;;;;Warehouse;+;+;+;+;+;
+;;;;BundleTemplate;+;+;-;-;-;
+;;;;BundleTemplate.products;+;+;+;+;-;
+;;;;BundleTemplate.bundleSelectionCriteria;+;-;-;-;-;
+;;;;BundleTemplate.requiredBundleTemplates;+;-;-;-;-;
+;;;;BundleTemplate.dependentBundleTemplates;+;-;-;-;-;
+;;;;BundleTemplate.parentTemplate;+;-;-;-;-;
+;;;;BundleTemplate.childTemplates;+;-;-;-;-;
+;;;;BundleTemplate.status;+;-;-;-;-;
+;;;;ChangeProductPriceBundleRule;+;+;+;+;+;
+;;;;DisableProductBundleRule;+;+;+;+;+;
+;;;;BundleSelectionCriteria;+;-;-;-;-;
+;;;;BillingTime;+;-;-;-;-;
+;;;;ClassAttributeAssignment;+;+;+;+;+;
+;;;;ClassificationClass;+;+;+;+;+;
+;;;;ClassificationAttribute;+;+;+;+;+;
+;;;;ClassificationAttributeTypeEnum;+;+;+;+;+;
+;;;;ClassificationAttributeVisibilityEnum;+;+;+;+;+;
+;;;;ClassificationAttributeValueList;+;+;+;+;+;
+;;;;ClassificationAttributeUnit;+;+;+;+;+;
+
+$END_USERRIGHTS;;;;;
+
+#
+# Add BundleTemplate and BundleTemplateStatus as rootTypes to the synchronization
+#
+INSERT_UPDATE CatalogVersionSyncJob;code[unique=true];roottypes(code)[mode=append];$sourceversion;$targetversion
+;$syncJobCode;Product,BundleTemplate,BundleTemplateStatus,ChangeProductPriceBundleRule,DisableProductBundleRule,BundleSelectionCriteria;

@@ -1,0 +1,61 @@
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/cockpitng/cng/scss/cockpitng-globals.scss';
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/backoffice/scss/backoffice-variables.scss';
+
+/*================================
+    Explorer Tree - toolbar
+================================*/
+@import "../support/_explorerTree-variables.scss";
+
+.yw-explorerTree {
+  &-toolbar {
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    border-bottom: $explorerTree__toolbar--border-bottom;
+
+    .z-paging-button,
+    .yw-itemSelectorButton,
+    .cng-action-enabled .cng-action-icon {
+      box-shadow: inset 0 0 0 $explorerTree__toolbar-action-selected-icon--border-width rgba( $explorerTree__toolbar-action-selected-icon--border-color, 0);
+      &:hover, &:focus {
+          box-shadow: inset 0 0 0 $explorerTree__toolbar-action-selected-icon--border-width  $explorerTree__toolbar-action-selected-icon--border-color;
+      }
+    }
+  }
+  &-widget.yw-widget-mold-light &-toolbar {
+    border-bottom-color: $explorertree-light__toolbar--border-color;
+  }
+
+  &-right-holder {
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+  }
+
+  &-actions {
+    padding: $explorerTree__toolbar-actions--padding;
+    -webkit-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+
+    .cng-action {
+      .cng-action-icon:hover {
+        background-color: transparent;
+      }
+    }
+  }
+  
+  &-widget-slot {
+    height: auto;
+  }
+  & .yw-catalog-selector {
+    width: 100%;
+  }
+}

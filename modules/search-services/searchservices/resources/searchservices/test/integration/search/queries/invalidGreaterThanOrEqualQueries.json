@@ -1,0 +1,72 @@
+[
+	{
+		"testId": 1,
+		"description": "'ge' query without expression",
+		"data": {
+			"type": "ge",
+			"value": 2
+		}
+	},
+	{
+		"testId": 2,
+		"description": "'ge' query with empty expression",
+		"data": {
+			"type": "ge",
+			"expression": "",
+			"value": 2
+		}
+	},
+	{
+		"testId": 3,
+		"description": "'ge' query with not allowed expression",
+		"data": {
+			"type": "ge",
+			"expression": "-$!#-",
+			"value": "2040-01-01T00:00:00.000+00:00"
+		}
+	},
+	{
+		"testId": 4,
+		"description": "'ge' query with not existing expression",
+		"data": {
+			"type": "ge",
+			"expression": "notExisting",
+			"value": "2040-01-01T00:00:00.000+00:00"
+		}
+	},
+	{
+		"testId": 5,
+		"description": "'ge' query with STRING expression",
+		"data": {
+			"type": "ge",
+			"expression": "field_string",
+			"value": 2
+		}
+	},
+	{
+		"testId": 6,
+		"description": "'ge' query with TEXT expression",
+		"data": {
+			"type": "ge",
+			"expression": "field_text",
+			"value": 2
+		}
+	},
+	{
+		"testId": 7,
+		"description": "'ge' query with BOOLEAN expression",
+		"data": {
+			"type": "ge",
+			"expression": "field_boolean",
+			"value": 2
+		}
+	},
+	{
+		"testId": 8,
+		"description": "'ge' query without value",
+		"data": {
+			"type": "ge",
+			"expression": "field_integer"
+		}
+	}
+]

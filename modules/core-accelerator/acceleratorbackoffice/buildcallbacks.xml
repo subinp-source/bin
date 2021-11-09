@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<project name="acceleratorbackoffice_buildcallbacks">
+	<property name="acceleratorbackofficeWebFragmentSrc" value="${ext.acceleratorbackoffice.path}/resources/web-fragment.xml"/>
+	<property name="acceleratorbackofficeWebFragmentDestJar" value="${ext.backoffice.path}/web/webroot/WEB-INF/lib/webfragmentExt_acceleratorbackoffice.jar"/>
+
+	<macrodef name="acceleratorbackoffice_clean_classpath_file">
+		<sequential>
+			<copy file="${ext.acceleratorbackoffice.path}/.classpath" tofile="${ext.acceleratorbackoffice.path}/.classpath.edit"
+				  overwrite="true"
+				  failonerror="true">
+				<filterchain>
+					<linecontainsregexp negate="true">
+						<regexp pattern="^(\t\t\t\t|)$" />  <!-- added by script -->
+					</linecontainsregexp>
+				</filterchain>
+			</copy>
+			<move file="${ext.acceleratorbackoffice.path}/.classpath.edit" tofile="${ext.acceleratorbackoffice.path}/.classpath"
+				  overwrite="true"
+				  failonerror="true" />
+		</sequential>
+	</macrodef>
+
+	<macrodef name="acceleratorbackoffice_after_clean">
+		<sequential>
+			<echo level="info" message="Generating .classpath file for acceleratorbackoffice" />
+			<create_extension_classpath_file extname="acceleratorbackoffice" />
+			<acceleratorbackoffice_clean_classpath_file />
+
+			<acceleratorbackoffice_remove_web_fragment/>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="acceleratorbackoffice_after_build">
+		<sequential>
+			<acceleratorbackoffice_remove_web_fragment/>
+			<acceleratorbackoffice_create_web_fragment/>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="acceleratorbackoffice_remove_web_fragment">
+		<sequential>
+			<if>
+				<available file="${acceleratorbackofficeWebFragmentDestJar}"/>
+				<then>
+					<delete file="${acceleratorbackofficeWebFragmentDestJar}"/>
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="acceleratorbackoffice_create_web_fragment">
+		<sequential>
+			<if>
+				<available file="${acceleratorbackofficeWebFragmentSrc}"/>
+				<then>
+					<sequential>
+						<jar destfile="${acceleratorbackofficeWebFragmentDestJar}">
+							<metainf file="${acceleratorbackofficeWebFragmentSrc}"/>
+						</jar>
+					</sequential>
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+
+	<patternset id="acceleratorbackoffice.localization.pattern">
+		<!-- core and hmc  -->
+		<include name="**/*locales*_en.properties"/>
+		<exclude name="**/hmc/web/webroot/WEB-INF/classes/**/*"/>
+		<exclude name="**/unittest/**/*"/>
+
+		<!-- cockpit (ng) -->
+		<include name="**/i3-label_en.properties"/>
+		<include name="**/labels_en.properties"/>
+
+		<!-- messages -->
+		<include name="**/*messages_en.properties"/>
+		<include name="**/*messages.properties"/>
+
+		<!-- frontend properties files in WEB-INF/messages folder -->
+		<include name="**/WEB-INF/messages/*_en.properties"/>
+
+		<!-- csv and impex -->
+		<include name="**/*_en.csv"/>
+		<include name="**/*_en.impex"/>
+
+		<include name="**/lang-en.properties"/>
+
+		<!-- email localizations from yacceleratorcore -->
+		<include name="resources/**/messages/*_en.properties"/>
+
+		<!-- include validation messages -->
+		<include name="resources/**/ValidationMessages.properties"/>
+	</patternset>
+
+	<macrodef name="acceleratorbackoffice_before_build">
+		<sequential>
+			<register_sass_extension extensionname="acceleratorbackoffice"/>
+			<register_sass_extension extensionname="acceleratorbackoffice" resources="resources" destination=""/>
+		</sequential>
+	</macrodef>
+
+</project>

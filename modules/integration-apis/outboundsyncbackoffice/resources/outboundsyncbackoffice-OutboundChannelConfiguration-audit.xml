@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<audit-report-config name="OutboundChannelConfigurationReport">
+    <given-root-type>OutboundChannelConfiguration</given-root-type>
+    <types>
+        <type code="OutboundChannelConfiguration" displayName="OutboundChannelConfiguration" >
+            <atomic-attributes>
+                <atomic-attribute qualifier="code" displayName="code"/>
+                <atomic-attribute qualifier="autoGenerate" displayName="autoGenerate"/>
+            </atomic-attributes>
+            <reference-attributes>
+                <reference-attribute qualifier="integrationObject" displayName="IntegrationObject" type="IntegrationObject" />
+                <reference-attribute qualifier="destination" displayName="ConsumedDestination" type="ConsumedDestination" />
+            </reference-attributes>
+            <virtual-attributes>
+                <virtual-attribute expression="outboundChannelConfiguration" type="OutboundSyncStreamConfiguration" many="true" displayName="OutboundSyncStreamConfiguration"/>
+            </virtual-attributes>
+        </type>
+
+        <type code="IntegrationObject" displayName="IntegrationObject" >
+            <atomic-attributes>
+                <atomic-attribute qualifier="code" displayName="IntegrationObject_id"/>
+            </atomic-attributes>
+        </type>
+
+        <type code="ConsumedDestination" displayName="ConsumedDestination" >
+            <atomic-attributes>
+                <atomic-attribute qualifier="id" displayName="ConsumedDestination_id"/>
+                <atomic-attribute qualifier="url" displayName="url"/>
+                <atomic-attribute qualifier="active" displayName="active"/>
+                <atomic-attribute qualifier="additionalProperties" displayName="additional Properties"/>
+            </atomic-attributes>
+            <reference-attributes>
+                <reference-attribute qualifier="endpoint" displayName="Endpoint" type="Endpoint" />
+                <reference-attribute qualifier="credential" displayName="Credential" type="AbstractCredential" />
+                <reference-attribute qualifier="destinationtarget" displayName="DestinationTarget" type="DestinationTarget" />
+            </reference-attributes>
+        </type>
+
+        <type code="Endpoint" displayName="Endpoint" >
+            <atomic-attributes>
+                <atomic-attribute qualifier="id" displayName="Endpoint_id"/>
+                <atomic-attribute qualifier="version" displayName="version"/>
+                <atomic-attribute qualifier="name" displayName="name"/>
+                <atomic-attribute qualifier="description" displayName="description"/>
+                <atomic-attribute qualifier="specUrl" displayName="specUrl"/>
+            </atomic-attributes>
+        </type>
+
+        <type code="AbstractCredential" displayName="Credential" >
+            <atomic-attributes>
+                <atomic-attribute qualifier="id" displayName="Credential_id"/>
+            </atomic-attributes>
+        </type>
+
+        <type code="DestinationTarget" displayName="DestinationTarget" >
+            <atomic-attributes>
+                <atomic-attribute qualifier="id" displayName="DestinationTarget_id"/>
+                <atomic-attribute qualifier="template" displayName="template"/>
+                <atomic-attribute qualifier="registrationStatusInfo" displayName="registrationStatusInfo"/>
+                <atomic-attribute qualifier="destinationChannel" displayName="destinationChannel"/>
+                <atomic-attribute qualifier="registrationStatus" displayName="registrationStatus"/>
+            </atomic-attributes>
+        </type>
+
+        <type code="OutboundSyncStreamConfiguration" displayName="OutboundSyncStreamConfiguration" >
+            <atomic-attributes>
+                <atomic-attribute qualifier="streamId" displayName="OutboundSyncStreamConfiguration_id"/>
+                <atomic-attribute qualifier="whereClause" displayName="whereClause"/>
+                <atomic-attribute qualifier="versionSelectClause" displayName="versionSelectClause"/>
+                <atomic-attribute qualifier="active" displayName="active"/>
+                <atomic-attribute qualifier="infoExpression" displayName="infoExpression"/>
+            </atomic-attributes>
+            <reference-attributes>
+                <reference-attribute qualifier="itemTypeForStream" displayName="ComposedType" type="ComposedType" />
+                <reference-attribute qualifier="container" displayName="OutboundSyncStreamConfigurationContainer" type="StreamConfigurationContainer" />
+            </reference-attributes>
+        </type>
+
+        <type code="ComposedType" displayName="ComposedType">
+            <atomic-attributes>
+                <atomic-attribute qualifier="code" displayName="ComposedType_"/>
+            </atomic-attributes>
+        </type>
+
+        <type code="StreamConfigurationContainer" displayName="OutboundSyncStreamConfigurationContainer">
+            <atomic-attributes>
+                <atomic-attribute qualifier="id" displayName="OutboundSyncStreamConfigurationContainer_id"/>
+            </atomic-attributes>
+            <virtual-attributes>
+                <virtual-attribute expression="streamConfigurationContainer" type="OutboundSyncJob" many="true" displayName="OutboundSyncJob"/>
+            </virtual-attributes>
+        </type>
+
+        <type code="OutboundSyncJob" displayName="OutboundSyncJob">
+            <atomic-attributes>
+                <atomic-attribute qualifier="code" displayName="OutboundSyncJob_id"/>
+                <atomic-attribute qualifier="springId" displayName="springId"/>
+                <atomic-attribute qualifier="logToFile" displayName="logToFile"/>
+                <atomic-attribute qualifier="logToDatabase" displayName="logToDatabase"/>
+                <atomic-attribute qualifier="active" displayName="active"/>
+            </atomic-attributes>
+        </type>
+
+    </types>
+</audit-report-config>

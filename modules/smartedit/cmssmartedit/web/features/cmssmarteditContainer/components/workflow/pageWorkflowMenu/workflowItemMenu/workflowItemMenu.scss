@@ -1,0 +1,147 @@
+@import '../../workflow.scss';
+
+.se-page-workflow-menu {
+    @include se-dropdown-menu('center');
+    min-width: 350px;
+    min-height: 130px;
+    right: -126px;
+    left: auto;
+    font-size: $fd-font-size;
+    font-family: $fd-font-family;
+    line-height: $fd-line-height;
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+
+        &-text {
+            font-size: 16px;
+            padding: 20px 0 0 16px;
+        }
+
+        &-menu {
+            padding: 16px 16px 0 0;
+        }
+    }
+
+    .se-page-info-menu__body {
+        width: 100%;
+    }
+
+    .se-version-item-menu__popup-anchor {
+        padding-top: 5px;
+        width: 32px;
+        height: 32px;
+        border-radius: 4px;
+    }
+
+    .se-version-item-menu__popup-anchor--open {
+        background-color: fd-color('neutral', 2);
+    }
+}
+
+.workflow-description-item-menu {
+    min-width: 225px;
+    padding: 20px;
+
+    &__label {
+        color: fd-color('text', 1);
+        display: flex;
+        justify-content: space-between;
+
+        .sap-icon--edit:hover {
+            text-decoration: none;
+        }
+    }
+
+    &__description {
+        color: fd-color('text', 2);
+    }
+}
+
+.se-cancel-workflow-item-menu__item-link {
+    padding: 12px 20px;
+    border-top: 1px solid fd-color('neutral', 1);
+}
+
+// action tabs
+.se-page-workflow-menu-tabs {
+    li > a {
+        text-transform: initial;
+        color: $workflow-text-color;
+        &:hover {
+            text-decoration: underline;
+            color: $workflow-action-color;
+        }
+    }
+    li.active > a {
+        color: $workflow-action-color;
+    }
+
+    .se-tabset {
+        margin: 0 !important;
+
+        li {
+            margin-left: 16px;
+        }
+    }
+}
+
+// fd-panel resets to match design
+.se-page-workflow-tasks-wrapper {
+    max-height: 400px;
+    overflow-y: scroll;
+    padding: 15px 15px 0 15px;
+    width: 100%;
+
+    .fd-panel {
+        box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.15);
+    }
+
+    .fd-panel__header,
+    .fd-panel__body {
+        border-bottom: none;
+        padding: 10px 16px;
+    }
+
+    .fd-panel__title {
+        margin-top: 0;
+        font-size: 13px;
+        font-weight: bold;
+    }
+
+    .fd-panel__body {
+        color: $workflow-text-color;
+        padding-top: 0;
+    }
+
+    .yCollapsibleContainer__header {
+        border-bottom: none;
+    }
+
+    .panel {
+        box-shadow: none;
+    }
+
+    .panel-group {
+        margin-bottom: 0;
+    }
+
+    .yCollapsibleContainer__title:focus {
+        outline: none;
+    }
+
+    .yCollapsibleContainer__icon {
+        padding: 5px 10px 0 0;
+        margin: 5px 10px 0 0;
+    }
+
+    .se-workflow-action-item__decision-btn {
+        margin: 10px -30px 10px 0;
+        text-align: right;
+    }
+}
+
+.se-page-workflow-task.fd-panel {
+    max-width: 320px;
+}

@@ -1,0 +1,96 @@
+/*
+ * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ */
+package de.hybris.platform.b2bacceleratorfacades.api.cart;
+
+import de.hybris.platform.b2bacceleratorfacades.exception.EntityValidationException;
+import de.hybris.platform.commercefacades.order.data.CartData;
+import de.hybris.platform.commercefacades.order.data.CartModificationData;
+import de.hybris.platform.commercefacades.order.data.OrderEntryData;
+import de.hybris.platform.commerceservices.order.CommerceCartModificationException;
+
+import java.util.List;
+
+
+/**
+ * Defines an API for cart manipulation, responsible for managing entries for cart.
+ *
+ */
+public interface CartFacade
+{
+	/**
+	 * Method for adding a product to cart.
+	 *
+	 * @param cartEntry
+	 *           the cart entry with the new product to add..
+	 * @return the cart modification data that includes a statusCode and the actual quantity added to the cart
+	 * @throws de.hybris.platform.b2bacceleratorfacades.exception.EntityValidationException
+	 *            if the validation fails.
+	 */
+	public CartModificationData addOrderEntry(final OrderEntryData cartEntry) throws EntityValidationException;
+
+	/**
+	 * Method for updating the number of products.
+	 *
+	 * @param cartEntry
+	 *           the cart entry with the new value of quantity for product.
+	 * @return the cart modification data that includes a statusCode and the actual quantity that the entry was updated
+	 *         to
+	 * @throws de.hybris.platform.b2bacceleratorfacades.exception.EntityValidationException
+	 *            if the validation fails.
+	 */
+	public CartModificationData updateOrderEntry(final OrderEntryData cartEntry) throws EntityValidationException;
+
+
+	/**
+	 * Method for adding a product to cart.
+	 *
+	 * @param cartEntries
+	 *           the cart entries with the new products to add.
+	 * @return the cart modification data that includes a statusCode and the actual quantity added to the cart
+	 */
+	public List<CartModificationData> addOrderEntryList(final List<OrderEntryData> cartEntries);
+
+
+	/**
+	 * Method for updating a list of products in the cart.
+	 *
+	 * @param cartEntries
+	 *           the cart entries with the new products to add.
+	 * @return the cart modification data that includes a statusCode and the actual quantity added to the cart
+	 */
+	public List<CartModificationData> updateOrderEntryList(final List<OrderEntryData> cartEntries);
+
+	/**
+	 * Updates the information in the cart based on the content of the cartData
+	 * 
+	 * @param cartData
+	 *           the cart to modify and it's modifications.
+	 * @return the updated cart.
+	 */
+	public CartData update(CartData cartData);
+
+
+	/**
+	 * This gets the current cart.
+	 * 
+	 * @return the current cart.
+	 */
+	public CartData getCurrentCart();
+
+	/**
+	 * Method for validating every entry in the cart
+	 *
+	 * @return a list of cart modifications that includes a statusCode and the actual quantity that the entry was updated
+	 *         to
+	 * @throws CommerceCartModificationException
+	 *            if the cart cannot be modified
+	 */
+	public List<CartModificationData> validateCurrentCartData() throws CommerceCartModificationException;
+
+	/**
+	 * If existing the current session cart is being detached from this session and removed. Afterwards it's no longer
+	 * available.
+	 */
+	public void removeSessionCart();
+}

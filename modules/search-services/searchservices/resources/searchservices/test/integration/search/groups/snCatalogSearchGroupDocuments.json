@@ -1,0 +1,161 @@
+[
+	{
+		"id": "doc1",
+		"fields": {
+			"code": "doc1",
+			"name": {
+				"en": "Shirt red M"
+			},
+			"color": "RED",
+			"size": "M",
+			"field_string": "RED M",
+			"field_string_mv": [
+				"RED shirt",
+				"size M"
+			],
+			"field_text": "RED shirt size M",
+			"field_text_mv": [
+				"RED shirt",
+				"size M"
+			],
+			"field_boolean": false,
+			"field_boolean_mv": [
+				false,
+				false
+			],
+			"field_integer": 1,
+			"field_integer_mv": [
+				10,
+				15
+			],
+			"field_long": 1,
+			"field_long_mv": [
+				10,
+				15
+			],
+			"field_float": 1,
+			"field_float_mv": [
+				10,
+				15
+			],
+			"field_double": 1,
+			"field_double_mv": [
+				10,
+				15
+			],
+			"field_date_time": "2001-01-01T00:00:00.000+00:00",
+			"field_date_time_mv": [
+				"2010-01-01T00:00:00.000+00:00",
+				"2015-01-01T00:00:00.000-00:00"
+			]
+		}
+	},
+	{
+		"id": "doc2",
+		"fields": {
+			"code": "doc2",
+			"name": {
+				"en": "Shirt green M"
+			},
+			"color": "GREEN",
+			"size": "M",
+			"field_string": "GREEN M",
+			"field_string_mv": [
+				"GREEN shirt",
+				"size M"
+			],
+			"field_text": "GREEN shirt size M",
+			"field_text_mv": [
+				"GREEN shirt",
+				"size M"
+			],
+			"field_boolean": false,
+			"field_boolean_mv": [
+				false,
+				false
+			],
+			"field_integer": 1,
+			"field_integer_mv": [
+				10,
+				15
+			],
+			"field_long": 1,
+			"field_long_mv": [
+				10,
+				15
+			],
+			"field_float": 1,
+			"field_float_mv": [
+				10,
+				15
+			],
+			"field_double": 1,
+			"field_double_mv": [
+				10,
+				15
+			],
+			"field_date_time": "2001-01-01T00:00:00.000+00:00",
+			"field_date_time_mv": [
+				"2010-01-01T00:00:00.000+00:00",
+				"2015-01-01T00:00:00.000-00:00"
+			]
+		}
+	},
+	{
+		"id": "doc3",
+		"fields": {
+			"code": "doc3",
+			"name": {
+				"en": "Shirt green L"
+			},
+			"color": "GREEN",
+			"size": "L",
+			"field_string": "GREEN L",
+			"field_string_mv": [
+				"GREEN shirt",
+				"size L"
+			],
+			"field_text": "Green shirt size L",
+			"field_text_mv": [
+				"Green shirt",
+				"size L"
+			],
+			"field_boolean": true,
+			"field_boolean_mv": [
+				true,
+				false
+			],
+			"field_integer": 3,
+			"field_integer_mv": [
+				30,
+				35
+			],
+			"field_long": 3,
+			"field_long_mv": [
+				30,
+				35
+			],
+			"field_float": 3,
+			"field_float_mv": [
+				30,
+				35
+			],
+			"field_double": 3,
+			"field_double_mv": [
+				30,
+				35
+			],
+			"field_date_time": "2003-01-01T00:00:00.000+00:00",
+			"field_date_time_mv": [
+				"2030-01-01T00:00:00.000+00:00",
+				"2035-01-01T00:00:00.000-00:00"
+			]
+		}
+	},
+	{
+		"id": "doc4",
+		"fields": {
+			
+		}
+	}
+]

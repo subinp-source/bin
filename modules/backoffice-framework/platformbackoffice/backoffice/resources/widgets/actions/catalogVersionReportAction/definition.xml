@@ -1,0 +1,25 @@
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<action-definition id="com.hybris.cockpitng.action.catalogversionreport" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/action-definition.xsd">
+
+    <name>Catalog Version report</name>
+    <description>Generate Catalog Version report</description>
+    <author>hybris</author>
+    <version>1.0</version>
+
+    <actionClassName>de.hybris.platform.platformbackoffice.actions.catalogversion.CatalogVersionReportAction</actionClassName>
+
+    <inputType>de.hybris.platform.catalog.model.CatalogVersionModel</inputType>
+    <outputType>de.hybris.platform.platformbackoffice.data.CatalogVersionReportDTO</outputType>
+    <sockets>
+        <output id="catalogversionreport" type="de.hybris.platform.platformbackoffice.data.CatalogVersionReportDTO"/>
+    </sockets>
+
+    <!-- folder icons with the icons must be created in the following directory: myextension/backoffice/resources/widgets/actions/myaction -->
+    <iconUri>icons/Create-Report_default.png</iconUri>
+    <iconHoverUri>icons/Create-Report_active.png</iconHoverUri>
+    <iconDisabledUri>icons/Create-Report_disabled.png</iconDisabledUri>
+
+</action-definition>

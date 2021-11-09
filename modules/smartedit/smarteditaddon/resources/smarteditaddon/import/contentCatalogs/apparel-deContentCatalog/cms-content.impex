@@ -1,0 +1,18 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+$contentCatalog=apparel-deContentCatalog
+$syncJob=sync $contentCatalog:Staged->Online
+
+INSERT_UPDATE CatalogVersion;catalog(id)[unique=true];version[unique=true];readPrincipals(uid)[mode=append];writePrincipals(uid)[mode=append]
+;$contentCatalog;Staged;;cmsmanagergroup,apparel-de-cmsmanagergroup
+;$contentCatalog;Online;cmsmanagergroup,apparel-de-cmsmanagergroup;;
+
+INSERT_UPDATE CatalogVersionSyncJob; code[unique=true]; syncPrincipals(uid)[mode=append]; syncPrincipalsOnly;
+;$syncJob;cmsmanagergroup,cmspublishergroup,apparel-de-cmsmanagergroup;true;
+
+#%import de.hybris.platform.smarteditaddon.setup.SmarteditAddonSystemSetup
+#%impex.enableCodeExecution(true)
+#%impex.enableExternalSyntaxParsing(true)
+#%impex.includeExternalData(SmarteditAddonSystemSetup.class.getResourceAsStream("/smarteditaddon/import/common/cms-content-permissions.impex"), "utf-8", 0, 0);;

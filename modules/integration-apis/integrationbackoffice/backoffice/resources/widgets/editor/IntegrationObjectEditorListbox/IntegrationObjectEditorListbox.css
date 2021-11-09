@@ -1,0 +1,111 @@
+/* Listbox */
+.yw-integrationbackoffice-editor-listbox .z-listheader-sorticon {
+    color: #151c22;
+    position: static;
+    float: right;
+    margin-left: 3px;
+}
+
+.yw-integrationbackoffice-editor-listbox .z-icon-caret-up {
+    position: relative;
+    bottom: 5px;
+}
+
+.yw-integrationbackoffice-editor-listbox .z-icon-caret-down {
+    position: relative;
+    bottom: 5px;
+}
+
+.yw-integrationbackoffice-editor-listbox .z-listheader-checkable {
+    visibility: hidden;
+}
+
+.yw-integrationbackoffice-editor-listbox .z-listitem-disabled {
+    background: #fff !important;
+}
+
+.yw-integrationbackoffice-editor-listbox .z-listitem-not-supported {
+    background: #fff !important;
+}
+
+.yw-integrationbackoffice-editor-listbox .z-listitem-not-supported-cell.z-listcell .z-listcell-content {
+    color: #acacac !important;
+    cursor: default !important;
+    text-decoration: line-through !important;
+}
+
+.yw-integrationbackoffice-editor-listbox .z-listitem-not-supported-cell.z-listcell > .z-listcell-content > .z-listitem-checkable .z-listitem-icon.z-icon-check {
+    color: #acacac !important;
+}
+
+tr.z-listitem-selected.integration-object-attribute-name-conflict,
+tr.z-listitem-selected.integration-object-attribute-name-conflict:hover {
+    background-color: #FFA947;
+}
+
+.yw-integrationbackoffice-editor-listbox-attribute-status-badge.z-span .z-label {
+    box-sizing: border-box;
+    padding: 1px 6px;
+    font-size: 12px;
+    background-color: #F5FAFF;
+}
+
+.yw-integrationbackoffice-editor-listbox-attribute-status-badge.yw-integrationbackoffice-editor-listbox-attribute-status-badge-blue.z-span .z-label {
+    border: 1px solid #354A5F;
+}
+
+.yw-integrationbackoffice-editor-listbox-attribute-status-badge.yw-integrationbackoffice-editor-listbox-attribute-status-badge-grey.z-span .z-label {
+    border: 1px solid #D2D2D2;
+    color: #acacac;
+}
+
+/* Runtime */
+.yw-integrationbackoffice-editor-listbox-checkbox-unique {
+    padding-left: 12px !important;
+}
+
+.yw-integrationbackoffice-editor-listbox-checkbox-autocreate {
+    padding-left: 25px !important;
+}
+
+.yw-integrationbackoffice-editor-listbox-checkbox-autocreate .z-checkbox input[type=checkbox]:disabled ~ label::before {
+    background-color: #D2D2D2;
+    border: none;
+}
+
+.yw-integrationbackoffice-editor-listbox-checkbox-unique .z-checkbox input[type=checkbox]:disabled ~ label::before {
+    background-color: #D2D2D2;
+    border: none;
+}
+
+.ye-actiondots-integrationbackoffice-btn {
+    background: url("images/dots.png") 0 0 !important;
+    background-image: url("images/dots.png") !important;
+    background-repeat: no-repeat !important;
+    height: 24px;
+    width: 36px;
+    display: inline-block;
+    padding: 0;
+    float: right;
+    border: none;
+}
+
+.ye-actiondots-integrationbackoffice-btn:hover {
+    background: url("images/dots_single.png") 0 0 !important;
+    background-image: url("images/dots_single.png") !important;
+    background-repeat: no-repeat !important;
+    height: 24px;
+    width: 36px;
+    display: inline-block;
+    padding: 0;
+    float: right;
+    border: none;
+    cursor: pointer !important;
+}
+
+tr.z-listitem-selected.integration-object-attribute-name-conflict,
+tr.z-listitem-selected.integration-object-attribute-name-conflict:hover,
+tr.z-listitem.z-listitem-disabled.integration-object-attribute-name-conflict *,
+tr.z-listitem.z-listitem-disabled.integration-object-attribute-name-conflict:hover * {
+    background-color: #FFA947;
+}

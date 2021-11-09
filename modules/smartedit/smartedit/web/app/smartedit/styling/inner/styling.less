@@ -1,0 +1,24 @@
+@import (reference) 'node_modules/bootstrap/less/variables';
+@import (reference) 'node_modules/techne/src/less/globals/_variables';
+@import '../variables';
+
+#smarteditoverlay {
+    @import 'node_modules/bootstrap/less/bootstrap';
+
+    z-index: @z-index-level-4;
+
+    @icon-font-path: '@{dist-smartedit}/fonts/';
+    @import 'node_modules/techne/src/less/components/_forms-checkboxes';
+    @import 'node_modules/techne/src/less/components/_spinner';
+
+    @import 'node_modules/techne/src/less/overwrites/_tooltip';
+
+    @import '../helpers';
+    @import '../shared/components';
+    @import 'components';
+    label {
+        font-weight: normal;
+    }
+}
+
+@import 'body-components';

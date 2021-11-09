@@ -1,0 +1,130 @@
+[
+	{
+		"testId": 1,
+		"description": "'matchTerms' query without expression",
+		"data": {
+			"type": "matchTerms",
+			"values": [
+				"green"
+			]
+		}
+	},
+	{
+		"testId": 2,
+		"description": "'matchTerms' query with empty expression",
+		"data": {
+			"type": "matchTerms",
+			"expression": "",
+			"values": [
+				"green"
+			]
+		}
+	},
+	{
+		"testId": 3,
+		"description": "'matchTerms' query with invalid expression",
+		"data": {
+			"type": "matchTerms",
+			"expression": "-$!#-",
+			"values": [
+				"car"
+			]
+		}
+	},
+	{
+		"testId": 4,
+		"description": "'matchTerms' query with not existing expression",
+		"data": {
+			"type": "matchTerms",
+			"expression": "notExisting",
+			"values": [
+				"car"
+			]
+		}
+	},
+	{
+		"testId": 5,
+		"description": "'matchTerms' query with TEXT expression",
+		"data": {
+			"type": "matchTerms",
+			"expression": "field_text",
+			"values": [
+				"green"
+			]
+		}
+	},
+	{
+		"testId": 6,
+		"description": "'matchTerms' query with BOOLEAN expression",
+		"data": {
+			"type": "matchTerms",
+			"expression": "field_boolean",
+			"values": [
+				"green"
+			]
+		}
+	},
+	{
+		"testId": 7,
+		"description": "'matchTerms' query with INTEGER expression",
+		"data": {
+			"type": "matchTerms",
+			"expression": "field_integer",
+			"values": [
+				"green"
+			]
+		}
+	},
+	{
+		"testId": 8,
+		"description": "'matchTerms' query with LONG expression",
+		"data": {
+			"type": "matchTerms",
+			"expression": "field_long",
+			"values": [
+				"green"
+			]
+		}
+	},
+	{
+		"testId": 9,
+		"description": "'matchTerms' query with FLOAT expression",
+		"data": {
+			"type": "matchTerms",
+			"expression": "field_float",
+			"values": [
+				"green"
+			]
+		}
+	},
+	{
+		"testId": 10,
+		"description": "'matchTerms' query with DOUBLE expression",
+		"data": {
+			"type": "matchTerms",
+			"expression": "field_double",
+			"values": [
+				"green"
+			]
+		}
+	},
+	{
+		"testId": 11,
+		"description": "'matchTerms' query with DATE_TIME expression",
+		"data": {
+			"type": "matchTerms",
+			"expression": "field_date_time",
+			"values": [
+				"green"
+			]
+		}
+	},
+	{
+		"testId": 12,
+		"description": "'matchTerms' query without value",
+		"data": {
+			"type": "matchTerms",
+			"expression": "field_string"
+		}
+	}
+]

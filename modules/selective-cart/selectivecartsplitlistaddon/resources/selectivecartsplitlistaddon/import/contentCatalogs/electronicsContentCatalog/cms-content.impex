@@ -1,0 +1,22 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+$contentCatalog=electronicsContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+INSERT_UPDATE JspIncludeComponent;uid[unique=true];page;$contentCV[unique=true]
+;CartComponent;/WEB-INF/views/addons/selectivecartsplitlistaddon/responsive/pages/cart/cartDisplay.jsp
+
+INSERT_UPDATE SaveForLaterCMSComponent;uid[unique=true];name;$contentCV[unique=true]
+;SaveForLaterComponent;SaveForLater Component
+
+INSERT_UPDATE ContentSlot;uid[unique=true];cmsComponents(uid,$contentCV)[mode=append];$contentCV[unique=true]
+;CenterRightContentSlot-cartPage;SaveForLaterComponent
+
+INSERT_UPDATE ContentSlot;uid[unique=true];cmsComponents(uid,$contentCV)[mode=append];$contentCV[unique=true]
+;EmptyCartMiddleContent-cartPage;SaveForLaterComponent
+
+
+
+

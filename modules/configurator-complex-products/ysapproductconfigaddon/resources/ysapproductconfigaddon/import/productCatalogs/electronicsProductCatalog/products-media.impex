@@ -1,0 +1,164 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# ImPex for Importing Product Media into Electronics Store
+
+# Macros / Replacement Parameter definitions
+$productCatalog=electronicsProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$siteResource=jar:de.hybris.platform.sap.productconfig.frontend.constants.SapproductconfigaddonConstants&/ysapproductconfigaddon/import
+$thumbnail=thumbnail(code, $catalogVersion)
+$picture=picture(code, $catalogVersion)
+$thumbnails=thumbnails(code, $catalogVersion)
+$detail=detail(code, $catalogVersion)
+$normal=normal(code, $catalogVersion)
+$others=others(code, $catalogVersion)
+$data_sheet=data_sheet(code, $catalogVersion)
+$medias=medias(code, $catalogVersion)
+$galleryImages=galleryImages(qualifier, $catalogVersion)
+$lang=en
+$cpqMedia=cpqMedia(qualifier, $catalogVersion)
+$storeClassification=ElectronicsClassification
+$classSystemVersion=systemVersion(catalog(id[default='$storeClassification']),version[default='1.0'])[unique=true,default='$storeClassification:1.0'];
+
+INSERT_UPDATE MediaFolder;qualifier[unique=true];path[unique=true]
+;images;images
+
+INSERT_UPDATE Media;mediaFormat(qualifier);code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];$catalogVersion;folder(qualifier)[default=images]
+;1200Wx1200H    ;CONF_HOME_THEATER_ML_1_1200						;$siteResource/images/CONF_HOME_THEATER_ML_1_1200x1200.jpg;
+;515Wx515H    	;CONF_HOME_THEATER_ML_1_515           				;$siteResource/images/CONF_HOME_THEATER_ML_1_515x515.jpg;
+;300Wx300H    	;CONF_HOME_THEATER_ML_1_300           				;$siteResource/images/CONF_HOME_THEATER_ML_1_300x300.jpg;
+;96Wx96H    	;CONF_HOME_THEATER_ML_1_96            				;$siteResource/images/CONF_HOME_THEATER_ML_1_96x96.jpg;
+;65Wx65H    	;CONF_HOME_THEATER_ML_1_65            				;$siteResource/images/CONF_HOME_THEATER_ML_1_65x65.jpg;
+;1200Wx1200H    ;CONF_HOME_THEATER_ML_2_1200						;$siteResource/images/CONF_HOME_THEATER_ML_2_1200x1200.jpg;
+;515Wx515H    	;CONF_HOME_THEATER_ML_2_515           				;$siteResource/images/CONF_HOME_THEATER_ML_2_515x515.jpg;
+;300Wx300H    	;CONF_HOME_THEATER_ML_2_300           				;$siteResource/images/CONF_HOME_THEATER_ML_2_300x300.jpg;
+;96Wx96H    	;CONF_HOME_THEATER_ML_2_96            				;$siteResource/images/CONF_HOME_THEATER_ML_2_96x96.jpg;
+;65Wx65H    	;CONF_HOME_THEATER_ML_2_65            				;$siteResource/images/CONF_HOME_THEATER_ML_2_65x65.jpg;
+;192Wx96H    	;Projector_1_192	             					;$siteResource/images/CONF_HOME_THEATER_Projector_1_192x96.jpg;
+;192Wx96H    	;Flat_panel_TV_192	             					;$siteResource/images/CONF_HOME_THEATER_Flat-panel-TV_192x96.jpg;
+;96Wx96H    	;Bluray_Panasonic_3D_INT_1_96         				;$siteResource/images/CONF_HOME_THEATER_Blu-ray-Panasonic_3D_INT_1_96x96.jpg;
+;96Wx96H    	;Bluray_Sony_96				             			;$siteResource/images/CONF_HOME_THEATER_Blu-ray-Sony_96x96.jpg;
+;96Wx96H    	;Center_Compact_Jamo_INT_1_96             			;$siteResource/images/CONF_HOME_THEATER_Center-Compact-Jamo_INT_1_96x96.jpg;
+;96Wx96H    	;Center_Compact_Magnat_96   	          			;$siteResource/images/CONF_HOME_THEATER_Center-Compact-Magnat_96x96.jpg;
+;96Wx96H    	;Column_Speaker_Canton_CD200_96            			;$siteResource/images/CONF_HOME_THEATER_Column-Speaker-Canton_CD200_96x96.jpg;
+;96Wx96H    	;Column_Speakers_Sony_96	             			;$siteResource/images/CONF_HOME_THEATER_Column-Speakers-Sony_96x96.jpg;
+;96Wx96H    	;Column_Speakers_Teufel_INT_7_96           			;$siteResource/images/CONF_HOME_THEATER_Column-Speakers-Teufel_INT_7_96x96.jpg;
+;96Wx96H    	;Compact_Speaker_Teufel_Ultima_20_1_96     			;$siteResource/images/CONF_HOME_THEATER_Compact-Speaker-Teufel-Ultima-20_1_96x96.jpg;
+;96Wx96H    	;Fixed_frame_screen_Sapphire_96            			;$siteResource/images/CONF_HOME_THEATER_Fixed-frame-screen-Sapphire_96x96.jpg;
+;96Wx96H    	;Front_Compact_Bookshelf_SVSound_1_96      			;$siteResource/images/CONF_HOME_THEATER_Front-Compact-Bookshelf_SVSound_1_96x96.jpg;
+;96Wx96H    	;Pull_down_screen_Infocus_96             			;$siteResource/images/CONF_HOME_THEATER_Pull-down-screen-Infocus_96x96.jpg;
+;96Wx96H    	;Rear_Speaker_Canton_MOVIE165_96          			;$siteResource/images/CONF_HOME_THEATER_Rear-Speaker-Canton_MOVIE165_96x96.jpg;
+;96Wx96H    	;Rear_speaker_Philips_CRP836_96            			;$siteResource/images/CONF_HOME_THEATER_Rear-speaker-Philips_CRP836_96x96.jpg;
+;96Wx96H    	;Rear_Speaker_Sonos_One_1_96            			;$siteResource/images/CONF_HOME_THEATER_Rear-Speaker-Sonos-One_1_96x96.jpg;
+;96Wx96H    	;Sonos_SUBMBUS1_INT_1_96    	         			;$siteResource/images/CONF_HOME_THEATER_Sonos_SUBMBUS1_INT_1_96x96.jpg;
+;96Wx96H    	;Soundbar_Irradio_96      			    			;$siteResource/images/CONF_HOME_THEATER_Soundbar-Irradio_96x96.jpg;
+;96Wx96H    	;Soundbar_Teufel_INT_2_96           	  			;$siteResource/images/CONF_HOME_THEATER_Soundbar-Teufel_INT_2_96x96.jpg;
+;96Wx96H    	;Subwoofer_LOEWE_525W_96             				;$siteResource/images/CONF_HOME_THEATER_Subwoofer-LOEWE_525W_96x96.jpg;
+;96Wx96H    	;Tower_Speaker_Teufel_Ultima_40_1_96        		;$siteResource/images/CONF_HOME_THEATER_Tower-Speaker-Teufel-Ultima-40_1_96x96.jpg;
+;96Wx96H    	;Tower_Speakers_Canton_Smart_Vento_1_96     		;$siteResource/images/CONF_HOME_THEATER_Tower-Speakers-Canton-Smart-Vento_1_96x96.jpg;
+;96Wx96H    	;Colour_Titan										;$siteResource/images/CONF_HOME_THEATER_8uf.jpeg;
+;96Wx96H    	;Colour_White										;$siteResource/images/CONF_HOME_THEATER_7tp.jpeg;
+;96Wx96H    	;Colour_Black										;$siteResource/images/CONF_HOME_THEATER_9ol.jpeg;
+;1200Wx1200H   	;CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_1_1200			;$siteResource/images/CONF_CAMERA_SL_Sony_DSLR-A850Q_INT_1_1200x1200.jpg;
+;515Wx515H    	;CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_1_515			;$siteResource/images/CONF_CAMERA_SL_Sony_DSLR-A850Q_INT_1_515x515.jpg;
+;300Wx300H    	;CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_1_300			;$siteResource/images/CONF_CAMERA_SL_Sony_DSLR-A850Q_INT_1_300x300.jpg;
+;96Wx96H    	;CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_1_96			;$siteResource/images/CONF_CAMERA_SL_Sony_DSLR-A850Q_INT_1_96x96.jpg;
+;65Wx65H    	;CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_1_65			;$siteResource/images/CONF_CAMERA_SL_Sony_DSLR-A850Q_INT_1_65x65.jpg;
+;1200Wx1200H   	;CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_2_1200			;$siteResource/images/CONF_CAMERA_SL_Sony_DSLR-A850Q_INT_2_1200x1200.jpg;
+;515Wx515H    	;CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_2_515			;$siteResource/images/CONF_CAMERA_SL_Sony_DSLR-A850Q_INT_2_515x515.jpg;
+;300Wx300H    	;CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_2_300			;$siteResource/images/CONF_CAMERA_SL_Sony_DSLR-A850Q_INT_2_300x300.jpg;
+;96Wx96H    	;CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_2_96			;$siteResource/images/CONF_CAMERA_SL_Sony_DSLR-A850Q_INT_2_96x96.jpg;
+;65Wx65H    	;CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_2_65			;$siteResource/images/CONF_CAMERA_SL_Sony_DSLR-A850Q_INT_2_65x65.jpg;
+;1200Wx1200H   	;CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_3_1200			;$siteResource/images/CONF_CAMERA_SL_Sony_DSLR-A850Q_INT_3_1200x1200.jpg;
+;515Wx515H    	;CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_3_515			;$siteResource/images/CONF_CAMERA_SL_Sony_DSLR-A850Q_INT_3_515x515.jpg;
+;300Wx300H    	;CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_3_300			;$siteResource/images/CONF_CAMERA_SL_Sony_DSLR-A850Q_INT_3_300x300.jpg;
+;96Wx96H    	;CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_3_96			;$siteResource/images/CONF_CAMERA_SL_Sony_DSLR-A850Q_INT_3_96x96.jpg;
+;65Wx65H    	;CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_3_65			;$siteResource/images/CONF_CAMERA_SL_Sony_DSLR-A850Q_INT_3_65x65.jpg;
+;96Wx96H    	;CONF_CAMERA_SL_standard_zoom						;$siteResource/images/CONF_CAMERA_SL_standard-zoom-24-70_Sigma_96x96.jpg;
+;96Wx96H    	;CONF_CAMERA_SL_tele_zoom_120						;$siteResource/images/CONF_CAMERA_SL_tele-zoom-120-300_Sigma_1_96x96.jpg;
+;96Wx96H    	;CONF_CAMERA_SL_tele_zoom_70						;$siteResource/images/CONF_CAMERA_SL_tele-zoom-70-210_Tamron_1_96x96.jpg;
+;96Wx96H    	;CONF_CAMERA_SL_wide_zoom							;$siteResource/images/CONF_CAMERA_SL_wide-zoom-17-35_Tamron_96x96.jpg;
+
+
+INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$catalogVersion
+;MediaContainer_HomeTheaterML1							;CONF_HOME_THEATER_ML_1_1200,CONF_HOME_THEATER_ML_1_515,CONF_HOME_THEATER_ML_1_300,CONF_HOME_THEATER_ML_1_96,CONF_HOME_THEATER_ML_1_65;
+;MediaContainer_HomeTheaterML2		    				;CONF_HOME_THEATER_ML_2_1200,CONF_HOME_THEATER_ML_2_515,CONF_HOME_THEATER_ML_2_300,CONF_HOME_THEATER_ML_2_96,CONF_HOME_THEATER_ML_2_65;
+;MediaContainer_Projector_1_192							;Projector_1_192;
+;MediaContainer_Flat_panel_TV_192						;Flat_panel_TV_192;
+;MediaContainer_Bluray_Panasonic_3D_INT_1_96			;Bluray_Panasonic_3D_INT_1_96;
+;MediaContainer_Bluray_Sony_96							;Bluray_Sony_96;
+;MediaContainer_Center_Compact_Jamo_INT_1_96			;Center_Compact_Jamo_INT_1_96;
+;MediaContainer_Center_Compact_Magnat_96    			;Center_Compact_Magnat_96;
+;MediaContainer_Column_Speaker_Canton_CD200_96			;Column_Speaker_Canton_CD200_96;
+;MediaContainer_Column_Speakers_Sony_96					;Column_Speakers_Sony_96;
+;MediaContainer_Column_Speakers_Teufel_INT_7_96			;Column_Speakers_Teufel_INT_7_96;
+;MediaContainer_Compact_Speaker_Teufel_Ultima_20_1_96	;Compact_Speaker_Teufel_Ultima_20_1_96;
+;MediaContainer_Fixed_frame_screen_Sapphire_96 			;Fixed_frame_screen_Sapphire_96;
+;MediaContainer_Front_Compact_Bookshelf_SVSound_1_96 	;Front_Compact_Bookshelf_SVSound_1_96;
+;MediaContainer_Pull_down_screen_Infocus_96				;Pull_down_screen_Infocus_96;
+;MediaContainer_Rear_Speaker_Canton_MOVIE165_96    		;Rear_Speaker_Canton_MOVIE165_96;
+;MediaContainer_Rear_speaker_Philips_CRP836_96    		;Rear_speaker_Philips_CRP836_96;
+;MediaContainer_Rear_Speaker_Sonos_One_1_96    			;Rear_Speaker_Sonos_One_1_96;
+;MediaContainer_Sonos_SUBMBUS1_INT_1_96    				;Sonos_SUBMBUS1_INT_1_96;
+;MediaContainer_Soundbar_Irradio_96    					;Soundbar_Irradio_96;
+;MediaContainer_Soundbar_Teufel_INT_2_96    			;Soundbar_Teufel_INT_2_96;
+;MediaContainer_Subwoofer_LOEWE_525W_96    				;Subwoofer_LOEWE_525W_96
+;MediaContainer_Tower_Speaker_Teufel_Ultima_40_1_96    	;Tower_Speaker_Teufel_Ultima_40_1_96;
+;MediaContainer_Tower_Speakers_Canton_Smart_Vento_1_96  ;Tower_Speakers_Canton_Smart_Vento_1_96;
+;MediaContainer_Colour_Titan							;Colour_Titan;
+;MediaContainer_Colour_White							;Colour_White;
+;MediaContainer_Colour_Black							;Colour_Black;
+;MediaContainer_CONF_CAMERA_SL_1						;CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_1_1200,CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_1_515,CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_1_300,CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_1_96,CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_1_65;
+;MediaContainer_CONF_CAMERA_SL_2						;CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_2_1200,CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_2_515,CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_2_300,CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_2_96,CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_2_65;
+;MediaContainer_CONF_CAMERA_SL_3						;CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_3_1200,CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_3_515,CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_3_300,CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_3_96,CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_3_65;
+;MediaContainer_CONF_CAMERA_SL_standard_zoom			;CONF_CAMERA_SL_standard_zoom;
+;MediaContainer_CONF_CAMERA_SL_tele_zoom_120			;CONF_CAMERA_SL_tele_zoom_120;
+;MediaContainer_CONF_CAMERA_SL_tele_zoom_70				;CONF_CAMERA_SL_tele_zoom_70;
+;MediaContainer_CONF_CAMERA_SL_wide_zoom				;CONF_CAMERA_SL_wide_zoom;
+
+#################################################################################
+# Add Media to Product
+#################################################################################
+INSERT_UPDATE Product;code[unique=true];$picture;$thumbnail;$detail;$others;$normal;$thumbnails;$galleryImages;$catalogVersion
+;CONF_HOME_THEATER_ML;CONF_HOME_THEATER_ML_1_515;CONF_HOME_THEATER_ML_1_96;CONF_HOME_THEATER_ML_1_1200;CONF_HOME_THEATER_ML_1_515,CONF_HOME_THEATER_ML_1_65;CONF_HOME_THEATER_ML_1_300;CONF_HOME_THEATER_ML_1_96;MediaContainer_HomeTheaterML1,MediaContainer_HomeTheaterML2
+;CONF_CAMERA_SL;CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_1_515;CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_1_96;CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_1_1200;CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_1_300,CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_1_65;CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_1_300;CONF_CAMERA_SL_Sony_DSLR_A850Q_INT_1_96;MediaContainer_CONF_CAMERA_SL_1,MediaContainer_CONF_CAMERA_SL_2,MediaContainer_CONF_CAMERA_SL_3
+
+
+#################################################################################
+# Add Media Container to Attribute
+#################################################################################
+INSERT_UPDATE ClassificationAttribute;$classSystemVersion;code[unique=true];name[lang=$lang];$cpqMedia;
+;;FLAT_PANEL_TV;Flat-panel TV;MediaContainer_Flat_panel_TV_192;
+
+#################################################################################
+# Add Media Container to Attribute Values
+#################################################################################
+INSERT_UPDATE ClassificationAttributeValue;code[unique=true];$cpqMedia;$classSystemVersion;
+;PROJECTION_SCREEN_FIXED_SCREEN					;MediaContainer_Fixed_frame_screen_Sapphire_96;;
+;PROJECTION_SCREEN_PULLDOWN_SCREEN				;MediaContainer_Pull_down_screen_Infocus_96;;
+;COLOUR_HT_COLOUR_HT_BLACK						;MediaContainer_Colour_Black;;
+;COLOUR_HT_COLOUR_HT_WHITE						;MediaContainer_Colour_White;;
+;COLOUR_HT_COLOUR_HT_TITAN						;MediaContainer_Colour_Titan;;
+;SOUNDBAR_SOUNDBAR_T							;MediaContainer_Soundbar_Teufel_INT_2_96;;
+;SOUNDBAR_SOUNDBAR_I							;MediaContainer_Soundbar_Irradio_96;;
+;SPEAKER_COMPACT_SPEAKER_COMPACT_MAGNAT				;MediaContainer_Center_Compact_Magnat_96;;
+;SPEAKER_COMPACT_SPEAKER_COMPACT_JAMO			;MediaContainer_Center_Compact_Jamo_INT_1_96;;
+;COLUMN_SPEAKER_COLUMN_SPEAKER_850				;MediaContainer_Column_Speakers_Teufel_INT_7_96;;
+;COLUMN_SPEAKER_COLUMN_SPEAKER_1250				;MediaContainer_Column_Speakers_Sony_96;;
+;COLUMN_SPEAKER_COLUMN_SPEAKER_2050				;MediaContainer_Column_Speaker_Canton_CD200_96;;
+;TOWER_SPEAKER_TOWER_SPEAKER_ULTIMATE			;MediaContainer_Tower_Speaker_Teufel_Ultima_40_1_96;;
+;TOWER_SPEAKER_TOWER_SPEAKER_VENTO				;MediaContainer_Tower_Speakers_Canton_Smart_Vento_1_96;;
+;SPEAKER_COMPACT_FRONT_SPEAKER_COMPACT_FRONT_U	;MediaContainer_Compact_Speaker_Teufel_Ultima_20_1_96;;
+;SPEAKER_COMPACT_FRONT_SPEAKER_COMPACT_FRONT_Q	;MediaContainer_Front_Compact_Bookshelf_SVSound_1_96;;
+;REAR_SPEAKER_REAR_SPEAKER_CANTON				;MediaContainer_Rear_Speaker_Canton_MOVIE165_96;;
+;REAR_SPEAKER_REAR_SPEAKER_CRP					;MediaContainer_Rear_speaker_Philips_CRP836_96;;
+;REAR_SPEAKER_REAR_SPEAKER_SONOS				;MediaContainer_Rear_Speaker_Sonos_One_1_96;;
+;SUBWOOFER_SUBWOOFER_LOEWE							;MediaContainer_Subwoofer_LOEWE_525W_96;;
+;SUBWOOFER_SUBWOOFER_SONOS							;MediaContainer_Sonos_SUBMBUS1_INT_1_96;;
+;BLURAY_PLAYER_BLURAY_PLAYER_SONY			;MediaContainer_Bluray_Sony_96;;
+;BLURAY_PLAYER_BLURAY_PLAYER_3D					;MediaContainer_Bluray_Panasonic_3D_INT_1_96;;
+;CAMERA_LENS_TYPE_WIDE_ZOOM_16_55				;MediaContainer_CONF_CAMERA_SL_wide_zoom;
+;CAMERA_LENS_TYPE_STANDARD_ZOOM_18_135			;MediaContainer_CONF_CAMERA_SL_standard_zoom;
+;CAMERA_LENS_TYPE_TELEPHOTO_ZOOM_50_230			;MediaContainer_CONF_CAMERA_SL_tele_zoom_70;
+;CAMERA_LENS_TYPE_TELEPHOTO_ZOOM_100_400		;MediaContainer_CONF_CAMERA_SL_tele_zoom_120;

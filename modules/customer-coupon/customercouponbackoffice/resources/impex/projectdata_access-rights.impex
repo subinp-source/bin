@@ -1,0 +1,35 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+$START_USERRIGHTS;;;;;;;;;
+Type;UID;MemberOfGroups;Target;read;change;create;remove;change_perm
+UserGroup;customersupportadministratorgroup;;;;;;;
+
+;;;AbstractCoupon;+;+;+;+
+;;;CustomerCoupon;+;+;+;+
+;;;PromotionSourceRuleTemplate;+;+;+;+
+;;;PromotionSourceRule;+;+;+;+
+;;;PromotionGroup;+;-;-;-
+;;;RuleGroup;+;-;-;-
+;;;AbstractRuleEngineRule;+;-;-;-
+;;;Catalog;+;-;-;-
+;;;CatalogVersion;+;-;-;-
+;;;Category;+;-;-;-
+;;;variantType;+;-;-;-
+;;;ClassificationAttributeUnit;+;-;-;-
+;;;Tax;+;-;-;-
+;;;TaxRow;+;-;-;-
+;;;PriceRow;+;-;-;-
+;;;ProductFeature;+;-;-;-
+;;;Unit;+;-;-;-
+;;;Media;+;-;-;-
+;;;MediaFolder;+;-;-;-
+;;;MediaContainer;+;-;-;-
+;;;MediaContainerList;+;-;-;-
+;;;MediaFormat;+;-;-;-
+;;;AbstractRulesModule;+;-;-;-
+;;;SavedValues;+;-;-;-
+
+$END_USERRIGHTS;;;;;
+

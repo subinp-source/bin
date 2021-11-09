@@ -1,0 +1,93 @@
+<div class="se-tabset-wrapper">
+    <ul class="nav nav-tabs se-tabset" role="tablist" *ngIf="isInitialized">
+        <ng-container *ngIf="tabsList.length !== numTabsDisplayed">
+            <li
+                *ngFor="let tab of (getVisibleTabs() | async); trackBy: trackTabById"
+                [ngClass]="{ 'active': tab.id === selectedTab.id }"
+                [attr.tab-id]="tab.id"
+                class="se-tabset__tab"
+            >
+                <a
+                    [ngClass]="{'sm-tab-error': tab.hasErrors}"
+                    (click)="selectTab(tab)"
+                    class="se-tabset__link"
+                    *ngIf="!tab.message"
+                    >{{tab.title | translate}}</a
+                >
+                <se-tooltip [triggers]="['mouseover']" *ngIf="tab.message">
+                    <a
+                        se-tooltip-trigger
+                        [ngClass]="{'sm-tab-error': tab.hasErrors}"
+                        class="se-tabset__link"
+                        (click)="selectTab(tab)"
+                    >
+                        {{tab.title | translate}}
+                    </a>
+                    <span se-tooltip-body> {{ tab.message }} </span>
+                </se-tooltip>
+            </li>
+        </ng-container>
+
+        <ng-container *ngIf="tabsList && tabsList.length == numTabsDisplayed">
+            <li
+                *ngFor="let tab of tabsList; trackBy: trackTabById"
+                [ngClass]="{'active': tab.id === selectedTab.id }"
+                [attr.tab-id]="tab.id"
+                class="se-tabset__tab"
+            >
+                <a
+                    [ngClass]="{'sm-tab-error': tab.hasErrors}"
+                    class="se-tabset__link"
+                    (click)="selectTab(tab)"
+                    *ngIf="!tab.message"
+                >
+                    {{tab.title | translate}}
+                </a>
+                <se-tooltip [triggers]="['mouseover']" *ngIf="tab.message">
+                    <a
+                        se-tooltip-trigger
+                        [ngClass]="{'sm-tab-error': tab.hasErrors}"
+                        class="se-tabset__link"
+                        (click)="selectTab(tab)"
+                    >
+                        {{tab.title | translate}}
+                    </a>
+                    <span se-tooltip-body> {{ tab.message }} </span>
+                </se-tooltip>
+            </li>
+        </ng-container>
+
+        <su-select
+            class="se-tabset__select"
+            *ngIf="tabsList.length > numTabsDisplayed && (getDropdownTabs() | async)"
+            [items]="dropdownTabs"
+            [isKeyboardControlEnabled]="false"
+            [hasCustomTrigger]="true"
+            (onItemSelected)="selectTab($event.value)"
+        >
+            <li [ngClass]="{'active': isActiveInMoreTab()}" su-select-custom-trigger>
+                <a [ngClass]="{'sm-tab-error': dropDownHasErrors()}" class="dropdown-toggle">
+                    <span *ngIf="!isActiveInMoreTab()" class="multi-tabs__more-span">
+                        {{ 'se.ytabset.tabs.more' | translate }}
+                    </span>
+                    <span *ngIf="isActiveInMoreTab()" class="multi-tabs__more-span"
+                        >{{selectedTab.title | translate}}
+                    </span>
+                    <span class="caret"></span>
+                </a>
+            </li>
+        </su-select>
+    </ul>
+
+    <div class="se-tab-set__content-wrapper" *ngIf="selectedTab">
+        <ng-container *ngFor="let tab of tabsList; trackBy: trackTabById">
+            <se-tab
+                [hidden]="tab.id !== selectedTab.id"
+                [attr.tab-id]="tab.id"
+                [tab]="tab"
+                [model]="model"
+            >
+            </se-tab>
+        </ng-container>
+    </div>
+</div>

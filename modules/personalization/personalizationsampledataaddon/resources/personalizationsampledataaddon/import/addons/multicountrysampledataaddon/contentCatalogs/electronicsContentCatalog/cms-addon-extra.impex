@@ -1,0 +1,7 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+$contentCatalog=electronicsContentCatalog
+INSERT_UPDATE CatalogVersion;catalog(id)[unique=true];version[unique=true];readPrincipals(principal.uid)[mode=append];
+;$contentCatalog;Online;electronics-eu-cxmanagergroup,electronics-eu-cxusergroup,electronics-uk-cxmanagergroup,electronics-uk-cxusergroup,electronics-de-cxmanagergroup,electronics-de-cxusergroup,electronics-us-cxmanagergroup,electronics-us-cxusergroup;

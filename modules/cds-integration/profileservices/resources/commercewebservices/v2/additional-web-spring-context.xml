@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <alias name="defaultOccConsentLayerFilter" alias="OccConsentLayerFilter"/>
+   	<bean id="defaultOccConsentLayerFilter" class="com.hybris.yprofile.consent.filters.OCCConsentLayerFilter">
+        <property name="consentService" ref="consentService" />
+        <property name="userService" ref="userService" />
+        <property name="configurationService" ref="configurationService"/>
+        <property name="profileConfigurationService" ref="profileConfigurationService" />
+    </bean>
+
+    <bean name="OccConsentLayerFilterListMergeDirective" depends-on="commerceWebServicesFilterChainListV2" parent="listMergeDirective">
+        <property name="add" ref="OccConsentLayerFilter"/>
+        <property name="afterBeanNames">
+            <list value-type="java.lang.String">
+                <value>cmsPreviewTicketFilter</value>
+                <value>commerceWebServicesConsentFilterV2</value>
+            </list>
+        </property>
+        <property name="beforeBeanNames">
+            <list value-type="java.lang.String">
+                <value>cxOccPersonalizationFilter</value>
+                <value>cartMatchingFilter</value>
+            </list>
+        </property>
+    </bean>
+</beans>

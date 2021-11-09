@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+
+<!--
+ All hybris buildcallbacks.xml macrodefinitions:
+ 
+ Build/Documentation
+ 
+	 before/after ant macro "clean"
+		 &lt;macrodef name="b2bwebservicescommons_before_clean"/&gt;
+		 &lt;macrodef name="b2bwebservicescommons_after_clean"/&gt;
+	 
+	 before/after ant macro "build"
+		 &lt;macrodef name="b2bwebservicescommons_before_build"/&gt;
+		 &lt;macrodef name="b2bwebservicescommons_after_build"/&gt;
+		 
+	 before/after ant macro "compile_core" - the core module of the extension
+		 &lt;macrodef name="b2bwebservicescommons_before_compile_core"&gt;
+		 &lt;macrodef name="b2bwebservicescommons_after_compile_core"&gt;
+	 
+	 before/after ant macro "compile_web" - the web module of the extension
+		 &lt;macrodef name="b2bwebservicescommons_before_compile_web" /&gt;
+		 &lt;macrodef name="b2bwebservicescommons_after_compile_web" /&gt;
+	 
+	 before/after ant macro "compile_hmc" - the hmc module of the extension
+		 &lt;macrodef name="b2bwebservicescommons_before_compile_hmc" /&gt;
+		 &lt;macrodef name="b2bwebservicescommons_after_compile_hmc" /&gt;
+ 
+ Preparing extension
+ 
+	 will be called in the beginning of the ant call and only once (also when using multiple 
+	 ant targets e.g. ant build yunittest)	
+		 &lt;macrodef name="b2bwebservicescommons_only_once_prepare"/&gt;
+ 
+ Creating ear module/production
+ 
+	 before/after ant macro "ear"
+		 &lt;macrodef name="b2bwebservicescommons_before_ear"/&gt;
+		 &lt;macrodef name="b2bwebservicescommons_after_ear"/&gt;
+
+	 before/after ant macro "production" - for hybris server only
+		 &lt;macrodef name="b2bwebservicescommons_before_production" /&gt;
+		 &lt;macrodef name="b2bwebservicescommons_after_production" /&gt;
+ 
+ JUnit Test
+ 
+	 before/after ant macro "yunitinit" 
+		 &lt;macrodef name="b2bwebservicescommons_before_yunitinit" /&gt;
+		 &lt;macrodef name="b2bwebservicescommons_after_yunitinit" /&gt;
+	 
+	 before/after ant macro "yunit"
+		 &lt;macrodef name="b2bwebservicescommons_before_yunit" /&gt;
+		 &lt;macrodef name="b2bwebservicescommons_after_yunit" /&gt; 
+		 
+ Distribution package
+ 
+	 before/after ant macro "dist" - internal target; only for use when platform is available in source code
+		 &lt;macrodef name="b2bwebservicescommons_after_dist"/&gt;
+		 &lt;macrodef name="b2bwebservicescommons_before_dist"/&gt;
+	 
+	 before/after ant macro "dist_copy" - internal target; only for use when platform is available in source code
+		 &lt;macrodef name="b2bwebservicescommons_before_dist_copy"/&gt;
+		 &lt;macrodef name="b2bwebservicescommons_after_dist_copy"/&gt;
+		  
+	 With these filters you can override the default extension filters defined in platform/resources/ant/dist/filtersets.xml
+		 &lt;patternset id="extension.b2bwebservicescommons.binary.filter"&gt;
+			 &lt;patternset refid="extension.filter" /&gt;
+			 &lt;exclude name="**/*-source.jar" /&gt;
+		 &lt;/patternset&gt;
+		 &lt;patternset id="extension.b2bwebservicescommons.source.filter"&gt;
+			 &lt;exclude name="**/bin/**" /&gt;
+		 &lt;/patternset&gt;
+	 With this filter you can decide what should be excluded from development zip.
+		 &lt;patternset id="extension.b2bwebservicescommons.devzip.filter"&gt;
+		 Include all files from extension.source.filter.
+			 &lt;patternset refid="extension.source.filter" /&gt;
+		 Exclude unwanted files.
+			 &lt;exclude name="lib/exclude-me.jar" /&gt;
+		 &lt;/patternset&gt;
+ 
+-->
+<project name="b2bwebservicescommons_buildcallbacks">
+
+	<macrodef name="b2bwebservicescommons_clean_classpath_file">
+		<sequential>
+			<copy file="${ext.b2bwebservicescommons.path}/.classpath" tofile="${ext.b2bwebservicescommons.path}/.classpath.edit"
+				  overwrite="true"
+				  failonerror="true">
+				<filterchain>
+					<linecontainsregexp negate="true">
+						<regexp pattern="^(\t\t\t\t|)$" />  <!-- added by script -->
+					</linecontainsregexp>
+				</filterchain>
+			</copy>
+			<move file="${ext.b2bwebservicescommons.path}/.classpath.edit" tofile="${ext.b2bwebservicescommons.path}/.classpath"
+				  overwrite="true"
+				  failonerror="true" />
+		</sequential>
+	</macrodef>
+
+	<macrodef name="b2bwebservicescommons_after_clean">
+		<sequential>
+			<echo level="info" message="Generating .classpath file for b2bwebservicescommons" />
+			<create_extension_classpath_file extname="b2bwebservicescommons" />
+			<b2bwebservicescommons_clean_classpath_file />
+		</sequential>
+	</macrodef>
+
+	<!--
+		Called whenever 'ant ear' is used. this callback can be used to modify the content of the ear file
+	
+		 ${ear.path}: 			path to ear
+	 -->
+
+	<macrodef name="b2bwebservicescommons_before_ear">
+		<sequential>
+			<!-- you can do anything before the EAR file is being packed -->
+</sequential>
+	</macrodef>
+</project>
+

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="OOTB" importedAsReadOnly="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/web/webroot/WEB-INF/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/web/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../modules/order-management/b2bordermanagementwebservices/lib" recursive="true" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="b2bordermanagementfacades" exported="" />
+    <orderEntry type="module" module-name="ordermanagementwebservices" exported="" />
+    <orderEntry type="module" module-name="platform" exported="" />
+  </component>
+</module>

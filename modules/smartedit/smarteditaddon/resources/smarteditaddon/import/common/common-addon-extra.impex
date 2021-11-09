@@ -1,0 +1,47 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+UPDATE SyncAttributeDescriptorConfig[batchMode=true];attributeDescriptor(enclosingType(code),qualifier)[unique=true];includedInSync
+"#%beforeEach:
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import de.hybris.platform.servicelayer.search.FlexibleSearchService;
+import de.hybris.platform.servicelayer.type.TypeService;
+import de.hybris.platform.core.model.type.AttributeDescriptorModel;
+import de.hybris.platform.servicelayer.search.FlexibleSearchQuery;
+
+ERROR_MESSAGE_TEMPLATE = ""SyncAttributeDescriptorConfig with the attribute [{}] can not be updated because of it does not exist."";
+QUERY = ""SELECT {pk} FROM {SyncAttributeDescriptorConfig} WHERE {attributeDescriptor}=?attrDescriptor"";
+
+TypeService typeService = Registry.getApplicationContext().getBean(""typeService"", TypeService.class);
+FlexibleSearchService flexibleSearchService = Registry.getApplicationContext().getBean(""flexibleSearchService"", FlexibleSearchService.class);
+Logger LOG = LoggerFactory.getLogger(""ImpExImportReader"");
+
+attributeData = line.get(1).split("":"");
+attributeType = attributeData[0];
+attributeQualifier = attributeData[1];
+
+try
+{
+    AttributeDescriptorModel attributeDescriptor = typeService.getAttributeDescriptor(attributeType, attributeQualifier);
+    FlexibleSearchQuery flexibleSearchQuery = new FlexibleSearchQuery(QUERY);
+    flexibleSearchQuery.addQueryParameter(""attrDescriptor"", attributeDescriptor);
+
+    count = flexibleSearchService.search(flexibleSearchQuery).getCount();
+    if (count == 0)
+    {
+        LOG.info(ERROR_MESSAGE_TEMPLATE, attributeType + ""."" + attributeQualifier);
+        line.clear();
+    }
+}
+catch (Exception ex)
+{
+    LOG.info(ERROR_MESSAGE_TEMPLATE, attributeType + ""."" + attributeQualifier);
+    line.clear();
+}
+
+"
+;AbstractRestriction:pages;false
+;AbstractRestriction:components;false

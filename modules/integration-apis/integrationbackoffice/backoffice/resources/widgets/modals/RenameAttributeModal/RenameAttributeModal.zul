@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<widget xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.zkoss.org/2005/zul"
+        xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.hybris.com/schema/cockpitng/zul/zul.xsd"
+        height="100%">
+
+    <style src="${wr}/RenameAttributeModal.css"/>
+
+    <vlayout spacing="15px" sclass="yw-integrationbackoffice-modal-body">
+        <span sclass="yw-integrationbackoffice-modal-label">
+            ${labels.integrationbackoffice.renameAttributeModal.typeSystem}
+        </span>
+        <textbox id="attributeNameTypeSystem" readonly="true"/>
+        <span sclass="yw-integrationbackoffice-modal-label">
+            ${labels.integrationbackoffice.renameAttributeModal.current}
+        </span>
+        <textbox id="attributeNameAliasCurrent" readonly="true"/>
+        <hlayout>
+            <span sclass="yw-integrationbackoffice-modal-label">
+                ${labels.integrationbackoffice.renameAttributeModal.next}
+            </span>
+            <image style="cursor:pointer" popup="attributeNameAliasNewPopup" src="${wr}/images/icon_tooltip_help.png"/>
+        </hlayout>
+        <textbox id="attributeNameAliasNew"/>
+        <popup id="attributeNameAliasNewPopup" sclass="yw-desc-tooltip">
+            ${labels.integrationbackoffice.renameAttributeModal.tooltip}
+        </popup>
+    </vlayout>
+
+    <button id="confirmButton" label="${labels.integrationbackoffice.renameAttributeModal.confirmButton}"
+            sclass="y-btn-primary yw-integrationbackoffice-modal-button"/>
+
+</widget>

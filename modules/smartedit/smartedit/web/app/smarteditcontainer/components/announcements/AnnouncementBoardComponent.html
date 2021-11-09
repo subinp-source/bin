@@ -1,0 +1,13 @@
+<ng-container *ngIf="(announcements$ | async) as announcements">
+    <div class="se-announcement-board">
+        <se-announcement
+            *ngFor="
+                let announcement of (announcements | seReverse);
+                trackBy: annnouncementTrackBy;
+                let i = index
+            "
+            id="se-announcement-{{ i }}"
+            [announcement]="announcement"
+        ></se-announcement>
+    </div>
+</ng-container>

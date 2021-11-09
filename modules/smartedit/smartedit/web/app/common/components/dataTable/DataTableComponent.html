@@ -1,0 +1,34 @@
+<table class="se-paged-list-table fd-table">
+    <thead>
+        <tr>
+            <th
+                *ngFor="let column of columns"
+                (click)="sortColumn(column)"
+                [ngStyle]="{'width.': columnWidth + '%'}"
+                [ngClass]="'se-paged-list__header-'+column.property"
+                class="se-paged-list__header"
+            >
+                {{ column.i18n | translate }}
+                <span
+                    class="se-data-table__arrow"
+                    *ngIf="visibleSortingHeader === column.property"
+                    [ngClass]="{ 
+                        'se-data-table__arrow--expanded sap-icon--navigation-down-arrow': headersSortingState[column.property],
+                        'se-data-table__arrow--not-expanded sap-icon--navigation-up-arrow': !headersSortingState[column.property] }"
+                ></span>
+            </th>
+        </tr>
+    </thead>
+    <tbody class="se-paged-list__table-body">
+        <tr *ngFor="let item of items; let i = index" class="se-paged-list-item">
+            <td *ngFor="let column of columns" [ngClass]="'se-paged-list-item-'+column.property">
+                <se-data-table-renderer
+                    [column]="column"
+                    [item]="item"
+                    [config]="config"
+                    [index]="i"
+                ></se-data-table-renderer>
+            </td>
+        </tr>
+    </tbody>
+</table>

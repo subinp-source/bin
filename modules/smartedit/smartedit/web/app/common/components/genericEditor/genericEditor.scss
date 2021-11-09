@@ -1,0 +1,146 @@
+@import '~fiori-fundamentals/scss/components/button.scss';
+
+.se-generic-editor .se-generic-editor__form {
+    padding: 0;
+}
+.se-generic-editor__header,
+.se-generic-editor__body,
+.se-generic-editor__footer {
+    padding: 20px;
+}
+.se-generic-editor__row {
+    margin-bottom: fd-space('small');
+}
+.modal-footer.se-generic-editor__footer {
+    @include se-container-section('footer');
+}
+.se-control-label {
+    @include se-flex-row;
+    display: inline-flex;
+    position: relative;
+    text-transform: capitalize;
+    margin-bottom: 10px;
+
+    &,
+    > span:first-child {
+        color: fd-color('text', 3);
+        margin-right: fd-space('base');
+    }
+
+    &.required::before {
+        @include fd-weight('bold');
+        content: '*';
+        display: block;
+        position: absolute;
+        top: 0;
+        right: -8px;
+    }
+}
+.se-form-control-row {
+    @include se-flex-row();
+    margin-bottom: fd-space('xxs');
+
+    &--action {
+        cursor: pointer;
+    }
+    > * {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        &:first-child {
+            margin-right: fd-space('base');
+        }
+    }
+    label {
+        color: fd-color('text', 2);
+    }
+}
+
+.fd-form__label {
+    outline: none;
+}
+.se-form-help-message {
+    color: fd-color('text', 3);
+    display: block;
+    padding: fd-space('xxs') 0;
+}
+.fd-form__message {
+    font-style: italic;
+}
+
+// Custom Styled GE Rows
+.se-generic-editor__row + .se-generic-editor__row--restrictions {
+    border-top: se-border();
+    padding-top: fd-space('s');
+}
+
+// Time Picker Row, to be removed once date picker is replaced by Fundamental NGX
+.se-date-field.input-group {
+    @include se-flex-row();
+}
+.se-date-field--input.fd-form-control {
+    box-shadow: none !important;
+    border-radius: fd-space('base') 0 0 fd-space('base');
+    height: fd-space('l');
+}
+.se-date-field--button.input-group-addon {
+    @include se-flex-row(center);
+    cursor: pointer;
+    border-radius: 0 fd-space('base') fd-space('base') 0;
+    border: se-border(2);
+    border-left: none;
+    box-shadow: none !important;
+    outline: none;
+    height: fd-space('l');
+    background-color: fd-color('neutral', 1);
+    width: fd-space('l');
+    color: fd-color('action', 1);
+    &:focus {
+        border: se-border(fd-color('accent', 6), 2px);
+    }
+}
+.bootstrap-datetimepicker-widget.dropdown-menu.dropdown-menu.pull-right {
+    top: 34px !important;
+    border-radius: fd-space('base');
+    padding: fd-space('xs');
+    &::before,
+    &::after {
+        display: none;
+    }
+    .list-unstyled {
+        @include se-flex-column();
+    }
+    a.btn:hover {
+        color: fd-color('action', 1);
+    }
+    .picker-switch.accordion-toggle {
+        order: 2;
+        width: 252px;
+        tr {
+            @include se-flex-row(space-between);
+        }
+        td,
+        a {
+            @include se-flex-row(center);
+            width: 72px;
+            height: fd-space('l');
+            padding: 0;
+            text-decoration: none;
+        }
+    }
+    .btn-primary {
+        font-family: $font-sap;
+        box-shadow: none;
+        @extend .fd-button;
+        @extend .fd-button--emphasized;
+    }
+    table td.day {
+        line-height: 26px;
+        width: fd-space('l');
+    }
+}
+
+select.cke_dialog_ui_input_select {
+    background-image: none;
+    -webkit-appearance: searchfield;
+    -moz-appearance: menulist;
+}

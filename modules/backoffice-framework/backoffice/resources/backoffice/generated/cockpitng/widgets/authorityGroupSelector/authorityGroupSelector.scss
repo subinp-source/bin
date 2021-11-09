@@ -1,0 +1,258 @@
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/cockpitng/cng/scss/cockpitng-globals.scss';
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/backoffice/scss/backoffice-variables.scss';
+
+@import "scss/support/_authorityGroupSelector-variables.scss";
+
+.yw-roleselector-container {
+    @if $authorityGroup-login__body--bg-color {
+        width: 100%;
+        height: 100%;
+
+        @if $authorityGroup-login__body-logo--bg {
+            background: $authorityGroup-login__body-logo--bg;
+
+            @media (max-height: $authorityGroup-login__default--bp-xs) and (max-width: $authorityGroup-login__default--bp-m) {
+                background-image: none;
+            }
+        }@else {
+            background: $authorityGroup-login__body--bg-color;
+        }
+    }
+    > .widget_cnt > .widget_body {
+        @media (max-height: $authorityGroup-login__default--bp-xs) and (max-width: $authorityGroup-login__default--bp-m) {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+
+.login{
+    &-container {
+        background: $authorityGroup-login__container--bg-color;
+        width: auto;
+        position: absolute;
+        left: $authorityGroup-login__container--left;
+        right: $authorityGroup-login__container--right;
+        top: $authorityGroup-login__container--top;
+        transform: $authorityGroup-login__container--transform;
+        margin: $authorityGroup-login__container--margin;
+        max-width: $authorityGroup-login__container--max-width;
+        width: $authorityGroup-login__container--width;
+        min-width: $authorityGroup-login__container--min-width;
+        border-radius: $authorityGroup-login__container--border-radius;
+        box-shadow: $authorityGroup-login__container--box-shadow;
+        padding: $authorityGroup-login__container--padding;
+
+        // @media (max-width: $authorityGroup-login__default--bp-xs) {
+        //   transform: $authorityGroup-login__container-bp-xs--transformY;
+        // }
+
+        @media (max-height: $authorityGroup-login__default--bp-xs) {
+            transform: $authorityGroup-login__container-bp-xs--transform;
+            top: auto;
+        }
+    }
+
+    &-wrapper {
+        // padding-top: $login__grid--padding-top;
+        // margin-top: 10%;
+        // background: $login__grid--bg;
+        
+        &:before {  //SAP Logo
+            content: '';
+            display: block;
+            background: $authorityGroup-login__logo--bg;
+            background-size: contain;
+            height: $authorityGroup-login__logo--height;
+             margin-bottom: $authorityGroup-login__logo-container-marging-bottom;
+        }
+        
+        .login_grid {
+            padding-top: 0;
+            margin-top: 0;
+        }
+    }
+}
+
+
+.yw-selector {
+    &-body{
+        width: $authorityGroupSelector__selector-body--width;
+        height: $authorityGroupSelector__selector-body--height;
+    }
+
+    &-grid {
+        margin: $_authorityGroupSelector__grid--margin;
+        max-width: $_authorityGroupSelector__grid--max-width;
+
+        label,
+        .z-label {
+            display: block;
+            font-size: $authorityGroupSelector__label--font-size;
+            font-weight: $authorityGroupSelector__label--font-weight;
+            line-height: $authorityGroupSelector__label--line-height;
+            margin-bottom: $authorityGroupSelector__label--margin-bottom;
+        }
+
+        a,
+        button {
+            &.y-btn-primary {
+                background-color: $authorityGroup-login__primary-button--bg-color;
+                color: $authorityGroup-login__primary-button--color;
+                height: $authorityGroup-login__primary-button--height;
+                min-height: $authorityGroup-login__primary-button--height;
+                line-height: $authorityGroup-login__primary-button--line-height;
+                text-transform: $authorityGroup-login__primary-button--text-transform;
+                border-radius: $authorityGroup-login__primary-button--border-radius;
+
+                &:hover,
+                &:focus,
+                &:active {
+                    background-color: $authorityGroup-login__primary-button-hover--bg-color;
+                    color: $authorityGroup-login__primary-button--color;
+                }
+            }
+        }
+    }
+
+    &-holder {
+        &,
+        > div, 
+        > div > div {
+            border: $authorityGroupSelector__holder-divs--border;
+            background: $authorityGroupSelector__holder-divs--bg;
+
+        }
+    }
+
+    &-image {
+        width: $authorityGroupSelector__image--size;
+        height: $authorityGroupSelector__image--size;
+        padding-left: $authorityGroupSelector__image--padding-left;
+        @if $authorityGroupSelector__image--bg {
+            background: $authorityGroupSelector__image--bg;
+            background-clip: content-box;
+            background-origin: content-box;
+        }
+    }
+
+    &-listitem {
+        .yw-selector-listcell {
+            transition: $authorityGroupSelector__group-list-cell--transition;
+            border-top-color: transparent;
+
+            &.z-listcell:first-child{
+                width: $authorityGroupSelector__group-list--width;
+            }
+        }
+        .yw-selector-listcell {
+            &:first-child .z-listcell-content {
+                padding-left: $authorityGroupSelector__listcell-content-first-child--padding-left;
+            }
+        }
+        
+
+        .z-listcell-content {
+            text-overflow: $authorityGroupSelector__listcell-content--text-overflow;
+            white-space: $authorityGroupSelector__listcell-content--white-space;
+            line-height: $authorityGroupSelector__listcell-content--line-height;
+            text-indent: $authorityGroupSelector__listcell-content--text-indent;
+            padding-left: $authorityGroupSelector__listcell-content--padding-left;
+            word-wrap: $authorityGroupSelector__listcell-content--word-wrap;
+        }
+        &,
+        &:hover,
+        &.z-listitem-selected {
+            > .z-listcell {
+                border-top-color: transparent;
+
+                > .z-listcell-content {
+                    color: $authorityGroup__list-item--color;
+                }
+            }
+        }
+        &.z-listitem{
+            > .z-listcell > .z-listcell-content > .z-listitem-checkable { 
+                .z-listitem-icon.z-icon-radio {
+                    width: $authorityGroupSelector__radio-icon--size;
+                    height: $authorityGroupSelector__radio-icon--size;
+                    border: $authorityGroupSelector__radio-icon--border;
+                    margin-top: $authorityGroupSelector__radio-icon--margin-top;
+                    margin-left: $authorityGroupSelector__radio-icon--margin-left;
+                    transform: $authorityGroupSelector__radio-icon--transform;
+                }
+            }
+            &:hover,
+            &-focus {
+                 > .z-listcell > .z-listcell-content > .z-listitem-checkable { 
+                    .z-listitem-icon.z-icon-radio {
+                        border-color: $authorityGroupSelector__radio-icon-hover--border-color;
+                    }
+                }
+            }
+            &-selected > .z-listcell > .z-listcell-content > .z-listitem-checkable {
+                .z-listitem-icon.z-icon-radio {
+                    border-color: $authorityGroupSelector__radio-icon-selected--border-color;
+                    background-color: transparent;
+
+                    &:after {
+                        content: "";
+                        width: $authorityGroupSelector__radio-icon-selected-dot--size;
+                        height: $authorityGroupSelector__radio-icon-selected-dot--size;
+                        border-radius: $authorityGroupSelector__radio-icon-selected-dot--border-radius;
+                        left: $authorityGroupSelector__radio-icon-selected-dot--left;
+                        top: $authorityGroupSelector__radio-icon-selected-dot--top;
+                        background-color: $authorityGroupSelector__radio-icon-selected--color;
+                        transform: $authorityGroupSelector__radio-icon-selected-dot--transform;
+                        position: absolute;
+                        overflow: hidden;
+                    }
+                }
+            }
+        }
+    }
+    &-body &-listitem {
+        &.z-listitem:hover, 
+        &.z-listitem-selected {
+            background: transparent;
+        }
+    }
+
+    &-btn {
+        &.z-button{
+            // float: $authorityGroupSelector__selector-button--float;
+            margin-top: $authorityGroupSelector__selector-button--margin-top;
+            display: inline-block;
+        }
+        
+    }
+    &-body .login-footer {
+        display: flex;
+        justify-content: center;
+        margin-top: $authorityGroup__footer-container--margin-top;
+    }
+
+    .z-listitem-checkable.z-listitem-radio {
+        margin-top: $authorityGroupSelector__check-radio--margin-top;
+    }
+}
+
+//select-box not visible (unstyled), needs to be verified
+.yw-selector {
+    select {
+        width: $authorityGroupSelector__selector--width;
+        height: $authorityGroupSelector__selector--height;
+        display: inline-block;
+        outline: $authorityGroupSelector__selector--outline;
+        color: $authorityGroupSelector__selector--color;
+        font-size: $authorityGroupSelector__selector--font-size;
+        border: $authorityGroupSelector__selector--border;
+        padding: $authorityGroupSelector__selector--padding;
+        background: $authorityGroupSelector__selector--bg;
+        box-shadow: $authorityGroupSelector__selector--box-shadow;
+        transition: $authorityGroupSelector__selector--transition;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+    }
+}

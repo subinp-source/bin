@@ -1,0 +1,87 @@
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/cockpitng/cng/scss/cockpitng-globals.scss';
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/backoffice/scss/backoffice-variables.scss';
+
+
+
+$border-layout__region--bg-color: $blue__dark--100;
+$border-layout__region--box-shadow: false;
+
+$border-layout__mold-light-splitter--bg-color: $grey__light--200;
+$border-layout__mold-light-splitter-button--color: $black;
+$border-layout__mold-light-splitter-button-hover--bg-color: lighten($grey__light--1000, 2%);
+
+$border-layout__mold-dark-splitter-button-hover--color: $white;
+$border-layout__splitter-collapsed--size: 40px;
+
+.yw-borderlayout {
+	.opaquetrue .yw-layoutregion {
+		background: $border-layout__region--bg-color;
+		
+		@if $border-layout__region--box-shadow {
+			box-shadow: $border-layout__region--box-shadow;
+		}
+	}
+	&.yw-widget-mold-light {
+		> .z-borderlayout > div {
+            > .z-south,
+            > .z-north,
+            > .z-west,
+            > .z-east {
+                &-splitter {
+                    background-color: $border-layout__mold-light-splitter--bg-color;
+                    
+                    > span {
+                        color: $border-layout__mold-light-splitter-button--color;
+                        &:hover {
+                            background-color: transparent;
+                            color: $blue__default;
+                        }
+                    }
+                }
+                &-collapsed {
+                    background-color: $border-layout__mold-light-splitter--bg-color;
+                }
+            }
+        }
+	}
+    &-opaque {
+        &.yw-widget-mold-dark {
+            > .z-borderlayout > div {
+                > .z-south,
+                > .z-north,
+                > .z-west,
+                > .z-east {
+                    &-splitter > span {
+                        body.mobile & {
+                            border-color: transparent;
+                            background-color: transparent;
+                        }
+                    }
+                    &-collapsed {
+                        background-color: $border-layout__region--bg-color;
+                        
+                        .z-borderlayout-icon {
+                            &:hover {
+                                color: $border-layout__mold-dark-splitter-button-hover--color;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        > .z-borderlayout > div {
+            > .z-west,
+            > .z-east {
+                &-collapsed {
+                    min-width: $border-layout__splitter-collapsed--size;
+                }
+            }
+            > .z-south,
+            > .z-north {
+                &-collapsed {
+                    min-height: $border-layout__splitter-collapsed--size;
+                }
+            }
+        }
+    }
+}

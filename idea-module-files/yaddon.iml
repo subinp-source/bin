@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="OOTB" importedAsReadOnly="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/base-accelerator/yaddon/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="addonsupport" exported="" />
+    <orderEntry type="module" module-name="platform" exported="" />
+  </component>
+</module>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<zk>
+    <config-name>backofficeTesting</config-name>
+    <library-property>
+        <name>org.zkoss.zk.ui.uuidRecycle.disabled</name>
+        <value>true</value>
+    </library-property>
+    <system-config>
+        <id-generator-class>com.hybris.cockpitng.generators.YTestIdBasedUUIdGenerator</id-generator-class>
+    </system-config>
+</zk>

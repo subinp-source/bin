@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	   xmlns:p="http://www.springframework.org/schema/p"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+			   http://www.springframework.org/schema/beans/spring-beans.xsd
+				http://www.springframework.org/schema/util
+				http://www.springframework.org/schema/util/spring-util.xsd">
+	
+	<!-- Service -->
+	<bean id="registryComponentTypeStructureService" class="de.hybris.platform.cmsfacades.types.service.impl.RegistryComponentTypeStructureService">
+		<description>deprecated since 1811, please use de.hybris.platform.cmsfacades.types.service.impl.GenericComponentTypeStructureService</description>
+		<property name="typeService" ref="typeService" />
+		<property name="componentTypeStructureRegistry" ref="componentTypeStructureRegistry" />
+		<property name="cmsSupportedAbstractTypecodes" ref="cmsSupportedAbstractTypecodes" />
+	</bean>
+
+	<!-- Services -->
+	<alias name="defaultSupportedAbstractTypecodes" alias="cmsSupportedAbstractTypecodes" />
+	<util:set id="defaultSupportedAbstractTypecodes">
+		<description>deprecated since 1905, not needed by the generic structure service</description>
+		<util:constant static-field="de.hybris.platform.cms2.model.contents.components.AbstractCMSComponentModel._TYPECODE"/>
+		<util:constant static-field="de.hybris.platform.cms2.model.pages.AbstractPageModel._TYPECODE"/>
+		<util:constant static-field="de.hybris.platform.cms2.model.restrictions.AbstractRestrictionModel._TYPECODE"/>
+	</util:set>
+
+	<!-- Structure Enum Type Configuration -->
+	<alias name="defaultComponentEnumStructureTypes" alias="componentEnumStructureTypes" />
+	<bean id="defaultComponentEnumStructureTypes" class="org.springframework.beans.factory.config.MapFactoryBean">
+		<description>deprecated since 1811, no longer needed</description>
+		<property name="targetMapClass">
+			<value>java.util.HashMap</value>
+		</property>
+		<property name="sourceMap">
+			<map merge="true">
+			</map>
+		</property>
+	</bean>
+	
+</beans>

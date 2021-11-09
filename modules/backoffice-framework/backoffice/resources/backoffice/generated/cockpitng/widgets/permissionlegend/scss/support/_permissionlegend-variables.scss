@@ -1,0 +1,19 @@
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/cockpitng/cng/scss/cockpitng-globals.scss';
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/backoffice/scss/backoffice-variables.scss';
+
+
+
+$permissionlegend__icon--font-size: $font-size__medium;
+$permissionlegend__container--padding: $container-spacing-default__half $container-spacing-default__half $container-spacing-default_two-thirds;
+
+$permissionlegend__icon--size: 17px;
+$permissionlegend__holder--padding-right: $container-spacing-default__third;
+$permissionlegend__holder--padding-left: floor($permissionlegend__holder--padding-right/2);
+$permissionlegend__holder--padding: 5px $container-spacing-default__third;
+
+$permissionlegend__inherited-icon--color: $grey__default--500;
+$permissionlegend__inherited-icon-hover--color: lighten($permissionlegend__inherited-icon--color, 1);
+$permissionlegend__granted-icon--color: $green_light-300;
+$permissionlegend__granted-icon-hover--color: lighten($permissionlegend__granted-icon--color, 1);
+$permissionlegend__denied-icon--color: $orange__default--300;
+$permissionlegend__denied-icon-hover--color: lighten($permissionlegend__denied-icon--color, 1);

@@ -1,0 +1,25 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+
+# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+
+$lang=en
+
+INSERT_UPDATE FutureConstraint;id[unique=true,allownull=true];message[lang=$lang]
+;campaignEndDate;End date cannot be in the past
+
+INSERT_UPDATE NotEmptyConstraint;id[unique=true,allownull=true];message[lang=$lang]
+;campaignCodeNotEmpty;Campaign code cannot be null or empty
+
+INSERT_UPDATE DynamicConstraint;id[unique=true,allownull=true];message[lang=$lang]
+;campaignDateDiffConstraint;"End date must be after start date"
+
+INSERT_UPDATE SizeConstraint;id[unique=true,allownull=true];message[lang=$lang]
+;campaignCodeMinLength;"Campaign Code should be at least 2 characters long but not more than 255"

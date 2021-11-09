@@ -1,0 +1,16 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+secureportaladdon.application-context=secureportaladdon-spring.xml
+
+# Add a reference to the storefront you want to add this addon to
+yacceleratorstorefront.additionalWebSpringConfigs.secureportaladdon=classpath:/secureportaladdon/web/spring/secureportaladdon-web-spring.xml
+
+# This value should always match the value of PasswordResetPageController.REDIRECT_LOGIN
+default.login.uri=/login
+
+checkout.login.uri=/login/checkout
+
+secureportaladdon.javascript.paths.responsive=/responsive/common/js/secureportaladdon.js
+
+email.regex=\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}\\b

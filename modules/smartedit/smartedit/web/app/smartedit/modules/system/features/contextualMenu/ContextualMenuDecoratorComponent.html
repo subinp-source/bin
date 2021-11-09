@@ -1,0 +1,60 @@
+<div
+    class="se-ctx-menu-decorator-wrapper"
+    [ngClass]="{'se-ctx-menu-decorator__border--visible': showContextualMenuBorders()}"
+>
+    <div class="se-ctx-menu__overlay" *ngIf="showOverlay() || status.isopen">
+        <div class="se-ctx-menu__overlay__left-section" *ngIf="getItems()">
+            <div
+                *ngFor="let item of getItems().leftMenuItems; let $index = index"
+                id="{{ item.key }}"
+            >
+                <se-popup-overlay
+                    [popupOverlay]="itemTemplateOverlayWrapper"
+                    [popupOverlayTrigger]="shouldShowTemplate(item)"
+                    [popupOverlayData]="{ item: item }"
+                    (popupOverlayOnShow)="onShowItemPopup(item)"
+                    (popupOverlayOnHide)="onHideItemPopup(false)"
+                >
+                    <se-contextual-menu-item
+                        [mode]="'small'"
+                        [index]="$index"
+                        [componentAttributes]="componentAttributes"
+                        [slotAttributes]="slotAttributes"
+                        [itemConfig]="item"
+                        (click)="triggerMenuItemAction(item, $event)"
+                        [attr.data-component-id]="smarteditComponentId"
+                        [attr.data-component-uuid]="componentAttributes.smarteditComponentUuid"
+                        [attr.data-component-type]="smarteditComponentType"
+                        [attr.data-slot-id]="smarteditSlotId"
+                        [attr.data-slot-uuid]="smarteditSlotUuid"
+                        [attr.data-container-id]="smarteditContainerId"
+                        [attr.data-container-type]="smarteditContainerType"
+                    >
+                    </se-contextual-menu-item>
+                </se-popup-overlay>
+            </div>
+        </div>
+
+        <se-popup-overlay
+            [popupOverlay]="moreMenuPopupConfig"
+            [popupOverlayTrigger]="moreMenuIsOpen"
+            (popupOverlayOnShow)="onShowMoreMenuPopup()"
+            (popupOverlayOnHide)="onHideMoreMenuPopup()"
+        >
+            <div
+                *ngIf="getItems() && getItems().moreMenuItems.length > 0"
+                class="se-ctx-menu-element__btn se-ctx-menu-element__btn--more"
+                [ngClass]="{'se-ctx-menu-element__btn--more--open': moreMenuIsOpen }"
+                (click)="toggleMoreMenu()"
+            >
+                <span
+                    [title]="moreButton.i18nKey | translate"
+                    class="{{moreButton.displayClass}}"
+                ></span>
+            </div>
+        </se-popup-overlay>
+    </div>
+    <div class="se-wrapper-data">
+        <div><ng-content></ng-content></div>
+    </div>
+</div>

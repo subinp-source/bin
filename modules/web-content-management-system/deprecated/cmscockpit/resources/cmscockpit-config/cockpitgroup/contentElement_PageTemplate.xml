@@ -1,0 +1,7 @@
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<content-elements>
+	<content-element type="PageTemplate" name="type.pagetemplate.name" description="type.pagetemplate.description"
+		image="cmscockpit/images/pagetemplate_default.gif" />
+</content-elements>	

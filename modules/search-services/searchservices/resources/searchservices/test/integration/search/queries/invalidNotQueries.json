@@ -1,0 +1,20 @@
+[
+	{
+		"testId": 1,
+		"description": "'not' query without query",
+		"data": {
+			"type": "not"
+		}
+	},
+	{
+		"testId": 2,
+		"description": "'not' query with invalid query",
+		"data": {
+			"type": "not",
+			"query": {
+				"type": "matchTerm",
+				"value": "doc2"
+			}
+		}
+	}
+]

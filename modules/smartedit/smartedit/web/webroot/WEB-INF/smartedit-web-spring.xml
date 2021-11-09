@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<!-- WARNING: This is the Spring WEB configuration file. If you want to replace items or managers you have to do this from the extensions
+	core configuration file (previewwebservices/resources/previewwebservices-spring.xml) -->
+
+<!--suppress SpringFacetInspection -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<import resource="classpath*:spring-web/smartedit-spring.xml" />
+    <import resource="classpath*:spring-web/spring-security-config.xml" />
+    <import resource="classpath*:spring-web/spring-filter-config.xml" />
+    <import resource="classpath*:spring-web/spring-integration-config.xml" />
+    <import resource="classpath*:spring-web/error-config-spring.xml"/>
+
+</beans>
+

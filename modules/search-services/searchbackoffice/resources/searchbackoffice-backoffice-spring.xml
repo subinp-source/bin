@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:cng="http://www.hybris.com/cockpitng/spring"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.hybris.com/cockpitng/spring
+           http://www.hybris.com/cockpitng/spring/cng-spring.xsd">
+
+	<bean id="searchbackofficeLabelLocator" class="com.hybris.cockpitng.util.labels.ResourcesLabelLocator"
+		scope="singleton" init-method="init" lazy-init="false">
+		<property name="location" value="/searchbackoffice-backoffice-labels/" />
+		<property name="name" value="labels" />
+	</bean>
+
+	<alias name="defaultBeansSnDataProvider" alias="beansSnDataProvider" />
+	<bean id="defaultBeansSnDataProvider" class="de.hybris.platform.searchbackoffice.common.impl.BeansSnDataProvider" />
+
+	<alias name="defaultQualifierTypesSnDataProvider" alias="qualifierTypesSnDataProvider" />
+	<bean id="defaultQualifierTypesSnDataProvider"
+		class="de.hybris.platform.searchbackoffice.common.impl.QualifierTypesSnDataProvider">
+		<property name="snQualifierTypeFactory" ref="snQualifierTypeFactory" />
+	</bean>
+
+	<alias name="defaultSnRunIndexerWizardStepOneRenderer" alias="snRunIndexerWizardStepOneRenderer" />
+	<bean id="defaultSnRunIndexerWizardStepOneRenderer"
+		class="de.hybris.platform.searchbackoffice.wizards.SnRunIndexerWizardStepOneRenderer" scope="prototype">
+		<property name="labelService" ref="labelService" />
+	</bean>
+
+	<alias name="defaultSnRunIndexerWizardRunActionHandler" alias="snRunIndexerWizardRunActionHandler" />
+	<bean id="defaultSnRunIndexerWizardRunActionHandler"
+		class="de.hybris.platform.searchbackoffice.wizards.SnRunIndexerWizardRunActionHandler">
+		<property name="cronJobService" ref="cronJobService" />
+	</bean>
+
+	<cng:map-extender bean="backofficeCronJobHistoryIncludes">
+		<cng:put key-type="java.lang.String"
+			value-type="de.hybris.platform.servicelayer.cronjob.CronJobHistoryInclude">
+			<entry key="snIndexerCronJobs">
+				<bean class="de.hybris.platform.servicelayer.cronjob.CronJobHistoryInclude">
+					<property name="cronJobTypeCode">
+						<value>AbstractSnIndexerCronJob</value>
+					</property>
+				</bean>
+			</entry>
+		</cng:put>
+	</cng:map-extender>
+</beans>

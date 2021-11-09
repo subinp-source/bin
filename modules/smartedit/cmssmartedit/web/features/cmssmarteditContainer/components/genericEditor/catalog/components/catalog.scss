@@ -1,0 +1,59 @@
+.se-catalog-aware-selector__add-item-btn {
+    @include se-flex-row;
+    color: fd-color('action', 1);
+}
+.se-category-row-container--item {
+    display: grid;
+    grid-template-columns: 6fr 6fr 8fr;
+    grid-column-gap: 12px;
+    width: 100%;
+    padding: 0 8px;
+}
+.se-category-row-container--node {
+    padding: 0 fd-space('s');
+    display: grid;
+    grid-column-gap: fd-space('xs');
+    align-items: center;
+
+    &-no-drag {
+        grid-template-columns: 6fr 6fr 8fr;
+    }
+    &-drag {
+        grid-template-columns: 6fr 6fr 7fr 1fr;
+    }
+}
+
+.se-product-row {
+    margin: 0 !important; // Override Techne
+    width: 100%;
+}
+.se-product-row-container {
+    display: grid;
+    grid-template-columns: 1fr 5fr 5fr 7fr;
+    grid-column-gap: 12px;
+    width: 100%;
+    align-items: center;
+    padding: 0 fd-space('xxs');
+
+    &--node-no-drag {
+        grid-template-columns: 1fr 6fr 6fr 7fr;
+        cursor: default;
+    }
+    &--node-drag {
+        grid-template-columns: 1fr 5fr 5fr 7fr 0.5fr;
+    }
+    .se-default-product-img {
+        padding: 2px;
+        width: 36px;
+        height: 36px;
+        font-size: 0.35rem;
+    }
+}
+.se-product-row__product,
+.se-product-row__catalog {
+    @include se-text-ellipsis;
+}
+
+.se-product-row__catalog {
+    text-align: right;
+}

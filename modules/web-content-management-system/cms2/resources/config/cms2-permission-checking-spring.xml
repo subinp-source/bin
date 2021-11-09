@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+
+    <alias name="defaultPermissionEnablerService" alias="cmsPermissionEnablerService" />
+    <bean id="defaultPermissionEnablerService" class="de.hybris.platform.cms2.permissions.impl.DefaultPermissionEnablerService">
+        <property name="permissionConfigs" ref="cmsPermissionCheckerConfiguration" />
+        <property name="typeService" ref="typeService" />
+        <property name="checkingAllAttributes" value="${permission.checking.all.attributes.enabled}" />
+        <property name="checkingAllTypes" value="${permission.checking.all.types.enabled}" />
+    </bean>
+
+    <alias name="permissionCheckerConfiguration" alias="cmsPermissionCheckerConfiguration" />
+    <util:list id="permissionCheckerConfiguration" value-type="de.hybris.platform.cms2.data.AttributePermissionForType" />
+
+    <bean id="workflowPermissionMergeDirective" depends-on="cmsPermissionCheckerConfiguration" parent="listMergeDirective" >
+        <property name="add" ref="workflowPermissionConfig" />
+    </bean>
+
+    <bean id="cmsItemPermissionMergeDirective" depends-on="cmsPermissionCheckerConfiguration" parent="listMergeDirective" >
+        <property name="add" ref="cmsItemPermissionConfig" />
+    </bean>
+
+    <bean id="workflowPermissionConfig" class="de.hybris.platform.cms2.data.AttributePermissionForType" p:typecode="Workflow" p:include="status, description" />
+    <bean id="cmsItemPermissionConfig" class="de.hybris.platform.cms2.data.AttributePermissionForType" p:typecode="CMSItem" p:include="itemtype" />
+</beans>

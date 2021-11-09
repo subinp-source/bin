@@ -1,0 +1,51 @@
+@import "cockpitng-globals.scss";
+
+$workflowdesigner__chart-container--height: 680px;
+$workflowdesigner__chart-empty--bg-image: url('../images/workflowdesigner/empty-workflow-placeholder.png') no-repeat center center;
+
+$workflowdesigner__toolbar--border-top: $boxes--border__thin solid $grey__light--800;
+$workflowdesigner__toolbar--border-bottom: $workflowdesigner__toolbar--border-top;
+$workflowdesigner__toolbar--padding: 7px $container-spacing-default__half;
+$workflowdesigner__toolbar--bg-color: $white;
+
+$workflowdesigner__toolbar-button--padding: ($container-spacing-default__half / 2) $container-spacing-default__third;
+$workflowdesigner__toolbar-button--color: #5f7084;
+$workflowdesigner__toolbar-button--border: $boxes--border__thin solid transparent;
+$workflowdesigner__toolbar-button-hover--border-color: $grey__light--700;
+$workflowdesigner__toolbar-button-hover--color: $blue__default;
+$workflowdesigner__toolbar-button-icon--size: 18px;
+$workflowdesigner__toolbar-button-icon--left: $container-spacing-default__third;
+$workflowdesigner__toolbar-button-icon--top: 50%;
+
+$workflowdesigner__toolbar-button-icon-connect--bg-image: url('../images/workflowdesigner/connect/connect-nodes_default.png');
+$workflowdesigner__toolbar-button-icon-connect-hover--bg-image: url('../images/workflowdesigner/connect/connect-nodes_hover.png');
+$workflowdesigner__toolbar-button-icon-add--bg-image: url('../images/workflowdesigner/add/add-nodes_default.png');
+$workflowdesigner__toolbar-button-icon-add-hover--bg-image: url('../images/workflowdesigner/add/add-nodes_hover.png');
+$workflowdesigner__toolbar-button-icon-edit--bg-image: url('../images/workflowdesigner/edit/edit-nodes_default.png');
+$workflowdesigner__toolbar-button-icon-edit-hover--bg-image: url('../images/workflowdesigner/edit/edit-nodes_hover.png');
+$workflowdesigner__toolbar-button-icon-delete--bg-image: url('../images/workflowdesigner/delete/delete-nodes_default.png');
+$workflowdesigner__toolbar-button-icon-delete-hover--bg-image: url('../images/workflowdesigner/delete/delete-nodes_hover.png');
+$workflowdesigner__toolbar-button-icon-back--bg-image: url('../images/workflowdesigner/back/back_default.png');
+$workflowdesigner__toolbar-button-icon-back-hover--bg-image: url('../images/workflowdesigner/back/back_hover.png');
+
+$workflowdesigner__toolbar-button-label--font-size: $font-size__semi-base;
+$workflowdesigner__toolbar-button-label--line-height: 22px;
+
+$workflowdesigner__toolbar-separator--height: 28px;
+$workflowdesigner__toolbar-separator--margin: 5px ($container-spacing-default__half / 2);
+
+$workflowdesigner__button-container--border-top: $boxes--border__thin solid $grey__default;
+$workflowdesigner__button-container--padding: $container-spacing-default__third $container-spacing-default_two-thirds;
+
+$workflowdesigner__notification-bar--top: ($editor-defaults__inline-box--height + ($container-spacing-default__third * 2) + $workflowdesigner__toolbar-button-label--line-height + (nth($workflowdesigner__toolbar--padding, 1) * 2) + (nth($workflowdesigner__toolbar-button--padding, 1) * 2) + (nth($workflowdesigner__toolbar-button--border, 1) *2) + (nth($workflowdesigner__toolbar--border-top, 1) * 2)); //115px;
+
+$workflowdesigner__add-popup--bg-color: $white;
+$workflowdesigner__add-popup--box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.5);
+$workflowdesigner__add-popup--min-width: 165px;
+$workflowdesigner__add-popup-item--border-top: $boxes--border__thin solid $grey__light--800;
+$workflowdesigner__add-popup-item--color: $black__blueish--200;
+$workflowdesigner__add-popup-item-content--color: $black__blueish--200;
+$workflowdesigner__add-popup-item-content-hover--bg-color: $grey__light--1200;
+$workflowdesigner__add-popup-item-text-hover--color: $blue__default;
+
+

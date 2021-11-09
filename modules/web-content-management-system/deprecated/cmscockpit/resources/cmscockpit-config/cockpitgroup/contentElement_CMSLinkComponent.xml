@@ -1,0 +1,8 @@
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<content-elements>
+<content-element type="CMSLinkComponent" name="type.linkelement.name" description="type.linkelement.description"
+	image="cmscockpit/images/ContentElementLinkInternal.gif" refImage="cmscockpit/images/ContentElementLinkInternalReference.gif"
+	imageSmall="cmscockpit/images/ContentElementLinkInternalSmall.gif" />
+</content-elements>

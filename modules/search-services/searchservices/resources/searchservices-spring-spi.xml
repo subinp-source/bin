@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/util
+		   http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<!-- Model Attributes & Interceptors -->
+
+	<alias name="defaultSnSearchProviderConfigurationInterceptor" alias="snSearchProviderConfigurationInterceptor" />
+	<bean id="defaultSnSearchProviderConfigurationInterceptor"
+		class="de.hybris.platform.searchservices.spi.model.interceptor.SnSearchProviderConfigurationInterceptor"
+		parent="abstractSnInterceptor" />
+
+	<bean id="snSearchProviderConfigurationInterceptorMapping"
+		class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="snSearchProviderConfigurationInterceptor" />
+		<property name="typeCode" value="AbstractSnSearchProviderConfiguration" />
+	</bean>
+	
+	<!-- Converters & Populators -->
+
+	<alias name="defaultSnSearchProviderConfigurationPopulator" alias="snSearchProviderConfigurationPopulator" />
+	<bean id="defaultSnSearchProviderConfigurationPopulator"
+		class="de.hybris.platform.searchservices.spi.converter.populator.SnSearchProviderConfigurationPopulator">
+		<property name="i18NService" ref="i18NService" />
+	</bean>
+		
+	<!-- Services -->
+
+	<alias name="defaultSnSearchProviderFactory" alias="snSearchProviderFactory" />
+	<bean id="defaultSnSearchProviderFactory"
+		class="de.hybris.platform.searchservices.spi.service.impl.DefaultSnSearchProviderFactory" />
+
+	<bean id="snSearchProviderMapping"
+		class="de.hybris.platform.searchservices.spi.service.impl.DefaultSnSearchProviderMapping" abstract="true" />
+
+</beans>

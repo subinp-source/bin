@@ -1,0 +1,7 @@
+// Temporary solution, fd-popover-container is requested to have class attachable to it will make it easier to style.
+// Right now the only popover that is attached to body is the PopupOverlay so it won't interfere with other usages of popover.
+// As soon as Fundamental team make it possible we need to apply a custom class this element in order to style it.
+
+body > .fd-popover-container-custom {
+    z-index: 1060 !important;
+}

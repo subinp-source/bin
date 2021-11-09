@@ -1,0 +1,79 @@
+<div data-ng-class="$ctrl.getWorkflowActionStatusClass()">
+    <se-collapsible-container
+        data-ng-if="$ctrl.isReady"
+        class="se-catalog-details__collapse fd-panel"
+        id="{{$ctrl.workflowAction.code}}"
+        (get-api)="$ctrl.getCollapsibleContainerApi($event)"
+    >
+        <se-collapsible-container-header>
+            <div class="fd-panel__header">
+                <div class="fd-panel__head">
+                    <h1 class="fd-panel__title">{{$ctrl.workflowAction.name}}</h1>
+                    <p class="fd-panel__description">
+                        {{$ctrl.getReadableStatus()}} {{$ctrl.getActiveSince()}}
+                    </p>
+                </div>
+            </div>
+            <div class="fd-panel__body">
+                {{$ctrl.workflowAction.description}}
+
+                <!-- Decision Button(s) -->
+                <div
+                    data-ng-if="$ctrl.displayDecisionsButtons()"
+                    class="fd-dropdown se-workflow-action-item__decision-btn"
+                >
+                    <div class="fd-popover">
+                        <div class="fd-popover__control">
+                            <div
+                                data-ng-class="{ 'fd-button-split': $ctrl.workflowAction.decisions.length > 1 }"
+                            >
+                                <button
+                                    class="fd-button--compact"
+                                    id="{{$ctrl.workflowAction.code}}-decision-button"
+                                    data-ng-click="$ctrl.onMainButtonClick($event, $ctrl.workflowAction.decisions[0])"
+                                    type="button"
+                                >
+                                    {{$ctrl.workflowAction.decisions[0].name}}
+                                </button>
+                                <se-popup-overlay
+                                    [popup-overlay]="$ctrl.popupConfig"
+                                    [popup-overlay-trigger]="$ctrl.isMenuOpen"
+                                    (popup-overlay-on-hide)="$ctrl.onMenuHide()"
+                                >
+                                    <button
+                                        id="{{$ctrl.workflowAction.code}}-decision-split-button"
+                                        data-ng-if="$ctrl.workflowAction.decisions.length > 1"
+                                        class="fd-button--compact menu-button sap-icon--slim-arrow-down"
+                                        data-ng-click="$ctrl.onSplitButtonClick($event)"
+                                    ></button>
+                                </se-popup-overlay>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </se-collapsible-container-header>
+        <se-collapsible-container-content>
+            <div class="se-workflow-action-item__content" data-ng-if="$ctrl.showComments()">
+                <span
+                    data-ng-if="$ctrl.hasNoComments"
+                    class="se-workflow-action-item__comments-list fd-has-font-style-italic fd-has-color-text-4"
+                    data-translate="se.cms.actionitem.page.workflow.action.no.comments.available"
+                ></span>
+                <se-infinite-scrolling
+                    [page-size]="$ctrl.pageSize"
+                    [fetch-page]="$ctrl.loadComments"
+                    [context]="$ctrl"
+                >
+                    <div data-ng-repeat="item in $ctrl.items track by $index">
+                        <workflow-action-comment
+                            data-workflow-action="$ctrl.workflowAction"
+                            data-action-comment="item"
+                        >
+                        </workflow-action-comment>
+                    </div>
+                </se-infinite-scrolling>
+            </div>
+        </se-collapsible-container-content>
+    </se-collapsible-container>
+</div>

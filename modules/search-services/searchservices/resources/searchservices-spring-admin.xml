@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/util
+		   http://www.springframework.org/schema/util/spring-util.xsd">
+		   
+	<!-- Model Attributes & Interceptors -->
+
+	<alias name="defaultSnIndexConfigurationInterceptor" alias="snIndexConfigurationInterceptor" />
+	<bean id="defaultSnIndexConfigurationInterceptor"
+		class="de.hybris.platform.searchservices.admin.model.interceptor.SnIndexConfigurationInterceptor"
+		parent="abstractSnInterceptor" />
+
+	<bean id="snConfigurationInterceptorMapping"
+		class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="snIndexConfigurationInterceptor" />
+		<property name="typeCode" value="SnIndexConfiguration" />
+	</bean>
+
+	<alias name="defaultSnIndexTypeInterceptor" alias="snIndexTypeInterceptor" />
+	<bean id="defaultSnIndexTypeInterceptor"
+		class="de.hybris.platform.searchservices.admin.model.interceptor.SnIndexTypeInterceptor"
+		parent="abstractSnInterceptor" />
+
+	<bean id="snTypeInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="snIndexTypeInterceptor" />
+		<property name="typeCode" value="SnIndexType" />
+	</bean>
+
+	<alias name="defaultSnFieldInterceptor" alias="snFieldInterceptor" />
+	<bean id="defaultSnFieldInterceptor"
+		class="de.hybris.platform.searchservices.admin.model.interceptor.SnFieldInterceptor" parent="abstractSnInterceptor" />
+
+	<bean id="snFieldInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="snFieldInterceptor" />
+		<property name="typeCode" value="SnField" />
+	</bean>
+
+	<alias name="defaultSnSynonymDictionaryInterceptor" alias="snSynonymDictionaryInterceptor" />
+	<bean id="defaultSnSynonymDictionaryInterceptor"
+		class="de.hybris.platform.searchservices.admin.model.interceptor.SnSynonymDictionaryInterceptor"
+		parent="abstractSnInterceptor" />
+
+	<bean id="snSynonymDictionaryInterceptorMapping"
+		class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="snSynonymDictionaryInterceptor" />
+		<property name="typeCode" value="SnSynonymDictionary" />
+	</bean>
+
+	<alias name="defaultSnSynonymEntryInterceptor" alias="snSynonymEntryInterceptor" />
+	<bean id="defaultSnSynonymEntryInterceptor"
+		class="de.hybris.platform.searchservices.admin.model.interceptor.SnSynonymEntryInterceptor"
+		parent="abstractSnInterceptor" />
+
+	<bean id="snSynonymEntryInterceptorMapping"
+		class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping">
+		<property name="interceptor" ref="snSynonymEntryInterceptor" />
+		<property name="typeCode" value="SnSynonymEntry" />
+	</bean>
+
+	<!-- DAOs -->
+
+	<alias name="defaultSnIndexConfigurationDao" alias="snIndexConfigurationDao" />
+	<bean id="defaultSnIndexConfigurationDao"
+		class="de.hybris.platform.searchservices.admin.dao.impl.DefaultSnIndexConfigurationDao" />
+
+	<alias name="defaultSnIndexTypeDao" alias="snIndexTypeDao" />
+	<bean id="defaultSnIndexTypeDao" class="de.hybris.platform.searchservices.admin.dao.impl.DefaultSnIndexTypeDao" />
+
+	<alias name="defaultSnFieldDao" alias="snFieldDao" />
+	<bean id="defaultSnFieldDao" class="de.hybris.platform.searchservices.admin.dao.impl.DefaultSnFieldDao" />
+
+	<alias name="defaultSnSynonymDictionaryDao" alias="snSynonymDictionaryDao" />
+	<bean id="defaultSnSynonymDictionaryDao"
+		class="de.hybris.platform.searchservices.admin.dao.impl.DefaultSnSynonymDictionaryDao" />
+
+	<!-- Converters & Populators -->
+
+	<alias name="defaultSnCatalogVersionPopulator" alias="snCatalogVersionPopulator" />
+	<bean id="defaultSnCatalogVersionPopulator"
+		class="de.hybris.platform.searchservices.admin.converter.populator.SnCatalogVersionPopulator" />
+
+	<alias name="defaultSnCatalogVersionConverter" alias="snCatalogVersionConverter" />
+	<bean id="defaultSnCatalogVersionConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.searchservices.admin.data.SnCatalogVersion" />
+		<property name="populators">
+			<list>
+				<ref bean="snCatalogVersionPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultSnLanguagePopulator" alias="snLanguagePopulator" />
+	<bean id="defaultSnLanguagePopulator"
+		class="de.hybris.platform.searchservices.admin.converter.populator.SnLanguagePopulator">
+		<property name="i18NService" ref="i18NService" />
+	</bean>
+
+	<alias name="defaultSnLanguageConverter" alias="snLanguageConverter" />
+	<bean id="defaultSnLanguageConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.searchservices.admin.data.SnLanguage" />
+		<property name="populators">
+			<list>
+				<ref bean="snLanguagePopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultSnCurrencyPopulator" alias="snCurrencyPopulator" />
+	<bean id="defaultSnCurrencyPopulator"
+		class="de.hybris.platform.searchservices.admin.converter.populator.SnCurrencyPopulator">
+		<property name="i18NService" ref="i18NService" />
+	</bean>
+
+	<alias name="defaultSnCurrencyConverter" alias="snCurrencyConverter" />
+	<bean id="defaultSnCurrencyConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.searchservices.admin.data.SnCurrency" />
+		<property name="populators">
+			<list>
+				<ref bean="snCurrencyPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultSnIndexConfigurationPopulator" alias="snIndexConfigurationPopulator" />
+	<bean id="defaultSnIndexConfigurationPopulator"
+		class="de.hybris.platform.searchservices.admin.converter.populator.SnIndexConfigurationPopulator">
+		<property name="i18NService" ref="i18NService" />
+		<property name="snLanguageConverter" ref="snLanguageConverter" />
+		<property name="snCurrencyConverter" ref="snCurrencyConverter" />
+		<property name="snSearchProviderFactory" ref="snSearchProviderFactory" />
+	</bean>
+
+	<alias name="defaultSnIndexConfigurationConverter" alias="snIndexConfigurationConverter" />
+	<bean id="defaultSnIndexConfigurationConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.searchservices.admin.data.SnIndexConfiguration" />
+		<property name="populators">
+			<list>
+				<ref bean="snIndexConfigurationPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultSnIndexTypePopulator" alias="snIndexTypePopulator" />
+	<bean id="defaultSnIndexTypePopulator"
+		class="de.hybris.platform.searchservices.admin.converter.populator.SnIndexTypePopulator">
+		<property name="i18NService" ref="i18NService" />
+		<property name="snCatalogVersionConverter" ref="snCatalogVersionConverter" />
+		<property name="snFieldFactory" ref="snFieldFactory" />
+		<property name="snFieldConverter" ref="snFieldConverter" />
+	</bean>
+
+	<alias name="defaultSnIndexTypeConverter" alias="snIndexTypeConverter" />
+	<bean id="defaultSnIndexTypeConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.searchservices.admin.data.SnIndexType" />
+		<property name="populators">
+			<list>
+				<ref bean="snIndexTypePopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultSnFieldPopulator" alias="snFieldPopulator" />
+	<bean id="defaultSnFieldPopulator"
+		class="de.hybris.platform.searchservices.admin.converter.populator.SnFieldPopulator">
+		<property name="i18NService" ref="i18NService" />
+	</bean>
+
+	<alias name="defaultSnFieldConverter" alias="snFieldConverter" />
+	<bean id="defaultSnFieldConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.searchservices.admin.data.SnField" />
+		<property name="populators">
+			<list>
+				<ref bean="snFieldPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultSnSynonymDictionaryPopulator" alias="snSynonymDictionaryPopulator" />
+	<bean id="defaultSnSynonymDictionaryPopulator"
+		class="de.hybris.platform.searchservices.admin.converter.populator.SnSynonymDictionaryPopulator">
+		<property name="i18NService" ref="i18NService" />
+		<property name="snSynonymEntryConverter" ref="snSynonymEntryConverter" />
+	</bean>
+
+	<alias name="defaultSnSynonymDictionaryConverter" alias="snSynonymDictionaryConverter" />
+	<bean id="defaultSnSynonymDictionaryConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.searchservices.admin.data.SnSynonymDictionary" />
+		<property name="populators">
+			<list>
+				<ref bean="snSynonymDictionaryPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultSnSynonymEntryPopulator" alias="snSynonymEntryPopulator" />
+	<bean id="defaultSnSynonymEntryPopulator"
+		class="de.hybris.platform.searchservices.admin.converter.populator.SnSynonymEntryPopulator">
+	</bean>
+
+	<alias name="defaultSnSynonymEntryConverter" alias="snSynonymEntryConverter" />
+	<bean id="defaultSnSynonymEntryConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.searchservices.admin.data.SnSynonymEntry" />
+		<property name="populators">
+			<list>
+				<ref bean="snSynonymEntryPopulator" />
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Services -->
+
+	<alias name="defaultSnIndexConfigurationService" alias="snIndexConfigurationService" />
+	<bean id="defaultSnIndexConfigurationService"
+		class="de.hybris.platform.searchservices.admin.service.impl.DefaultSnIndexConfigurationService">
+		<property name="snIndexConfigurationDao" ref="snIndexConfigurationDao" />
+		<property name="snIndexConfigurationConverter" ref="snIndexConfigurationConverter" />
+	</bean>
+
+	<alias name="defaultSnIndexTypeService" alias="snIndexTypeService" />
+	<bean id="defaultSnIndexTypeService"
+		class="de.hybris.platform.searchservices.admin.service.impl.DefaultSnIndexTypeService">
+		<property name="snIndexConfigurationDao" ref="snIndexConfigurationDao" />
+		<property name="snIndexTypeDao" ref="snIndexTypeDao" />
+		<property name="snIndexTypeConverter" ref="snIndexTypeConverter" />
+	</bean>
+
+	<alias name="defaultSnSynonymDictionaryService" alias="snSynonymDictionaryService" />
+	<bean id="defaultSnSynonymDictionaryService"
+		class="de.hybris.platform.searchservices.admin.service.impl.DefaultSnSynonymDictionaryService">
+		<property name="snSynonymDictionaryDao" ref="snSynonymDictionaryDao" />
+		<property name="snSynonymDictionaryConverter" ref="snSynonymDictionaryConverter" />
+	</bean>
+
+	<alias name="defaultSnCommonConfigurationService" alias="snCommonConfigurationService" />
+	<bean id="defaultSnCommonConfigurationService"
+		class="de.hybris.platform.searchservices.admin.service.impl.DefaultSnCommonConfigurationService">
+		<property name="userService" ref="userService" />
+		<property name="commonI18NService" ref="commonI18NService" />
+		<property name="catalogService" ref="catalogService" />
+		<property name="catalogVersionService" ref="catalogVersionService" />
+		<property name="snIndexConfigurationService" ref="snIndexConfigurationService" />
+		<property name="snIndexTypeService" ref="snIndexTypeService" />
+		<property name="snFieldTypeRegistry" ref="snFieldTypeRegistry" />
+	</bean>
+
+	<alias name="defaultSnFieldTypeRegistry" alias="snFieldTypeRegistry" />
+	<bean id="defaultSnFieldTypeRegistry"
+		class="de.hybris.platform.searchservices.admin.service.impl.DefaultSnFieldTypeRegistry" />
+
+	<alias name="defaultStringSnFieldType" alias="stringSnFieldType" />
+	<bean id="defaultStringSnFieldType" class="de.hybris.platform.searchservices.admin.data.SnFieldTypeInfo">
+		<property name="fieldType" value="STRING" />
+		<property name="valueType" value="java.lang.String" />
+		<property name="facetable" value="true" />
+		<property name="sortable" value="true" />
+		<property name="searchable" value="true" />
+		<property name="groupable" value="true" />
+		<property name="supportedQueryTypes">
+			<list>
+				<value>matchTerm</value>
+				<value>matchTerms</value>
+				<value>match</value>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultTextSnFieldType" alias="textSnFieldType" />
+	<bean id="defaultTextSnFieldType" class="de.hybris.platform.searchservices.admin.data.SnFieldTypeInfo">
+		<property name="fieldType" value="TEXT" />
+		<property name="valueType" value="java.lang.String" />
+		<property name="facetable" value="false" />
+		<property name="sortable" value="false" />
+		<property name="searchable" value="true" />
+		<property name="groupable" value="false" />
+		<property name="supportedQueryTypes">
+			<list>
+				<value>match</value>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultBooleanSnFieldType" alias="booleanSnFieldType" />
+	<bean id="defaultBooleanSnFieldType" class="de.hybris.platform.searchservices.admin.data.SnFieldTypeInfo">
+		<property name="fieldType" value="BOOLEAN" />
+		<property name="valueType" value="java.lang.Boolean" />
+		<property name="facetable" value="true" />
+		<property name="sortable" value="true" />
+		<property name="searchable" value="false" />
+		<property name="groupable" value="true" />
+		<property name="supportedQueryTypes">
+			<list>
+				<value>eq</value>
+				<value>ne</value>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultIntegerSnFieldType" alias="integerSnFieldType" />
+	<bean id="defaultIntegerSnFieldType" class="de.hybris.platform.searchservices.admin.data.SnFieldTypeInfo">
+		<property name="fieldType" value="INTEGER" />
+		<property name="valueType" value="java.lang.Integer" />
+		<property name="facetable" value="true" />
+		<property name="sortable" value="true" />
+		<property name="searchable" value="false" />
+		<property name="groupable" value="true" />
+		<property name="supportedQueryTypes">
+			<list>
+				<value>eq</value>
+				<value>ne</value>
+				<value>ge</value>
+				<value>gt</value>
+				<value>le</value>
+				<value>lt</value>
+				<value>range</value>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultLongSnFieldType" alias="longSnFieldType" />
+	<bean id="defaultLongSnFieldType" class="de.hybris.platform.searchservices.admin.data.SnFieldTypeInfo">
+		<property name="fieldType" value="LONG" />
+		<property name="valueType" value="java.lang.Long" />
+		<property name="facetable" value="true" />
+		<property name="sortable" value="true" />
+		<property name="searchable" value="false" />
+		<property name="groupable" value="true" />
+		<property name="supportedQueryTypes">
+			<list>
+				<value>eq</value>
+				<value>ne</value>
+				<value>ge</value>
+				<value>gt</value>
+				<value>le</value>
+				<value>lt</value>
+				<value>range</value>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultFloatSnFieldType" alias="floatSnFieldType" />
+	<bean id="defaultFloatSnFieldType" class="de.hybris.platform.searchservices.admin.data.SnFieldTypeInfo">
+		<property name="fieldType" value="FLOAT" />
+		<property name="valueType" value="java.lang.Float" />
+		<property name="facetable" value="true" />
+		<property name="sortable" value="true" />
+		<property name="searchable" value="false" />
+		<property name="groupable" value="true" />
+		<property name="supportedQueryTypes">
+			<list>
+				<value>eq</value>
+				<value>ne</value>
+				<value>ge</value>
+				<value>gt</value>
+				<value>le</value>
+				<value>lt</value>
+				<value>range</value>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultDoubleSnFieldType" alias="doubleSnFieldType" />
+	<bean id="defaultDoubleSnFieldType" class="de.hybris.platform.searchservices.admin.data.SnFieldTypeInfo">
+		<property name="fieldType" value="DOUBLE" />
+		<property name="valueType" value="java.lang.Double" />
+		<property name="facetable" value="true" />
+		<property name="sortable" value="true" />
+		<property name="searchable" value="false" />
+		<property name="groupable" value="true" />
+		<property name="supportedQueryTypes">
+			<list>
+				<value>eq</value>
+				<value>ne</value>
+				<value>ge</value>
+				<value>gt</value>
+				<value>le</value>
+				<value>lt</value>
+				<value>range</value>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultDateTimeSnFieldType" alias="dateTimeSnFieldType" />
+	<bean id="defaultDateTimeSnFieldType" class="de.hybris.platform.searchservices.admin.data.SnFieldTypeInfo">
+		<property name="fieldType" value="DATE_TIME" />
+		<property name="valueType" value="java.util.Date" />
+		<property name="facetable" value="true" />
+		<property name="sortable" value="true" />
+		<property name="searchable" value="false" />
+		<property name="groupable" value="true" />
+		<property name="supportedQueryTypes">
+			<list>
+				<value>eq</value>
+				<value>ne</value>
+				<value>ge</value>
+				<value>gt</value>
+				<value>le</value>
+				<value>lt</value>
+				<value>range</value>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultSnFieldFactory" alias="snFieldFactory" />
+	<bean id="defaultSnFieldFactory"
+		class="de.hybris.platform.searchservices.admin.service.impl.DefaultSnFieldFactory">
+	</bean>
+
+	<bean id="snFieldProviderDefinition"
+		class="de.hybris.platform.searchservices.admin.service.impl.DefaultSnFieldProviderDefinition" abstract="true">
+		<property name="priority" value="${searchservices.fieldProviders.priority.default}" />
+	</bean>
+
+	<alias name="defaultCoreSnFieldProvider" alias="coreSnFieldProvider" />
+	<bean id="defaultCoreSnFieldProvider"
+		class="de.hybris.platform.searchservices.admin.service.impl.CoreSnFieldProvider">
+		<property name="catalogTypeService" ref="catalogTypeService" />
+	</bean>
+
+	<bean id="coreSnFieldProviderDefinition" parent="snFieldProviderDefinition">
+		<property name="priority" value="1200" />
+		<property name="fieldProvider" ref="coreSnFieldProvider" />
+	</bean>
+
+</beans>

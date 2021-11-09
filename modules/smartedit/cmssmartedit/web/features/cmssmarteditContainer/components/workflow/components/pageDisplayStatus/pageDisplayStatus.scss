@@ -1,0 +1,47 @@
+// Page Status
+.se-page-status-toolbar-container {
+    padding-left: 5px;
+    padding-right: 20px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    border-left: 1px solid fd-color('neutral', 3);
+}
+
+.se-page-status {
+    @include se-flex-row();
+}
+
+.se-page-status-label {
+    white-space: nowrap;
+}
+
+.se-page-status-icon {
+    float: left;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.se-page-status-draft__icon {
+    @include status-icon();
+    background-color: fd-color('text', 4);
+}
+
+.se-page-status-in_progress__icon {
+    @include status-icon();
+    background-color: fd-color('status', 2);
+}
+
+.se-page-status-ready_to_sync__icon {
+    @include status-icon();
+    background-color: fd-color('action', 1);
+}
+
+.se-page-status-synced__icon {
+    @include status-icon();
+    background-color: fd-color('status', 1);
+}
+
+.se-page-status-locked__icon {
+    color: fd-color('text', 1);
+}

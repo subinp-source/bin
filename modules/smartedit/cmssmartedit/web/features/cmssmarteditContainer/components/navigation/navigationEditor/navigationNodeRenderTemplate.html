@@ -1,0 +1,27 @@
+<div
+    class="pull-right dropdown tree-node se-tree-node__actions col-sm-1"
+    data-ng-show="!$ctrl.isReadOnly()"
+>
+    <se-dropdown-menu
+        [dropdown-items]="$ctrl.getDropdownItems()"
+        [selected-item]="node"
+        class="pull-right se-tree-node__actions--more-menu"
+    ></se-dropdown-menu>
+</div>
+
+<div class="se-tree-node__name col-xs-3"><span> {{node.name | l10n}} </span></div>
+
+<div class="pull-right tree-node se-tree-node__entry col-xs-5">
+    <div
+        y-popover
+        data-trigger="'hover'"
+        data-template="$ctrl.getEntryTooltipString(node)"
+        class="se-tree-node__popover"
+    >
+        <span>{{ $ctrl.getEntryString(node) }}</span>
+    </div>
+</div>
+
+<div class="se-tree-node__title col-xs-2">
+    <span data-ng-show="node.title"> {{node.title | l10n}} </span>
+</div>

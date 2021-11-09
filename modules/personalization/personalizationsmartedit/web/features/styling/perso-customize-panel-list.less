@@ -1,0 +1,138 @@
+/* *
+/* This file includes the styles used in Customize Panel Customizations List
+*/
+
+@pe-customize-panel-list__row-layout--padding: 0.75*@perso-gutter @perso-gutter; //15px 20px
+@pe-customize-panel-list__dropdown-menu--min-width: 100px;
+@pe-customize-panel-list__number-layout--padding-right: 0.25*@perso-gutter; //5px
+@pe-customize-panel-list__dropdown-menu__item--margin: -0.25*@perso-gutter; //-5px
+@pe-customize-panel-list__dropdown-menu__item--padding: 10px 16px;
+@pe-customize-panel-list__child-layout--padding-left: 1.5*@perso-gutter;  //30px
+@pe-customize-panel-list__item-last--padding-botom: 1.75*@perso-gutter;  //35px
+.pe-customize-panel-list {
+    color: @text-color-dark-blue;
+    font-size: @perso__default-text--font-size;
+    min-height: 200px;
+    .perso__cc-icon, .perso__globe-icon {
+        vertical-align: -webkit-baseline-middle;
+    }
+}
+
+.pe-customize-panel-list__row-layout {
+    &:hover {
+        background-color: @fd-color--background-hover;
+        .pe-customize-panel-list__btn-link:hover {
+            background-color: transparent;
+        }
+    }
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid @border-color-light-grey;
+}
+
+.pe-customize-panel-list__row {
+    width: 87%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pe-customize-panel-list__icon-layout {
+    width: 5%;
+    align-self: center;
+    padding: @pe-customize-panel-list__row-layout--padding;
+}
+
+.pe-customize-panel-list__col-xs {
+    width: 5%;
+    align-self: center;
+}
+
+.pe-customize-panel-list__col-sm {
+    width: 10%;
+    align-self: center;
+    text-align: center;
+}
+
+.pe-customize-panel-list__col-md {
+    width: 20%;
+    align-self: center;
+    text-align: center;
+}
+
+.pe-customize-panel-list__col-lg {
+    width: 40%;
+    align-self: center;
+}
+
+.pe-customize-panel-list__parent-layout {
+    padding-left: @perso-gutter*0.5;     //20px
+}
+
+.pe-customize-panel-list__child-layout {
+    padding-left: @pe-customize-panel-list__child-layout--padding-left;
+}
+
+.pe-customize-panel-list__components-layout {
+    display: flex;
+    justify-content: center;
+}
+
+.pe-customize-panel-list__number-layout {
+    padding-right: @pe-customize-panel-list__number-layout--padding-right;
+}
+
+.pe-customize-panel-list__btn-link {
+    padding: 5px 0 0 0;
+    .sap-icon--overflow:before {
+        vertical-align: super;
+    }
+}
+
+.pe-customize-panel-list__dropdown {
+    margin-right: @perso-gutter;    //20px
+    .se-y-dropdown-menu__list {
+        top: 102% !important;
+    }
+}
+
+.pe-customize-panel-list__dropdown-menu {
+    min-width: @pe-customize-panel-list__dropdown-menu--min-width;
+    text-align: left;
+    display: inline-block;
+}
+
+.pe-customize-panel-list__dropdown-menu__item {
+    margin-top: @pe-customize-panel-list__dropdown-menu__item--margin;
+    margin-bottom: @pe-customize-panel-list__dropdown-menu__item--margin;
+    padding: @pe-customize-panel-list__dropdown-menu__item--padding;
+}
+
+.selectedVariation, .selectedCustomization {
+    background-color: @fd-color--background-selected;
+    &:hover {
+        background-color: @fd-color--background-selected;
+        .pe-customize-panel-list__btn-link {
+            background-color: transparent;
+        }
+    }
+}
+
+.pe-customize-panel-list__item-last {     //increase the padding for the link not to overflow the parent
+    padding-bottom: @pe-customize-panel-list__item-last--padding-botom;
+}
+
+.pe-customize-panel-list__header{
+    padding: 10px 20px;
+    background-color: @fd-color--background-neutral;
+    color: @fd-color--text-neutral;
+}
+
+.pe-customize-panel-list__header--name{
+    display: inline-block;
+    width: 508px;
+    padding-left: 28px;
+}
+
+.pe-customize-panel-list__header--status{
+    display: inline-block;
+}

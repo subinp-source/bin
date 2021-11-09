@@ -1,0 +1,13 @@
+.se-link-toggle__row {
+    @include se-flex-row;
+}
+.se-form-control-row {
+    margin-right: fd-space('s');
+}
+.se-control-label.se-link-toggle__label {
+    @include se-flex-row;
+    margin: 0;
+}
+.fd-form__control.se-link-toggle__input {
+    margin: 0 fd-space('base') 0 0;
+}

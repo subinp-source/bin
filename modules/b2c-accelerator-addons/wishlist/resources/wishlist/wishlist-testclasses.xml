@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><testclasses><wishlist><testclass>de.hybris.platform.wishlist.impl.WishlistServiceTest</testclass><testclass>de.hybris.platform.wishlist2.retention.hook.impl.WishlistCustomerCleanupHookTest</testclass></wishlist></testclasses>

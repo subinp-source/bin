@@ -1,0 +1,44 @@
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns="http://www.springframework.org/schema/beans"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	   profile="backoffice_testing">
+
+	<alias alias="cockpitConfigurationService" name="testingCockpitConfigurationService"/>
+	<bean id="testingCockpitConfigurationService" parent="onPremiseCockpitConfigurationService"
+		  class="com.hybris.backoffice.config.impl.TestingBackofficeCockpitConfigurationService">
+		<property name="resourceLoader">
+			<bean class="org.springframework.core.io.DefaultResourceLoader"/>
+		</property>
+	</bean>
+
+	<alias alias="widgetPersistenceService" name="backofficeWidgetPersistenceService"/>
+	<bean id="backofficeWidgetPersistenceService"
+		  class="com.hybris.backoffice.config.impl.TestingBackofficeWidgetPersistenceService"
+		  parent="cockpitModuleWidgetPersistenceService">
+		<property name="mediaService" ref="mediaService"/>
+		<property name="backofficeConfigurationMediaHelper" ref="backofficeConfigurationMediaHelper"/>
+	</bean>
+
+	<alias name="testBackofficeConfigurationTestingService" alias="backofficeConfigurationTestingService"/>
+	<bean name="testBackofficeConfigurationTestingService"
+		  class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service">
+			<bean class="com.hybris.backoffice.selenium.remote.TestBackofficeConfigurationTestingService">
+				<property name="cockpitConfigurationService" ref="testingCockpitConfigurationService"/>
+				<property name="widgetPersistenceService" ref="widgetPersistenceService"/>
+				<property name="widgetUtils" ref="widgetUtils"/>
+				<property name="sessionService" ref="sessionService"/>
+				<property name="userService" ref="userService"/>
+				<property name="cockpitAdminService" ref="cockpitAdminService"/>
+				<property name="importService" ref="defaultImportService"/>
+				<property name="validationService" ref="validationService"/>
+			</bean>
+		</property>
+		<property name="serviceInterface"
+				  value="com.hybris.backoffice.selenium.remote.BackofficeConfigurationTestingService"/>
+	</bean>
+
+</beans>

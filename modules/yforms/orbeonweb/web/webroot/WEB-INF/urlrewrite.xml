@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<urlrewrite>
+   <rule>
+      <condition type="header" name="hybris-Proxy-e8d5fc7d-5414-4e41-8c17-863adf0e4880" operator="equal">cce68071-dbf1-4e3c-9862-be678f408603</condition>
+      <from>^/xforms.*$</from>
+      <to last="true">-</to>
+   </rule>
+   <rule>
+      <condition type="header" name="hybris-Proxy-e8d5fc7d-5414-4e41-8c17-863adf0e4880" operator="equal">cce68071-dbf1-4e3c-9862-be678f408603</condition>
+      <from>^/.*\.(css|js|png|gif|jpeg|jpg|woff|woff2)$</from>
+      <to last="true">-</to>
+   </rule>
+   <rule>
+      <condition type="header" name="hybris-Proxy-e8d5fc7d-5414-4e41-8c17-863adf0e4880" operator="equal">cce68071-dbf1-4e3c-9862-be678f408603</condition>
+      <from>^/fr/[^/]+/[^/]+/(edit|new|view)/?.*$</from>
+      <to last="true">-</to>
+   </rule>
+   <rule>
+      <from>^/fr/service/.*$</from>
+      <to last="true">-</to>
+   </rule>
+   <rule>
+      <from>^/fr/[^/]+/[^/]+/test$</from>
+      <to last="true">-</to>
+   </rule>
+   <rule>
+      <from>^.*$</from>
+      <set type="status">403</set>
+      <to last="true">null</to>
+   </rule>
+</urlrewrite>

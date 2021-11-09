@@ -1,0 +1,163 @@
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/cockpitng/cng/scss/cockpitng-globals.scss';
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/backoffice/scss/backoffice-variables.scss';
+
+/*================================
+    Highilighte Window
+================================*/
+// Layout & Coloring for Highlighted Windows
+
+
+div.z-window-highlighted {
+    &-tl, &-tr, &-hl, &-hr, &-hm, &-cr, &-cl, &-br, &-bl {
+        background: #d3d9df;
+    }
+    &-cm {
+        background: #f2f4f5;
+        border: none;
+    }
+}
+
+.z-window-highlighted {
+    .z-window-content {
+        > .z-hbox:first-child {
+            background: $window__popup--bg-color;
+            width: 100%;
+            table-layout: fixed;
+            word-break: break-all;
+        }
+        > .z-hbox {
+            padding: $container-spacing-default__third;
+        }
+    }
+    &-icon.z-window-highlighted-close {
+        background: url("images/icon_func_modal_close.png") no-repeat scroll center center #6F7C91;
+        height: 26px;
+        width: 26px;
+    }
+    &-header {
+        font-size: 15px;
+        font-weight: 400;
+        padding-top: 0px;
+        line-height: 25px;
+    }
+    .z-center,
+    .z-north,
+    .z-south,
+    .z-west,
+    .z-east {
+        &-header {
+            .yw-caption-container {
+                position: relative;
+            }
+        }
+    }
+}
+
+.yw-info-box {
+    overflow: auto;
+    background: $_window__info-box--bg-color;
+    color: $_window__info-box--color;
+    border-color: $_window__info-box--border-color;
+    border-style: solid;
+    border-width: $_window__info-box--border-width;
+    padding: $_window__info-box--padding;
+    margin-bottom: $_window__info-box--margin-bottom;
+
+    .yw-editorarea-tabbox-tabpanels-tabpanel & {
+        padding-left: $_window__info-box-editorarea--padding-x;
+        padding-right: $_window__info-box-editorarea--padding-x;
+    }
+    .yw-editorarea-tabbox-tabpanels-tabpanel-groupbox & {
+        padding: $_window__info-box-editorarea-section--padding;
+    }
+
+    .z-vlayout-inner > &{
+        border-right-width: 0;
+        border-left-width: 0;
+    }
+
+    .z-groupbox-content > & {
+        -webkit-flex: 1 1 100%;
+        -ms-flex: 1 1 100%;
+        flex: 1 1 100%;
+    }
+
+    .z-vlayout-inner:first-child > & {
+        &:first-child {
+            border-top-width: 0;
+        }
+    }
+
+    .yw-wizard-layout > .z-vlayout-inner + .z-vlayout-inner > & {
+        &:last-child {
+            margin-bottom: $boxes--border__thin * -1;
+        }
+    }
+}
+
+div.z-separator-horizontal-bar {
+    display: none;
+}
+
+
+/*================================
+    Messagebox Window
+================================*/
+// Layout & Coloring for Message Windows
+
+
+
+.z-window .z-messagebox .z-html {
+    text-align: justify;
+    display: inline-block;
+}
+
+.z-messagebox-window {
+    .z-window-highlighted .z-window-content {
+        background: #f2f4f5;
+        padding: 0px;
+    }
+    .z-label {
+        font-size: $font-size__semi-base;
+    }
+    .z-messagebox {
+        word-break: normal;
+        word-wrap: break-word;
+        word-break: break-word;
+    }
+
+    // check: all icons into one sprite? (due to all having the same size), try skipping !important.
+    .z-msgbox-question {
+        width: 60px;
+        height: 55px;
+        background: transparent url(images/help_icon.png) no-repeat !important;
+    }
+
+    .z-msgbox-information {
+        width: 60px;
+        height: 55px;
+        background: transparent url(images/info_icon.png) no-repeat !important;
+    }
+
+    .z-msgbox-error {
+        width: 60px;
+        height: 55px;
+        background: transparent url(images/error_icon.png) no-repeat !important;
+    }
+
+    .z-msgbox-exclamation {
+        width: 60px;
+        height: 55px;
+        background: transparent url(images/caution_icon.png) no-repeat !important;
+    }
+
+    .z-msgbox-success {
+        width: 60px;
+        height: 55px;
+        background: transparent url(images/success_icon.png) no-repeat !important;
+    }
+}
+
+.z-window-highlighted .z-window-content .z-messagebox {
+    padding: 5px;
+}

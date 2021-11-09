@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<action-definition id="de.hybris.platform.xyformsbackoffice.actions.clone"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/action-definition.xsd">
+ 
+   <name>Clone yForm Definition</name>
+   <description>Clones a yForm Definition</description>
+	<author>hybris</author>
+	<version>1.0</version>
+	<actionClassName>de.hybris.platform.xyformsbackoffice.actions.clone.CloneYFormDefinitionAction</actionClassName>
+	
+	<sockets>		
+		<output id="context" type="java.lang.Object" />
+	</sockets>
+	
+	<inputType>de.hybris.platform.xyformsservices.model.YFormDefinitionModel</inputType>
+	<outputType>java.lang.String</outputType>
+   
+	<iconUri>icons/icon_action_clone_default.png</iconUri>
+	<iconDisabledUri>icons/icon_action_clone_disabled.png</iconDisabledUri>
+ 
+</action-definition>

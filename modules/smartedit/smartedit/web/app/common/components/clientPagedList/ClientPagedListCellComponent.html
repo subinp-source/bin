@@ -1,0 +1,4 @@
+<ng-container *ngIf="key.component; else cellText">
+    <ng-container *ngComponentOutlet="key.component; injector: componentInjector"></ng-container>
+</ng-container>
+<ng-template #cellText> <span>{{ item[key.property] }}</span> </ng-template>

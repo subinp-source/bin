@@ -1,0 +1,138 @@
+$lang=en
+$classificationCatalog=PowertoolsClassification
+$classificationVersion=1.0
+$classificationCatalogVersion=catalogversion(catalog(id[default='$classificationCatalog']),version[default='$classificationVersion'])[unique=true,default='$classificationCatalog:$classificationVersion'];
+$classificationSystemVersion=systemVersion(catalog(id[default='$classificationCatalog']),version[default='$classificationVersion'])[unique=true,default='$classificationCatalog:$classificationVersion'];
+$classAttrUnit=unit(code,$classificationSystemVersion);
+$valuesForAssignment=defaultAttributeValues(code, $classificationSystemVersion)
+
+# Classification Class CONF_SCREWDRIVER_S
+INSERT_UPDATE ClassificationClass;$classificationCatalogVersion;code[unique=true];allowedPrincipals(uid)[default='customergroup'];name[lang=$lang];description[lang=$lang];
+;;CONF_SCREWDRIVER_S;;CONF_SCREWDRIVER_S;Class Configurable Screwdriver;
+
+# Classification Class CONF_BANDSAW_ML
+INSERT_UPDATE ClassificationClass;$classificationCatalogVersion;code[unique=true];allowedPrincipals(uid)[default='customergroup'];name[lang=$lang];description[lang=$lang];
+;;CONF_BANDSAW_ML;;CONF_BANDSAW_ML;Class Configurable Bandsaw;
+
+
+# Classification Attribute Values
+INSERT_UPDATE ClassificationAttributeValue; code[unique=true]; name[lang=$lang]; $classificationSystemVersion;
+;PROFESSIONAL;Professional;
+;STANDARD;Standard;
+;BLUE;Blue;
+;GREEN;Green;
+;YELLOW;Yellow;
+;3.6V;3.6 V;
+;10.8V;10.8 V;
+;14.6V;14.6 V;
+;18V;18 V;
+;1GEAR;1;
+;2GEAR;2;
+;3GEAR;3;
+;15/25NM;15/25 Nm;
+;25/45NM;25/45 Nm;
+;50/90NM;50/90 Nm;
+;12LEVELS;12;
+;16LEVELS;16;
+;20LEVELS;20;
+;1.5AH;1.5 Ah;
+;2.5AH;2.5 Ah;
+;3.5AH;3.5 Ah;
+;4-9;4 mm - 9 mm;
+;2-12;2 mm - 12 mm;
+;2-18;2 mm - 18 mm;
+;YES;Yes;
+;NO;No;
+;LED;Lighting LED;
+;POWER_LEVEL;Display Power Level;
+;VIBRATION;Vibration Absorption;
+;SOUND;Sound Absorption;
+;ROTATION;Right & Left Rotation (Switch);
+;BATTERY;Second Battery;
+;CASE;Protection Case;
+;DRILLS;Drill Set;
+;BITS;Bit Set;
+
+# Classification Attributes
+INSERT_UPDATE ClassificationAttribute;$classificationSystemVersion;code[unique=true];name[lang=$lang];$valuesForAssignment;
+;;MODE;Mode;PROFESSIONAL, STANDARD;
+;;SCREWDRIVER_COL;Color;BLUE, GREEN, YELLOW;
+;;SCREWDRIVER_POWER;Power;3.6V, 10.8V, 14.6V, 18V;
+;;SCREWDRIVER_GEARS;Number of Gears;1GEAR, 2GEAR, 3GEAR;
+;;SCREWDRIVER_TORQUE;Torque (soft/hard Material);15/25NM, 25/45NM, 50/90NM;
+;;TORQUE_LEVEL;Levels for Torque Adjustment;12LEVELS, 16LEVELS, 20LEVELS;
+;;SCREWDRIVER_BATTERY;Battery Capacity;1.5AH, 2.5AH, 3.5AH;
+;;DRILL_CHUCK;Drill Chuck Size;4-9, 2-12, 2-18;
+;;OUTDOOR_CHARGING;Outdoor Charging Station;YES, NO;
+;;ADDITIONAL_OPTIONS;Add-Ons;LED, POWER_LEVEL, VIBRATION, SOUND, ROTATION;
+;;ACCESSORY;Accessories;BATTERY, CASE, DRILLS, BITS;
+;;WARRANTY;Warranty Extension (48 Months);YES, NO;
+;;CONF_BS_TILTTABLE;Tilt Table;;
+;;CONF_BS_BASE_MOUNTING;Mount;
+;;CONF_BS_MOBILITYKIT;Mobility Kit;
+
+# Classification Attribute Assignment
+INSERT_UPDATE ClassAttributeAssignment;classificationClass(catalogVersion(catalog(id),version),code)[unique=true,allownull=true];classificationAttribute(code,systemVersion(catalog(id),version))[unique=true,forceWrite=true,allownull=true];position[unique=true];$classAttrUnit;attributeType(code[default=string]);multiValued;range;localized;systemVersion(catalog(id),version)[unique=true,forceWrite=true];
+;$classificationCatalog:$classificationVersion:CONF_SCREWDRIVER_S;MODE:$classificationCatalog:$classificationVersion;0;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_SCREWDRIVER_S;SCREWDRIVER_COL:$classificationCatalog:$classificationVersion;1;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_SCREWDRIVER_S;SCREWDRIVER_POWER:$classificationCatalog:$classificationVersion;2;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_SCREWDRIVER_S;SCREWDRIVER_GEARS:$classificationCatalog:$classificationVersion;3;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_SCREWDRIVER_S;SCREWDRIVER_TORQUE:$classificationCatalog:$classificationVersion;4;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_SCREWDRIVER_S;TORQUE_LEVEL:$classificationCatalog:$classificationVersion;5;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_SCREWDRIVER_S;SCREWDRIVER_BATTERY:$classificationCatalog:$classificationVersion;6;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_SCREWDRIVER_S;DRILL_CHUCK:$classificationCatalog:$classificationVersion;7;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_SCREWDRIVER_S;OUTDOOR_CHARGING:$classificationCatalog:$classificationVersion;8;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_SCREWDRIVER_S;ADDITIONAL_OPTIONS:$classificationCatalog:$classificationVersion;9;;enum;true;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_SCREWDRIVER_S;ACCESSORY:$classificationCatalog:$classificationVersion;10;;enum;true;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_SCREWDRIVER_S;WARRANTY:$classificationCatalog:$classificationVersion;11;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_BANDSAW_ML;CONF_BS_TILTTABLE:$classificationCatalog:$classificationVersion;1;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_BANDSAW_ML;CONF_BS_BASE_MOUNTING:$classificationCatalog:$classificationVersion;1;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_BANDSAW_ML;CONF_BS_MOBILITYKIT:$classificationCatalog:$classificationVersion;1;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+
+# Product Variants
+
+$clAttrModifiersVariants=system='$classificationCatalog',version='$classificationVersion',translator=de.hybris.platform.catalog.jalo.classification.impex.ClassificationAttributeTranslator;
+
+$featureMode=@MODE[$clAttrModifiersVariants];
+$featureColor=@SCREWDRIVER_COL[$clAttrModifiersVariants];
+$featurePower=@SCREWDRIVER_POWER[$clAttrModifiersVariants];
+$featureGears=@SCREWDRIVER_GEARS[$clAttrModifiersVariants];
+$featureTorque=@SCREWDRIVER_TORQUE[$clAttrModifiersVariants];
+$featureTorqueLevel=@TORQUE_LEVEL[$clAttrModifiersVariants];
+$featureBattery=@SCREWDRIVER_BATTERY[$clAttrModifiersVariants];
+$featureDrillChuck=@DRILL_CHUCK[$clAttrModifiersVariants];
+$featureOutdoorCharging=@OUTDOOR_CHARGING[$clAttrModifiersVariants];
+$featureAdditionalOptions=@ADDITIONAL_OPTIONS[$clAttrModifiersVariants];
+$featureAccessory=@ACCESSORY[$clAttrModifiersVariants];
+$featureWarranty=@WARRANTY[$clAttrModifiersVariants];
+
+$productCatalog=powertoolsProductCatalog
+$productCatalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$supercategories=supercategories(code,catalogversion(catalog(id[default=$productCatalog]),version[default='Staged']))
+$prices=Europe1prices[translator=de.hybris.platform.europe1.jalo.impex.Europe1PricesTranslator]
+$approved=approvalstatus(code)[default='approved']
+$taxGroup=Europe1PriceFactory_PTG(code)[default=us-sales-tax-full]
+
+INSERT_UPDATE VariantAttributeDescriptor;qualifier[unique=true];attributeType(code);name[lang=en];generate;enclosingType(code)[unique=true];partOf;extensionName;search;readable;writable
+;product_name;java.lang.String;;true;MockVariantProduct;false;;false;true;true
+
+INSERT_UPDATE MockVariantProduct;code[unique=true];baseproduct(code,$productCatalogVersion);$supercategories;manufacturerName;manufacturerAID;ean;variantType(code);unit(code)[default=PCE];$productCatalogVersion;name[lang=$lang];description[lang=$lang];summary[lang=$lang];product_name;$featureMode;$featureColor;$featurePower;$featureGears;$featureTorque;$featureTorqueLevel;$featureBattery;$featureDrillChuck;$featureOutdoorCharging;$featureAdditionalOptions;$featureAccessory;$featureWarranty;$prices;$approved;$taxGroup;
+;CONF_SCREWDRIVER_S-PROF-2-12;CONF_SCREWDRIVER_S;1593,CONF_SCREWDRIVER_S:$classificationCatalog:$classificationVersion;SAP;;;;PCE;;Screwdriver Professional 2-12;Screwdriver Professional 2-12;Screwdriver Professional 2-12;Screwdriver Professional 2-12;PROFESSIONAL; BLUE; 18V; 3GEAR; 50/90NM; 20LEVELS; 3.5AH; 2-12; YES; LED,POWER_LEVEL,VIBRATION,SOUND,ROTATION; BATTERY,CASE,DRILLS,BITS; YES; 1 PCE = 219.00 USD N;;;
+;CONF_SCREWDRIVER_S-PROF-2-18;CONF_SCREWDRIVER_S;1593,CONF_SCREWDRIVER_S:$classificationCatalog:$classificationVersion;SAP;;;;PCE;;Screwdriver Professional 2-18;Screwdriver Professional 2-18;Screwdriver Professional 2-18;Screwdriver Professional 2-18;PROFESSIONAL; BLUE; 14.6V; 3GEAR; 50/90NM; 20LEVELS; 3.5AH; 2-18; YES;LED,POWER_LEVEL,VIBRATION,SOUND,ROTATION; BATTERY,CASE,DRILLS,BITS; YES; 1 PCE = 219.00 USD N;;;
+;CONF_SCREWDRIVER_S-STD-2-12;CONF_SCREWDRIVER_S;1593,CONF_SCREWDRIVER_S:$classificationCatalog:$classificationVersion;SAP;;;;PCE;;Screwdriver Standard 2-12;Screwdriver Standard 2-12;Screwdriver Standard 2-12;Screwdriver Standard 2-12;STANDARD; GREEN; 10.8V; 2GEAR; 15/25NM; 12LEVELS; 1.5AH; 2-12; NO; LED,ROTATION; BATTERY; NO; 1 PCE = 119.00 USD N;;;
+;CONF_SCREWDRIVER_S-STD-4-9;CONF_SCREWDRIVER_S;1593,CONF_SCREWDRIVER_S:$classificationCatalog:$classificationVersion;SAP;;;;PCE;;Screwdriver Standard 4-9;Screwdriver Standard 4-9;Screwdriver Standard 4-9;Screwdriver Standard 4-9;STANDARD; GREEN; 10.8V; 2GEAR; 15/25NM; 16LEVELS; 2.5AH; 4-9; NO; LED,ROTATION; BATTERY; NO; 1 PCE = 119.00 USD N;;;
+
+# Solr index and Facet search query properties for variants
+
+$classificationAttribute=classificationAttribute(code,$classificationSystemVersion)
+$classificationClass=classificationClass(code,$classificationCatalogVersion)
+$classAttributeAssignment=classAttributeAssignment($classificationClass,$classificationAttribute,$classificationSystemVersion)
+$solrIndexedType=powertoolsProductType
+
+INSERT_UPDATE 	SolrIndexedProperty	;solrIndexedType(identifier)[unique=true]	;name[unique=true];displayname[lang=en]	;type(code)	;facet	;visible	;currency[default=false]	;localized[default=false]	;multiValue[default=false]	;useForSpellchecking[default=false]	;useForAutocomplete[default=false]	;fieldValueProvider ;$classAttributeAssignment
+												;$solrIndexedType									;MODE   	         ;Screwdriver Mode			;string		;true		;true		;false    						;false    						;false    						;false    									;false    ;commerceClassificationPropertyValueProvider	;CONF_SCREWDRIVER_S:::MODE::::	;
+												;$solrIndexedType									;DRILL_CHUCK      ;Drill Chuck Size			;string		;true		;true		;false    						;false    						;false    						;false    									;false    ;commerceClassificationPropertyValueProvider	;CONF_SCREWDRIVER_S:::DRILL_CHUCK::::	;												
+
+INSERT_UPDATE SolrSearchQueryProperty ;indexedProperty(name, solrIndexedType(identifier))[unique=true]	;facet[default=true]	;facetType(code)	;priority	;facetDisplayNameProvider						;facetSortProvider	;facetTopValuesProvider		;includeInResponse[default=true];searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType]
+									 			  ;MODE:$solrIndexedType			         								   ;					    	;Refine	 			;2000		   ;commerceClassificationPropertyValueProvider	;;;;
+									  			  ;DRILL_CHUCK:$solrIndexedType										   		;							;Refine	 			;1000			;commerceClassificationPropertyValueProvider	;;;;

@@ -1,0 +1,64 @@
+$lang=en
+$catalog-id=testConfigureCatalog
+$catalog-version=Online
+$testCategory-id=CPQConfigurableCategory
+$catalogversion=catalogversion(catalog(id[default=$catalog-id]),version[default=$catalog-version])[unique=true,default=$catalog-id:$catalog-version]
+$supercategories=supercategories(code,catalogversion(catalog(id[default=$catalog-id]),version[default=$catalog-version]))
+$prices=europe1prices[translator=de.hybris.platform.europe1.jalo.impex.Europe1PricesTranslator]
+$approved=approvalstatus(code)[default='approved']
+
+$storeClassification=cpqTestClassification
+$systemVersion=1.0;;;;;;;;;
+$classCatalogVersion=catalogversion(catalog(id[default='$storeClassification']),version[default='1.0'])[unique=true,default='$storeClassification:1.0'];
+$classSystemVersion=systemVersion(catalog(id[default='$storeClassification']),version[default='1.0'])[unique=true,default='$storeClassification:1.0'];
+$unit=unit(code,$classSystemVersion);
+$attributevalues=attributeValues(code,$classSystemVersion)[unique=true];
+
+# Classification for product variants
+$variantsClassification=$storeClassification
+$variantsClassificationVersion=1.0
+$classCatalogVersionVariants=catalogversion(catalog(id[default='$variantsClassification']),version[default='$variantsClassificationVersion'])[unique=true,default='$variantsClassification:$variantsClassificationVersion'];
+$classSystemVersionVariants=systemVersion(catalog(id[default='$variantsClassification']),version[default='$variantsClassificationVersion'])[unique=true,default='$variantsClassification:$variantsClassificationVersion'];
+$unitVariants=unit(code,$classSystemVersionVariants);
+
+#################################################################################
+# DEFINE Classifications for CPQ_LAPTOP variants
+#################################################################################
+INSERT_UPDATE ClassificationClass;$classCatalogVersionVariants;code[unique=true];allowedPrincipals(uid)[default='customergroup'];name[lang=$lang];description[lang=$lang];
+;;CL_LAPTOP;;CL_LAPTOP;Class Laptop;
+
+INSERT_UPDATE ClassificationAttributeValue; code[unique=true]; name[lang=$lang]; $classSystemVersionVariants;
+;CL_LAPTOP_TYPE_MUSIC;Music;
+;CL_LAPTOP_COLOUR_BLUE;Blue;
+ 
+# Insert Classification Attributes
+$valuesForAssignment=defaultAttributeValues(code, $classSystemVersion)
+INSERT_UPDATE ClassificationAttribute;$classSystemVersionVariants;code[unique=true];name[lang=$lang];$valuesForAssignment;
+;;CL_LAPTOP_TYPE; Laptop Type;CL_LAPTOP_TYPE_MUSIC;
+;;CL_LAPTOP_COLOUR; Laptop Colour;CL_LAPTOP_COLOUR_BLUE;
+ 
+
+INSERT_UPDATE ClassAttributeAssignment;classificationClass(catalogVersion(catalog(id),version),code)[unique=true,allownull=true];	classificationAttribute(code,systemVersion(catalog(id),version))[unique=true,forceWrite=true,allownull=true];	position[unique=true];$unitVariants;attributeType(code[default=string]);multiValued;range;localized;		systemVersion(catalog(id),version)[unique=true,forceWrite=true];
+;$variantsClassification:$variantsClassificationVersion:CL_LAPTOP;CL_LAPTOP_TYPE:$variantsClassification:$variantsClassificationVersion;								0;;											enum;											false;		false;false;			$variantsClassification:$variantsClassificationVersion;
+;$variantsClassification:$variantsClassificationVersion:CL_LAPTOP;CL_LAPTOP_COLOUR:$variantsClassification:$variantsClassificationVersion;								1;;											enum;											false;		false;false;			$variantsClassification:$variantsClassificationVersion;
+
+$clAttrModifiersVariants=system='$variantsClassification',version='$variantsClassificationVersion',translator=de.hybris.platform.catalog.jalo.classification.impex.ClassificationAttributeTranslator;
+$featureType=@CL_LAPTOP_TYPE[$clAttrModifiersVariants];
+$featureColour=@CL_LAPTOP_COLOUR[$clAttrModifiersVariants]; 
+
+
+
+
+#################################################################################
+# Products for Variants
+#################################################################################
+INSERT_UPDATE VariantAttributeDescriptor;qualifier[unique=true];attributeType(code);name[lang=en];generate;enclosingType(code)[unique=true];partOf;extensionName;search;readable;writable
+;product_name;java.lang.String;;true;MockVariantProduct;false;;false;true;true
+
+
+INSERT_UPDATE MockVariantProduct;code[unique=true];baseproduct(code,$catalogversion);$supercategories;manufacturerName;manufacturerAID;ean;variantType(code);unit(code)[default=PCE];$catalogversion;name[lang=$lang];description[lang=$lang];$prices;$approved;$featureType;$featureColour
+;CPQ_LAPTOP_HOME;CPQ_LAPTOP;$testCategory-id,CL_LAPTOP:$variantsClassification:$variantsClassificationVersion;SAP;;;;PCE;;Laptop Home;Laptop Home;1 PCE = 639 USD N;;;;
+;CPQ_LAPTOP_GAME;CPQ_LAPTOP;$testCategory-id,CL_LAPTOP:$variantsClassification:$variantsClassificationVersion;SAP;;;;PCE;;Laptop Game;Laptop Game;1 PCE = 1999 USD N;;;;
+;CPQ_LAPTOP_PROF;CPQ_LAPTOP;$testCategory-id,CL_LAPTOP:$variantsClassification:$variantsClassificationVersion;SAP;;;;PCE;;Laptop Professional;Laptop Professional;1 PCE = 939 USD N;;;;
+;CPQ_LAPTOP_MUSIC;CPQ_LAPTOP;$testCategory-id,CL_LAPTOP:$variantsClassification:$variantsClassificationVersion;SAP;;;;PCE;;Laptop Music;Laptop Music;1 PCE = 969 USD N,1 PCE = 800 EUR N;;MUSIC;BLUE;
+;CPQ_LAPTOP_MUZAC;CPQ_LAPTOP;$testCategory-id,CL_LAPTOP:$variantsClassification:$variantsClassificationVersion;SAP;;;;PCE;;Laptop Music Edition ;Laptop Music Edition;1 PCE = 969 USD N,1 PCE = 800 EUR N;;MUSIC;BLUE;

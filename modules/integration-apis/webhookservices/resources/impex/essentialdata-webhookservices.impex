@@ -1,0 +1,14 @@
+INSERT_UPDATE DestinationTarget; id[unique = true]; destinationChannel(code); registrationStatus(code)
+                               ; webhookServices  ; WEBHOOKSERVICES         ; REGISTERED
+
+INSERT_UPDATE EventConfiguration; eventClass[unique = true]                               ; exportName                     ; exportFlag; extensionName   ; destinationTarget(id)[unique = true]; version[unique = true]; priority(code)
+                                ; de.hybris.platform.webhookservices.event.ItemSavedEvent ; webhookservices.ItemSavedEvent ; true      ; webhookservices ; webhookServices                     ; 1                     ; CRITICAL
+
+$START_USERRIGHTS
+Type      ; UID                   ; MemberOfGroups ; Target               ; read ; change ; create ; remove ; change_perm
+UserGroup ; integrationadmingroup ;                ;                      ;      ;        ;        ;        ;
+
+# Access Rights for IntegrationAdministrator Backoffice Users
+          ;                       ;                ; EventConfiguration   ; +    ; +      ; +      ; +      ; +
+          ;                       ;                ; WebhookConfiguration ; +    ; +      ; +      ; +      ; +
+$END_USERRIGHTS

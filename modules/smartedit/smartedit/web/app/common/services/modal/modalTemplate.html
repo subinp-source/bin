@@ -1,0 +1,46 @@
+<div id="y-modal-dialog" class="fd-modal">
+    <div class="fd-modal__content" data-ng-class="modalController._getModalType()">
+        <div
+            class="se-modal__header fd-modal__header"
+            data-ng-class="{'se-modal__header--no-title': !modalController._modalManager.title}"
+            data-ng-if="modalController._modalManager.title"
+        >
+            <div
+                class="se-nowrap-ellipsis se-modal__header-title fd-modal__title"
+                id="smartedit-modal-title-{{ modalController._modalManager.title }}"
+            >
+                {{ modalController._modalManager.title | translate }}&nbsp;{{
+                modalController._modalManager.titleSuffix | translate }}
+            </div>
+            <button
+                type="button"
+                aria-label="close"
+                class="se-modal-close fd-button--light fd-modal__close"
+                data-ng-if="modalController._modalManager._showDismissButton()"
+                data-ng-click="modalController._modalManager._handleDismissButton()"
+            ></button>
+        </div>
+        <div class="se-modal__body fd-modal__body" id="modalBody">
+            <div data-ng-include="modalController.templateUrl"></div>
+        </div>
+        <div
+            class="se-modal__footer fd-modal__footer"
+            data-ng-if="modalController._modalManager._hasButtons()"
+        >
+            <span data-ng-repeat="button in modalController._modalManager.getButtons()">
+                <button
+                    id="{{ button.id }}"
+                    type="button"
+                    class="se-modal-button--footer fd-button"
+                    data-ng-disabled="button.disabled"
+                    data-ng-class="{
+                        'fd-button--light': button.style=='default', 
+                        'fd-button--emphasized': button.style=='primary'}"
+                    data-ng-click="modalController._modalManager._buttonPressed(button)"
+                >
+                    {{ button.label | translate }}
+                </button>
+            </span>
+        </div>
+    </div>
+</div>

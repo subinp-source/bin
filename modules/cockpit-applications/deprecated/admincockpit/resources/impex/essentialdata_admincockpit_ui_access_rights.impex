@@ -1,0 +1,6 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved
+# -----------------------------------------------------------------------
+
+INSERT_UPDATE CockpitUIComponentAccessRight;code[unique=true];readPrincipals(uid);writePrincipals(uid);
+;admincockpit.perspective.validation;admin,admingroup;admin,admingroup;

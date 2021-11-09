@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="OOTB" importedAsReadOnly="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../modules/platform/yempty/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../modules/platform/yempty/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../modules/platform/yempty">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/platform/yempty/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/platform/yempty/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/platform/yempty/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/platform/yempty/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/platform/yempty/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/platform/yempty/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/platform/yempty/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/platform/yempty/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/platform/yempty/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/platform/yempty/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/platform/yempty/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/platform/yempty/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/platform/yempty/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/platform/yempty/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/platform/yempty/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/platform/yempty/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/platform/yempty/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/platform/yempty/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/platform/yempty/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/platform/yempty/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/platform/yempty/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/platform/yempty/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/platform/yempty/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/platform/yempty/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/platform/yempty/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/platform/yempty/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/platform/yempty/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/platform/yempty/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/platform/yempty/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/platform/yempty/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/platform/yempty/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/platform/yempty/web/webroot/WEB-INF/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../modules/platform/yempty/web/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/platform/yempty/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../modules/platform/yempty/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/platform/yempty/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/platform/yempty/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/platform/yempty/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../modules/platform/yempty/lib" recursive="true" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/platform/yempty/web/webroot/WEB-INF/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../modules/platform/yempty/web/webroot/WEB-INF/lib" recursive="true" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="platform" exported="" />
+  </component>
+</module>

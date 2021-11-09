@@ -1,0 +1,26 @@
+/*================================
+    QuickLocaleToggle Popup (Systembar)
+================================*/
+/*================================
+    Systembar Variables
+================================*/
+.yw-quickToggleLocale-cl {
+  width: 100%;
+  padding: 8px 10px;
+  border-top: 1px solid transparent; }
+  .yw-quickToggleLocale-cl-value, .yw-quickToggleLocale-cl-label {
+    display: inline-block;
+    padding: 3px 7px 2px 7px; }
+.yw-quickToggleLocale .z-tabpanel {
+  border-width: 0;
+  padding: 0; }
+  .yw-quickToggleLocale .z-tabpanel .z-listitem-radio {
+    display: none; }
+.yw-quickToggleLocale .z-tabs {
+  padding: 0 10px;
+  border-bottom: solid 1px #eeeeef; }
+.yw-quickToggleLocale .z-tab, .yw-quickToggleLocale .z-tab:first-child, .yw-quickToggleLocale .z-tab:last-child {
+  padding: 0 10px; }
+.yw-quickToggleLocale .z-tab-text {
+  padding: 15px 0;
+  text-transform: none; }

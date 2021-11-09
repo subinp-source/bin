@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="previewPersonalizationVoter" class="de.hybris.platform.personalizationcms.voters.impl.PreviewVoter">
+        <property name="sessionService" ref="sessionService"/>
+    </bean>
+
+    <bean id="previewTicketCxOccInterceptor"
+          class="de.hybris.platform.personalizationcms.interceptors.impl.PreviewTicketCxOccInterceptor">
+        <property name="sessionService" ref="sessionService"/>
+    </bean>
+
+    <alias name="previewOccPersonalizationHandler" alias="cxOccPersonalizationHandler"/>
+    <bean id="previewOccPersonalizationHandler" class="de.hybris.platform.personalizationcms.occ.handlers.impl.PreviewOccPersonalizationHandler" parent="defaultCxOccPersonalizationHandler"/>
+
+</beans>

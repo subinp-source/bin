@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widgets.xsd">
+
+	<widget-connection sourceWidgetId="STUB_de.hybris.platform.customercouponbackoffice.editors.FindAssignedCustomers"
+		outputId="findOutput" targetWidgetId="collapsibleContainer" inputId="activate" />
+	<widget-connection sourceWidgetId="STUB_de.hybris.platform.customercouponbackoffice.editors.FindAssignedCustomers"
+		outputId="findOutput" targetWidgetId="advancedSearch" inputId="initContext" />
+	
+	<widget-connection sourceWidgetId="STUB_de.hybris.platform.customercouponbackoffice.editors.FindAssignedCustomers"
+		outputId="findOutput" targetWidgetId="csCollapsibleContainer" inputId="activate" />
+	<widget-connection sourceWidgetId="STUB_de.hybris.platform.customercouponbackoffice.editors.FindAssignedCustomers"
+		outputId="findOutput" targetWidgetId="csAdvancedSearch" inputId="initContext" />
+		
+</widgets>

@@ -1,0 +1,14 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+$destination_target=kymaDefault
+                      
+INSERT_UPDATE Endpoint;id[unique=true];version[unique=true];description;specUrl;specData;name
+;kyma-events;v1;"EventsEndpoint";"empty";;Events Endpoint v1
+
+INSERT_UPDATE ConsumedCertificateCredential;id[unique=true]
+;kyma-cert  
+
+INSERT_UPDATE ConsumedDestination;id[unique=true];url;endpoint(id);additionalProperties(key,value)[map-delimiter=|];destinationTarget(id)[unique = true,default=$destination_target];active;credential(id)
+;duplicate-destination;https://gateway.CLUSTER_NAME.kyma.cluster.cx/test/v1/events;kyma-events;;;;kyma-cert

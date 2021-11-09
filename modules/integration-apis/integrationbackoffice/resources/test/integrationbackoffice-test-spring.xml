@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <alias name="defaultReadService" alias="readService"/>
+    <bean id="defaultReadService" class="de.hybris.platform.integrationbackoffice.services.ReadService">
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+        <property name="typeService" ref="typeService"/>
+        <property name="ODataDefaultSchemaGenerator" ref="oDataSchemaGenerator"/>
+    </bean>
+
+</beans>

@@ -1,0 +1,108 @@
+[
+	{
+		"testId": 1,
+		"description": "'matchTerm' query without expression",
+		"data": {
+			"type": "matchTerm",
+			"value": "green"
+		}
+	},
+	{
+		"testId": 2,
+		"description": "'matchTerm' query with empty expression",
+		"data": {
+			"type": "matchTerm",
+			"expression": "",
+			"value": "green"
+		}
+	},
+	{
+		"testId": 3,
+		"description": "'matchTerm' query with invalid expression",
+		"data": {
+			"type": "matchTerm",
+			"expression": "-$!#-",
+			"value": "car"
+		}
+	},
+	{
+		"testId": 4,
+		"description": "'matchTerm' query with not existing expression",
+		"data": {
+			"type": "matchTerm",
+			"expression": "notExisting",
+			"value": "car"
+		}
+	},
+	{
+		"testId": 5,
+		"description": "'matchTerm' query with TEXT expression",
+		"data": {
+			"type": "matchTerm",
+			"expression": "field_text",
+			"value": "green"
+		}
+	},
+	{
+		"testId": 6,
+		"description": "'matchTerm' query with BOOLEAN expression",
+		"data": {
+			"type": "matchTerm",
+			"expression": "field_boolean",
+			"value": "green"
+		}
+	},
+	{
+		"testId": 7,
+		"description": "'matchTerm' query with INTEGER expression",
+		"data": {
+			"type": "matchTerm",
+			"expression": "field_integer",
+			"value": "green"
+		}
+	},
+	{
+		"testId": 8,
+		"description": "'matchTerm' query with LONG expression",
+		"data": {
+			"type": "matchTerm",
+			"expression": "field_long",
+			"value": "green"
+		}
+	},
+	{
+		"testId": 9,
+		"description": "'matchTerm' query with FLOAT expression",
+		"data": {
+			"type": "matchTerm",
+			"expression": "field_float",
+			"value": "green"
+		}
+	},
+	{
+		"testId": 10,
+		"description": "'matchTerm' query with DOUBLE expression",
+		"data": {
+			"type": "matchTerm",
+			"expression": "field_double",
+			"value": "green"
+		}
+	},
+	{
+		"testId": 11,
+		"description": "'matchTerm' query with DATE_TIME expression",
+		"data": {
+			"type": "matchTerm",
+			"expression": "field_date_time",
+			"value": "green"
+		}
+	},
+	{
+		"testId": 12,
+		"description": "'matchTerm' query without value",
+		"data": {
+			"type": "matchTerm",
+			"expression": "field_string"
+		}
+	}
+]

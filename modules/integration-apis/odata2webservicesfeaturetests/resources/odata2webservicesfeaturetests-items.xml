@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ [y] hybris Platform
+  ~
+  ~ Copyright (c) 2018 SAP SE or an SAP affiliate company.
+  ~ All rights reserved.
+  ~
+  ~ This software is the confidential and proprietary information of SAP
+  ~ ("Confidential Information"). You shall not disclose such Confidential
+  ~ Information and shall use it only in accordance with the terms of the
+  ~ license agreement you entered into with SAP.
+  -->
+<!--
+	ATTENTION: This is just an example file. You have to edit it according to your needs.
+-->
+
+<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="items.xsd">
+
+    <collectiontypes>
+        <collectiontype code="DateCollection" elementtype="java.util.Date"/>
+        <collectiontype code="EnumCollection" elementtype="HttpMethod" type="list"/>
+    </collectiontypes>
+
+    <enumtypes>
+        <enumtype dynamic="true" code="OData2webservicesFeatureTestPropertiesTypes"
+                  jaloclass="de.hybris.platform.jalo.enumeration.EnumerationValue">
+            <value code="string"/>
+            <value code="bool"/>
+        </enumtype>
+    </enumtypes>
+
+    <maptypes>
+        <maptype code="BigDecimal2BigDecimalMapType"
+                 argumenttype="java.math.BigDecimal"
+                 returntype="java.math.BigDecimal"/>
+        <maptype code="BigInteger2BigIntegerMapType"
+                 argumenttype="java.math.BigInteger"
+                 returntype="java.math.BigInteger"/>
+        <maptype code="Boolean2BooleanMapType"
+                 argumenttype="java.lang.Boolean"
+                 returntype="java.lang.Boolean"/>
+        <maptype code="Byte2ByteMapType"
+                 argumenttype="java.lang.Byte"
+                 returntype="java.lang.Byte"/>
+        <maptype code="Character2CharacterMapType"
+                 argumenttype="java.lang.Character"
+                 returntype="java.lang.Character"/>
+        <maptype code="Date2DateMapType"
+                 argumenttype="java.util.Date"
+                 returntype="java.util.Date"/>
+        <maptype code="Double2DoubleMapType"
+                 argumenttype="java.lang.Double"
+                 returntype="java.lang.Double"/>
+        <maptype code="Float2FloatMapType"
+                 argumenttype="java.lang.Float"
+                 returntype="java.lang.Float"/>
+        <maptype code="Integer2IntegerMapType"
+                 argumenttype="java.lang.Integer"
+                 returntype="java.lang.Integer"/>
+        <maptype code="Long2LongMapType"
+                 argumenttype="java.lang.Long"
+                 returntype="java.lang.Long"/>
+        <maptype code="Short2ShortMapType"
+                 argumenttype="java.lang.Short"
+                 returntype="java.lang.Short"/>
+        <maptype code="BigDecimal2StringMapType"
+                 argumenttype="java.math.BigDecimal"
+                 returntype="java.lang.String"/>
+        <maptype code="Character2DateMapType"
+                 argumenttype="java.lang.Character"
+                 returntype="java.util.Date"/>
+    </maptypes>
+
+    <relations>
+        <relation code="TestIntItem2testIntItemDetail" localized="false">
+            <description>
+                Defines one-to-many relationships for the test integration item. The relationship is not partOf, meaning
+                both items in the relationship can exist independent of each other.
+            </description>
+            <sourceElement type="TestIntegrationItem" qualifier="master" cardinality="one"/>
+            <targetElement type="TestIntegrationItemDetail" qualifier="details" cardinality="many"
+                           collectiontype="list"/>
+        </relation>
+        <relation code="ComplexTestIntItem2testIntItemDetail" localized="false">
+            <description>
+                Defines non-partOf required one-to-many relationships for the test integration item.
+            </description>
+            <sourceElement type="ComplexTestIntegrationItem" qualifier="master" cardinality="one">
+                <modifiers optional="false"/>
+            </sourceElement>
+            <targetElement type="TestIntegrationItemDetail" qualifier="requiredDetails" cardinality="many"
+                           collectiontype="set">
+                <modifiers optional="false"/>
+            </targetElement>
+        </relation>
+
+        <relation code="TestIntegrationItemToTestIntegrationEnum" localized="false">
+            <sourceElement type="TestIntegrationItem" cardinality="one" qualifier="testIntegrationItemRef"/>
+            <targetElement type="OData2webservicesFeatureTestPropertiesTypes" cardinality="many" qualifier="testEnums"
+                           collectiontype="set"/>
+        </relation>
+    </relations>
+
+    <itemtypes>
+        <itemtype code="TestIntegrationItem" extends="TestItemType2">
+            <description>
+                An item type for testing different scenarios around integration objects. This type has attributes of
+                numerous types
+                available in the type system and enables conditions, which otherwise would be possible only by picking
+                hard-to-find
+                modeling scenarios available in multiple types across possibly multiple *-items.xml.
+            </description>
+            <attributes>
+                <attribute qualifier="code" type="java.lang.String">
+                    <description>
+                        Unique identifier of the item because TestItemType2 does not have a unique identifier.
+                    </description>
+                    <modifiers read="true" write="true" search="true" optional="false" unique="true" initial="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="otherItem" type="TestIntegrationItem">
+                    <description>
+                        Reference to another TestIntegrationItem, which can be used for testing conditions when the
+                        integration
+                        object references itself (same instance) or another item (different instance).
+                    </description>
+                    <modifiers read="true" write="true" search="true" optional="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="item3" type="TestIntegrationItem3">
+                    <modifiers read="true" write="true" search="true" optional="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="detail" type="TestIntegrationItemDetail">
+                    <description>
+                        Defines optional one-to-one association between this item and a TestIntegrationItemDetail.
+                    </description>
+                    <modifiers optional="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="bigDecimal" type="java.math.BigDecimal">
+                    <modifiers read="true" write="true" search="true" optional="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="dateCollection" type="DateCollection">
+                    <description>
+                        Defines an optional date collection.
+                    </description>
+                    <modifiers read="true" write="true" search="true" optional="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="bigInteger" type="java.math.BigInteger">
+                    <modifiers read="true" write="true" search="true" optional="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="enumList" type="EnumCollection">
+                    <modifiers optional="true" read="true" write="true"/>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+            <indexes>
+                <index name="TestIntegrationItem_code">
+                    <key attribute="code"/>
+                </index>
+            </indexes>
+        </itemtype>
+        <itemtype code="TestIntegrationItemDetail" extends="TestItemType2">
+            <description>
+                An item type to simulate various kinds of relationships, i.e. one-to-many (master/detail), one-to-one,
+                etc.,
+                between the TestIntegrationItem and TestIntegrationItemDetail.
+            </description>
+            <attributes>
+                <attribute qualifier="code" type="java.lang.String">
+                    <description>
+                        Unique identifier of this detail item.
+                    </description>
+                    <modifiers read="true" write="true" search="true" optional="false" unique="true" initial="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="item" type="TestIntegrationItem">
+                    <description>
+                        Defines optional one-to-one association between this detail and a TestIntegrationItem.
+                    </description>
+                    <modifiers read="true" write="true" search="true" optional="true"/>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+            <indexes>
+                <index name="TestIntegrationItemDetail_code">
+                    <key attribute="code"/>
+                </index>
+            </indexes>
+        </itemtype>
+        <itemtype code="TestIntegrationItem2" extends="TestItemType2">
+            <description>
+                An item type to simulate various kinds of relationships, i.e. one-to-many (master/detail), one-to-one,
+                etc.,
+                between the TestIntegrationItem and TestIntegrationItemDetail.
+            </description>
+            <attributes>
+                <attribute qualifier="code" type="java.lang.String">
+                    <description>Unique identifier of this test item.</description>
+                    <modifiers read="true" write="true" search="true" optional="false" unique="true" initial="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="requiredName" type="java.lang.String">
+                    <modifiers read="true" write="true" search="true" optional="false"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="optionalSimpleAttr" type="java.lang.String">
+                    <modifiers read="true" write="true" search="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="requiredStringMap" type="String2StringMapType">
+                    <modifiers read="true" write="true" search="true" optional="false"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="bigDecimalMap" type="BigDecimal2BigDecimalMapType">
+                    <modifiers read="true" write="true" search="true" optional="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="bigIntegerMap" type="BigInteger2BigIntegerMapType">
+                    <modifiers read="true" write="true" search="true" optional="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="booleanMap" type="Boolean2BooleanMapType">
+                    <modifiers read="true" write="true" search="true" optional="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="byteMap" type="Byte2ByteMapType">
+                    <modifiers read="true" write="true" search="true" optional="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="characterMap" type="Character2CharacterMapType">
+                    <modifiers read="true" write="true" search="true" optional="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="dateMap" type="Date2DateMapType">
+                    <modifiers read="true" write="true" search="true" optional="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="doubleMap" type="Double2DoubleMapType">
+                    <modifiers read="true" write="true" search="true" optional="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="floatMap" type="Float2FloatMapType">
+                    <modifiers read="true" write="true" search="true" optional="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="integerMap" type="Integer2IntegerMapType">
+                    <modifiers read="true" write="true" search="true" optional="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="longMap" type="Long2LongMapType">
+                    <modifiers read="true" write="true" search="true" optional="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="shortMap" type="Short2ShortMapType">
+                    <modifiers read="true" write="true" search="true" optional="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="bigDecimal2StringMap" type="BigDecimal2StringMapType">
+                    <modifiers read="true" write="true" search="true" optional="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="character2DateMap" type="Character2DateMapType">
+                    <modifiers read="true" write="true" search="true" optional="true"/>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+        <itemtype code="TestIntegrationItem3" extends="TestItemType2">
+            <attributes>
+                <attribute qualifier="code" type="java.lang.String">
+                    <modifiers read="true" write="true" search="true" optional="false" unique="true" initial="true"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="requiredItem" type="TestIntegrationItem">
+                    <modifiers read="true" write="true" search="true" optional="false"/>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+        <itemtype code="ComplexTestIntegrationItem" extends="TestIntegrationItem">
+            <description>
+                This item requires nested TestIntegrationItemDetails and therefore cannot be created without them.
+                That is why it is Complex.
+            </description>
+        </itemtype>
+    </itemtypes>
+</items>

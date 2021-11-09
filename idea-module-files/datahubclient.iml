@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="OOTB" importedAsReadOnly="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/bin/datahubclientserver.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/bin/datahubclientserver.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../modules/data-hub-adapter/datahubclient/lib" recursive="true" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="platform" exported="" />
+    <orderEntry type="module" module-name="webservicescommons" exported="" />
+  </component>
+</module>

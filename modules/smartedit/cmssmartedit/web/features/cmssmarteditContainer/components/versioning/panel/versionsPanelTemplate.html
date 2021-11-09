@@ -1,0 +1,57 @@
+<div class="se-toolbar-menu-content--wrapper">
+    <div class="se-toolbar-menu-content__header">
+        <div
+            class="se-toolbar-menu-content__header-title"
+            data-translate="se.cms.actionitem.page.versions"
+        ></div>
+        <button
+            class="se-version-panel__manage-btn fd-button fd-button--compact"
+            data-ng-click="$ctrl.switchToVersioningMode()"
+            data-translate="se.cms.toolbaritem.versioning.manageversions.name"
+            data-ng-if="$ctrl.showManageButton()"
+        ></button>
+    </div>
+    <div
+        class="se-version-toolbar-menu-content__body"
+        data-ng-class="{'se-version-toolbar-menu-content__body--narrow': $ctrl.showManageButton()}"
+    >
+        <versions-search
+            data-versions-found="$ctrl.versionsFound"
+            data-on-search-term-changed="$ctrl.onSearchTermChanged(newSearchTerm)"
+            data-show-search-controls="$ctrl.pageHasVersions()"
+        ></versions-search>
+        <div>
+            <se-infinite-scrolling
+                [page-size]="$ctrl.pageSize"
+                [mask]="$ctrl.searchTerm"
+                [fetch-page]="$ctrl.loadVersions"
+                [context]="$ctrl"
+                data-ng-if="$ctrl.pageHasVersionsOrIsLoading()"
+                class="se-version-panel__infinite-scroll"
+            >
+                <div
+                    data-ng-repeat="item in $ctrl.items track by $index"
+                    data-ng-class="{'se-version-item--last': $index === $ctrl.items.length-1}"
+                >
+                    <version-item data-page-version="item"></version-item>
+                </div>
+            </se-infinite-scrolling>
+            <div
+                data-ng-if="!$ctrl.pageHasVersionsOrIsLoading()"
+                class="se-version-panel__empty-list"
+            >
+                <img src="static-resources/images/emptyVersions.svg" alt="no versions" />
+                <span class="se-version-panel__no-versions-message">
+                    {{ 'se.cms.toolbaritem.versioning.noversionsfound' | translate }}</span
+                >
+                <a
+                    class="se-version-panel__manage-link fd-link"
+                    data-ng-click="$ctrl.switchToVersioningMode()"
+                    data-translate="se.cms.toolbaritem.versioning.manageversionslink.name"
+                    data-ng-if="$ctrl.showManageLink()"
+                >
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

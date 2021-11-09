@@ -1,0 +1,22 @@
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<action-definition id="webhookbackoffice.actions.createWebhookConfigurationAction"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/action-definition.xsd">
+
+    <name>Create WebhookConfiguration</name>
+    <description>Action to open a window for the fields to define when creating a WebhookConfiguration</description>
+    <version>1.0</version>
+
+    <actionClassName>de.hybris.platform.webhookbackoffice.widgets.actions.CreateWebhookConfigurationAction</actionClassName>
+
+    <iconUri>/icons/icon_action_add_default.png</iconUri>
+    <iconHoverUri>/icons/icon_action_add_hover.png</iconHoverUri>
+    <iconDisabledUri>/icons/icon_action_add_disabled.png</iconDisabledUri>
+
+    <sockets>
+        <output id="createWebhookConfiguration" type="java.lang.String"/>
+    </sockets>
+
+</action-definition>

@@ -1,0 +1,10 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+#
+# Import category code and product code pattern constraints
+#
+
+INSERT_UPDATE PatternConstraint; active[allownull = true]; descriptor(enclosingType(code), qualifier); id[unique = true, allownull = true]; qualifier; severity(code, itemtype(code)); target                                             ; type(code); regexp                      ; flags(code)
+                               ; true                    ; Category:code                             ; CategoryCodePattern                ; code     ; WARN:Severity                 ; de.hybris.platform.category.model.CategoryModel    ; Category  ; ^(?:(?!%5C)(?!%2F)[^/\\])+$ ; CASE_INSENSITIVE ;
+                               ; true                    ; Product:code                              ; ProductCodePattern                 ; code     ; WARN:Severity                 ; de.hybris.platform.core.model.product.ProductModel ; Product   ; ^(?:(?!%5C)(?!%2F)[^/\\])+$ ; CASE_INSENSITIVE ;

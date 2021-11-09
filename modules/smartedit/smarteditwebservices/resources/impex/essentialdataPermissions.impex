@@ -1,0 +1,8 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+INSERT_UPDATE UserRight;code[unique=true];
+;smartedit.configurationcenter.read;
+
+#% de.hybris.platform.smarteditwebservices.utils.PermissionsImportUtils.importGlobalPermission("admingroup", "smartedit.configurationcenter.read"); 	 	 	 	 	 

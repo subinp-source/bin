@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Worklfow Designer services -->
+	<alias name="defaultWorkflowDesignerNodeTypeService" alias="workflowDesignerNodeTypeService"/>
+	<bean id="defaultWorkflowDesignerNodeTypeService"
+		  class="com.hybris.backoffice.workflow.designer.services.NodeTypeService"/>
+
+	<alias name="defaultNetworkEntityFinder" alias="networkEntityFinder"/>
+	<bean id="defaultNetworkEntityFinder" class="com.hybris.backoffice.workflow.designer.services.NetworkEntityFinder">
+		<property name="nodeTypeService" ref="workflowDesignerNodeTypeService"/>
+	</bean>
+
+	<alias name="defaultWorkflowModelFinder" alias="workflowModelFinder"/>
+	<bean id="defaultWorkflowModelFinder" class="com.hybris.backoffice.workflow.designer.services.WorkflowModelFinder">
+		<property name="nodeTypeService" ref="workflowDesignerNodeTypeService"/>
+	</bean>
+
+	<alias name="defaultWorkflowDesignerConnectionFinder" alias="workflowDesignerConnectionFinder"/>
+	<bean id="defaultWorkflowDesignerConnectionFinder"
+		  class="com.hybris.backoffice.workflow.designer.services.ConnectionFinder">
+		<property name="nodeTypeService" ref="workflowDesignerNodeTypeService"/>
+		<property name="networkEntityFinder" ref="networkEntityFinder"/>
+	</bean>
+
+	<alias name="defaultNetworkEntityKeyGenerator" alias="networkEntityKeyGenerator"/>
+	<bean id="defaultNetworkEntityKeyGenerator"
+		  class="com.hybris.backoffice.workflow.designer.renderer.DefaultNetworkEntityKeyGenerator"/>
+
+</beans>

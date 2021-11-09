@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id="testPriceFactory" class="de.hybris.platform.subscriptionservices.jalo.ExtendedCatalogAwareEurope1PriceFactory">
+        <property name="retrieveChannelStrategy" ref="retrieveChannelStrategy"/>
+    </bean>
+
+    <bean id="testCurrentFactoryFindPricingStrategy"
+          class="de.hybris.platform.subscriptionservices.subscription.impl.FindSubscriptionPricingWithCurrentPriceFactoryStrategy"
+          parent="abstractBusinessService">
+        <property name="commercePriceService" ref="subscriptionCommercePriceService"/>
+        <property name="subscriptionProductService" ref="subscriptionProductService"/>
+    </bean>
+
+    <util:list id="testDiscountStrategiesFinderList">
+        <ref bean="testCurrentFactoryFindPricingStrategy"/>
+        <ref bean="findOrderDiscountValuesStrategy"/>
+    </util:list>
+
+    <util:list id="testTaxesStrategiesFinderList">
+        <ref bean="testCurrentFactoryFindPricingStrategy"/>
+    </util:list>
+
+    <bean id="testCalculationService" class="de.hybris.platform.order.impl.DefaultCalculationService"
+          parent="abstractBusinessService">
+        <property name="commonI18NService" ref="commonI18NService"/>
+        <property name="findPriceStrategy" ref="testCurrentFactoryFindPricingStrategy"/>
+        <property name="findDiscountsStrategies" ref="testDiscountStrategiesFinderList"/>
+        <property name="findTaxesStrategies" ref="testTaxesStrategiesFinderList"/>
+        <property name="findDeliveryCostStrategy" ref="findDeliveryCostStrategy"/>
+        <property name="findPaymentCostStrategy" ref="findPaymentCostStrategy"/>
+        <property name="orderRequiresCalculationStrategy" ref="orderRequiresCalculationStrategy"/>
+        <property name="taxFreeEntrySupport" value="false"/>
+    </bean>
+
+    <bean id="testCommerceCartCalculationStrategy"
+          class="de.hybris.platform.commerceservices.order.impl.DefaultCommerceCartCalculationStrategy">
+        <property name="calculationService" ref="testCalculationService"/>
+        <property name="promotionsService" ref="promotionsService"/>
+        <property name="timeService" ref="timeService"/>
+        <property name="baseSiteService" ref="baseSiteService"/>
+        <property name="configurationService" ref="configurationService"/>
+        <property name="commerceCartCalculationMethodHooks" ref="commerceCartCalculationMethodHooks"/>
+        <property name="externalTaxesService" ref="externalTaxesService"/>
+        <property name="calculateExternalTaxes" value="false"/>
+    </bean>
+
+    <bean id="testSubscriptionCommerceUpdateCartEntryStrategy"
+          class="de.hybris.platform.commerceservices.order.impl.DefaultCommerceUpdateCartEntryStrategy"
+          parent="abstractCommerceCartStrategy">
+        <property name="commerceUpdateCartEntryHooks" ref="commerceUpdateCartEntryMethodHooks"/>
+        <property name="configurationService" ref="configurationService"/>
+        <property name="entryMergeStrategy" ref="entryMergeStrategy"/>
+        <property name="commerceCartCalculationStrategy" ref="testCommerceCartCalculationStrategy"/>
+    </bean>
+
+    <bean id="testCommerceAddToCartStrategy"
+          class="de.hybris.platform.commerceservices.order.impl.DefaultCommerceAddToCartStrategy"
+          parent="abstractCommerceAddToCartStrategy">
+        <property name="commerceAddToCartMethodHooks" ref="testCommerceAddToCartMethodHooks"/>
+        <property name="entryMergeStrategy" ref="entryMergeStrategy"/>
+        <property name="configurationService" ref="configurationService"/>
+        <property name="commerceCartCalculationStrategy" ref="testCommerceCartCalculationStrategy"/>
+    </bean>
+
+    <bean id="testCommerceCartRestorationStrategy"
+          class="de.hybris.platform.commerceservices.order.impl.DefaultCommerceCartRestorationStrategy"
+          parent="abstractCommerceCartStrategy">
+        <property name="timeService" ref="timeService"/>
+        <property name="baseSiteService" ref="baseSiteService"/>
+        <property name="cartFactory" ref="cartFactory"/>
+        <property name="commerceCommonI18NService" ref="commerceCommonI18NService"/>
+        <property name="commerceAddToCartStrategy" ref="testCommerceAddToCartStrategy"/>
+        <property name="guidKeyGenerator" ref="guidKeyGenerator"/>
+        <property name="cartValidityPeriod" value="12960000"/>
+    </bean>
+
+    <bean id="testBaseSubscriptionCommerceCartService"
+          class="de.hybris.platform.commerceservices.order.impl.DefaultCommerceCartService">
+        <property name="modelService" ref="modelService"/>
+        <property name="baseSiteService" ref="baseSiteService"/>
+        <property name="commerceCartDao" ref="commerceCartDao"/>
+        <property name="cartValidationStrategy" ref="cartValidationStrategy"/>
+        <property name="commerceCartCalculationStrategy" ref="testCommerceCartCalculationStrategy"/>
+        <property name="commerceCartEstimateTaxesStrategy" ref="commerceCartEstimateTaxesStrategy"/>
+        <property name="commerceCartHashCalculationStrategy" ref="commerceCartHashCalculationStrategy"/>
+        <property name="sessionService" ref="sessionService"/>
+        <property name="staleCartRemovalStrategy" ref="staleCartRemovalStrategy"/>
+        <property name="commerceAddToCartStrategy" ref="testCommerceAddToCartStrategy"/>
+        <property name="commerceUpdateCartEntryStrategy" ref="testSubscriptionCommerceUpdateCartEntryStrategy"/>
+        <property name="commerceCartRestorationStrategy" ref="testCommerceCartRestorationStrategy"/>
+        <property name="commerceCartSplitStrategy" ref="commerceCartSplitStrategy"/>
+        <property name="commerceRemoveEntriesStrategy" ref="commerceRemoveEntriesStrategy"/>
+        <property name="commerceCartMergingStrategy" ref="commerceCartMergingStrategy"/>
+        <property name="commerceCartMetadataUpdateStrategy" ref="commerceCartMetadataUpdateStrategy"/>
+        <property name="productConfigurationStrategy" ref="productConfigurationStrategy"/>
+        <property name="removeEntryGroupStrategy" ref="removeEntryGroupStrategy"/>
+    </bean>
+
+    <bean id="testSubscriptionCommerceCartService"
+          class="de.hybris.platform.subscriptionservices.subscription.impl.DefaultSubscriptionCommerceCartService"
+          parent="testBaseSubscriptionCommerceCartService">
+        <property name="billingTimeService" ref="billingTimeService"/>
+        <property name="masterCartBillingTimeCode" value="paynow"/>
+        <property name="subscriptionProductStockQuantity" value="1000"/>
+        <property name="commercePriceService" ref="subscriptionCommercePriceService"/>
+        <property name="baseStoreService" ref="baseStoreService"/>
+        <property name="commerceStockService" ref="commerceStockService"/>
+        <property name="subscriptionCommerceCartStrategy" ref="subscriptionCommerceCartStrategy"/>
+        <property name="subscriptionProductService" ref="subscriptionProductService"/>
+    </bean>
+
+    <util:list id="testCommerceAddToCartMethodHooks"
+               value-type="de.hybris.platform.commerceservices.order.hook.CommerceAddToCartMethodHook">
+        <ref bean="configurableProductAddToCartMethodHook"/>
+        <ref bean="testSubscriptionAddToCartMethodHook"/>
+    </util:list>
+
+    <bean id="testSubscriptionAddToCartMethodHook"
+          class="de.hybris.platform.subscriptionservices.order.hook.SubscriptionAddToCartMethodHook">
+        <property name="billingTimeService" ref="billingTimeService"/>
+        <property name="subscriptionCommerceCartService" ref="testSubscriptionCommerceCartService"/>
+        <property name="subscriptionProductService" ref="subscriptionProductService"/>
+        <property name="modelService" ref="modelService"/>
+        <property name="cartService" ref="cartService"/>
+        <property name="commerceCartCalculationStrategy" ref="testCommerceCartCalculationStrategy"/>
+    </bean>
+
+    <bean id="testSubscriptionUpdateCartEntryHook"
+          class="de.hybris.platform.subscriptionservices.order.hook.SubscriptionUpdateCartEntryHook">
+        <property name="subscriptionProductService" ref="subscriptionProductService"/>
+        <property name="modelService" ref="modelService"/>
+        <property name="calculationStrategy" ref="testCommerceCartCalculationStrategy"/>
+        <property name="subscriptionCommerceCartStrategy" ref="subscriptionCommerceCartStrategy"/>
+    </bean>
+
+    <util:list id="testCommerceUpdateCartEntryMethodHooks"
+               value-type="de.hybris.platform.commerceservices.order.hook.CommerceUpdateCartEntryHook">
+        <ref bean="testSubscriptionUpdateCartEntryHook"/>
+    </util:list>
+
+</beans>

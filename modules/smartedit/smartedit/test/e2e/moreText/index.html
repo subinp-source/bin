@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--3rd prty libs-->
+        <script src="../../../web/webroot/static-resources/dist/smarteditcontainer/js/thirdparties.js"></script>
+        <script src="../../../web/webroot/static-resources/dist/smarteditcommons/js/vendor_chunk.js"></script>
+        <script src="../../../web/webroot/static-resources/thirdparties/ckeditor/ckeditor.js"></script>
+
+        <!--libs-->
+        <script src="../../../web/webroot/static-resources/dist/smarteditcommons/js/smarteditcommons.js"></script>
+
+        <script src="../../../web/webroot/static-resources/dist/smarteditcontainer/js/smarteditcontainer.js"></script>
+
+        <!--Mocks-->
+        <script src="../utils/commonMockedModules/generated_outerGlobalBasePathFetchMock.js"></script>
+        <script src="generated_outerMocks.js"></script>
+
+        <base href="../../../../" />
+    </head>
+
+    <body>
+        <div
+            id="ng"
+            style="position: absolute; z-index: 999; width: 100vw; height: 100px; padding: 10px; top:300px"
+        >
+            <app-root></app-root>
+        </div>
+
+        <div
+            id="legacy"
+            style="position: absolute; z-index: 999; width: 100vw; height: 100px; padding: 10px; top: 400px"
+        >
+            <y-more-text
+                id="yMoreTextLimitLessThenText"
+                limit="10"
+                text="'hello, how are you? What time is it now?'"
+                ellipsis="'.....'"
+            ></y-more-text>
+            <br />
+            <y-more-text
+                id="yMoreTextLimitMoreThenText"
+                limit="100"
+                text="'hello, how are you? What time is it now?'"
+                moreLabelI18nKey="se.moretext.custom.more.link"
+                lessLabelI18nKey="se.moretext.custom.less.link"
+            ></y-more-text>
+            <br />
+            <y-more-text
+                id="yMoreTextWithCustomLinks"
+                limit="10"
+                text="'hello, how are you? What time is it now?'"
+                more-label-i18n-key="'se.moretext.custom.more.link'"
+                less-label-i18n-key="'se.moretext.custom.less.link'"
+            ></y-more-text>
+        </div>
+    </body>
+</html>

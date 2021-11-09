@@ -1,0 +1,19 @@
+<se-message data-ng-if="$ctrl.catalogVersionContainsPageWithSameTypeCode" [type]="'warning'">
+    <ng-container
+        se-message-description
+        translate="se.cms.clonepagewizard.pageinfo.targetcatalogversion.pagetype.exists.message"
+        translate-value-type-code="{{$ctrl.pageTypeCode}}"
+    >
+    </ng-container>
+</se-message>
+
+<se-generic-editor
+    [structure]="$ctrl.structure"
+    [content]="$ctrl.content"
+    [(submit)]="$ctrl.submit"
+    [(reset)]="$ctrl.reset"
+    [(is-dirty)]="$ctrl.isDirty"
+    [(is-valid)]="$ctrl.isValid"
+    (get-api)="$ctrl.setGenericEditorApi($event)"
+>
+</se-generic-editor>

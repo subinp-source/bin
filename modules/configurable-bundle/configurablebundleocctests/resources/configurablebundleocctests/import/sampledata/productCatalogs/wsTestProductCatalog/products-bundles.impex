@@ -1,0 +1,84 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+$defaultCurrency=USD
+$lang=en
+$defaultLanguage=en
+$deliveryCountries=US
+$catalog-id=wsTestProductCatalog
+$catalog-version=Online
+$catalogVersion=catalogversion(catalog(id[default=$catalog-id]),version[default=$catalog-version])[unique=true,default=$catalog-id:$catalog-version]
+$supercategories=supercategories(code,catalogversion(catalog(id[default=$catalog-id]),version[default=$catalog-version]))
+$prices=europe1prices[translator=de.hybris.platform.europe1.jalo.impex.Europe1PricesTranslator]
+$approved=approvalstatus(code)[default='approved']
+$storeUid=wsTest
+$net=false
+
+#################################################################################
+# Add Products
+#################################################################################
+INSERT_UPDATE Product;code[unique=true];$prices;unit(code)[default='pieces'];$catalogVersion;$approved
+;1225694;500,50 USD
+;805693;5,50 USD
+;832382;6,50 USD
+;493683;7,50 USD
+;872912a;6,50 USD
+;1641905;7,50 USD
+# bundle less product
+;81185
+
+#################################################################################
+# Photo On The Go Package - required/dependent components
+#################################################################################
+INSERT_UPDATE BundleTemplateStatus;id[unique=true];status(code)[default='approved'];$catalogVersion
+;Status_PhotoOTGPackage
+
+INSERT_UPDATE BundleTemplate;id[unique=true];parentTemplate(id, version[default=1.0], $catalogVersion);status(id, $catalogVersion)[default='Status_PHOTO'];version[default=1.0][unique=true];$catalogVersion
+;PhotoOTGPackage;;Status_PhotoOTGPackage
+;PhotoSDCardsPackage;;Status_PhotoOTGPackage
+;PhotoOTGCameraComponent;PhotoOTGPackage;Status_PhotoOTGPackage
+;PhotoOTGBatteryComponent;PhotoOTGPackage;Status_PhotoOTGPackage
+;PhotoOTGBatteryComponent2;PhotoOTGPackage;Status_PhotoOTGPackage
+;PhotoSDCardComponent1;PhotoSDCardsPackage;Status_PhotoOTGPackage
+;PhotoSDCardComponent2;PhotoSDCardsPackage;Status_PhotoOTGPackage
+
+UPDATE BundleTemplate;id[unique=true];version[default=1.0][unique=true];childTemplates(id,version[default=1.0],$catalogVersion);$catalogVersion
+;PhotoSDCardsPackage;;PhotoSDCardComponent1,PhotoSDCardComponent2
+;PhotoOTGPackage;;PhotoOTGCameraComponent,PhotoOTGBatteryComponent,PhotoOTGBatteryComponent2,PhotoSDCardsPackage
+
+UPDATE BundleTemplate;id[unique=true];products(code, $catalogVersion);version[default=1.0][unique=true];$catalogVersion
+;PhotoOTGCameraComponent;1225694
+;PhotoOTGBatteryComponent;805693
+;PhotoOTGBatteryComponent2;832382,493683
+;PhotoSDCardComponent1;872912a
+;PhotoSDCardComponent2;1641905
+
+INSERT_UPDATE PickNToMBundleSelectionCriteria;id[unique=true];n;m;starter[default=false];$catalogVersion
+;PhotoOTGCamera_Starter;0;1000;true
+;BatteryComponent_Pick1to2;1;2
+;SDCardComponent_Pick1to2;1;2
+
+UPDATE BundleTemplate;id[unique=true];bundleSelectionCriteria(id, $catalogVersion);version[default=1.0];$catalogVersion
+;PhotoOTGCameraComponent;PhotoOTGCamera_Starter
+;PhotoOTGBatteryComponent;BatteryComponent_Pick1to2
+;PhotoSDCardComponent1;SDCardComponent_Pick1to2
+;PhotoSDCardComponent2;SDCardComponent_Pick1to2
+
+#################################################################################
+# Set required component
+#################################################################################
+UPDATE BundleTemplate;id[unique=true];requiredBundleTemplates(id, version[default=1.0], $catalogVersion);version[default=1.0][unique=true];$catalogVersion
+;PhotoOTGBatteryComponent;PhotoOTGCameraComponent
+;PhotoOTGBatteryComponent2;PhotoOTGCameraComponent
+#;BatteryComponent;ChargerComponent
+
+#################################################################################
+# Update Language
+#################################################################################
+INSERT_UPDATE BundleTemplate;id[unique=true];name[lang=$lang];$catalogVersion
+;PhotoOTGPackage;Photo On The Go Package
+;PhotoOTGCameraComponent;Camera Component
+;PhotoOTGBatteryComponent;Accessory Component
+;PhotoOTGBatteryComponent2;Accessory Component2
+;PhotoSDCardComponent1;SDCard Component
+;PhotoSDCardComponent2;SDCard Component2

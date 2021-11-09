@@ -1,0 +1,48 @@
+/* *
+/* This file is the parent of all the styles and the only variable converted to css and visible to the outside world.
+/* All the imports should go here only
+*/
+/* *
+/* Imports of Techne components, patterns not used in SmartEdit
+*/
+
+@import "node_modules/techne/src/less/globals/_variables";
+@import "node_modules/techne/src/less/techne-patterns/_trees.less";
+
+/* *
+/* Imports of Fundamental Style Library components
+*/
+
+@import "fundamental-styles";
+
+/* *
+/* Imports of personalization variables, common styles, fixes and re-usable components
+*/
+
+@import "variables";
+@import "commons";
+@import "commonComponents/perso-spinner";
+
+/* *
+/* Imports of the rest of personalization styling
+*/
+
+@import "personalization-view";
+@import "combinedview-panel";
+@import "customization-modal";
+@import "customization-modal-slider-panel";
+@import "customize-components-modal";
+@import "customize-components-se-select";
+@import "perso-library";
+@import "perso-customize-panel";
+@import "perso-customize-panel-list";
+@import "toolbar-menu";
+@import "combinedViewColors";
+@import "perso-segments-tree";
+@import "perso-angular-ui-tree";
+@import "datetime-picker";
+@import "toolbar-action-context";
+@import "combinedview-ranking";
+@import "combinedview-config";
+@import "perso-component-info";
+@import "perso-shared-slot-decorator";

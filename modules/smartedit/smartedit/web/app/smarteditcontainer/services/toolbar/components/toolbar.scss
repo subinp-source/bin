@@ -1,0 +1,196 @@
+@import '~fiori-fundamentals/scss/components/button';
+@import '~fiori-fundamentals/scss/components/shellbar';
+
+.se-toolbar-group {
+    z-index: 1001;
+    width: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    position: fixed;
+}
+.se-toolbar {
+    @include se-flex-row(space-between);
+    padding-left: 30px;
+}
+.se-toolbar__left,
+.se-toolbar__right,
+.se-toolbar__middle,
+.se-template-toolbar {
+    @include se-flex-row();
+    height: 100%;
+
+    .toolbar-action {
+        height: 100%;
+        position: relative;
+    }
+}
+.se-toolbar--shortcut {
+    background-color: fd-color('background', 2);
+    border-bottom: se-border();
+    height: 46px;
+}
+
+// Toolbar 1
+.se-toolbar--shell {
+    @extend .fd-shellbar;
+
+    .se-toolbar__right {
+        @include se-flex-row;
+        flex-direction: row-reverse;
+    }
+}
+.se-app-logo {
+    @include se-flex-row();
+}
+.se-logo-image {
+    max-height: fd-space('reg');
+    margin-right: fd-space('small');
+}
+.se-logo-text {
+    @include fd-weight('bold');
+}
+.se-toolbar--shell .se-template-toolbar__action-template.se-toolbar-action--active {
+    @include se-flex-row(center);
+    padding: 0;
+    margin-left: fd-space('xs');
+    button {
+        @extend .fd-button--shell;
+        @include fd-type('1');
+        padding: fd-space('base') fd-space('tiny');
+        height: fd-space('l');
+        width: fd-space('l');
+        border-radius: fd-space('base');
+        background-color: transparent;
+        .se-toolbar-actions__icon,
+        .se-toolbar-actions__icon::before {
+            position: relative; // IE11
+        }
+    }
+}
+.se-toolbar .dropdown.open {
+    .se-toolbar__dropdown--right {
+        @include se-dropdown-menu('right');
+    }
+    .se-toolbar__dropdown--center {
+        @include se-dropdown-menu('center');
+    }
+    .se-toolbar__dropdown--left {
+        @include se-dropdown-menu('left');
+    }
+}
+.se-toolbarActions__dropdown-element.fd-menu__item {
+    color: fd-color('text', 2);
+}
+
+// Toolbar 2
+.se-toolbar--experience {
+    background-color: fd-color('background', 2);
+    border-bottom: se-border();
+    height: 46px;
+    .se-toolbar__left {
+        flex: 1 1 auto;
+    }
+    .dropdown-menu {
+        left: auto;
+        border: se-border();
+    }
+}
+
+// Toolbar 3
+.se-toolbar--perspective {
+    background-color: fd-color('background', 2);
+    border-bottom: thin solid fd-color(neutral, 3);
+    font-family: $font-sap;
+    height: 40px;
+    .se-toolbar__right {
+        @include se-flex-row(flex-end);
+    }
+    // Start Workflow btn
+    #smartEditPerspectiveToolbar_option_se\.cms\.startWorkflow_btn {
+        @extend .fd-button;
+        height: 100%;
+        padding: 3px fd-space('small');
+        margin-right: 20px;
+        box-shadow: none;
+        .toolbar-action-button__txt {
+            @include fd-type('0');
+            font-family: $font-sap;
+            color: inherit;
+            text-transform: capitalize;
+        }
+    }
+    .se-toolbar-actionable-item-context,
+    .se-version-item-context {
+        height: 39px;
+    }
+}
+
+// Toolbar 3 buttons
+.se-toolbar--perspective .se-toolbar__right .toolbar-action--button,
+.se-toolbar--perspective .se-toolbar__left .toolbar-action--button {
+    @include se-text-btn();
+    @include se-flex-row();
+    height: 39px;
+    padding: 0 fd-space('small');
+    background-color: transparent;
+    font-family: $font-sap;
+
+    &.toolbar-action__disabled,
+    &.toolbar-action__disabled .se-toolbar-menu-ddlb--button__icon {
+        color: fd-color('text', 4);
+    }
+    .se-toolbar-menu-ddlb--button__icon {
+        @include fd-type('1');
+        margin-right: fd-space('tiny');
+        color: fd-color('action', 1);
+    }
+    .toolbar-action-button__txt {
+        @include fd-type('0');
+        color: fd-color(text, 1);
+        text-transform: capitalize;
+    }
+}
+.se-toolbar--perspective .se-template-toolbar:hover {
+    .se-toolbar-actionable-item-context:not(.se-toolbar-actionable-item-context--open),
+    .toolbar-action--button[aria-expanded='false']:not(.toolbar-action__disabled) {
+        background-color: fd-color-state('hover');
+    }
+}
+.se-toolbar--perspective .se-toolbar__left .toolbar-action--button[aria-expanded='true'],
+.se-toolbar-actionable-item-context--open {
+    background-color: fd-color-state('selected');
+}
+.se-toolbar-popover {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+}
+
+.se-toolbar-action {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.se-toolbar-action__wrapper > div > .fd-popover__arrow {
+    border-bottom-color: fd-color('neutral', 3);
+}
+
+.se-toolbar-action__wrapper > div > .fd-popover__popper.fd-popover-container-custom {
+    @include se-box-shadow;
+
+    display: block;
+    min-width: 100px;
+    width: fit-content;
+    background-color: fd-color('background', 2);
+    border-radius: fd-space('base');
+    border: se-border();
+    z-index: 2000;
+    top: -4% !important;
+}
+
+.se-toolbar-section-item {
+    display: flex;
+}

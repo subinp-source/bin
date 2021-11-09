@@ -1,0 +1,15 @@
+#
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+#
+
+INSERT_UPDATE ServicelayerJob;code[unique=true];springId[unique=true]
+;merchCategoryExporter;merchCategoryExporter
+;merchProductDirectoryCategoryExporter;merchProductDirectoryCategoryExporter
+
+INSERT_UPDATE CronJob; code[unique=true];job(code);singleExecutable;sessionLanguage(isocode)
+;merchCategoryExporter;merchCategoryExporter;false;en
+;merchProductDirectoryCategoryExporter;merchProductDirectoryCategoryExporter;false;en
+
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+;merchCategoryExporter;0;5;-1;-1;-1;-1;true;false;-1
+;merchProductDirectoryCategoryExporter;0;5;-1;-1;-1;-1;true;false;-1

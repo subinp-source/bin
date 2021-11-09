@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<widget-definition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widget-definition.xsd"
+                   id="de.hybris.platform.integrationbackoffice.widgets.IntegrationObjectEditorListbox">
+    <name>Integration Object Editor Listbox</name>
+    <description>Listbox to display the attributes of a type</description>
+    <defaultTitle>Integration Object Editor Listbox</defaultTitle>
+    <author>Hybris</author>
+    <version>1.0</version>
+    <keywords>
+        <keyword>IntegrationObjectEditorListbox</keyword>
+    </keywords>
+    <view src="IntegrationObjectEditorListbox.zul"/>
+    <controller
+            class="de.hybris.platform.integrationbackoffice.widgets.editor.controllers.IntegrationObjectEditorListboxController"/>
+    <sockets>
+        <input id="renameAttributeEvent"
+               type="de.hybris.platform.integrationbackoffice.widgets.modals.data.RenameAttributeModalData"/>
+        <input id="retypeAttributeEvent"
+               type="de.hybris.platform.integrationbackoffice.widgets.editor.data.SubtypeData"/>
+        <input id="selectedItem" type="de.hybris.platform.core.model.type.ComposedTypeModel"/>
+        <output id="openRenameAttribute"
+                type="de.hybris.platform.integrationbackoffice.widgets.modals.data.RenameAttributeModalData"/>
+        <output id="openRetypeAttribute"
+                type="de.hybris.platform.integrationbackoffice.widgets.editor.data.SubtypeData"/>
+        <output id="enableSaveButton" type="java.lang.Boolean"/>
+        <output id="checkForStructuredType" type="de.hybris.platform.integrationbackoffice.dto.AbstractListItemDTO"/>
+        <output id="retypeTreeNodes" type="de.hybris.platform.integrationbackoffice.widgets.editor.data.RetypeTreeData"/>
+        <output id="renameTreeNodes" type="de.hybris.platform.integrationbackoffice.widgets.editor.data.RenameTreeData"/>
+        <output id="openAttributeDetails" type="de.hybris.platform.integrationbackoffice.dto.ListItemAttributeDTO"/>
+        <output id="openClassificationAttributeDetails"
+                type="de.hybris.platform.integrationbackoffice.dto.ListItemClassificationAttributeDTO"/>
+        <output id="openVirtualAttributeDetails" type="de.hybris.platform.integrationbackoffice.dto.ListItemVirtualAttributeDTO"/>
+        <output id="autoSelectAttributeRelation" type="org.zkoss.zul.Treeitem"/>
+    </sockets>
+</widget-definition>

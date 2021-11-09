@@ -1,0 +1,7 @@
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<content-elements>
+	<content-element type="ProductCarouselComponent" name="type.productcarouselcomponent.name" image="cmscockpit/images/ProductCarouselComponent.gif"
+		description="type.productcarouselcomponent.description" imageSmall="cmscockpit/images/ProductCarouselComponentSmall.gif" />
+</content-elements>	

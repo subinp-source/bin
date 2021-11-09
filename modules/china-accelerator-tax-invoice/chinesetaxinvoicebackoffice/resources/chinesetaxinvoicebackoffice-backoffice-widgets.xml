@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widgets.xsd">
+
+    
+
+    <widget-connection inputId="input" outputId="nodeSelected" sourceWidgetId="chinesetaxinvoicebackoffice-explorer-tree" targetWidgetId="chinesetaxinvoicebackoffice-tree-node-adapter"/>
+    <widget-connection inputId="genericInput" outputId="true" sourceWidgetId="chinesetaxinvoicebackoffice-tree-node-adapter" targetWidgetId="chinesetaxinvoicebackoffice-typecode-extractor"/>
+    <widget-connection inputId="genericInput" outputId="true" sourceWidgetId="chinesetaxinvoicebackoffice-tree-node-adapter" targetWidgetId="chinesetaxinvoicebackoffice-search-enabler"/>
+    <widget-connection inputId="genericInput" outputId="false" sourceWidgetId="chinesetaxinvoicebackoffice-tree-node-adapter" targetWidgetId="chinesetaxinvoicebackoffice-search-disabler"/>
+    <widget-connection inputId="type" outputId="genericOutput" sourceWidgetId="chinesetaxinvoicebackoffice-typecode-extractor" targetWidgetId="chinesetaxinvoicebackoffice-search-logic"/>
+    <widget-connection inputId="enabled" outputId="genericOutput" sourceWidgetId="chinesetaxinvoicebackoffice-search-enabler" targetWidgetId="chinesetaxinvoicebackoffice-text-search"/>
+    <widget-connection inputId="enabled" outputId="genericOutput" sourceWidgetId="chinesetaxinvoicebackoffice-search-disabler" targetWidgetId="chinesetaxinvoicebackoffice-text-search"/>
+    <widget-connection inputId="searchtext" outputId="query" sourceWidgetId="chinesetaxinvoicebackoffice-text-search" targetWidgetId="chinesetaxinvoicebackoffice-search-logic"/>
+    <widget-connection inputId="pageable" outputId="pageable" sourceWidgetId="chinesetaxinvoicebackoffice-search-logic" targetWidgetId="chinesetaxinvoicebackoffice-simple-list"/>
+
+</widgets>

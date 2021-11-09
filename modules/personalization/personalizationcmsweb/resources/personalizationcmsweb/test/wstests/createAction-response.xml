@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<cxCmsAction>
+	<code>newAction2</code>
+	<componentId>newComponent</componentId>
+	<containerId>container1</containerId>
+</cxCmsAction>

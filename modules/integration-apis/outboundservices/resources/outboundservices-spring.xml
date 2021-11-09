@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+  -->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <alias name="defaultOutboundServicesConfiguration" alias="outboundServicesConfiguration"/>
+    <bean id="defaultOutboundServicesConfiguration"
+          class="de.hybris.platform.outboundservices.config.DefaultOutboundServicesConfiguration">
+        <property name="configurationService" ref="configurationService"/>
+    </bean>
+
+    <alias name="defaultIntegrationRestTemplateFactory" alias="integrationRestTemplateFactory"/>
+    <bean id="defaultIntegrationRestTemplateFactory"
+          class="de.hybris.platform.outboundservices.client.impl.DefaultIntegrationRestTemplateFactory">
+        <property name="restTemplateCreators" ref="integrationRestTemplateStrategiesList"/>
+    </bean>
+
+    <alias name="defaultIntegrationRestTemplateStrategiesList" alias="integrationRestTemplateStrategiesList"/>
+    <util:list id="defaultIntegrationRestTemplateStrategiesList"
+               value-type="de.hybris.platform.outboundservices.client.IntegrationRestTemplateCreator">
+        <ref bean="integrationNoCredentialRestTemplateCreator"/>
+        <ref bean="integrationBasicRestTemplateCreator"/>
+        <ref bean="integrationOAuth2RestTemplateCreator"/>
+    </util:list>
+
+    <alias name="defaultAbstractRestTemplateCreator" alias="abstractRestTemplateCreator"/>
+    <bean id="defaultAbstractRestTemplateCreator" abstract="true"
+          class="de.hybris.platform.outboundservices.client.impl.AbstractRestTemplateCreator">
+        <property name="clientHttpRequestFactory" ref="outboundClientHttpRequestFactory"/>
+        <property name="messageConverters">
+            <list>
+                <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                    <property name="supportedMediaTypes">
+                        <list>
+                            <bean class="org.springframework.http.MediaType">
+                                <constructor-arg value="application"/>
+                                <constructor-arg value="json"/>
+                            </bean>
+                            <bean class="org.springframework.http.MediaType">
+                                <constructor-arg value="application"/>
+                                <constructor-arg value="octet-stream"/>
+                            </bean>
+                        </list>
+                    </property>
+                </bean>
+            </list>
+        </property>
+        <property name="requestInterceptors" ref="restTemplateHeaderInterceptors"/>
+        <property name="cache" ref="outboundRestTemplateCache"/>
+    </bean>
+
+    <alias name="defaultRestTemplateHeaderInterceptors" alias="restTemplateHeaderInterceptors"/>
+    <util:list id="defaultRestTemplateHeaderInterceptors">
+        <ref bean="outboundRequestResponseInterceptor"/>
+    </util:list>
+
+    <alias name="defaultHttp404OutboundRequestErrorParser" alias="http404OutboundRequestErrorParser"/>
+    <bean id="defaultHttp404OutboundRequestErrorParser"
+          class="de.hybris.platform.outboundservices.monitoring.DefaultHttp404OutboundRequestErrorParser">
+    </bean>
+
+    <alias name="defaultFallbackOutboundRequestErrorParser" alias="fallbackOutboundRequestErrorParser"/>
+    <bean name="defaultFallbackOutboundRequestErrorParser"
+          class="de.hybris.platform.outboundservices.monitoring.DefaultFallbackOutboundRequestErrorParser">
+    </bean>
+
+    <alias name="defaultExceptionOutboundRequestErrorParser" alias="exceptionOutboundRequestErrorParser"/>
+    <bean name="defaultExceptionOutboundRequestErrorParser"
+          class="de.hybris.platform.outboundservices.monitoring.DefaultExceptionOutboundRequestErrorParser">
+    </bean>
+
+    <alias name="defaultOutboundRequestResponseInterceptor" alias="outboundRequestResponseInterceptor"/>
+    <bean name="defaultOutboundRequestResponseInterceptor"
+          class="de.hybris.platform.outboundservices.monitoring.DefaultOutboundRequestResponseInterceptor">
+        <property name="modelService" ref="modelService"/>
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+        <property name="mediaPersistenceService" ref="integrationServicesMediaPersistenceService"/>
+        <property name="errorParsers">
+            <list>
+                <ref bean="xmlMonitoredRequestErrorParser"/>
+                <ref bean="jsonMonitoredRequestErrorParser"/>
+                <ref bean="http404OutboundRequestErrorParser"/>
+            </list>
+        </property>
+        <property name="outboundServicesConfiguration" ref="outboundServicesConfiguration"/>
+        <property name="fallbackErrorParser" ref="fallbackOutboundRequestErrorParser"/>
+        <property name="exceptionErrorParser" ref="exceptionOutboundRequestErrorParser"/>
+        <property name="timeoutService" ref="integrationTimeoutService"/>
+    </bean>
+
+    <alias name="defaultIntegrationNoCredentialRestTemplateCreator" alias="integrationNoCredentialRestTemplateCreator"/>
+    <bean id="defaultIntegrationNoCredentialRestTemplateCreator" parent="abstractRestTemplateCreator"
+          class="de.hybris.platform.outboundservices.client.impl.DefaultIntegrationNoCredentialRestTemplateCreator">
+    </bean>
+
+    <alias name="defaultIntegrationBasicRestTemplateCreator" alias="integrationBasicRestTemplateCreator"/>
+    <bean id="defaultIntegrationBasicRestTemplateCreator" parent="abstractRestTemplateCreator"
+          class="de.hybris.platform.outboundservices.client.impl.DefaultIntegrationBasicRestTemplateCreator">
+    </bean>
+
+    <alias name="defaultIntegrationOAuth2RestTemplateCreator" alias="integrationOAuth2RestTemplateCreator"/>
+    <bean id="defaultIntegrationOAuth2RestTemplateCreator" parent="abstractRestTemplateCreator"
+          class="de.hybris.platform.outboundservices.client.impl.DefaultIntegrationOAuth2RestTemplateCreator">
+        <property name="oAuth2ResourceDetailsGeneratorFactory" ref="oAuth2ResourceDetailsGeneratorFactory"/>
+    </bean>
+
+    <alias name="defaultOAuth2ResourceDetailsGeneratorFactory" alias="oAuth2ResourceDetailsGeneratorFactory"/>
+    <bean id="defaultOAuth2ResourceDetailsGeneratorFactory"
+          class="de.hybris.platform.outboundservices.client.impl.DefaultOAuth2ResourceDetailsGeneratorFactory"/>
+
+    <alias name="defaultOutboundServiceFacade" alias="outboundServiceFacade"/>
+    <bean id="defaultOutboundServiceFacade"
+          class="de.hybris.platform.outboundservices.facade.impl.DefaultOutboundServiceFacade">
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+        <property name="integrationRestTemplateFactory" ref="integrationRestTemplateFactory"/>
+        <property name="outboundRequestDecorators" ref="outboundRequestDecoratorList"/>
+        <property name="integrationObjectService" ref="integrationObjectService"/>
+        <property name="monitoringDecorator" ref="outboundMonitoringRequestDecorator"/>
+        <property name="outboundServicesConfiguration" ref="outboundServicesConfiguration"/>
+        <property name="contextFactory" ref="outboundServiceDefaultDecoratorContextFactory"/>
+    </bean>
+
+    <alias name="outboundServiceDefaultDecoratorContextFactory" alias="outboundServiceDecoratorContextFactory"/>
+    <bean id="outboundServiceDefaultDecoratorContextFactory"
+          class="de.hybris.platform.outboundservices.decorator.impl.DefaultDecoratorContextFactory">
+        <constructor-arg name="integrationObjectService" ref="integrationObjectService"/>
+        <constructor-arg name="flexibleSearchService" ref="flexibleSearchService"/>
+        <constructor-arg name="integrationServicesDescriptorFactory" ref="integrationServicesDescriptorFactory"/>
+    </bean>
+
+    <alias name="defaultBuildPayloadRequestDecorator" alias="buildPayloadRequestDecorator"/>
+    <bean id="defaultBuildPayloadRequestDecorator"
+          class="de.hybris.platform.outboundservices.decorator.impl.DefaultPayloadBuildingRequestDecorator">
+        <property name="integrationObjectConversionService" ref="integrationObjectConversionService"/>
+    </bean>
+
+    <alias name="defaultOutboundRequestDecoratorList" alias="outboundRequestDecoratorList"/>
+    <util:list id="defaultOutboundRequestDecoratorList"
+               value-type="de.hybris.platform.outboundservices.decorator.OutboundRequestDecorator">
+        <ref bean="contextErrorDecorator"/>
+        <ref bean="buildPayloadRequestDecorator"/>
+        <ref bean="acceptHeaderRequestDecorator"/>
+        <ref bean="sapPassportRequestDecorator"/>
+        <ref bean="csrfOutboundRequestDecorator"/>
+    </util:list>
+
+    <alias name="defaultAcceptHeaderRequestDecorator" alias="acceptHeaderRequestDecorator"/>
+    <bean id="defaultAcceptHeaderRequestDecorator"
+          class="de.hybris.platform.outboundservices.decorator.impl.DefaultAcceptHeaderRequestDecorator">
+    </bean>
+
+    <alias name="defaultSapPassportRequestDecorator" alias="sapPassportRequestDecorator"/>
+    <bean id="defaultSapPassportRequestDecorator"
+          class="de.hybris.platform.outboundservices.decorator.impl.DefaultSapPassportRequestDecorator">
+        <property name="sapPassportService" ref="sapPassportService"/>
+    </bean>
+
+    <alias name="defaultCsrfOutboundRequestDecorator" alias="csrfOutboundRequestDecorator"/>
+    <bean id="defaultCsrfOutboundRequestDecorator"
+          class="de.hybris.platform.outboundservices.decorator.impl.csrf.DefaultCsrfOutboundRequestDecorator">
+        <property name="integrationRestTemplateFactory" ref="integrationRestTemplateFactory"/>
+        <property name="cache" ref="csrfParametersCache"/>
+    </bean>
+
+    <alias name="defaultOutboundMonitoringRequestDecorator" alias="outboundMonitoringRequestDecorator"/>
+    <bean id="defaultOutboundMonitoringRequestDecorator"
+          class="de.hybris.platform.outboundservices.decorator.impl.DefaultOutboundMonitoringRequestDecorator">
+        <property name="modelService" ref="modelService"/>
+        <property name="exceptionErrorParser" ref="exceptionOutboundRequestErrorParser"/>
+    </bean>
+
+    <alias name="defaultContextErrorDecorator" alias="contextErrorDecorator"/>
+    <bean id="defaultContextErrorDecorator"
+          class="de.hybris.platform.outboundservices.decorator.impl.DefaultContextErrorDecorator"/>
+
+    <alias name="defaultOutboundClientHttpRequestFactory" alias="outboundClientHttpRequestFactory"/>
+    <bean id="defaultOutboundClientHttpRequestFactory"
+          class="org.springframework.http.client.HttpComponentsClientHttpRequestFactory" scope="prototype">
+        <constructor-arg ref="outboundHttpClient"/>
+    </bean>
+
+    <alias name="defaultOutboundHttpClient" alias="outboundHttpClient"/>
+    <bean id="defaultOutboundHttpClient" factory-bean="outboundHttpClientFactory" factory-method="create"
+          scope="prototype"/>
+
+    <alias name="defaultOutboundHttpClientFactory" alias="outboundHttpClientFactory"/>
+    <bean id="defaultOutboundHttpClientFactory"
+          class="de.hybris.platform.outboundservices.client.impl.DefaultOutboundHttpClientFactory">
+        <property name="maxConnections" value="${outboundservices.httpclient.max.connections}"/>
+        <property name="keepAlive" value="${outboundservices.httpclient.connections.keep-alive}"/>
+        <property name="timeout" value="${outboundservices.httpclient.connections.connectionTimeout}"/>
+        <property name="validity" value="${outboundservices.httpclient.connections.validity}"/>
+    </bean>
+
+    <!-- caching -->
+    <alias name="defaultOutboundRestTemplateCache" alias="outboundRestTemplateCache"/>
+    <bean id="defaultOutboundRestTemplateCache"
+          class="de.hybris.platform.outboundservices.cache.impl.DestinationRestTemplateCache">
+        <property name="cacheRegion" ref="outboundServicesRestTemplateCacheRegion"/>
+    </bean>
+
+    <alias name="defaultCsrfParametersCache" alias="csrfParametersCache"/>
+    <bean id="defaultCsrfParametersCache"
+          class="de.hybris.platform.outboundservices.decorator.impl.csrf.CsrfParametersCache">
+        <property name="cacheRegion" ref="outboundServicesCsrfTokenCacheRegion"/>
+    </bean>
+
+</beans>

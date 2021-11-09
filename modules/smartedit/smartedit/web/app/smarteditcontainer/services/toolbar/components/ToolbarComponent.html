@@ -1,0 +1,26 @@
+<div class="se-toolbar" [ngClass]="cssClass">
+    <div class="se-toolbar__left">
+        <div
+            *ngFor="let item of aliases | seProperty:{section:'left'}; trackBy: trackByFn"
+            class="se-template-toolbar se-template-toolbar__left {{item.className}}"
+        >
+            <se-toolbar-section-item [item]="item"></se-toolbar-section-item>
+        </div>
+    </div>
+    <div class="se-toolbar__middle">
+        <div
+            *ngFor="let item of aliases | seProperty:{section:'middle'}; trackBy: trackByFn"
+            class="se-template-toolbar se-template-toolbar__middle {{item.className}}"
+        >
+            <se-toolbar-section-item [item]="item"></se-toolbar-section-item>
+        </div>
+    </div>
+    <div class="se-toolbar__right">
+        <div
+            *ngFor="let item of aliases | seProperty:{section:'right'}; trackBy: trackByFn"
+            class="se-template-toolbar se-template-toolbar__right {{item.className}}"
+        >
+            <se-toolbar-section-item [item]="item"></se-toolbar-section-item>
+        </div>
+    </div>
+</div>

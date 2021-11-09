@@ -1,0 +1,34 @@
+<ui-select
+    id="{{$ctrl.id}}-selector"
+    multiple
+    sortable="true"
+    theme="<%= theme %>"
+    data-ng-model="$ctrl.model"
+    style="width:100%"
+    data-ng-change="$ctrl.internalOnChange()"
+    ng-disabled="$ctrl.isReadOnly"
+    reset-search-input="$ctrl.resetSearchInput"
+    on-remove="$ctrl.internalOnRemove($item, $model)"
+    on-select="$ctrl.internalOnSelect($item, $model)"
+    data-ng-init="$ctrl.internalInit($select)"
+    data-ng-keyup="$ctrl.internalKeyup($event, $select.search)"
+    class="se-generic-editor-dropdown"
+    data-ng-class="{'se-generic-editor-dropdown__paged':$ctrl.requiresPaginatedStyling(), 'has-error': $ctrl.hasError(), 'has-warning': $ctrl.hasWarning()}"
+>
+    <ui-select-match
+        class="se-generic-editor-dropdown__match se-generic-editor-multiple-dropdown__match"
+        placeholder="{{$ctrl.placeholder || 'se.genericeditor.sedropdown.placeholder' | translate}}"
+    >
+        <item-printer
+            id="{{$ctrl.id}}-selected"
+            data-model="$item"
+            data-template-url="$ctrl.itemTemplate"
+            class=""
+            data-ng-class="{'se-generic-editor-dropdown__item-printer':$ctrl.hasControls()}"
+        >
+        </item-printer>
+    </ui-select-match>
+    <ui-select-choices id="{{$ctrl.id}}-list" {% filtering %} position="down">
+        <div data-ng-include="$ctrl.itemTemplate"></div>
+    </ui-select-choices>
+</ui-select>

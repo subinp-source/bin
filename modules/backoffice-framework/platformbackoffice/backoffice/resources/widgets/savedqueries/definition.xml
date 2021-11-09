@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<widget-definition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widget-definition.xsd"
+                   id="de.hybris.platform.platformbackoffice.widgets.savedQueriesWidget">
+    <name>Saved Queries List</name>
+    <description>Saved Queries List</description>
+    <defaultTitle>Saved Queries List</defaultTitle>
+    <author>hybris</author>
+    <version>1.0</version>
+    <view src="savedQueriesWidget.zul"/>
+    <sockets>
+        <output id="advancedSearchInitContext"
+                type="com.hybris.backoffice.widgets.advancedsearch.impl.AdvancedSearchInitContext"/>
+    </sockets>
+	<keywords>
+		<keyword>Saved Queries</keyword>
+	</keywords>
+    <settings>
+        <setting key="sharedQueriesInitiallyVisible" default-value="true" type="java.lang.Boolean"/>
+    </settings>
+    <controller class="de.hybris.platform.platformbackoffice.widgets.savedqueries.SavedQueriesWidgetController"/>
+</widget-definition>

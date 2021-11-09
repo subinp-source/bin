@@ -1,0 +1,31 @@
+package de.hybris.platform.promotionengineservices.test
+
+import de.hybris.platform.ruleengineservices.rao.*;
+import java.math.*;
+import java.util.Map;
+import de.hybris.platform.droolsruleengineservices.compiler.impl.DefaultDroolsRuleActionContext;
+import de.hybris.platform.ruleengineservices.rule.evaluation.impl.RuleAndRuleGroupExecutionTracker;
+
+global de.hybris.platform.ruleengineservices.rule.evaluation.RuleExecutableAction ruleOrderPercentageDiscountAction;
+
+rule "orderPercentageDiscount"
+@ruleCode("orderPercentageDiscount")
+@moduleName("promotions-module-junit")
+dialect "mvel"
+
+salience 10
+	when
+		$executionTracker := RuleAndRuleGroupExecutionTracker()
+		$cart : CartRAO()
+		$result : RuleEngineResultRAO()
+		// check if rule discount is not applied already (it gets inserted during the consequence's service call)
+		not $discount:DiscountRAO( firedRuleCode == "orderPercentageDiscount" )
+		
+	then
+		Map variables = [
+		   "de.hybris.platform.ruleengineservices.rao.CartRAO": $cart,
+		   "de.hybris.platform.ruleengineservices.rao.RuleEngineResultRAO": $result
+		];
+		ruleOrderPercentageDiscountAction.executeAction(new DefaultDroolsRuleActionContext(variables, kcontext), ["value":new BigDecimal(10)]);
+		$executionTracker.trackRuleExecution(kcontext);
+end

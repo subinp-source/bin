@@ -1,0 +1,11 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+INSERT_UPDATE Trigger;cronJob(code)[unique=true];second;minute;hour;day;month;year;relative;active;maxAcceptableDelay
+
+# Run the full-marketplaceIndex-cronJob at 3:05 AM every day
+;full-marketplaceIndex-cronJob;0;5;3;-1;-1;-1;false;false;-1
+
+# Run the update-marketplaceIndex-cronJob every 1 minutes
+;update-marketplaceIndex-cronJob;0;1;-1;-1;-1;-1;true;false;-1

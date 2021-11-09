@@ -1,0 +1,1050 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
+
+	<bean class="de.hybris.platform.b2bwebservicescommons.dto.company.B2BPermissionsData">
+		<property name="orderApprovalPermissions"
+				  type="java.util.List&lt;de.hybris.platform.b2bapprovalprocessfacades.company.data.B2BPermissionData>"/>
+		<property name="sorts" type="java.util.List&lt;de.hybris.platform.commerceservices.search.pagedata.SortData>"/>
+		<property name="pagination" type="de.hybris.platform.commerceservices.search.pagedata.PaginationData"/>
+	</bean>
+	
+	<bean class="de.hybris.platform.b2bwebservicescommons.dto.company.B2BOrderApprovalsData">
+		<property name="orderApprovals"
+				  type="java.util.List&lt;de.hybris.platform.b2bacceleratorfacades.order.data.B2BOrderApprovalData>"/>
+		<property name="sorts" type="java.util.List&lt;de.hybris.platform.commerceservices.search.pagedata.SortData>"/>
+		<property name="pagination" type="de.hybris.platform.commerceservices.search.pagedata.PaginationData"/>
+	</bean>
+
+	<bean class="de.hybris.platform.commercewebservicescommons.dto.product.ProductWsDTO">
+		<property name="firstVariantCode" type="String"/>
+		<property name="firstVariantImage" type="String"/>
+	</bean>
+
+	<bean class="de.hybris.platform.commercewebservicescommons.dto.catalog.CategoryHierarchyWsDTO">
+		<property name="products"
+		          type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.product.ProductWsDTO>"/>
+	</bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.user.UserWsDTO">
+        <property name="orgUnit" type="de.hybris.platform.b2bwebservicescommons.dto.company.B2BUnitWsDTO">
+            <description>The unit of the User</description>
+            <hints>
+                <hint name="example">Rustic</hint>
+            </hints>
+        </property>
+        <property name="roles" type="java.util.List&lt;String>"/>
+		<property name="approvers"
+				  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.user.UserWsDTO>">
+			<description>List of organizational approvers</description>
+		</property>
+        <property name="selected" type="Boolean">
+            <description>Boolean flag of whether the user is selected</description>
+            <hints>
+                <hint name="example">true</hint>
+            </hints>
+        </property>
+		<property name="active" type="Boolean">
+			<description>Boolean flag of whether the user is active/enabled or not</description>
+			<hints>
+				<hint name="example">true</hint>
+			</hints>
+		</property>
+        <property name="email" type="String">
+            <description>Email of the user</description>
+            <hints>
+                <hint name="example">mark.rivers@rustic-hw.com</hint>
+            </hints>
+        </property>
+    </bean>
+
+	<bean class="de.hybris.platform.b2bwebservicescommons.dto.company.OrgCustomerModificationWsDTO" extends="de.hybris.platform.b2bwebservicescommons.dto.company.OrgCustomerCreationWsDTO">
+		<description>Representation of data used for user modification operations. Consists of fields used to modify customer</description>
+		<hints>
+			<hint name="wsRelated"/>
+			<hint name="alias">OrgCustomerModification</hint>
+		</hints>
+		<property name="active" type="Boolean">
+			<description>Boolean flag of whether the user is active/enabled or not</description>
+			<hints>
+				<hint name="example">true</hint>
+			</hints>
+		</property>
+		<property name="password" type="String">
+			<description>Password of the user</description>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.b2bwebservicescommons.dto.company.OrgCustomerCreationWsDTO">
+		<description>Representation of data used for user creation operations. Consists of fields used to create customer</description>
+		<hints>
+			<hint name="wsRelated"/>
+			<hint name="alias">OrgCustomerCreation</hint>
+		</hints>
+		<property name="email" type="String">
+			<description>Email of the user</description>
+			<hints>
+				<hint name="example">akiro.nakamura@rustic-hw.com</hint>
+			</hints>
+		</property>
+		<property name="firstName" type="String">
+			<description>First name of the user</description>
+			<hints>
+				<hint name="example">Akiro</hint>
+			</hints>
+		</property>
+		<property name="lastName" type="String">
+			<description>Last name of the user</description>
+			<hints>
+				<hint name="example">Nakamura</hint>
+			</hints>
+		</property>
+		<property name="titleCode" type="String">
+			<description>Code of the user's title</description>
+			<hints>
+				<hint name="example">mr</hint>
+			</hints>
+		</property>
+		<property name="orgUnit" type="de.hybris.platform.b2bwebservicescommons.dto.company.B2BUnitWsDTO">
+			<description>The unit of the user</description>
+			<hints>
+				<hint name="example">Rustic</hint>
+			</hints>
+		</property>
+		<property name="roles" type="java.util.List&lt;String>" >
+            <description>List of organizational approvers</description>
+        </property>
+	</bean>
+
+	<bean class="de.hybris.platform.commercewebservicescommons.dto.order.CartWsDTO">
+		<property name="costCenter" type="de.hybris.platform.b2bwebservicescommons.dto.company.B2BCostCenterWsDTO" />
+		<property name="paymentType" type="de.hybris.platform.b2bacceleratorfacades.order.data.B2BPaymentTypeData" />
+		<property name="purchaseOrderNumber" type="String" />
+	</bean>
+
+	<bean class="de.hybris.platform.commercewebservicescommons.dto.order.OrderHistoryWsDTO">
+		<property name="costCenter" type="de.hybris.platform.b2bwebservicescommons.dto.company.B2BCostCenterWsDTO">
+			<description>Order Cost Center</description>
+		</property>
+		<property name="purchaseOrderNumber" type="String">
+			<description>Purchase order number</description>
+		</property>
+	</bean>
+	
+	<bean class="de.hybris.platform.b2bwebservicescommons.dto.company.B2BSelectionDataWsDTO">
+		<description>Representation of object selection data</description>
+		<hints>
+			<hint name="wsRelated"/>
+			<hint name="alias">B2BSelectionData</hint>
+		</hints>
+		<property name="id" type="String">
+			<description>The ID of the selected object</description>
+			<hints>
+				<hint name="example">Retail_2K</hint>
+			</hints>
+		</property>
+		<property name="selected" type="boolean">
+			<description>If the this object was selected</description>
+			<hints>
+				<hint name="example">true</hint>
+			</hints>
+		</property>
+		<property name="active" type="boolean">
+			<description>If this object is active</description>
+			<hints>
+				<hint name="example">false</hint>
+			</hints>
+		</property>
+		<property name="roles" type="java.util.List&lt;String>">
+			<description>roles</description>
+		</property>
+		<property name="displayRoles" type="java.util.List&lt;String>">
+			<description>display roles</description>
+		</property>
+		<property name="normalizedCode" type="String">
+			<description>The normalized code</description>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.b2bwebservicescommons.dto.company.B2BCostCenterBaseWsDTO">
+		<description>Representation of a cost center. This base bean has no relationship fields to other Org Unit WsDTOs</description>
+		<hints>
+			<hint name="wsRelated"/>
+			<hint name="alias">B2BCostCenterBase</hint>
+		</hints>
+		<property name="originalCode" type="String" deprecated="since 2005, no longer needed">
+			<description>The original code of the cost center. Deprecated since 2005.</description>
+			<hints>
+				<hint name="example">Custom_Retail</hint>
+			</hints>
+		</property>
+		<property name="name" type="String">
+			<description>The name of the cost center</description>
+			<hints>
+				<hint name="example">Custom Retail</hint>
+			</hints>
+		</property>
+		<property name="active" type="String" deprecated="since 2005, read-only, used for display purposes">
+			<description>Indication of whether the cost center is active. Deprecated since 2005. Read-only, used for display purposes.</description>
+			<hints>
+				<hint name="example">true</hint>
+			</hints>
+		</property>
+		<property name="activeFlag" type="Boolean">
+			<description>Boolean flag of whether the cost center is active.</description>
+			<hints>
+				<hint name="example">true</hint>
+			</hints>
+		</property>
+		<property name="code" type="String">
+			<description>The code of the cost center</description>
+			<hints>
+				<hint name="example">Custom_Retail</hint>
+			</hints>
+		</property>
+		<property name="currency" type="de.hybris.platform.commercewebservicescommons.dto.storesession.CurrencyWsDTO">
+			<description>The currency of the cost center</description>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.b2bwebservicescommons.dto.company.B2BCostCenterWsDTO"
+	      extends="de.hybris.platform.b2bwebservicescommons.dto.company.B2BCostCenterBaseWsDTO">
+		<description>Representation of a cost center. This bean may have relationships to other Org Unit WsDTO, whose type are WsDTO beans as well.</description>
+		<hints>
+			<hint name="wsRelated"/>
+			<hint name="alias">B2BCostCenter</hint>
+		</hints>
+		<property name="unit" type="de.hybris.platform.b2bwebservicescommons.dto.company.B2BUnitWsDTO">
+			<description>The parent unit of the cost center</description>
+		</property>
+		<property name="assignedBudgets"
+ 				  type="java.util.List&lt;de.hybris.platform.b2bwebservicescommons.dto.mycompany.BudgetShallowWsDTO>">
+ 			<description>Budgets assigned to this cost center</description>
+ 		</property>	
+	</bean>
+
+	<bean class="de.hybris.platform.b2bwebservicescommons.dto.company.B2BCostCenterShallowWsDTO"
+	      extends="de.hybris.platform.b2bwebservicescommons.dto.company.B2BCostCenterBaseWsDTO">
+		<description>Representation of a cost center. This bean is shallow, which means its potential relationship fields to other Org Unit fields are simple ids.
+ 		No Org Unit WsDTO fields should be declared in this bean to avoid circular references.</description>
+		<hints>
+			<hint name="wsRelated"/>
+			<hint name="alias">B2BCostCenterShallow</hint>
+		</hints>
+	</bean>
+
+	<bean class="de.hybris.platform.b2bwebservicescommons.dto.company.B2BCostCenterListWsDTO">
+		<description>Representation of a cost center list</description>
+		<hints>
+			<hint name="wsRelated"/>
+			<hint name="alias">B2BCostCenterList</hint>
+		</hints>
+		<property name="costCenters"
+				  type="java.util.List&lt;de.hybris.platform.b2bwebservicescommons.dto.company.B2BCostCenterWsDTO>">
+			<description>List of cost centers</description>
+		</property>
+		<property name="sorts"
+				  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.search.pagedata.SortWsDTO>">
+			<description>List of sorts</description>
+		</property>
+		<property name="pagination"
+				  type="de.hybris.platform.commercewebservicescommons.dto.search.pagedata.PaginationWsDTO">
+			<description>Pagination items</description>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.b2bwebservicescommons.dto.company.B2BCostCentersData">
+		<property name="costCenters"
+				  type="java.util.List&lt;de.hybris.platform.b2bcommercefacades.company.data.B2BCostCenterData>"/>
+		<property name="sorts" type="java.util.List&lt;de.hybris.platform.commerceservices.search.pagedata.SortData>"/>
+		<property name="pagination" type="de.hybris.platform.commerceservices.search.pagedata.PaginationData"/>
+	</bean>
+
+	<bean class="de.hybris.platform.b2bwebservicescommons.dto.company.B2BUnitWsDTO">
+        <description>Representation of an organizational unit</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">B2BUnit</hint>
+        </hints>
+        <property name="active" type="Boolean">
+            <description>Boolean flag of whether Organizational Unit is active</description>
+            <hints>
+                <hint name="example">true</hint>
+            </hints>
+        </property>
+        <property name="uid" type="String">
+            <description>Identifier of the organizational unit</description>
+            <hints>
+                <hint name="example">Pronto</hint>
+                <hint name="required">true</hint>
+            </hints>
+        </property>
+        <property name="name" type="String">
+            <description>Name of the organizational unit</description>
+            <hints>
+                <hint name="example">Pronto</hint>
+            </hints>
+        </property>
+
+        <property name="parentOrgUnit" type="de.hybris.platform.b2bwebservicescommons.dto.company.B2BUnitWsDTO">
+            <description>Parent unit of the organizational unit</description>
+        </property>
+
+        <property name="approvalProcess"
+                  type="de.hybris.platform.b2bwebservicescommons.dto.company.B2BApprovalProcessWsDTO">
+            <description>Approval Process of the organizational unit node</description>
+        </property>
+
+        <property name="addresses"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.user.AddressWsDTO>">
+            <description>Addresses of the organizational unit node</description>
+        </property>
+        <property name="approvers"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.user.UserWsDTO>">
+            <description>Approvers of the organizational unit node</description>
+        </property>
+        <property name="managers"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.user.UserWsDTO>">
+            <description>Managers of the organizational unit node</description>
+        </property>
+        <property name="administrators"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.user.UserWsDTO>">
+            <description>Administrators of the organizational unit node</description>
+        </property>
+        <property name="customers"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.user.UserWsDTO>">
+            <description>Customers of the organizational unit node</description>
+        </property>
+		<property name="costCenters"
+                  type="java.util.List&lt;de.hybris.platform.b2bwebservicescommons.dto.company.B2BCostCenterShallowWsDTO>">
+             <description>The cost centers of the organizational unit node</description>
+         </property>
+    </bean>
+
+    <bean class="de.hybris.platform.b2bwebservicescommons.dto.company.B2BUnitNodeWsDTO">
+        <description>Representation of an organizational unit node</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">B2BUnitNode</hint>
+        </hints>
+        <property name="id" type="String">
+            <description>Identifier of the organizational unit represented by the node</description>
+            <hints>
+                <hint name="example">Pronto_Retail</hint>
+                <hint name="required">true</hint>
+            </hints>
+        </property>
+        <property name="name" type="String">
+            <description>Name of the organizational unit represented by the node</description>
+            <hints>
+                <hint name="example">Pronto Retail</hint>
+            </hints>
+        </property>
+        <property name="parent" type="String">
+            <description>Unique identifier of organizational unit node's parent unit</description>
+            <hints>
+                <hint name="example">Pronto</hint>
+            </hints>
+        </property>
+        <property name="active" type="Boolean">
+            <description>Boolean flag of whether organizational unit represented by the node is active</description>
+            <hints>
+                <hint name="example">true</hint>
+            </hints>
+        </property>
+        <property name="children"
+                  type="java.util.List&lt;de.hybris.platform.b2bwebservicescommons.dto.company.B2BUnitNodeWsDTO>">
+            <description>Child nodes of the organizational unit node</description>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.b2bwebservicescommons.dto.company.B2BUnitNodeListWsDTO">
+        <description>Representation of an organizational unit node list</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">B2BUnitNodeList</hint>
+        </hints>
+        <property name="unitNodes"
+                  type="java.util.List&lt;de.hybris.platform.b2bwebservicescommons.dto.company.B2BUnitNodeWsDTO>">
+            <description>List of Unit Nodes</description>
+            <hints>
+                <hint name="required">true</hint>
+            </hints>
+        </property>
+    </bean>
+	
+	<bean class="de.hybris.platform.b2bwebservicescommons.dto.company.OrgUnitUserGroupWsDTO"
+		  extends="de.hybris.platform.commercewebservicescommons.dto.user.UserGroupWsDTO">
+		<hints>
+			<hint name="wsRelated"/>
+			<hint name="alias">OrgUnitUserGroup</hint>
+		</hints>
+		<property name="orgUnit" type="de.hybris.platform.b2bwebservicescommons.dto.company.B2BUnitWsDTO">
+			<description>Organizational Unit of the user group</description>
+		</property>
+		<property name="permissions"
+				  type="java.util.List&lt;de.hybris.platform.b2bwebservicescommons.dto.company.B2BPermissionWsDTO>">
+			<description>Order approval permission of the user group</description>
+		</property>
+		<property name="roles"
+				  type="java.util.List&lt;String>">
+			<description>List of Roles</description>
+		</property>
+		<property name="selected" type="Boolean">
+			<description>Boolean flag of whether a user group is selected or not</description>
+			<hints>
+				<hint name="example">true</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.b2bwebservicescommons.dto.company.OrgUnitUserGroupListWsDTO">
+		<description>Representation of an user list used in organizational units</description>
+		<hints>
+			<hint name="wsRelated"/>
+			<hint name="alias">OrgUnitUserGroupList</hint>
+		</hints>
+		<property name="orgUnitUserGroups"
+				  type="java.util.List&lt;de.hybris.platform.b2bwebservicescommons.dto.company.OrgUnitUserGroupWsDTO>">
+			<description>List of organizational unit user groups</description>
+			<hints>
+				<hint name="required">true</hint>
+			</hints>
+		</property>
+		<property name="sorts"
+				  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.search.pagedata.SortWsDTO>">
+			<description>List of sorts</description>
+			<hints>
+				<hint name="required">true</hint>
+			</hints>
+		</property>
+		<property name="pagination"
+				  type="de.hybris.platform.commercewebservicescommons.dto.search.pagedata.PaginationWsDTO">
+			<description>Pagination items</description>
+			<hints>
+				<hint name="required">true</hint>
+			</hints>
+		</property>
+	</bean>
+
+    <bean class="de.hybris.platform.b2bwebservicescommons.dto.company.OrgUnitUserListWsDTO">
+        <description>Representation of an user list used in organizational units</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">OrgUnitUserList</hint>
+        </hints>
+        <property name="users"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.user.UserWsDTO>">
+            <description>List of users</description>
+            <hints>
+                <hint name="required">true</hint>
+            </hints>
+        </property>
+        <property name="sorts"
+                  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.search.pagedata.SortWsDTO>">
+            <description>List of sorts</description>
+            <hints>
+                <hint name="required">true</hint>
+            </hints>
+        </property>
+        <property name="pagination"
+                  type="de.hybris.platform.commercewebservicescommons.dto.search.pagedata.PaginationWsDTO">
+            <description>Pagination items</description>
+            <hints>
+                <hint name="required">true</hint>
+            </hints>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.b2bwebservicescommons.dto.company.OrgUnitUsersData">
+        <property name="users"
+                  type="java.util.List&lt;de.hybris.platform.commercefacades.user.data.CustomerData>"/>
+        <property name="sorts" type="java.util.List&lt;de.hybris.platform.commerceservices.search.pagedata.SortData>"/>
+        <property name="pagination" type="de.hybris.platform.commerceservices.search.pagedata.PaginationData"/>
+    </bean>
+
+	<bean class="de.hybris.platform.b2bwebservicescommons.dto.company.OrgUnitUserGroupsData">
+		<property name="orgUnitUserGroups"
+				  type="java.util.List&lt;de.hybris.platform.b2bcommercefacades.company.data.B2BUserGroupData>"/>
+		<property name="sorts" type="java.util.List&lt;de.hybris.platform.commerceservices.search.pagedata.SortData>"/>
+		<property name="pagination" type="de.hybris.platform.commerceservices.search.pagedata.PaginationData"/>
+	</bean>
+
+    <bean class="de.hybris.platform.b2bwebservicescommons.dto.company.B2BApprovalProcessWsDTO">
+        <description>Representation of an organizational approval process</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">B2BApprovalProcess</hint>
+        </hints>
+        <property name="code" type="String">
+            <description>Code of the Organizational Approval Process</description>
+            <hints>
+                <hint name="example">accApproval</hint>
+                <hint name="required">true</hint>
+            </hints>
+        </property>
+        <property name="name" type="String">
+            <description>Name of the Organizational Approval Process</description>
+            <hints>
+                <hint name="example">Escalation Approval with Merchant Check</hint>
+            </hints>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.b2bwebservicescommons.dto.company.B2BApprovalProcessListWsDTO">
+        <description>Representation of an organizational approval process list</description>
+        <hints>
+            <hint name="wsRelated"/>
+            <hint name="alias">B2BApprovalProcessList</hint>
+        </hints>
+        <property name="approvalProcesses"
+                  type="java.util.List&lt;de.hybris.platform.b2bwebservicescommons.dto.company.B2BApprovalProcessWsDTO>">
+            <description>List of Organizational Approval Process</description>
+            <hints>
+                <hint name="required">true</hint>
+            </hints>
+        </property>
+    </bean>
+
+    <bean class="de.hybris.platform.b2bwebservicescommons.dto.order.B2BPaymentTypeWsDTO">
+        <property name="code" type="String"/>
+        <property name="displayName" type="String"/>
+    </bean>
+
+	<bean class="de.hybris.platform.b2bwebservicescommons.dto.order.B2BPaymentTypeListWsDTO">
+		<property name="paymentTypes"
+				  type="java.util.List&lt;de.hybris.platform.b2bwebservicescommons.dto.order.B2BPaymentTypeWsDTO>"/>
+	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.product.data.ProductData">
+		<property name="firstVariantCode" type="String"/>
+		<property name="firstVariantImage" type="String"/>
+	</bean>
+
+    <bean class="de.hybris.platform.commercewebservicescommons.dto.order.OrderWsDTO">
+        <property name="totalUnitCount" type="Integer"/>
+		<property name="purchaseOrderNumber" type="String">
+			<description>Purchase order number</description>
+		</property>
+		<property name="orgCustomer" type="de.hybris.platform.commercewebservicescommons.dto.user.UserWsDTO">
+			<description>Customer who placed the order</description>
+		</property>
+		<property name="costCenter" type="de.hybris.platform.b2bwebservicescommons.dto.company.B2BCostCenterWsDTO" >
+			<description>Cost Center associated with the order</description>
+		</property>
+		<property name="permissionResults" type="java.util.List&lt;de.hybris.platform.b2bwebservicescommons.dto.company.B2BPermissionResultWsDTO>" >
+			<description>Results of permissions associated with the order</description>
+		</property>
+    </bean>
+
+	<bean class="de.hybris.platform.b2bwebservicescommons.dto.company.B2BPermissionResultWsDTO">
+		<description>Details of an order approval permission result related to an order</description>
+		<hints>
+			<hint name="wsRelated"/>
+			<hint name="alias">OrderApprovalPermissionResult</hint>
+		</hints>
+		<property name="approverName" type="String">
+			<description>Name of the approver responsible for this permission result.</description>
+		</property>
+		<property name="approverNotes" type="String">
+			<description>Any comments the approver added to the approval item.</description>
+			<hints>
+				<hint name="example">The order is rejected due to insufficient budget</hint>
+			</hints>
+		</property>
+		<property name="permissionType" type="de.hybris.platform.b2bwebservicescommons.dto.company.B2BPermissionTypeWsDTO">
+			<description>Permission type related to the permission result.</description>
+		</property>
+		<property name="statusDisplay" type="String">
+			<description>Status of the order approval.</description>
+			<hints>
+				<hint name="example">Pending approval</hint>
+			</hints>
+		</property>
+	</bean>
+
+    <bean class="de.hybris.platform.b2bwebservicescommons.dto.order.OrderApprovalRecordWsDTO">
+    	<description>Details of one order approval record</description>
+		<hints>
+			<hint name="wsRelated"/>
+			<hint name="alias">OrderApprovalRecord</hint>
+		</hints>
+		<property name="permissionTypes" type="java.util.List&lt;de.hybris.platform.b2bwebservicescommons.dto.company.B2BPermissionTypeWsDTO>">
+			<description>List of permission types related to this approval record.</description>
+		</property>
+		<property name="approver" type="de.hybris.platform.commercewebservicescommons.dto.user.PrincipalWsDTO">
+			<description>Principal responsible to this approval record.</description>
+		</property>
+		<property name="statusDisplay" type="String">
+			<description>Status of the order approval.</description>
+			<hints>
+				<hint name="example">Pending approval</hint>
+			</hints>
+		</property>
+		<property name="comments" type="String">
+			<description>Any comments the approver (or the workflow system) added to the approval item.</description>
+			<hints>
+				<hint name="example">Submitted for approval</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.b2bwebservicescommons.dto.mycompany.BudgetBaseWsDTO">
+		<description>Request body fields required and optional to operate on Budget data.
+		This base bean has no relationship fields to other Org Unit WsDTOs</description>
+		<hints>
+			<hint name="wsRelated"/>
+			<hint name="alias">BudgetBase</hint>
+		</hints>
+		<property name="active" type="Boolean" >
+			<description>Boolean flag of whether the Budget is active</description>
+		</property>
+		<property name="budget" type="java.math.BigDecimal" >
+			<description>Value of Budget</description>
+            <hints>
+				<hint name="example">50000</hint>
+            </hints>
+		</property>
+		<property name="code" type="String" >
+			<description>Code of the Budget</description>
+            <hints>
+				<hint name="example">Monthly_50K_USD</hint>
+            </hints>
+		</property>
+        <property name="name" type="String" >
+            <description>The name of the Budget</description>
+            <hints>
+				<hint name="example">Monthly 50K USD</hint>
+            </hints>
+        </property>
+		<property name="currency" type="de.hybris.platform.commercewebservicescommons.dto.storesession.CurrencyWsDTO">
+			<description>Currency of the Budget</description>
+            <hints>
+				<hint name="example">USD</hint>
+            </hints>
+		</property>
+        <property name="startDate" type="java.util.Date">
+            <description>The start date of the Budget</description>
+            <hints>
+				<hint name="example">2020-11-31T09:00:00+0000</hint>
+            </hints>
+        </property>
+		<property name="endDate" type="java.util.Date">
+			<description>The end date of the Budget</description>
+            <hints>
+				<hint name="example">2020-12-31T09:00:00+0000</hint>
+            </hints>
+		</property>
+		<property name="selected" type="java.lang.Boolean">
+			<description>Boolean flag whether the budget is selected for a cost center</description>
+			<hints>
+				<hint name="example">true</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.b2bwebservicescommons.dto.mycompany.BudgetWsDTO" 
+		  extends="de.hybris.platform.b2bwebservicescommons.dto.mycompany.BudgetBaseWsDTO">
+		<description>Request body fields required and optional to operate on Budget data.
+		This bean may have relationships to other Org Unit WsDTO, whose type are WsDTO beans as well.</description>
+		<hints>
+			<hint name="wsRelated"/>
+			<hint name="alias">Budget</hint>
+		</hints>
+		<property name="orgUnit" type="de.hybris.platform.b2bwebservicescommons.dto.company.B2BUnitWsDTO">
+            <description>The unit of the Budget</description>
+            <hints>
+				<hint name="example">Rustic</hint>
+            </hints>
+        </property>
+		<property name="costCenters"
+				  type="java.util.List&lt;de.hybris.platform.b2bwebservicescommons.dto.company.B2BCostCenterWsDTO>">
+			<description>List of Cost Centers</description>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.b2bwebservicescommons.dto.mycompany.BudgetShallowWsDTO" 
+		  extends="de.hybris.platform.b2bwebservicescommons.dto.mycompany.BudgetBaseWsDTO">
+		<description>Request body fields required and optional to operate on Budget data.
+		This bean is shallow, which means its potential relationship fields to other Org Unit fields are simple ids.
+		No Org Unit WsDTO should be declared in this bean to avoid circular references.</description>
+		<hints>
+			<hint name="wsRelated"/>
+			<hint name="alias">BudgetShallow</hint>
+		</hints>
+	</bean>
+
+	<bean class="de.hybris.platform.b2bwebservicescommons.dto.mycompany.BudgetListWsDTO">
+		<description>Representation of a Budget List</description>
+		<hints>
+			<hint name="wsRelated"/>
+			<hint name="alias">BudgetList</hint>
+		</hints>
+		<property name="budgets"
+				  type="java.util.List&lt;de.hybris.platform.b2bwebservicescommons.dto.mycompany.BudgetWsDTO>">
+			<description>List of Budgets</description>
+		</property>
+		<property name="sorts"
+				  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.search.pagedata.SortWsDTO>">
+			<description>List of sorts</description>
+		</property>
+		<property name="pagination"
+				  type="de.hybris.platform.commercewebservicescommons.dto.search.pagedata.PaginationWsDTO">
+			<description>Pagination items</description>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.b2bcommercefacades.company.data.BudgetsData">
+		<property name="budgets"
+				  type="java.util.List&lt;de.hybris.platform.b2bcommercefacades.company.data.B2BBudgetData>"/>
+		<property name="sorts" type="java.util.List&lt;de.hybris.platform.commerceservices.search.pagedata.SortData>"/>
+		<property name="pagination" type="de.hybris.platform.commerceservices.search.pagedata.PaginationData"/>
+	</bean>
+
+	<bean class="de.hybris.platform.b2bwebservicescommons.dto.company.B2BPermissionTypeWsDTO">
+		<description>Request body fields required and optional to operate on Order Approval Permission Type data. Typical permission types are: B2BBudgetExceededPermission, B2BOrderThresholdTimespanPermission and B2BOrderThresholdPermission</description>
+		<hints>
+			<hint name="wsRelated"/>
+			<hint name="alias">OrderApprovalPermissionType</hint>
+		</hints>
+		<property name="code" type="String">
+			<description>Code of the Order Approval Permission Type</description>
+			<hints>
+				<hint name="required">true</hint>
+				<hint name="example">B2BOrderThresholdTimespanPermission</hint>
+			</hints>
+		</property>
+		<property name="name" type="String">
+			<description>Name of the Order Approval Permission Type</description>
+			<hints>
+				<hint name="example">Allowed Order Threshold (per timespan)</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.b2bwebservicescommons.dto.company.B2BPermissionTypeListWsDTO">
+		<description>Representation of an Order Approval Permission Type list</description>
+		<hints>
+			<hint name="wsRelated"/>
+			<hint name="alias">OrderApprovalPermissionTypeList</hint>
+		</hints>
+		<property name="orderApprovalPermissionTypes"
+				  type="java.util.List&lt;de.hybris.platform.b2bwebservicescommons.dto.company.B2BPermissionTypeWsDTO>">
+			<description>List of Order Approval Permission Types</description>
+			<hints>
+				<hint name="required">true</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<enum class="de.hybris.platform.b2bwebservicescommons.dto.company.B2BPeriodRangeWsDTO">
+		<value>DAY</value>
+		<value>WEEK</value>
+		<value>MONTH</value>
+		<value>QUARTER</value>
+		<value>YEAR</value>
+	</enum>
+
+	<bean class="de.hybris.platform.b2bwebservicescommons.dto.company.B2BPermissionWsDTO">
+		<description>Request body fields required and optional to operate on Order Approval Permission data.</description>
+		<hints>
+			<hint name="wsRelated"/>
+			<hint name="alias">OrderApprovalPermission</hint>
+		</hints>
+		<property name="active" type="Boolean">
+			<description>Boolean flag of whether Order Approval Permission is active</description>
+			<hints>
+				<hint name="example">true</hint>
+			</hints>
+		</property>
+		<property name="orderApprovalPermissionType" type="de.hybris.platform.b2bwebservicescommons.dto.company.B2BPermissionTypeWsDTO">
+			<description>Type of the Order Approval Permission</description>
+		</property>
+		<property name="code" type="String">
+			<description>Code of the Order Approval Permission</description>
+			<hints>
+				<hint name="required">true</hint>
+				<hint name="example">Rustic_10K_USD_MONTH</hint>
+			</hints>
+		</property>
+		<property name="currency" type="de.hybris.platform.commercewebservicescommons.dto.storesession.CurrencyWsDTO">
+			<description>Currency of the Order Approval Permission, used for type B2BOrderThresholdPermission and B2BOrderThresholdTimespanPermission</description>
+		</property>
+		<property name="periodRange" type="de.hybris.platform.b2bwebservicescommons.dto.company.B2BPeriodRangeWsDTO">
+			<description>Period range of the Order Approval Permission, used for type B2BOrderThresholdTimespanPermission</description>
+			<hints>
+				<hint name="example">MONTH</hint>
+			</hints>
+		</property>
+		<property name="orgUnit" type="de.hybris.platform.b2bwebservicescommons.dto.company.B2BUnitWsDTO">
+			<description>Order Approval Permission's organizational unit</description>
+		</property>
+		<property name="threshold" type="Double">
+			<description>Threshold value of the Order Approval Permission, used for type B2BOrderThresholdPermission and B2BOrderThresholdTimespanPermission</description>
+			<hints>
+				<hint name="example">10000</hint>
+			</hints>
+		</property>
+		<property name="selected" type="Boolean">
+			<description>Boolean flag of whether the user is selected</description>
+			<hints>
+				<hint name="example">true</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.b2bwebservicescommons.dto.company.B2BPermissionListWsDTO">
+		<description>Representation of a Order Approval Permission List</description>
+		<hints>
+			<hint name="wsRelated"/>
+			<hint name="alias">OrderApprovalPermissionList</hint>
+		</hints>
+		<property name="orderApprovalPermissions"
+				  type="java.util.List&lt;de.hybris.platform.b2bwebservicescommons.dto.company.B2BPermissionWsDTO>">
+			<description>List of Order Approval Permissions</description>
+			<hints>
+				<hint name="required">true</hint>
+			</hints>
+		</property>
+		<property name="sorts"
+				  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.search.pagedata.SortWsDTO>">
+			<description>List of sorts</description>
+			<hints>
+				<hint name="required">true</hint>
+			</hints>
+		</property>
+		<property name="pagination"
+				  type="de.hybris.platform.commercewebservicescommons.dto.search.pagedata.PaginationWsDTO">
+			<description>Pagination items</description>
+			<hints>
+				<hint name="required">true</hint>
+			</hints>
+		</property>
+	</bean>
+
+    <bean class="de.hybris.platform.b2bwebservicescommons.dto.order.OrderApprovalWsDTO">
+    	<description>Details of one specific order approval</description>
+		<hints>
+			<hint name="wsRelated"/>
+			<hint name="alias">OrderApproval</hint>
+		</hints>
+    	<property name="code" type="String">
+			<description>Code that identifies the approval.</description>
+			<hints>
+				<hint name="required">true</hint>
+				<hint name="example">00000005</hint>
+			</hints>
+		</property>
+    	<property name="order" type="de.hybris.platform.commercewebservicescommons.dto.order.OrderWsDTO">
+			<description>Order linked to this approval.</description>
+		</property>
+		<property name="approvalDecisionRequired" type="Boolean">
+			<description>Boolean flag which states whether an approval decision is required.</description>
+		</property>
+
+    	<property name="customerOrderApprovalRecords"  type="java.util.List&lt;de.hybris.platform.b2bwebservicescommons.dto.order.OrderApprovalRecordWsDTO>">
+			<description>Customer approval records related to this order approval.</description>
+		</property>
+    	<property name="merchantOrderApprovalRecords"  type="java.util.List&lt;de.hybris.platform.b2bwebservicescommons.dto.order.OrderApprovalRecordWsDTO>">
+			<description>Merchant approval records related to this order approval.</description>
+		</property>
+		<property name="trigger" type="de.hybris.platform.b2bwebservicescommons.dto.order.TriggerWsDTO" >
+			<description>Replenishment trigger if this is an approval for a replenishment order.</description>
+		</property>
+    </bean>
+
+    <bean class="de.hybris.platform.b2bwebservicescommons.dto.order.OrderApprovalDecisionWsDTO">
+    	<description>Decision for an order approval</description>
+		<hints>
+			<hint name="wsRelated"/>
+			<hint name="alias">OrderApprovalDecision</hint>
+		</hints>
+    	<property name="decision" type="String">
+			<description>Decision from the approver when approving/rejecting an order. Typical decisions are: APPROVE, REJECT</description>
+			<hints>
+				<hint name="required">true</hint>
+				<hint name="example">APPROVE</hint>
+			</hints>
+		</property>
+    	<property name="comment" type="String">
+			<description>Any comments the approver (or the workflow system) adds when approving/rejecting an order.</description>
+			<hints>
+				<hint name="example">Rejected because montly budget was exceeded</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.b2bwebservicescommons.dto.order.OrderApprovalListWsDTO">
+		<description>Representation of a Order Approval List</description>
+		<hints>
+			<hint name="wsRelated"/>
+			<hint name="alias">OrderApprovalList</hint>
+		</hints>
+		<property name="orderApprovals"
+				  type="java.util.List&lt;de.hybris.platform.b2bwebservicescommons.dto.order.OrderApprovalWsDTO>">
+			<description>List of Order Approvals</description>
+			<hints>
+				<hint name="required">true</hint>
+			</hints>
+		</property>
+		<property name="sorts"
+				  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.search.pagedata.SortWsDTO>">
+			<description>List of sorts</description>
+			<hints>
+				<hint name="required">true</hint>
+			</hints>
+		</property>
+		<property name="pagination"
+				  type="de.hybris.platform.commercewebservicescommons.dto.search.pagedata.PaginationWsDTO">
+			<description>Pagination items</description>
+			<hints>
+				<hint name="required">true</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.b2bwebservicescommons.dto.order.ReplenishmentOrderWsDTO" extends="de.hybris.platform.commercewebservicescommons.dto.order.CartWsDTO">
+		<description>Request body fields required and optional to operate on Replenishment Order data.</description>
+		<hints>
+			<hint name="wsRelated"/>
+			<hint name="alias">ReplenishmentOrder</hint>
+		</hints>
+		<property name="active" type="Boolean" >
+			<description>Is the Replenishment Order active</description>
+			<hints>
+				<hint name="example">Boolean.FALSE</hint>
+			</hints>
+		</property>
+		<property name="trigger" type="de.hybris.platform.b2bwebservicescommons.dto.order.TriggerWsDTO" >
+			<description>Trigger for the replenishment order</description>
+		</property>
+		<property name="firstDate" type="java.util.Date">
+			<description>First date of the replenishment order</description>
+			<hints>
+				<hint name="example">2020-12-31T09:00:00+0000</hint>
+			</hints>
+		</property>
+		<property name="replenishmentOrderCode" type="String" >
+			<description>Unique code for the replenishment order</description>
+			<hints>
+				<hint name="required">true</hint>
+				<hint name="example">502BJ</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.b2bwebservicescommons.dto.order.ReplenishmentOrderListWsDTO">
+		<description>Representation of a Replenishment Order List</description>
+		<hints>
+			<hint name="wsRelated"/>
+			<hint name="alias">ReplenishmentOrderList</hint>
+		</hints>
+		<property name="replenishmentOrders"
+				  type="java.util.List&lt;de.hybris.platform.b2bwebservicescommons.dto.order.ReplenishmentOrderWsDTO>">
+			<description>List of Replenishment Orders</description>
+		</property>
+		<property name="sorts"
+				  type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.search.pagedata.SortWsDTO>">
+			<description>List of sorts</description>
+		</property>
+		<property name="pagination"
+				  type="de.hybris.platform.commercewebservicescommons.dto.search.pagedata.PaginationWsDTO">
+			<description>Pagination items</description>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.b2bwebservicescommons.dto.order.TriggerWsDTO">
+		<description>Representation of a Trigger</description>
+		<hints>
+			<hint name="wsRelated"/>
+			<hint name="alias">Trigger</hint>
+		</hints>
+		<property name="activationTime" type="java.util.Date">
+			<description>The time the trigger will be activated</description>
+			<hints>
+				<hint name="example">2020-12-31T09:00:00+0000</hint>
+			</hints>
+		</property>
+		<property name="displayTimeTable" type="String">
+			<description>Description of when the trigger is being activated</description>
+			<hints>
+				<hint name="example">Every Monday at 00:00:00</hint>
+			</hints>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.b2bwebservicescommons.dto.order.ScheduleReplenishmentFormWsDTO">
+		<description>Representation of a Schedule Replenishment Form</description>
+		<hints>
+			<hint name="wsRelated"/>
+			<hint name="alias">ScheduleReplenishmentForm</hint>
+		</hints>
+		<property name="replenishmentStartDate" type="java.util.Date">
+			<description>First day for replenishment order</description>
+			<hints>
+				<hint name="example">2020-12-31T09:00:00+0000</hint>
+			</hints>
+		</property>
+		<property name="numberOfDays" type="String">
+			<description>How frequent replenishment should be activated expressed in days. Mandatory with
+                'recurrencePeriod=DAILY'.
+			</description>
+			<hints>
+				<hint name="example">14</hint>
+			</hints>
+		</property>
+		<property name="numberOfWeeks" type="String">
+			<description>How frequent replenishment should be activated expressed in weeks. Mandatory with
+                'recurrencePeriod=WEEKLY'.
+			</description>
+			<hints>
+				<hint name="example">1</hint>
+			</hints>
+		</property>
+		<property name="nthDayOfMonth" type="String">
+			<description>On which date of month replenishment should be activated. Mandatory with
+                'recurrencePeriod=MONTHLY'.
+			</description>
+			<hints>
+				<hint name="example">1</hint>
+			</hints>
+		</property>
+		<property name="recurrencePeriod" type="String">
+			<description>Replenishment recurrence period. Available values are DAILY, WEEKLY and MONTHLY.
+				DAILY requires 'numberOfDays'.
+				WEEKLY requires 'daysOfWeek' AND 'numberOfWeeks'.
+				MONTHLY requires 'nthDayOfMonth'.
+			</description>
+			<hints>
+				<hint name="example">WEEKLY</hint>
+			</hints>
+		</property>
+		<property name="daysOfWeek"
+				  type="java.util.List&lt;de.hybris.platform.b2bwebservicescommons.dto.order.DayOfWeekWsDTO>">
+			<description>List of days of week on which replenishment should occur. Mandatory with
+                'recurrencePeriod=WEEKLY'.
+			</description>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.b2bwebservicescommons.dto.order.ReplenishmentOrderData">
+		<property name="replenishmentOrders"
+				  type="java.util.List&lt;de.hybris.platform.b2bacceleratorfacades.order.data.ScheduledCartData>"/>
+		<property name="sorts" type="java.util.List&lt;de.hybris.platform.commerceservices.search.pagedata.SortData>"/>
+		<property name="pagination" type="de.hybris.platform.commerceservices.search.pagedata.PaginationData"/>
+	</bean>
+
+	<enum class="de.hybris.platform.b2bwebservicescommons.dto.order.DayOfWeekWsDTO">
+		<value>SUNDAY</value>
+		<value>MONDAY</value>
+		<value>TUESDAY</value>
+		<value>WEDNESDAY</value>
+		<value>THURSDAY</value>
+		<value>FRIDAY</value>
+		<value>SATURDAY</value>
+	</enum>
+
+</beans>

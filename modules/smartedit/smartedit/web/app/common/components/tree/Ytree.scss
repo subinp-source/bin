@@ -1,0 +1,311 @@
+// se-tree
+
+@mixin nodeActive() {
+    background-color: var(--sapList_Active_Background);
+    color: var(--sapList_Active_TextColor);
+
+    .se-tree-node__expander {
+        .sap-icon--slim-arrow-down::before,
+        .sap-icon--slim-arrow-right::before {
+            color: var(--sapList_Active_TextColor);
+        }
+    }
+
+    .se-tree-node__name,
+    .se-tree-node__entry,
+    .se-tree-node__title {
+        color: var(--sapList_Active_TextColor);
+    }
+}
+
+.categoryTable .se-tree__body .desktopLayout {
+    padding: 0;
+    background-color: fd-color('background', 2);
+}
+
+.se-tree__nodes {
+    list-style-type: none;
+    border-radius: 0 0 4px 4px;
+
+    &--item {
+        .col-xs-1 {
+            min-width: 40px;
+            width: fit-content;
+            padding: 0;
+        }
+    }
+
+    &--nodata {
+        font-style: italic;
+        padding: 15px 45px;
+    }
+}
+
+.se-tree-node:not(.hovered) .se-navigation-picker-renderer {
+    display: none;
+}
+
+$screen-md-min: 800px;
+@mixin md {
+    @media (min-width: #{$screen-md-min}) {
+        @content;
+    }
+}
+
+$screen-lg-min: 992px;
+@mixin lg {
+    @media (min-width: #{$screen-lg-min}) {
+        @content;
+    }
+}
+
+$screen-xl-min: 1200px;
+@mixin xl {
+    @media (min-width: #{$screen-xl-min}) {
+        @content;
+    }
+}
+
+$screen-xxl-min: 1400px;
+@mixin xxl {
+    @media (min-width: #{$screen-xxl-min}) {
+        @content;
+    }
+}
+
+.se-tree-node__entry.col-xs-5,
+.se-navigation-editor-tree__entry.col-xs-5 {
+    @include md {
+        width: 250px;
+    }
+
+    @include lg {
+        width: 280px;
+    }
+
+    @include xl {
+        width: 400px;
+    }
+
+    @include xxl {
+        width: 550px;
+    }
+}
+
+.fd-modal__body .se-tree-node__entry.col-xs-5 {
+    width: 160px;
+}
+
+.fd-modal__body .se-tree-node__name.col-xs-3 {
+    width: 200px;
+}
+
+// se-navigation-picker-renderer
+.se-navigation-picker-renderer {
+    min-height: 50px;
+
+    &__btn {
+        float: right;
+        padding-top: 15px;
+        text-transform: none;
+        @include fd-weight('bold');
+        @include fd-type();
+    }
+}
+
+.se-tree-node:active .se-navigation-picker-renderer .se-navigation-picker-renderer__btn {
+    color: var(--sapList_Active_TextColor);
+}
+
+.se-navigation-editor-tree {
+    .se-tree-node:active .sap-icon--overflow {
+        color: var(--sapList_Active_TextColor);
+    }
+}
+
+.angular-ui-tree-handle,
+.se-tree-node {
+    min-height: 50px;
+    background-color: var(--sapList_Background);
+    position: relative;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    font-family: var(--sapFontFamily);
+    font-size: var(--sapFontSize);
+    font-weight: normal;
+    color: var(--sapList_TextColor);
+
+    &--first-level {
+        border-bottom-width: var(--sapList_BorderWidth);
+        border-bottom-style: solid;
+        border-bottom-color: var(--sapList_BorderColor);
+    }
+
+    &--selected {
+        background-color: var(--sapList_SelectionBackgroundColor);
+        color: var(--sapList_TextColor);
+
+        &:hover {
+            background-color: var(--sapList_Hover_SelectionBackground);
+            color: var(--sapList_TextColor);
+        }
+    }
+
+    &:hover {
+        background-color: var(--sapList_Hover_Background);
+        color: var(--sapList_TextColor);
+    }
+
+    &--selected:active,
+    &--first-level:active,
+    &:active {
+        @include nodeActive();
+    }
+
+    &__name {
+        padding-left: 0;
+
+        span {
+            display: block;
+            word-wrap: break-word;
+        }
+
+        h6 {
+            width: 15em;
+            word-wrap: break-word;
+        }
+    }
+
+    &__actions {
+        padding-top: 17px;
+        padding-right: 20px;
+    }
+
+    &__ol {
+        list-style-type: none;
+    }
+
+    &__popover {
+        max-width: 100%;
+        display: inline-block;
+        @include se-text-ellipsis();
+    }
+
+    &__expander {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50px;
+        width: 45px;
+        @include fd-type('1');
+
+        .sap-icon--slim-arrow-down::before,
+        .sap-icon--slim-arrow-right::before {
+            color: var(--sapContent_IconColor);
+
+            @include fd-weight('bold');
+        }
+    }
+
+    &__expander--wrapper {
+        &.col-xs-1 {
+            max-width: 60px;
+        }
+    }
+
+    &__name,
+    &__title,
+    &__entry {
+        display: flex;
+        align-items: center;
+        min-height: 50px;
+        @include fd-type();
+        color: fd-color('text', 2);
+        @include fd-weight('bold');
+    }
+
+    &__title,
+    &__entry {
+        @include fd-type();
+        @include se-text-ellipsis();
+        color: fd-color('text', 2);
+    }
+}
+
+@mixin shrink($n) {
+    .se-tree-node__name {
+        $result: 15px * (#{$n});
+        width: calc(25% - #{$result});
+    }
+}
+
+@mixin shrinkModal($n) {
+    .se-tree-node__name {
+        $result: 20px * (#{$n});
+        width: calc(200px - #{$result});
+    }
+}
+
+.angular-ui-tree-nodes .angular-ui-tree-nodes {
+    padding-left: 0 !important;
+
+    @include shrink(1);
+    .angular-ui-tree-nodes {
+        @include shrink(2);
+        .angular-ui-tree-nodes {
+            @include shrink(3);
+            .angular-ui-tree-nodes {
+                @include shrink(4);
+                .angular-ui-tree-nodes {
+                    @include shrink(5);
+                    .angular-ui-tree-nodes {
+                        @include shrink(6);
+                        .angular-ui-tree-nodes {
+                            @include shrink(7);
+                            .angular-ui-tree-nodes {
+                                @include shrink(8);
+                                .angular-ui-tree-nodes {
+                                    @include shrink(9);
+                                    .angular-ui-tree-nodes {
+                                        @include shrink(10);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.fd-modal__body .angular-ui-tree-nodes .angular-ui-tree-nodes {
+    @include shrinkModal(1);
+    .angular-ui-tree-nodes {
+        @include shrinkModal(2);
+        .angular-ui-tree-nodes {
+            @include shrinkModal(3);
+            .angular-ui-tree-nodes {
+                @include shrinkModal(4);
+                .angular-ui-tree-nodes {
+                    @include shrinkModal(5);
+                    .angular-ui-tree-nodes {
+                        @include shrinkModal(6);
+                        .angular-ui-tree-nodes {
+                            @include shrinkModal(7);
+                            .angular-ui-tree-nodes {
+                                @include shrinkModal(8);
+                                .angular-ui-tree-nodes {
+                                    @include shrinkModal(9);
+                                    .angular-ui-tree-nodes {
+                                        @include shrinkModal(10);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

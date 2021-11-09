@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<audit-report-config name="IOReport">
+    <given-root-type>IntegrationObject</given-root-type>
+    <types>
+        <type code="IntegrationObject" displayName="IntegrationObject">
+            <atomic-attributes>
+                <atomic-attribute qualifier="code" displayName="code"/>
+            </atomic-attributes>
+            <virtual-attributes>
+                <virtual-attribute expression="integrationObject" type="IntegrationObjectItem" many="true"
+                                   displayName="IntegrationObjectItems"/>
+            </virtual-attributes>
+        </type>
+
+        <type code="IntegrationObjectItem" displayName="IntegrationObjectItem">
+            <atomic-attributes>
+                <atomic-attribute qualifier="code" displayName="code"/>
+                <atomic-attribute qualifier="root" displayName="root"/>
+            </atomic-attributes>
+            <reference-attributes>
+                <reference-attribute qualifier="type" displayName="ComposedTypeOfItem" type="ComposedType"/>
+            </reference-attributes>
+            <virtual-attributes>
+                <virtual-attribute expression="IntegrationObjectItem" type="IntegrationObjectItemAttribute" many="true"
+                                   displayName="IntegrationObjectItemAttributes"/>
+                <virtual-attribute expression="IntegrationObjectItem"
+                                   type="IntegrationObjectItemClassificationAttribute" many="true"
+                                   displayName="IntegrationObjectItemClassification"/>
+                <virtual-attribute expression="IntegrationObjectItem"
+                                   type="IntegrationObjectItemVirtualAttribute" many="true"
+                                   displayName="VirtualAttribute"/>
+            </virtual-attributes>
+        </type>
+
+        <type code="IntegrationObjectItemAttribute" displayName="IntegrationObjectItemAttribute">
+            <atomic-attributes>
+                <atomic-attribute qualifier="attributeName" displayName="attributeName"/>
+                <atomic-attribute qualifier="unique" displayName="isUnique"/>
+                <atomic-attribute qualifier="autoCreate" displayName="autoCreate"/>
+            </atomic-attributes>
+            <reference-attributes>
+                <reference-attribute qualifier="returnIntegrationObjectItem" displayName="returnIntegrationObjectItem"
+                                     type="IntegrationObjectItem"/>
+            </reference-attributes>
+        </type>
+
+        <type code="IntegrationObjectItemClassificationAttribute" displayName="IntegrationObjectItemClassification">
+            <atomic-attributes>
+                <atomic-attribute qualifier="attributeName" displayName="attributeName"/>
+            </atomic-attributes>
+        </type>
+
+        <type code="IntegrationObjectItemVirtualAttribute" displayName="IntegrationObjectItemVirtualAttribute">
+            <atomic-attributes>
+                <atomic-attribute qualifier="attributeName" displayName="attributeName"/>
+            </atomic-attributes>
+        </type>
+
+        <type code="ComposedType" displayName="ComposedType">
+            <atomic-attributes>
+                <atomic-attribute qualifier="code" displayName="ComposedType_"/>
+            </atomic-attributes>
+        </type>
+    </types>
+</audit-report-config>

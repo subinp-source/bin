@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="outboundsyncbackofficeService" class="de.hybris.platform.outboundsyncbackoffice.services.OutboundsyncbackofficeService" />
+
+	<bean id="outboundsyncbackofficeLabelLocator" class="com.hybris.cockpitng.util.labels.ResourcesLabelLocator" scope="singleton" init-method="init" lazy-init="false">
+  		<property name="location" value="/outboundsyncbackoffice-backoffice-labels/"/>
+  		<property name="name" value="labels"/>
+  	</bean>
+
+	<alias name="outboundChannelConfigurationAuditReportBuilder" alias="oBChannelConfigurationAuditReportBuilder"/>
+	<bean id="outboundChannelConfigurationAuditReportBuilder" class="de.hybris.platform.outboundsyncbackoffice.widgets.models.builders.OutboundChannelConfigurationAuditReportBuilder">
+		<property name="auditViewService" ref="auditViewService"/>
+		<property name="rendererService" ref="rendererService"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+		<property name="userService" ref="userService"/>
+		<property name="reportViewConverterStrategies" ref="reportViewConverterStrategies"/>
+		<property name="configName" value="OutboundChannelConfigurationReport"/>
+		<property name="isDownload" value="true"/>
+	</bean>
+
+</beans>

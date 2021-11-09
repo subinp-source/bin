@@ -1,0 +1,11 @@
+<div class="se-version-item-menu fd-menu">
+    <div
+        class="se-version-item-menu__item fd-menu__list"
+        data-ng-repeat="dropdownItem in $ctrl.menuItems"
+        data-ng-click="$ctrl.executeItemCallback(dropdownItem, $event)"
+    >
+        <span class="se-version-item-menu__item-link fd-menu__item">
+            {{ dropdownItem.i18nKey | translate }}
+        </span>
+    </div>
+</div>

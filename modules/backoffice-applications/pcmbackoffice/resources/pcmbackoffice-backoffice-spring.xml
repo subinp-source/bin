@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	   xmlns:cng="http://www.hybris.com/cockpitng/spring"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                            http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+	   						http://www.hybris.com/cockpitng/spring http://www.hybris.com/cockpitng/spring/cng-spring.xsd">
+
+	<alias name="defaultPcmbackofficeLabelLocator" alias="pcmbackofficeLabelLocator" />
+	<bean id="defaultPcmbackofficeLabelLocator" class="com.hybris.cockpitng.util.labels.ResourcesLabelLocator" init-method="init" lazy-init="false">
+		<property name="location" value="/pcmbackoffice-backoffice-labels/" />
+		<property name="name" value="labels" />
+	</bean>
+
+	<alias name="defaultAssortmentViewDnD" alias="assortmentViewDnD" />
+	<bean id="defaultAssortmentViewDnD" class="com.hybris.backoffice.cockpitng.dnd.DefaultDragAndDropStrategy"
+		  init-method="initialize" lazy-init="true" parent="abstractDnDStrategy">
+		<property name="reloadUiAfterSave" value="true" />
+		<property name="validationGroups">
+			<list>
+				<value>defaultBackofficeValidationGroup</value>
+			</list>
+		</property>
+		<property name="handlerMap">
+			<map>
+				<entry key="Category" value-ref="categoryDropCompositeHandler" />
+				<entry key="CatalogVersion" value-ref="categoryToCatalogVersionDropHandler" />
+			</map>
+		</property>
+		<property name="additionalValidators">
+			<list>
+				<bean class="com.hybris.backoffice.cockpitng.dnd.validators.CategoryToCatalogVersionValidator" />
+				<bean class="com.hybris.backoffice.cockpitng.dnd.validators.CategoryToCategoryValidator" />
+				<ref bean="productToCategoryValidator"/>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultProductToCategoryValidator" alias="productToCategoryValidator" />
+	<bean id="defaultProductToCategoryValidator" class="com.hybris.backoffice.cockpitng.dnd.validators.ProductToCategoryValidator" />
+
+	<alias name="defaultCategoryDropCompositeHandler" alias="categoryDropCompositeHandler" />
+	<bean id="defaultCategoryDropCompositeHandler" class="com.hybris.cockpitng.dnd.DropCompositeHandler">
+		<property name="typeFacade" ref="typeFacade" />
+		<property name="handlers">
+			<map>
+				<entry key="Product" value-ref="productToCategoryDropHandler" />
+				<entry key="Category" value-ref="categoryToCategoryDropHandler" />
+			</map>
+		</property>
+	</bean>
+
+	<alias name="defaultExplorerTreeCatalogsDynamicNodeRefreshStrategy" alias="explorerTreeCatalogsDynamicNodeRefreshStrategy"/>
+	<bean id="defaultExplorerTreeCatalogsDynamicNodeRefreshStrategy" parent="abstractExplorerTreeRefreshStrategy"
+		  class="com.hybris.backoffice.tree.ExplorerTreeCatalogsDynamicNodeRefreshStrategy">
+		<property name="objectFacade" ref="objectFacade"/>
+		<property name="rootNodeId" value="Catalogs"/>
+	</bean>
+
+	<alias name="defaultExplorerTreeRefreshStrategies" alias="explorerTreeRefreshStrategies"/>
+	<util:list id="defaultExplorerTreeRefreshStrategies">
+		<ref bean="explorerTreeCatalogsDynamicNodeRefreshStrategy" />
+	</util:list>
+
+	<alias name="defaultCatalogContextPopulator" alias="catalogContextPopulator" />
+	<bean id="defaultCatalogContextPopulator" class="com.hybris.pcmbackoffice.widgets.contextpopulator.CatalogContextPopulator">
+		<property name="typeFacade" ref="typeFacade" />
+	</bean>
+
+	<bean id="dataQualityChartComposer" class="com.hybris.pcmbackoffice.widgets.charts.facetchart.DataQualityFacetChartComposer" >
+	</bean>
+
+	<bean id="productStatisticChartComposer" class="com.hybris.pcmbackoffice.widgets.charts.facetchart.ProductStatisticChartComposer" >
+	</bean>
+
+	<alias name="defaultProductLinksFacetChartRenderer" alias="productLinksFacetChartRenderer"/>
+	<bean id="defaultProductLinksFacetChartRenderer" class="com.hybris.pcmbackoffice.widgets.charts.facetchart.ProductLinksFacetChartRenderer" />
+
+	<alias name="defaultFacetChartDataExtractor" alias="facetChartDataExtractor"/>
+	<bean id="defaultFacetChartDataExtractor" class="com.hybris.pcmbackoffice.widgets.charts.facetchart.FacetChartDataExtractor" />
+
+	<alias name="defaultFacetChartBottomPanelRenderer" alias="facetChartBottomPanelRenderer"/>
+	<bean id="defaultFacetChartBottomPanelRenderer" class="com.hybris.pcmbackoffice.widgets.charts.facetchart.FacetChartBottomPanelRenderer" />
+
+	<alias name="defaultFacetChartFacetChooserRenderer" alias="facetChartFacetChooserRenderer"/>
+	<bean id="defaultFacetChartFacetChooserRenderer" class="com.hybris.pcmbackoffice.widgets.charts.facetchart.FacetChartFacetChooserRenderer" scope="prototype"/>
+
+	<alias name="defaultFacetChartFiltersRenderer" alias="facetChartFiltersRenderer"/>
+	<bean id="defaultFacetChartFiltersRenderer" class="com.hybris.pcmbackoffice.widgets.charts.facetchart.DefaultFacetChartFiltersRenderer" scope="prototype" />
+
+	<alias name="defaultFacetChartComposer" alias="facetChartComposer"/>
+	<bean id="defaultFacetChartComposer" class="com.hybris.pcmbackoffice.widgets.charts.facetchart.DefaultFacetChartComposer"/>
+
+	<alias name="defaultCatalogVersionFilterAdapter" alias="catalogVersionFilterAdapter" />
+	<bean id="defaultCatalogVersionFilterAdapter" class="com.hybris.pcmbackoffice.widgets.charts.facetchart.filter.CatalogVersionFacetChartFilterAdapter" >
+		<property name="labelService" ref="labelService"/>
+	</bean>
+
+	<alias name="defaultCategoryFilterAdapter" alias="categoryFilterAdapter" />
+	<bean id="defaultCategoryFilterAdapter" class="com.hybris.pcmbackoffice.widgets.charts.facetchart.filter.CategoryFacetChartFilterAdapter" >
+		<property name="categoryCatalogVersionMapper" ref="categoryCatalogVersionMapper" />
+	</bean>
+
+	<alias name="defaultCatalogVersionFilterRenderer" alias="catalogVersionFilterRenderer"/>
+	<bean id="defaultCatalogVersionFilterRenderer" class="com.hybris.pcmbackoffice.widgets.charts.facetchart.filter.ReferenceEditorFacetChartFilterRenderer" scope="prototype">
+		<property name="permissionFacade" ref="permissionFacade"/>
+		<property name="adapter" ref="catalogVersionFilterAdapter"/>
+		<property name="facetName" value="facet_catalogVersion"/>
+		<property name="filterTypeName" value="CatalogVersion"/>
+		<property name="labelFacetName" value="solrchart.catalogversionfilterrenderer.catalog_version"/>
+		<property name="order" value="100"/>
+	</bean>
+
+	<alias name="defaultCategoryFilterRenderer" alias="categoryFilterRenderer"/>
+	<bean id="defaultCategoryFilterRenderer" class="com.hybris.pcmbackoffice.widgets.charts.facetchart.filter.ReferenceEditorFacetChartFilterRenderer" scope="prototype">
+		<property name="permissionFacade" ref="permissionFacade"/>
+		<property name="adapter" ref="categoryFilterAdapter"/>
+		<property name="facetName" value="categoryLabel"/>
+		<property name="filterTypeName" value="Category"/>
+		<property name="labelFacetName" value="solrchart.categoryfilterrenderer.category"/>
+		<property name="order" value="200"/>
+	</bean>
+
+	<import resource="classificationgroups-backoffice-spring/classificationgroups-backoffice-spring.xml" />
+
+</beans>

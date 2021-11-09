@@ -1,0 +1,19 @@
+[{
+		"eventDate": "2019-01-06T07:18:22+0000",
+		"detail": "The package is transferring(Mock).",
+		"location": "Farmingdale NY 11735, United States",
+		"referenceCode": "IN_TRANSIT"
+	},
+	{
+		"eventDate": "2019-01-07T07:18:22+0000",
+		"detail": "The package is delivering(Mock).",
+		"location": "Evans Mills NY 13637, United States",
+		"referenceCode": "DELIVERING"
+	},
+	{
+		"eventDate": "2019-01-08T07:18:22+0000",
+		"detail": "Your package has reached(Mock).",
+		"location": "Boulder CO 80301, United States",
+		"referenceCode": "DELIVERY_COMPLETED"
+	}
+]

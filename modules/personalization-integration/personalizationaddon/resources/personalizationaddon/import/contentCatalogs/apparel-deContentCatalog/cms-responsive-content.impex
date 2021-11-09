@@ -1,0 +1,14 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+$contentCatalog = apparel-deContentCatalog
+$contentCV = catalogVersion(CatalogVersion.catalog(Catalog.id[default = $contentCatalog]), CatalogVersion.version[default = Staged])[default = $contentCatalog:Staged]
+
+
+INSERT_UPDATE PersonalizationScriptComponent; $contentCV[unique = true]; uid[unique = true]; name;
+; ; PersonalizationScriptComponent ; PersonalizationScript ; PersonalizationScript ; ;
+
+INSERT_UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true]; active; cmsComponents(uid, $contentCV)[mode = append]
+; ; PlaceholderContentSlot ; true ; PersonalizationScriptComponent
+

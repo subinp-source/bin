@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<widget-definition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widget-definition.xsd"
+                   id="de.hybris.platform.integrationbackoffice.widgets.ClassificationAttributeDetailsModal">
+    <name>Classification Attribute Details</name>
+    <description>Classification Attribute Details</description>
+    <defaultTitle>Classification Attribute Details</defaultTitle>
+    <author>Hybris</author>
+    <version>1.0</version>
+    <view src="ClassificationAttributeDetailsModal.zul"/>
+    <keywords>
+        <keyword>Classification Listitem Details Modal</keyword>
+    </keywords>
+    <controller
+            class="de.hybris.platform.integrationbackoffice.widgets.modals.controllers.ClassificationAttributeDetailsModalController"/>
+
+    <sockets>
+        <input id="showModal" type="de.hybris.platform.integrationbackoffice.dto.ListItemClassificationAttributeDTO"/>
+    </sockets>
+</widget-definition>

@@ -1,0 +1,39 @@
+.yw-permission-legend {
+  display: table;
+  padding: 15px 15px 20px; }
+  .yw-permission-legend-holder {
+    display: table-cell;
+    padding: 5px 10px; }
+    .yw-permission-legend-holder > span {
+      float: left;
+      line-height: 19px; }
+      .yw-permission-legend-holder > span.z-label {
+        padding-left: 5px;
+        padding-right: 10px; }
+  .yw-permission-legend-icon-inherited-ig, .yw-permission-legend-icon-g, .yw-permission-legend-icon-inherited-id, .yw-permission-legend-icon-d {
+    height: 17px;
+    width: 17px;
+    position: relative;
+    display: inline-block; }
+    .yw-permission-legend-icon-inherited-ig:before, .yw-permission-legend-icon-g:before, .yw-permission-legend-icon-inherited-id:before, .yw-permission-legend-icon-d:before {
+      content: "\f00d";
+      position: absolute;
+      font: normal normal normal 16px FontAwesome;
+      color: inherit;
+      width: 100%;
+      text-align: center;
+      line-height: 19px; }
+  .yw-permission-legend-icon-g:before, .yw-permission-legend-icon-inherited-ig:before {
+    content: "\f00c"; }
+  .yw-permission-legend-icon-inherited-id, .yw-permission-legend-icon-inherited-ig {
+    color: #7f90a4; }
+    .yw-permission-legend-icon-inherited-id:hover, .yw-permission-legend-icon-inherited-ig:hover {
+      color: #8293a6; }
+  .yw-permission-legend-icon-g {
+    color: #18bc33; }
+    .yw-permission-legend-icon-g:hover {
+      color: #19c134; }
+  .yw-permission-legend-icon-d {
+    color: #ff3b30; }
+    .yw-permission-legend-icon-d:hover {
+      color: #ff4035; }

@@ -1,0 +1,28 @@
+<div class="se-decorative-panel-wrapper">
+    <ng-container *ngIf="showOverlay() && !showAtBottom">
+        <ng-container *ngTemplateOutlet="decorativePanelArea"></ng-container>
+    </ng-container>
+
+    <div class="se-decoratorative-body-area">
+        <div class="se-decorative-body__padding--left" [ngClass]="{ 'active': active }"></div>
+        <div class="se-decorative-body__inner-border" [ngClass]="{ 'active': active }"></div>
+        <div class="se-wrapper-data" [ngClass]="{ 'active': active }">
+            <ng-content></ng-content>
+        </div>
+        <div class="se-decorative-body__padding--right" [ngClass]="{ 'active': active }"></div>
+    </div>
+    <ng-container *ngIf="showOverlay() && showAtBottom">
+        <ng-container *ngTemplateOutlet="decorativePanelArea"></ng-container>
+    </ng-container>
+
+    <ng-template #decorativePanelArea>
+        <div class="se-decorative-panel-area" [ngStyle]="showAtBottom && { 'margin-top': '0px' }">
+            <span class="se-decorative-panel__title">{{smarteditComponentId}}</span>
+            <div class="se-decorative-panel__slot-contextual-menu" *ngIf="showItems">
+                <slot-contextual-menu-item [item]="item" *ngFor="let item of items">
+                </slot-contextual-menu-item>
+            </div>
+        </div>
+
+    </ng-template>
+</div>

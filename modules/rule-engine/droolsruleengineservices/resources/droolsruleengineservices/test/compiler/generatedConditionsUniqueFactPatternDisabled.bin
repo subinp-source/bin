@@ -1,0 +1,13 @@
+  (
+    (
+      $product := ProductRAO(code == "123" || code == "456" || code == "789")
+      or
+      $product_2 := ProductRAO(color == "red")
+      or
+      (
+        $cart := CartRAO(total > new java.math.BigDecimal("100"))
+        and
+        $product := ProductRAO(color == "blue")
+      )
+    )
+  )

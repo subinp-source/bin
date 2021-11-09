@@ -1,0 +1,11 @@
+<span data-ng-if="addPageWizardCtl.isPageInfoActive()">
+    <se-generic-editor
+        [structure]="addPageWizardCtl.getPageInfoStructure()"
+        [content]="addPageWizardCtl.getPageInfo()"
+        [(submit)]="addPageWizardCtl.callbacks.savePageInfo"
+        [(reset)]="addPageWizardCtl.callbacks.resetPageInfo"
+        [(is-dirty)]="addPageWizardCtl.callbacks.isDirtyPageInfo"
+        [(is-valid)]="addPageWizardCtl.callbacks.isValidPageInfo"
+    >
+    </se-generic-editor>
+</span>

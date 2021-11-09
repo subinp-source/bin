@@ -1,0 +1,12 @@
+<se-popup-overlay
+    class="se-hidden-component-menu__popup-anchor"
+    [popup-overlay]="ctrl.popupConfig"
+    [popup-overlay-trigger]="ctrl.isMenuOpen"
+    (popup-overlay-on-hide)="ctrl.onMenuHide()"
+>
+    <span
+        data-ng-if="ctrl.menuItems.length > 0"
+        data-ng-click="ctrl.onButtonClick($event)"
+        class="sap-icon--overflow se-hidden-component-menu__toggle"
+    ></span>
+</se-popup-overlay>

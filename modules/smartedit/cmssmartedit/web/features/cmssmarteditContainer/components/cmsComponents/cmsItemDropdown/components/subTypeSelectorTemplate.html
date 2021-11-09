@@ -1,0 +1,9 @@
+<ul class="se-sub-type__selector fd-menu__list">
+    <li
+        class="cms-sub-type__selector-link fd-menu__item"
+        data-ng-repeat="subType in $ctrl.subTypes"
+        data-ng-click="$ctrl.onChange(subType)"
+    >
+        {{ subType.label | translate }}
+    </li>
+</ul>

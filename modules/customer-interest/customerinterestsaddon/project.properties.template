@@ -1,0 +1,15 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+customerinterestsaddon.key=value
+
+# Specifies the location of the spring context file added automatically to the global platform application context.
+customerinterestsaddon.application-context=customerinterestsaddon-spring.xml
+
+yacceleratorstorefront.additionalWebSpringConfigs.customerinterestsaddon=classpath:/customerinterestsaddon/web/spring/customerinterestsaddon-web-spring.xml
+
+
+
+customerinterestsaddon.javascript.paths.responsive=/responsive/common/js/customerinterestsaddon.js
+customerinterestsaddon.css.paths.responsive=/responsive/common/css/customerinterestsaddon.css

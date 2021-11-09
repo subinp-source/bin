@@ -1,0 +1,150 @@
+#smarteditoverlay {
+    // Top Banner
+    .se-decorative-panel-area {
+        @include se-flex-row(space-between);
+        margin-top: -32px;
+        height: 32px;
+        width: auto;
+        border: 2px solid fd-color('action', 3); // Do Not Remove !!!, slotContextualMenuDecorator.js needs this to get the width property of this element without crushing the app
+        background-color: fd-color('action', 3);
+    }
+    .se-decorative-panel__title {
+        color: fd-color('text', 5);
+        padding: 0 fd-space('xxs');
+        margin: 0 !important;
+    }
+    .se-decorative-panel__slot-contextual-menu {
+        @include se-flex-row;
+        right: 0px;
+        top: -42px;
+    }
+
+    // Lower Section Buttons
+    .se-ctx-menu-decorator-wrapper {
+        border: 3px solid transparent;
+        height: 100%;
+    }
+    .se-ctx-menu-decorator__border--visible {
+        border-color: fd-color('action', 1);
+    }
+    .se-decoratorative-body-area {
+        @include se-flex-row;
+        height: 100%;
+    }
+    .se-decorative-body__inner-border {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border: 2px dashed fd-color('neutral', 3);
+        &.active {
+            border: se-border(fd-color('action', 1), 2px);
+            min-height: 50px;
+        }
+    }
+    .se-wrapper-data {
+        min-width: 50px;
+        min-height: 50px;
+        height: 100%;
+    }
+    .se-ctx-menu__overlay {
+        @include se-flex-row(space-between);
+        position: absolute;
+        left: 3px;
+        top: 3px;
+        right: 3px;
+    }
+    .se-ctx-menu__overlay__left-section {
+        @include se-flex-row;
+    }
+    .se-ctx-menu-element__btn {
+        @include se-flex-row(center);
+        margin-right: fd-space('base');
+        z-index: $z-index--front-most;
+        position: relative;
+        color: fd-color('text', 5);
+        background: fd-color('action', 1);
+        font-size: 24px;
+        height: 40px;
+        width: 40px;
+        cursor: pointer;
+
+        &:hover,
+        &.is-active {
+            background: fd-color('background', 2);
+            color: fd-color('action', 1);
+        }
+
+        &.removebutton {
+            background: fd-color('status', 3);
+            &:hover {
+                background: fd-color('background', 2);
+                color: fd-color('action', 3);
+            }
+        }
+    }
+    .se-ctx-menu-element__btn--more {
+        margin: 0;
+
+        &--open {
+            background: fd-color('background', 2);
+            color: fd-color('action', 1);
+        }
+
+        .sap-icon--overflow::before {
+            position: relative;
+            bottom: 6px;
+        }
+    }
+    .se-contextual-more-menu {
+        @include se-box-shadow;
+        background-color: fd-color('background', 2);
+        min-width: 150px;
+    }
+    .se-contextual-more-menu__list {
+        @include se-flex-column;
+    }
+    .se-contextual-more-menu__item {
+        color: fd-color('text', 2);
+        display: block;
+
+        &--delete {
+            order: 99;
+        }
+    }
+
+    .se-contextual-more-menu .fd-popover-custom {
+        width: 100%;
+    }
+
+    .se-ctx-menu-element__label {
+        cursor: pointer;
+        display: block;
+        padding: 12px 16px;
+
+        &:hover {
+            background-color: fd-color-state('hover');
+        }
+
+        &.removebutton {
+            color: fd-color('status', 3);
+        }
+    }
+    .se-ctx-menu-btn__msg {
+        @include se-dropdown-menu('left');
+        @include se-popover-box-shadow();
+        @include fd-type('1');
+        white-space: normal;
+        padding: 20px;
+        width: 250px;
+    }
+    .se-ctx-menu-btn__msg-title {
+        @include fd-weight('bold');
+        color: fd-color('text', 1);
+        margin-bottom: fd-space('xxs');
+    }
+    .se-ctx-menu-btn__msg-description {
+        color: fd-color('text', 2);
+    }
+}

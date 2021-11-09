@@ -1,0 +1,9 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# Import essential data
+$defaultCatalog=Default
+$defaultCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$defaultCatalog]),CatalogVersion.version[default=Staged])[default=$defaultCatalog:Staged]
+
+INSERT_UPDATE UserGroup ; UID[unique=true]   ; groups(uid)[mode=append]                   
+                        ; cxmanagergroup     ; searchmanagergroup             

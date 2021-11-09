@@ -1,0 +1,44 @@
+@import "cockpitng-globals.scss";
+
+$workflows-modal__header--border-color: $grey__light--100;
+$workflows-modal__header--border-width: $boxes--border__thin;
+$workflows-modal__action-slot--top: 15px;
+$workflows-modal__action-slot--right: 48px;
+$workflows-modal__action-slot--margin-right: $container-spacing-default__third - $boxes--border__medium;
+$workflows-modal__header-caption--padding-right: 160px;
+
+$workflows-graph__tooltip--font-family: $font-family-opensans !important;
+$workflows-graph__tooltip--color: $black__blueish--100 !important;
+$workflows-graph__tooltip--bg-color: $white !important;
+$workflows-graph__tooltip--border: $boxes--border__thin solid $workflows-modal__header--border-color !important;
+$workflows-graph__tooltip--border-radius: 1px !important;
+$workflows-graph__tooltip--box-shadow: 0 2px 4px 0 rgba(30, 40, 48, 0.3) !important;
+
+.vis-tooltip {
+  font-family: $workflows-graph__tooltip--font-family;
+  color: $workflows-graph__tooltip--color;
+  padding: $container-spacing-default__third;
+  background-color: $white;
+  border: $workflows-graph__tooltip--border;
+  border-radius: $workflows-graph__tooltip--border-radius;
+  box-shadow: $workflows-graph__tooltip--box-shadow;
+}
+
+.yw-modal-workflowOverview-workflows-flow-presentation.z-window {
+	.yw-visjs-chart-container > .action-slot {
+		position: absolute;
+		top: $workflows-modal__action-slot--top;
+	    right: $workflows-modal__action-slot--right;
+	    margin-right: $workflows-modal__action-slot--margin-right;
+	}
+	> .z-window-content {
+		overflow: visible;
+	}
+	> .z-window-header {
+		border-bottom: $workflows-modal__header--border-width solid $workflows-modal__header--border-color;
+		
+		.z-caption {
+			padding-right: $workflows-modal__header-caption--padding-right;
+		}
+	}
+}

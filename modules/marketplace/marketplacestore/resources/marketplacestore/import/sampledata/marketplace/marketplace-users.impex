@@ -1,0 +1,16 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+INSERT_UPDATE Employee;UID[unique=true];name;description;groups(uid)
+;merchantvendormanager;Merchant Vendor Manager;Merchant Vendor Manager;merchantvendormanagergroup,vendor1permissiongroup,vendor2permissiongroup,vendor3permissiongroup,vendor4permissiongroup,vendor5permissiongroup,vendor6permissiongroup,vendor7permissiongroup,vendor8permissiongroup
+
+UPDATE CatalogVersion;catalog(id)[unique=true];version[unique=true];writePrincipals(uid)[mode=append];
+;globalMarketplaceProductCatalog;Staged;merchantvendormanagergroup;
+;globalMarketplaceProductCatalog;Online;merchantvendormanagergroup;
+;marketplaceContentCatalog;Staged;merchantvendormanagergroup;
+;marketplaceContentCatalog;Online;merchantvendormanagergroup;
+
+
+UPDATE ClassificationSystemversion;catalog(id)[unique=true];version[unique=true];writeprincipals(uid)[mode=append];
+;MarketplaceClassification;1.0;merchantvendormanagergroup;

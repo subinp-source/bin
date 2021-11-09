@@ -1,0 +1,25 @@
+<div id="workflow-description-item-menu" class="workflow-description-item-menu">
+    <div class="se-dropdown-item--label">
+        <div class="workflow-description-item-menu__label fd-has-type-1 fd-has-margin-bottom-tiny">
+            <div data-translate="{{dropdownItem.i18nKey}}"></div>
+            <div data-has-operation-permission="'se.edit.workflow.workflowMenu'">
+                <a
+                    id="edit-workflow-item-menu"
+                    class="sap-icon--edit fd-has-float-right"
+                    data-ng-click="$ctrl.executeItemCallback(dropdownItem, $event)"
+                >
+                </a>
+            </div>
+        </div>
+        <div
+            ng-if="$ctrl.workflowInfo.description"
+            class="workflow-description-item-menu__description"
+        >
+            {{$ctrl.workflowInfo.description}}
+        </div>
+        <div
+            ng-if="!$ctrl.workflowInfo.description"
+            data-translate="se.cms.actionitem.page.workflow.no.description"
+        ></div>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+<ng-container *ngIf="!isLegacyTab; else legacyAngularJSTab">
+    <ng-container *ngComponentOutlet="tab.component; injector: tabInjector"></ng-container>
+</ng-container>
+
+<ng-template #legacyAngularJSTab>
+    <div [ngInclude]="tab.templateUrl" [scope]="scopeStream | async"></div>
+</ng-template>

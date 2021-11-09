@@ -1,0 +1,13 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+$contentCatalog=powertoolsContentCatalog
+$syncJob=sync $contentCatalog:Staged->Online
+
+INSERT_UPDATE CatalogVersion;catalog(id)[unique=true];version[unique=true];readPrincipals(uid)[mode=append];writePrincipals(uid)[mode=append]
+;powertoolsContentCatalog;Staged;;cmsmanagergroup,powertools-cmsmanagergroup
+;powertoolsContentCatalog;Online;cmsmanagergroup,powertools-cmsmanagergroup;;
+
+INSERT_UPDATE CatalogVersionSyncJob; code[unique=true]; syncPrincipals(uid)[mode=append]; syncPrincipalsOnly;
+;$syncJob;cmsmanagergroup,powertools-cmsmanagergroup;true;

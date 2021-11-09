@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widgets.xsd"
+>
+
+	<widget-extension widgetId="editorArea">
+		<virtual-sockets>
+			<output id="workflowDesigner" type="java.lang.Object"/>
+		</virtual-sockets>
+	</widget-extension>
+	<widget-extension widgetId="hmc2">
+		<widget id="workflowDesigner" widgetDefinitionId="com.hybris.cockpitng.visjs.networkchart"
+				slotId="cockpitWidgetChildrenInvisible" title="Workflow designer" template="true">
+			<instance-settings>
+				<create reuseExisting="true">
+					<incoming-events>
+						<socket-event id="initData"/>
+						<socket-event id="updateObject"/>
+					</incoming-events>
+				</create>
+				<close>
+					<outgoing-events>
+						<socket-event id="close"/>
+					</outgoing-events>
+				</close>
+				<select>
+					<incoming-events>
+						<socket-event id="initData"/>
+						<socket-event id="updateObject"/>
+					</incoming-events>
+				</select>
+			</instance-settings>
+			<setting key="widgetStyleClass" type="String">yw-workflow-designer-modal</setting>
+			<setting key="widgetStyleAttribute" type="String"></setting>
+			<setting key="_width" type="String">1200px</setting>
+			<setting key="_height" type="String">800px</setting>
+			<setting key="showControlsButtons" type="Boolean">true</setting>
+			<setting key="viewEventHandler" type="String">viewEventDetectingHandler</setting>
+			<setting key="networkPopulator" type="String">networkPopulationDetectingHandler</setting>
+			<setting key="dataManipulationHandler" type="String">dataManipulationDetectingHandler</setting>
+			<setting key="customAddNodeButton" type="Boolean">true</setting>
+			<setting key="closeListener" type="String">workflowDesignerCloseListener</setting>
+			<setting key="chartOptions" type="String">
+				{
+					"nodes": {
+						"shape": "box",
+						"size": 20,
+						"font": {
+							"color": "#1a3263"
+						},
+						"borderWidth": 2,
+						"shadow": {
+							"enabled": false
+						},
+						"chosen": {
+							"node": false,
+							"label": false
+						}
+					},
+					"edges": {
+						"width": 2,
+						"shadow": {
+							"enabled": false
+						},
+						"color": {
+							"color": "#0486e0",
+							"highlight": "#0486E0"
+						},
+						"smooth": {
+							"enabled": false
+						},
+						"arrows": {
+							"to": {
+								"enabled": true
+							}
+						},
+						"arrowStrikethrough": false,
+						"chosen": {
+							"edge": true,
+							"label": false
+						}
+					},
+					"groups": {
+						"decision": {
+							"shape": "circularImage",
+							"color": {
+								"background": "rgba(0,0,0,0)"
+							},
+							"borderWidth": 0,
+							"size": "50"
+						},
+						"andConnection": {
+							"shape": "circle",
+							"margin": {
+								"top": 15,
+								"bottom": 15,
+								"left": 15,
+								"right": 15
+							},
+							"borderWidth": 2,
+							"color": {
+								"background": "#fff",
+								"border": "#000"
+							}
+						},
+						"action": {
+							"margin": {
+								"top": 40,
+								"bottom": 40,
+								"left": 40,
+								"right": 40
+							},
+							"borderWidth": 2,
+							"color": {
+								"background": "#fff",
+								"border": "#000"
+							}
+						},
+						"startAction": {
+							"shape": "image"
+						},
+						"endAction": {
+							"shape": "image"
+						},
+						"actionPending": {
+							"margin": {
+								"top": 40,
+								"bottom": 40,
+								"left": 40,
+								"right": 40
+							},
+							"borderWidth": 2,
+							"color": {
+								"background": "#fff",
+								"border": "#000"
+							}
+						},
+						"actionInProgress": {
+							"margin": {
+								"top": 40,
+								"bottom": 40,
+								"left": 40,
+								"right": 40
+							},
+							"borderWidth": 2,
+							"color": {
+								"background": "#0486e0",
+								"border": "#0486e0"
+							},
+							"font": {
+								"color": "#fff"
+							}
+						},
+						"actionCompleted": {
+							"margin": {
+								"top": 40,
+								"bottom": 40,
+								"left": 40,
+								"right": 40
+							},
+							"borderWidth": 2,
+							"color": {
+								"background": "#fff",
+								"border": "#000"
+							},
+							"font": {
+								"color": "#5eb300"
+							}
+						},
+						"actionTerminated": {
+							"margin": {
+								"top": 40,
+								"bottom": 40,
+								"left": 40,
+								"right": 40
+							},
+							"borderWidth": 2,
+							"color": {
+								"background": "#fff",
+								"border": "#000"
+							},
+							"font": {
+								"color": "#ff3b30"
+							}
+						}
+					},
+					"physics": {
+						"enabled": false
+					},
+					"manipulation": {
+						"initiallyActive": true,
+						"addEdge": true,
+						"addNode": true,
+						"editNode": true,
+						"editEdge": false,
+						"deleteNode": true,
+						"deleteEdge": true
+					},
+					"interaction": {
+						"multiselect": true
+					}
+				}
+			</setting>
+			<virtual-sockets>
+				<output id="createAction" type="java.lang.Object"/>
+				<output id="updateAction" type="java.lang.Object"/>
+				<output id="createDecision" type="java.lang.Object"/>
+				<output id="updateDecision" type="java.lang.Object"/>
+				<output id="createAnd" type="java.lang.Object"/>
+				<output id="close" type="java.lang.Object"/>
+			</virtual-sockets>
+			<widget id="networkchartNotificationarea" widgetDefinitionId="com.hybris.backoffice.notificationarea"
+					slotId="networkchartNotificationarea" template="false">
+				<setting key="notificationId" type="String">workflowDesignerNotificationArea</setting>
+				<setting key="debugLog" type="Boolean">false</setting>
+				<setting key="stackSize" type="Integer">1</setting>
+				<setting key="useDynamicNotificationId" type="Boolean">true</setting>
+			</widget>
+		</widget>
+		<widget id="workflowDesigner-firstElement"
+				widgetDefinitionId="com.hybris.cockpitng.widgets.common.propextractor"
+				slotId="cockpitWidgetChildrenInvisible">
+			<setting key="expression" type="String">#root.isEmpty() ? null: #root.iterator().next()</setting>
+			<setting key="socketDataType_$T" type="String">java.lang.Object</setting>
+		</widget>
+		<widget id="workflowDesignerCreateActionFlowContextCreator"
+				widgetDefinitionId="com.hybris.cockpitng.widgets.common.propextractor"
+				slotId="cockpitWidgetChildrenInvisible">
+			<setting key="expression" type="String">
+				{
+					TYPE_CODE: 'com.hybris.backoffice.workflow.designer.form.WorkflowTemplateCreateActionForm',
+					configurableFlowConfigCtx: 'workflow-designer-create-wizard',
+					parentObject: #root.parentObject,
+					nodes: #root.nodes,
+					updateId: false,
+					updateType: false,
+					edit: false
+				}
+			</setting>
+			<setting key="socketDataType_$T" type="String">java.util.Map</setting>
+			<virtual-sockets/>
+		</widget>
+		<widget id="workflowDesignerUpdateActionFlowContextCreator"
+				widgetDefinitionId="com.hybris.cockpitng.widgets.common.propextractor"
+				slotId="cockpitWidgetChildrenInvisible">
+			<setting key="expression" type="String">
+				{
+				TYPE_CODE: 'com.hybris.backoffice.workflow.designer.form.WorkflowTemplateCreateActionForm',
+				configurableFlowConfigCtx: 'workflow-designer-create-wizard',
+				parentObject: #root.parentObject,
+				node: #root.node,
+				nodes: #root.nodes,
+				updateId: #root.updateId,
+				updateType: true,
+				edit: true
+				}
+			</setting>
+			<setting key="socketDataType_$T" type="String">java.util.Map</setting>
+			<virtual-sockets/>
+		</widget>
+		<widget id="workflowDesignerUpdateDecisionFlowContextCreator"
+				widgetDefinitionId="com.hybris.cockpitng.widgets.common.propextractor"
+				slotId="cockpitWidgetChildrenInvisible">
+			<setting key="expression" type="String">
+				{
+				TYPE_CODE: 'com.hybris.backoffice.workflow.designer.form.WorkflowTemplateCreateDecisionForm',
+				configurableFlowConfigCtx: 'workflow-designer-create-wizard',
+				parentObject: #root.parentObject,
+				node: #root.node,
+				nodes: #root.nodes,
+				updateId: #root.updateId,
+				edit: true
+				}
+			</setting>
+			<setting key="socketDataType_$T" type="String">java.util.Map</setting>
+			<virtual-sockets/>
+		</widget>
+		<widget id="workflowDesignerCreateDecisionFlowContextCreator"
+				widgetDefinitionId="com.hybris.cockpitng.widgets.common.propextractor"
+				slotId="cockpitWidgetChildrenInvisible">
+			<setting key="expression" type="String">
+				{
+					TYPE_CODE: 'com.hybris.backoffice.workflow.designer.form.WorkflowTemplateCreateDecisionForm',
+					configurableFlowConfigCtx: 'workflow-designer-create-wizard',
+					parentObject: #root.parentObject,
+					nodes: #root.nodes,
+					updateId: false,
+					edit: false
+				}
+			</setting>
+			<setting key="socketDataType_$T" type="String">java.util.Map</setting>
+			<virtual-sockets/>
+		</widget>
+		<widget id="workflowDesignerCreateAndPropertyExtractor"
+				widgetDefinitionId="com.hybris.cockpitng.widgets.common.propextractor"
+				slotId="cockpitWidgetChildrenInvisible" template="false">
+			<setting key="expression" type="String">
+				new com.hybris.backoffice.workflow.designer.dto.AndDto(
+					T(com.hybris.backoffice.workflow.designer.dto.Operation).CREATE,
+					new de.hybris.platform.core.model.link.LinkModel())
+			</setting>
+			<setting key="socketDataType_$T" type="String" value="java.lang.Object"/>
+			<virtual-sockets/>
+		</widget>
+	</widget-extension>
+
+	<widget-extension widgetId="notificationEA">
+		<virtual-sockets>
+			<output id="workflowDesigner" type="java.lang.Object"/>
+		</virtual-sockets>
+	</widget-extension>
+
+	<widget-extension widgetId="configurableFlow">
+		<virtual-sockets>
+			<output id="workflowDesignerCreateAction" type="java.lang.Object"/>
+			<output id="workflowDesignerCreateDecision" type="java.lang.Object"/>
+			<output id="workflowDesignerCreateTemplate" type="java.lang.Object"/>
+		</virtual-sockets>
+	</widget-extension>
+
+	<widget-connection sourceWidgetId="notificationEA" outputId="workflowDesigner"
+					   targetWidgetId="workflowDesigner-firstElement" inputId="genericInput"/>
+	<widget-connection sourceWidgetId="editorArea" outputId="workflowDesigner"
+					   targetWidgetId="workflowDesigner-firstElement" inputId="genericInput"/>
+	<widget-connection sourceWidgetId="workflowDesigner-firstElement" outputId="genericOutput"
+					   targetWidgetId="workflowDesigner" inputId="initData"/>
+	<widget-connection sourceWidgetId="configurableFlow" outputId="workflowDesignerCreateTemplate"
+					   targetWidgetId="workflowDesigner" inputId="initData"/>
+
+	<!-- Create nodes -->
+	<!-- Create nodes / create action -->
+	<widget-connection sourceWidgetId="workflowDesigner" outputId="createAction"
+					   targetWidgetId="workflowDesignerCreateActionFlowContextCreator" inputId="genericInput"/>
+	<widget-connection sourceWidgetId="workflowDesignerCreateActionFlowContextCreator" outputId="genericOutput"
+					   targetWidgetId="configurableFlow" inputId="context"/>
+	<widget-connection sourceWidgetId="configurableFlow" outputId="workflowDesignerCreateAction"
+					   targetWidgetId="workflowDesigner" inputId="updateObject"/>
+
+	<!-- Update node / update action -->
+	<widget-connection sourceWidgetId="workflowDesigner" outputId="updateAction"
+					   targetWidgetId="workflowDesignerUpdateActionFlowContextCreator" inputId="genericInput"/>
+	<widget-connection sourceWidgetId="workflowDesignerUpdateActionFlowContextCreator" outputId="genericOutput"
+					   targetWidgetId="configurableFlow" inputId="context"/>
+
+	<!-- Create nodes / create decision -->
+	<widget-connection sourceWidgetId="workflowDesigner" outputId="createDecision"
+					   targetWidgetId="workflowDesignerCreateDecisionFlowContextCreator" inputId="genericInput"/>
+	<widget-connection sourceWidgetId="workflowDesignerCreateDecisionFlowContextCreator" outputId="genericOutput"
+					   targetWidgetId="configurableFlow" inputId="context"/>
+	<widget-connection sourceWidgetId="configurableFlow" outputId="workflowDesignerCreateDecision"
+					   targetWidgetId="workflowDesigner" inputId="updateObject"/>
+
+	<!-- Update node / update decision -->
+	<widget-connection sourceWidgetId="workflowDesigner" outputId="updateDecision"
+					   targetWidgetId="workflowDesignerUpdateDecisionFlowContextCreator" inputId="genericInput"/>
+	<widget-connection sourceWidgetId="workflowDesignerUpdateDecisionFlowContextCreator" outputId="genericOutput"
+					   targetWidgetId="configurableFlow" inputId="context"/>
+
+	<!-- Create nodes / create and -->
+	<widget-connection sourceWidgetId="workflowDesigner" outputId="createAnd"
+					   targetWidgetId="workflowDesignerCreateAndPropertyExtractor" inputId="genericInput"/>
+	<widget-connection sourceWidgetId="workflowDesignerCreateAndPropertyExtractor" outputId="genericOutput"
+					   targetWidgetId="workflowDesigner" inputId="updateObject"/>
+
+</widgets>

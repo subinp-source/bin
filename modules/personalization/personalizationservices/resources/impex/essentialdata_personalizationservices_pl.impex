@@ -1,0 +1,11 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+# Do not translate; Do not translate; To be translated; To be translated;
+# ImpEx for Importing English Localisations for the personalizationservices;;;;
+$lang=pl
+
+UPDATE MaxConstraint;id[unique = true];message[lang = $lang]
+#% beforeEach: de.hybris.platform.personalizationservices.configuration.ImpexConfigService.ignoreIfLanguageIsMissing(line, "$lang");
+;cxOccTTLMaxTime;Okres ważności kalkulacji personalizacji nie może być dłuższy niż jeden rok w ms (31536000000)

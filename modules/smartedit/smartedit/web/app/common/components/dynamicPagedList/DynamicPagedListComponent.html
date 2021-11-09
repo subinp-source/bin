@@ -1,0 +1,31 @@
+<div *ngIf="ready" class="se-dynamic-paged-list">
+    <div class="fd-panel__body fd-panel__body--bleed">
+        <se-data-table
+            [columns]="columns"
+            [config]="config"
+            [items]="items"
+            (onSortColumn)="orderByColumn($event)"
+        ></se-data-table>
+    </div>
+
+    <div class="fd-panel__footer">
+        <se-pagination
+            *ngIf="!!items.length"
+            class="se-dynamic-list__pagination"
+            [totalItems]="totalItems"
+            [itemsPerPage]="config.itemsPerPage"
+            [currentPage]="currentPage"
+            (onChange)="onCurrentPageChange($event)"
+        >
+        </se-pagination>
+
+        <span class="se-paged-list__page-count-wrapper se-paged-list__page-count-wrapper--footer">
+            <span class="span-page-list__page-count-text">
+                {{'se.pagelist.countsearchresult' | translate}}
+            </span>
+            <span class="se-page-list__page-count"> ({{ totalItems }}) </span>
+        </span>
+    </div>
+</div>
+
+<se-spinner [isSpinning]="!ready"> </se-spinner>

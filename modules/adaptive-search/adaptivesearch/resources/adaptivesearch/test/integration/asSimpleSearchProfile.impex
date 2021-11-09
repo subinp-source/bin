@@ -1,0 +1,7 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+$lang=en
+
+INSERT_UPDATE AsSimpleSearchProfile ; code[unique=true] ; name[lang=$lang] ; indexType ; catalogVersion(catalog(id),version)[unique=true]
+                                    ; searchProfile     ; Search profile   ; testIndex ; hwcatalog:Staged                                

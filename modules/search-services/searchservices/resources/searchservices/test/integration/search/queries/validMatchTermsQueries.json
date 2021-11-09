@@ -1,0 +1,377 @@
+[
+	{
+		"testId": 1,
+		"description": "'matchTerms' query with empty value doesn't match with STRING expression",
+		"data": {
+			"type": "matchTerms",
+			"expression": "field_string",
+			"values": [
+				""
+			]
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 2,
+		"description": "'matchTerms' query with non existing term value doesn't match with STRING expression",
+		"data": {
+			"type": "matchTerms",
+			"expression": "field_string",
+			"values": [
+				"car"
+			]
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 3,
+		"description": "'matchTerms' query with single term value doesn't match with STRING expression, needs to be exact match",
+		"data": {
+			"type": "matchTerms",
+			"expression": "field_string",
+			"values": [
+				"green"
+			]
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 4,
+		"description": "'matchTerms' query with multiple terms value doesn't match with STRING expression, needs to be exact match",
+		"data": {
+			"type": "matchTerms",
+			"expression": "field_string",
+			"values": [
+				"green m"
+			]
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 5,
+		"description": "'matchTerms' query with value matches with STRING expression, exact match",
+		"data": {
+			"type": "matchTerms",
+			"expression": "field_string",
+			"values": [
+				"GREEN M"
+			]
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	},
+	{
+		"testId": 6,
+		"description": "'matchTerms' query with value and match type ANY matches with STRING expression",
+		"data": {
+			"type": "matchTerms",
+			"expression": "field_string",
+			"values": [
+				"GREEN M"
+			],
+			"matchType": "ANY"
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	},
+	{
+		"testId": 7,
+		"description": "'matchTerms' query with value and match type ALL matches with STRING expression",
+		"data": {
+			"type": "matchTerms",
+			"expression": "field_string",
+			"values": [
+				"GREEN M"
+			],
+			"matchType": "ALL"
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	},
+	{
+		"testId": 8,
+		"description": "'matchTerms' query with non existing term values doesn't match with STRING expression",
+		"data": {
+			"type": "matchTerms",
+			"expression": "field_string",
+			"values": [
+				"car",
+				"ball"
+			]
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 9,
+		"description": "'matchTerms' query with single term values doesn't match with STRING expression, needs to be exact match",
+		"data": {
+			"type": "matchTerms",
+			"expression": "field_string",
+			"values": [
+				"red",
+				"green"
+			]
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 10,
+		"description": "'matchTerms' query with multiple terms values doesn't match with STRING expression, needs to be exact match",
+		"data": {
+			"type": "matchTerms",
+			"expression": "field_string",
+			"values": [
+				"red m",
+				"green l"
+			]
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 11,
+		"description": "'matchTerms' query with values matches with STRING expression, exact match",
+		"data": {
+			"type": "matchTerms",
+			"expression": "field_string",
+			"values": [
+				"RED M",
+				"GREEN L"
+			]
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc3"
+		]
+	},
+	{
+		"testId": 12,
+		"description": "'matchTerms' query with values and match type ANY matches with STRING expression",
+		"data": {
+			"type": "matchTerms",
+			"expression": "field_string",
+			"values": [
+				"RED M",
+				"GREEN L"
+			],
+			"matchType": "ANY"
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc3"
+		]
+	},
+	{
+		"testId": 13,
+		"description": "'matchTerms' query with values and match type ALL doesn't match with STRING expression",
+		"data": {
+			"type": "matchTerms",
+			"expression": "field_string",
+			"values": [
+				"RED M",
+				"GREEN L"
+			],
+			"matchType": "ALL"
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 14,
+		"description": "'matchTerms' query with empty value doesn't match with multi-valued STRING expression",
+		"data": {
+			"type": "matchTerms",
+			"expression": "field_string_mv",
+			"values": [
+				""
+			]
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 15,
+		"description": "'matchTerms' query with non existing term value doesn't match with multi-valued STRING expression",
+		"data": {
+			"type": "matchTerms",
+			"expression": "field_string_mv",
+			"values": [
+				"car"
+			]
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 16,
+		"description": "'matchTerms' query with single term value doesn't match with multi-valued STRING expression, needs to be exact match",
+		"data": {
+			"type": "matchTerms",
+			"expression": "field_string_mv",
+			"values": [
+				"green"
+			]
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 17,
+		"description": "'matchTerms' query with multiple terms value doesn't match with multi-valued STRING expression, needs to be exact match",
+		"data": {
+			"type": "matchTerms",
+			"expression": "field_string_mv",
+			"values": [
+				"size m"
+			]
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 18,
+		"description": "'matchTerms' query with value matches with multi-valued STRING expression, exact match",
+		"data": {
+			"type": "matchTerms",
+			"expression": "field_string_mv",
+			"values": [
+				"size M"
+			]
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2"
+		]
+	},
+	{
+		"testId": 19,
+		"description": "'matchTerms' query with value and match type ANY matches with multi-valued STRING expression",
+		"data": {
+			"type": "matchTerms",
+			"expression": "field_string_mv",
+			"values": [
+				"size M"
+			],
+			"matchType": "ANY"
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2"
+		]
+	},
+	{
+		"testId": 20,
+		"description": "'matchTerms' query with value and match type ALL matches with multi-valued STRING expression",
+		"data": {
+			"type": "matchTerms",
+			"expression": "field_string_mv",
+			"values": [
+				"size M"
+			],
+			"matchType": "ALL"
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2"
+		]
+	},
+	{
+		"testId": 21,
+		"description": "'matchTerms' query with non existing term values doesn't match with multi-valued STRING expression",
+		"data": {
+			"type": "matchTerms",
+			"expression": "field_string_mv",
+			"values": [
+				"car",
+				"ball"
+			]
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 22,
+		"description": "'matchTerms' query with single term values doesn't match with multi-valued STRING expression, needs to be exact match",
+		"data": {
+			"type": "matchTerms",
+			"expression": "field_string_mv",
+			"values": [
+				"red",
+				"size"
+			]
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 23,
+		"description": "'matchTerms' query with multiple terms values doesn't match with multi-valued STRING expression, needs to be exact match",
+		"data": {
+			"type": "matchTerms",
+			"expression": "field_string_mv",
+			"values": [
+				"red shirt",
+				"size l"
+			]
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 24,
+		"description": "'matchTerms' query with values matches with multi-valued STRING expression, exact match",
+		"data": {
+			"type": "matchTerms",
+			"expression": "field_string_mv",
+			"values": [
+				"RED shirt",
+				"size L"
+			]
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc3"
+		]
+	},
+	{
+		"testId": 25,
+		"description": "'matchTerms' query with values and match type ANY matches with multi-valued STRING expression",
+		"data": {
+			"type": "matchTerms",
+			"expression": "field_string_mv",
+			"values": [
+				"RED shirt",
+				"size L"
+			],
+			"matchType": "ANY"
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc3"
+		]
+	},
+	{
+		"testId": 26,
+		"description": "'matchTerms' query with values and match type ALL doesn't match with multi-valued STRING expression",
+		"data": {
+			"type": "matchTerms",
+			"expression": "field_string_mv",
+			"values": [
+				"RED shirt",
+				"size L"
+			],
+			"matchType": "ALL"
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 27,
+		"description": "'matchTerms' query with values and match type ALL matches with multi-valued STRING expression",
+		"data": {
+			"type": "matchTerms",
+			"expression": "field_string_mv",
+			"values": [
+				"GREEN jacket",
+				"size M"
+			],
+			"matchType": "ALL"
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	}
+]

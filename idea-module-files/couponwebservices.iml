@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="OOTB" importedAsReadOnly="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../modules/coupon/couponwebservices">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/web/webroot/WEB-INF/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../modules/coupon/couponwebservices/bin/couponwebservicesserver.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../modules/coupon/couponwebservices/bin/couponwebservicesserver.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/lib" recursive="true" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/web/webroot/WEB-INF/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../modules/coupon/couponwebservices/web/webroot/WEB-INF/lib" recursive="true" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="commercewebservicescommons" exported="" />
+    <orderEntry type="module" module-name="couponservices" exported="" />
+    <orderEntry type="module" module-name="platform" exported="" />
+  </component>
+</module>

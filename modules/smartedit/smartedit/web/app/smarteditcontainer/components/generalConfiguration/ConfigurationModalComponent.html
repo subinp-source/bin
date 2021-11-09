@@ -1,0 +1,95 @@
+<div id="editConfigurationsBody" class="se-config">
+    <form #form="ngForm" novalidate>
+        <div class="se-config__sub-header">
+            <span class="se-config__sub-title"
+                >{{'se.configurationform.label.keyvalue' | translate}}</span
+            >
+            <button
+                class="se-config__add-entry-btn fd-button--compact"
+                type="button"
+                (click)="editor.addEntry()"
+            >
+                {{ "se.general.configuration.add.button" | translate }}
+            </button>
+        </div>
+
+        <div
+            class="se-config__entry"
+            *ngFor="let entry of editor.filterConfiguration(); let $index = index"
+        >
+            <div class="se-config__entry-data">
+                <div class="se-config__entry-key">
+                    <input
+                        type="text"
+                        [ngClass]="{
+                            'is-invalid': entry.errors &&  entry.errors.keys && entry.errors.keys.length > 0,
+                            'se-config__entry-key--disabled': !entry.isNew }"
+                        name="{{entry.key}}_{{entry.uuid}}_key"
+                        placeholder="{{'se.configurationform.header.key.name' | translate}}"
+                        [(ngModel)]="entry.key"
+                        [required]="true"
+                        [disabled]="!entry.isNew"
+                        class="se-config__entry-key-input fd-form__control"
+                        [title]="entry.key"
+                    />
+                    <ng-container *ngIf="entry.errors && entry.errors.keys">
+                        <span
+                            id="{{entry.key}}_error_{{$index}}"
+                            *ngFor="let error of entry.errors.keys; let $index = index"
+                            class="error-input help-block"
+                        >
+                            {{error.message|translate}}
+                        </span>
+                    </ng-container>
+                </div>
+                <div class="se-config__entry-value">
+                    <textarea
+                        [ngClass]="{'is-invalid': entry.errors && entry.errors.values && entry.errors.values.length>0}"
+                        name="{{entry.key}}_{{entry.uuid}}_value"
+                        placeholder="{{'se.configurationform.header.value.name' | translate}}"
+                        [(ngModel)]="entry.value"
+                        [required]="true"
+                        class="se-config__entry-text-area fd-form__control"
+                        (change)="editor.validateUserInput(entry)"
+                    ></textarea>
+                    <div *ngIf="entry.requiresUserCheck">
+                        <input
+                            id="{{entry.key}}_absoluteUrl_check_{{$index}}"
+                            type="checkbox"
+                            name="{{entry.key}}_{{entry.uuid}}_isCheckedByUser"
+                            [(ngModel)]="entry.isCheckedByUser"
+                        />
+                        <span
+                            id="{{entry.key}}_absoluteUrl_msg_{{$index}}"
+                            [ngClass]="{
+                                'warning-check-msg': true,
+                                'not-checked': entry.hasErrors && !entry.isCheckedByUser
+                            }"
+                        >
+                            {{'se.configurationform.absoluteurl.check' | translate}}
+                        </span>
+                    </div>
+
+                    <ng-container
+                        *ngIf="entry.errors && entry.errors.values && entry.errors.values"
+                    >
+                        <span
+                            id="{{entry.key}}_error_{{$index}}"
+                            *ngFor="let error of entry.errors.values; let $index = index"
+                            class="error-input help-block"
+                        >
+                            {{error.message|translate}}
+                        </span>
+                    </ng-container>
+                </div>
+            </div>
+
+            <button
+                type="button"
+                id="{{entry.key}}_removeButton_{{$index}}"
+                class="se-config__entry-remove-btn fd-button--light sap-icon--delete"
+                (click)="editor.removeEntry(entry, form);"
+            ></button>
+        </div>
+    </form>
+</div>

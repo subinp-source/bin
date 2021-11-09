@@ -1,0 +1,9 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+INSERT_UPDATE CmsPageType;code[unique=true];restrictionTypes(code)
+;CatalogPage;CMSCatalogRestriction,CMSTimeRestriction,CMSUserRestriction,CMSUserGroupRestriction,CMSCampaignRestriction
+;CategoryPage;CMSCategoryRestriction,CMSTimeRestriction,CMSUserRestriction,CMSUserGroupRestriction,CMSCampaignRestriction
+;ContentPage;CMSTimeRestriction,CMSUserRestriction,CMSUserGroupRestriction,CMSCampaignRestriction
+;ProductPage;CMSCategoryRestriction,CMSProductRestriction,CMSTimeRestriction,CMSUserRestriction,CMSUserGroupRestriction,CMSCampaignRestriction

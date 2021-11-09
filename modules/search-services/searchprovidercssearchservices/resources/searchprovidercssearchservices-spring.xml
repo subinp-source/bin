@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<alias name="defaultCSSearchSnSearchProviderConfigurationLoadStrategy"
+		alias="cssearchSnSearchProviderConfigurationLoadStrategy" />
+	<bean id="defaultCSSearchSnSearchProviderConfigurationLoadStrategy"
+		class="de.hybris.platform.searchprovidercssearchservices.spi.service.impl.CSSearchSnSearchProviderConfigurationLoadStrategy">
+		<property name="cssearchSnSearchProviderConfigurationConverter"
+			ref="cssearchSnSearchProviderConfigurationConverter" />
+	</bean>
+
+	<alias name="defaultCSSearchSnSearchProvider" alias="cssearchSnSearchProvider" />
+	<bean id="defaultCSSearchSnSearchProvider"
+		class="de.hybris.platform.searchprovidercssearchservices.spi.service.impl.CSSearchSnSearchProvider">
+		<property name="destinationService" ref="destinationService" />
+		<property name="apiRegistryClientService" ref="apiRegistryClientService" />
+		<property name="clientFactory" ref="clientFactory" />
+		<property name="commonI18NService" ref="commonI18NService" />
+		<property name="snSynonymDictionaryService" ref="snSynonymDictionaryService" />
+	</bean>
+
+	<bean id="cssearchSnSearchProviderMapping" parent="snSearchProviderMapping">
+		<property name="itemType"
+			value="de.hybris.platform.searchprovidercssearchservices.model.CSSearchSnSearchProviderConfigurationModel" />
+		<property name="type"
+			value="de.hybris.platform.searchprovidercssearchservices.spi.data.CSSearchSnSearchProviderConfiguration" />
+		<property name="loadStrategy" ref="cssearchSnSearchProviderConfigurationLoadStrategy" />
+		<property name="searchProvider" ref="cssearchSnSearchProvider" />
+	</bean>
+	
+	<!-- Converters & Populators -->
+
+	<alias name="defaultCSSearchSnSearchProviderConfigurationPopulator"
+		alias="cssearchSnSearchProviderConfigurationPopulator" />
+	<bean id="defaultCSSearchSnSearchProviderConfigurationPopulator"
+		class="de.hybris.platform.searchprovidercssearchservices.spi.converter.populator.CSSearchSnSearchProviderConfigurationPopulator">
+	</bean>
+
+	<alias name="defaultCSSearchSnSearchProviderConfigurationConverter"
+		alias="cssearchSnSearchProviderConfigurationConverter" />
+	<bean id="defaultCSSearchSnSearchProviderConfigurationConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass"
+			value="de.hybris.platform.searchprovidercssearchservices.spi.data.CSSearchSnSearchProviderConfiguration" />
+		<property name="populators">
+			<list>
+				<ref bean="snSearchProviderConfigurationPopulator" />
+				<ref bean="cssearchSnSearchProviderConfigurationPopulator" />
+			</list>
+		</property>
+	</bean>
+
+</beans>

@@ -1,0 +1,13 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+INSERT_UPDATE Vendor;code[unique=true];active
+;vendor1;true
+;vendor2;true
+;vendor3;true
+;vendor4;true
+;vendor5;true
+;vendor6;true
+;vendor7;true
+;vendor8;true

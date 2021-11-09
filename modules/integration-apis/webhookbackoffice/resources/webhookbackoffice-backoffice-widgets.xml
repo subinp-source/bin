@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+--><widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widgets.xsd">
+
+    <widget-extension widgetId="integrationTypeCodeRouter"
+                      widgetDefinitionId="com.hybris.cockpitng.widgets.common.multiplexer"
+                      slotId="cockpitWidgetChildrenInvisible">
+        <setting key="webhook_expression" type="String">#root eq 'WebhookConfiguration'</setting>
+        <virtual-sockets>
+            <output id="webhook" type="java.lang.String"/>
+        </virtual-sockets>
+    </widget-extension>
+
+    <widget-extension widgetId="backofficePerspectiveChooser">
+        <widget id="createWebhookConfigurationModal"
+                widgetDefinitionId="de.hybris.platform.webhookbackoffice.widgets.CreateWebhookConfigurationModal"
+                slotId="cockpitWidgetChildrenInvisible" template="true"
+                title="Create WebhookConfiguration">
+            <instance-settings socketEventRoutingMode="LAST_USED">
+                <create onInit="false" reuseExisting="false">
+                    <all-incoming-events/>
+                </create>
+                <close>
+                    <all-outgoing-events/>
+                </close>
+                <select onInit="false">
+                    <all-incoming-events/>
+                </select>
+            </instance-settings>
+            <virtual-sockets/>
+        </widget>
+    </widget-extension>
+
+    <widget-extension widgetId="integrationBackofficeViewSwitcher">
+        <widget id="webhookContainer"
+                widgetDefinitionId="com.hybris.cockpitng.collapsiblecontainer"
+                slotId="views" title="Webhooks">
+            <widget id="webhookSearchEngine"
+                    widgetDefinitionId="com.hybris.cockpitng.widgets.common.advancedsearchengine"
+                    slotId="cockpitWidgetChildrenInvisible">
+                <virtual-sockets/>
+            </widget>
+            <widget id="webhookSearchCondition" widgetDefinitionId="com.hybris.cockpitng.advancedsearch"
+                    slotId="top">
+                <setting key="disableSubtypesCheckbox" type="Boolean">true</setting>
+                <setting key="disableAdvancedSearchToolbar" type="Boolean">true</setting>
+                <setting key="isNestedObjectCreationDisabled" type="Boolean">true</setting>
+                <virtual-sockets/>
+            </widget>
+            <widget id="webhookSearchResult"
+                    widgetDefinitionId="com.hybris.cockpitng.collectionBrowser"
+                    slotId="center">
+                <setting key="socketDataType_$T" type="String">de.hybris.platform.webhookservices.model.WebhookConfigurationModel</setting>
+            </widget>
+            <widget id="webhookDetails"
+                    widgetDefinitionId="com.hybris.cockpitng.backoffice.defaultEditorArea"
+                    slotId="bottom">
+                <setting key="socketDataType_$T" type="String">de.hybris.platform.webhookservices.model.WebhookConfigurationModel</setting>
+                <setting key="toolbarDisabled" type="Boolean">false</setting>
+            </widget>
+            <setting key="topPanelCollapsed">true</setting>
+        </widget>
+
+
+        <setting key="selectWebhook_eval" type="String" value="'webhookContainer'"/>
+        <virtual-sockets>
+            <input id="selectWebhook" type="java.lang.Object"/>
+        </virtual-sockets>
+    </widget-extension>
+
+    <!-- Webhook Configuration -->
+    <widget-connection sourceWidgetId="integrationTypeCodeRouter" outputId="webhook"
+                       targetWidgetId="integrationBackofficeViewSwitcher" inputId="selectWebhook"/>
+    <widget-connection sourceWidgetId="integrationTypeCodeRouter" outputId="webhook"
+                       targetWidgetId="webhookContainer" inputId="activate"/>
+    <widget-connection sourceWidgetId="integrationTypeCodeRouter" outputId="webhook"
+                       targetWidgetId="webhookSearchCondition" inputId="type"/>
+    <widget-connection sourceWidgetId="webhookSearchCondition" outputId="searchData"
+                       targetWidgetId="webhookSearchEngine" inputId="searchData"/>
+    <widget-connection sourceWidgetId="webhookSearchEngine" outputId="pageable"
+                       targetWidgetId="webhookSearchResult" inputId="pageable"/>
+    <widget-connection sourceWidgetId="webhookSearchResult" outputId="selectedItem"
+                       targetWidgetId="webhookDetails" inputId="inputObject"/>
+
+    <!--Create WebhookConfig-->
+    <widget-connection sourceWidgetId="STUB_webhookbackoffice.actions.createWebhookConfigurationAction"
+                       outputId="createWebhookConfiguration"
+                       targetWidgetId="createWebhookConfigurationModal" inputId="createWebhookConfiguration"/>
+
+</widgets>

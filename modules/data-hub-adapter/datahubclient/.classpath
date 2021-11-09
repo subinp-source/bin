@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="eclipsebin/notused"/>
+
+				
+				
+	<classpathentry exported="true" kind="src" path="/webservicescommons" />
+	<classpathentry exported="true" kind="lib" path="lib/datahub-api-20.11.0-RC3.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/datahub-dto-20.11.0-RC3.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/datahub-entity-model-20.11.0-RC3.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/datahub-rest-client-20.11.0-RC3.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/jersey-media-jaxb-2.25.1.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/lucene-analyzers-common-7.5.0.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/lucene-core-7.5.0.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/lucene-queryparser-7.5.0.jar" />
+	<classpathentry exported="true" kind="lib" path="bin/datahubclientserver.jar" />
+	<classpathentry exported="true" kind="lib" path="resources" />
+	<classpathentry exported="false" kind="src" path="/platform" />
+				
+</classpath>
+				

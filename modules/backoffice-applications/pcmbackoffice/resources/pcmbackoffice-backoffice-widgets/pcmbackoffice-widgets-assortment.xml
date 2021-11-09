@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widgets.xsd">
+
+	<requires resource="pcmbackoffice-widgets-general.xml" />
+	<import resource="pcmbackoffice-widgets-assortment-vessel.xml" slot="first" />
+	<import resource="pcmbackoffice-widgets-assortment-vessel.xml" slot="second" />
+	<import resource="pcmbackoffice-widgets-assortment-vessel.xml" slot="third" />
+
+	<widget-extension widgetId="pcmbackoffice">
+		<setting key="dragAndDropConfigCtx" type="String">assortViewGlobal</setting>
+	</widget-extension>
+
+	<widget-extension widgetId="pcmbackoffice-contents">
+
+		<widget id="pcmbackoffice-assortment-view" widgetDefinitionId="com.hybris.cockpitng.extendedsplitlayout"
+		        template="false" slotId="views">
+			<setting key="showToolbar" type="Boolean">true</setting>
+			<setting key="actionsConfigCtx" type="String">pcmbackoffice-actions-extended-split-layout</setting>
+			<setting key="dragAndDropConfigCtx" type="String">pcmbackoffice-DragAndDrop</setting>
+			<setting key="splitLayoutConfigCtx" type="String">pcmbackoffice-assortment-split-layout</setting>
+			<virtual-sockets>
+				<output id="com.hybris.cockpitng.action.splitlayoutchooser.success" type="java.lang.Object"/>
+			</virtual-sockets>
+		</widget>
+
+	</widget-extension>
+
+	<widget-connection sourceWidgetId="pcmbackoffice-assortment-view" outputId="com.hybris.cockpitng.action.splitlayoutchooser.success"
+	                   targetWidgetId="pcmbackoffice-assortment-view" inputId="chooseLayout"/>
+
+</widgets>

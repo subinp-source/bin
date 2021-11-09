@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+           
+    <context:component-scan base-package="de.hybris.platform.chinesetaxinvoiceoccaddon"/>
+
+	<!-- Cache manager for addon -->
+
+	<alias name="defaultChinesetaxinvoiceoccaddonCacheManager" alias="chinesetaxinvoiceoccaddonCacheManager"/>
+	<bean id="defaultChinesetaxinvoiceoccaddonCacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+		<property name="cacheManager" ref="chinesetaxinvoiceoccaddonEhcache"/>
+	</bean>
+
+	<alias name="defaultChinesetaxinvoiceoccaddonEhcache" alias="chinesetaxinvoiceoccaddonEhcache"/>
+	<bean id="defaultChinesetaxinvoiceoccaddonEhcache" class="de.hybris.platform.webservicescommons.cache.TenantAwareEhCacheManagerFactoryBean">
+		<property name="cacheNamePrefix" value="chinesetaxinvoiceoccaddonCache_"/>
+		<property name="configLocation" value="/WEB-INF/cache/addons/chinesetaxinvoiceoccaddon/ehcache.xml"/>
+	</bean>
+
+	<bean depends-on="wsCacheManagerList" parent="listMergeDirective">
+		<property name="add" ref="chinesetaxinvoiceoccaddonCacheManager"/>
+	</bean>
+		
+	
+	<alias name="defaultTaxInvoiceDTOValidator" alias="taxInvoiceUnitDTOValidator"/>
+	<bean id="defaultTaxInvoiceDTOValidator"
+	      class="de.hybris.platform.chinesetaxinvoiceoccaddon.validator.DefaultTaxInvoiceDTOValidator">
+	      
+		<constructor-arg name="taxInvoiceUnitValidator" >
+			<bean class="de.hybris.platform.webservicescommons.validators.FieldNotEmptyOrTooLongValidator">
+						<property name="fieldPath" value="taxpayerID"/>
+						<property name="maxLength" value="128"/>
+		    </bean>	
+		</constructor-arg>
+		<constructor-arg name="taxInvoiceTypeValidator">
+			<bean class="de.hybris.platform.webservicescommons.validators.EnumValueValidator">					
+						<constructor-arg name="enumClass" value="InvoiceRecipientType" />
+						<property name="enumerationService" ref="enumerationService"/>					
+		    </bean>
+		</constructor-arg>
+		<constructor-arg name="taxInvoiceFacade" ref="chineseTaxInvoiceCheckoutFacade"/>			
+	</bean>
+	
+	<alias name="taxInvoiceDTOValidator" alias="taxInvoiceDTOValidator"/>
+	<bean id="taxInvoiceDTOValidator" class="de.hybris.platform.webservicescommons.validators.CompositeValidator">
+		<property name="validators">
+			<list>
+				<bean class="de.hybris.platform.webservicescommons.validators.FieldNotEmptyValidator">
+					<property name="fieldPath" value="recipientType"/>					
+				</bean>
+				
+				<bean class="de.hybris.platform.webservicescommons.validators.FieldNotEmptyOrTooLongValidator">
+					<property name="fieldPath" value="recipient"/>
+					<property name="maxLength" value="128"/>
+				</bean>	
+				<ref bean="taxInvoiceUnitDTOValidator"/>
+							
+			</list>
+		</property>
+	</bean>
+	
+	<bean parent="fieldSetLevelMapping">
+		<property name="dtoClass"
+		          value="de.hybris.platform.commercewebservicescommons.dto.order.CartWsDTO"/>
+		<property name="levelMapping">
+			<map>				
+				<entry key="FULL"
+				       value="taxInvoice"/>
+			</map>
+		</property>
+	</bean>
+    
+    <bean parent="fieldSetLevelMapping">
+        <property name="dtoClass"
+                  value="de.hybris.platform.commercewebservicescommons.dto.order.OrderWsDTO"/>
+        <property name="levelMapping">
+            <map>
+                <entry key="DEFAULT"
+                       value="taxInvoice"/>
+                <entry key="FULL"
+                       value="taxInvoice"/>
+            </map>
+        </property>
+    </bean>
+
+</beans>

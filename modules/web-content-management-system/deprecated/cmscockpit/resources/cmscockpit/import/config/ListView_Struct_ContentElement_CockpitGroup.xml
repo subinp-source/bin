@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<list-view unassigned-group-name="Other">
+	<group name="General">
+		<custom spring-bean="CmsComponentIconColumn" name=" " visible="true" selectable="true" width="28px;style=column_checkbox"/>
+		<custom spring-bean="CmsComponentStatusColumn" name=" " visible="true" selectable="true" width="12px;style=column_two">
+			<renderer class="de.hybris.platform.cmscockpit.components.listview.impl.CmsComponentStatusActionCellRenderer"/>
+		</custom>
+		<property qualifier="cmsitem.name" visible="true" width="style=column_description">
+			<renderer class="de.hybris.platform.cmscockpit.components.listview.impl.CmsComponentTextCellRenderer"/>
+		</property>
+		<custom spring-bean="CatalogAbstractContentElementSectionListActionColumn" name="Actions" visible="true" selectable="true" width="style=column_buttons"/>
+	</group>
+</list-view>

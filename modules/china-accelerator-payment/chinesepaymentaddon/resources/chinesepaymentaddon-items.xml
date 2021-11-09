@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<!-- ATTENTION: This is just an example file. You have to edit it according to your needs. -->
+
+<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="items.xsd">
+
+	<itemtypes>
+	
+		<typegroup name="CMS Components">
+			<itemtype code="PaymentActionsComponent" extends="SimpleCMSComponent" autocreate="true" generate="true"
+				jaloclass="de.hybris.platform.chinesepaymentaddon.jalo.PaymentActionsComponent" />
+			<itemtype code="PaymentInfoComponent" extends="SimpleCMSComponent" autocreate="true" generate="true"
+				jaloclass="de.hybris.platform.chinesepaymentaddon.jalo.PaymentInfoComponent" />
+		</typegroup>
+		
+		<typegroup name="CMS Actions">
+			<itemtype code="PayNowAction"
+				jaloclass="de.hybris.platform.chinesepaymentaddon.jalo.PayNowAction"
+				extends="SimpleCMSAction" autocreate="true" generate="true">
+			</itemtype>
+			<!-- Deactivate this function by this release -->
+			<!-- <itemtype code="OrderCancelAction"
+				jaloclass="de.hybris.platform.chinesepaymentaddon.jalo.OrderCancelAction"
+				extends="SimpleCMSAction" autocreate="true" generate="true">
+			</itemtype> -->
+		</typegroup>
+		
+	</itemtypes>
+</items>

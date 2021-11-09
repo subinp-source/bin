@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<widget-definition id="de.hybris.platform.adaptivesearch.widgets.navigationContext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widget-definition.xsd">
+
+	<name>Navigation Context</name>
+	<description>Allows to change the navigation context for adaptive search</description>
+	<defaultTitle>Navigation Context</defaultTitle>
+
+	<author>hybris</author>
+	<version>0.1</version>
+	<keywords>
+		<keyword>Adaptive Search</keyword>
+	</keywords>
+
+	<controller class="de.hybris.platform.adaptivesearchbackoffice.widgets.navigationcontext.NavigationContextController" />
+
+	<sockets>
+		<input id="category" type="de.hybris.platform.adaptivesearchbackoffice.data.CategoryData" />
+		<output id="navigationContext" type="de.hybris.platform.adaptivesearchbackoffice.data.NavigationContextData" />
+		<output id="collapseState" type="com.hybris.cockpitng.widgets.controller.collapsiblecontainer.CollapsibleContainerState" />
+	</sockets>
+</widget-definition>

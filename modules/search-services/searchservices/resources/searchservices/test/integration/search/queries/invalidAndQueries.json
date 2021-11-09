@@ -1,0 +1,40 @@
+[
+	{
+		"testId": 1,
+		"description": "'and' query without queries",
+		"data": {
+			"type": "and"
+		}
+	},
+	{
+		"testId": 2,
+		"description": "'and' query with empty queries",
+		"data": {
+			"type": "and",
+			"queries": []
+		}
+	},
+	{
+		"testId": 3,
+		"description": "'and' query with null query",
+		"data": {
+			"type": "and",
+			"queries": [
+				null
+			]
+		}
+	},
+	{
+		"testId": 4,
+		"description": "'and' query with invalid query",
+		"data": {
+			"type": "and",
+			"queries": [
+				{
+					"type": "matchTerm",
+					"value": "GREEN"
+				}
+			]
+		}
+	}
+]

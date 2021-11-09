@@ -1,0 +1,13 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+#
+# Import category code and product code pattern constraints
+#
+# Language
+$lang = en
+
+# Category code and product code pattern constraints
+UPDATE PatternConstraint; id[unique = true, allownull = true]; message[$lang]
+                        ; CategoryCodePattern                ; Slash, backslash, encoded slash (%2F) and encoded backslash (%5C) not allowed
+                        ; ProductCodePattern                 ; Slash, backslash, encoded slash (%2F) and encoded backslash (%5C) not allowed 

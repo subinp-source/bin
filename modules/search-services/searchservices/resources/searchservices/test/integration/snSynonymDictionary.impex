@@ -1,0 +1,12 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+$snSynonymDictionary=testSynonymDictionary
+
+INSERT_UPDATE SnSynonymDictionary ; id[unique=true]      ; name[lang=en]      ; name[lang=de]     ; languages(isocode)
+                                  ; $snSynonymDictionary ; Synonym dictionary ; Synonymwörterbuch ; en                
+
+INSERT_UPDATE SnSynonymEntry ; id[unique=true] ; input  ; synonyms          ; synonymDictionary(id)[unique=true]
+                             ; 1               ; camise ; shirt             ; $snSynonymDictionary              
+                             ; 2               ;        ; sweather,pullover ; $snSynonymDictionary              

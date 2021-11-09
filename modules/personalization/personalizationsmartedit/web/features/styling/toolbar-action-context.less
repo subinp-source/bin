@@ -1,0 +1,84 @@
+@se-toolbar-menu-ddlb--width: 780px;
+@pe-toolbar-item-context__btn-hyicon--padding: 4px 10px 0 0px; 
+@pe-toolbar-item-context__btn-hyicon--font-size: 16px;
+@pe-toolbar-item-context__btn-txt--max-width: 205px;
+@pe-toolbar-item-context__btn-txt--font-size: 13px;
+@pe-toolbar-item-context__btn--padding: 3px 10px 0 0;
+@pe-toolbar-item-context__btn--margin-right: -3px;
+
+.pe-toolbar-item-context__btn:hover,
+.pe-toolbar-item-context__btn:focus,
+.pe-toolbar-item-context__btn:active {
+    box-shadow: none;
+    outline: none;
+    outline-offset: 0;
+}
+
+.pe-toolbar-action--include {
+    background-color: @background-color-white;
+    border: none;
+    width: auto;
+    margin: 0;
+    padding: 0;
+}
+
+.pe-toolbar-menu-content {
+    margin: 0;
+    border: none;
+    padding: 0;
+    width: @se-toolbar-menu-ddlb--width;
+    cursor: initial;
+}
+
+.pe-toolbar-item-context__btn,
+.pe-toolbar-item-context__btn-hyicon,
+.pe-toolbar-item-context__btn-hyicon:hover,
+.pe-toolbar-item-context__btn-hyicon:active,
+.pe-toolbar-item-context__btn-hyicon:active:hover {
+    box-shadow: none;
+}
+
+.pe-toolbar-item-context {
+    display: inline-flex; //fix for small screens layout
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.pe-toolbar-item-context__icon{
+    font-size: 20px;
+    padding-right: 15px;
+    padding-top: 5px;
+}
+
+.pe-toolbar-item-context__btn-hyicon {
+    font-size: @pe-toolbar-item-context__btn-hyicon--font-size;
+    padding: @pe-toolbar-item-context__btn-hyicon--padding;
+    color: @fd-color--text;
+}
+
+.pe-toolbar-item-context__btn,
+.pe-toolbar-item-context__btn:hover,
+.pe-toolbar-item-context__btn:active,
+.pe-toolbar-item-context__btn:hover:active,
+.pe-toolbar-item-context__btn:focus {
+    border-right: 0 none;
+    margin-right: @pe-toolbar-item-context__btn--margin-right;
+    cursor: default;
+    opacity: @opacity_one;
+    padding: @pe-toolbar-item-context__btn--padding;
+}
+
+.pe-toolbar-item-context__btn-title {
+    font-weight: @font-weight-semibold;
+    text-align: left;
+}
+
+.pe-toolbar-item-context__btn-subtitle {
+    text-align: left;
+}
+
+.pe-toolbar-item-context__btn-txt {
+    max-width: @pe-toolbar-item-context__btn-txt--max-width;
+    text-transform: capitalize;
+    font-size: @pe-toolbar-item-context__btn-txt--font-size;
+}

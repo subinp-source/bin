@@ -1,0 +1,132 @@
+# The following ImpEx provides a full example of
+# 1) Creating classifications
+# 2) Creating Integration Object with classification attributes
+# 3) Creating a Product
+# 4) Assigning classification classes to a product
+# 5) Setting values to the classification attributes on that product
+
+$catalogVersionHeader = catalogVersion(catalog(id), version)
+$systemVersionHeader = systemVersion(catalog(id), version)
+$classificationClassHeader = classificationClass(catalogVersion(catalog(id), version), code)
+$classificationAttributeHeader = classificationAttribute($systemVersionHeader, code)
+
+$systemVersion = Electronics:Photography
+$weightAttr = $systemVersion:weight
+$heightAttr = $systemVersion:height
+$descAttr = $systemVersion:description
+
+$lensClass = $systemVersion:lens
+$imgStabtAttr = $systemVersion:imageStabilizerAvailable
+$focalLengthAttr = $systemVersion:focalLength
+$focalLengthsAttr = $systemVersion:focalLengths
+$hoodAttr = $systemVersion:hood
+
+$tripodClass = $systemVersion:tripod
+$cameraClass = $systemVersion:camera
+
+$qualifierPrefix = Electronics/Photography
+$product = Default:Staged:photographypackage
+
+# ***************************************************************************************
+#     Set up the classifications
+# ***************************************************************************************
+
+INSERT_UPDATE ClassificationSystem; id[unique = true]; name[lang = en]
+                                  ; Electronics      ; Electronics
+
+INSERT_UPDATE ClassificationSystemVersion; catalog(id)[unique = true]; version[unique = true]
+                                         ; Electronics               ; Photography
+
+INSERT_UPDATE ClassificationClass; code[unique = true]; name[lang = en]; $catalogVersionHeader[unique = true]
+                                 ; tripod             ; Tripod         ; $systemVersion
+                                 ; camera             ; Camera         ; $systemVersion
+                                 ; lens               ; Lens           ; $systemVersion
+
+INSERT_UPDATE ClassificationAttributeUnit; code[unique = true]; symbol; unitType    ; $systemVersionHeader[unique = true]
+                                         ; centimeters        ; cm    ; measurement ; $systemVersion
+                                         ; millimeters        ; mm    ; measurement ; $systemVersion
+                                         ; meters             ; m     ; measurement ; $systemVersion
+                                         ; grams              ; g     ; measurement ; $systemVersion
+                                         ; kilograms          ; kg    ; measurement ; $systemVersion
+
+INSERT_UPDATE ClassificationAttribute; code[unique = true]      ; name[lang = en]            ; $systemVersionHeader[unique = true]
+                                     ; weight                   ; Weight                     ; $systemVersion
+                                     ; focalLength              ; Focal Length               ; $systemVersion
+                                     ; focalLengths             ; Focal Lengths              ; $systemVersion
+                                     ; imageStabilizerAvailable ; Image Stabilizer Available ; $systemVersion
+                                     ; description              ; Description                ; $systemVersion
+                                     ; height                   ; Height                     ; $systemVersion
+                                     ; hood                     ; Lens Hood                  ; $systemVersion
+
+INSERT_UPDATE ClassAttributeAssignment; classificationClass($catalogVersionHeader, code)[unique = true]; classificationAttribute($systemVersionHeader, code)[unique = true]; unit($systemVersionHeader, code); attributeType(code); localized[default = false]; multiValued[default = false]; referenceType(code)[unique = true]
+                                      ; $systemVersion:tripod                                          ; $systemVersion:height                                             ; $systemVersion:centimeters      ; number             ;                           ;                             ;
+                                      ; $systemVersion:camera                                          ; $systemVersion:weight                                             ; $systemVersion:grams            ; number             ;                           ;                             ;
+                                      ; $systemVersion:camera                                          ; $systemVersion:description                                        ;                                 ; string             ; true                      ;                             ;
+                                      ; $systemVersion:lens                                            ; $systemVersion:weight                                             ; $systemVersion:grams            ; number             ;                           ;                             ;
+                                      ; $systemVersion:lens                                            ; $systemVersion:focalLength                                        ; $systemVersion:millimeters      ; number             ;                           ;                             ;
+                                      ; $systemVersion:lens                                            ; $systemVersion:focalLengths                                       ; $systemVersion:millimeters      ; number             ;                           ; true                        ;
+                                      ; $systemVersion:lens                                            ; $systemVersion:imageStabilizerAvailable                           ;                                 ; boolean            ;                           ;                             ;
+                                      ; $systemVersion:lens                                            ; $systemVersion:description                                        ;                                 ; string             ;                           ;                             ;
+                                      ; $systemVersion:lens                                            ; $systemVersion:hood                                               ;                                 ; reference          ;                           ;                             ; Product
+
+
+# ***************************************************************************************
+#     Set up integration objects with regular attributes and classification attributes
+# ***************************************************************************************
+
+INSERT_UPDATE IntegrationObject; code[unique = true]   ; integrationType(code)
+                               ; InboundProductFeature ; INBOUND
+
+INSERT_UPDATE IntegrationObjectItem; integrationObject(code)[unique = true]; code[unique = true]; type(code)
+                                   ; InboundProductFeature                 ; Catalog            ; Catalog
+                                   ; InboundProductFeature                 ; Product            ; Product
+                                   ; InboundProductFeature                 ; CatalogVersion     ; CatalogVersion
+
+INSERT_UPDATE IntegrationObjectItemAttribute; integrationObjectItem(integrationObject(code), code)[unique = true]; attributeName[unique = true]; attributeDescriptor(enclosingType(code), qualifier); returnIntegrationObjectItem(integrationObject(code), code); unique[default = false]; autoCreate[default = false]
+                                            ; InboundProductFeature:Catalog                                      ; id                          ; Catalog:id                                         ;                                                           ;                        ;
+                                            ; InboundProductFeature:Product                                      ; code                        ; Product:code                                       ;                                                           ;                        ;
+                                            ; InboundProductFeature:Product                                      ; catalogVersion              ; Product:catalogVersion                             ; InboundProductFeature:CatalogVersion                      ;                        ;
+                                            ; InboundProductFeature:Product                                      ; name                        ; Product:name                                       ;                                                           ;                        ;
+                                            ; InboundProductFeature:CatalogVersion                               ; version                     ; CatalogVersion:version                             ;                                                           ;                        ;
+                                            ; InboundProductFeature:CatalogVersion                               ; active                      ; CatalogVersion:active                              ;                                                           ;                        ;
+                                            ; InboundProductFeature:CatalogVersion                               ; catalog                     ; CatalogVersion:catalog                             ; InboundProductFeature:Catalog                             ;                        ;
+
+INSERT_UPDATE IntegrationObjectItemClassificationAttribute; integrationObjectItem(integrationObject(code), code)[unique = true]; attributeName[unique = true]; classAttributeAssignment($classificationClassHeader, $classificationAttributeHeader); returnIntegrationObjectItem(integrationObject(code), code)
+                                                          ; InboundProductFeature:Product                                      ; lensWeight                  ; $lensClass:$weightAttr                                                              ;
+                                                          ; InboundProductFeature:Product                                      ; lensImgStabilizer           ; $lensClass:$imgStabtAttr                                                            ;
+                                                          ; InboundProductFeature:Product                                      ; lensDescription             ; $lensClass:$descAttr                                                                ;
+                                                          ; InboundProductFeature:Product                                      ; lensFocalLengths            ; $lensClass:$focalLengthsAttr                                                        ;
+                                                          ; InboundProductFeature:Product                                      ; lensHood                    ; $lensClass:$hoodAttr                                                                ; InboundProductFeature:Product
+                                                          ; InboundProductFeature:Product                                      ; tripodHeight                ; $tripodClass:$heightAttr                                                            ;
+                                                          ; InboundProductFeature:Product                                      ; cameraWeight                ; $cameraClass:$weightAttr                                                            ;
+                                                          ; InboundProductFeature:Product                                      ; cameraDescription           ; $cameraClass:$descAttr                                                              ;
+
+
+# ***************************************************************************************
+#     Create Instances
+# ***************************************************************************************
+
+# Create a product
+INSERT_UPDATE Product; code[unique = true]; name[lang = en]     ; $catalogVersionHeader[unique = true]
+                     ; universalLensHood  ; Universal Lens Hood ; Default:Staged
+
+INSERT_UPDATE Product; code[unique = true]; name[lang = en]    ; $catalogVersionHeader[unique = true]
+                     ; photographypackage ; Photograph Package ; Default:Staged
+
+# Assign the product to the class
+INSERT_UPDATE ClassificationClass; code[unique = true]; catalogVersion(catalog(id), version)[unique = true]; products($catalogVersionHeader, code)
+                                 ; tripod             ; $systemVersion                                     ; $product
+                                 ; camera             ; $systemVersion                                     ; $product
+                                 ; lens               ; $systemVersion                                     ; $product
+
+# Set the values of the classification attributes on the product
+INSERT_UPDATE ProductFeature; product($catalogVersionHeader, code)[unique = true]; classificationAttributeAssignment($classificationClassHeader, $classificationAttributeHeader)[unique = true]; qualifier                                      ; value[translator = de.hybris.platform.catalog.jalo.classification.impex.ProductFeatureValueTranslator]; unit($systemVersionHeader, code); valueDetails; valuePosition[unique = true, default = 0]; language(isocode)[allownull = true]
+                            ; $product                                           ; $lensClass:$descAttr                                                                                        ; $qualifierPrefix/lens.description              ; "string, wide angle lens"                                                                             ;                                 ;             ;                                          ; en
+                            ; $product                                           ; $lensClass:$weightAttr                                                                                      ; $qualifierPrefix/lens.weight                   ; "number, java.lang.Double, 500.5"                                                                     ; $systemVersion:grams            ;             ;                                          ;
+                            ; $product                                           ; $lensClass:$imgStabtAttr                                                                                    ; $qualifierPrefix/lens.imageStabilizerAvailable ; "boolean, true"                                                                                       ;                                 ;             ;                                          ;
+                            ; $product                                           ; $lensClass:$focalLengthsAttr                                                                                ; $qualifierPrefix/lens.focalLengths             ; "number, java.lang.Double, 50"                                                                        ; $systemVersion:millimeters      ;             ;                                          ;
+                            ; $product                                           ; $lensClass:$focalLengthsAttr                                                                                ; $qualifierPrefix/lens.focalLengths             ; "number, java.lang.Double, 85"                                                                        ; $systemVersion:millimeters      ;             ; 1                                        ;
+#                            ; $product                                           ; $lensClass:$hoodAttr                                                                                        ; $qualifierPrefix/lens.hood                     ; "reference, <REPLACE WITH PK for universalLensHood>"                                                  ;                                 ;             ;                                          ;
+                            ; $product                                           ; $tripodClass:$heightAttr                                                                                    ; $qualifierPrefix/tripod.height                 ; "number, java.lang.Double, 1.75"                                                                      ; $systemVersion:meters           ;             ;                                          ;
+                            ; $product                                           ; $cameraClass:$weightAttr                                                                                    ; $qualifierPrefix/camera.weight                 ; "number, java.lang.Double, 2.25"                                                                      ; $systemVersion:kilograms        ;             ;                                          ;
+                            ; $product                                           ; $cameraClass:$descAttr                                                                                      ; $qualifierPrefix/camera.description            ; "string, This camera does amazing things!"                                                            ;                                 ;             ;                                          ; en

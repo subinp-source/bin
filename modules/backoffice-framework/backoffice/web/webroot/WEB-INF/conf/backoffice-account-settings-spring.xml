@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<alias name="defaultPasswordChangeData" alias="passwordChangeData"/>
+	<bean id="defaultPasswordChangeData"
+		  class="com.hybris.backoffice.widgets.accountsettings.changepassword.PasswordChangeData" scope="prototype"/>
+
+	<alias name="defaultPasswordChangeRenderer" alias="passwordChangeRenderer"/>
+	<bean id="defaultPasswordChangeRenderer"
+		  class="com.hybris.backoffice.widgets.accountsettings.changepassword.wizard.PasswordChangeRenderer">
+		<property name="changePasswordRendererUtil" ref="changePasswordRendererUtil"/>
+		<property name="userService" ref="userService"/>
+		<property name="notificationService" ref="notificationService"/>
+	</bean>
+
+	<alias name="defaultPasswordChangeHandler" alias="passwordChangeHandler"/>
+	<bean id="defaultPasswordChangeHandler"
+		  class="com.hybris.backoffice.widgets.accountsettings.changepassword.wizard.PasswordChangeHandler">
+		<property name="userService" ref="userService"/>
+		<property name="modelService" ref="modelService"/>
+		<property name="notificationService" ref="notificationService"/>
+		<property name="changePasswordRendererUtil" ref="changePasswordRendererUtil"/>
+	</bean>
+
+	<alias name="defaultChangePasswordRendererUtil" alias="changePasswordRendererUtil"/>
+	<bean id="defaultChangePasswordRendererUtil"
+		  class="com.hybris.backoffice.widgets.accountsettings.changepassword.ChangePasswordRendererUtil">
+		<property name="modelService" ref="modelService"/>
+		<property name="passwordPolicyService" ref="passwordPolicyService"/>
+	</bean>
+
+</beans>

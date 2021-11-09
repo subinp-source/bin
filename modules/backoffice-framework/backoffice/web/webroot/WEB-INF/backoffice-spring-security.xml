@@ -1,0 +1,64 @@
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+			 xmlns:beans="http://www.springframework.org/schema/beans"
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xsi:schemaLocation="http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans.xsd
+                    http://www.springframework.org/schema/security
+                    http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<beans:import resource="classpath:/META-INF/backoffice-core-spring-security.xml"/>
+
+	<http use-expressions="true" security="none" pattern="/zkau/**" disable-url-rewriting="false"/>
+	<http use-expressions="true" security="none" pattern="/cng/**" disable-url-rewriting="false"/>
+	<http use-expressions="true" security="none" pattern="/css/**" disable-url-rewriting="false"/>
+
+	<http use-expressions="true" disable-url-rewriting="false">
+		<headers disabled="true">
+			<frame-options disabled="true"/>
+		</headers>
+		<csrf disabled="true"/>
+		<http-basic/>
+		<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMINGROUP')" requires-channel="https"/>
+		<intercept-url pattern="/j_spring_security_check" access="permitAll" requires-channel="https"/>
+		<intercept-url pattern="#{cockpitProperties.getProperty('cockpitng.loginpage')}" access="permitAll" requires-channel="https"/>
+		<intercept-url pattern="/**" access="isAuthenticated()" requires-channel="https"/>
+		<form-login authentication-details-source-ref="backofficeAuthenticationDetailsSource"
+					always-use-default-target="false"
+					login-page="#{cockpitProperties.getProperty('cockpitng.loginpage')}"
+					authentication-success-handler-ref="backofficeAuthenticationSuccessHandler"
+					authentication-failure-handler-ref="backofficeAuthenticationFailureHandler"
+					username-parameter="j_username"
+					password-parameter="j_password"
+					login-processing-url="/j_spring_security_check"
+		/>
+		<logout logout-url="/j_spring_security_logout" logout-success-url="#{cockpitProperties.getProperty('success.logout.url')}"/>
+		<session-management session-authentication-strategy-ref="fixation"/>
+		<access-denied-handler error-page="#{cockpitProperties.getProperty('cockpitng.loginpage')}"/>
+		<request-cache ref="requestCache"/>
+		<port-mappings>
+			<port-mapping http="#{configurationService.configuration.getProperty('tomcat.http.port')}"
+						  https="#{configurationService.configuration.getProperty('tomcat.ssl.port')}"/>
+			<port-mapping http="80" https="443"/>
+		</port-mappings>
+		<custom-filter ref="backofficeRememberMeFilter" position="REMEMBER_ME_FILTER"/>
+	</http>
+
+	<beans:bean id="requestCache" class="org.springframework.security.web.savedrequest.NullRequestCache"/>
+
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider ref="backofficeAuthenticationProvider"/>
+	</authentication-manager>
+
+	<beans:bean id="backofficeRememberMeFilter" class=
+			"com.hybris.backoffice.security.BackofficeRememberMeAuthenticationFilter">
+		<beans:constructor-arg ref="authenticationManager"/>
+		<beans:constructor-arg ref="backofficeRememberMeService"/>
+		<beans:constructor-arg ref="sessionService"/>
+	</beans:bean>
+
+	<beans:bean id="fixation" class="de.hybris.platform.servicelayer.security.spring.HybrisSessionFixationProtectionStrategy"/>
+
+</beans:beans>

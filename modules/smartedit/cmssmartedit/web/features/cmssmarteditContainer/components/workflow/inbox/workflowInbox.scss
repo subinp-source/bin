@@ -1,0 +1,57 @@
+.se-workflow-inbox-header {
+    @include se-container-section('header', 'dropdown');
+    @include fd-type('1');
+    color: fd-color('text', 1);
+    border-bottom: se-border();
+    padding: 10px 0 15px 20px;
+    height: 46px;
+}
+.se-workflow-inbox-task-header a {
+    @include fd-type('0');
+    @include fd-weight('bold');
+    text-decoration: none;
+    margin-bottom: fd-space('base');
+}
+.se-workflow-inbox-task-desc {
+    @include fd-type('0');
+    color: fd-color('text', 1);
+}
+.se-workflow-inbox-task-body {
+    @include fd-type('-1');
+    color: fd-color('text', 4);
+    text-transform: lowercase;
+    margin: fd-space('tiny') 0 20px;
+    padding-bottom: fd-space('xs');
+    border-bottom: se-border();
+}
+.fd-panel__body.se-workflow-inbox-tasks {
+    padding: fd-space('s') 0 fd-space('tiny');
+    width: 280px;
+}
+.se-workflow-inbox-task:last-child .se-workflow-inbox-task-body {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+.se-workflow-inbox-tasks .se-infinite-scrolling__holder {
+    padding: 0 20px;
+}
+
+// Inbox
+.se-template-toolbar__right {
+    position: relative;
+    .se-template-toolbar__context-template {
+        position: initial;
+    }
+}
+.se-workflow-inbox-tasks__no-tasks {
+    @include se-flex-column(center);
+}
+.se-workflow-inbox__empty-inbox-message {
+    color: fd-color('text', 2);
+    padding: fd-space('xxs') 0 fd-space('base');
+}
+.se-workflow-inbox__empty-inbox-message-alt {
+    font-size: 13px;
+    color: fd-color('text', 3);
+    padding-bottom: 30px;
+}

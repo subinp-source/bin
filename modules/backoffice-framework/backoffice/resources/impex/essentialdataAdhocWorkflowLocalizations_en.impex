@@ -1,0 +1,30 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+# -----------------------------------------------------------------------
+
+$lang = en
+
+$adhocTempateName=adhoctemplate;
+
+$adhocStepName=Adhoc step;
+$adhocApprovalStepName=Approval;
+$adhocEndStepName=End
+$doneName=Done;
+$approvedName=Approved;
+$notApprovedName=Not approved;
+$endName=End
+
+
+INSERT_UPDATE WorkflowTemplate;code[unique=true];name[lang = $lang];description[lang = $lang];
+;$adhocTempateName;Adhoc template;Template with one simple task;
+
+INSERT_UPDATE WorkflowActionTemplate;code[unique=true];name[lang = $lang];workflow(code)[unique=true];
+;$adhocStepName;Start;$adhocTempateName;
+;$adhocApprovalStepName;Approval;$adhocTempateName;
+;$adhocEndStepName;End;$adhocTempateName;
+
+INSERT_UPDATE WorkflowDecisionTemplate;code[unique=true];name[lang = $lang];actionTemplate(code,workflow(code))[unique=true]
+;$doneName;Done!;$adhocStepName:$adhocTempateName;
+;$approvedName;Approval;$adhocApprovalStepName:$adhocTempateName;
+;$notApprovedName;No Approval;$adhocApprovalStepName:$adhocTempateName;
+;$endName;End;$adhocEndStepName:$adhocTempateName;

@@ -1,0 +1,88 @@
+<div class="se-restrictions-container">
+    <div
+        class="se-restrictions-container__header"
+        data-ng-class="{'se-restrictions-container__header--empty': $ctrl.restrictions.length === 0}"
+    >
+        <label class="se-restrictions__sub-header">
+            {{ 'se.cms.restrictions.list.title' | translate }}</label
+        >
+
+        <div class="se-restrictions-container__header--right">
+            <div data-ng-if="$ctrl.restrictions.length > 1">
+                <div data-ng-if="$ctrl.editable">
+                    <ui-select
+                        on-select="$ctrl.matchCriteriaChanged($item)"
+                        data-ng-model="$ctrl.criteria"
+                        class="fd-form-control se-restriction__select"
+                        search-enabled="false"
+                        theme="select2"
+                        data-dropdown-auto-width="false"
+                    >
+                        <ui-select-match
+                            placeholder="{{ 'se.cms.restrictions.picker.type.placeholder' | translate }}"
+                        >
+                            {{$select.selected.editLabel | translate}}
+                        </ui-select-match>
+                        <ui-select-choices
+                            repeat="criteriaOption in $ctrl.criteriaOptions"
+                            position="down"
+                        >
+                            {{ criteriaOption.editLabel | translate }}
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="se-restriction-criteria" data-ng-if="!$ctrl.editable">
+                    {{ 'se.cms.restrictions.criteria' | translate }} {{ $ctrl.criteria.label |
+                    translate }}
+                </div>
+            </div>
+
+            <button
+                data-ng-if="$ctrl.showRemoveAllButton()"
+                class="cms-clean-btn se-restriction__clear-all__btn fd-button--light fd-button--compact"
+                data-ng-click="$ctrl.removeAllRestrictions()"
+                data-translate="se.cms.restrictions.list.clear.all"
+            ></button>
+            <button
+                data-ng-show="!$ctrl.showRestrictionPicker"
+                type="button"
+                class="se-restrictions__add-restriction-btn fd-button--compact"
+                data-ng-disabled="!$ctrl.editable"
+                data-ng-click="$ctrl.onClickOnAdd()"
+            >
+                <span
+                    class="se-restrictions__add-restriction-btn-text"
+                    data-translate="se.cms.restrictions.editor.button.add.new"
+                ></span>
+            </button>
+        </div>
+    </div>
+
+    <se-slider-panel
+        [slider-panel-configuration]="$ctrl.sliderPanelConfiguration"
+        [(slider-panel-hide)]="$ctrl.sliderPanelHide"
+        [(slider-panel-show)]="$ctrl.sliderPanelShow"
+        class="se-add-restriction-panel"
+    >
+    </se-slider-panel>
+
+    <div data-ng-if="$ctrl.errors.length > 0">
+        <span
+            data-ng-repeat="error in $ctrl.errors"
+            class="se-help-block--has-error help-block fd-form__message fd-form__message--error"
+        >
+            {{ error.message | translate}}
+        </span>
+    </div>
+
+    <restrictions-table
+        data-ng-if="$ctrl.isRestrictionsReady"
+        data-editable="$ctrl.editable"
+        data-restrictions="$ctrl.restrictions"
+        data-on-click-on-edit="$ctrl.onClickOnEdit"
+        data-restriction-criteria="$ctrl.criteria"
+        data-errors="$ctrl.errors"
+        data-custom-class="'ySERestrictionListLink'"
+    >
+    </restrictions-table>
+</div>

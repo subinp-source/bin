@@ -1,0 +1,22 @@
+.se-language-selector,
+.su-language-selector {
+    height: 260px;
+    overflow-y: auto;
+    overflow-x: hidden; // IE11
+}
+.fd-menu__item.se-language-selector__element {
+    padding: fd-space('tiny') fd-space('small');
+    text-decoration: none;
+    list-style: none;
+    text-transform: capitalize;
+}
+.fd-menu__item.se-language-selector__element--selected,
+.fd-menu__item.se-language-selector__element--selected:hover {
+    @extend .se-language-selector__element;
+    background-color: fd-color-state('selected');
+    color: fd-color('text', 1);
+}
+
+.yToolbarActions__dropdown-element {
+    color: fd-color('text', 1);
+}

@@ -1,0 +1,22 @@
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<action-definition id="com.hybris.cmsbackoffice.action.runcmsversiongcprocess"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/action-definition.xsd">
+
+	<name>Run CMSVersionGCProcess</name>
+	<description>Start a CMSVersionGCProcess manually</description>
+	<author>hybris</author>
+	<version>1.0</version>
+
+	<actionClassName>de.hybris.platform.cmsbackoffice.actions.version.PerformCMSVersionGCProcessAction</actionClassName>
+
+	<inputType>de.hybris.platform.cms2.model.processing.CMSVersionGCProcessModel</inputType>
+	<outputType>java.lang.Object</outputType>
+
+	<iconUri>icons/icon_action_perform_cmsversiongcprocess_default.png</iconUri>
+	<iconHoverUri>icons/icon_action_perform_cmsversiongcprocess_hover.png</iconHoverUri>
+	<iconDisabledUri>icons/icon_action_perform_cmsversiongcprocess_disabled.png</iconDisabledUri>
+
+</action-definition>

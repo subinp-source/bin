@@ -1,0 +1,7 @@
+INSERT_UPDATE StockLevel;productCode[unique=true];warehouse(code)[unique=true,default=default];available;inStockStatus(code);maxPreOrder[default=1];maxStockLevelHistoryCount[default=-1];overSelling[default=0];preOrder[default=0];reserved[default=0]
+;CONF_CAMERA_SL;warehouse_s;333;forceInStock;
+;CONF_CAMERA_SL-PROF-BLACK;warehouse_s;333;forceInStock;
+;CONF_CAMERA_SL-PROF-METALLIC;warehouse_s;333;forceInStock;
+;CONF_CAMERA_SL-STD-BLACK;warehouse_s;333;forceInStock;
+;CONF_CAMERA_SL-STD-METALLIC;warehouse_s;333;forceInStock;
+;CONF_HOME_THEATER_ML;warehouse_s;333;forceInStock;

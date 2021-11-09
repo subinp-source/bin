@@ -1,0 +1,17 @@
+<div class="se-page-type-step-template">
+    <div class="se-add-page__sub-header">
+        {{ 'se.cms.addpagewizard.pagetype.description' | translate}}
+    </div>
+
+    <div class="se-add-page__list fd-menu" data-ng-if="$ctrl.pageTypes.length > 0">
+        <div
+            data-ng-repeat="pageType in $ctrl.pageTypes"
+            data-ng-class="{ 'is-selected': $ctrl.isSelected(pageType)}"
+            class="se-add-page__item fd-menu__item"
+            data-ng-click="$ctrl.selectType(pageType)"
+        >
+            <div class="se-add-page__item-title">{{ pageType.name | l10n }}</div>
+            <div class="se-add-page-type__item-description">{{ pageType.description | l10n }}</div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,190 @@
+$lang=en
+$classificationCatalog=ElectronicsClassification
+$classificationVersion=1.0
+$classificationCatalogVersion=catalogversion(catalog(id[default='$classificationCatalog']),version[default='$classificationVersion'])[unique=true,default='$classificationCatalog:$classificationVersion'];
+$classificationSystemVersion=systemVersion(catalog(id[default='$classificationCatalog']),version[default='$classificationVersion'])[unique=true,default='$classificationCatalog:$classificationVersion'];
+$classAttrUnit=unit(code,$classificationSystemVersion);
+$valuesForAssignment=defaultAttributeValues(code, $classificationSystemVersion)
+
+# Classification Class CONF_CAMERA_SL
+INSERT_UPDATE ClassificationClass;$classificationCatalogVersion;code[unique=true];allowedPrincipals(uid)[default='customergroup'];name[lang=$lang];description[lang=$lang];
+;;CONF_CAMERA_SL;;CONF_CAMERA_SL;Class Configurable Camera;
+;;CONF_HOME_THEATER_ML;;CONF_HOME_THEATER_ML;Class Configurable Home Theater;
+
+# Classification Attribute Values
+INSERT_UPDATE ClassificationAttributeValue; code[unique=true]; name[lang=$lang]; $classificationSystemVersion;
+;CAMERA_MODE_PROFESSIONAL;Professional;
+;CAMERA_MODE_STANDARD;Standard;
+;CAMERA_COLOR_BLACK;Black;
+;CAMERA_COLOR_METALLIC;Metallic;
+;CAMERA_PIXELS_8MP;8;
+;CAMERA_PIXELS_12MP;12;
+;CAMERA_PIXELS_16MP;16;
+;CAMERA_PIXELS_20MP;20;
+;CAMERA_SENSOR_COMPACT;Compact Sensor;
+;CAMERA_SENSOR_FULL_FRAME;Full Frame Sensor;
+;CAMERA_SENSOR_MICRO_FOUR_THIRDS;Micro Four Thirds Sensor;
+;CAMERA_APERTURE_F1.7;f/1.7;
+;CAMERA_APERTURE_F2.8;f/2.8;
+;CAMERA_APERTURE_F3.5;f/3.5;
+;CAMERA_VIEWFINDER_REAR_LCD_ONLY;Rear LCD only;
+;CAMERA_VIEWFINDER_ELECTRONIC;Electronic Viewfinder;
+;CAMERA_VIEWFINDER_OPTICAL;Optical Viewfinder;
+;CAMERA_SD_CARD_SDHC;SD High Capacity (SDHC);
+;CAMERA_SD_CARD_SDXC;SD Extended Capacity (SDXC);
+;CAMERA_SECOND_SLOT_YES;Yes;
+;CAMERA_SECOND_SLOT_NO;No;
+;CAMERA_FORMAT_PICTURES_JPEG;jpeg;
+;CAMERA_FORMAT_PICTURES_RAW;raw;
+;CAMERA_FORMAT_PICTURES_TIFF;tiff;
+;CAMERA_MAX_ISO_12800;12800;
+;CAMERA_MAX_ISO_25600;25600;
+;CAMERA_DISPLAY_500000PIXELS;500 000 Pixels;
+;CAMERA_DISPLAY_1000000PIXELS;1 000 000 Pixels;
+;CAMERA_TOUCHSCREEN_YES;Yes;
+;CAMERA_TOUCHSCREEN_NO;No;
+;CAMERA_TILTABLE_YES;Yes;
+;CAMERA_TILTABLE_NO;No;
+;CAMERA_LENS_MANUFACTURER_LEICA;Leica;
+;CAMERA_LENS_MANUFACTURER_CARL_ZEISS;Carl Zeiss;
+;WIDE_ZOOM_16_55;Wide Zoom (16-55 mm);
+;STANDARD_ZOOM_18_135;Standard Zoom (18-135 mm);
+;TELEPHOTO_ZOOM_50_230;Telephoto Zoom (50-230 mm;
+;TELEPHOTO_ZOOM_100_400;Telephoto Zoom (100-400 mm);
+;CAMERA_OPTIONS_IMAGE_STABILIZATION;Image Stabilization;
+;CAMERA_OPTIONS_WATERPROOF;Waterproof and dust-tight;
+;CAMERA_OPTIONS_MOVIE;Movie mode;
+;CAMERA_OPTIONS_WI-FI_NFC;Wi-Fi and NFC Connectivity;
+;NO_SCREEN;No Projection Screen;
+;FIXED_SCREEN;Fixed-frame Screen;
+;PULLDOWN_SCREEN;Pulldown Screen;
+;SOUNDBAR_60;HW-Q60R;
+;SOUNDBAR_80;HW-Q80R; 
+;COLUMN_SPEAKER_850;VSA 850; 
+;COLUMN_SPEAKER_1250;VSA 1250; 
+;COLUMN_SPEAKER_2050;VSA 2050; 
+;TOWER_SPEAKER_ULTIMATE;Ultimate 40 Active Surround; 
+;TOWER_SPEAKER_VENTO;Vento 20; 
+;FRONT_SPEAKER_COMPACT_FRONT_U;Ultima 20; 
+;FRONT_SPEAKER_COMPACT_FRONT_Q;Q 3010 Bookshelf Speakers; 
+;REAR_SPEAKER_EFFECT;Effect; 
+;REAR_SPEAKER_FREE;FreeSpace 35; 
+;SUBWOOFER_X;X 4000; 
+;SUBWOOFER_XN;XN 850 SW; 
+;BLURAY_PLAYER_STANDARD;Ultra HD Blu-ray; 
+;BLURAY_PLAYER_3D;3D-capable Blu-ray; 
+;COLOUR_HT_BLACK;Black; 
+;COLOUR_HT_WHITE;White; 
+;COLOUR_HT_TITAN;Titan; 
+;SPEAKER_COMPACT_DEF;Definition;
+;SPEAKER_COMPACT_GO;Gravity One;
+
+# Classification Attributes
+INSERT_UPDATE ClassificationAttribute;$classificationSystemVersion;code[unique=true];name[lang=$lang];$valuesForAssignment;
+;;CAMERA_MODE;Mode;CAMERA_MODE_PROFESSIONAL, CAMERA_MODE_STANDARD;
+;;CAMERA_COLOR;Body Color;CAMERA_COLOR_BLACK, CAMERA_COLOR_METALLIC;
+;;CAMERA_PIXELS;Resolution (in MP);CAMERA_PIXELS_8MP, CAMERA_PIXELS_12MP, CAMERA_PIXELS_16MP, CAMERA_PIXELS_20MP;
+;;CAMERA_SENSOR;Sensor Type;CAMERA_SENSOR_COMPACT, CAMERA_SENSOR_FULL_FRAME, CAMERA_SENSOR_MICRO_FOUR_THIRDS;
+;;CAMERA_APERTURE;Maximum Aperture;CAMERA_APERTURE_F1.7, CAMERA_APERTURE_F2.8, CAMERA_APERTURE_F3.5;
+;;CAMERA_VIEWFINDER;Viewfinder;CAMERA_VIEWFINDER_REAR_LCD_ONLY, CAMERA_VIEWFINDER_ELECTRONIC, CAMERA_VIEWFINDER_OPTICAL;
+;;CAMERA_SD_CARD;SD Card Compatibility;CAMERA_SD_CARD_SDHC, CAMERA_SD_CARD_SDXC;
+;;CAMERA_SECOND_SLOT;Second Card Slot;CAMERA_SECOND_SLOT_NO, CAMERA_SECOND_SLOT_NO;
+;;CAMERA_FORMAT_PICTURES;Data Format for Pictures;CAMERA_FORMAT_PICTURES_JPEG, CAMERA_FORMAT_PICTURES_RAW, CAMERA_FORMAT_PICTURES_TIFF;
+;;CAMERA_MAX_ISO;Maximum ISO;CAMERA_MAX_ISO_12800, CAMERA_MAX_ISO_25600;
+;;CAMERA_DISPLAY;Display Resolution;CAMERA_DISPLAY_500000PIXELS, CAMERA_DISPLAY_1000000PIXELS;
+;;CAMERA_TOUCHSCREEN;Touchscreen;CAMERA_TOUCHSCREEN_YES, CAMERA_TOUCHSCREEN_NO;
+;;CAMERA_TILTABLE;Tiltable;CAMERA_TILTABLE_YES, CAMERA_TILTABLE_NO;
+;;CAMERA_LENS_MANUFACTURER;Lens Manufacturer;CAMERA_LENS_MANUFACTURER_LEICA, CAMERA_LENS_MANUFACTURER_CARL_ZEISS;
+;;CAMERA_LENS_TYPE;Lens Type;WIDE_ZOOM_16_55,STANDARD_ZOOM_18_135,TELEPHOTO_ZOOM_50_230,TELEPHOTO_ZOOM_100_400;
+;;CAMERA_OPTIONS;Additional Options;CAMERA_OPTIONS_IMAGE_STABILIZATION, CAMERA_OPTIONS_WATERPROOF, CAMERA_OPTIONS_MOVIE, CAMERA_OPTIONS_WI-FI_NFC;
+;;PROJECTION_SCREEN;Projection Screen;FIXED_SCREEN, PULLDOWN_SCREEN;
+;;SOUNDBAR;Soundbar;SOUNDBAR_60, SOUNDBAR_80;
+;;COLUMN_SPEAKER;Column Speaker;COLUMN_SPEAKER_850, COLUMN_SPEAKER_1250,COLUMN_SPEAKER_2050;
+;;TOWER_SPEAKER;Tower Speaker;TOWER_SPEAKER_ULTIMATE, TOWER_SPEAKER_VENTO;
+;;SPEAKER_COMPACT_FRONT;Compact Speaker;FRONT_SPEAKER_COMPACT_FRONT_U, FRONT_SPEAKER_COMPACT_FRONT_Q;
+;;REAR_SPEAKER;Rear Speaker;REAR_SPEAKER_EFFECT, REAR_SPEAKER_FREE;
+;;SUBWOOFER;Subwoofer;SUBWOOFER_X, SUBWOOFER_XN;
+;;BLURAY_PLAYER;Bluray Player;BLURAY_PLAYER_STANDARD, BLURAY_PLAYER_3D;
+;;COLOUR_HT;Colour of Home Theatre;COLOUR_HT_BLACK,COLOUR_HT_WHITE,COLOUR_HT_TITAN;
+;;SPEAKER_COMPACT;Compact;SPEAKER_COMPACT_GO,SPEAKER_COMPACT_DEF;
+
+# Classification Attribute Assignment
+INSERT_UPDATE ClassAttributeAssignment;classificationClass(catalogVersion(catalog(id),version),code)[unique=true,allownull=true];classificationAttribute(code,systemVersion(catalog(id),version))[unique=true,forceWrite=true,allownull=true];position[unique=true];$classAttrUnit;attributeType(code[default=string]);multiValued;range;localized;systemVersion(catalog(id),version)[unique=true,forceWrite=true];
+;$classificationCatalog:$classificationVersion:CONF_CAMERA_SL;CAMERA_MODE:$classificationCatalog:$classificationVersion;0;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_CAMERA_SL;CAMERA_COLOR:$classificationCatalog:$classificationVersion;1;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_CAMERA_SL;CAMERA_PIXELS:$classificationCatalog:$classificationVersion;2;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_CAMERA_SL;CAMERA_SENSOR:$classificationCatalog:$classificationVersion;3;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_CAMERA_SL;CAMERA_APERTURE:$classificationCatalog:$classificationVersion;4;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_CAMERA_SL;CAMERA_VIEWFINDER:$classificationCatalog:$classificationVersion;5;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_CAMERA_SL;CAMERA_SD_CARD:$classificationCatalog:$classificationVersion;6;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_CAMERA_SL;CAMERA_SECOND_SLOT:$classificationCatalog:$classificationVersion;7;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_CAMERA_SL;CAMERA_FORMAT_PICTURES:$classificationCatalog:$classificationVersion;8;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_CAMERA_SL;CAMERA_MAX_ISO:$classificationCatalog:$classificationVersion;9;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_CAMERA_SL;CAMERA_DISPLAY:$classificationCatalog:$classificationVersion;10;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_CAMERA_SL;CAMERA_TOUCHSCREEN:$classificationCatalog:$classificationVersion;11;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_CAMERA_SL;CAMERA_TILTABLE:$classificationCatalog:$classificationVersion;12;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_CAMERA_SL;CAMERA_LENS_MANUFACTURER:$classificationCatalog:$classificationVersion;13;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_CAMERA_SL;CAMERA_LENS_TYPE:$classificationCatalog:$classificationVersion;14;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_CAMERA_SL;CAMERA_OPTIONS:$classificationCatalog:$classificationVersion;15;;enum;true;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_HOME_THEATER_ML;PROJECTION_SCREEN:$classificationCatalog:$classificationVersion;0;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_HOME_THEATER_ML;COLOUR_HT:$classificationCatalog:$classificationVersion;1;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_HOME_THEATER_ML;SOUNDBAR:$classificationCatalog:$classificationVersion;2;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_HOME_THEATER_ML;COLUMN_SPEAKER:$classificationCatalog:$classificationVersion;3;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_HOME_THEATER_ML;TOWER_SPEAKER:$classificationCatalog:$classificationVersion;4;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_HOME_THEATER_ML;SPEAKER_COMPACT_FRONT:$classificationCatalog:$classificationVersion;5;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_HOME_THEATER_ML;REAR_SPEAKER:$classificationCatalog:$classificationVersion;6;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_HOME_THEATER_ML;SUBWOOFER:$classificationCatalog:$classificationVersion;7;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_HOME_THEATER_ML;BLURAY_PLAYER:$classificationCatalog:$classificationVersion;8;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+;$classificationCatalog:$classificationVersion:CONF_HOME_THEATER_ML;SPEAKER_COMPACT:$classificationCatalog:$classificationVersion;9;;enum;false;false;false;$classificationCatalog:$classificationVersion;
+
+# Product Variants
+
+$clAttrModifiersVariants=system='$classificationCatalog',version='$classificationVersion',translator=de.hybris.platform.catalog.jalo.classification.impex.ClassificationAttributeTranslator;
+
+$featureMode=@CAMERA_MODE[$clAttrModifiersVariants];
+$featureColor=@CAMERA_COLOR[$clAttrModifiersVariants];
+$featurePixels=@CAMERA_PIXELS[$clAttrModifiersVariants];
+$featureSensor=@CAMERA_SENSOR[$clAttrModifiersVariants];
+$featureAperture=@CAMERA_APERTURE[$clAttrModifiersVariants];
+$featureViewFinder=@CAMERA_VIEWFINDER[$clAttrModifiersVariants];
+$featureSDCard=@CAMERA_SD_CARD[$clAttrModifiersVariants];
+$featureSecondSlot=@CAMERA_SECOND_SLOT[$clAttrModifiersVariants];
+$featureFormatPicture=@CAMERA_FORMAT_PICTURES[$clAttrModifiersVariants];
+$featureMaxISO=@CAMERA_MAX_ISO[$clAttrModifiersVariants];
+$featureDisplay=@CAMERA_DISPLAY[$clAttrModifiersVariants];
+$featureTouchScreen=@CAMERA_TOUCHSCREEN[$clAttrModifiersVariants];
+$featureTiltable=@CAMERA_TILTABLE[$clAttrModifiersVariants];
+$featureLensManufacturer=@CAMERA_LENS_MANUFACTURER[$clAttrModifiersVariants];
+$featureLensType=@CAMERA_LENS_TYPE[$clAttrModifiersVariants];
+$featureOptions=@CAMERA_OPTIONS[$clAttrModifiersVariants];
+
+$productCatalog=electronicsProductCatalog
+$productCatalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$supercategories=supercategories(code,catalogversion(catalog(id[default=$productCatalog]),version[default='Staged']))
+$prices=Europe1prices[translator=de.hybris.platform.europe1.jalo.impex.Europe1PricesTranslator]
+$approved=approvalstatus(code)[default='approved']
+$taxGroup=Europe1PriceFactory_PTG(code)[default=us-sales-tax-full]
+
+INSERT_UPDATE VariantAttributeDescriptor;qualifier[unique=true];attributeType(code);name[lang=en];generate;enclosingType(code)[unique=true];partOf;extensionName;search;readable;writable
+;product_name;java.lang.String;;true;MockVariantProduct;false;;false;true;true
+
+INSERT_UPDATE MockVariantProduct;code[unique=true];baseproduct(code,$productCatalogVersion);$supercategories;manufacturerName;manufacturerAID;ean;variantType(code);unit(code)[default=PCE];$productCatalogVersion;name[lang=$lang];description[lang=$lang];summary[lang=$lang];product_name;$featureMode;$featureColor;$featurePixels;$featureSensor;$featureAperture;$featureViewFinder;$featureSDCard;$featureSecondSlot;$featureFormatPicture;$featureMaxISO;$featureDisplay;$featureTouchScreen;$featureTiltable;$featureLensManufacturer;$featureLensType;$featureOptions;$prices;$approved;$taxGroup;
+;CONF_CAMERA_SL-PROF-BLACK;CONF_CAMERA_SL;575,CONF_CAMERA_SL:$classificationCatalog:$classificationVersion;SAP;;;;PCE;;Digital Camera Professional Black;Digital Camera Professional Black;Digital Camera Professional Black;Digital Camera Professional Black;CAMERA_MODE_PROFESSIONAL; CAMERA_COLOR_BLACK; CAMERA_PIXELS_20MP; CAMERA_SENSOR_FULL_FRAME; CAMERA_APERTURE_F1.7; CAMERA_VIEWFINDER_OPTICAL; CAMERA_SD_CARD_SDXC; ; CAMERA_FORMAT_PICTURES_RAW; CAMERA_MAX_ISO_25600; CAMERA_DISPLAY_1000000PIXELS; CAMERA_TOUCHSCREEN_YES; CAMERA_TILTABLE_YES; CAMERA_LENS_MANUFACTURER_LEICA; WIDE_ZOOM_16_55; CAMERA_OPTIONS_IMAGE_STABILIZATION,CAMERA_OPTIONS_WATERPROOF,CAMERA_OPTIONS_MOVIE,CAMERA_OPTIONS_WI-FI_NFC; 1 PCE = 3300.00 USD N;;;
+;CONF_CAMERA_SL-PROF-METALLIC;CONF_CAMERA_SL;575,CONF_CAMERA_SL:$classificationCatalog:$classificationVersion;SAP;;;;PCE;;Digital Camera Professional Metallic;Digital Camera Professional Metallic;Digital Camera Professional Metallic;Digital Camera Professional Metallic;CAMERA_MODE_PROFESSIONAL; CAMERA_COLOR_METALLIC; CAMERA_PIXELS_20MP; CAMERA_SENSOR_FULL_FRAME; CAMERA_APERTURE_F1.7; CAMERA_VIEWFINDER_OPTICAL; CAMERA_SD_CARD_SDXC; ; CAMERA_FORMAT_PICTURES_RAW; CAMERA_MAX_ISO_25600; CAMERA_DISPLAY_1000000PIXELS; CAMERA_TOUCHSCREEN_YES; CAMERA_TILTABLE_YES; CAMERA_LENS_MANUFACTURER_LEICA; TELEPHOTO_ZOOM_100_400; CAMERA_OPTIONS_IMAGE_STABILIZATION,CAMERA_OPTIONS_WATERPROOF,CAMERA_OPTIONS_MOVIE,CAMERA_OPTIONS_WI-FI_NFC; 1 PCE = 3440.00 USD N;;;
+;CONF_CAMERA_SL-STD-BLACK;CONF_CAMERA_SL;575,CONF_CAMERA_SL:$classificationCatalog:$classificationVersion;SAP;;;;PCE;;Digital Camera Standard Black;Digital Camera Standard Black;Digital Camera Standard Black;Digital Camera Standard Black;CAMERA_MODE_STANDARD; CAMERA_COLOR_BLACK; CAMERA_PIXELS_12MP; CAMERA_SENSOR_COMPACT; CAMERA_APERTURE_F2.8; CAMERA_VIEWFINDER_REAR_LCD_ONLY; CAMERA_SD_CARD_SDHC; ; CAMERA_FORMAT_PICTURES_JPEG; CAMERA_MAX_ISO_12800; CAMERA_DISPLAY_500000PIXELS; CAMERA_TOUCHSCREEN_NO; CAMERA_TILTABLE_NO; CAMERA_LENS_MANUFACTURER_CARL_ZEISS; STANDARD_ZOOM_18_135; CAMERA_OPTIONS_MOVIE,CAMERA_OPTIONS_WI-FI_NFC; 1 PCE = 1100.00 USD N;;;
+;CONF_CAMERA_SL-STD-METALLIC;CONF_CAMERA_SL;575,CONF_CAMERA_SL:$classificationCatalog:$classificationVersion;SAP;;;;PCE;;Digital Camera Standard Metallic;Digital Camera Standard Metallic;Digital Camera Standard Metallic;Digital Camera Standard Metallic;CAMERA_MODE_STANDARD; CAMERA_COLOR_METALLIC; CAMERA_PIXELS_12MP; CAMERA_SENSOR_COMPACT; CAMERA_APERTURE_F3.5; CAMERA_VIEWFINDER_REAR_LCD_ONLY; CAMERA_SD_CARD_SDHC; ; CAMERA_FORMAT_PICTURES_JPEG; CAMERA_MAX_ISO_12800; CAMERA_DISPLAY_500000PIXELS; CAMERA_TOUCHSCREEN_NO; CAMERA_TILTABLE_NO; CAMERA_LENS_MANUFACTURER_CARL_ZEISS; TELEPHOTO_ZOOM_50_230; CAMERA_OPTIONS_MOVIE,CAMERA_OPTIONS_WI-FI_NFC; 1 PCE = 1240.00 USD N;;;
+
+# Solr index and Facet search query properties for variants
+
+$classificationAttribute=classificationAttribute(code,$classificationSystemVersion)
+$classificationClass=classificationClass(code,$classificationCatalogVersion)
+$classAttributeAssignment=classAttributeAssignment($classificationClass,$classificationAttribute,$classificationSystemVersion)
+$solrIndexedType=electronicsProductType
+
+INSERT_UPDATE 	SolrIndexedProperty	;solrIndexedType(identifier)[unique=true]	;name[unique=true];displayname[lang=en]	;type(code)	;facet	;visible	;currency[default=false]	;localized[default=false]	;multiValue[default=false]	;useForSpellchecking[default=false]	;useForAutocomplete[default=false]	;fieldValueProvider ;$classAttributeAssignment
+												;$solrIndexedType									;CAMERA_MODE   	;Camera Mode		   	;string		;true		;true		;false    						;false    						;false    						;false    									;false    ;commerceClassificationPropertyValueProvider	;CONF_CAMERA_SL:::CAMERA_MODE::::	;
+												;$solrIndexedType									;CAMERA_COLOR     ;Camera Body Color		;string		;true		;true		;false    						;false    						;false    						;false    									;false    ;commerceClassificationPropertyValueProvider	;CONF_CAMERA_SL:::CAMERA_COLOR::::	;												
+
+INSERT_UPDATE SolrSearchQueryProperty ;indexedProperty(name, solrIndexedType(identifier))[unique=true]	;facet[default=true]	;facetType(code)	;priority	;facetDisplayNameProvider						;facetSortProvider	;facetTopValuesProvider		;includeInResponse[default=true];searchQueryTemplate(name, indexedType(identifier))[unique=true][default=DEFAULT:$solrIndexedType]
+									 			  ;CAMERA_MODE:$solrIndexedType			     								   ;					    	;Refine	 			;2000		   ;commerceClassificationPropertyValueProvider	;;;;
+									  			  ;CAMERA_COLOR:$solrIndexedType										   		;							;Refine	 			;1000			;commerceClassificationPropertyValueProvider	;;;;

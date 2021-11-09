@@ -1,0 +1,30 @@
+<div class="row se-product-row">
+    <div data-ng-if="item" class="se-category-row-container--item">
+        <div class="se-product-row__product" title="{{item.name | l10n}}">{{item.name | l10n}}</div>
+        <div class="se-product-row__product" title="{{item.code}}">{{item.code}}</div>
+        <div class="se-product-row__catalog" title="{{item.catalogId}} - {{item.catalogVersion}}">
+            {{item.catalogId}} - {{item.catalogVersion}}
+        </div>
+    </div>
+    <div
+        data-ng-if="node"
+        class="se-category-row-container--node"
+        data-ng-class="{
+            'se-category-row-container--node-no-drag': !$ctrl.dragEnabled,
+            'se-category-row-container--node-drag': $ctrl.dragEnabled,}"
+    >
+        <div class="se-product-row__product" title="{{node.name | l10n}}">{{node.name | l10n}}</div>
+        <div class="se-product-row__product" title="{{node.code}}">{{node.code}}</div>
+        <div class="se-product-row__catalog" title="{{node.catalogId}} - {{node.catalogVersion}}">
+            {{node.catalogId}} - {{node.catalogVersion}}
+        </div>
+        <div>
+            <se-dropdown-menu
+                data-ng-if="$ctrl.dragEnabled"
+                [dropdown-items]="$ctrl.getDropdownItems()"
+                [selected-item]="node"
+                class="pull-right se-tree-node__actions--more-menu"
+            ></se-dropdown-menu>
+        </div>
+    </div>
+</div>

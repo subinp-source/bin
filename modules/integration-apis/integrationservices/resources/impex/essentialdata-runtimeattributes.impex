@@ -1,0 +1,22 @@
+INSERT_UPDATE IntegrationObject; code[unique = true]
+                               ; RuntimeAttributeService
+
+INSERT_UPDATE IntegrationObjectItem; integrationObject(code)[unique = true]; code[unique = true] ; type(code)          ; root[default = false]
+                                   ; RuntimeAttributeService               ; AttributeDescriptor ; AttributeDescriptor ; true
+                                   ; RuntimeAttributeService               ; ComposedType        ; ComposedType        ;
+                                   ; RuntimeAttributeService               ; Type                ; Type                ;
+
+INSERT_UPDATE IntegrationObjectItemAttribute; integrationObjectItem(integrationObject(code), code)[unique = true]; attributeName[unique = true]; attributeDescriptor(enclosingType(code), qualifier); returnIntegrationObjectItem(integrationObject(code), code); unique[default = false];
+                                            ; RuntimeAttributeService:ComposedType                               ; code                        ; ComposedType:code                                  ;                                                           ; true                   ;
+                                            ; RuntimeAttributeService:Type                                       ; code                        ; Type:code                                          ;                                                           ; true                   ;
+                                            ; RuntimeAttributeService:AttributeDescriptor                        ; attributeType               ; AttributeDescriptor:attributeType                  ; RuntimeAttributeService:Type                              ;                        ;
+                                            ; RuntimeAttributeService:AttributeDescriptor                        ; enclosingType               ; AttributeDescriptor:enclosingType                  ; RuntimeAttributeService:ComposedType                      ; true                   ;
+                                            ; RuntimeAttributeService:AttributeDescriptor                        ; qualifier                   ; AttributeDescriptor:qualifier                      ;                                                           ; true                   ;
+                                            ; RuntimeAttributeService:AttributeDescriptor                        ; unique                      ; AttributeDescriptor:unique                         ;                                                           ;                        ;
+                                            ; RuntimeAttributeService:AttributeDescriptor                        ; optional                    ; AttributeDescriptor:optional                       ;                                                           ;                        ;
+                                            ; RuntimeAttributeService:AttributeDescriptor                        ; localized                   ; AttributeDescriptor:localized                      ;                                                           ;                        ;
+                                            ; RuntimeAttributeService:AttributeDescriptor                        ; partOf                      ; AttributeDescriptor:partOf                         ;                                                           ;                        ;
+                                            ; RuntimeAttributeService:AttributeDescriptor                        ; generate                    ; AttributeDescriptor:generate                       ;                                                           ;                        ;
+
+INSERT_UPDATE InboundChannelConfiguration; integrationObject(code)[unique = true];
+                                         ; RuntimeAttributeService               ;

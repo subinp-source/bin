@@ -1,0 +1,59 @@
+/*
+ * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ */
+package de.hybris.platform.b2bacceleratorservices.futurestock.impl;
+
+import de.hybris.platform.acceleratorservices.futurestock.FutureStockService;
+import de.hybris.platform.b2b.model.FutureStockModel;
+import de.hybris.platform.b2bacceleratorservices.dao.B2BFutureStockDao;
+import de.hybris.platform.core.model.product.ProductModel;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.collections.CollectionUtils;
+
+
+/**
+ * Default B2B implementation for {@link FutureStockService}. Gets future availabilities for a product.
+ */
+public class DefaultB2BFutureStockService implements FutureStockService
+{
+
+	private B2BFutureStockDao futureStockDao;
+
+	@Override
+	public Map<String, Map<Date, Integer>> getFutureAvailability(final List<ProductModel> products)
+	{
+		final Map<String, Map<Date, Integer>> productsMap = new HashMap<>();
+
+		for (final ProductModel product : products)
+		{
+			final List<FutureStockModel> futureStocks = futureStockDao.getFutureStocksByProductCode(product.getCode());
+			if (!CollectionUtils.isEmpty(futureStocks))
+			{
+				final HashMap<Date, Integer> futureAvailability = new HashMap<>();
+				for (final FutureStockModel futureStock : futureStocks)
+				{
+					futureAvailability.put(futureStock.getDate(), futureStock.getQuantity());
+				}
+				productsMap.put(product.getCode(), futureAvailability);
+			}
+		}
+
+		return productsMap;
+	}
+
+	public B2BFutureStockDao getFutureStockDao()
+	{
+		return futureStockDao;
+	}
+
+	public void setFutureStockDao(final B2BFutureStockDao futureStockDao)
+	{
+		this.futureStockDao = futureStockDao;
+	}
+
+}

@@ -1,0 +1,14 @@
+.yw-explorerTree-sync .sync-status-container {
+	padding-right: 6px;
+}
+
+.yw-explorerTree-widget.yw-com_hybris_extended_explorertree_syncexplorertree .yw-explorerTree .yw-treeCellInner {
+	padding-right: 10px;
+	padding-left: 12px;
+}
+
+.yw-explorerTree-widget.yw-com_hybris_extended_explorertree_syncexplorertree .yw-explorerTree .yw-treeCellInner .z-label {
+	display: inline;
+	margin-right: 5px;
+	padding-left: 0;
+}

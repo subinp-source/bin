@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd">
+           
+	<!-- DAOs -->
+
+	<alias name="defaulSnClassAttributeAssignmentModelDao" alias="snClassAttributeAssignmentModelDao" />
+	<bean id="defaulSnClassAttributeAssignmentModelDao"
+		class="de.hybris.platform.commerceservices.search.searchservices.dao.impl.DefaultSnClassAttributeAssignmentModelDao" />
+
+	<!-- Value providers -->
+
+	<alias name="defaultProductAttributeSnIndexerValueProvider" alias="productAttributeSnIndexerValueProvider" />
+	<bean id="defaultProductAttributeSnIndexerValueProvider"
+		class="de.hybris.platform.commerceservices.search.searchservices.provider.impl.ProductAttributeSnIndexerValueProvider"
+		parent="abstractSnIndexerValueProvider">
+		<property name="snExpressionEvaluator" ref="snExpressionEvaluator" />
+	</bean>
+
+	<alias name="defaultProductCategoryAttributeSnIndexerValueProvider"
+		alias="productCategoryAttributeSnIndexerValueProvider" />
+	<bean id="defaultProductCategoryAttributeSnIndexerValueProvider"
+		class="de.hybris.platform.commerceservices.search.searchservices.provider.impl.ProductCategoryAttributeSnIndexerValueProvider"
+		parent="abstractSnIndexerValueProvider">
+		<property name="categoryService" ref="categoryService" />
+		<property name="snExpressionEvaluator" ref="snExpressionEvaluator" />
+	</bean>
+
+	<alias name="defaultProductClassificationAttributeSnIndexerValueProvider"
+		alias="productClassificationAttributeSnIndexerValueProvider" />
+	<bean id="defaultProductClassificationAttributeSnIndexerValueProvider"
+		class="de.hybris.platform.commerceservices.search.searchservices.provider.impl.ProductClassificationAttributeSnIndexerValueProvider"
+		parent="abstractSnIndexerValueProvider">
+		<property name="classificationSystemService" ref="classificationSystemService" />
+		<property name="classificationService" ref="classificationService" />
+		<property name="snSessionService" ref="snSessionService" />
+		<property name="snClassAttributeAssignmentModelDao" ref="snClassAttributeAssignmentModelDao" />
+	</bean>
+
+	<alias name="defaultProductImageAttributeSnIndexerValueProvider"
+		alias="productImageAttributeSnIndexerValueProvider" />
+	<bean id="defaultProductImageAttributeSnIndexerValueProvider"
+		class="de.hybris.platform.commerceservices.search.searchservices.provider.impl.ProductImageAttributeSnIndexerValueProvider"
+		parent="abstractSnIndexerValueProvider">
+		<property name="snExpressionEvaluator" ref="snExpressionEvaluator" />
+	</bean>
+
+	<alias name="defaultProductPickupAvailabilitySnIndexerValueProvider"
+		alias="productPickupAvailabilitySnIndexerValueProvider" />
+	<bean id="defaultProductPickupAvailabilitySnIndexerValueProvider"
+		class="de.hybris.platform.commerceservices.search.searchservices.provider.impl.ProductPickupAvailabilitySnIndexerValueProvider"
+		parent="abstractSnIndexerValueProvider">
+		<property name="pickupAvailabilityStrategy" ref="pickupAvailabilityStrategy" />
+		<property name="snStoreSelectionStrategy" ref="snStoreSelectionStrategy" />
+	</bean>
+
+	<alias name="defaultProductPriceSnIndexerValueProvider" alias="productPriceSnIndexerValueProvider" />
+	<bean id="defaultProductPriceSnIndexerValueProvider"
+		class="de.hybris.platform.commerceservices.search.searchservices.provider.impl.ProductPriceSnIndexerValueProvider"
+		parent="abstractSnIndexerValueProvider">
+		<property name="commonI18NService" ref="commonI18NService" />
+		<property name="priceService" ref="priceService" />
+		<property name="snSessionService" ref="snSessionService" />
+	</bean>
+
+	<alias name="defaultProductStockLevelSnIndexerValueProvider" alias="productStockLevelSnIndexerValueProvider" />
+	<bean id="defaultProductStockLevelSnIndexerValueProvider"
+		class="de.hybris.platform.commerceservices.search.searchservices.provider.impl.ProductStockLevelSnIndexerValueProvider"
+		parent="abstractSnIndexerValueProvider">
+		<property name="commerceStockService" ref="commerceStockService" />
+		<property name="snStoreSelectionStrategy" ref="snStoreSelectionStrategy" />
+	</bean>
+
+	<alias name="defaultProductStockLevelStatusSnIndexerValueProvider"
+		alias="productStockLevelStatusSnIndexerValueProvider" />
+	<bean id="defaultProductStockLevelStatusSnIndexerValueProvider"
+		class="de.hybris.platform.commerceservices.search.searchservices.provider.impl.ProductStockLevelStatusSnIndexerValueProvider"
+		parent="abstractSnIndexerValueProvider">
+		<property name="commerceStockService" ref="commerceStockService" />
+		<property name="snStoreSelectionStrategy" ref="snStoreSelectionStrategy" />
+	</bean>
+
+	<alias name="defaultStoreSnQualifierProvider" alias="storeSnQualifierProvider" />
+	<bean id="defaultStoreSnQualifierProvider"
+		  class="de.hybris.platform.commerceservices.search.searchservices.impl.StoreSnQualifierProvider">
+		<property name="baseStoreService" ref="baseStoreService" />
+		<property name="snStoreSelectionStrategy" ref="snStoreSelectionStrategy" />
+	</bean>
+
+	<!-- Converters & Populators -->
+
+	<alias name="defaultCommerceSnSearchQueryConverter" alias="commerceSnSearchQueryConverter" />
+	<bean id="defaultCommerceSnSearchQueryConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.searchservices.search.data.SnSearchQuery" />
+		<property name="populators">
+			<list>
+				<ref bean="commerceSnSearchQueryBasicPopulator" />
+				<ref bean="commerceSnSearchQueryPaginationPopulator" />
+				<ref bean="commerceSnSearchQueryFiltersPopulator" />
+				<ref bean="commerceSnSearchQuerySortsPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultCommerceSnSearchQueryBasicPopulator" alias="commerceSnSearchQueryBasicPopulator" />
+	<bean id="defaultCommerceSnSearchQueryBasicPopulator"
+		class="de.hybris.platform.commerceservices.search.searchservices.populators.SearchQueryBasicPopulator">
+	</bean>
+
+	<alias name="defaultCommerceSnSearchQueryPaginationPopulator" alias="commerceSnSearchQueryPaginationPopulator" />
+	<bean id="defaultCommerceSnSearchQueryPaginationPopulator"
+		class="de.hybris.platform.commerceservices.search.searchservices.populators.SearchQueryPaginationPopulator">
+	</bean>
+
+	<alias name="defaultCommerceSnSearchQueryFiltersPopulator" alias="commerceSnSearchQueryFiltersPopulator" />
+	<bean id="defaultCommerceSnSearchQueryFiltersPopulator"
+		class="de.hybris.platform.commerceservices.search.searchservices.populators.SearchQueryFiltersPopulator">
+	</bean>
+
+	<alias name="defaultCommerceSnSearchQuerySortsPopulator" alias="commerceSnSearchQuerySortsPopulator" />
+	<bean id="defaultCommerceSnSearchQuerySortsPopulator"
+		class="de.hybris.platform.commerceservices.search.searchservices.populators.SearchQuerySortsPopulator">
+	</bean>
+
+	<alias name="defaultCommerceSnSearchResultConverter" alias="commerceSnSearchResultConverter" />
+	<bean id="defaultCommerceSnSearchResultConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass"
+			value="de.hybris.platform.commerceservices.search.facetdata.ProductCategorySearchPageData" />
+		<property name="populators">
+			<list>
+				<ref bean="commerceSnSearchResultBasicPopulator" />
+				<ref bean="commerceSnSearchResultResultsPopulator" />
+				<ref bean="commerceSnSearchResultSortsPopulator" />
+				<ref bean="commerceSnSearchResultPaginationPopulator" />
+				<ref bean="commerceSnSearchResultFacetsPopulator" />
+				<ref bean="commerceSnSearchResultBreadcrumbsPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultCommerceSnSearchResultBasicPopulator" alias="commerceSnSearchResultBasicPopulator" />
+	<bean id="defaultCommerceSnSearchResultBasicPopulator"
+		class="de.hybris.platform.commerceservices.search.searchservices.populators.SearchResultBasicPopulator">
+	</bean>
+
+	<alias name="defaultCommerceSnSearchResultResultsPopulator" alias="commerceSnSearchResultResultsPopulator" />
+	<bean id="defaultCommerceSnSearchResultResultsPopulator"
+		class="de.hybris.platform.commerceservices.search.searchservices.populators.SearchResultResultsPopulator">
+	</bean>
+
+	<alias name="defaultCommerceSnSearchResultSortsPopulator" alias="commerceSnSearchResultSortsPopulator" />
+	<bean id="defaultCommerceSnSearchResultSortsPopulator"
+		class="de.hybris.platform.commerceservices.search.searchservices.populators.SearchResultSortsPopulator">
+	</bean>
+
+	<alias name="defaultCommerceSnSearchResultPaginationPopulator" alias="commerceSnSearchResultPaginationPopulator" />
+	<bean id="defaultCommerceSnSearchResultPaginationPopulator"
+		class="de.hybris.platform.commerceservices.search.searchservices.populators.SearchResultPaginationPopulator">
+	</bean>
+
+	<alias name="defaultCommerceSnSearchResultFacetsPopulator" alias="commerceSnSearchResultFacetsPopulator" />
+	<bean id="defaultCommerceSnSearchResultFacetsPopulator"
+		class="de.hybris.platform.commerceservices.search.searchservices.populators.SearchResultFacetsPopulator">
+	</bean>
+
+	<alias name="defaultCommerceSnSearchResultBreadcrumbsPopulator"
+		alias="commerceSnSearchResultBreadcrumbsPopulator" />
+	<bean id="defaultCommerceSnSearchResultBreadcrumbsPopulator"
+		class="de.hybris.platform.commerceservices.search.searchservices.populators.SearchResultBreadcrumbsPopulator">
+	</bean>
+
+	<!-- Strategies -->
+
+	<alias name="defaultCommerceSnProductTypeSelectionStrategy" alias="commerceSnProductTypeSelectionStrategy" />
+	<bean id="defaultCommerceSnProductTypeSelectionStrategy"
+		class="de.hybris.platform.commerceservices.search.searchservices.strategies.impl.DefaultSnProductIndexTypeSelectionStrategy">
+		<property name="baseSiteService" ref="baseSiteService" />
+		<property name="baseStoreService" ref="baseStoreService" />
+	</bean>
+
+	<alias name="defaultSnStoreSelectionStrategy" alias="snStoreSelectionStrategy" />
+	<bean id="defaultSnStoreSelectionStrategy"
+		class="de.hybris.platform.commerceservices.search.searchservices.strategies.impl.DefaultSnStoreSelectionStrategy">
+		<property name="snIndexTypeDao" ref="snIndexTypeDao" />
+	</bean>
+
+	<alias name="defaultCommerceSearchServicesProductSearchStrategy" alias="commerceSearchServicesProductSearchStrategy" />
+	<bean id="defaultCommerceSearchServicesProductSearchStrategy"
+		  class="de.hybris.platform.commerceservices.search.searchservices.impl.DefaultSearchServicesProductSearchStrategy">
+		<property name="snSearchService" ref="snSearchService" />
+		<property name="snSuggestService" ref="snSuggestService" />
+		<property name="productTypeSelectionStrategy" ref="commerceSnProductTypeSelectionStrategy" />
+		<property name="searchQueryConverter" ref="commerceSnSearchQueryConverter" />
+		<property name="searchResultConverter" ref="commerceSnSearchResultConverter" />
+		<property name="sessionService" ref="sessionService"/>
+		<property name="baseStoreService" ref="baseStoreService"/>
+		<property name="baseSiteService" ref="baseSiteService"/>
+	</bean>
+
+</beans>

@@ -1,0 +1,25 @@
+<div
+    data-ui-tree="$ctrl.treeOptions.callbacks"
+    data-drag-enabled="$ctrl.treeOptions.dragEnabled"
+    data-drag-delay="$ctrl.treeOptions.dragDelay"
+    class="categoryTable se-tree"
+>
+    <div class="se-tree__body">
+        <div class="desktopLayout clearfix">
+            <ol data-ui-tree-nodes="" data-ng-model="$ctrl.root.nodes" class="se-tree__nodes">
+                <li
+                    data-ng-if="$ctrl.root.nodes.length === 0"
+                    class="se-tree__nodes--nodata"
+                    data-translate="se.ytree.no.nodes.to.display"
+                ></li>
+
+                <li
+                    class="se-tree__nodes--item"
+                    data-ng-repeat="node in $ctrl.root.nodes"
+                    data-ui-tree-node
+                    data-ng-include="'treeNodeRendererTemplate.html'"
+                ></li>
+            </ol>
+        </div>
+    </div>
+</div>

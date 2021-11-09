@@ -1,0 +1,71 @@
+<div
+    class="toolbar-action se-workflow-inbox-container"
+    data-uib-dropdown
+    data-auto-close="outsideClick"
+    data-is-open="$ctrl.actionItem.isOpen"
+    data-item-key="{{ $ctrl.actionItem.key }}"
+    data-on-toggle="$ctrl.onDropdownToggle(open)"
+>
+    <button
+        type="button"
+        class="se-workflow-inbox-toggle toolbar-action--button--compact"
+        data-uib-dropdown-toggle
+        aria-pressed="false"
+    >
+        <span class="se-toolbar-actions__icon sap-icon--task"></span>
+        <workflow-inbox-badge></workflow-inbox-badge>
+    </button>
+    <div
+        data-uib-dropdown-menu
+        data-ng-class="{
+            'se-toolbar__dropdown--right': $ctrl.actionItem.dropdownPosition==='right',
+            'se-toolbar__dropdown--center': $ctrl.actionItem.dropdownPosition==='center',
+            'se-toolbar__dropdown--left': $ctrl.actionItem.dropdownPosition==='left'}"
+        class="toolbar-action--include--compact"
+    >
+        <div data-ng-if="$ctrl.actionItem.isOpen" class="se-workflow-inbox">
+            <div class="se-workflow-inbox-header">
+                <div
+                    class="se-workflow-inbox-header__title"
+                    data-translate="se.cms.workflow.toolbar.inbox"
+                ></div>
+            </div>
+
+            <div class="se-workflow-inbox-tasks se-cms-dev-workflow-inbox-tasks fd-panel__body">
+                <div
+                    data-ng-if="!$ctrl.tasksNotReady && $ctrl.totalNumberOfTasks === 0"
+                    class="se-workflow-inbox-tasks__no-tasks"
+                >
+                    <img src="static-resources/images/Inbox.svg" alt="empty-inbox" img />
+                    <span
+                        class="se-workflow-inbox__empty-inbox-message"
+                        data-translate="se.cms.workflow.toolbar.inbox.emptyinbox.message"
+                    ></span>
+                    <span
+                        class="se-workflow-inbox__empty-inbox-message-alt"
+                        data-translate="se.cms.workflow.toolbar.inbox.emptyinbox.message.alt"
+                    ></span>
+                </div>
+                <div data-ng-if="$ctrl.tasksNotReady">
+                    <div class="spinner-sm spinner-light">Loading...</div>
+                </div>
+                <se-infinite-scrolling
+                    class="se-version-panel__infinite-scroll"
+                    [page-size]="$ctrl.pageSize"
+                    [fetch-page]="$ctrl.loadInboxTasks"
+                    [context]="$ctrl"
+                >
+                    <div
+                        class="se-workflow-inbox-task se-cms-dev-workflow-inbox-task"
+                        data-ng-repeat="item in $ctrl.items track by $index"
+                    >
+                        <workflow-inbox-task
+                            id="workflow-inbox-task-{{$index}}"
+                            data-task="item"
+                        ></workflow-inbox-task>
+                    </div>
+                </se-infinite-scrolling>
+            </div>
+        </div>
+    </div>
+</div>

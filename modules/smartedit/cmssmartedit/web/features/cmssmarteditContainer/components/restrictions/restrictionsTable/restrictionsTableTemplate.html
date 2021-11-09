@@ -1,0 +1,52 @@
+<div class="se-restriction-table-wrapper se-restriction-table-left {{$ctrl.customClass}}">
+    <div
+        class="se-restrictions-list fd-menu__list fd-menu__list--separated"
+        data-ng-if="$ctrl.restrictions.length > 0"
+    >
+        <div
+            id="restriction-{{$index+1}}"
+            data-ng-repeat="restriction in $ctrl.restrictions"
+            class="se-restriction__item fd-menu__item"
+        >
+            <div class="se-restrictions-list--content" data-ng-click="$ctrl.onSelect(restriction)">
+                <p
+                    class="se-restriction__item-name ng-class:{'error-input':$ctrl.isInError($index)}"
+                >
+                    {{ restriction.name }}
+                </p>
+                <div
+                    class="se-restriction__item-type-and-id"
+                    data-ng-class="{'error-input':$ctrl.isInError($index)}"
+                >
+                    {{ restriction.typeCode }}
+                </div>
+                <div
+                    class="se-restriction__item-description ng-class:{'error-input':$ctrl.isInError($index)}"
+                    title="{{ restriction.description }}"
+                >
+                    {{ restriction.description }}
+                </div>
+
+                <div
+                    id="restrictionPartOfWorkflow"
+                    data-ng-if="!restriction.$$canBeEdited"
+                    data-translate="se.cms.restrictions.editor.part.of.workflow"
+                ></div>
+            </div>
+            <div data-ng-if="$ctrl.editable">
+                <se-dropdown-menu
+                    [dropdown-items]="restriction.$$actions || $ctrl.defaultActions"
+                    [selected-item]="restriction"
+                    [placement]="'bottom-start'"
+                    class="se-restriction__item-more-btn"
+                ></se-dropdown-menu>
+            </div>
+        </div>
+    </div>
+    <div data-ng-if="$ctrl.restrictions.length === 0" class="se-restrictions-list--empty">
+        <span
+            class="se-restrictions-list--empty__message"
+            data-translate="se.cms.restrictions.emptylist.message"
+        ></span>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+# Create Integration Object specific Groups
+INSERT_UPDATE UserGroup; UID[unique = true]         ; locname[lang = en]              ;
+                       ; integrationmonitoringgroup ; Integration Monitoring IO Group ;
+                       ; integrationservicegroup    ; Integraton Service IO Group     ;
+                       ; outboundsyncgroup          ; Outbound Sync IO Group          ;
+                       ; scriptservicegroup         ; Script Service IO Group         ;
+                       ; webhookservicegroup        ; Webhook Service IO Group        ;
+
+# Define new FlexibleSearch Restrictions
+INSERT_UPDATE SearchRestriction; code[unique = true]                     ; name[lang = en]                        ; query                                                                                                                                                                                                                                ; principal(UID)       ; restrictedType(code); active; generate
+                               ; inboundMonitoringIntegrationVisibility  ; Inbound Monitoring IO Restriction      ; ({code}='InboundIntegrationMonitoring' AND EXISTS ( {{ select {ug:PK} from {UserGroup as ug} where {ug:PK} IN (?session.user.groups) and {ug:uid} = 'integrationmonitoringgroup' }} )) OR ({code}!='InboundIntegrationMonitoring')   ; integrationusergroup ; IntegrationObject   ; true  ; true
+                               ; outboundMonitoringIntegrationVisibility ; Outbound Monitoring IO Restriction     ; ({code}='OutboundIntegrationMonitoring' AND EXISTS ( {{ select {ug:PK} from {UserGroup as ug} where {ug:PK} IN (?session.user.groups) and {ug:uid} = 'integrationmonitoringgroup' }} )) OR ({code}!='OutboundIntegrationMonitoring') ; integrationusergroup ; IntegrationObject   ; true  ; true
+                               ; integrationServiceVisibility            ; Integration Service IO Restriction     ; ({code}='IntegrationService' AND EXISTS ( {{ select {ug:PK} from {UserGroup as ug} where {ug:PK} IN (?session.user.groups) and {ug:uid} = 'integrationservicegroup' }} )) OR ({code}!='IntegrationService')                          ; integrationusergroup ; IntegrationObject   ; true  ; true
+                               ; outboundChannelConfigVisibility         ; Outbound Channel Config IO Restriction ; ({code}='OutboundChannelConfig' AND EXISTS ( {{ select {ug:PK} from {UserGroup as ug} where {ug:PK} IN (?session.user.groups) and {ug:uid} = 'outboundsyncgroup' }} )) OR ({code}!='OutboundChannelConfig')                          ; integrationusergroup ; IntegrationObject   ; true  ; true
+                               ; scriptServiceVisibility                 ; Script Service IO Restriction          ; ({code}='ScriptService' AND EXISTS ( {{ select {ug:PK} from {UserGroup as ug} where {ug:PK} IN (?session.user.groups) and {ug:uid} = 'scriptservicegroup' }} )) OR ({code}!='ScriptService')                                         ; integrationusergroup ; IntegrationObject   ; true  ; true
+                               ; webhookServiceVisibility                ; Webhook Service IO Restriction         ; ({code}='WebhookService' AND EXISTS ( {{ select {ug:PK} from {UserGroup as ug} where {ug:PK} IN (?session.user.groups) and {ug:uid} = 'webhookservicegroup' }} )) OR ({code}!='WebhookService')                                      ; integrationusergroup ; IntegrationObject   ; true  ; true
+                               ; runtimeAttributeVisibility              ; Runtime Attribute IO Restriction       ; ({code}='RuntimeAttributeService' AND EXISTS ( {{ select {ug:PK} from {UserGroup as ug} where {ug:PK} IN (?session.user.groups) and {ug:uid} = 'integrationservicegroup' }} )) OR ({code}!='RuntimeAttributeService')                ; integrationusergroup ; IntegrationObject   ; true  ; true
+
+
+$START_USERRIGHTS
+Type      ; UID                        ; MemberOfGroups ; Target                   ; read ; change ; create ; remove ; change_perm
+UserGroup ; integrationmonitoringgroup ;                ;                          ;      ;        ;        ;        ;
+          ;                            ;                ;
+          ;                            ;                ; InboundRequest           ; +    ;        ;        ;        ;
+          ;                            ;                ; IntegrationRequestStatus ; +    ;        ;        ;        ;
+          ;                            ;                ; InboundRequestError      ; +    ;        ;        ;        ;
+          ;                            ;                ; InboundUser              ; +    ;        ;        ;        ;
+          ;                            ;                ; User                     ; +    ;        ;        ;        ;
+          ;                            ;                ; OutboundRequest          ; +    ;        ;        ;        ;
+$END_USERRIGHTS

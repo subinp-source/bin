@@ -1,0 +1,12 @@
+<ng-container #container>
+    <ng-template #defaultTemplate let-shortcutLink>
+        <div class="se-shortcut-link">
+            <a
+                class="se-shortcut-link__item"
+                [ngClass]="{'se-shortcut-link__item--active': shortcutLink.active}"
+                (click)="onClick(shortcutLink)"
+                >{{shortcutLink.titleI18nKey | translate}}</a
+            >
+        </div>
+    </ng-template>
+</ng-container>

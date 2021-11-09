@@ -1,0 +1,124 @@
+[
+	{
+		"testId": 1,
+		"description": "facet without id",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"expression": "color"
+				}
+			]
+		}
+	},
+	{
+		"testId": 2,
+		"description": "facet without expression",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "testFacet"
+				}
+			]
+		}
+	},
+	{
+		"testId": 3,
+		"description": "facet with empty expression",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "testFacet",
+					"expression": ""
+				}
+			]
+		}
+	},
+	{
+		"testId": 4,
+		"description": "facet with invalid expression",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "testFacet",
+					"expression": "-$!#-"
+				}
+			]
+		}
+	},
+	{
+		"testId": 5,
+		"description": "facet with not existing expression",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "testFacet",
+					"expression": "notExisting"
+				}
+			]
+		}
+	},
+	{
+		"testId": 6,
+		"description": "facet with TEXT expression",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "testFacet",
+					"expression": "field_text"
+				}
+			]
+		}
+	},
+	{
+		"testId": 9,
+		"description": "facet with negative top buckets size",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "testFacet",
+					"expression": "color",
+					"topBucketsSize": -1
+				}
+			]
+		}
+	},
+	{
+		"testId": 10,
+		"description": "facet with invalid sort id",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "testFacet",
+					"expression": "color",
+					"sort": {
+						"id": "-$!#-"
+					}
+				}
+			]
+		}
+	},
+	{
+		"testId": 11,
+		"description": "facet with not existing sort id",
+		"data": {
+			"facets": [
+				{
+					"type": "termBuckets",
+					"id": "testFacet",
+					"expression": "color",
+					"sort": {
+						"id": "notExisting"
+					}
+				}
+			]
+		}
+	}
+]

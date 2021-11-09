@@ -1,0 +1,460 @@
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/cockpitng/cng/scss/cockpitng-globals.scss';
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/backoffice/scss/backoffice-variables.scss';
+
+ @import "support/_login-variables.scss";
+
+html, body {
+    height: auto;
+    min-height: 100%
+}
+
+body {
+    padding: 0;
+
+    @if $login__body-logo--bg {
+        background: $login__body-logo--bg;
+
+        @media (max-height: $login__default--bp-xs) and (max-width: $login__default--bp-m) {
+            background-image: none;
+        }
+    }@else {
+        background: $login__body--bg-color;
+    }
+
+    &.gecko {
+        .login_grid select option {
+            height: $login__grid-label--height;
+            padding-top: ($login__grid-label--height - $login__input-box--font-size)/2 - nth($login__input-box--padding, 1);
+            display: block;
+
+            &:hover, &:focus, &:active, &:checked {
+                outline: none;
+                outline-color: transparent;
+                box-shadow: inset $login__grid-label--height $login__grid-label--height rgba($white, .5);
+            }
+        }
+    }
+}
+
+.z-page,
+.z-window-embedded,
+.z-window-content {
+    background: $login__z-window--bg;
+    border: none;
+}
+
+.z-window-content > div {
+    overflow: auto;
+}
+
+.clearfix {
+    *zoom: 1;
+
+    &:before,
+    &:after {
+        display: table;
+        content: "";
+        line-height: 0;
+    }
+
+    &:after {
+        clear: both;
+    }
+}
+
+.login{
+    &-container {
+        background: $login__container--bg-color;
+        width: auto;
+        position: absolute;
+        left: $login__container--left;
+        right: $login__container--right;
+        top: $login__container--top;
+        transform: $login__container--transform;
+        margin: $login__container--margin;
+        max-width: $login__container--max-width;
+        width: $login__container--width;
+        min-width: $login__container--min-width;
+        border-radius: $login__container--border-radius;
+        box-shadow: $login__container--box-shadow;
+        padding: $login__container--padding;
+
+        @media (max-height: $login__default--bp-xs) {
+            transform: $login__container-bp-xs--transform;
+            top: 0;
+        }
+    }
+
+    &-wrapper {        
+        &:before {
+            content: '';
+            display: block;
+            background: $login__logo--bg;
+            background-size: contain;
+            height: $login__logo--height;
+            margin-bottom: $login__logo-container--marging-bottom;
+        }
+        
+        .login_grid {
+            padding-top: 0;
+            margin-top: 0;
+        }
+    }
+
+    &-content {
+        min-height: $login__content--min-height;
+        text-align: center;
+
+        .z-label {
+            display: block;
+            margin: $login__content-label--margin;
+            font-weight: normal;
+            min-height: $login__content-label--min-height;
+        }
+    }
+
+    &_grid {
+        margin: $login__grid--margin;
+        width: $login__grid--width;
+
+        @media (max-width: $login__grid--bp-s) {
+            width: auto;
+        //    padding-left: $login__grid-bp-s--padding-left;
+        }
+        @media (max-width: $login__grid--bp-xs) {
+            padding-left: $login__grid-bp-xs--padding-left;
+        }
+
+        .z-grid {
+            border: none;
+            overflow: visible;
+
+            .z-hbox-separator {
+                width: $login__grid-hbox-separator-width;
+            }
+        }
+
+        a,
+        button {
+            &.y-btn-primary {
+                background-color: $login__primary-button--bg-color;
+                color: $login__primary-button--color;
+                height: $login__primary-button--height;
+                min-height: $login__primary-button--height;
+                line-height: $login__primary-button--line-height;
+                text-transform: $login__primary-button--text-transform;
+                border-radius: $login__primary-button--border-radius;
+                -webkit-flex: 0 0 auto;
+                -ms-flex: 0 0 auto;
+                flex: 0 0 auto;
+
+                &:hover,
+                &:focus,
+                &:active {
+                    background-color: $login__primary-button-hover--bg-color;
+                }
+            }
+        }
+
+        form {
+            margin: $login__grid-form--margin;
+        }
+
+        label,
+        .z-label {
+            display: block;
+            font-weight: normal;
+            font-size: $login__grid-label--font-size;
+            line-height: $login__grid-label--line-height;
+            padding-right: $login__grid-label--padding-right;
+            color: $login__default-label--color;
+            width: $login__grid-label--width;
+
+            @media (max-width: $login__grid--bp-s) {
+                width: auto;
+                min-width: $login__grid-label-bp-s--width;
+            }
+            @media (max-width: $login__grid--bp-xs) {
+                min-width: $login__grid-label-bp-xs--width;
+            }
+
+            &.z-radio-content {
+                display: inline-block;
+                width: auto;
+            }
+        }
+
+        .wrong_credentials_cnt .z-label {
+            width: auto;
+            color: $white;
+        }
+
+        .z-checkbox-content {
+            margin: 3px 0 0 0;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: $login__input-box--width;
+            border: $login__input-box--border;
+            color: $login__input-box--color;
+            display: inline-block;
+            padding: $login__input-box--padding;
+            // margin-bottom: $login__input-box--margin-bottom;
+            font-size: $login__input-box--font-size;
+            border-radius: $login__input-box--border-radius;
+            transition: border linear .3s;
+            box-sizing: border-box;
+            background: $login__input-box--bg-color;
+            box-shadow: $login__input-box--box-shadow;
+            height: $login__input-box--height;
+        }
+
+        select {
+            width: $login__input-box--width;
+            height: $login__select-box--height;
+            border: $login__input-box--border;
+            color: $login__input-box--color;
+            display: inline-block;
+            padding: $login__input-box--padding;
+            // margin-bottom: $login__input-box--margin-bottom;
+            font-size: $login__input-box--font-size;
+            border-radius: $login__select-box--border-radius;
+            transition: border .3s;
+            appearance: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            outline: none;
+            background: $login__select-box--bg;
+            background-color: $login__select-box--bg-color;
+
+            &::-ms-expand {
+                display: none;
+            }
+        }
+
+        input:-webkit-autofill{
+            color: $login__input-box-focus--color !important;
+            border: $login__input-box-focus--border;
+            box-shadow: $login__input-box-focus--box-shadow;
+            outline: none;
+            @if $login__input-box-focus--bg-color {
+                background-color: $login__input-box-focus--bg-color;
+            }
+        }
+
+        input:focus,
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        select:focus,
+        select:active {
+            color: $login__input-box-focus--color !important;
+            border: $login__input-box-focus--border;
+            box-shadow: $login__input-box-focus--box-shadow;
+            outline: none;
+            @if $login__input-box-focus--bg-color {
+                background-color: $login__input-box-focus--bg-color;
+            }
+        }
+
+        select:-moz-focusring, 
+        select::-moz-focus-inner {
+            outline: 0;
+            outline-color: transparent;
+            color: transparent !important;
+            text-shadow: 0 0 0 $login__input-box-focus--color !important;
+            box-shadow: $login__input-box-focus--box-shadow;
+            border: $login__input-box-focus--border;
+        }
+
+        .z-spinner,
+        .z-doublespinner {
+            background: none;
+            width: $login__grid-spinner--width;
+        }
+
+        .z-spinner-button,
+        .z-doublespinner-button {
+            background: $login__grid-spinner-button--bg-color;
+            height: 26px;
+        }
+
+        .z-spinner > input[type="text"],
+        .z-spinner > input[type="password"],
+        .z-doublespinner > input[type="text"],
+        .z-doublespinner > input[type="password"] {
+            width: $login__grid-spinner-input-box--width;
+        }
+
+        .z-spinner .z-spinner-button:hover {
+            background-color: $login__grid-spinner-button-hover--bg-color;
+        }
+
+        .z-spinner .z-spinner-button-lower,
+        .z-doublespinner .z-doublespinner-button-lower,
+        .z-spinner .z-spinner-button:hover .z-spinner-button-lower,
+        .z-doublespinner .z-doublespinner-button:hover .z-doublespinner-button-lower {
+            margin-top: 7px;
+        }
+        & table {
+            width: 100%;
+            &.z-hbox table {
+                padding-bottom: $login__grid-form-row--padding-bottom;
+
+                td:first-child {
+                    width: $login__grid-form-label--width;
+                    vertical-align: middle;
+                }
+            }
+        }
+    }
+
+    &_grid &-headline {
+        font-size: $login__content-main-label--font-size;
+        color: $login__content-main-label--color;
+        line-height: $_login__content-label--line-height;
+        padding-right: 0;
+        width: auto;
+    }
+    &_grid &-info {
+        font-size: $login__content-info-label--font-size;
+        color: $login__default-label--color;
+        padding-right: 0;
+        line-height: $_login__content-label--line-height;
+        width: auto;
+    }
+
+
+    &-checkbox {
+        margin: 15px 0 10px 0;
+        display: block;
+
+        label,
+        input {
+            float: left;
+        }
+
+        input {
+            margin-right: 10px;
+        }
+    }
+    &-footer {
+        padding: $login__footer--padding;
+        text-align: center;
+
+        &_row {
+            padding-left: 0;
+            padding-right: 0;
+            text-align: left;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+
+            > .login_btn:only-child {
+                margin-left: $login__grid-label--width + $login__grid-hbox-separator-width;
+                
+                @media (max-width: $login__grid--bp-s) {
+                    margin-left: $login__grid-label-bp-s--width + $login__grid-hbox-separator-width;
+                }
+                @media (max-width: $login__grid--bp-xs) {
+                    margin-left: $login__grid-label-bp-xs--width + $login__grid-hbox-separator-width;
+                }
+            }
+            > .singlesignon_login_cell {
+                display: block;
+                margin-right: $login__footer-sso-link--margin-right;
+                -webkit-flex: 1 1 100%;
+                -ms-flex: 1 1 100%;
+                flex: 1 1 100%;
+                & > a {
+                    color: $login__footer-sso-link--color;
+                    text-decoration: none;
+                }
+
+                @media (max-width: $login__grid--bp-s) {
+                    width: $login__grid-label-bp-s--width;
+                }
+                @media (max-width: $login__grid--bp-xs) {
+                    width: $login__grid-label-bp-xs--width;
+                }
+            }
+        }
+    }
+}
+
+.z-radiogroup {
+    line-height: $editor-defaults__inline-box--height;
+
+    > .z-hlayout {
+        margin-bottom: 5px;
+        padding-left: 2px;
+        white-space: inherit;
+        width: $login__radio--width;
+    }
+
+    input:checked + .z-radio-content:before {
+        box-shadow: $login__radio-checked--box-shadow;
+    }
+    .z-radio {
+        display: inline-block;
+
+        &-content {
+            line-height: 24px;
+            min-height: auto;
+            padding-top: 3px;
+
+            .safari & {
+                padding-top: 9px;
+            }
+        }
+    }
+}
+
+.top_area {
+    .compRowCnt {
+        width: 8em;
+        // margin-bottom: 8px;
+    }
+
+    .compRowCnt + td > .compRowCnt,
+    .z-hbox-separator + td > .compRowCnt {
+        width: auto;
+    }
+}
+
+.access-denied-cnt,
+.wrong_credentials_cnt {
+    background-color: $login__error-notification-box--bg-color;
+    margin: $login__error-notification-box--margin;
+    padding: $login__error-notification-box--padding;
+    border-radius: $login__error-notification-box--border-radius;
+
+    &:before {
+        content: '';
+        width: $login__error-notification-box-icon--size;
+        height: $login__error-notification-box-icon--size;
+        background: $login__error-notification-box-icon--bg;
+        margin-right: $login__error-notification-box-icon--margin-right;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    
+    .z-label {
+        width: auto;
+        color: $login__error-notification-box-label--color;
+        font-weight: $login__error-notification-box-label--font-weight;
+        display: inline-block;
+        vertical-align: middle;
+        margin: auto;
+    }
+}
+
+.access-denied-cnt {
+    text-align: center;
+}

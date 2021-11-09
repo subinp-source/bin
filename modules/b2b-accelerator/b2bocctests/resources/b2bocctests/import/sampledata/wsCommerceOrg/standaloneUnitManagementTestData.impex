@@ -1,0 +1,40 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+$defaultPassword = 1234
+
+INSERT_UPDATE SearchRestriction; code[unique = true]  ; name[lang = en]               ; query                                                                                                                                                                                                                                                                            ; principal(UID); restrictedType(code); active; generate
+                               ; branch_restriction   ; branch_restriction            ; {item:pk} IN (?session.branch) and  ( {item:active} = 1 OR EXISTS ( {{ select {ug:PK} from {UserGroup as ug} where {ug:PK} IN (?session.user.groups) and {ug:uid} = 'b2badmingroup' }} ))                                                                                        ; b2bgroup      ; B2BUnit             ; true  ; true
+                               ; employee_restriction ; Restrict employees visibility ; EXISTS ({{ SELECT {pk} FROM {PrincipalGroupRelation} WHERE {source}={item:pk} AND {target} IN ( ?session.branch ) }} ) AND ( {item:active} = 1 OR EXISTS ( {{ select {ug:PK} from {UserGroup as ug} where {ug:PK} IN (?session.user.groups) and {ug:uid} = 'b2badmingroup' }} )) ; b2bgroup      ; B2BCustomer         ; true  ; true
+
+
+INSERT_UPDATE B2BUnit; description     ; uid[unique = true]; name            ; locName[lang = en]; groups(uid)   ; active[default = true];
+                     ; Rustic Custom   ; Rustic_Custom     ; Rustic Custom   ; Rustic Custom     ; Rustic        ;                       ;
+                     ; Rustic Custom 2 ; Rustic_Custom_2   ; Rustic Custom 2 ; Rustic Custom 2   ; Rustic_Retail ;                       ;
+                     ; Rustic Custom 3 ; Rustic_Custom_3   ; Rustic Custom 3 ; Rustic Custom 3   ; Rustic        ; false                 ;
+                     ; Rustic Custom 4 ; Rustic_Custom_4   ; Rustic Custom 4 ; Rustic Custom 4   ; Rustic        ;                       ;
+
+INSERT_UPDATE B2BUnit; uid[unique = true]; approvalProcessCode; &B2BUnitID      ; addresses(&addId); approvers(uid)[mode = append]
+                     ; Rustic            ; accApproval        ; Rustic          ; Addr1,Addr2      ; hanna.schmidt@rustic-hw.com ;
+                     ; Rustic_Retail     ; accApproval        ; Rustic_Retail   ; Addr3,Addr4      ; james.bell@rustic-hw.com    ;
+                     ; Rustic_Custom     ; accApproval        ; Rustic_Custom   ;                  ;                             ;
+                     ; Rustic_Custom_2   ; accApproval        ; Rustic_Custom_2 ;                  ;                             ;
+                     ; Rustic_Custom_3   ; accApproval        ; Rustic_Custom_3 ;                  ;                             ;
+                     ; Rustic_Custom_4   ; accApproval        ; Rustic_Custom_4 ;                  ;                             ;
+                     ; Pronto            ; accApproval        ; Pronto          ;                  ;                             ;
+
+INSERT_UPDATE Address; streetname[unique = true]; postalcode[unique = true]; town          ; country(isocode); billingAddress; contactAddress; shippingAddress; unloadingAddress; firstname; lastname; email                       ; owner(&B2BUnitID)[unique = true]; &addId;
+                     ; 999 South Wacker Drive   ; 60606                    ; Chicago       ; US              ; TRUE          ; TRUE          ; TRUE           ; TRUE            ; Hanna    ; Schmidt ; hanna.schmidt@rustic-hw.com ; Rustic                          ; Addr1 ;
+                     ; 3000 Lombard Street      ; 94123                    ; San Francisco ; US              ; TRUE          ; TRUE          ; TRUE           ; TRUE            ; Hanna    ; Schmidt ; hanna.schmidt@rustic-hw.co  ; Rustic                          ; Addr2 ;
+                     ; 700 E 50th Street        ; 10022                    ; New York      ; US              ; TRUE          ; TRUE          ; TRUE           ; TRUE            ; James    ; Bell    ; james.bell@rustic-hw.com    ; Rustic_Retail                   ; Addr3 ;
+                     ; 3000 Canyon Lake Drive   ; 90068                    ; Los Angeles   ; US              ; TRUE          ; TRUE          ; TRUE           ; TRUE            ; Anil     ; Gupta   ; anil.gupta@rustic-hw.com    ; Rustic_Retail                   ; Addr4 ;
+
+INSERT_UPDATE B2BCustomer; description; customerID                           ; uid[unique = true]               ; originalUid                      ; email                            ; name           ; title(code); groups(uid)[mode = append]     ; permissionGroups(uid); sessionCurrency(isocode)[default = 'USD']; password[default = $defaultPassword];
+                         ; Admin A    ; 1a2a41a3-c54c-4ce8-a2d2-0324e1c32a20 ; linda.wolf@rustic-retail-hw.com  ; linda.wolf@rustic-retail-hw.com  ; linda.wolf@rustic-retail-hw.com  ; Linda Wolf     ; ms         ; Rustic_Retail, b2badmingroup   ;                      ;                                          ;
+                         ; Approver B ; 1a2a41a3-c54c-4ce8-a2d2-0324e1c32a22 ; james.bell@rustic-hw.com         ; james.bell@rustic-hw.com         ; james.bell@rustic-hw.com         ; James Bell     ; mr         ; Rustic_Retail,b2bapprovergroup ;                      ;                                          ;                                     ;
+                         ; Manager A  ; 1a2a41a3-c54c-4ce8-a2d2-0324e1c32a23 ; akiro.nakamura@rustic-hw.com     ; akiro.nakamura@rustic-hw.com     ; akiro.nakamura@rustic-hw.com     ; Akiro Nakamura ; mr         ; Rustic, b2bmanagergroup        ;                      ;                                          ;                                     ;
+                         ; Manager B  ; 1a2a41a3-c54c-4ce8-a2d2-0324e1c32a24 ; anil.gupta@rustic-hw.com         ; anil.gupta@rustic-hw.com         ; anil.gupta@rustic-hw.com         ; Anil Gupta     ; mr         ; Rustic_Retail,b2bmanagergroup  ;                      ;                                          ;                                     ;
+                         ; Approver A ; 1a2a41a3-c54c-4ce8-a2d2-0324e1c32a25 ; hanna.schmidt@rustic-hw.com      ; hanna.schmidt@rustic-hw.com      ; hanna.schmidt@rustic-hw.com      ; Hanna Schmidt  ; ms         ; Rustic,b2bapprovergroup        ;                      ;                                          ;                                     ;
+                         ; Customer A ; 1a2a41a3-c54c-4ce8-a2d2-0324e1c32a26 ; mark.rivers@rustic-retail-hw.com ; mark.rivers@rustic-retail-hw.com ; mark.rivers@rustic-retail-hw.com ; Mark Rivers    ; mr         ; Rustic_Retail,b2bcustomergroup ;                      ;                                          ;                                     ; ; ;
+

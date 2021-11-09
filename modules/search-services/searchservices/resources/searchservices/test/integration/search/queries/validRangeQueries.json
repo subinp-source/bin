@@ -1,0 +1,1181 @@
+[
+	{
+		"testId": 1,
+		"description": "'range' query with same from and to values doesn't match with INTEGER expression",
+		"data": {
+			"type": "range",
+			"expression": "field_integer",
+			"from": 0,
+			"includeFrom": true,
+			"to": 0,
+			"includeTo": true
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 2,
+		"description": "'range' query with same from and to values matches with INTEGER expression",
+		"data": {
+			"type": "range",
+			"expression": "field_integer",
+			"from": 20,
+			"includeFrom": true,
+			"to": 20,
+			"includeTo": true
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	},
+	{
+		"testId": 3,
+		"description": "'range' query with different from and to values doesn't match with INTEGER expression",
+		"data": {
+			"type": "range",
+			"expression": "field_integer",
+			"from": 100,
+			"includeFrom": true,
+			"to": 200,
+			"includeTo": true
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 4,
+		"description": "'range' query with from value higher that to value doesn't match with INTEGER expression",
+		"data": {
+			"type": "range",
+			"expression": "field_integer",
+			"from": 30,
+			"includeFrom": true,
+			"to": 10,
+			"includeTo": true
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 5,
+		"description": "'range' query with different from and to values, include from and include to values, matches with INTEGER expression",
+		"data": {
+			"type": "range",
+			"expression": "field_integer",
+			"from": 10,
+			"includeFrom": true,
+			"to": 30,
+			"includeTo": true
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2",
+			"doc3"
+		]
+	},
+	{
+		"testId": 6,
+		"description": "'range' query with different from and to values, include from value, matches with INTEGER expression",
+		"data": {
+			"type": "range",
+			"expression": "field_integer",
+			"from": 10,
+			"includeFrom": true,
+			"to": 30,
+			"includeTo": false
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2"
+		]
+	},
+	{
+		"testId": 7,
+		"description": "'range' query with different from and to values, include to value, matches with INTEGER expression",
+		"data": {
+			"type": "range",
+			"expression": "field_integer",
+			"from": 10,
+			"includeFrom": false,
+			"to": 30,
+			"includeTo": true
+		},
+		"matchingDocuments": [
+			"doc2",
+			"doc3"
+		]
+	},
+	{
+		"testId": 8,
+		"description": "'range' query with different from and to values, matches with INTEGER expression",
+		"data": {
+			"type": "range",
+			"expression": "field_integer",
+			"from": 10,
+			"includeFrom": false,
+			"to": 30,
+			"includeTo": false
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	},
+	{
+		"testId": 9,
+		"description": "'range' query with same from and to values doesn't match with multi-valued INTEGER expression",
+		"data": {
+			"type": "range",
+			"expression": "field_integer_mv",
+			"from": 0,
+			"includeFrom": true,
+			"to": 0,
+			"includeTo": true
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 10,
+		"description": "'range' query with same from and to values matches with multi-valued INTEGER expression",
+		"data": {
+			"type": "range",
+			"expression": "field_integer_mv",
+			"from": 20,
+			"includeFrom": true,
+			"to": 20,
+			"includeTo": true
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	},
+	{
+		"testId": 11,
+		"description": "'range' query with different from and to values doesn't match with multi-valued INTEGER expression",
+		"data": {
+			"type": "range",
+			"expression": "field_integer_mv",
+			"from": 100,
+			"includeFrom": true,
+			"to": 200,
+			"includeTo": true
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 12,
+		"description": "'range' query with from value higher that to value doesn't match with multi-valued INTEGER expression",
+		"data": {
+			"type": "range",
+			"expression": "field_integer_mv",
+			"from": 30,
+			"includeFrom": true,
+			"to": 15,
+			"includeTo": true
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 13,
+		"description": "'range' query with different from and to values, include from and include to values, matches with multi-valued INTEGER expression",
+		"data": {
+			"type": "range",
+			"expression": "field_integer_mv",
+			"from": 15,
+			"includeFrom": true,
+			"to": 30,
+			"includeTo": true
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2",
+			"doc3"
+		]
+	},
+	{
+		"testId": 14,
+		"description": "'range' query with different from and to values, include from value, matches with multi-valued INTEGER expression",
+		"data": {
+			"type": "range",
+			"expression": "field_integer_mv",
+			"from": 15,
+			"includeFrom": true,
+			"to": 30,
+			"includeTo": false
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2"
+		]
+	},
+	{
+		"testId": 15,
+		"description": "'range' query with different from and to values, include to value, matches with multi-valued INTEGER expression",
+		"data": {
+			"type": "range",
+			"expression": "field_integer_mv",
+			"from": 15,
+			"includeFrom": false,
+			"to": 30,
+			"includeTo": true
+		},
+		"matchingDocuments": [
+			"doc2",
+			"doc3"
+		]
+	},
+	{
+		"testId": 16,
+		"description": "'range' query with different from and to values, matches with multi-valued INTEGER expression",
+		"data": {
+			"type": "range",
+			"expression": "field_integer_mv",
+			"from": 15,
+			"includeFrom": false,
+			"to": 30,
+			"includeTo": false
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	},
+	{
+		"testId": 17,
+		"description": "'range' query with same from and to values doesn't match with LONG expression",
+		"data": {
+			"type": "range",
+			"expression": "field_long",
+			"from": 0,
+			"includeFrom": true,
+			"to": 0,
+			"includeTo": true
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 18,
+		"description": "'range' query with same from and to values matches with LONG expression",
+		"data": {
+			"type": "range",
+			"expression": "field_long",
+			"from": 20,
+			"includeFrom": true,
+			"to": 20,
+			"includeTo": true
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	},
+	{
+		"testId": 19,
+		"description": "'range' query with different from and to values doesn't match with LONG expression",
+		"data": {
+			"type": "range",
+			"expression": "field_long",
+			"from": 100,
+			"includeFrom": true,
+			"to": 200,
+			"includeTo": true
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 20,
+		"description": "'range' query with from value higher that to value doesn't match with LONG expression",
+		"data": {
+			"type": "range",
+			"expression": "field_long",
+			"from": 30,
+			"includeFrom": true,
+			"to": 10,
+			"includeTo": true
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 21,
+		"description": "'range' query with different from and to values, include from and include to values, matches with LONG expression",
+		"data": {
+			"type": "range",
+			"expression": "field_long",
+			"from": 10,
+			"includeFrom": true,
+			"to": 30,
+			"includeTo": true
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2",
+			"doc3"
+		]
+	},
+	{
+		"testId": 22,
+		"description": "'range' query with different from and to values, include from value, matches with LONG expression",
+		"data": {
+			"type": "range",
+			"expression": "field_long",
+			"from": 10,
+			"includeFrom": true,
+			"to": 30,
+			"includeTo": false
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2"
+		]
+	},
+	{
+		"testId": 23,
+		"description": "'range' query with different from and to values, include to value, matches with LONG expression",
+		"data": {
+			"type": "range",
+			"expression": "field_long",
+			"from": 10,
+			"includeFrom": false,
+			"to": 30,
+			"includeTo": true
+		},
+		"matchingDocuments": [
+			"doc2",
+			"doc3"
+		]
+	},
+	{
+		"testId": 24,
+		"description": "'range' query with different from and to values, matches with LONG expression",
+		"data": {
+			"type": "range",
+			"expression": "field_long",
+			"from": 10,
+			"includeFrom": false,
+			"to": 30,
+			"includeTo": false
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	},
+	{
+		"testId": 25,
+		"description": "'range' query with same from and to values doesn't match with multi-valued LONG expression",
+		"data": {
+			"type": "range",
+			"expression": "field_long_mv",
+			"from": 0,
+			"includeFrom": true,
+			"to": 0,
+			"includeTo": true
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 26,
+		"description": "'range' query with same from and to values matches with multi-valued LONG expression",
+		"data": {
+			"type": "range",
+			"expression": "field_long_mv",
+			"from": 20,
+			"includeFrom": true,
+			"to": 20,
+			"includeTo": true
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	},
+	{
+		"testId": 27,
+		"description": "'range' query with different from and to values doesn't match with multi-valued LONG expression",
+		"data": {
+			"type": "range",
+			"expression": "field_long_mv",
+			"from": 100,
+			"includeFrom": true,
+			"to": 200,
+			"includeTo": true
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 28,
+		"description": "'range' query with from value higher that to value doesn't match with multi-valued LONG expression",
+		"data": {
+			"type": "range",
+			"expression": "field_long_mv",
+			"from": 30,
+			"includeFrom": true,
+			"to": 15,
+			"includeTo": true
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 29,
+		"description": "'range' query with different from and to values, include from and include to values, matches with multi-valued LONG expression",
+		"data": {
+			"type": "range",
+			"expression": "field_long_mv",
+			"from": 15,
+			"includeFrom": true,
+			"to": 30,
+			"includeTo": true
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2",
+			"doc3"
+		]
+	},
+	{
+		"testId": 30,
+		"description": "'range' query with different from and to values, include from value, matches with multi-valued LONG expression",
+		"data": {
+			"type": "range",
+			"expression": "field_long_mv",
+			"from": 15,
+			"includeFrom": true,
+			"to": 30,
+			"includeTo": false
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2"
+		]
+	},
+	{
+		"testId": 31,
+		"description": "'range' query with different from and to values, include to value, matches with multi-valued LONG expression",
+		"data": {
+			"type": "range",
+			"expression": "field_long_mv",
+			"from": 15,
+			"includeFrom": false,
+			"to": 30,
+			"includeTo": true
+		},
+		"matchingDocuments": [
+			"doc2",
+			"doc3"
+		]
+	},
+	{
+		"testId": 32,
+		"description": "'range' query with different from and to values, matches with multi-valued LONG expression",
+		"data": {
+			"type": "range",
+			"expression": "field_long_mv",
+			"from": 15,
+			"includeFrom": false,
+			"to": 30,
+			"includeTo": false
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	},
+	{
+		"testId": 33,
+		"description": "'range' query with same from and to values doesn't match with FLOAT expression",
+		"data": {
+			"type": "range",
+			"expression": "field_float",
+			"from": 0,
+			"includeFrom": true,
+			"to": 0,
+			"includeTo": true
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 34,
+		"description": "'range' query with same from and to values matches with FLOAT expression",
+		"data": {
+			"type": "range",
+			"expression": "field_float",
+			"from": 20,
+			"includeFrom": true,
+			"to": 20,
+			"includeTo": true
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	},
+	{
+		"testId": 35,
+		"description": "'range' query with different from and to values doesn't match with FLOAT expression",
+		"data": {
+			"type": "range",
+			"expression": "field_float",
+			"from": 100,
+			"includeFrom": true,
+			"to": 200,
+			"includeTo": true
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 36,
+		"description": "'range' query with from value higher that to value doesn't match with FLOAT expression",
+		"data": {
+			"type": "range",
+			"expression": "field_float",
+			"from": 30,
+			"includeFrom": true,
+			"to": 10,
+			"includeTo": true
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 37,
+		"description": "'range' query with different from and to values, include from and include to values, matches with FLOAT expression",
+		"data": {
+			"type": "range",
+			"expression": "field_float",
+			"from": 10,
+			"includeFrom": true,
+			"to": 30,
+			"includeTo": true
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2",
+			"doc3"
+		]
+	},
+	{
+		"testId": 38,
+		"description": "'range' query with different from and to values, include from value, matches with FLOAT expression",
+		"data": {
+			"type": "range",
+			"expression": "field_float",
+			"from": 10,
+			"includeFrom": true,
+			"to": 30,
+			"includeTo": false
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2"
+		]
+	},
+	{
+		"testId": 39,
+		"description": "'range' query with different from and to values, include to value, matches with FLOAT expression",
+		"data": {
+			"type": "range",
+			"expression": "field_float",
+			"from": 10,
+			"includeFrom": false,
+			"to": 30,
+			"includeTo": true
+		},
+		"matchingDocuments": [
+			"doc2",
+			"doc3"
+		]
+	},
+	{
+		"testId": 40,
+		"description": "'range' query with different from and to values, matches with FLOAT expression",
+		"data": {
+			"type": "range",
+			"expression": "field_float",
+			"from": 10,
+			"includeFrom": false,
+			"to": 30,
+			"includeTo": false
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	},
+	{
+		"testId": 41,
+		"description": "'range' query with same from and to values doesn't match with multi-valued FLOAT expression",
+		"data": {
+			"type": "range",
+			"expression": "field_float_mv",
+			"from": 0,
+			"includeFrom": true,
+			"to": 0,
+			"includeTo": true
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 42,
+		"description": "'range' query with same from and to values matches with multi-valued FLOAT expression",
+		"data": {
+			"type": "range",
+			"expression": "field_float_mv",
+			"from": 20,
+			"includeFrom": true,
+			"to": 20,
+			"includeTo": true
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	},
+	{
+		"testId": 43,
+		"description": "'range' query with different from and to values doesn't match with multi-valued FLOAT expression",
+		"data": {
+			"type": "range",
+			"expression": "field_float_mv",
+			"from": 100,
+			"includeFrom": true,
+			"to": 200,
+			"includeTo": true
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 44,
+		"description": "'range' query with from value higher that to value doesn't match with multi-valued FLOAT expression",
+		"data": {
+			"type": "range",
+			"expression": "field_float_mv",
+			"from": 30,
+			"includeFrom": true,
+			"to": 15,
+			"includeTo": true
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 45,
+		"description": "'range' query with different from and to values, include from and include to values, matches with multi-valued FLOAT expression",
+		"data": {
+			"type": "range",
+			"expression": "field_float_mv",
+			"from": 15,
+			"includeFrom": true,
+			"to": 30,
+			"includeTo": true
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2",
+			"doc3"
+		]
+	},
+	{
+		"testId": 46,
+		"description": "'range' query with different from and to values, include from value, matches with multi-valued FLOAT expression",
+		"data": {
+			"type": "range",
+			"expression": "field_float_mv",
+			"from": 15,
+			"includeFrom": true,
+			"to": 30,
+			"includeTo": false
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2"
+		]
+	},
+	{
+		"testId": 47,
+		"description": "'range' query with different from and to values, include to value, matches with multi-valued FLOAT expression",
+		"data": {
+			"type": "range",
+			"expression": "field_float_mv",
+			"from": 15,
+			"includeFrom": false,
+			"to": 30,
+			"includeTo": true
+		},
+		"matchingDocuments": [
+			"doc2",
+			"doc3"
+		]
+	},
+	{
+		"testId": 48,
+		"description": "'range' query with different from and to values, matches with multi-valued FLOAT expression",
+		"data": {
+			"type": "range",
+			"expression": "field_float_mv",
+			"from": 15,
+			"includeFrom": false,
+			"to": 30,
+			"includeTo": false
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	},
+	{
+		"testId": 49,
+		"description": "'range' query with same from and to values doesn't match with DOUBLE expression",
+		"data": {
+			"type": "range",
+			"expression": "field_double",
+			"from": 0,
+			"includeFrom": true,
+			"to": 0,
+			"includeTo": true
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 50,
+		"description": "'range' query with same from and to values matches with DOUBLE expression",
+		"data": {
+			"type": "range",
+			"expression": "field_double",
+			"from": 20,
+			"includeFrom": true,
+			"to": 20,
+			"includeTo": true
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	},
+	{
+		"testId": 51,
+		"description": "'range' query with different from and to values doesn't match with DOUBLE expression",
+		"data": {
+			"type": "range",
+			"expression": "field_double",
+			"from": 100,
+			"includeFrom": true,
+			"to": 200,
+			"includeTo": true
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 52,
+		"description": "'range' query with from value higher that to value doesn't match with DOUBLE expression",
+		"data": {
+			"type": "range",
+			"expression": "field_double",
+			"from": 30,
+			"includeFrom": true,
+			"to": 10,
+			"includeTo": true
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 53,
+		"description": "'range' query with different from and to values, include from and include to values, matches with DOUBLE expression",
+		"data": {
+			"type": "range",
+			"expression": "field_double",
+			"from": 10,
+			"includeFrom": true,
+			"to": 30,
+			"includeTo": true
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2",
+			"doc3"
+		]
+	},
+	{
+		"testId": 54,
+		"description": "'range' query with different from and to values, include from value, matches with DOUBLE expression",
+		"data": {
+			"type": "range",
+			"expression": "field_double",
+			"from": 10,
+			"includeFrom": true,
+			"to": 30,
+			"includeTo": false
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2"
+		]
+	},
+	{
+		"testId": 55,
+		"description": "'range' query with different from and to values, include to value, matches with DOUBLE expression",
+		"data": {
+			"type": "range",
+			"expression": "field_double",
+			"from": 10,
+			"includeFrom": false,
+			"to": 30,
+			"includeTo": true
+		},
+		"matchingDocuments": [
+			"doc2",
+			"doc3"
+		]
+	},
+	{
+		"testId": 56,
+		"description": "'range' query with different from and to values, matches with DOUBLE expression",
+		"data": {
+			"type": "range",
+			"expression": "field_double",
+			"from": 10,
+			"includeFrom": false,
+			"to": 30,
+			"includeTo": false
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	},
+	{
+		"testId": 57,
+		"description": "'range' query with same from and to values doesn't match with multi-valued DOUBLE expression",
+		"data": {
+			"type": "range",
+			"expression": "field_double_mv",
+			"from": 0,
+			"includeFrom": true,
+			"to": 0,
+			"includeTo": true
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 58,
+		"description": "'range' query with same from and to values matches with multi-valued DOUBLE expression",
+		"data": {
+			"type": "range",
+			"expression": "field_double_mv",
+			"from": 20,
+			"includeFrom": true,
+			"to": 20,
+			"includeTo": true
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	},
+	{
+		"testId": 59,
+		"description": "'range' query with different from and to values doesn't match with multi-valued DOUBLE expression",
+		"data": {
+			"type": "range",
+			"expression": "field_double_mv",
+			"from": 100,
+			"includeFrom": true,
+			"to": 200,
+			"includeTo": true
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 60,
+		"description": "'range' query with from value higher that to value doesn't match with multi-valued DOUBLE expression",
+		"data": {
+			"type": "range",
+			"expression": "field_double_mv",
+			"from": 30,
+			"includeFrom": true,
+			"to": 15,
+			"includeTo": true
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 61,
+		"description": "'range' query with different from and to values, include from and include to values, matches with multi-valued DOUBLE expression",
+		"data": {
+			"type": "range",
+			"expression": "field_double_mv",
+			"from": 15,
+			"includeFrom": true,
+			"to": 30,
+			"includeTo": true
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2",
+			"doc3"
+		]
+	},
+	{
+		"testId": 62,
+		"description": "'range' query with different from and to values, include from value, matches with multi-valued DOUBLE expression",
+		"data": {
+			"type": "range",
+			"expression": "field_double_mv",
+			"from": 15,
+			"includeFrom": true,
+			"to": 30,
+			"includeTo": false
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2"
+		]
+	},
+	{
+		"testId": 63,
+		"description": "'range' query with different from and to values, include to value, matches with multi-valued DOUBLE expression",
+		"data": {
+			"type": "range",
+			"expression": "field_double_mv",
+			"from": 15,
+			"includeFrom": false,
+			"to": 30,
+			"includeTo": true
+		},
+		"matchingDocuments": [
+			"doc2",
+			"doc3"
+		]
+	},
+	{
+		"testId": 64,
+		"description": "'range' query with different from and to values, matches with multi-valued DOUBLE expression",
+		"data": {
+			"type": "range",
+			"expression": "field_double_mv",
+			"from": 15,
+			"includeFrom": false,
+			"to": 30,
+			"includeTo": false
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	},
+	{
+		"testId": 65,
+		"description": "'range' query with same from and to values doesn't match with DATE_TIME expression",
+		"data": {
+			"type": "range",
+			"expression": "field_date_time",
+			"from": "2000-01-01T00:00:00.000+00:00",
+			"includeFrom": true,
+			"to": "2000-01-01T00:00:00.000+00:00",
+			"includeTo": true
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 66,
+		"description": "'range' query with same from and to values matches with DATE_TIME expression",
+		"data": {
+			"type": "range",
+			"expression": "field_date_time",
+			"from": "2020-01-01T00:00:00.000+00:00",
+			"includeFrom": true,
+			"to": "2020-01-01T00:00:00.000+00:00",
+			"includeTo": true
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	},
+	{
+		"testId": 67,
+		"description": "'range' query with different from and to values doesn't match with DATE_TIME expression",
+		"data": {
+			"type": "range",
+			"expression": "field_date_time",
+			"from": "2100-01-01T00:00:00.000+00:00",
+			"includeFrom": true,
+			"to": "2200-01-01T00:00:00.000+00:00",
+			"includeTo": true
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 68,
+		"description": "'range' query with from value higher that to value doesn't match with DATE_TIME expression",
+		"data": {
+			"type": "range",
+			"expression": "field_date_time",
+			"from": "2030-01-01T00:00:00.000+00:00",
+			"includeFrom": true,
+			"to": "2010-01-01T00:00:00.000+00:00"
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 69,
+		"description": "'range' query with different from and to values, include from and include to values, matches with DATE_TIME expression",
+		"data": {
+			"type": "range",
+			"expression": "field_date_time",
+			"from": "2010-01-01T00:00:00.000+00:00",
+			"includeFrom": true,
+			"to": "2030-01-01T00:00:00.000+00:00",
+			"includeTo": true
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2",
+			"doc3"
+		]
+	},
+	{
+		"testId": 70,
+		"description": "'range' query with different from and to values, include from value, matches with DATE_TIME expression",
+		"data": {
+			"type": "range",
+			"expression": "field_date_time",
+			"from": "2010-01-01T00:00:00.000+00:00",
+			"includeFrom": true,
+			"to": "2030-01-01T00:00:00.000+00:00",
+			"includeTo": false
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2"
+		]
+	},
+	{
+		"testId": 71,
+		"description": "'range' query with different from and to values, include to value, matches with DATE_TIME expression",
+		"data": {
+			"type": "range",
+			"expression": "field_date_time",
+			"from": "2010-01-01T00:00:00.000+00:00",
+			"includeFrom": false,
+			"to": "2030-01-01T00:00:00.000+00:00",
+			"includeTo": true
+		},
+		"matchingDocuments": [
+			"doc2",
+			"doc3"
+		]
+	},
+	{
+		"testId": 72,
+		"description": "'range' query with different from and to values, matches with DATE_TIME expression",
+		"data": {
+			"type": "range",
+			"expression": "field_date_time",
+			"from": "2010-01-01T00:00:00.000+00:00",
+			"includeFrom": false,
+			"to": "2030-01-01T00:00:00.000+00:00",
+			"includeTo": false
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	},
+	{
+		"testId": 73,
+		"description": "'range' query with same from and to values doesn't match with multi-valued DATE_TIME expression",
+		"data": {
+			"type": "range",
+			"expression": "field_date_time_mv",
+			"from": "2000-01-01T00:00:00.000+00:00",
+			"includeFrom": true,
+			"to": "2000-01-01T00:00:00.000+00:00",
+			"includeTo": true
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 74,
+		"description": "'range' query with same from and to values matches with multi-valued DATE_TIME expression",
+		"data": {
+			"type": "range",
+			"expression": "field_date_time_mv",
+			"from": "2020-01-01T00:00:00.000+00:00",
+			"includeFrom": true,
+			"to": "2020-01-01T00:00:00.000+00:00",
+			"includeTo": true
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	},
+	{
+		"testId": 75,
+		"description": "'range' query with different from and to values doesn't match with multi-valued DATE_TIME expression",
+		"data": {
+			"type": "range",
+			"expression": "field_date_time_mv",
+			"from": "2100-01-01T00:00:00.000+00:00",
+			"includeFrom": true,
+			"to": "2200-01-01T00:00:00.000+00:00",
+			"includeTo": true
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 76,
+		"description": "'range' query with from value higher that to value doesn't match with multi-valued DATE_TIME expression",
+		"data": {
+			"type": "range",
+			"expression": "field_date_time_mv",
+			"from": "2030-01-01T00:00:00.000+00:00",
+			"includeFrom": true,
+			"to": "2015-01-01T00:00:00.000+00:00",
+			"includeTo": true
+		},
+		"matchingDocuments": []
+	},
+	{
+		"testId": 77,
+		"description": "'range' query with different from and to values, include from and include to values, matches with multi-valued DATE_TIME expression",
+		"data": {
+			"type": "range",
+			"expression": "field_date_time_mv",
+			"from": "2015-01-01T00:00:00.000+00:00",
+			"includeFrom": true,
+			"to": "2030-01-01T00:00:00.000+00:00",
+			"includeTo": true
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2",
+			"doc3"
+		]
+	},
+	{
+		"testId": 78,
+		"description": "'range' query with different from and to values, include from value, matches with multi-valued DATE_TIME expression",
+		"data": {
+			"type": "range",
+			"expression": "field_date_time_mv",
+			"from": "2015-01-01T00:00:00.000+00:00",
+			"includeFrom": true,
+			"to": "2030-01-01T00:00:00.000+00:00",
+			"includeTo": false
+		},
+		"matchingDocuments": [
+			"doc1",
+			"doc2"
+		]
+	},
+	{
+		"testId": 79,
+		"description": "'range' query with different from and to values, include to value, matches with multi-valued DATE_TIME expression",
+		"data": {
+			"type": "range",
+			"expression": "field_date_time_mv",
+			"from": "2015-01-01T00:00:00.000+00:00",
+			"includeFrom": false,
+			"to": "2030-01-01T00:00:00.000+00:00",
+			"includeTo": true
+		},
+		"matchingDocuments": [
+			"doc2",
+			"doc3"
+		]
+	},
+	{
+		"testId": 80,
+		"description": "'range' query with different from and to values, matches with multi-valued DATE_TIME expression",
+		"data": {
+			"type": "range",
+			"expression": "field_date_time_mv",
+			"from": "2015-01-01T00:00:00.000+00:00",
+			"includeFrom": false,
+			"to": "2030-01-01T00:00:00.000+00:00",
+			"includeTo": false
+		},
+		"matchingDocuments": [
+			"doc2"
+		]
+	}
+]

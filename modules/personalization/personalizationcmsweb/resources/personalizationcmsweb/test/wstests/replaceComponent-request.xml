@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<queryParams>
+	<params>
+		<entry>
+			<key>catalogVersion</key>
+			<value>Online</value>
+		</entry>
+		<entry>
+			<key>catalog</key>
+			<value>testCatalog</value>
+		</entry>
+		<entry>
+			<key>oldComponentId</key>
+			<value>bannerHomePage1</value>
+		</entry>
+		<entry>
+			<key>slotId</key>
+			<value>Section1Slot-Homepage</value>
+		</entry>
+	</params>
+</queryParams>

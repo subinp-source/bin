@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<!-- Other Beans -->
+	<bean id="cmsseMappingJackson2HttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+	
+	<!-- JaxB Message Converter -->
+	<bean id="cmsseJaxbContextFactory" class="de.hybris.platform.webservicescommons.jaxb.MoxyJaxbContextFactoryImpl"
+		  parent="defaultJaxbContextFactory">
+		<property name="typeAdapters" ref="cmsseJaxbTypeAdaptersList" />
+	</bean>
+
+	<util:list id="cmsseJaxbTypeAdaptersList">
+		<value>de.hybris.platform.webservicescommons.jaxb.adapters.XSSStringAdapter</value>
+		<value>de.hybris.platform.cmssmarteditwebservices.jaxb.adapters.KeyValueMapAdapter</value>
+		<value>de.hybris.platform.cmssmarteditwebservices.jaxb.adapters.TimeZoneDateAdapter</value>
+		<value>de.hybris.platform.cmssmarteditwebservices.jaxb.adapters.MultiValuedObjectMapAdapter</value>
+	</util:list>
+
+	<bean id="cmsseJsonHttpMessageConverter" class="de.hybris.platform.webservicescommons.jaxb.Jaxb2HttpMessageConverter"
+		  parent="defaultJsonHttpMessageConverter">
+		<property name="jaxbContextFactory" ref="cmsseJaxbContextFactory" />
+	</bean>
+
+</beans>

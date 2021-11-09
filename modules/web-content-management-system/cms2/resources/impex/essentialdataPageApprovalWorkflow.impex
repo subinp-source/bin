@@ -1,0 +1,60 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+$pageApprovalTemplateName=PageApproval
+$userGroupsInWorkflow=cmsreviewergroup,cmseditorgroup,cmspublishergroup
+
+INSERT_UPDATE Language;isocode[unique=true];active
+;en;true
+
+# Creating user groups needed for workflow (They will be configured further in smarteditaddon).
+INSERT_UPDATE UserGroup;UID[unique=true];groups(uid)[mode=append]
+;cmsworkflowgroup;basecmsmanagergroup
+;cmseditorgroup;cmsworkflowgroup
+;cmsreviewergroup;cmsworkflowgroup
+;cmspublishergroup;cmsworkflowgroup
+
+# Access rights for workflow users - Needed to be able to create WorkflowActionTemplates
+$START_USERRIGHTS;;;;;;;;;
+Type;UID;MemberOfGroups;Password;Target;read;change;create;remove;change_perm
+UserGroup;cmsworkflowgroup;basecmsmanagergroup,employeegroup;;;;;;;
+
+# workflow items
+;;;;Workflow;+;+;-;-;-;
+;;;;WorkflowAction;+;+;;;;
+;;;;Comment;+;+;+;+;;
+;;;;CMSWorkflowComment;+;+;+;+;;
+
+$END_USERRIGHTS;;;;;
+
+# Create workflow
+INSERT_UPDATE WorkflowTemplate; code[unique=true] ; name[lang=en] ; description[lang=en] ; visibleForPrincipals(uid)[mode=append];
+;$pageApprovalTemplateName ;Page Approval ;This workflow is used to approve and publish CMS Pages ;$userGroupsInWorkflow ;
+
+
+INSERT_UPDATE WorkflowActionTemplate;code[unique = true] ;name[lang = en] ;description[lang = en] ;principalAssigned(uid) ;workflow(code)[unique = true] ;sendEmail ;actionType(code) ;
+;PageApprovalReviewPage  ;Review Page       ;Review page to ensure it is ready to be published ;cmsreviewergroup  ;$pageApprovalTemplateName ;false ;start ;
+;PageApprovalRevisePage  ;Revise Page       ;Revise page to address review comments            ;cmseditorgroup    ;$pageApprovalTemplateName ;false ;normal ;
+;PageApprovalPublishPage ;Publish Page      ;Publish page to active catalog                    ;cmspublishergroup ;$pageApprovalTemplateName ;false ;normal ;
+;PageApprovalEnd         ;Done              ;Workflow finished                                 ;cmseditorgroup    ;$pageApprovalTemplateName ;false ;end ;
+
+
+INSERT_UPDATE AutomatedWorkflowActionTemplate; code[unique = true]; name[lang = en]; description[lang = en]; principalAssigned(uid); workflow(code)[unique = true]; sendEmail; emailAddress; rendererTemplate(code); actionType(code); jobHandler
+;PageApprovalAutomatedUpdateApprovalStatusAction 	;Automated Update Approval Status Action	;Auto-action to update the page approval status 	;cmsworkflowgroup ;$pageApprovalTemplateName ;false ;;;normal ;approvePageAutomatedWorkflowAction
+
+
+INSERT_UPDATE WorkflowDecisionTemplate;code[unique = true] ;name[lang = en] ;actionTemplate(code) ;description[allownull = true] ;
+;PageApprovalPageApproved    								;Approve  		;PageApprovalReviewPage   									;Page is correct and ready to be published
+;PageApprovalAutomatedUpdateApprovalStatusDecision	;Post Approve 	;PageApprovalAutomatedUpdateApprovalStatusAction 	;Automated decision after approving review
+;PageApprovalPageRejected    								;Reject  		;PageApprovalReviewPage  									;Page needs to be reworked
+;PageApprovalPageResubmitted 								;Resubmit 		;PageApprovalRevisePage  									;Submit page again for approval
+;PageApprovalPagePublished   								;Publish  		;PageApprovalPublishPage 									;Publish Page
+
+
+INSERT_UPDATE WorkflowActionTemplateLinkTemplateRelation;source(code)[unique = true] ;target(code)[unique = true] ;andConnectionTemplate ;qualifier ;
+;PageApprovalPageApproved    								;PageApprovalAutomatedUpdateApprovalStatusAction 	;false ;WorkflowActionTemplateLinkTemplateRelation
+;PageApprovalAutomatedUpdateApprovalStatusDecision	;PageApprovalPublishPage 									;false ;WorkflowActionTemplateLinkTemplateRelation
+;PageApprovalPageRejected    								;PageApprovalRevisePage  									;false ;WorkflowActionTemplateLinkTemplateRelation
+;PageApprovalPageResubmitted 								;PageApprovalReviewPage  									;false ;WorkflowActionTemplateLinkTemplateRelation
+;PageApprovalPagePublished									;PageApprovalEnd						         			;false ;WorkflowActionTemplateLinkTemplateRelation

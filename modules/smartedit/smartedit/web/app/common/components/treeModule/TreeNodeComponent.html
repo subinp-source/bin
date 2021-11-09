@@ -1,0 +1,16 @@
+<ol
+    class="se-tree-node__ol angular-ui-tree-nodes"
+    cdkDropList
+    (cdkDropListDropped)="onDrop($event)"
+    [cdkDropListData]="source"
+    [cdkDropListDisabled]="isDisabled"
+>
+    <li
+        *ngFor="let node of source"
+        cdkDrag
+        [cdkDragData]="node"
+        class="angular-ui-tree-node se-tree-node__li"
+    >
+        <se-tree-node-renderer [node]="node"></se-tree-node-renderer>
+    </li>
+</ol>

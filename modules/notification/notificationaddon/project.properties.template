@@ -1,0 +1,13 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+notificationaddon.key=value
+
+# Specifies the location of the spring context file added automatically to the global platform application context.
+notificationaddon.application-context=notificationaddon-spring.xml
+
+yacceleratorstorefront.additionalWebSpringConfigs.notificationaddon=classpath:/notificationaddon/web/spring/notificationaddon-web-spring.xml
+
+
+notificationaddon.css.paths.responsive=/responsive/common/css/notificationaddon.css

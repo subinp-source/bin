@@ -1,0 +1,89 @@
+/* *
+/* This file includes the styles used in Combined View Panel
+/* The styles follow the BEM principles - http://getbem.com/introduction/
+*/
+
+@pe-combined-view-panel__configure-layout--padding: 0.75*@perso-gutter 0.25*@perso-gutter 0.75*@perso-gutter 1.25*@perso-gutter;   //15px 5px 15px 25px;
+@pe-combined-view-panel__list-layout--padding: 0.5*@perso-gutter;   //10px
+@pe-combined-view-panel-list__names-layout--padding-left: 0.5*@perso-gutter;    //10px
+@pe-combined-view-panel-list__icon--padding-left: 0.5*@perso-gutter;    //10px
+@pe-combined-view-panel__configure-btn--margin-right: 0.5*@perso-gutter;   //10px
+
+.pe-combined-view-panel__wrapper {
+    text-align: center;
+    font-size: @perso__default-text--font-size;
+    max-height: @perso-panel--height;
+    overflow-x: hidden;
+    border-top: 1px solid @border-color-light-grey;
+    margin-top: 10px;
+}
+
+.pe-combined-view-panel__wrapper--empty{
+    padding: 20px;
+    text-align: center;
+}
+.pe-combined-view-panel--empty-link:hover{
+    text-decoration: none;
+}
+.pe-combined-view-panel--empty-img,
+.pe-combined-view-panel--empty-text{
+    margin: 0 auto;
+    display: block;
+    padding: 5px;
+}
+
+.pe-combined-view-panel__configure-layout {
+    display: flex;
+    justify-content: flex-end;
+    padding: @pe-combined-view-panel__configure-layout--padding;
+    border-bottom: 1px solid @border-color-light-grey;
+}
+
+.pe-combined-view-panel__configure-btn {
+    margin-right: @pe-combined-view-panel__configure-btn--margin-right;
+}
+
+.pe-combined-view-panel__list-layout {
+    color: @text-color-dark-blue;     
+    font-size: @perso__default-text--font-size;
+    padding: @pe-combined-view-panel__list-layout--padding;            
+    border-bottom: 1px solid @border-color-light-grey;
+    display: flex;
+    justify-content: flex-start;
+    &:hover {
+        background-color: @fd-color--background-hover;
+    }
+}
+
+.pe-combined-view-panel--disabled {
+    opacity: @opacity_point-five;
+    .pe-combined-view-panel__list-layout {
+        cursor: default;
+        &:hover {
+            background-color: @background-color-white;
+        }
+    }
+}
+
+.pe-combined-view-panel-list__letter-layout {
+    width: 15%;
+}
+
+.pe-combined-view-panel-list__names-layout {
+    width: 78%;
+    text-align: left;
+    padding-left: @pe-combined-view-panel-list__names-layout--padding-left;
+}
+
+.pe-combined-view-panel-list__icon {
+    align-self: center;
+    width: 5%;
+    padding-left: @pe-combined-view-panel-list__icon--padding-left;
+}
+
+.pe-combined-view-panel-list__item--highlighted {
+    background-color: @fd-color--background-selected;
+    &:hover {
+        background-color: @fd-color--background-hover;
+    }
+}

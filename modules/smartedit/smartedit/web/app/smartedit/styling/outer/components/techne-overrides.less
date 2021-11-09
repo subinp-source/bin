@@ -1,0 +1,167 @@
+/****************************************************
+				techne overrides
+****************************************************/
+
+// overrides default border that comes with techne
+.btn-default {
+    border: none !important;
+}
+
+.overlay {
+    position: absolute;
+    z-index: 300;
+}
+
+select,
+option {
+    color: @black;
+}
+
+.form-control {
+    height: auto;
+}
+
+.alert-item {
+    margin-bottom: 0;
+    &.alert-item--closeable {
+        padding-right: 50px;
+    }
+    > .close {
+        font-size: 30px;
+        top: 2px;
+        right: -25px;
+        margin-right: 0;
+    }
+    > div {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.alert-item + .alert-item {
+    margin-top: 20px;
+}
+
+.alert-item--icon {
+    font-size: 36px;
+    height: 36px;
+    align-self: flex-start;
+    margin-right: 15px;
+    color: @smartedit-white;
+}
+
+.alert-item--icon-span {
+    position: relative;
+    top: -12px;
+}
+
+.ySEEmptyMessage {
+    display: none;
+}
+
+.selectize-control > .selectize-dropdown {
+    top: 36px;
+}
+
+.alert.alert-success {
+    background-color: @smartedit-green1;
+    border-color: @smartedit-green1;
+    opacity: 0.95;
+    .close {
+        color: @white;
+    }
+}
+
+.alert.alert-danger {
+    background-color: @smartedit-red2;
+    border-color: @smartedit-red2;
+    opacity: 0.95;
+
+    .close {
+        color: @white;
+    }
+}
+
+.alert.alert-info {
+    background-color: @default-greyblue;
+    border-color: @default-greyblue;
+    opacity: 0.95;
+    .close {
+        color: @white;
+    }
+}
+
+.alert.alert-warning {
+    background-color: @smartedit-orange;
+    border-color: @smartedit-orange;
+    color: @black;
+    opacity: 0.95;
+}
+
+.alert .close {
+    color: @black;
+}
+
+.nav-tabs li a.sm-tab-error {
+    color: @smartedit-red;
+}
+
+.nav-tabs li a.sm-tab-error:before {
+    content: '! ';
+}
+
+div.synchronize {
+    position: relative;
+}
+
+img.synchronize {
+    position: absolute;
+    right: 0;
+    z-index: 500;
+}
+
+.piled {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.toptoolbar {
+    position: absolute;
+    padding: 10px;
+    margin-left: 60px;
+    z-index: 100;
+}
+
+.floating-perspective {
+    position: fixed;
+    padding: 10px;
+    left: 10px;
+    z-index: 700;
+}
+
+.floating-bg {
+    color: @white;
+    border: 1px solid @white;
+    background: @smartedit-bluegrey;
+    padding: 5px 20px 0 20px;
+}
+
+.help-control .hyicon-help-icon:before {
+    &:extend(.hyicon-helpoff:before);
+}
+
+.help-control:hover .hyicon-help-icon:before {
+    &:extend(.hyicon-helpon:before);
+}
+
+.y-add-btn__text {
+    vertical-align: middle;
+}
+
+.popover {
+    z-index: 9999;
+}

@@ -1,0 +1,40 @@
+se-announcement {
+    display: block;
+    margin-bottom: 10px;
+}
+.se-announcement-content {
+    @include se-box-shadow();
+    cursor: pointer;
+    min-width: 300px;
+    border-radius: fd-space('base');
+    transition: opacity (0.5s * 0.6) ease, left 0.5s ease-in, margin 0.5s ease;
+    background-color: fd-color('background', 2);
+    border-left: 6px solid fd-color('status', 2);
+}
+.se-announcement-close {
+    position: absolute;
+    top: fd-space('small');
+    right: 20px;
+    color: fd-color('action', 1);
+    @include fd-type('1');
+}
+.se-announcement__title {
+    padding: fd-space('small') 20px;
+    color: fd-color('action', 1);
+    @include fd-weight('bold');
+    border-bottom: se-border();
+}
+.se-announcement__message {
+    color: fd-color('text', 2);
+    padding: 20px 20px 0;
+}
+.se-announcement__message--multi {
+    color: fd-color('text', 2);
+    padding: fd-space('small');
+}
+.se-announcement__time-stamp {
+    @include fd-type('-1');
+    color: fd-color('text', 2);
+    padding: 11px 20px 20px 20px;
+    text-transform: lowercase;
+}

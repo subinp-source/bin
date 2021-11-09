@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <base href="../../../../../" />
+
+        <!--3rd prty libs-->
+        <script src="../../../web/webroot/static-resources/dist/smarteditcontainer/js/thirdparties.js"></script>
+        <script src="../../../web/webroot/static-resources/dist/smarteditcommons/js/vendor_chunk.js"></script>
+        <script src="../../../web/webroot/static-resources/thirdparties/ckeditor/ckeditor.js"></script>
+
+        <script src="../../../web/webroot/static-resources/dist/smarteditcommons/js/smarteditcommons.js"></script>
+        <script src="../../../web/webroot/static-resources/dist/smarteditcontainer/js/smarteditcontainer.js"></script>
+        <script src="../../../test/e2e/utils/commonMockedModules/generated_outerI18nMock.js"></script>
+        <script src="../../../test/e2e/utils/commonMockedModules/generated_outerGlobalBasePathFetchMock.js"></script>
+        <script src="../../../test/e2e/utils/generated_outerLegacyCustomAppBootstrap.js"></script>
+        <script src="test/e2e/popoverAndHelp/outerapp.js"></script>
+        <style>
+            .offset {
+                position: relative;
+                margin-top: 250px;
+            }
+
+            .se-y-help-wrapper {
+                margin-left: 100px;
+            }
+        </style>
+    </head>
+
+    <body custom-app="outerapp">
+        <div data-ng-controller="defaultController as ctrl" class="offset">
+            <hr />
+            <y-help
+                id="helpWithTitle"
+                data-title="ctrl.title"
+                data-template="ctrl.template"
+            ></y-help>
+            <hr />
+
+            <y-help id="helpWithoutTitle" data-template-url="ctrl.templateUrl"> </y-help>
+            <hr />
+
+            <span
+                id="popoverWithTitleAndTop"
+                data-y-popover
+                data-title="ctrl.title"
+                data-template-url="ctrl.templateUrl"
+                data-placement="ctrl.placement1"
+                data-trigger="ctrl.trigger1"
+                >anchor</span
+            >
+            <hr />
+            <span
+                id="popoverWithoutTitleAndRight"
+                data-y-popover
+                data-template="ctrl.template"
+                data-placement="ctrl.placement2"
+                data-trigger="ctrl.trigger2"
+                >anchor without title</span
+            >
+        </div>
+    </body>
+</html>

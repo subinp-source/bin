@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<widget xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.zkoss.org/2005/zul"
+        xmlns:n="http://www.zkoss.org/2005/zk/native"
+        xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.hybris.com/schema/cockpitng/zul/zul.xsd"
+        height="100%">
+
+    <style src="${wr}/CreateVirtualAttributeModal.css"/>
+
+    <vlayout spacing="15px" sclass="yw-integrationbackoffice-modal-body">
+        <div>
+            <span sclass="yw-integrationbackoffice-modal-label">
+                ${labels.integrationbackoffice.createVirtualAttribute.VADescriptor.dropdown}
+            </span>
+            <image src="cng/images/icon_tooltip_help.png" popup="selectorDescriptionPopup"
+                   sclass="yw-modal-virtualAttribute-toolTip"/>
+            <hlayout valign="middle">
+                <combobox id="virtualAttributeDescriptorComboBox"/>
+                <button sclass="y-btn-secondary" id="clearButton" label="clear"/>
+            </hlayout>
+        </div>
+
+        <span sclass="yw-integrationbackoffice-modal-label">
+            ${labels.integrationbackoffice.createVirtualAttribute.VADescriptor.code}
+        </span>
+        <textbox id="virtualAttributeDescriptorCode"/>
+
+        <span sclass="yw-integrationbackoffice-modal-label">
+            ${labels.integrationbackoffice.createVirtualAttribute.VADescriptor.location}
+        </span>
+        <combobox id="scriptLocationComboBox"/>
+
+        <div id="TypeDropdown">
+            <span sclass="yw-integrationbackoffice-modal-label" >
+                ${labels.integrationbackoffice.createVirtualAttribute.VADescriptor.type}
+            </span>
+            <image src="cng/images/icon_tooltip_help.png" popup="typeDropdownDescriptionPopup"
+                   sclass="yw-modal-virtualAttribute-toolTip"/>
+        </div>
+        <combobox id="descriptorTypeComboBox"/>
+
+        <span sclass="yw-integrationbackoffice-modal-label">
+            ${labels.integrationbackoffice.createVirtualAttribute.name}
+        </span>
+        <textbox id="virtualAttributeAlias"/>
+    </vlayout>
+
+    <button id="createButton" label="${labels.integrationbackoffice.createVirtualAttribute.createButton}"
+            sclass="y-btn-primary yw-integrationbackoffice-modal-button"/>
+
+    <popup id="typeDropdownDescriptionPopup" sclass="yw-desc-tooltip">
+        <div>
+            <n:span>
+                ${labels.integrationbackoffice.createVirtualAttribute.toolTip.restrictToVADMType.text}
+            </n:span>
+        </div>
+    </popup>
+
+    <popup id="selectorDescriptionPopup" sclass="yw-desc-tooltip">
+        <div>
+            <n:span>
+                ${labels.integrationbackoffice.createVirtualAttribute.toolTip.selectorDescription.text}
+            </n:span>
+        </div>
+    </popup>
+
+</widget>

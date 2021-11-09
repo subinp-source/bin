@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+
+<widget-definition id="com.hybris.widgets.eventexport"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widget-definition.xsd">
+
+    <name>Event Export Configuration Widget</name>
+    <defaultTitle>Controls for event exporting configuration</defaultTitle>
+    <author>hybris</author>
+    <version>0.1</version>
+
+    <sockets>
+        <input id="openWidget" />
+    </sockets>
+
+    <view src="eventexportwidget.zul" />
+    <controller class="de.hybris.platform.apiregistrybackoffice.widgets.EventExportController"/>
+</widget-definition>

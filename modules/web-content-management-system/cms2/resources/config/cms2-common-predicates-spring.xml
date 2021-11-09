@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+   	http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <alias name="defaultGenericTypePredicate" alias="cmsGenericTypePredicate" />
+    <bean id="defaultGenericTypePredicate" class="de.hybris.platform.cms2.common.predicates.GenericTypePredicate" abstract="true">
+        <property name="typeService" ref="typeService" />
+    </bean>
+
+    <alias name="cmsComponentTypePredicate" alias="cmsComponentPredicate" />
+    <bean id="cmsComponentTypePredicate" parent="cmsGenericTypePredicate">
+        <property name="typeCode">
+            <util:constant static-field="de.hybris.platform.cms2.model.contents.components.AbstractCMSComponentModel._TYPECODE" />
+        </property>
+    </bean>
+
+    <alias name="defaultContentSlotPredicate" alias="cmsContentSlotPredicate" />
+    <bean id="defaultContentSlotPredicate" parent="cmsGenericTypePredicate">
+        <property name="typeCode">
+            <util:constant static-field="de.hybris.platform.cms2.model.contents.contentslot.ContentSlotModel._TYPECODE" />
+        </property>
+    </bean>
+
+    <alias name="defaultRestrictionPredicate" alias="cmsRestrictionPredicate" />
+    <bean id="defaultRestrictionPredicate" parent="cmsGenericTypePredicate">
+        <property name="typeCode">
+            <util:constant static-field="de.hybris.platform.cms2.model.restrictions.AbstractRestrictionModel._TYPECODE" />
+        </property>
+    </bean>
+
+    <alias name="defaultContentSlotForPagePredicate" alias="cmsContentSlotForPagePredicate" />
+    <bean id="defaultContentSlotForPagePredicate" parent="cmsGenericTypePredicate">
+        <property name="typeCode">
+            <util:constant static-field="de.hybris.platform.cms2.model.relations.ContentSlotForPageModel._TYPECODE" />
+        </property>
+    </bean>
+
+    <alias name="defaultCMSWorkflowCommentPredicate" alias="cmsWorkflowCommentPredicate" />
+    <bean id="defaultCMSWorkflowCommentPredicate" parent="cmsGenericTypePredicate">
+        <property name="typeCode">
+            <util:constant static-field="de.hybris.platform.cms2.model.CMSWorkflowCommentModel._TYPECODE" />
+        </property>
+    </bean>
+
+    <alias name="abstractTypePredicate" alias="abstractPageTypePredicate" />
+    <bean id="abstractTypePredicate" parent="cmsGenericTypePredicate">
+        <property name="typeCode">
+            <util:constant static-field="de.hybris.platform.cms2.model.pages.AbstractPageModel._TYPECODE" />
+        </property>
+    </bean>
+
+    <alias name="defaultContentPageTypePredicate" alias="cmsContentPageTypePredicate" />
+    <bean id="defaultContentPageTypePredicate" parent="cmsGenericTypePredicate">
+        <property name="typeCode">
+            <util:constant static-field="de.hybris.platform.cms2.model.pages.ContentPageModel._TYPECODE" />
+        </property>
+    </bean>
+
+    <alias name="defaultCategoryPageTypePredicate" alias="cmsCategoryPageTypePredicate" />
+    <bean id="defaultCategoryPageTypePredicate" parent="cmsGenericTypePredicate">
+        <property name="typeCode">
+            <util:constant static-field="de.hybris.platform.cms2.model.pages.CategoryPageModel._TYPECODE" />
+        </property>
+    </bean>
+
+    <alias name="defaultProductPageTypePredicate" alias="cmsProductPageTypePredicate" />
+    <bean id="defaultProductPageTypePredicate" parent="cmsGenericTypePredicate">
+        <property name="typeCode">
+            <util:constant static-field="de.hybris.platform.cms2.model.pages.ProductPageModel._TYPECODE" />
+        </property>
+    </bean>
+
+    <alias name="defaultSimpleCMSComponentTypePredicate" alias="cmsSimpleCMSComponentTypePredicate" />
+    <bean id="defaultSimpleCMSComponentTypePredicate" parent="cmsGenericTypePredicate">
+        <property name="typeCode">
+            <util:constant static-field="de.hybris.platform.cms2.model.contents.components.SimpleCMSComponentModel._TYPECODE" />
+        </property>
+    </bean>
+
+    <alias name="defaultCmsItemTypePredicate" alias="cmsItemTypePredicateForItemModel"/>
+    <bean id="defaultCmsItemTypePredicate" parent="cmsGenericTypePredicate">
+        <property name="typeCode">
+            <util:constant static-field="de.hybris.platform.cms2.model.contents.CMSItemModel._TYPECODE" />
+        </property>
+    </bean>
+
+    <alias name="defaultEmailPageTypePredicate" alias="cmsEmailPageTypePredicate" />
+    <bean id="defaultEmailPageTypePredicate" parent="cmsGenericTypePredicate">
+        <property name="typeService" ref="typeService" />
+        <!-- Cannot use the static-field typecode because that would introduce a circular dependency to acceleratorservices -->
+        <property name="typeCode" value="EmailPage" />
+    </bean>
+    
+    <alias name="defaultCmsLinkComponentTypePredicate" alias="cmsLinkComponentTypePredicate" />
+    <bean id="defaultCmsLinkComponentTypePredicate" parent="cmsGenericTypePredicate">
+        <property name="typeCode">
+            <util:constant static-field="de.hybris.platform.cms2.model.contents.components.CMSLinkComponentModel._TYPECODE" />
+        </property>
+    </bean>
+</beans>

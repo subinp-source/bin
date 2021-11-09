@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<action-definition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+						 id="com.hybris.backoffice.widgets.actions.excel.exporttemplate"
+						 xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/action-definition.xsd">
+	<name>Export Excel Template Action</name>
+	<description>Allows to export an Excel template file with all necessary metadata, for the user to fill it with items and
+		reimport back to the system.
+	</description>
+	<author>hybris</author>
+	<version>1.0</version>
+	<actionClassName>com.hybris.backoffice.widgets.actions.excel.ExcelTemplateExportAction</actionClassName>
+	<sockets>
+		<output id="itemsToExport" type="com.hybris.cockpitng.search.data.pageable.Pageable"/>
+	</sockets>
+
+	<iconUri>icons/icon_action_export_excel_template_default.png</iconUri>
+	<iconDisabledUri>icons/icon_action_export_excel_template_disabled.png</iconDisabledUri>
+	<iconHoverUri>icons/icon_action_export_excel_template_hover.png</iconHoverUri>
+
+</action-definition>

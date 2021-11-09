@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<!-- WARNING: This is the Spring WEB configuration file. If you want to replace items or managers you have to do this from the extensions
+	core configuration file (cmswebservices/resources/cmswebservices-spring.xml) -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/mvc
+           http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+
+	<!-- Scan for annotation configured controller and controller advice -->
+	<context:component-scan base-package="de.hybris.platform.cmswebservices.controller, de.hybris.platform.cmswebservices.exception"/>
+
+	<bean id="catalogVersionInterceptor"  class="de.hybris.platform.cmswebservices.interceptor.CatalogVersionInterceptor">
+		<property name="cmsAdminSiteService" ref="cmsAdminSiteService" />
+		<property name="catalogService" ref="catalogService" />
+		<property name="catalogVersionService" ref="catalogVersionService" />
+		<property name="cmsCatalogVersionService" ref="cmsCatalogVersionService" />
+		<property name="catalogVersionPermissionService" ref="cmsCatalogVersionPermissionService" />
+		<property name="requestMethodResolver" ref="cmsRequestMethodResolver" />
+	</bean>
+
+	<bean id="catalogVersionPermissionInterceptor" class="de.hybris.platform.cmswebservices.interceptor.CatalogVersionPermissionInterceptor">
+		<property name="uniqueItemIdentifierService" ref="cmsUniqueItemIdentifierService" />
+		<property name="catalogVersionPermissionService" ref="cmsCatalogVersionPermissionService" />
+		<property name="itemDataDataFactory" ref="cmsItemDataDataFactory" />
+		<property name="requestMethodResolver" ref="cmsRequestMethodResolver" />
+	</bean>
+
+	<bean id="siteLanguageInterceptor" class="de.hybris.platform.cmswebservices.interceptor.SiteLanguageInterceptor">
+		<property name="baseSiteService" ref="baseSiteService" />
+		<property name="adminSiteService" ref="cmsAdminSiteService" />
+	</bean>
+	
+	<bean id="cmsItemCatalogVersionInterceptor" class="de.hybris.platform.cmswebservices.interceptor.CmsItemCatalogVersionInterceptor">
+		<property name="uniqueItemIdentifierService" ref="cmsUniqueItemIdentifierService" />
+		<property name="cmsAdminSiteService" ref="cmsAdminSiteService" />
+		<property name="catalogVersionService" ref="catalogVersionService" />
+	</bean>
+	
+	<bean id="cmsItemWorkflowInterceptor" class="de.hybris.platform.cmswebservices.interceptor.CmsItemWorkflowInterceptor">
+		<property name="uniqueItemIdentifierService" ref="cmsUniqueItemIdentifierService" />
+		<property name="cmsWorkflowAttachmentService" ref="cmsWorkflowAttachmentService" />
+	</bean>
+	
+	<bean id="pageWorkflowInterceptor" class="de.hybris.platform.cmswebservices.interceptor.PageWorkflowInterceptor">
+		<property name="cmsAdminPageService" ref="cmsAdminPageService" />
+		<property name="cmsAdminContentSlotService" ref="cmsAdminContentSlotService" />
+		<property name="cmsWorkflowAttachmentService" ref="cmsWorkflowAttachmentService" />
+	</bean>
+	
+	<bean id="pageRestrictionWorkflowInterceptor" class="de.hybris.platform.cmswebservices.interceptor.PageRestrictionWorkflowInterceptor">
+		<property name="cmsAdminPageService" ref="cmsAdminPageService" />
+		<property name="cmsWorkflowAttachmentService" ref="cmsWorkflowAttachmentService" />
+	</bean>
+
+	<bean id="permissionCacheInitializerInterceptor" class="de.hybris.platform.cmswebservices.interceptor.PermissionCacheInitializerInterceptor">
+		<property name="permissionCachedCRUDService" ref="defaultCMSPermissionCachedCRUDService" />
+	</bean>
+
+	<mvc:interceptors>
+		<bean class="de.hybris.platform.webservicescommons.interceptors.CacheControlHandlerInterceptor"/>
+		<mvc:interceptor>
+			<mvc:mapping path="/v1/catalogs/*/versions/**"/>
+			<ref bean="catalogVersionInterceptor"/>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/v1/sites/*/catalogs/*/versions/**"/>
+			<ref bean="catalogVersionInterceptor"/>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/v1/productcatalogs/*/versions/**"/>
+			<ref bean="catalogVersionInterceptor"/>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/v1/sites/*/catalogs/*/versions/**"/>
+			<ref bean="siteLanguageInterceptor"/>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/v1/sites/*/languages"/>
+			<ref bean="siteLanguageInterceptor"/>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/v1/sites/*/pages"/>
+			<ref bean="siteLanguageInterceptor"/>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/v1/sites/*/cmsitems/*"/>
+			<ref bean="siteLanguageInterceptor"/>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/v1/sites/*/cmsitems"/>
+			<ref bean="siteLanguageInterceptor"/>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/v1/sites/*/cmsitems/*"/>
+			<ref bean="catalogVersionPermissionInterceptor"/>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/v1/sites/*/cmsitems"/>
+			<ref bean="catalogVersionPermissionInterceptor"/>
+		</mvc:interceptor>
+		
+		<!-- Configurations for cmsitem versioning -->
+		<mvc:interceptor>
+			<mvc:mapping path="/v1/sites/*/cmsitems/**"/>
+			<ref bean="cmsItemCatalogVersionInterceptor"/>
+		</mvc:interceptor>
+
+		<!-- Initialize permission cache -->
+		<mvc:interceptor>
+			<mvc:mapping path="/v1/**"/>
+			<ref bean="permissionCacheInitializerInterceptor"/>
+		</mvc:interceptor>
+		
+		<!-- Configurations for workflow -->
+		<mvc:interceptor>
+			<mvc:mapping path="/v1/sites/*/cmsitems/*"/>
+			<ref bean="cmsItemWorkflowInterceptor"/>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/v1/sites/*/catalogs/*/versions/*/pagescontentslotscomponents/**"/>
+			<ref bean="pageWorkflowInterceptor"/>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/v1/sites/*/catalogs/*/versions/*/pagescontentslotscomponents"/>
+			<ref bean="pageWorkflowInterceptor"/>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/v1/sites/*/catalogs/*/versions/*/pagesrestrictions/pages/*"/>
+			<ref bean="pageRestrictionWorkflowInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<alias name="defaultRequestMethodResolverService" alias="cmsRequestMethodResolver"/>
+	<bean id="defaultRequestMethodResolverService" class="de.hybris.platform.cmswebservices.resolvers.impl.DefaultRequestMethodResolver">
+		<property name="pathMatcher">
+			<bean class="org.springframework.util.AntPathMatcher" />
+		</property>
+		<property name="postToGetUriList">
+			<list>
+				<value>/v1/sites/*/cmsitems/uuids</value>
+				<value>/v1/sites/*/media/uuids</value>
+				<value>/v1/sites/catalogs</value>
+				<value>/v1/catalogs/*/versions/*/pages/*/typerestrictions</value>
+			</list>
+		</property>
+	</bean>
+
+</beans>

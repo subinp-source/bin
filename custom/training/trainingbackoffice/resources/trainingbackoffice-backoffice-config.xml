@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<config xmlns="http://www.hybris.com/cockpit/config"
+	xmlns:na="http://www.hybris.com/cockpitng/config/notifications"
+		xmlns:ea="http://www.hybris.com/cockpitng/component/editorArea"
+		xmlns:list-view="http://www.hybris.com/cockpitng/component/listView"
+		xmlns:as="http://www.hybris.com/cockpitng/config/advancedsearch"
+		xmlns:ss="http://www.hybris.com/cockpitng/config/simplesearch"
+		xmlns:n="http://www.hybris.com/cockpitng/config/explorertree"
+		xmlns:y="http://www.hybris.com/cockpit/config/hybris"
+		xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config"
+		xmlns:df="http://www.hybris.com/cockpitng/component/dynamicForms">
+
+	<context merge-by="module" component="editorareaactions" type="Consignment">
+		<y:actions xmlns:y="http://www.hybris.com/cockpit/config/hybris">
+			<y:group qualifier="common">
+				<y:label>actiongroup.common</y:label>
+				<y:action action-id="de.hybris.training.backoffice.actions.confirmpickupaction" property="currentObject"/>
+			</y:group>
+		</y:actions>
+    </context>
+
+	<!-- Notification Area-->
+	<context component="notification-area">
+	    <na:notification-area>
+	        <na:notifications eventType="trainingbackoffice.confirmpickup.event" level="SUCCESS">
+	            <na:message>hmc.action.confirmpickup.success</na:message>
+	        </na:notifications>
+	   </na:notification-area>
+	</context>
+
+	<context merge-by="type" type="VehicleBase" parent="Product" component="editor-area">
+		<ea:editorArea name="">
+			<ea:tab name="hmc.tab.product.vehicleProperties" position="2">
+				<ea:section name="hmc.section.product.vehicleDescription">
+					<ea:attribute qualifier="vehicleDescription"/>
+					<ea:attribute qualifier="vehicleRegistrationNumber"/>
+					<ea:attribute qualifier="vehicleId"/>
+
+				</ea:section>
+			</ea:tab>
+			<ea:tab name="hmc.tab.product.properties" position="1">
+				<ea:section name="hmc.essential">
+					<ea:attribute qualifier="vehicleRegistrationNumber"/>
+
+				</ea:section>
+			</ea:tab>
+			<ea:tab name="hmc.tab.product.relations" position="26">
+				<ea:section name="hmc.section.product.vehicleRelations">
+					<ea:attribute qualifier="driver" editor="de.hybris.training.backoffice.editor.drivereditor"/>
+					<ea:attribute qualifier="dealer"/>
+				</ea:section>
+			</ea:tab>
+		</ea:editorArea>
+	</context>
+	<context component="explorer-tree" module="trainingbackoffice" merge-by="module">
+		<n:explorer-tree>
+			<n:navigation-node id="Vehicle_Product">
+				<n:type-node id="VehicleProduct" code="VehicleBase"></n:type-node>
+			</n:navigation-node>
+			<n:navigation-node id="Driver_Base">
+				<n:type-node id="Driverbase" code="DriverBase"></n:type-node>
+			</n:navigation-node>
+			<n:navigation-node id="Dealer_Base">
+				<n:type-node id="Dealerbase" code="DealerBase"></n:type-node>
+			</n:navigation-node>
+		</n:explorer-tree>
+	</context>
+
+	<context type="VehicleBase" component="listview" merge-by="type" parent="Product">
+		<list-view:list-view>
+			<list-view:column qualifier="vehicleId" spring-bean="trainingRenderVehicleId"></list-view:column>
+			<list-view:column qualifier="code"></list-view:column>
+			<list-view:column qualifier="name"></list-view:column>
+			<list-view:column qualifier="modifiedtime"></list-view:column>
+
+		</list-view:list-view>
+	</context>
+
+	<context type="VehicleBase" component="base" merge-by="type" parent="Product">
+		<y:base>
+			<y:labels>
+				<y:label>name</y:label>
+			</y:labels>
+		</y:base>
+	</context>
+
+	<context type="DriverBase" component="listview" merge-by="type" >
+		<list-view:list-view>
+			<list-view:column qualifier="driverId" spring-bean="trainingRenderDriverId" />
+			<list-view:column qualifier="nameOfDriver" />
+			<list-view:column qualifier="modifiedtime" />
+		</list-view:list-view>
+	</context>
+	<context type="DealerBase" component="listview" merge-by="type" >
+		<list-view:list-view>
+			<list-view:column qualifier="uniqueId" spring-bean="trainingRenderDealerId"></list-view:column>
+			<list-view:column qualifier="localizeName"></list-view:column>
+			<list-view:column qualifier="modifiedtime"></list-view:column>
+		</list-view:list-view>
+	</context>
+
+
+	<context type="VehicleBase" component="advanced-search" merge-by="type" parent="Product">
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="code" operator="equals" selected="true"></as:field>
+				<as:field name="vehicleRegistrationNumber" operator="contains" selected="true"></as:field>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+
+	<context type="VehicleBase" component="simple-search" merge-by="type" parent="Product">
+		<ss:simple-search>
+			<ss:field name="code"></ss:field>
+			<ss:field name="vehicleRegistrationNumber"></ss:field>
+		</ss:simple-search>
+	</context>
+
+
+	<context type="DriverBase" component="advanced-search" >
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="nameofDriver" operator="contains" selected="true"></as:field>
+				<as:field name="experience" operator="contains" selected="true"></as:field>
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+
+
+	<context type="DriverBase" component="simple-search" >
+		<ss:simple-search>
+			<ss:field name="code"></ss:field>
+			<ss:field name="nameofDriver"></ss:field>
+		</ss:simple-search>
+	</context>
+
+	<context type="DealerBase" component="advanced-search" >
+		<as:advanced-search>
+			<as:field-list>
+				<as:field name="localizeName" operator="equals" selected="true"></as:field>
+				<as:field name="dealerId" operator="contains" selected="true"></as:field>
+
+			</as:field-list>
+		</as:advanced-search>
+	</context>
+
+
+	<context type="DealerBase" component="simple-search">
+		<ss:simple-search>
+			<ss:field name="localizeName"></ss:field>
+			<ss:field name="dealerId"></ss:field>
+		</ss:simple-search>
+	</context>
+
+	<context type="VehicleBase" component="create-wizard">
+		<wz:flow  id="VehicleWizard" title="create.VehicleBase.title">
+			<wz:prepare id="vehiclePrepare">
+				<wz:initialize property="newVehicle" type="VehicleBase"/>
+				<wz:assign property="newVehicle.code" value="ctx.code"/>
+			</wz:prepare>
+			<wz:step id="step1" label="create.VehicleBase.essential.label" sublabel="create.VehicleBase.essential.sublabel">
+				<wz:info id="step1.intro" label="create.VehicleBase.essential.intro" position="top"/>
+				<wz:content id="step1.content">
+					<wz:property-list root="newVehicle">
+						<wz:property qualifier="code" type="VehicleBase"/>
+						<wz:property qualifier="vehicleId" type="java.lang.String"/>
+						<wz:property qualifier="vehicleRegistrationNumber" type="java.lang.String"/>
+						<wz:property qualifier="driver" type="java.lang.String"/>
+						<wz:property qualifier="dealer" type="java.lang.String"/>
+						<wz:property qualifier="catalogVersion"/>
+						<wz:property qualifier="approvalStatus"/>
+					</wz:property-list>
+				</wz:content>
+				<wz:navigation id="step1.navigation">
+					<wz:cancel/>
+					<wz:next visible="!#empty(newVehicle.vehicleId) and (newVehicle.catalogVersion!=null)"/>
+					<wz:done visible="!#empty(newVehicle.vehicleId) and newVehicle.catalogVersion !=null">
+						<wz:save property="newVehicle"/>
+					</wz:done>
+				</wz:navigation>
+			</wz:step>
+			<wz:step id="step2" label="create.VehicleBase.descriptions.label" sublabel="create.VehicleBase.descriptions.sublabel">
+				<wz:info id="step2.intro" label="create.VehicleBase.descriptions.intro" position="top"/>
+				<wz:content id="step2.content">
+					<wz:property-list root="newVehicle">
+						<wz:property qualifier="name" type="java.lang.String"/>
+						<wz:property editor="com.hybris.cockpitng.editor.localized(com.hybris.cockpitng.editor.wysiwyg)" qualifier="description" type="java.lang.String"/>
+					</wz:property-list>
+				</wz:content>
+				<wz:navigation id="step2.navigation">
+					<wz:cancel/>
+					<wz:back/>
+					<wz:next/>
+					<wz:done>
+						<wz:save property="newVehicle"/>
+					</wz:done>
+				</wz:navigation>
+			</wz:step>
+			<wz:step id="step3" label="create.VehicleBase.categories.label" sublabel="create.VehicleBase.categories.sublabel">
+				<wz:info id="step3.intro" label="create.VehicleBase.categories.intro" position="top"/>
+				<wz:content id="step3.content">
+					<wz:property qualifier="newVehicle.supercategories"/>
+				</wz:content>
+				<wz:navigation id="step3.navigation">
+					<wz:cancel/>
+					<wz:back/>
+					<wz:done>
+						<wz:save property="newVehicle"/>
+					</wz:done>
+				</wz:navigation>
+			</wz:step>
+		</wz:flow>
+	</context>
+
+
+
+	<context type="DriverBase" component="create-wizard">
+		<wz:flow  id="DriverWizard" title="create.DriverBase.title">
+			<wz:prepare id="driverPrepare">
+				<wz:initialize property="newDriver" type="DriverBase"/>
+				<wz:assign property="newDriver.code" value="ctx.code"/>
+			</wz:prepare>
+			<wz:step id="step1" label="create.DriverBase.essential.label" sublabel="create.DriverBase.essential.sublabel">
+				<wz:info id="step1.intro" label="create.DriverBase.essential.intro" position="top"/>
+				<wz:content id="step1.content">
+					<wz:property-list root="newDriver">
+						<wz:property qualifier="nameOfDriver" type="java.lang.String"/>
+						<wz:property qualifier="driverId" type="java.lang.String"/>
+						<wz:property qualifier="experience" type="java.lang.Integer"/>
+					</wz:property-list>
+				</wz:content>
+				<wz:navigation id="step1.navigation">
+					<wz:cancel/>
+					<!--<wz:next visible="!#empty(newDriver.driverId) and (newDriver.nameOfDriver!=null)"/>-->
+					<wz:done visible="!#empty(newDriver.driverId) and newDriver.nameOfDriver!=null">
+						<wz:save property="newDriver"/>
+					</wz:done>
+				</wz:navigation>
+			</wz:step>
+		</wz:flow>
+	</context>
+
+	<context type="DealerBase" component="create-wizard">
+		<wz:flow  id="DealerWizard" title="create.DealerBase.title">
+			<wz:prepare id="dealerPrepare">
+				<wz:initialize property="newDealer" type="DealerBase"/>
+				<wz:assign property="newDealer.code" value="ctx.code"/>
+			</wz:prepare>
+			<wz:step id="step1" label="create.DealerBase.essential.label" sublabel="create.DealerBase.essential.sublabel">
+				<wz:info id="step1.intro" label="create.DealerBase.essential.intro" position="top"/>
+				<wz:content id="step1.content">
+					<wz:property-list root="newDealer">
+						<wz:property qualifier="localizeName" type="java.lang.String"/>
+						<wz:property qualifier="uniqueId" type="java.lang.String"/>
+						<wz:property qualifier="address" type="java.lang.String"/>
+					</wz:property-list>
+				</wz:content>
+				<wz:navigation id="step1.navigation">
+					<wz:cancel/>
+					<!--<wz:next visible="!#empty(newDriver.driverId) and (newDriver.nameOfDriver!=null)"/>-->
+					<wz:done visible="!#empty(newDealer.uniqueId) and newDealer.localizeName!=null">
+						<wz:save property="newDealer"/>
+					</wz:done>
+				</wz:navigation>
+			</wz:step>
+		</wz:flow>
+	</context>
+
+
+
+	<context merge-by="type" type="VehicleBase" component="editor-area">
+		<editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+			<editorArea:essentials xmlns="http://www.hybris.com/cockpitng/component/editorArea">
+				<essentialSection name="hmc.essential">
+					<attribute qualifier="vehicleRegistrationNumber" merge-mode="add"/>
+					<attribute qualifier="vehicleId" merge-mode="add"/>
+				</essentialSection>
+			</editorArea:essentials>
+		</editorArea:editorArea>
+	</context>
+
+
+
+	<context type="ApparelProduct" component="base" merge-by="type" >
+		<y:base>
+			<y:labels>
+				<y:label>(name?:'')+' ['+code+'] - ' + @labelService.getObjectLabel(catalogVersion)</y:label>
+				<y:shortLabel>(name?:'')+' ['+code+']'</y:shortLabel>
+			</y:labels>
+		</y:base>
+	</context>
+
+
+	<context type="VehicleBase" component="base" merge-by="type" >
+		<y:base>
+			<y:labels>
+				<y:label>(shorText?:itemModelContext.getLocalizedValue('shortText',new java.util.Locale('en')))+' ['+code.replaceFirst('^0+(?!$)','')+'] - '+@labelService.getObjectLabel(catalogVersion)</y:label>
+				<y:shortLabel>(shorText?:itemModelContext.getLocalizedValue('shortText',new java.util.Locale('en')))+' ['+code.replaceFirst('^0+(?!$)','')+']'</y:shortLabel>
+			</y:labels>
+			<y:preview urlQualifier="packshotImage.get(new java.util.Locale('en'))?:picture"></y:preview>
+		</y:base>
+	</context>
+
+
+	<context type="VehicleBase" parent="Product" component="editorAreaDynamicForms" merge-by="module">
+		<df:dynamicForms >
+			<df:attribute id="dynamicIdofvehiclebase" triggeredOn="vehicleId" qualifier="vehicleRegistrationNumber" disabledIf="vehicleId.length() &lt; 10" />
+			<df:attribute id="codeid" triggeredOn="*" qualifier="vehicleRegistrationNumber" disabledIf="(code &gt; 1 || code &lt; 10)" />
+			<df:attribute id="uniqueId" qualifier="description" lang="de,es_CO,en" triggeredOn="name" computedValue="'I love ' + name[new java.util.Locale('en')] + ' soooooo much! '"/>
+			<df:section id="sectionId" triggeredOn="vehicleId" qualifier="hmc.section.product.vehicleDescription" visibleIf="vehicleId.length() &gt; 9" />
+			<df:tab id="tabId" triggeredOn="code" gotoTabIf="code.length() &gt; 8" gotoTabId="hmc.tab.product.multimedia"    qualifier="code"/>
+		</df:dynamicForms>
+	</context>
+	<context type="VehicleBase"  component="configurableFlowDynamicForms" merge-by="module">
+		<df:dynamicForms xmlns:df="http://www.hybris.com/cockpitng/component/dynamicForms" modelProperty="newVehicle">
+			<df:attribute id="c" disabledIf="code==null || code.length() &lt; 2" qualifier="catalogVersion" triggeredOn="*" />
+			<df:attribute id="d" disabledIf="code==null || code.length() &lt; 2" qualifier="approvalStatus" triggeredOn="*" />
+		</df:dynamicForms>
+	</context>
+
+
+
+
+
+
+
+
+
+
+</config>

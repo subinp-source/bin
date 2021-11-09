@@ -1,0 +1,23 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+$lang=en
+
+INSERT_UPDATE Catalog ; id[unique=true] ; name[lang=en]     ; defaultCatalog
+                      ; hwcatalog       ; Computer hardware ; false         
+
+INSERT_UPDATE CatalogVersion ; catalog(id)[unique=true] ; version[unique=true] ; languages(isocode)
+                             ; hwcatalog                ; Staged               ; en                
+                             ; hwcatalog                ; Online               ; en                
+
+INSERT_UPDATE Category ; code[unique=true] ; catalogVersion(catalog(id),version)[unique=true]
+                       ; category1         ; hwcatalog:Staged
+                       ; category2         ; hwcatalog:Staged
+                       ; category1         ; hwcatalog:Online
+                       ; category2         ; hwcatalog:Online
+
+INSERT_UPDATE Product ; code[unique=true] ; catalogVersion(catalog(id),version)[unique=true]
+                      ; product1          ; hwcatalog:Staged
+                      ; product2          ; hwcatalog:Staged
+                      ; product1          ; hwcatalog:Online
+                      ; product2          ; hwcatalog:Online

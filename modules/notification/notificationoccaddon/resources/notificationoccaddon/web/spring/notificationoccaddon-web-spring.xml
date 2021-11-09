@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/util
+           http://www.springframework.org/schema/util/spring-util.xsd
+           ">
+           
+    <context:component-scan base-package="de.hybris.platform.notificationoccaddon.controllers"/>
+
+	<!-- Cache manager for addon -->
+
+	<alias name="defaultNotificationoccaddonCacheManager" alias="notificationoccaddonCacheManager"/>
+	<bean id="defaultNotificationoccaddonCacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+		<property name="cacheManager" ref="notificationoccaddonEhcache"/>
+	</bean>
+
+	<alias name="defaultNotificationoccaddonEhcache" alias="notificationoccaddonEhcache"/>
+	<bean id="defaultNotificationoccaddonEhcache" class="de.hybris.platform.webservicescommons.cache.TenantAwareEhCacheManagerFactoryBean">
+		<property name="cacheNamePrefix" value="notificationoccaddonCache_"/>
+		<property name="configLocation" value="/WEB-INF/cache/addons/notificationoccaddon/ehcache.xml"/>
+	</bean>
+
+	<bean depends-on="wsCacheManagerList" parent="listMergeDirective">
+		<property name="add" ref="notificationoccaddonCacheManager"/>
+	</bean>
+	
+	<bean parent="fieldMapper">
+		<property name="sourceClass"
+		          value="de.hybris.platform.core.servicelayer.data.SearchPageData"/>
+		<property name="destClass"
+		          value="de.hybris.platform.notificationoccaddon.dto.SiteMessageSearchPageWsDTO"/>
+		<property name="fieldMapping">
+			<map>
+				<entry key="results" value="messages"/>			
+			</map>
+		</property>
+	</bean>
+	
+	<bean parent="fieldMapper">
+		<property name="sourceClass"
+		          value="de.hybris.platform.core.servicelayer.data.SearchPageData"/>
+		<property name="destClass"
+		          value="de.hybris.platform.notificationoccaddon.dto.SiteMessageSearchResultWsDTO"/>
+		<property name="fieldMapping">
+			<map>
+				<entry key="results" value="messages"/>			
+			</map>
+		</property>
+	</bean>
+	
+	<bean parent="fieldMapper">
+		<property name="sourceClass" value="de.hybris.platform.core.servicelayer.data.PaginationData" />
+		<property name="destClass" value="de.hybris.platform.webservicescommons.dto.PaginationWsDTO"/>
+		<property name="fieldMapping">
+			<map>
+				<entry key="pageSize" value="count"/>
+				<entry key="totalNumberOfResults" value="totalCount"/>
+				<entry key="currentPage" value="page"/>
+				<entry key="numberOfPages" value="totalPages"/>
+			</map>
+		</property>
+	</bean>
+	
+	<alias name="defaultNotificationSMSValidator" alias="notificationSMSValidator"/>
+	<bean id="defaultNotificationSMSValidator" class="de.hybris.platform.notificationoccaddon.validator.NotificationPreferenceSMSValidator">
+			 	<constructor-arg name="notificationPreferenceFacade" ref="notificationPreferenceFacade"/>
+	</bean>	
+	
+	<alias name="notificationChannelSpecificValidatorMap" alias="notificationChannelSpecificValidatorMap"/>
+	<util:map id="notificationChannelSpecificValidatorMap"  map-class="java.util.HashMap" key-type="java.lang.String" >	
+		<entry key="SMS" value-ref="notificationSMSValidator"/>
+	</util:map>	
+	
+		
+	<alias name="notificationPreferenceDTOValidator" alias="notificationPreferenceDTOValidator"/>
+	<bean id="notificationPreferenceDTOValidator" class="de.hybris.platform.webservicescommons.validators.CompositeValidator">
+		<property name="validators">
+			<list>
+				<bean class="de.hybris.platform.webservicescommons.validators.FieldNotEmptyValidator">
+					<property name="fieldPath" value="channel"/>					
+				</bean>
+				<bean class="de.hybris.platform.webservicescommons.validators.FieldNotEmptyValidator">
+					<property name="fieldPath" value="enabled"/>					
+				</bean>
+				 <bean class="de.hybris.platform.notificationoccaddon.validator.NotificationPreferenceChannelValidator">
+				 	<constructor-arg name="channelTypeValidator">
+					 	<bean  class="de.hybris.platform.webservicescommons.validators.EnumValueValidator">					
+							<constructor-arg name="enumClass" value="NotificationChannel" />
+							<property name="enumerationService" ref="enumerationService"/>					
+					   </bean>
+				 	</constructor-arg>	
+				 	<constructor-arg name="channelSpecificValidator" ref="notificationChannelSpecificValidatorMap" />			 	
+				 </bean>				             
+			</list>
+		</property>
+	</bean>
+	
+	<bean class="de.hybris.platform.notificationoccaddon.mapping.converters.NotificationChannelConverter"/>
+
+</beans>

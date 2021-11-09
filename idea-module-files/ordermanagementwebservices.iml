@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="OOTB" importedAsReadOnly="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/web/webroot/WEB-INF/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/web/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/lib" recursive="true" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/web/webroot/WEB-INF/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../modules/order-management/ordermanagementwebservices/web/webroot/WEB-INF/lib" recursive="true" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="commercewebservicescommons" exported="" />
+    <orderEntry type="module" module-name="ordermanagementfacades" exported="" />
+    <orderEntry type="module" module-name="platform" exported="" />
+    <orderEntry type="module" module-name="webservicescommons" exported="" />
+  </component>
+</module>

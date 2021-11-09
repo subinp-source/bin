@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+
+    Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
+
+	<bean class="com.hybris.platform.merchandising.yaas.ProductBatchResp">
+		<property name="id" type="String"/>
+		<property name="status" type="String"/>
+		<property name="location" type="String"/>
+	</bean>
+
+	<bean class="com.hybris.platform.merchandising.yaas.CategoryHierarchy">
+		<property name="id" type="String"/>
+		<property name="name" type="String"/>
+		<property name="url" type="String"/>
+		<property name="subcategories" type="java.util.List&lt;CategoryHierarchy>"/>
+	</bean>
+
+</beans>

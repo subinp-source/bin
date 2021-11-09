@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+--><extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
+    	
+    <extension abstractclassprefix="Generated" classprefix="Solrfacetsearch" description="solrfacetsearch extension" managername="SolrfacetsearchManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="solrfacetsearch" usemaven="false">
+        		
+        <coremodule generated="true" manager="de.hybris.platform.solrfacetsearch.jalo.SolrfacetsearchManager" packageroot="de.hybris.platform.solrfacetsearch"/>
+        	
+    </extension>
+    
+</extensioninfo>

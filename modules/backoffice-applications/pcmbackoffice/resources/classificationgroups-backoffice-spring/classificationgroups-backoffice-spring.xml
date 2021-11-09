@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<alias name="defaultClassificationgroupsbackofficeLabelLocator" alias="classificationgroupsbackofficeLabelLocator"/>
+	<bean id="defaultClassificationgroupsbackofficeLabelLocator"
+		  class="com.hybris.cockpitng.util.labels.ResourcesLabelLocator" init-method="init" lazy-init="false">
+		<property name="location" value="/classificationgroupsbackoffice-backoffice-labels/"/>
+		<property name="name" value="labels"/>
+	</bean>
+
+	<alias name="defaultIndexGroupAssignmentCellValueProvider" alias="indexGroupAssignmentCellValueProvider"/>
+	<bean id="defaultIndexGroupAssignmentCellValueProvider"
+		  class="com.hybris.pcmbackoffice.classificationgroupsbackoffice.renderers.IndexGroupAssignmentCellValueProvider"/>
+
+	<alias name="defaultGroupNameGroupAssignmentCellValueProvider" alias="groupNameGroupAssignmentCellValueProvider"/>
+	<bean id="defaultGroupNameGroupAssignmentCellValueProvider"
+		  class="com.hybris.pcmbackoffice.classificationgroupsbackoffice.renderers.GroupNameGroupAssignmentCellValueProvider"/>
+
+	<alias name="defaulGroupIndexGroupAssignmentCellValueProvider" alias="groupIndexGroupAssignmentCellValueProvider"/>
+	<bean id="defaulGroupIndexGroupAssignmentCellValueProvider"
+		  class="com.hybris.pcmbackoffice.classificationgroupsbackoffice.renderers.GroupIndexGroupAssignmentCellValueProvider"/>
+
+	<alias name="defaultClassAttributeAssignmentIndexCellRenderer" alias="classAttributeAssignmentIndexCellRenderer"/>
+	<bean id="defaultClassAttributeAssignmentIndexCellRenderer"
+		  class="com.hybris.pcmbackoffice.classificationgroupsbackoffice.renderers.ClassAttributeAssignmentCellRenderer">
+		<property name="cellValueProvider" ref="indexGroupAssignmentCellValueProvider"/>
+	</bean>
+
+	<alias name="defaultClassAttributeAssignmentGroupCellRenderer" alias="classAttributeAssignmentGroupCellRenderer"/>
+	<bean id="defaultClassAttributeAssignmentGroupCellRenderer"
+		  class="com.hybris.pcmbackoffice.classificationgroupsbackoffice.renderers.ClassAttributeAssignmentCellRenderer">
+		<property name="cellValueProvider" ref="groupNameGroupAssignmentCellValueProvider"/>
+	</bean>
+
+	<alias name="defaultClassificationAttributeGroupCellRenderer" alias="classificationAttributeGroupCellRenderer"/>
+	<bean id="defaultClassificationAttributeGroupCellRenderer"
+		  class="com.hybris.pcmbackoffice.classificationgroupsbackoffice.renderers.ClassificationAttributeCellRenderer">
+		<property name="cellValueProvider" ref="groupNameGroupAssignmentCellValueProvider"/>
+		<property name="modelService" ref="modelService"/>
+	</bean>
+
+	<alias name="defaultClassificationAttributeIndexGroupRenderer" alias="classificationAttributeIndexGroupRenderer"/>
+	<bean id="defaultClassificationAttributeIndexGroupRenderer"
+		  class="com.hybris.pcmbackoffice.classificationgroupsbackoffice.renderers.ClassificationAttributeCellRenderer">
+		<property name="cellValueProvider" ref="groupIndexGroupAssignmentCellValueProvider"/>
+		<property name="modelService" ref="modelService"/>
+	</bean>
+
+	<alias name="defaultClassificationAttributeIndexCellRenderer" alias="classificationAttributeIndexCellRenderer"/>
+	<bean id="defaultClassificationAttributeIndexCellRenderer"
+		  class="com.hybris.pcmbackoffice.classificationgroupsbackoffice.renderers.ClassificationAttributeCellRenderer">
+		<property name="cellValueProvider" ref="indexGroupAssignmentCellValueProvider"/>
+		<property name="modelService" ref="modelService"/>
+	</bean>
+
+	<alias name="defaultClassFeatureGroupAssignmentIndexRenderer" alias="classFeatureGroupAssignmentIndexRenderer"/>
+	<bean id="defaultClassFeatureGroupAssignmentIndexRenderer"
+		  class="com.hybris.pcmbackoffice.classificationgroupsbackoffice.renderers.ClassFeatureGroupAssignmentIndexRenderer">
+	</bean>
+
+	<alias name="defaultClassFeatureGroupIndexRenderer" alias="classFeatureGroupIndexRenderer"/>
+	<bean id="defaultClassFeatureGroupIndexRenderer"
+		  class="com.hybris.pcmbackoffice.classificationgroupsbackoffice.renderers.ClassFeatureGroupIndexRenderer">
+	</bean>
+
+	<alias name="defaultClassFeatureGroupAssignmentSearchFacade" alias="classFeatureGroupAssignmentSearchFacade"/>
+	<bean id="defaultClassFeatureGroupAssignmentSearchFacade"
+		  class="com.hybris.pcmbackoffice.classificationgroupsbackoffice.facades.ClassFeatureGroupAssignmentSearchFacade">
+		<property name="classFeatureGroupAssignmentService" ref="classFeatureGroupAssignmentService"/>
+	</bean>
+
+</beans>

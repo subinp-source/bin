@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="configurableUrlPersonalizationVoter" class="de.hybris.platform.personalizationservices.voters.impl.ConfigurableUrlVoter">
+		<property name="cxConfigurationService" ref="cxConfigurationService" />
+	</bean>
+
+    <bean id="personalizationPeriodicVoter" class="de.hybris.platform.personalizationservices.voters.impl.PeriodicVoter">
+        <property name="cxConfigurationService" ref="cxConfigurationService" />
+        <property name="userService" ref="userService" />
+        <property name="sessionService" ref="sessionService" />
+        <property name="timeService" ref="timeService" />
+    </bean>
+
+	<bean id="newSessionPersonalizationVoter" class="de.hybris.platform.personalizationservices.voters.impl.NewSessionVoter">
+    	<property name="cxConfigurationService" ref="cxConfigurationService" />
+	</bean>
+
+	<alias name="defaultCxPersonalizationHandler" alias="cxPersonalizationHandler"/>
+	<bean id="defaultCxPersonalizationHandler" class="de.hybris.platform.personalizationservices.handlers.impl.DefaultPersonalizationHandler">
+		<property name="cxRecalculationService" ref="cxRecalculationService" />
+		<property name="sessionService" ref="sessionService" />
+		<property name="cxConsentService" ref="cxConsentService" />
+	</bean>
+
+	<alias name="defaultCxPersonalizationFilter" alias="cxPersonalizationFilter"/>
+   	<bean id="defaultCxPersonalizationFilter" class="de.hybris.platform.personalizationservices.filter.CxPersonalizationFilter">
+   		<property name="cxRecalculationService" ref="cxRecalculationService" />
+		<property name="personalizationHandler" ref="cxPersonalizationHandler" />
+	</bean>
+
+	<bean depends-on="storefrontTenantDefaultFilterChainList" parent="listMergeDirective">
+    	<property name="add" ref="cxPersonalizationFilter" />
+    	<property name="afterBeanNames">
+   			<list value-type="java.lang.String">
+            	<value>consentFilter</value>
+        	</list>
+    	</property>
+	</bean>
+</beans>

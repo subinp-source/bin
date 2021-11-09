@@ -1,0 +1,34 @@
+.se-navigation--node {
+    display: flex;
+    background-color: fd-color('neutral', 1);
+    padding: 0 20px;
+    margin: 0 -20px 20px -20px;
+    border-top: 1px solid fd-color('neutral', 2);
+    border-bottom: 1px solid fd-color('neutral', 2);
+
+    &-breadcrumb {
+        flex: 10;
+
+        .se-breadcrumb {
+            margin-bottom: 0;
+            border: none;
+        }
+    }
+
+    &-button {
+        flex: 2;
+        display: flex;
+    }
+}
+
+.se-navigation--button {
+    font-size: 15px;
+    font-family: $font-sap;
+    @include fd-weight('bold');
+    align-self: flex-end;
+    text-transform: capitalize;
+}
+
+se-navigation-node-selector .se-navigation-editor-tree {
+    margin: 0;
+}

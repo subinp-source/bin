@@ -1,0 +1,19 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+$defaultPassword = 1234
+
+INSERT_UPDATE B2BCustomer; description; uid[unique = true]        ; originalUid               ; email                     ; name        ; title(code); groups(uid)              ; permissionGroups(uid); sessionCurrency(isocode)[default = 'USD']; password[default = $defaultPassword];
+                         ; Admin A    ; linda.wolf@rustic-hw.com  ; linda.wolf@rustic-hw.com  ; linda.wolf@rustic-hw.com  ; Linda Wolf  ; ms         ; Rustic,b2badmingroup     ;                      ;                                          ;                                     ;
+                         ; Customer A ; mark.rivers@rustic-hw.com ; mark.rivers@rustic-hw.com ; mark.rivers@rustic-hw.com ; Mark Rivers ; mr         ; Rustic, b2bcustomergroup ;                      ;                                          ;                                     ;
+
+INSERT_UPDATE B2BBudget; code[unique = true]; Unit(uid); budget; currency(isocode)[allownull = true]; dateRange[dateformat = dd.MM.yyyy hh:mm:ss, allownull = true]; name[lang = en];
+                       ; Monthly_50K_USD    ; Rustic   ; 50000 ; USD                                ; 01.01.2010 10:00:00,31.12.2032 10:00:00                      ; Monthly 50K USD
+                       ; Monthly_20K_USD    ; Rustic   ; 20000 ; USD                                ; 01.01.2010 10:00:00,31.12.2032 10:00:00                      ; Monthly 20K USD
+
+INSERT_UPDATE B2BCostCenter; code[unique = true]; name[lang = en]    ; Unit(uid); budgets(code)   ; currency(isocode)[default = 'USD']; active
+                           ; Rustic_Global      ; Rustic Global      ; Rustic   ; Monthly_50K_USD ;                                   ; true
+                           ; Rustic_Retail      ; Retail             ; Rustic   ; Monthly_20K_USD ;                                   ; false
+                           ; Rustic_Cost_Center ; Rustic Cost Center ; Rustic   ;                 ;                                   ; false
+                           ; Rustic_US          ; Rustic US          ; Rustic   ; Monthly_50K_USD ;                                   ; true

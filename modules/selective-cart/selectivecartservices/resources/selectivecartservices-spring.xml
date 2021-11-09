@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <alias name="defaultSelectiveCartService" alias="selectiveCartService"/>
+    <bean id="defaultSelectiveCartService" class="de.hybris.platform.selectivecartservices.impl.DefaultSelectiveCartService">
+        <property name="modelService" ref="modelService"/>
+        <property name="selectiveCartDao" ref="selectiveCartDao"/>
+        <property name="wishlistService" ref="wishlistService"/>
+    </bean>
+    
+    <alias name="defaultSelectiveCartDao" alias="selectiveCartDao"/>
+    <bean id="defaultSelectiveCartDao" class="de.hybris.platform.selectivecartservices.daos.impl.DefaultSelectiveCartDao" />
+
+    <alias name="selectiveSaveCartDao" alias="saveCartDao"/>
+    <bean id="selectiveSaveCartDao" class="de.hybris.platform.selectivecartservices.daos.impl.SelectiveSaveCartDao" parent="defaultSaveCartDao"/>
+
+	<alias name="selectiveCartAddToCartStrategy" alias="commerceAddToCartStrategy"/>	
+	<bean id="selectiveCartAddToCartStrategy" class="de.hybris.platform.selectivecartservices.strategies.SelectiveCartAddToCartStrategy" parent="defaultCommerceAddToCartStrategy">
+		<property name="selectiveCartService" ref="selectiveCartService"/>
+	</bean>
+
+	<alias name="defaultSelectiveCartFactory" alias="selectiveCartFactory"/>	
+	<bean id="defaultSelectiveCartFactory" class="de.hybris.platform.selectivecartservices.order.impl.DefaultSelectiveCartFactory" parent="commerceCartFactory" >
+		<constructor-arg ref="userService" />
+	</bean>
+</beans>

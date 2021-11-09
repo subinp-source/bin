@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="OOTB" importedAsReadOnly="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/integration-apis/integrationbackofficetest/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/backoffice-framework/backoffice/web/webroot/WEB-INF/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../modules/backoffice-framework/backoffice/web/webroot/WEB-INF/lib" recursive="true" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/backoffice-framework/backoffice/web/webroot/WEB-INF/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="backoffice" exported="" />
+    <orderEntry type="module" module-name="commerceservices" exported="" />
+    <orderEntry type="module" module-name="integrationbackoffice" exported="" />
+    <orderEntry type="module" module-name="platform" exported="" />
+  </component>
+</module>

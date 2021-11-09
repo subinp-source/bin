@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<config xmlns="http://www.hybris.com/cockpit/config"
+		xmlns:n="http://www.hybris.com/cockpitng/config/explorertree"
+		xmlns:b="http://www.hybris.com/cockpit/config/hybris"
+		xmlns:ss="http://www.hybris.com/cockpitng/config/simplesearch"
+		xmlns:as="http://www.hybris.com/cockpitng/config/advancedsearch"
+		xmlns:list="http://www.hybris.com/cockpitng/component/listView"
+		xmlns:ea="http://www.hybris.com/cockpitng/component/editorArea"
+		xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config">
+
+	<!-- Adds menu items to the integrationbackoffice-explorer-tree -->
+	<context merge-by="module" component="integrationbackoffice-explorer-tree">
+		<n:explorer-tree>
+			<n:navigation-node id="outboundsyncbackoffice.explorer.treenode.outboundsync">
+				<n:navigation-node id="outboundsyncbackoffice.explorer.treenode.configuration">
+					<n:type-node id="outboundsyncbackoffice.explorer.typenode.channel"
+								 code="OutboundChannelConfiguration" />
+					<n:type-node id="outboundsyncbackoffice.explorer.typenode.container"
+								 code="OutboundSyncStreamConfigurationContainer" />
+					<n:type-node id="outboundsyncbackoffice.explorer.typenode.stream"
+								 code="OutboundSyncStreamConfiguration" />
+					<n:type-node id="outboundsyncbackoffice.explorer.typenode.job"
+								 code="OutboundSyncJob" />
+				</n:navigation-node>
+				<n:navigation-node id="outboundsyncbackoffice.explorer.treenode.scheduling">
+					<n:type-node id="outboundsyncbackoffice.explorer.typenode.cronjob"
+								 code="OutboundSyncCronJob" />
+				</n:navigation-node>
+			</n:navigation-node>
+		</n:explorer-tree>
+	</context>
+
+	<context type="ConsumedDestination" component="base">
+		<b:base>
+			<b:labels>
+				<b:label>id</b:label>
+			</b:labels>
+		</b:base>
+	</context>
+
+	<context type="OutboundSyncStreamConfigurationContainer" component="base">
+		<b:base>
+			<b:labels>
+				<b:label>id</b:label>
+			</b:labels>
+		</b:base>
+	</context>
+	<context type="OutboundSyncStreamConfigurationContainer" component="simple-search">
+		<ss:simple-search>
+			<ss:field name="id"/>
+			<ss:sort-field name="id" asc="true"/>
+		</ss:simple-search>
+	</context>
+	<context type="OutboundSyncStreamConfigurationContainer" component="advanced-search">
+		<as:advanced-search connection-operator="AND">
+			<as:field-list>
+				<as:field name="id" operator="contains" selected="true"/>
+			</as:field-list>
+			<as:sort-field name="id" asc="true"/>
+		</as:advanced-search>
+	</context>
+
+	<context component="listviewactions" type="OutboundChannelConfiguration" merge-by="type">
+        <y:actions xmlns:y="http://www.hybris.com/cockpit/config/hybris">
+			<y:group qualifier="audit" show-group-header="false" position="30">
+				<y:action id="createauditreport" action-id="outboundsyncbackoffice.actions.OutboundChannelConfigAuditReportDownloadAction" property="selectedObjects" position="10"/>
+			</y:group>
+        </y:actions>
+    </context>
+
+	<context type="OutboundSyncStreamConfigurationContainer" component="listview">
+		<list:list-view refresh-after-object-creation="true">
+			<list:column qualifier="id"/>
+		</list:list-view>
+	</context>
+	<context type="OutboundSyncStreamConfigurationContainer" component="integration-editor-area">
+		<ea:editorArea>
+			<ea:tab name="OutboundContainer">
+				<ea:section name="outboundsyncbackoffice.container.details">
+					<ea:attribute qualifier="id"/>
+					<ea:attribute qualifier="creationtime" readonly="true"/>
+				</ea:section>
+			</ea:tab>
+		</ea:editorArea>
+	</context>
+	<context type="OutboundSyncStreamConfigurationContainer" component="create-wizard">
+		<wz:flow id="OutboundSyncStreamConfigurationContainerWizard"
+				 title="outboundsyncbackoffice.create.container.configuration.title">
+			<wz:prepare id="streamConfigurationContainerPrepare">
+				<wz:initialize property="configuration" type="OutboundSyncStreamConfigurationContainer"/>
+			</wz:prepare>
+			<wz:step id="step1" label="outboundsyncbackoffice.create.container.configuration.step1.label">
+				<wz:content id="step1.content">
+					<wz:property-list root="configuration">
+						<wz:property qualifier="id"/>
+					</wz:property-list>
+				</wz:content>
+				<wz:navigation id="step1.navigation">
+					<wz:cancel/>
+					<wz:done visible="configuration.id.trim().length() > 0">
+						<wz:save property="configuration"/>
+					</wz:done>
+				</wz:navigation>
+			</wz:step>
+		</wz:flow>
+	</context>
+
+	<context type="OutboundChannelConfiguration" component="base">
+		<b:base>
+			<b:labels>
+				<b:label>code</b:label>
+			</b:labels>
+		</b:base>
+	</context>
+	<context type="OutboundChannelConfiguration" component="simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+			<ss:sort-field name="code" asc="true"/>
+		</ss:simple-search>
+	</context>
+	<context type="OutboundChannelConfiguration" component="advanced-search">
+		<as:advanced-search connection-operator="AND">
+			<as:field-list>
+				<as:field name="code" operator="contains" selected="true"/>
+				<as:field name="destination" operator="contains" selected="true"/>
+				<as:field name="integrationObject" operator="contains" selected="true"/>
+			</as:field-list>
+			<as:sort-field name="code" asc="true"/>
+		</as:advanced-search>
+	</context>
+	<context type="OutboundChannelConfiguration" component="listview">
+		<list:list-view refresh-after-object-creation="true">
+			<list:column qualifier="code"/>
+			<list:column qualifier="destination"/>
+			<list:column qualifier="integrationObject"/>
+		</list:list-view>
+	</context>
+	<context type="OutboundChannelConfiguration" component="integration-editor-area">
+		<ea:editorArea>
+			<ea:tab name="OutboundChannel">
+				<ea:section name="outboundsyncbackoffice.channel.details">
+					<ea:attribute qualifier="code"/>
+					<ea:attribute qualifier="creationtime" readonly="true"/>
+					<ea:attribute qualifier="integrationObject" />
+					<ea:attribute qualifier="destination"/>
+				</ea:section>
+			</ea:tab>
+		</ea:editorArea>
+	</context>
+	<context type="OutboundChannelConfiguration" component="create-wizard">
+		<wz:flow id="OutboundChannelConfigurationWizard"
+				 title="outboundsyncbackoffice.create.channel.configuration.title">
+			<wz:prepare id="outboundChannelConfigurationPrepare">
+				<wz:initialize property="configuration" type="OutboundChannelConfiguration"/>
+			</wz:prepare>
+			<wz:step id="step1" label="outboundsyncbackoffice.create.channel.configuration.step1.label">
+				<wz:content id="step1.content">
+					<wz:property-list root="configuration">
+						<wz:property qualifier="code"/>
+						<wz:property qualifier="integrationObject" />
+						<wz:property qualifier="destination" />
+						<wz:property qualifier="autoGenerate" label="outboundsyncbackoffice.create.channel.configuration.step1.autoGenerate.label" editor="com.hybris.cockpitng.editor.boolean.checkbox" />
+					</wz:property-list>
+				</wz:content>
+				<wz:navigation id="step1.navigation">
+					<wz:cancel/>
+					<wz:done visible="configuration.code.trim().length() > 0 &amp;&amp; configuration.integrationObject != null &amp;&amp; configuration.destination != null">
+						<wz:save property="configuration"/>
+					</wz:done>
+				</wz:navigation>
+			</wz:step>
+		</wz:flow>
+	</context>
+	<context type="OutboundSyncStreamConfiguration" component="base">
+		<b:base>
+			<b:labels>
+				<b:label>streamId</b:label>
+			</b:labels>
+		</b:base>
+	</context>
+	<context type="OutboundSyncStreamConfiguration" component="simple-search">
+		<ss:simple-search>
+			<ss:field name="streamId"/>
+			<ss:sort-field name="streamId" asc="true"/>
+		</ss:simple-search>
+	</context>
+	<context type="OutboundSyncStreamConfiguration" component="advanced-search">
+		<as:advanced-search connection-operator="AND">
+			<as:field-list>
+				<as:field name="streamId" operator="contains" selected="true"/>
+				<as:field name="container" operator="equals" selected="true"/>
+				<as:field name="itemTypeForStream" operator="contains" selected="true"/>
+				<as:field name="outboundChannelConfiguration" operator="equals" selected="true"/>
+			</as:field-list>
+			<as:sort-field name="streamId" asc="true"/>
+		</as:advanced-search>
+	</context>
+	<context type="OutboundSyncStreamConfiguration" component="listview">
+		<list:list-view refresh-after-object-creation="true">
+			<list:column qualifier="streamId"/>
+			<list:column qualifier="container"/>
+			<list:column qualifier="itemTypeForStream"/>
+			<list:column qualifier="outboundChannelConfiguration"/>
+		</list:list-view>
+	</context>
+	<context type="OutboundSyncStreamConfiguration" component="integration-editor-area">
+		<ea:editorArea>
+			<ea:tab name="OutboundChannel">
+				<ea:section name="outboundsyncbackoffice.stream.details">
+					<ea:attribute qualifier="streamId"/>
+					<ea:attribute qualifier="creationtime" readonly="true"/>
+					<ea:attribute qualifier="container" />
+					<ea:attribute qualifier="itemTypeForStream"/>
+					<ea:attribute qualifier="outboundChannelConfiguration"/>
+					<ea:attribute qualifier="whereClause"/>
+				</ea:section>
+			</ea:tab>
+		</ea:editorArea>
+	</context>
+	<context type="OutboundSyncStreamConfiguration" component="create-wizard">
+		<wz:flow id="OutboundSyncStreamConfigurationWizard"
+				 title="outboundsyncbackoffice.create.stream.configuration.title">
+			<wz:prepare id="outboundSyncStreamConfigurationPrepare">
+				<wz:initialize property="configuration" type="OutboundSyncStreamConfiguration"/>
+			</wz:prepare>
+			<wz:step id="step1" label="outboundsyncbackoffice.create.stream.configuration.step1.label">
+				<wz:content id="step1.content">
+					<wz:property-list root="configuration">
+						<wz:property qualifier="streamId"/>
+						<wz:property qualifier="container" />
+						<wz:property qualifier="itemTypeForStream" />
+						<wz:property qualifier="outboundChannelConfiguration" />
+						<wz:property qualifier="whereClause" />
+					</wz:property-list>
+				</wz:content>
+				<wz:navigation id="step1.navigation">
+					<wz:cancel/>
+					<wz:done visible="configuration.streamId.trim().length() > 0 &amp;&amp; configuration.container != null &amp;&amp; configuration.itemTypeForStream != null &amp;&amp; configuration.outboundChannelConfiguration != null">
+						<wz:save property="configuration"/>
+					</wz:done>
+				</wz:navigation>
+			</wz:step>
+		</wz:flow>
+	</context>
+
+	<!-- OutboundSyncJob -->
+	<context type="OutboundSyncJob" component="base">
+		<b:base>
+			<b:labels>
+				<b:label>code</b:label>
+			</b:labels>
+		</b:base>
+	</context>
+	<context type="OutboundSyncJob" component="simple-search">
+		<ss:simple-search>
+			<ss:field name="code"/>
+			<ss:sort-field name="code" asc="true"/>
+		</ss:simple-search>
+	</context>
+	<context type="OutboundSyncJob" component="advanced-search">
+		<as:advanced-search connection-operator="AND">
+			<as:field-list>
+				<as:field name="code" operator="contains" selected="true"/>
+				<as:field name="streamConfigurationContainer" operator="equals" selected="true"/>
+			</as:field-list>
+			<as:sort-field name="code" asc="true"/>
+		</as:advanced-search>
+	</context>
+	<context type="OutboundSyncJob" component="listview">
+		<list:list-view refresh-after-object-creation="true">
+			<list:column qualifier="code"/>
+			<list:column qualifier="streamConfigurationContainer"/>
+		</list:list-view>
+	</context>
+	<context type="OutboundSyncJob" component="integration-editor-area">
+		<ea:editorArea>
+			<ea:tab name="OutboundChannel">
+				<ea:section name="outboundsyncbackoffice.job.details">
+					<ea:attribute qualifier="code"/>
+					<ea:attribute qualifier="creationtime" readonly="true"/>
+					<ea:attribute qualifier="streamConfigurationContainer" />
+				</ea:section>
+			</ea:tab>
+		</ea:editorArea>
+	</context>
+	<context type="OutboundSyncJob" component="create-wizard">
+		<wz:flow id="OutboundSyncJobWizard"
+				 title="outboundsyncbackoffice.create.job.configuration.title">
+			<wz:prepare id="outboundSyncJobConfigurationPrepare">
+				<wz:initialize property="configuration" type="OutboundSyncJob"/>
+			</wz:prepare>
+			<wz:step id="step1" label="outboundsyncbackoffice.create.job.configuration.step1.label">
+				<wz:content id="step1.content">
+					<wz:property-list root="configuration">
+						<wz:property qualifier="code"/>
+						<wz:property qualifier="streamConfigurationContainer" />
+					</wz:property-list>
+				</wz:content>
+				<wz:navigation id="step1.navigation">
+					<wz:cancel/>
+					<wz:done visible="configuration.code.trim().length() > 0 &amp;&amp; configuration.streamConfigurationContainer != null">
+						<wz:save property="configuration"/>
+					</wz:done>
+				</wz:navigation>
+			</wz:step>
+		</wz:flow>
+	</context>
+
+	<!-- Cronjob -->
+	<context type="OutboundSyncCronJob" component="simple-search">
+		<ss:simple-search>
+			<ss:field name="code" />
+			<ss:sort-field name="code" asc="true"/>
+		</ss:simple-search>
+	</context>
+	<context type="OutboundSyncCronJob" component="advanced-search">
+		<as:advanced-search connection-operator="AND">
+			<as:field-list>
+				<as:field name="code" operator="contains" selected="true"/>
+				<as:field name="job" operator="equals" selected="true"/>
+				<as:field name="status" operator="equals" selected="true"/>
+				<as:field name="result" operator="equals" selected="true"/>
+			</as:field-list>
+			<as:sort-field name="code" asc="true"/>
+		</as:advanced-search>
+	</context>
+	<context merge-by="type" parent="CronJob" type="OutboundSyncCronJob" component="editor-area"/>
+	<context merge-by="component" parent="editor-area" type="OutboundSyncCronJob" component="integration-editor-area">
+		<ea:editorArea name="">
+			<ea:tab name="hmc.tab.cronjob.protocol">
+				<ea:section name="hmc.section.cronjob.protocol">
+					<ea:attribute qualifier="logs" merge-mode="remove"/>
+				</ea:section>
+			</ea:tab>
+		</ea:editorArea>
+	</context>
+
+</config>

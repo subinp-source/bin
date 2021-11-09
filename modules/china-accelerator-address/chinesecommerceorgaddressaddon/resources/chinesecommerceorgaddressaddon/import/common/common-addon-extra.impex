@@ -1,0 +1,8 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+UPDATE Region;country(isocode);isocode[unique=true];isocodeShort;name;active[default=true]
+;CN;CN-54;54;"Tibet"
+;CN;CN-36;36;"Jiangxi"
+

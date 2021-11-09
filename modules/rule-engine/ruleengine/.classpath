@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="eclipsebin/notused"/>
+
+				
+				
+	<classpathentry exported="true" kind="lib" path="lib/antlr-runtime-3.5.2.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/drools-compiler-7.21.0.Final.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/drools-core-7.21.0.Final.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/drools-templates-7.21.0.Final.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/kie-api-7.21.0.Final.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/kie-internal-7.21.0.Final.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/kie-soup-commons-7.21.0.Final.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/kie-soup-maven-support-7.21.0.Final.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/kie-soup-project-datamodel-commons-7.21.0.Final.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/mvel2-2.4.4.Final.jar" />
+	<classpathentry exported="true" kind="lib" path="lib/protobuf-java-3.6.1.jar" />
+	<classpathentry exported="true" kind="lib" path="bin/ruleengineserver.jar" />
+	<classpathentry exported="true" kind="lib" path="resources" />
+	<classpathentry exported="true" output="eclipsebin/classes" kind="src" path="testsrc" />
+	<classpathentry exported="false" kind="src" path="/platform" />
+				
+</classpath>
+				

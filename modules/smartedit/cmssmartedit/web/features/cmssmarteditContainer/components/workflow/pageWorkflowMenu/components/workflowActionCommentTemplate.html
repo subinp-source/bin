@@ -1,0 +1,47 @@
+<!-- Decision Comment Template-->
+<div data-ng-if="$ctrl.isDecisionComment" class="se-workflow-action-comment">
+    <div class="fd-tile">
+        <div class="fd-tile__content">
+            <h2
+                class="fd-tile__title se-workflow-action-comment__header"
+                data-ng-class="{'sap-icon--workflow-tasks sap-icon--m': $ctrl.isIncomingDecision(), 'sap-icon--workflow-tasks sap-icon--m sap-icon--flip-h': !$ctrl.isIncomingDecision()}"
+            >
+                {{$ctrl.actionComment.decisionName}}
+            </h2>
+            <p class="fd-has-type-minus-1">
+                {{$ctrl.actionComment.authorName}} | {{$ctrl.getCreatedAgo()}}
+            </p>
+            <p data-ng-if="!!$ctrl.actionComment.text">
+                <strong>{{'se.cms.page.workflow.action.item.comment.header' | translate}}:</strong>
+                <se-more-text
+                    [limit]="$ctrl.textLimit"
+                    [ellipsis]="'...'"
+                    [text]="$ctrl.actionComment.text"
+                    class="se-version-item__y-more-text"
+                ></se-more-text>
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- General Comment Template -->
+<div data-ng-if="!$ctrl.isDecisionComment" class="se-workflow-action-comment">
+    <div class="fd-tile">
+        <div class="fd-tile__content">
+            <h2 class="fd-panel__title">
+                {{'se.cms.page.workflow.action.item.comment.header' | translate}}
+            </h2>
+            <p>{{$ctrl.getCreatedAgo()}}</p>
+            <p>{{$ctrl.actionComment.authorName}}</p>
+            <br />
+            <p>
+                <se-more-text
+                    [limit]="$ctrl.textLimit"
+                    [ellipsis]="'...'"
+                    [text]="$ctrl.actionComment.text"
+                    class="se-version-item__y-more-text"
+                ></se-more-text>
+            </p>
+        </div>
+    </div>
+</div>

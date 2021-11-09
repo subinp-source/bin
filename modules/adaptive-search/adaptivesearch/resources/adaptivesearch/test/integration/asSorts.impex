@@ -1,0 +1,13 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+$lang=en
+
+INSERT_UPDATE AsPromotedSort ; searchConfiguration(uid,catalogVersion(catalog(id),version))[unique=true] ; uid[unique=true] ; code         ; catalogVersion(catalog(id),version)
+                             ; searchConfiguration:hwcatalog:Staged                                      ; promotedSort     ; promotedSort ; hwcatalog:Staged                   
+
+INSERT_UPDATE AsSort ; searchConfiguration(uid,catalogVersion(catalog(id),version))[unique=true] ; uid[unique=true] ; code ; catalogVersion(catalog(id),version)
+                     ; searchConfiguration:hwcatalog:Staged                                      ; sort             ; sort ; hwcatalog:Staged                   
+
+INSERT_UPDATE AsExcludedSort ; searchConfiguration(uid,catalogVersion(catalog(id),version))[unique=true] ; uid[unique=true] ; code         ; catalogVersion(catalog(id),version)
+                             ; searchConfiguration:hwcatalog:Staged                                      ; excludedSort     ; excludedSort ; hwcatalog:Staged                   

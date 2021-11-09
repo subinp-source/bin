@@ -1,0 +1,10 @@
+<div class="se-ctx-menu-btn__msg">
+    <div
+        class="se-ctx-menu-btn__msg-title"
+        data-translate="se.cms.contextmenu.shared.component.info.title"
+    ></div>
+    <div data-ng-if="$ctrl.isReady" class="se-ctx-menu-btn__msg-description">
+        {{ $ctrl.message | translate }}
+    </div>
+    <div data-ng-if="!$ctrl.isReady"><div class="spinner-sm spinner-light"></div></div>
+</div>

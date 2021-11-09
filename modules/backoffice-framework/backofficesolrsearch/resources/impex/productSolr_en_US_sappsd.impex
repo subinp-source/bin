@@ -1,0 +1,22 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+# -----------------------------------------------------------------------
+
+$lang=
+$solrIndexedType=solrIndexedType(identifier)[unique=true,default='BackofficeProduct'];
+
+#Currencies
+UPDATE Currency;isocode[unique=true];name[lang=$lang];
+;EUR;[[[Ĕűŗŏ]]];
+;USD;[[[ŮŜĎŏĺĺąŗ∙∙∙∙∙∙]]];
+
+
+UPDATE SolrIndexedProperty;name[unique=true];$solrIndexedType;backofficeDisplayName[lang=$lang];
+;price;;[[[Ƥŗįċē∙∙∙∙∙∙∙∙∙]]];
+;priceValue;;[[[Ƥŗįċē ʋąĺűē∙∙∙∙∙∙∙∙]]];
+;category;;[[[Ĉąţēğŏŗŷ∙∙∙∙∙∙]]];
+;catalogVersion;;[[[Ĉąţąĺŏğ ʋēŗşįŏŋ∙∙∙∙]]];
+;facet_catalogVersion;;[[[Ĉąţąĺŏğ ʋēŗşįŏŋ∙∙∙∙]]];
+;catalog;;[[[ċąţąĺŏğ∙∙∙∙∙∙∙]]];
+;facet_catalog;;[[[ċąţąĺŏğ∙∙∙∙∙∙∙]]];
+

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="OOTB" importedAsReadOnly="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/bin/admincockpitserver.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/bin/admincockpitserver.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/lib" recursive="true" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/web/webroot/WEB-INF/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../modules/cockpit-applications/deprecated/admincockpit/web/webroot/WEB-INF/lib" recursive="true" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="cockpit" exported="" />
+    <orderEntry type="module" module-name="platform" exported="" />
+  </component>
+</module>

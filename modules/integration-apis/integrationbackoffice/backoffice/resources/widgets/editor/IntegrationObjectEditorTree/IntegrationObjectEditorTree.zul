@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<widget xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.zkoss.org/2005/zul"
+        xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.hybris.com/schema/cockpitng/zul/zul.xsd"
+        height="100%"
+        width="100%">
+
+    <style src="${wr}/IntegrationObjectEditorTree.css"/>
+
+
+    <tree id="composedTypeTree" sclass="yw-integrationbackoffice-editor-tree" vflex="1">
+        <treecols>
+            <treecol label="${labels.integrationbackoffice.editMode.header.composedType}"/>
+        </treecols>
+        <treechildren>
+        </treechildren>
+    </tree>
+
+
+</widget>

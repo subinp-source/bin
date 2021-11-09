@@ -1,0 +1,70 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+$typeCode = type(code)[default = 'BundleTemplate']
+$target = target[allownull = true, default = 'de.hybris.platform.configurablebundleservices.model.BundleTemplateModel']
+$active = active[allownull = true, default = true]
+$lang = en
+$languages=en
+
+#Bundle template type constrains
+
+INSERT_UPDATE CoverageConstraintGroup;id[unique=true];coverageDomainID;dedicatedTypes(code);interfaceName
+;bundleTemplateConstraintGroup;defaultDomain;BundleTemplate;de.hybris.platform.validation.groupinterfaces.BundleTemplateConstraintGroup
+;bundleRuleConstraintGroup;defaultDomain;DisableProductBundleRule,ChangeProductPriceBundleRule;de.hybris.platform.validation.groupinterfaces.BundleRuleConstraintGroup
+
+INSERT_UPDATE BundleTemplateProductsAssignedConstraint;id[unique=true,allownull=true];severity(code,itemtype(code));target[allownull=true];type(code); constraintGroups(id)[mode = append]
+;BundleTemplateProductsAssignedConstraint1;WARN:Severity;de.hybris.platform.configurablebundleservices.model.BundleTemplateModel;BundleTemplate;default,pcmBundleTemplateChildTemplatesCoverageGroup
+
+INSERT_UPDATE AbstractBundleRuleTargetProductsAssignedConstraint;id[unique=true,allownull=true];severity(code,itemtype(code));target[allownull=true];type(code)
+;AbstractBundleRuleTargetProductsAssignedConstraint1;WARN:Severity;de.hybris.platform.configurablebundleservices.model.AbstractBundleRuleModel;AbstractBundleRule;
+
+INSERT_UPDATE TypeConstraint;id[unique=true,allownull=true];severity(code,itemtype(code));annotation;target[allownull=true];type(code); constraintGroups(id)[mode = append]
+;PriceRuleTargetIntegrityConstraint1;WARN:Severity;de.hybris.platform.configurablebundleservices.constraints.PriceRuleTargetIntegrity;de.hybris.platform.configurablebundleservices.model.ChangeProductPriceBundleRuleModel;ChangeProductPriceBundleRule;default,pcmBundleTemplateCoreAttributesCoverageGroup
+;DisableRuleTargetIntegrityConstraint1;WARN:Severity;de.hybris.platform.configurablebundleservices.constraints.DisableRuleTargetIntegrity;de.hybris.platform.configurablebundleservices.model.DisableProductBundleRuleModel;DisableProductBundleRule;default,pcmBundleTemplateCoreAttributesCoverageGroup
+;BundleTemplateProductsAndChildrenConstraint1;ERROR:Severity;de.hybris.platform.configurablebundleservices.constraints.BundleTemplateProductsAndChildren;de.hybris.platform.configurablebundleservices.model.BundleTemplateModel;BundleTemplate;default,pcmBundleTemplateCoreAttributesCoverageGroup
+;BundleTemplateRequiresAncestorConstraint1;ERROR:Severity;de.hybris.platform.configurablebundleservices.constraints.BundleTemplateRequiresAncestor;de.hybris.platform.configurablebundleservices.model.BundleTemplateModel;BundleTemplate;default,pcmBundleTemplateCoreAttributesCoverageGroup
+;BundleTemplateRequiringIntegrityConstraint1;WARN:Severity;de.hybris.platform.configurablebundleservices.constraints.BundleTemplateRequiringIntegrity;de.hybris.platform.configurablebundleservices.model.BundleTemplateModel;BundleTemplate;default,pcmBundleTemplateCoreAttributesCoverageGroup
+;BundleTemplateDependingIntegrityConstraint1;WARN:Severity;de.hybris.platform.configurablebundleservices.constraints.BundleTemplateDependingIntegrity;de.hybris.platform.configurablebundleservices.model.BundleTemplateModel;BundleTemplate;default,pcmBundleTemplateCoreAttributesCoverageGroup
+;BundleTemplateDependsOnItselfConstraint1;ERROR:Severity;de.hybris.platform.configurablebundleservices.constraints.BundleTemplateDependsOnItself;de.hybris.platform.configurablebundleservices.model.BundleTemplateModel;BundleTemplate;default,pcmBundleTemplateCoreAttributesCoverageGroup
+;BundleTemplateDependsOnAncestorConstraint1;ERROR:Severity;de.hybris.platform.configurablebundleservices.constraints.BundleTemplateDependsOnAncestor;de.hybris.platform.configurablebundleservices.model.BundleTemplateModel;BundleTemplate;default,pcmBundleTemplateCoreAttributesCoverageGroup
+;BundleTemplateSelectionCriteriaConstraint1;ERROR:Severity;de.hybris.platform.configurablebundleservices.constraints.BundleTemplateSelectionCriteria;de.hybris.platform.configurablebundleservices.model.BundleTemplateModel;BundleTemplate;default,pcmBundleTemplateCoreAttributesCoverageGroup
+;BundleTemplatePriceRulesAndChildrenConstraint1;ERROR:Severity;de.hybris.platform.configurablebundleservices.constraints.BundleTemplatePriceRulesAndChildren;de.hybris.platform.configurablebundleservices.model.BundleTemplateModel;BundleTemplate;default,pcmBundleTemplateCoreAttributesCoverageGroup
+;BundleTemplateDisableRulesAndChildrenConstraint1;ERROR:Severity;de.hybris.platform.configurablebundleservices.constraints.BundleTemplateDisableRulesAndChildren;de.hybris.platform.configurablebundleservices.model.BundleTemplateModel;BundleTemplate;default,pcmBundleTemplateCoreAttributesCoverageGroup
+;BundleTemplateNonLeafConstraint1;ERROR:Severity;de.hybris.platform.configurablebundleservices.constraints.BundleTemplateNonLeaf;de.hybris.platform.configurablebundleservices.model.BundleTemplateModel;BundleTemplate;default
+
+;PriceRuleConditionalProductsAssignedConstraint1;INFO:Severity;de.hybris.platform.configurablebundleservices.constraints.PriceRuleConditionalProductsAssigned;de.hybris.platform.configurablebundleservices.model.ChangeProductPriceBundleRuleModel;ChangeProductPriceBundleRule;
+;PriceRuleTargetProductsAssignedConstraint1;WARN:Severity;de.hybris.platform.configurablebundleservices.constraints.PriceRuleTargetProductsAssigned;de.hybris.platform.configurablebundleservices.model.ChangeProductPriceBundleRuleModel;ChangeProductPriceBundleRule;
+;DisableRuleConditionalProductsAssignedConstraint1;WARN:Severity;de.hybris.platform.configurablebundleservices.constraints.DisableRuleConditionalProductsAssigned;de.hybris.platform.configurablebundleservices.model.DisableProductBundleRuleModel;DisableProductBundleRule;
+
+
+#Coverage Tab attribute constraints
+
+INSERT_UPDATE CoverageConstraintGroup; id[unique = true]                                 ; dedicatedTypes(code); interfaceName                                                                                       ; coverageDomainID                                  ;
+                                     ; pcmBundleTemplateCoreAttributesCoverageGroup      ; BundleTemplate      ; de.hybris.platform.validation.groupinterfaces.pcmBundleTemplateCoreAttributesCoverageGroup          ; pcmBundleTemplateCoreAttributesCoverageGroup      ;
+                                     ; pcmBundleTemplateMarketingAttributesCoverageGroup ; BundleTemplate      ; de.hybris.platform.validation.groupinterfaces.pcmBundleTemplateMarketingCoreAttributesCoverageGroup ; pcmBundleTemplateMarketingAttributesCoverageGroup ;
+                                     ; pcmBundleTemplateChildTemplatesCoverageGroup      ; BundleTemplate      ; de.hybris.platform.validation.groupinterfaces.pcmBundleTemplateChildTemplatesCoverageGroup          ; pcmBundleTemplateChildTemplatesCoverageGroup      ;
+
+INSERT_UPDATE NotNullConstraint; id[unique = true]                                       ; constraintGroups(id)[mode = append]               ; severity(code, itemtype(code)); $active; $target; $typeCode; qualifier                     ; descriptor(enclosingType(code), qualifier)   ; languages(isocode)[allownull = true];
+                               ; BundleTemplateIdNotNullConstraint                       ; pcmBundleTemplateCoreAttributesCoverageGroup      ; ERROR:Severity                ;        ;        ;          ; id                            ; BundleTemplate:id                            ;                                     ;
+                               ; BundleTemplateNameNotNullConstraint                     ; pcmBundleTemplateCoreAttributesCoverageGroup      ; ERROR:Severity                ;        ;        ;          ; name                          ; BundleTemplate:name                          ;                                     ;
+                               ; BundleTemplateDescriptionNotNullConstraint              ; pcmBundleTemplateCoreAttributesCoverageGroup      ; ERROR:Severity                ;        ;        ;          ; description                   ; BundleTemplate:description                   ;                                     ;
+                               ; BundleTemplateVersionNotNullConstraint                  ; pcmBundleTemplateCoreAttributesCoverageGroup      ; ERROR:Severity                ;        ;        ;          ; version                       ; BundleTemplate:version                       ;                                     ;
+                               ; BundleTemplateNameNotNullForAllLocalesConstraint        ; pcmBundleTemplateMarketingAttributesCoverageGroup ; WARN:Severity                 ;        ;        ;          ; name                          ; BundleTemplate:name                          ; $languages                           ;
+                               ; BundleTemplateDescriptionNotNullForAllLocalesConstraint ; pcmBundleTemplateMarketingAttributesCoverageGroup ; WARN:Severity                 ;        ;        ;          ; description                   ; BundleTemplate:name                          ; $languages                           ;
+                               ; BundleTemplateProductsNotNullConstraint                 ; pcmBundleTemplateChildTemplatesCoverageGroup      ; ERROR:Severity                ;        ;        ;          ; products                      ; BundleTemplate:products                      ;                                     ;
+                               ; BundleTemplateSelectionCriteriaNotNullConstraint        ; pcmBundleTemplateChildTemplatesCoverageGroup      ; ERROR:Severity                ;        ;        ;          ; bundleSelectionCriteria       ; BundleTemplate:bundleSelectionCriteria       ;
+                               ; BundleTemplateRequiredComponentsNotNullConstraint       ; pcmBundleTemplateChildTemplatesCoverageGroup      ; ERROR:Severity                ;        ;        ;          ; requiredBundleTemplates       ; BundleTemplate:requiredBundleTemplates       ;
+                               ; BundleTemplatePriceRulesNotNullConstraint               ; pcmBundleTemplateChildTemplatesCoverageGroup      ; ERROR:Severity                ;        ;        ;          ; changeProductPriceBundleRules ; BundleTemplate:changeProductPriceBundleRules ;
+                               ; BundleTemplateDisableRulesNotNullConstraint             ; pcmBundleTemplateChildTemplatesCoverageGroup      ; ERROR:Severity                ;        ;        ;          ; disableProductBundleRules     ; BundleTemplate:disableProductBundleRules     ;
+
+INSERT_UPDATE NotEmptyConstraint; id[unique = true]                           ; constraintGroups(id)[mode = append]          ; severity(code, itemtype(code)); $active; $target; $typeCode; qualifier   ; descriptor(enclosingType(code), qualifier);
+                                ; BundleTemplateIdNotEmptyConstraint          ; pcmBundleTemplateCoreAttributesCoverageGroup ; ERROR:Severity                ;        ;        ;          ; id          ; BundleTemplate:id                         ;
+                                ; BundleTemplateDescriptionNotEmptyConstraint ; pcmBundleTemplateCoreAttributesCoverageGroup ; WARN:Severity                 ;        ;        ;          ; description ; BundleTemplate:description                ;
+
+
+INSERT_UPDATE SizeConstraint; id[unique = true, allownull = true]                ; constraintGroups(id)[mode = append]               ; severity(code, itemtype(code)); $active; $target; $typeCode; qualifier   ; descriptor(enclosingType(code), qualifier); max[allownull = true]; min[allownull = true]
+                            ; BundleTemplateDescriptionMinSizeCoverageConstraint ; pcmBundleTemplateMarketingAttributesCoverageGroup ; ERROR:Severity                ;        ;        ;          ; description ; BundleTemplate:description                ; 10000                ; 20
+
+$de.hybris.platform.core.Registry.getApplicationContext().getBean(de.hybris.platform.validation.services.ValidationService.class).reloadValidationEngine()

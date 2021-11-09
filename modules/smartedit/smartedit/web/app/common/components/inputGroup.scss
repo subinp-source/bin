@@ -1,0 +1,26 @@
+.se-input-group {
+    @include se-flex-row();
+    position: relative;
+}
+input.se-input-group__input-area {
+    border: none !important;
+    box-shadow: 0 0 0 1px fd-color('neutral', 3) !important;
+    &:focus {
+        box-shadow: 0 0 0 2px fd-color('accent', 6) !important;
+    }
+}
+.se-input-group__addon {
+    position: absolute;
+    color: fd-color('text', 2);
+    right: 0;
+    top: 0;
+    height: 36px;
+    width: 36px;
+    background-color: fd-color('background', 2);
+    border-radius: fd-space('base');
+    @include se-flex-row(center);
+    @include fd-type('1');
+}
+.se-input-group__clear-btn {
+    color: fd-color('action', 1);
+}

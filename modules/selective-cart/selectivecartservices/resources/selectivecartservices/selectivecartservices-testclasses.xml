@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><testclasses><selectivecartservices><testclass>de.hybris.platform.selectivecartservices.impl.DefaultSelectiveCartServiceTest</testclass><testclass>de.hybris.platform.selectivecartservices.daos.impl.DefaultSelectiveCartDaoTest</testclass></selectivecartservices></testclasses>

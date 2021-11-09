@@ -1,0 +1,72 @@
+[
+	{
+		"testId": 1,
+		"description": "'lt' query without expression",
+		"data": {
+			"type": "lt",
+			"value": 2
+		}
+	},
+	{
+		"testId": 2,
+		"description": "'lt' query with empty expression",
+		"data": {
+			"type": "lt",
+			"expression": "",
+			"value": 2
+		}
+	},
+	{
+		"testId": 3,
+		"description": "'lt' query with not allowed expression",
+		"data": {
+			"type": "lt",
+			"expression": "-$!#-",
+			"value": 2
+		}
+	},
+	{
+		"testId": 4,
+		"description": "'lt' query with not existing expression",
+		"data": {
+			"type": "lt",
+			"expression": "notExisting",
+			"value": 2
+		}
+	},
+	{
+		"testId": 5,
+		"description": "'lt' query with STRING expression",
+		"data": {
+			"type": "lt",
+			"expression": "field_string",
+			"value": 2
+		}
+	},
+	{
+		"testId": 6,
+		"description": "'lt' query with TEXT expression",
+		"data": {
+			"type": "lt",
+			"expression": "field_text",
+			"value": 2
+		}
+	},
+	{
+		"testId": 7,
+		"description": "'lt' query with BOOLEAN expression",
+		"data": {
+			"type": "lt",
+			"expression": "field_boolean",
+			"value": 2
+		}
+	},
+	{
+		"testId": 8,
+		"description": "'lt' query without value",
+		"data": {
+			"type": "lt",
+			"expression": "field_integer"
+		}
+	}
+]

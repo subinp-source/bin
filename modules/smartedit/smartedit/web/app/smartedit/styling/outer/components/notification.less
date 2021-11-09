@@ -1,0 +1,73 @@
+/****************************************************
+				se-notification-panel
+****************************************************/
+@se-notification-panel--gutter: 10px;
+@se-notification-panel--min-width: 235px;
+@se-notification--opacity: 0.85;
+@se-notification--border-radius: 14px;
+@se-notification--font-size: 16px;
+@se-notification__hotkey--key--border-radius: 4px;
+@se-notification__hotkey--text--font-size: 17px;
+@se-notification__hotkey__icon--add--font-size: 20px;
+
+.se-notification-panel {
+    position: fixed;
+    bottom: 2 * @se-notification-panel--gutter;
+    right: 4 * @se-notification-panel--gutter;
+    z-index: 100;
+    min-width: @se-notification-panel--min-width;
+    max-height: 100%;
+    transition: visibility 0.5s, opacity 0.5s linear;
+}
+.se-notification-panel.is-mouseover {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.se-notification {
+    height: 100%;
+    opacity: @se-notification--opacity;
+    background: @smartedit-bluegrey;
+    color: @smartedit-white;
+    border-radius: @se-notification--border-radius;
+    margin: @se-notification-panel--gutter 0;
+    padding: 2 * @se-notification-panel--gutter;
+    font-size: @se-notification--font-size;
+    overflow: hidden;
+}
+
+.se-notification__hotkey {
+    display: flex;
+    align-items: stretch;
+}
+
+.se-notification__hotkey--key {
+    border: 2px solid @smartedit-white;
+    border-radius: @se-notification__hotkey--key--border-radius;
+    padding: 0.5 * @se-notification-panel--gutter 2 * @se-notification-panel--gutter 1.5 *
+        @se-notification-panel--gutter 0.5 * @se-notification-panel--gutter;
+    overflow: hidden;
+    margin-left: 0.5 * @se-notification-panel--gutter;
+    display: inline-flex;
+}
+
+.se-notification__hotkey__icon--add {
+    font-size: @se-notification__hotkey__icon--add--font-size;
+    vertical-align: middle;
+}
+
+.se-notification__hotkey--image {
+    border: 1px solid @smartedit-white;
+    border-radius: @se-notification__hotkey--key--border-radius;
+    max-height: 5 * @se-notification-panel--gutter;
+}
+
+.se-notification__hotkey--text {
+    margin-left: 1.5 * @se-notification-panel--gutter;
+    font-size: @se-notification__hotkey--text--font-size;
+}
+
+.se-notification__hotkey--message {
+    font-weight: bold;
+    text-transform: uppercase;
+}

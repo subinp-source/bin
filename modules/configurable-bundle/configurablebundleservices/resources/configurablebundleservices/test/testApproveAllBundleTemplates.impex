@@ -1,0 +1,10 @@
+# ---------------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# ---------------------------------------------------------------------------
+
+# set all BundleTemplates in approved status
+UPDATE BundleTemplateStatus[batchmode=true];itemtype(code)[unique=true];status(code)
+;BundleTemplateStatus;approved
+
+INSERT_UPDATE BundleTemplateStatus;id[unique=true];status(code)
+;ArchivedBundleTemplateStatus;archived

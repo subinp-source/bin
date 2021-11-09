@@ -1,0 +1,42 @@
+.se-page-info-menu__header {
+    @include se-container-section('header', 'dropdown');
+}
+.se-page-info-menu__body--title {
+    text-transform: capitalize;
+}
+.se-page-info__dropdown-menu {
+    @include se-dropdown-menu('center');
+    input {
+        color: fd-color('text', 1) !important;
+    }
+}
+.se-page-info-menu se-ge-tab {
+    @include se-grid-columns(1, 0 16px);
+    width: 368px;
+}
+.fe_page_scroll {
+    height: 400px;
+    overflow-y: auto;
+}
+.se-tabset-wrapper,
+.se-page-info-menu__body {
+    .fd-form-control[type='email']:disabled,
+    .fd-form-control[type='text']:disabled {
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        height: fd-space('s');
+    }
+    .multi-tabs-editor ul.se-tabset.nav-tabs {
+        max-width: 125px;
+    }
+}
+.se-page-info__name {
+    @include se-flex-row();
+}
+
+// Information Tab
+.se-edit-page-info__basic-tab {
+    @include se-grid-columns(1);
+}

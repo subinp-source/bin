@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<wizard-config showPrefilledValues="false" selectMode="false" createMode="true" createWithinPopup="false">
+	<displayed-properties>
+		<property qualifier="ClassAttributeAssignment.classificationClass"/>
+		<property qualifier="ClassAttributeAssignment.classificationAttribute"/>
+		<property qualifier="ClassAttributeAssignment.attributeType"/>
+		<property qualifier="ClassAttributeAssignment.unit"/>
+	</displayed-properties>
+</wizard-config>
+

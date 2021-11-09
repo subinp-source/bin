@@ -1,0 +1,63 @@
+[
+	{
+		"testId": 1,
+		"description": "'ne' query without expression",
+		"data": {
+			"type": "ne",
+			"value": 2
+		}
+	},
+	{
+		"testId": 2,
+		"description": "'ne' query with empty expression",
+		"data": {
+			"type": "ne",
+			"expression": "",
+			"value": 2
+		}
+	},
+	{
+		"testId": 3,
+		"description": "'ne' query with invalid expression",
+		"data": {
+			"type": "ne",
+			"expression": "-$!#-",
+			"value": false
+		}
+	},
+	{
+		"testId": 4,
+		"description": "'ne' query with not existing expression",
+		"data": {
+			"type": "ne",
+			"expression": "notExisting",
+			"value": false
+		}
+	},
+	{
+		"testId": 5,
+		"description": "'ne' query with STRING expression",
+		"data": {
+			"type": "ne",
+			"expression": "field_string",
+			"value": 2
+		}
+	},
+	{
+		"testId": 6,
+		"description": "'ne' query with TEXT expression",
+		"data": {
+			"type": "ne",
+			"expression": "field_text",
+			"value": 2
+		}
+	},
+	{
+		"testId": 7,
+		"description": "'ne' query without value",
+		"data": {
+			"type": "ne",
+			"expression": "field_integer"
+		}
+	}
+]

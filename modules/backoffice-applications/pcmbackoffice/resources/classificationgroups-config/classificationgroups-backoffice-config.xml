@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+-->
+<config xmlns="http://www.hybris.com/cockpit/config"
+		xmlns:y="http://www.hybris.com/cockpit/config/hybris"
+		xmlns:ea="http://www.hybris.com/cockpitng/component/editorArea"
+		xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config"
+		xmlns:lv="http://www.hybris.com/cockpitng/component/listView"
+>
+	<context component="base">
+		<context type="ClassFeatureGroup" merge-by="type">
+			<y:base>
+				<y:labels>
+					<y:label>!#empty(name) ? name : code</y:label>
+				</y:labels>
+			</y:base>
+		</context>
+		<context type="ClassFeatureGroupAssignment" merge-by="type">
+			<y:base>
+				<y:labels>
+					<y:label>@labelService.getObjectLabel(#root.classAttributeAssignment.classificationAttribute)
+					</y:label>
+				</y:labels>
+			</y:base>
+		</context>
+	</context>
+
+	<context component="create-wizard-no-save">
+		<context type="ClassFeatureGroup">
+			<wz:flow id="classFeatureGroupWizard" title="create.title(ctx.TYPE_CODE)">
+				<wz:prepare id="classFeatureGroupPrepare">
+					<wz:initialize property="newGroup" type="ctx.TYPE_CODE"/>
+					<wz:assign property="newGroup.classificationClass" value="ctx.parentObject"/>
+				</wz:prepare>
+				<wz:step id="step0" label="flow.allmanadatory">
+					<wz:content>
+						<wz:property-list root="newGroup">
+							<wz:property qualifier="code"/>
+							<wz:property qualifier="name"/>
+						</wz:property-list>
+					</wz:content>
+					<wz:navigation id="step0.navigation">
+						<wz:cancel/>
+						<wz:done visible="newGroup.code != null"/>
+					</wz:navigation>
+				</wz:step>
+			</wz:flow>
+		</context>
+	</context>
+
+	<context component="editor-area">
+		<context type="ClassFeatureGroup" parent="GenericItem" merge-by="type">
+			<ea:editorArea name="">
+				<ea:tab name="hmc.essential" position="0">
+					<ea:section name="hmc.tab.properties">
+						<ea:attribute qualifier="code" position="10" readonly="true"/>
+						<ea:attribute qualifier="name" position="20"/>
+						<ea:attribute qualifier="classificationClass" position="30" readonly="true"/>
+						<ea:attribute qualifier="index" position="40"/>
+						<ea:panel colspan="2" name="editor-area.panels.changes">
+							<ea:attribute qualifier="classFeatureGroupAssignments"
+										  editor="com.hybris.cockpitng.editor.extendedmultireferenceeditor"
+										  position="10">
+								<ea:editor-parameter>
+									<ea:name>reloadEditorOnCurrentObjectChange</ea:name>
+									<ea:value>true</ea:value>
+								</ea:editor-parameter>
+								<ea:editor-parameter>
+									<ea:name>listConfigContext</ea:name>
+									<ea:value>referenceListView</ea:value>
+								</ea:editor-parameter>
+								<ea:editor-parameter>
+									<ea:name>referenceSearchCondition_classificationClass</ea:name>
+									<ea:value>{parentObject.classificationClass}</ea:value>
+								</ea:editor-parameter>
+								<ea:editor-parameter>
+									<ea:name>availableValuesProvider</ea:name>
+									<ea:value>classFeatureGroupAssignmentSearchFacade</ea:value>
+								</ea:editor-parameter>
+								<ea:editor-parameter>
+									<ea:name>isNestedObjectCreationDisabled</ea:name>
+									<ea:value>true</ea:value>
+								</ea:editor-parameter>
+								<ea:editor-parameter>
+									<ea:name>disableDisplayingDetails</ea:name>
+									<ea:value>true</ea:value>
+								</ea:editor-parameter>
+								<ea:editor-parameter>
+									<ea:name>referenceAdvancedSearchEnabled</ea:name>
+									<ea:value>false</ea:value>
+								</ea:editor-parameter>
+							</ea:attribute>
+						</ea:panel>
+					</ea:section>
+				</ea:tab>
+			</ea:editorArea>
+		</context>
+
+		<context type="ClassificationClass" merge-by="type">
+			<context>
+				<ea:editorArea name="">
+					<ea:tab name="hmc.tab.category.extendedattributes" position="2" merge-mode="replace">
+						<ea:section name="hmc.essential" position="0">
+							<ea:attribute qualifier="showEmptyAttributes" position="0"/>
+						</ea:section>
+						<ea:section name="hmc.section.classificationattributes" position="10">
+							<ea:panel name="editor-area.panels.features" colspan="4" position="0">
+								<ea:attribute qualifier="declaredClassificationAttributeAssignments"
+											  editor="com.hybris.cockpitng.editor.extendedmultireferenceeditor">
+									<ea:editor-parameter>
+										<ea:name>listConfigContext</ea:name>
+										<ea:value>referenceListView</ea:value>
+									</ea:editor-parameter>
+									<ea:editor-parameter>
+										<ea:name>configurableFlowConfigCtx</ea:name>
+										<ea:value>create-wizard-no-save</ea:value>
+									</ea:editor-parameter>
+									<ea:editor-parameter>
+										<ea:name>inlineEditing</ea:name>
+										<ea:value>false</ea:value>
+									</ea:editor-parameter>
+									<ea:editor-parameter>
+										<ea:name>reloadEditorOnCurrentObjectChange</ea:name>
+										<ea:value>true</ea:value>
+									</ea:editor-parameter>
+								</ea:attribute>
+							</ea:panel>
+							<ea:panel name="editor-area.panels.inheritedfeatures" colspan="2" rowspan="2" position="10">
+								<ea:attribute qualifier="inheritedClassificationAttributes"
+											  editor="com.hybris.cockpitng.editor.extendedmultireferenceeditor">
+									<ea:editor-parameter>
+										<ea:name>listConfigContext</ea:name>
+										<ea:value>referenceListView</ea:value>
+									</ea:editor-parameter>
+									<ea:editor-parameter>
+										<ea:name>reloadEditorOnCurrentObjectChange</ea:name>
+										<ea:value>true</ea:value>
+									</ea:editor-parameter>
+								</ea:attribute>
+								<ea:attribute label="editor-area.attributes.all-attributes"
+											  qualifier="classificationAttributes" position="40"
+											  editor="com.hybris.cockpitng.editor.extendedmultireferenceeditor">
+									<ea:editor-parameter>
+										<ea:name>listConfigContext</ea:name>
+										<ea:value>referenceListView</ea:value>
+									</ea:editor-parameter>
+									<ea:editor-parameter>
+										<ea:name>reloadEditorOnCurrentObjectChange</ea:name>
+										<ea:value>true</ea:value>
+									</ea:editor-parameter>
+								</ea:attribute>
+							</ea:panel>
+							<ea:attribute qualifier="classFeatureGroups" position="30"
+										  editor="com.hybris.cockpitng.editor.extendedmultireferenceeditor">
+								<ea:editor-parameter>
+									<ea:name>reloadEditorOnCurrentObjectChange</ea:name>
+									<ea:value>true</ea:value>
+								</ea:editor-parameter>
+								<ea:editor-parameter>
+									<ea:name>listConfigContext</ea:name>
+									<ea:value>referenceListView</ea:value>
+								</ea:editor-parameter>
+								<ea:editor-parameter>
+									<ea:name>configurableFlowConfigCtx</ea:name>
+									<ea:value>create-wizard-no-save</ea:value>
+								</ea:editor-parameter>
+							</ea:attribute>
+						</ea:section>
+					</ea:tab>
+				</ea:editorArea>
+			</context>
+		</context>
+	</context>
+
+	<context component="referenceListView">
+		<context type="ClassFeatureGroupAssignment">
+			<lv:list-view refresh-after-object-creation="true">
+				<lv:column qualifier="#root.classAttributeAssignment.classificationAttribute"
+						   label="type.classfeaturegroupassignment.component.referencelistview.feature.name"/>
+				<lv:column qualifier="index" spring-bean="classFeatureGroupAssignmentIndexRenderer"/>
+			</lv:list-view>
+		</context>
+
+		<context type="ClassFeatureGroup">
+			<lv:list-view refresh-after-object-creation="true">
+				<lv:column qualifier="#this"
+						   label="type.classattributeassignment.component.referencelistview.group.name"/>
+				<lv:column qualifier="index" spring-bean="classFeatureGroupIndexRenderer"/>
+			</lv:list-view>
+		</context>
+
+		<context type="ClassAttributeAssignment">
+			<lv:list-view>
+				<lv:column qualifier="attributeType" merge-mode="merge"
+						   label="type.classattributeassignment.component.referencelistview.attributetype.name"/>
+				<lv:column qualifier="" position="40" spring-bean="classAttributeAssignmentGroupCellRenderer"
+						   label="type.classattributeassignment.component.referencelistview.group.name"/>
+				<lv:column qualifier="" position="50" spring-bean="classAttributeAssignmentIndexCellRenderer"
+						   label="type.classattributeassignment.component.referencelistview.index.name"/>
+			</lv:list-view>
+		</context>
+		<context type="ClassificationAttribute">
+			<lv:list-view>
+				<lv:column qualifier="code"
+						   label="type.classattributeassignment.component.referencelistview.attributetype.name"
+						   position="0"/>
+				<lv:column qualifier="" position="30" spring-bean="classificationAttributeIndexGroupRenderer"
+						   label="type.classificationattribute.component.referencelistview.groupindex.name"/>
+				<lv:column qualifier="" position="40" spring-bean="classificationAttributeGroupCellRenderer"
+						   label="type.classificationattribute.component.referencelistview.group.name"/>
+				<lv:column qualifier="" position="50" spring-bean="classificationAttributeIndexCellRenderer"
+						   label="type.classificationattribute.component.referencelistview.index.name"/>
+			</lv:list-view>
+		</context>
+	</context>
+
+</config>

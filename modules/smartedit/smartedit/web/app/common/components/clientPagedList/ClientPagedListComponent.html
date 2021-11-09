@@ -1,0 +1,81 @@
+<div class="fluid-container se-paged-list-result">
+    <p class="se-page-list__page-count" *ngIf="displayCount">
+        <span>({{ totalItems }} {{ 'se.pagelist.countsearchresult' | translate }})</span>
+    </p>
+
+    <table class="se-paged-list-table table table-striped table-hover techne-table">
+        <thead>
+            <tr>
+                <th
+                    *ngFor="let key of keys; trackBy: keysTrackBy"
+                    (click)="onOrderByColumn(key.property)"
+                    [ngStyle]="{ 'width': columnWidth + '%' }"
+                    class="se-paged-list__header"
+                    [ngClass]="'se-paged-list__header-' + key.property"
+                >
+                    <ng-container *ngIf="key.i18n">
+                        {{ key.i18n | translate }}
+                        <span
+                            class="header-icon"
+                            [hidden]="visibleSortingHeader !== key.property"
+                            [ngClass]="{
+                          'sap-icon--navigation-down-arrow': headersSortingState[key.property],
+                          'sap-icon--navigation-up-arrow': !headersSortingState[key.property]
+                      }"
+                        ></span>
+                    </ng-container>
+                </th>
+
+                <th class="se-paged-list__header"></th>
+                <th class="se-paged-list__header" *ngIf="dropdownItems"></th>
+            </tr>
+        </thead>
+        <tbody class="se-paged-list__table-body">
+            <tr
+                *ngFor="let item of filteredItems"
+                class="techne-table-xs-right techne-table-xs-left se-paged-list-item"
+            >
+                <td *ngFor="let key of keys" [ngClass]="'se-paged-list-item-' + key.property">
+                    <se-client-paged-list-cell
+                        [item]="item"
+                        [key]="key"
+                    ></se-client-paged-list-cell>
+                </td>
+                <td>
+                    <se-tooltip
+                        *ngIf="item.icon"
+                        [triggers]="['mouseenter', 'mouseleave']"
+                        [placement]="'bottom'"
+                        [title]="'se.icon.tooltip.visibility' | translate: { numberOfRestrictions: item.icon.numberOfRestrictions }"
+                        [isChevronVisible]="true"
+                    >
+                        <img [src]="item.icon.src" se-tooltip-trigger />
+                    </se-tooltip>
+                </td>
+                <ng-container *ngIf="dropdownItems">
+                    <td
+                        *seHasOperationPermission="'se.edit.page'"
+                        class="paged-list-table__body__td paged-list-table__body__td-menu"
+                    >
+                        <se-dropdown-menu
+                            [dropdownItems]="dropdownItems"
+                            [selectedItem]="item"
+                            class="pull-right"
+                        ></se-dropdown-menu>
+                    </td>
+                </ng-container>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="pagination-container ">
+        <se-pagination
+            [totalItems]="totalItems < itemsPerPage ? itemsPerPage : totalItems"
+            [itemsPerPage]="itemsPerPage"
+            (onChange)="onCurrentPageChange($event)"
+            [currentPage]="currentPage"
+            class="pagination-lg"
+        >
+        </se-pagination>
+    </div>
+</div>

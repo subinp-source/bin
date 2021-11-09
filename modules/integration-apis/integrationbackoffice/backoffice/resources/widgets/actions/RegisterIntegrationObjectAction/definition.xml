@@ -1,0 +1,28 @@
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<action-definition id="com.hybris.backoffice.widgets.actions.RegisterIntegrationObjectAction"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/action-definition.xsd">
+
+    <name>Add the Integration API to one or more destination targets</name>
+    <description>Add the integration object to destination targets</description>
+    <author>hybris</author>
+    <version>0.1</version>
+
+    <actionClassName>de.hybris.platform.integrationbackoffice.widgets.authentication.registration.RegisterIntegrationObjectAction</actionClassName>
+
+    <outputType>de.hybris.platform.inboundservices.model.InboundChannelConfigurationModel</outputType>
+
+    <iconUri>icons/icon_action_register_io_default.png</iconUri>
+    <iconDisabledUri>icons/icon_action_register_io_disabled.png</iconDisabledUri>
+    <iconHoverUri>icons/icon_action_register_io_hover.png</iconHoverUri>
+
+    <sockets>
+        <output id="iccBasic" type="de.hybris.platform.inboundservices.model.InboundChannelConfigurationModel"/>
+        <output id="iccOAuth" type="de.hybris.platform.inboundservices.model.InboundChannelConfigurationModel"/>
+    </sockets>
+
+</action-definition>
+
+

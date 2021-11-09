@@ -1,0 +1,17 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+
+$START_USERRIGHTS;;;;;;;;;
+Type;UID;MemberOfGroups;Target;read;change;create;remove;change_perm
+UserGroup;cxmanagergroup;;;;;;;
+;;;YaasOrganisation;+;+;+;+;+;
+;;;YaasProject;+;+;+;+;+;
+;;;YaasClient;+;+;+;+;+;
+;;;YaasApplication;+;+;+;+;+;
+;;;YaasService;+;+;+;+;+;
+;;;YaasClientCredential;+;+;+;+;+;
+;;;AbstractYaasServiceMapping;+;+;+;+;+;
+;;;BaseSiteServiceMapping;+;+;+;+;+;
+;;;BaseSite;+;+;-;-;-;
+$END_USERRIGHTS;;;;;;;;;

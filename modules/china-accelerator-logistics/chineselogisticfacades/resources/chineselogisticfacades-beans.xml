@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
+
+	<bean class="de.hybris.platform.chineselogisticfacades.delivery.data.DeliveryTimeSlotData">
+		<property name="code" type="String"/>
+		<property name="name" type="String"/>
+	</bean>
+	
+	<bean class="de.hybris.platform.commercefacades.order.data.AbstractOrderData">
+		<property name="deliveryTimeSlot" type="de.hybris.platform.chineselogisticfacades.delivery.data.DeliveryTimeSlotData"/>		
+	</bean>
+	
+	<bean class="de.hybris.platform.chineselogisticfacades.delivery.data.DeliveryTimeSlotDataList">
+		<property name="deliveryTimeSlots"
+		          type="java.util.List&lt;de.hybris.platform.chineselogisticfacades.delivery.data.DeliveryTimeSlotData>"/>
+	</bean>
+
+</beans>

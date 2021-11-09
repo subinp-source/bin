@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="OOTB" importedAsReadOnly="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../modules/notification/notificationservices/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../modules/notification/notificationservices/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../modules/notification/notificationservices">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/notification/notificationservices/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/notification/notificationservices/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/notification/notificationservices/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/notification/notificationservices/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/notification/notificationservices/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/notification/notificationservices/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/notification/notificationservices/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/notification/notificationservices/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/notification/notificationservices/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/notification/notificationservices/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/notification/notificationservices/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/notification/notificationservices/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/notification/notificationservices/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/notification/notificationservices/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/notification/notificationservices/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/notification/notificationservices/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/notification/notificationservices/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/notification/notificationservices/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/notification/notificationservices/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/notification/notificationservices/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/notification/notificationservices/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/notification/notificationservices/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/notification/notificationservices/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/notification/notificationservices/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/notification/notificationservices/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/notification/notificationservices/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/notification/notificationservices/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/notification/notificationservices/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/notification/notificationservices/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/notification/notificationservices/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/notification/notificationservices/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/notification/notificationservices/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../modules/notification/notificationservices/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/notification/notificationservices/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/notification/notificationservices/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="commerceservices" exported="" />
+    <orderEntry type="module" module-name="platform" exported="" />
+  </component>
+</module>

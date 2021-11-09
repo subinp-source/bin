@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="personalizationintegrationbackofficeLabelLocator" class="com.hybris.cockpitng.util.labels.ResourcesLabelLocator" scope="singleton" init-method="init" lazy-init="false">
+  		<property name="location" value="/personalizationintegrationbackoffice-backoffice-labels/"/>
+  		<property name="name" value="labels"/>
+  	</bean>
+
+	<bean id="cxProviderSearchFacade" class="de.hybris.platform.personalizationintegrationbackoffice.editor.facade.CxProviderSearchFacade" />
+	<bean id="segmentsProviderSearchFacade" class="de.hybris.platform.personalizationintegrationbackoffice.editor.facade.SegmentsProviderSearchFacade" />
+	<bean id="userSegmentsProviderSearchFacade" class="de.hybris.platform.personalizationintegrationbackoffice.editor.facade.UserSegmentsProviderSearchFacade" />
+
+</beans>

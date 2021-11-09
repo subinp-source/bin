@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd
+           http://www.springframework.org/schema/util
+           http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<bean id="productInterestDao" class="de.hybris.platform.customerinterestsservices.productinterest.daos.impl.DefaultProductInterestDao">
+		<property name="pagedFlexibleSearchService" ref="pagedFlexibleSearchService"/>
+		<property name="productInterestConfigService" ref="productInterestConfigService"/>
+	</bean>
+			
+	<bean id="productInterestService" class="de.hybris.platform.customerinterestsservices.productinterest.impl.DefaultProductInterestService">
+    	<property name="modelService" ref="modelService"/>
+    	<property name="productInterestDao" ref="productInterestDao"/>
+    	<property name="userService" ref="userService"/>
+    	<property name="baseStoreService" ref="baseStoreService"/>
+    	<property name="baseSiteService" ref="baseSiteService"/>
+    </bean>
+    
+    <bean id="expiredInterestsCleanUpJob" class="de.hybris.platform.customerinterestsservices.productinterest.cronjob.ExpiredInterestsCleanUpJob" parent="abstractJobPerformable">
+    	<property name="productInterestDao" ref="productInterestDao"></property>
+    </bean>
+    
+    <bean id="customerInterestsCleanupHook" class="de.hybris.platform.customerinterestsservices.retention.hook.CustomerInterestsCleanupHook">
+    	<property name="modelService" ref="modelService"/>
+    </bean>
+    
+    <bean id="customerInterestsCleanupHookListMergeDirective" depends-on="customerCleanupHooks" parent="listMergeDirective" >
+        <property name="add" ref="customerInterestsCleanupHook" />
+    </bean>
+    
+    <alias name="defaultProductInterestCustomerSettingsChangedHook" alias="productInterestCustomerSettingsChangedHook"/>
+	<bean id="defaultProductInterestCustomerSettingsChangedHook" class="de.hybris.platform.customerinterestsservices.hooks.impl.ProductInterestCustomerSettingsChangedHook">
+		<property name="productInterestDao" ref="productInterestDao"/>
+		<property name="modelService" ref="modelService"/>
+		<property name="baseSiteService" ref="baseSiteService"/>
+		<property name="baseStoreService" ref="baseStoreService"/>
+	</bean>
+	
+	<bean id="customerSettingsChangedHookMethodHooksListMergeDirective" depends-on="customerSettingsChangedHooks" parent="listMergeDirective">
+    	<property name="add" ref="productInterestCustomerSettingsChangedHook"/>
+	</bean>
+	
+	<alias name="defaultProductInterestConfigService" alias="productInterestConfigService"/>
+	<bean id="defaultProductInterestConfigService" class="de.hybris.platform.customerinterestsservices.productinterest.impl.DefaultProductInterestConfigService"/>
+    	
+    <util:list id="productInterestNotificationTypeList" value-type="de.hybris.platform.notificationservices.enums.NotificationType" />
+</beans>

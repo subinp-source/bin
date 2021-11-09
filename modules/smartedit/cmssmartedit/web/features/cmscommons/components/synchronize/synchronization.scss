@@ -1,0 +1,120 @@
+.se-sync-panel-header {
+    padding: 0 20px 20px;
+    border-bottom: se-border();
+    min-width: 400px;
+}
+.se-sync-panel__sub-header {
+    padding-top: fd-space('base');
+    color: fd-color('text', 2);
+}
+.se-sync-panel-header__new-page-message {
+    padding: 20px;
+}
+.se-sync-panel__message--new-page {
+    @include fd-weight('bold');
+    padding-bottom: fd-space('base');
+}
+.se-sync-panel-header__timestamp {
+    @include fd-type('-1');
+    color: fd-color('text', 2);
+    position: absolute;
+    left: 20px;
+    bottom: 23px;
+    width: 150px;
+}
+
+// Sync Panel
+.se-sync-panel__sync-info {
+    max-height: 300px;
+    overflow-y: scroll;
+}
+.se-sync-panel__sync-info__row {
+    @include se-flex-row(space-between);
+    padding: 0 20px;
+    height: 40px;
+    border-bottom: se-border();
+
+    &:first-child {
+        height: 50px;
+    }
+    &:last-child {
+        border-bottom: none;
+    }
+}
+.se-sync-panel__info-checkbox {
+    @include se-flex-row();
+    margin: 0 !important;
+    input {
+        margin: 0;
+    }
+}
+.fd-form__label.se-sync-panel__info-checkbox-label {
+    @include se-text-ellipsis();
+    max-width: 190px !important; // Override Techne
+    margin: 0 !important;
+    padding-left: fd-space('xxs');
+    color: fd-color('text', 1);
+    text-transform: capitalize;
+
+    &--select-all {
+        font-weight: bold !important;
+    }
+}
+.se-sync-panel__sync-info__right-icon {
+    @include fd-type('1');
+}
+.se-sync-panel__sync-info-icon.sap-icon--accept {
+    @include fd-type('1');
+    color: fd-color('status', 1);
+}
+.se-sync-panel__sync-info-icon.sap-icon--message-warning {
+    @include fd-type('1');
+    color: fd-color('status', 2);
+}
+.se-sync-panel__footer {
+    padding: 20px;
+    border-top: se-border();
+    @include se-flex-row(flex-end);
+}
+button.se-sync-panel__footer__btn {
+    text-transform: capitalize;
+    padding: 0 20px;
+    margin-left: fd-space('xxs');
+}
+
+// Sync Modal
+.se-modal__body {
+    .se-sync-panel-header,
+    .se-sync-panel__sync-info {
+        padding: 0;
+        border-bottom: none;
+    }
+}
+
+// Sync Catalog
+.se-synchronize-catalog {
+    @include se-flex-row(flex-end);
+}
+.se-synchronize-catalog__sync-info {
+    @include se-flex-row();
+}
+.se-synchronize-catalog__sync-btn button {
+    margin-left: 20px;
+}
+.se-synchronize-catalog__sync-info__sync-label,
+.catalog-last-synced {
+    color: fd-color('text', 3);
+    display: block;
+    text-align: right;
+    margin: 0;
+}
+.se-synchronize-catalog__sync-info__sync-cata-name {
+    @include fd-weight('bold');
+    color: fd-color('text', 2);
+}
+.se-synchronize-catalog__in-progress {
+    color: fd-color('status', 1);
+}
+.se-synchronize-catalog__sync-failed {
+    color: fd-color('status', 3);
+}

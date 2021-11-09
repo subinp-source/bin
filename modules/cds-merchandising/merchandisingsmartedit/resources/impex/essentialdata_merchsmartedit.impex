@@ -1,0 +1,10 @@
+#
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+#
+
+# Enable the following lines in your extended SmartEdit module, then run ant updatesystem
+#
+INSERT_UPDATE SmartEditConfiguration;key[unique=true];value
+;applications.merchandisingsmartedit;{"smartEditLocation":"/merchandisingsmartedit/merchandisingsmartedit/js/merchandisingsmartedit.js"}
+;applications.merchandisingsmarteditContainer;{"smartEditContainerLocation":"/merchandisingsmartedit/merchandisingsmartedit/js/merchandisingsmarteditContainer.js"}
+;contextDrivenServicesMerchandisingUrl;"""merchandising.context.cloud.sap/strategies"""

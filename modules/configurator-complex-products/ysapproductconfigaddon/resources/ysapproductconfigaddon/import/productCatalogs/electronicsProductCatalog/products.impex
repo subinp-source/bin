@@ -1,0 +1,15 @@
+$lang=en
+$productCatalog=electronicsProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$supercategories=supercategories(code, $catalogVersion)
+$prices=Europe1prices[translator=de.hybris.platform.europe1.jalo.impex.Europe1PricesTranslator]
+$approved=approvalstatus(code)[default='approved']
+$taxGroup=Europe1PriceFactory_PTG(code)[default=us-sales-tax-full]
+
+INSERT_UPDATE Unit;code[unique=true];unitType;conversion;name[lang=de];name[lang=en];
+;PCE;pieces;1;PCE;PCE;
+
+INSERT_UPDATE Product;code[unique=true];$supercategories;manufacturerName;manufacturerAID;ean;variantType(code);unit(code)[default=PCE];$catalogVersion;name[lang=$lang];description[lang=$lang];summary[lang=$lang];$prices;$approved;$taxGroup;
+;CONF_CAMERA_SL;575,CPQConfigurableCategory;SAP;;;MockVariantProduct;PCE;;Digital Camera;Digital Camera;Digital Camera ;1 PCE = 1000 USD N;;;
+;CONF_HOME_THEATER_ML;brand_5,CPQConfigurableCategory;SAP;;;;PCE;;Home Theater System;Home Theater System;Home Theater System ;1 PCE = 3000 USD N;;;
+

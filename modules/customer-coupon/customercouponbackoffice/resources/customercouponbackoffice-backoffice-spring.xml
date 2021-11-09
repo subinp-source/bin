@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<alias name="defaultCustomercouponbackofficeLabelLocator" alias="customercouponbackofficeLabelLocator"/>
+	<bean id="defaultCustomercouponbackofficeLabelLocator" class="com.hybris.cockpitng.util.labels.ResourcesLabelLocator" scope="singleton" init-method="init" lazy-init="false">
+  		<property name="location" value="/customercouponbackoffice-backoffice-labels/"/>
+  		<property name="name" value="labels"/>
+  	</bean>
+  	
+  	<alias name="defaultCustomerCouponAssignmentPanelRenderer" alias="customerCouponAssignmentPanelRenderer"/>
+  	<bean id="defaultCustomerCouponAssignmentPanelRenderer" class="de.hybris.platform.customercouponbackoffice.renderers.CustomerCouponAssignmentPanelRenderer" 
+  			parent="defaultEditorAreaPanelRenderer" scope="prototype"/>
+  		
+	<alias name="defaultCustomerCouponEditorAreaLogicHandler" alias="customerCouponEditorAreaLogicHandler"/>
+  	<bean id="defaultCustomerCouponEditorAreaLogicHandler" class="de.hybris.platform.customercouponbackoffice.widgets.CustomerCouponEditorAreaLogicHandler" parent="defaultEditorAreaLogicHandler">
+  		<property name="modelService" ref="modelService" />
+  	</bean>
+</beans>

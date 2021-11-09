@@ -1,0 +1,127 @@
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/cockpitng/cng/scss/cockpitng-globals.scss';
+@import '/Users/pituser/project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/resources/backoffice/generated/backoffice/scss/backoffice-variables.scss';
+
+
+
+$authorityGroup-login__default-label--color: $grey__dark--600;
+// Input Default (temporary)
+$authorityGroup-login__input-box--height: 36px;
+
+// Primary Buttons Styling adjustments (temporary)
+$authorityGroup-login__primary-button--border-radius: 4px;
+$authorityGroup-login__primary-button--height: $authorityGroup-login__input-box--height;
+$authorityGroup-login__primary-button--bg-color: #0a6ed1; //$blue__default; 
+$authorityGroup-login__primary-button--color: $white;
+$authorityGroup-login__primary-button--text-transform: none;
+$authorityGroup-login__primary-button--line-height: ceil(($authorityGroup-login__input-box--height * 0.61));
+
+$authorityGroup-login__primary-button-hover--bg-color: lighten($authorityGroup-login__primary-button--bg-color, 15%);
+
+$authorityGroup-login__default--bp-xs: 500px;
+$authorityGroup-login__default--bp-m: 1050px;
+
+$authorityGroup-login__body--bg-color: $grey__light--500;
+$authorityGroup-login__body-logo--bg: $authorityGroup-login__body--bg-color url("images/logo_slogan.svg") no-repeat fixed 2% 96%;
+
+// defaults and container styling
+
+$authorityGroup-login__logo--bg: url("images/logo_transparent.svg") no-repeat transparent center;
+$authorityGroup-login__logo--height: 45px;
+$authorityGroup-login__logo-container-marging-bottom: $container-spacing-default__base + $container-spacing-default__third;
+
+
+$authorityGroup-login__container--bg-color: $white;
+$authorityGroup-login__container--left: 0;
+$authorityGroup-login__container--right: $authorityGroup-login__container--left;
+$authorityGroup-login__container--top: 45%;
+$authorityGroup-login__container--transform: translateY(-60%);
+$authorityGroup-login__container--margin: 0 auto;
+$authorityGroup-login__container--max-width: 600px;
+$authorityGroup-login__container--width: 100%;
+$authorityGroup-login__container--min-width: 350px;
+$authorityGroup-login__container--border-radius: 4px;
+$authorityGroup-login__container--box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.1);
+$authorityGroup-login__container--padding: $container-spacing-default__base;
+$authorityGroup-login__container-bp-xs--padding: $container-spacing-default__base $container-spacing-default__half;
+$authorityGroup-login__container-bp-xs--transform: translateY(0);
+
+$authorityGroup-login__default-label--color: $grey__dark--600;
+
+//radio-box
+$authorityGroupSelector__radio-icon--border: 1px solid #ceced0;
+$authorityGroupSelector__radio-icon--size: 16px;
+$authorityGroupSelector__radio-icon--margin-top: 2px;
+$authorityGroupSelector__radio-icon--margin-left: 2px;
+$authorityGroupSelector__radio-icon--transform: translate3d(-50%,-50%, 0);
+$authorityGroupSelector__radio-icon-hover--border-color: #0854a1;
+$authorityGroupSelector__radio-icon-selected--color: #0854a1;
+$authorityGroupSelector__radio-icon-selected--border-color: $authorityGroupSelector__radio-icon-selected--color;
+
+$authorityGroupSelector__radio-icon-selected-dot--size: 6px;
+$authorityGroupSelector__radio-icon-selected-dot--border-radius: ceil($authorityGroupSelector__radio-icon-selected-dot--size/2);
+$authorityGroupSelector__radio-icon-selected-dot--left: (ceil($authorityGroupSelector__radio-icon--size/2) - nth($authorityGroupSelector__radio-icon--border, 1));
+$authorityGroupSelector__radio-icon-selected-dot--top: $authorityGroupSelector__radio-icon-selected-dot--left;
+$authorityGroupSelector__radio-icon-selected-dot--transform: translate3d(floor($authorityGroupSelector__radio-icon-selected-dot--size/2)*-1, floor($authorityGroupSelector__radio-icon-selected-dot--size/2)*-1, 0);
+
+//list-item 
+$authorityGroup__list-item--color: #32363a;
+$authorityGroup__footer-container--margin-top: $container-spacing-default__base;
+
+// authority group-selector styling
+
+$authorityGroupSelector__selector-body--width: 100%;
+$authorityGroupSelector__selector-body--height: 100%;
+
+$authorityGroupSelector__group-list--width: 100%;
+//$authorityGroupSelector__group-list-cell--padding: 0 $container-spacing-default__half;
+$authorityGroupSelector__group-list-cell--transition: background-color .5s;
+
+$authorityGroupSelector__listcell-content--text-overflow: initial;
+$authorityGroupSelector__listcell-content--white-space: initial;
+$authorityGroupSelector__listcell-content--line-height: 24px;
+$authorityGroupSelector__listcell-content--text-indent: -35px;
+$authorityGroupSelector__listcell-content--padding-left: 50px;
+$authorityGroupSelector__listcell-content--word-wrap: break-word;
+$authorityGroupSelector__listcell-content-first-child--padding-left: 32px;
+
+$authorityGroupSelector__check-radio--margin-top: 2px;
+
+// $authorityGroupSelector__grid--padding-top: 150px;
+// $authorityGroupSelector__grid--bg: url("images/logo_transparent.png") no-repeat transparent top center;
+// $authorityGroupSelector__grid--margin: 0 auto;
+// $authorityGroupSelector__grid--transform: translate(0, 50%);
+$_authorityGroupSelector__grid--max-width: 350px;
+$_authorityGroupSelector__grid--margin: 10% auto 20px;
+
+$authorityGroupSelector__label--font-weight: normal;
+$authorityGroupSelector__label--color: $white;
+$authorityGroupSelector__label--font-size: $font-size__base;
+$authorityGroupSelector__label--line-height: $font-size__medium;
+//$authorityGroupSelector__label--floor-value: (($authorityGroupSelector__label--line-height - $authorityGroupSelector__label--font-size)/2);
+$authorityGroupSelector__label--margin-bottom: $container-spacing-default__third - floor((($authorityGroupSelector__label--line-height - $authorityGroupSelector__label--font-size)/2));
+
+$authorityGroupSelector__image--size: 17px;
+$authorityGroupSelector__image--padding-left: 85%;
+$authorityGroupSelector__image--bg: url("images/icon_questionmark.png") no-repeat 1px 0;
+
+$authorityGroupSelector__select-box--height: $authorityGroup-login__input-box--height;
+
+$authorityGroupSelector__selector-button--margin-top: 20px;
+$authorityGroupSelector__selector-button--float: right;
+//2px is refering to the 2px used @login.zul for field-container-spacing (inline)
+
+$authorityGroupSelector__holder-divs--border: none;
+$authorityGroupSelector__holder-divs--bg: none;
+
+//select-box not visible (unstyled), needs to be verified
+$authorityGroupSelector__selector--width: 97%;
+$authorityGroupSelector__selector--height: $editor-defaults__inline-box--height;
+$authorityGroupSelector__selector--outline: none;
+$authorityGroupSelector__selector--color: #8a8fa3;
+$authorityGroupSelector__selector--font-size: $font-size__base;
+$authorityGroupSelector__selector--border: 1px solid #21428b;
+$authorityGroupSelector__selector--padding: 4px 6px;
+$authorityGroupSelector__selector--bg: url(images/selectbox_arrow.png) no-repeat center right #13275a;
+$authorityGroupSelector__selector--webkit-appearance: none;
+$authorityGroupSelector__selector--box-shadow: inset 0 -5px 5px rgba(0, 0, 0, 0.15);
+$authorityGroupSelector__selector--transition: border linear .2s, box-shadow linear .2s;

@@ -1,0 +1,26 @@
+<div class="se-version-panel__search" data-ng-if="$ctrl.showSearchControls">
+    <div class="se-input-group">
+        <input
+            type="text"
+            class="se-input-group__input-area"
+            name="search-term"
+            data-ng-model="$ctrl.searchTerm"
+            data-ng-model-options="{debounce: 500}"
+            placeholder="{{'se.cms.versions.search.placeholder' | translate}}"
+        />
+
+        <span class="sap-icon--search se-input-group__addon"></span>
+        <div
+            data-ng-show="$ctrl.showResetButton"
+            class="se-input-group__addon se-input-group__clear-btn"
+            data-ng-click="$ctrl.resetSearchBox()"
+        >
+            <span class="sap-icon--decline"></span>
+        </div>
+    </div>
+
+    <span class="se-version-panel__count">
+        {{ 'se.cms.versions.search.versions.found' | translate:
+        $ctrl.getVersionsFoundTranslationData() }}
+    </span>
+</div>

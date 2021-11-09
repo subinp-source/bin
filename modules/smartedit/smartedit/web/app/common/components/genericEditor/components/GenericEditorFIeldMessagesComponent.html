@@ -1,0 +1,16 @@
+<div *ngIf="errors.length > 0">
+    <span
+        *ngFor="let error of errors"
+        class="se-help-block--has-error help-block fd-form__message fd-form__message--error"
+    >
+        {{ error | translate}}
+    </span>
+</div>
+<div *ngIf="warnings.length > 0">
+    <span
+        *ngFor="let warning of warnings"
+        class="se-help-block--has-warning help-block fd-form__message fd-form__message--warning"
+    >
+        {{ warning | translate }}
+    </span>
+</div>

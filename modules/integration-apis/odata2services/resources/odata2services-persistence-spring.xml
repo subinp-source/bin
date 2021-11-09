@@ -1,0 +1,481 @@
+<!--
+  ~ [y] hybris Platform
+  ~
+  ~ Copyright (c) 2018 SAP SE or an SAP affiliate company.
+  ~ All rights reserved.
+  ~
+  ~ This software is the confidential and proprietary information of SAP
+  ~ ("Confidential Information"). You shall not disclose such Confidential
+  ~ Information and shall use it only in accordance with the terms of the
+  ~ license agreement you entered into with SAP.
+  -->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <alias name="defaultODataProcessorFactory" alias="oDataProcessorFactory"/>
+    <bean id="defaultODataProcessorFactory"
+          class="de.hybris.platform.odata2services.odata.processor.DefaultODataProcessorFactory">
+        <property name="persistenceService" ref="oDataPersistenceService"/>
+        <property name="modelService" ref="modelService"/>
+        <property name="ODataServicesConfiguration" ref="oDataServicesConfiguration"/>
+        <property name="entityReaderRegistry" ref="oDataEntityReaderRegistry"/>
+        <property name="storageRequestFactory" ref="oDataStorageRequestFactory"/>
+        <property name="itemLookupRequestFactory" ref="oDataItemLookupRequestFactory"/>
+        <property name="persistenceHandler" ref="oDataProcessorPersistenceHandler"/>
+        <property name="batchPersistenceHandler" ref="oDataProcessorBatchPersistenceHandler"/>
+        <property name="changeSetPersistenceHandler" ref="oDataProcessorChangeSetPersistenceHandler"/>
+        <property name="patchPersistenceHandler" ref="oDataProcessorPatchPersistenceHandler"/>
+        <property name="deleteHandler" ref="oDataProcessorDeleteHandler"/>
+        <property name="readHandler" ref="oDataProcessorReadHandler"/>
+        <property name="accessRightsService" ref="accessRightsService"/>
+        <property name="serviceNameExtractor" ref="oDataServiceNameExtractor"/>
+        <property name="itemTypeDescriptorService" ref="itemTypeDescriptorService"/>
+    </bean>
+
+    <alias name="defaultODataProcessorPersistenceHandler" alias="oDataProcessorPersistenceHandler"/>
+    <bean id="defaultODataProcessorPersistenceHandler"
+          class="de.hybris.platform.odata2services.odata.processor.handler.persistence.PersistenceHandler">
+        <property name="persistenceService" ref="oDataPersistenceService"/>
+        <property name="storageRequestFactory" ref="oDataStorageRequestFactory"/>
+    </bean>
+
+    <alias name="defaultODataProcessorBatchPersistenceHandler" alias="oDataProcessorBatchPersistenceHandler"/>
+    <bean id="defaultODataProcessorBatchPersistenceHandler"
+          class="de.hybris.platform.odata2services.odata.processor.handler.persistence.batch.BatchPersistenceHandler">
+        <property name="ODataServicesConfiguration" ref="oDataServicesConfiguration"/>
+    </bean>
+
+    <alias name="defaultODataProcessorChangeSetPersistenceHandler" alias="oDataProcessorChangeSetPersistenceHandler"/>
+    <bean id="defaultODataProcessorChangeSetPersistenceHandler"
+          class="de.hybris.platform.odata2services.odata.processor.handler.persistence.batch.ChangeSetPersistenceHandler">
+        <property name="modelService" ref="modelService"/>
+    </bean>
+
+    <alias name="defaultODataProcessorPatchPersistenceHandler" alias="oDataProcessorPatchPersistenceHandler"/>
+    <bean id="defaultODataProcessorPatchPersistenceHandler"
+          class="de.hybris.platform.odata2services.odata.processor.handler.persistence.PatchPersistenceHandler">
+        <property name="persistenceService" ref="oDataPersistenceService"/>
+        <property name="storageRequestFactory" ref="oDataStorageRequestFactory"/>
+        <property name="integrationKeyToODataEntryGenerator" ref="oDataIntegrationKeyToODataEntryGenerator"/>
+        <property name="requestValidator" ref="oDataPathPayloadKeyValidator"/>
+    </bean>
+
+    <alias name="defaultPathPayloadKeyValidator" alias="oDataPathPayloadKeyValidator"/>
+    <bean id="defaultPathPayloadKeyValidator"
+          class="de.hybris.platform.odata2services.odata.processor.handler.persistence.PathPayloadKeyValidator">
+        <property name="oDataEntryIntegrationKeyValueGenerator" ref="oDataEntryToIntegrationKeyValueGenerator"/>
+        <property name="keyValueGenerator" ref="delegatingODataEntryToIntegrationKeyValueGenerator"/>
+        <property name="serviceNameExtractor" ref="oDataServiceNameExtractor"/>
+        <property name="itemTypeDescriptorService" ref="itemTypeDescriptorService"/>
+    </bean>
+
+    <alias name="defaultODataProcessorDeleteHandler" alias="oDataProcessorDeleteHandler"/>
+    <bean id="defaultODataProcessorDeleteHandler"
+          class="de.hybris.platform.odata2services.odata.processor.handler.delete.DeleteHandler">
+        <property name="persistenceService" ref="oDataPersistenceService"/>
+        <property name="itemLookupRequestFactory" ref="oDataItemLookupRequestFactory"/>
+    </bean>
+
+    <alias name="defaultODataProcessorReadHandler" alias="oDataProcessorReadHandler"/>
+    <bean id="defaultODataProcessorReadHandler"
+          class="de.hybris.platform.odata2services.odata.processor.handler.read.ReadHandler">
+        <property name="entityReaderRegistry" ref="oDataEntityReaderRegistry"/>
+        <property name="itemLookupRequestFactory" ref="oDataItemLookupRequestFactory"/>
+    </bean>
+
+    <alias name="defaultPersistenceService" alias="oDataPersistenceService"/>
+    <bean name="defaultPersistenceService"
+          class="de.hybris.platform.odata2services.odata.persistence.impl.DefaultPersistenceService">
+        <property name="sessionService" ref="sessionService"/>
+        <property name="createItemStrategy" ref="oDataAlwaysCreateItemStrategy"/>
+        <property name="itemSearchService" ref="integrationServicesItemSearchService"/>
+        <property name="modelEntityService" ref="oDataModelEntityService"/>
+        <property name="modelService" ref="modelService"/>
+        <property name="persistHookRegistry" ref="oDataPersistHookExecutor"/>
+        <property name="transactionTemplate" ref="transactionTemplate"/>
+        <property name="itemModelService" ref="contextItemModelService"/>
+        <property name="deleteItemValidators" ref="deleteItemValidators"/>
+    </bean>
+
+	<alias name="defaultDeleteItemValidators" alias="deleteItemValidators" />
+	<util:list id="defaultDeleteItemValidators">
+		<ref bean="integrationServicesItemDeleteRequestValidator" />
+	</util:list>
+
+    <alias name="defaultModelEntityService" alias="oDataModelEntityService"/>
+    <bean name="defaultModelEntityService"
+          class="de.hybris.platform.odata2services.odata.persistence.impl.DefaultModelEntityService">
+        <property name="entityModelPopulator" ref="oDataEntityModelPopulator"/>
+        <property name="itemModelPopulator" ref="inboundServicesItemModelPopulator"/>
+        <property name="searchService" ref="integrationServicesItemSearchService"/>
+        <property name="integrationKeyValueGenerator" ref="oDataEntryToIntegrationKeyValueGenerator"/>
+        <property name="keyValueGenerator" ref="delegatingODataEntryToIntegrationKeyValueGenerator"/>
+        <property name="itemTypeDescriptorService" ref="itemTypeDescriptorService"/>
+        <property name="createItemStrategy" ref="oDataAlwaysCreateItemStrategy"/>
+        <property name="modelService" ref="modelService"/>
+        <property name="createItemValidators">
+            <list/>
+        </property>
+        <property name="persistenceContextValidators">
+            <list>
+                <ref bean="inboundServicesNullableAttributePersistenceContextValidator"/>
+            </list>
+        </property>
+        <property name="itemPersistRequestValidators" ref="itemPersistRequestValidators"/>
+        <property name="contextReferencedItemModelService" ref="contextReferenceItemModelService"/>
+        <property name="contextItemModelService" ref="contextItemModelService"/>
+    </bean>
+
+    <alias name="entityReaderRegistry" alias="oDataEntityReaderRegistry"/>
+    <bean name="entityReaderRegistry"
+          class="de.hybris.platform.odata2services.odata.processor.reader.EntityReaderRegistry">
+        <property name="entityReaders">
+            <list>
+                <ref bean="oDataCountReader"/>
+                <ref bean="oDataSingleEntityReader"/>
+                <ref bean="oDataExpandedEntityReader"/>
+                <ref bean="oDataEntityListReader"/>
+            </list>
+        </property>
+    </bean>
+
+    <alias name="abstractEntityReader" alias="oDataAbstractEntityReader"/>
+    <bean name="abstractEntityReader"
+          class="de.hybris.platform.odata2services.odata.processor.reader.AbstractEntityReader"
+          abstract="true">
+        <property name="persistenceService" ref="oDataPersistenceService"/>
+        <property name="responseWriter" ref="oDataResponseWriter"/>
+        <property name="typePermissionService" ref="typePermissionService"/>
+    </bean>
+
+    <alias name="defaultODataEntryToMapConverter" alias="oDataEntryToMapConverter"/>
+    <bean name="defaultODataEntryToMapConverter"
+          class="de.hybris.platform.odata2services.odata.integrationkey.impl.DefaultODataEntryToMapConverter"/>
+
+    <alias name="countReader" alias="oDataCountReader"/>
+    <bean name="countReader" class="de.hybris.platform.odata2services.odata.processor.reader.CountReader"
+          parent="oDataAbstractEntityReader">
+        <property name="entityService" ref="oDataModelEntityService"/>
+    </bean>
+
+    <alias name="singleEntityReader" alias="oDataSingleEntityReader"/>
+    <bean name="singleEntityReader" class="de.hybris.platform.odata2services.odata.processor.reader.SingleEntityReader"
+          parent="oDataAbstractEntityReader">
+        <property name="navigationSegmentExplorer" ref="oDataNavigationSegmentExplorer"/>
+    </bean>
+
+    <alias name="expandedEntityReader" alias="oDataExpandedEntityReader"/>
+    <bean name="expandedEntityReader"
+          class="de.hybris.platform.odata2services.odata.processor.reader.ExpandedEntityReader"
+          parent="oDataAbstractEntityReader">
+        <property name="navigationSegmentExplorer" ref="oDataNavigationSegmentExplorer"/>
+    </bean>
+
+    <alias name="entityListReader" alias="oDataEntityListReader"/>
+    <bean name="entityListReader" class="de.hybris.platform.odata2services.odata.processor.reader.EntityListReader"
+          parent="oDataAbstractEntityReader"/>
+
+    <alias name="defaultStorageRequestFactory" alias="oDataStorageRequestFactory"/>
+    <bean name="defaultStorageRequestFactory"
+          class="de.hybris.platform.odata2services.odata.persistence.DefaultStorageRequestFactory">
+        <property name="localeExtractor" ref="oDataContextLocaleExtractor"/>
+        <property name="entryConverter" ref="oDataEntryToIntegrationItemConverter"/>
+    </bean>
+
+    <alias name="defaultODataEntryToIntegrationItemConverter" alias="oDataEntryToIntegrationItemConverter"/>
+    <bean name="defaultODataEntryToIntegrationItemConverter"
+          class="de.hybris.platform.odata2services.converter.DefaultODataEntryToIntegrationItemConverter">
+        <property name="serviceNameExtractor" ref="oDataServiceNameExtractor"/>
+        <property name="modelEntityService" ref="oDataModelEntityService"/>
+        <property name="itemTypeDescriptorService" ref="itemTypeDescriptorService"/>
+        <property name="languageExtractor" ref="oDataContextLocaleExtractor"/>
+        <property name="localizationService" ref="integrationLocalizationService"/>
+        <property name="integrationKeyValueGenerator" ref="oDataEntryToIntegrationKeyValueGenerator"/>
+        <property name="keyValueGenerator" ref="integrationItemToIntegrationKeyGenerator"/>
+        <property name="attributeValueConverter" ref="payloadAttributeValueConverter"/>
+    </bean>
+
+    <alias name="defaultPayloadAttributeValueConverter" alias="payloadAttributeValueConverter"/>
+    <bean name="defaultPayloadAttributeValueConverter"
+          class="de.hybris.platform.odata2services.converter.DefaultPayloadAttributeValueConverter">
+        <property name="valueConverters" ref="payloadAttributeValueConverters"/>
+    </bean>
+    <util:list id="payloadAttributeValueConverters"
+               value-type="de.hybris.platform.odata2services.converter.ValueConverter">
+        <ref bean="singularLocalizedAttributeValueConverter"/>
+        <ref bean="replaceAttributeSingularLocalizedAttributeValueConverter"/>
+        <ref bean="oDataEntryAttributeValueConverter"/>
+        <ref bean="oDataFeedValueConverter"/>
+        <ref bean="replaceAttributeODataFeedValueConverter"/>
+        <ref bean="oDataCollectionValueConverter"/>
+        <ref bean="replaceAttributeODataCollectionValueConverter"/>
+        <ref bean="mapValueConverter"/>
+    </util:list>
+
+    <bean name="replaceAttributeSingularLocalizedAttributeValueConverter"
+          class="de.hybris.platform.odata2services.converter.ReplaceAttributeSingularLocalizedAttributeValueConverter">
+        <constructor-arg ref="localizedValueProvider"/>
+    </bean>
+
+    <bean name="mapValueConverter" class="de.hybris.platform.odata2services.converter.MapValueConverter"/>
+
+    <bean name="replaceAttributeODataCollectionValueConverter"
+          class="de.hybris.platform.odata2services.converter.ReplaceAttributeODataCollectionValueConverter">
+        <constructor-arg ref="oDataEntryToIntegrationItemConverter"/>
+        <constructor-arg ref="payloadAttributeValueConverter"/>
+        <constructor-arg ref="localizedValueProvider"/>
+    </bean>
+
+    <bean name="replaceAttributeODataFeedValueConverter"
+          class="de.hybris.platform.odata2services.converter.ReplaceAttributeODataFeedValueConverter">
+        <constructor-arg ref="oDataEntryToIntegrationItemConverter"/>
+        <constructor-arg ref="payloadAttributeValueConverter"/>
+        <constructor-arg ref="localizedValueProvider"/>
+    </bean>
+
+    <bean name="oDataCollectionValueConverter"
+          class="de.hybris.platform.odata2services.converter.ODataCollectionValueConverter">
+        <constructor-arg ref="oDataEntryToIntegrationItemConverter"/>
+        <constructor-arg ref="payloadAttributeValueConverter"/>
+    </bean>
+
+    <bean name="oDataFeedValueConverter" class="de.hybris.platform.odata2services.converter.ODataFeedValueConverter">
+        <constructor-arg ref="oDataEntryToIntegrationItemConverter"/>
+        <constructor-arg ref="payloadAttributeValueConverter"/>
+    </bean>
+
+    <bean name="oDataEntryAttributeValueConverter"
+          class="de.hybris.platform.odata2services.converter.ODataEntryAttributeValueConverter">
+        <constructor-arg ref="oDataEntryToIntegrationItemConverter"/>
+        <constructor-arg ref="payloadAttributeValueConverter"/>
+    </bean>
+
+    <bean name="singularLocalizedAttributeValueConverter"
+          class="de.hybris.platform.odata2services.converter.SingularLocalizedAttributeValueConverter">
+        <constructor-arg ref="localizedValueProvider"/>
+    </bean>
+
+    <alias name="defaultLocalizedValueProvider" alias="localizedValueProvider"/>
+    <bean name="defaultLocalizedValueProvider"
+          class="de.hybris.platform.odata2services.converter.DefaultLocalizedValueProvider">
+        <constructor-arg ref="integrationLocalizationService"/>
+    </bean>
+
+    <alias name="defaultItemLookupRequestFactory" alias="oDataItemLookupRequestFactory"/>
+    <bean name="defaultItemLookupRequestFactory"
+          class="de.hybris.platform.odata2services.odata.persistence.DefaultItemLookupRequestFactory">
+        <property name="serviceNameExtractor" ref="oDataServiceNameExtractor"/>
+        <property name="integrationKeyToODataEntryGenerator" ref="oDataIntegrationKeyToODataEntryGenerator"/>
+        <property name="localeExtractor" ref="oDataContextLocaleExtractor"/>
+        <property name="ODataServicesConfiguration" ref="oDataServicesConfiguration"/>
+        <property name="expressionVisitorFactory" ref="oDataExpressionVisitorFactory"/>
+        <property name="entryConverter" ref="oDataEntryToIntegrationItemConverter"/>
+        <property name="itemTypeDescriptorService" ref="itemTypeDescriptorService"/>
+    </bean>
+
+    <alias name="defaultServiceNameExtractor" alias="oDataServiceNameExtractor"/>
+    <bean name="defaultServiceNameExtractor"
+          class="de.hybris.platform.odata2services.odata.processor.DefaultServiceNameExtractor"/>
+
+    <alias name="defaultNavigationSegmentExplorer" alias="oDataNavigationSegmentExplorer"/>
+    <bean name="defaultNavigationSegmentExplorer"
+          class="de.hybris.platform.odata2services.odata.processor.DefaultNavigationSegmentExplorer">
+    </bean>
+
+    <alias name="defaultODataContextLocaleExtractor" alias="oDataContextLocaleExtractor"/>
+    <bean id="defaultODataContextLocaleExtractor"
+          class="de.hybris.platform.odata2services.odata.persistence.DefaultODataContextLocaleExtractor">
+        <property name="oDataLocalizationService" ref="oDataLocalizationService"/>
+        <property name="localizationService" ref="integrationLocalizationService"/>
+    </bean>
+
+    <alias name="defaultODataLocalizationService" alias="oDataLocalizationService"/>
+    <bean id="defaultODataLocalizationService"
+          class="de.hybris.platform.odata2services.odata.persistence.DefaultODataLocalizationService">
+        <property name="commonI18NService" ref="commonI18NService"/>
+        <property name="localizationService" ref="integrationLocalizationService"/>
+    </bean>
+
+    <alias name="defaultResponseWriter" alias="oDataResponseWriter"/>
+    <bean id="defaultResponseWriter"
+          class="de.hybris.platform.odata2services.odata.processor.writer.DefaultResponseWriter">
+        <property name="populatorRegistry" ref="oDataResponseWriterPropertyPopulatorRegistry"/>
+    </bean>
+
+    <alias name="responseWriterPropertyPopulatorRegistry" alias="oDataResponseWriterPropertyPopulatorRegistry"/>
+    <bean name="responseWriterPropertyPopulatorRegistry"
+          class="de.hybris.platform.odata2services.odata.processor.writer.ResponseWriterPropertyPopulatorRegistry">
+        <property name="populators">
+            <list>
+                <ref bean="oDataCountPropertyPopulator"/>
+                <ref bean="oDataNextLinkPropertyPopulator"/>
+                <ref bean="oDataExpandPropertyPopulator"/>
+            </list>
+        </property>
+    </bean>
+
+    <alias name="countPropertyPopulator" alias="oDataCountPropertyPopulator"/>
+    <bean name="countPropertyPopulator"
+          class="de.hybris.platform.odata2services.odata.processor.writer.CountPropertyPopulator"/>
+    <alias name="nextLinkPropertyPopulator" alias="oDataNextLinkPropertyPopulator"/>
+    <bean name="nextLinkPropertyPopulator"
+          class="de.hybris.platform.odata2services.odata.processor.writer.NextLinkPropertyPopulator"/>
+    <alias name="expandPropertyPopulator" alias="oDataExpandPropertyPopulator"/>
+    <bean name="expandPropertyPopulator"
+          class="de.hybris.platform.odata2services.odata.processor.writer.ExpandPropertyPopulator">
+        <property name="typePermissionService" ref="typePermissionService"/>
+    </bean>
+
+    <alias name="defaultAbstractPropertyProcessor" alias="oDataAbstractPropertyProcessor"/>
+    <bean abstract="true" id="defaultAbstractPropertyProcessor"
+          class="de.hybris.platform.odata2services.odata.persistence.populator.processor.AbstractPropertyProcessor">
+        <property name="modelService" ref="modelService"/>
+        <property name="integrationObjectService" ref="integrationObjectService"/>
+        <property name="typeService" ref="typeService"/>
+        <property name="descriptorFactory" ref="integrationServicesDescriptorFactory"/>
+        <property name="itemTypeDescriptorService" ref="itemTypeDescriptorService"/>
+    </bean>
+
+    <alias name="defaultEntityCollectionPropertyProcessor" alias="oDataEntityCollectionPropertyProcessor"/>
+    <bean id="defaultEntityCollectionPropertyProcessor" parent="oDataAbstractPropertyProcessor"
+          class="de.hybris.platform.odata2services.odata.persistence.populator.processor.EntityCollectionPropertyProcessor">
+        <property name="modelEntityService" ref="oDataModelEntityService"/>
+        <property name="createItemStrategy" ref="oDataAlwaysCreateItemStrategy"/>
+    </bean>
+
+    <alias name="defaultEntityPropertyProcessor" alias="oDataEntityPropertyProcessor"/>
+    <bean id="defaultEntityPropertyProcessor" parent="oDataAbstractPropertyProcessor"
+          class="de.hybris.platform.odata2services.odata.persistence.populator.processor.EntityPropertyProcessor">
+        <property name="modelEntityService" ref="oDataModelEntityService"/>
+        <property name="createItemStrategy" ref="oDataAlwaysCreateItemStrategy"/>
+    </bean>
+
+    <alias name="defaultPrimitivePropertyProcessor" alias="oDataPrimitivePropertyProcessor"/>
+    <bean id="defaultPrimitivePropertyProcessor" parent="oDataAbstractPropertyProcessor"
+          class="de.hybris.platform.odata2services.odata.persistence.populator.processor.PrimitivePropertyProcessor"/>
+
+    <alias name="defaultLocalizedAttributePropertyProcessor" alias="oDataLocalizedAttributePropertyProcess"/>
+    <bean id="defaultLocalizedAttributePropertyProcessor" parent="oDataAbstractPropertyProcessor"
+          class="de.hybris.platform.odata2services.odata.persistence.populator.processor.LocalizedAttributesPropertyProcessor">
+        <property name="oDataLocalizationService" ref="oDataLocalizationService"/>
+    </bean>
+
+    <alias name="defaultPrimitiveCollectionPropertyProcessor" alias="oDataPrimitiveCollectionPropertyProcessor"/>
+    <bean id="defaultPrimitiveCollectionPropertyProcessor" parent="oDataAbstractPropertyProcessor"
+          class="de.hybris.platform.odata2services.odata.persistence.populator.processor.PrimitiveCollectionPropertyProcessor">
+        <property name="modelEntityService" ref="oDataModelEntityService"/>
+        <property name="createItemStrategy" ref="oDataAlwaysCreateItemStrategy"/>
+    </bean>
+
+    <alias name="defaultEntityMapPropertyProcessor" alias="oDataEntityMapPropertyProcessor"/>
+    <bean id="defaultEntityMapPropertyProcessor" parent="oDataAbstractPropertyProcessor"
+          class="de.hybris.platform.odata2services.odata.persistence.populator.processor.EntityMapPropertyProcessor"/>
+
+    <alias name="defaultEntityModelPopulator" alias="oDataEntityModelPopulator"/>
+    <bean id="defaultEntityModelPopulator"
+          class="de.hybris.platform.odata2services.odata.persistence.populator.DefaultEntityModelPopulator">
+        <property name="propertyProcessors">
+            <list>
+                <ref bean="oDataEntityPropertyProcessor"/>
+                <ref bean="oDataEntityCollectionPropertyProcessor"/>
+                <ref bean="oDataEntityMapPropertyProcessor"/>
+                <ref bean="oDataPrimitivePropertyProcessor"/>
+                <ref bean="oDataLocalizedAttributePropertyProcess"/>
+                <ref bean="oDataPrimitiveCollectionPropertyProcessor"/>
+            </list>
+        </property>
+        <property name="excludedItemPropertyProcessors">
+            <set>
+                <value>#{T(de.hybris.platform.odata2services.odata.persistence.populator.processor.EntityPropertyProcessor)}</value>
+                <value>#{T(de.hybris.platform.odata2services.odata.persistence.populator.processor.PrimitivePropertyProcessor)}</value>
+                <value>#{T(de.hybris.platform.odata2services.odata.persistence.populator.processor.EntityCollectionPropertyProcessor)}</value>
+                <value>#{T(de.hybris.platform.odata2services.odata.persistence.populator.processor.EntityMapPropertyProcessor)}</value>
+                <value>#{T(de.hybris.platform.odata2services.odata.persistence.populator.processor.LocalizedAttributesPropertyProcessor)}</value>
+                <value>#{T(de.hybris.platform.odata2services.odata.persistence.populator.processor.PrimitiveCollectionPropertyProcessor)}</value>
+            </set>
+        </property>
+    </bean>
+
+    <alias name="defaultInboundServicesItemModelAttributePopulator" alias="inboundServicesItemModelAttributePopulator"/>
+    <bean id="defaultInboundServicesItemModelAttributePopulator" parent="inboundServicesAbstractAttributePopulator"
+          class="de.hybris.platform.odata2services.odata.persistence.populator.ItemModelAttributePopulator">
+        <property name="contextReferencedItemModelService" ref="oDataModelEntityService"/>
+    </bean>
+
+    <alias name="defaultItemModelCollectionAttributePopulator"
+           alias="inboundServicesItemModelCollectionAttributePopulator"/>
+    <bean id="defaultItemModelCollectionAttributePopulator"
+          class="de.hybris.platform.odata2services.odata.persistence.populator.ItemModelCollectionAttributePopulator"
+          parent="inboundServicesAbstractAttributeCollectionPopulator">
+        <property name="contextReferencedItemModelService" ref="oDataModelEntityService"/>
+    </bean>
+
+    <alias name="defaultReplaceItemModelCollectionAttributePopulator"
+           alias="inboundServicesReplaceItemModelCollectionAttributePopulator"/>
+    <bean id="defaultReplaceItemModelCollectionAttributePopulator"
+          class="de.hybris.platform.odata2services.odata.persistence.populator.ReplaceItemModelCollectionAttributePopulator"
+          parent="inboundServicesAbstractAttributePopulator">
+        <property name="contextReferencedItemModelService" ref="oDataModelEntityService"/>
+    </bean>
+
+    <alias name="defaultItemLookupStrategy" alias="oDataItemLookupStrategy"/>
+    <bean id="defaultItemLookupStrategy"
+          class="de.hybris.platform.odata2services.odata.persistence.lookup.DefaultItemLookupStrategy">
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+        <property name="integrationObjectService" ref="integrationObjectService"/>
+        <property name="itemLookupRequestFactory" ref="oDataItemLookupRequestFactory"/>
+    </bean>
+
+    <alias name="defaultIntegrationKeyToODataEntryGenerator" alias="oDataIntegrationKeyToODataEntryGenerator"/>
+    <bean id="defaultIntegrationKeyToODataEntryGenerator"
+          class="de.hybris.platform.odata2services.odata.integrationkey.impl.DefaultIntegrationKeyToODataEntryGenerator">
+        <property name="encoding" value="UTF-8"/>
+    </bean>
+
+    <alias name="defaultODataEntryToIntegrationKeyValueGenerator" alias="oDataEntryToIntegrationKeyValueGenerator"/>
+    <bean id="defaultODataEntryToIntegrationKeyValueGenerator" parent="abstractIntegrationKeyValueGenerator"
+          class="de.hybris.platform.odata2services.odata.integrationkey.impl.DefaultODataEntryToIntegrationKeyValueGenerator">
+    </bean>
+
+    <bean id="delegatingODataEntryToIntegrationKeyValueGenerator"
+          class="de.hybris.platform.odata2services.odata.integrationkey.impl.DelegatingODataEntryToIntegrationKeyValueGenerator">
+        <property name="mapToIntegrationKeyGenerator" ref="mapToIntegrationKeyGenerator"/>
+        <property name="oDataEntryToMapConverter" ref="oDataEntryToMapConverter"/>
+    </bean>
+
+    <alias name="defaultNeverCreateItemStrategy" alias="oDataNeverCreateItemStrategy"/>
+    <bean id="defaultNeverCreateItemStrategy"
+          class="de.hybris.platform.odata2services.odata.persistence.creation.NeverCreateItemStrategy">
+    </bean>
+
+    <alias name="defaultAlwaysCreateItemStrategy" alias="oDataAlwaysCreateItemStrategy"/>
+    <bean id="defaultAlwaysCreateItemStrategy"
+          class="de.hybris.platform.odata2services.odata.persistence.creation.AlwaysCreateItemStrategy">
+        <property name="modelService" ref="modelService"/>
+        <property name="integrationObjectService" ref="integrationObjectService"/>
+        <property name="itemFactory" ref="inboundServicesItemFactory"/>
+    </bean>
+
+    <alias name="defaultPersistHookExecutor" alias="oDataPersistHookExecutor"/>
+    <bean id="defaultPersistHookExecutor"
+          class="de.hybris.platform.odata2services.odata.persistence.hook.impl.DefaultPersistHookExecutor">
+        <property name="persistHookRegistry" ref="oDataPersistHookRegistry"/>
+    </bean>
+
+    <alias name="defaultPersistHookRegistry" alias="oDataPersistHookRegistry"/>
+    <bean id="defaultPersistHookRegistry"
+          class="de.hybris.platform.odata2services.odata.persistence.hook.impl.DefaultPersistenceHookRegistry"/>
+
+    <alias name="defaultIntegrationObjectPermissionService" alias="integrationObjectMetadataPermissionService"/>
+    <bean name="defaultIntegrationObjectPermissionService"
+          class="de.hybris.platform.odata2services.odata.security.impl.DefaultIntegrationObjectMetadataPermissionService">
+        <constructor-arg ref="permissionCRUDService"/>
+        <constructor-arg ref="oDataServiceNameExtractor"/>
+        <constructor-arg ref="integrationObjectService"/>
+        <constructor-arg ref="integrationServicesConfiguration"/>
+    </bean>
+
+</beans>

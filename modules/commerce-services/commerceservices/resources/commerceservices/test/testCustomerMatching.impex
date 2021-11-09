@@ -1,0 +1,14 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+$customergroup = customergroup
+
+$defaultPassword = 1234
+
+
+# Sample customer
+INSERT_UPDATE Customer; uid[unique = true]           ; customerID                           ; name                  ; description; sessionLanguage(isocode); sessionCurrency(isocode); groups(uid)    ; password[default = $defaultPassword]; ; ; ; ; ; ; ; ; ; ; ; ; ;
+                      ; testcustomer1@test.com       ; 6a2a41a3-c54c-4ce8-a2d2-0324e1c32a21 ; Test Customer 1       ;            ; en                      ; USD                     ; $customergroup ;                                     ; ; ; ; ; ; ; ; ; ; ; ; ; ;
+                      ; duplicatedcustomer2@test.com ; 6a2a41a3-c54c-4ce8-a2d2-0324e1c32a22 ; Duplicated Customer 2 ;            ; en                      ; USD                     ; $customergroup ;                                     ; ; ; ; ; ; ; ; ; ; ; ; ; ;
+                      ; duplicatedcustomer3@test.com ; 6a2a41a3-c54c-4ce8-a2d2-0324e1c32a22 ; Duplicated Customer 3 ;            ; en                      ; USD                     ; $customergroup ;                                     ; ; ; ; ; ; ; ; ; ; ; ; ; ;
+

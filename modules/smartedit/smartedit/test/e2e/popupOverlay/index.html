@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--3rd prty libs-->
+        <script src="../../../web/webroot/static-resources/dist/smarteditcontainer/js/thirdparties.js"></script>
+        <script src="../../../web/webroot/static-resources/dist/smarteditcommons/js/vendor_chunk.js"></script>
+        <script src="../../../web/webroot/static-resources/thirdparties/ckeditor/ckeditor.js"></script>
+
+        <!--libs-->
+        <script src="../../../web/webroot/static-resources/dist/smarteditcommons/js/smarteditcommons.js"></script>
+        <script src="../../../web/webroot/static-resources/dist/smarteditcontainer/js/smarteditcontainer.js"></script>
+
+        <!--Mocks-->
+
+        <script src="generated_outerMocks.js"></script>
+
+        <base href="../../../../" />
+
+        <style>
+            #anchor {
+                width: 100px;
+                height: 100px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: red;
+                color: white;
+                padding: 10px;
+                margin: 10px;
+            }
+
+            h2 {
+                margin-bottom: 10px;
+            }
+
+            input[type='radio'] {
+                margin: 7px;
+            }
+
+            #message,
+            #legacyPopup,
+            #angularPopup {
+                margin-top: 50px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div
+            id="ng"
+            style="position: absolute; z-index: 999; width: 100vw; height: 100px; padding: 10px; top:300px; display: flex; justify-content: center"
+        >
+            <app-root></app-root>
+        </div>
+    </body>
+</html>

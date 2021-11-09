@@ -1,0 +1,19 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved
+# -----------------------------------------------------------------------
+
+$lang=ko
+$solrIndexedType=solrIndexedType(identifier)[unique=true,default='BackofficeProduct'];
+
+#Currencies
+UPDATE Currency;isocode[unique=true];name[lang=$lang];
+;EUR;유로;
+;USD;US 달러;
+
+UPDATE SolrIndexedProperty;name[unique=true];$solrIndexedType;backofficeDisplayName[lang=$lang];
+;catalogVersion;;카탈로그 버전;
+;facet_catalogVersion;;카탈로그 버전;
+;catalog;;카탈로그;
+;facet_catalog;;카탈로그;
+;itemtype;;항목 유형;
+;categoryLabel;;범주;

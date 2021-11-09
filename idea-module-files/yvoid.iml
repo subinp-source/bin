@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="OOTB" importedAsReadOnly="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../modules/platform/yvoid/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../modules/platform/yvoid/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../modules/platform/yvoid">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/platform/yvoid/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/platform/yvoid/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/platform/yvoid/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/platform/yvoid/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/platform/yvoid/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/platform/yvoid/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/platform/yvoid/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/platform/yvoid/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/platform/yvoid/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/platform/yvoid/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/platform/yvoid/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/platform/yvoid/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/platform/yvoid/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/platform/yvoid/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/platform/yvoid/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/platform/yvoid/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/platform/yvoid/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/platform/yvoid/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/platform/yvoid/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/platform/yvoid/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/platform/yvoid/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/platform/yvoid/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/platform/yvoid/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/platform/yvoid/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/platform/yvoid/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/platform/yvoid/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/platform/yvoid/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/platform/yvoid/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/platform/yvoid/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/platform/yvoid/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/platform/yvoid/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/platform/yvoid/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../modules/platform/yvoid/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/platform/yvoid/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/platform/yvoid/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="platform" exported="" />
+  </component>
+</module>

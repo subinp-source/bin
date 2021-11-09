@@ -1,0 +1,19 @@
+<div class="se-page-info__name">
+    <homepage-icon
+        ng-if="$ctrl.field.qualifier=='name'"
+        class="homepage-icon__page-list"
+        data-cms-page="$ctrl.cmsPage"
+        data-uri-context="$ctrl.uriContext"
+    ></homepage-icon>
+    <div
+        id="{{$ctrl.field.qualifier}}-homepage"
+        class="se-field--homepage fd-form-control"
+        style="word-break: break-all; white-space: normal;"
+        placeholder="{{field.tooltip| translate}}"
+        name="{{$ctrl.field.qualifier}}"
+        data-ng-disabled="$ctrl.disabled"
+        data-ng-model="$ctrl.model[$ctrl.qualifier]"
+    >
+        {{$ctrl.model[$ctrl.qualifier]}}
+    </div>
+</div>

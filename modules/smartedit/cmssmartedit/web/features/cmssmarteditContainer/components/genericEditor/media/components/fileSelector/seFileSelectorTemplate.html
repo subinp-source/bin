@@ -1,0 +1,19 @@
+<div class="se-file-selector {{::ctrl.customClass}}">
+    <label class="se-file-selector__btn" data-ng-show="!ctrl.disabled">
+        <span
+            class="sap-icon--share se-media__action-icon"
+            data-ng-class="{
+            'sap-icon--share': ctrl.isReplaceMode(),
+            'sap-icon--upload': !ctrl.isReplaceMode()}"
+        ></span>
+        <span class="label__fileUpload label__fileUpload-link se-media-format__label"
+            >{{::ctrl.labelI18nKey | translate}}</span
+        >
+        <input
+            type="file"
+            class="hide"
+            data-ng-show="!ctrl.disabled"
+            accept="{{ctrl.buildAcceptedFileTypesList()}}"
+        />
+    </label>
+</div>

@@ -1,0 +1,26 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+$lang=ko
+
+
+insert_update DynamicConstraint;id[unique=true,allownull=true];message[lang=$lang]
+;abstractRuleDateDiffConstraint;"종료일은 시작일보다 나중이어야 합니다."
+
+insert_update NotNullConstraint;id[unique=true,allownull=true];message[lang=$lang]
+;sourceRuleCode;코드는 Null이거나 비어 있을 수 없습니다.
+
+insert_update NotNullConstraint;id[unique=true,allownull=true];message[lang=$lang]
+;sourceRuleTemplateCode;코드는 Null이거나 비어 있을 수 없습니다.
+
+insert_update ObjectPatternConstraint;id[unique=true,allownull=true];message[lang=$lang];
+;ruleCodeLengthMinValue;"값의 길이가 최소 2자 이상이어야 합니다.";
+;ruleTemplateCodeLengthMinValue;"값의 길이가 최소 2자 이상이어야 합니다.";
+;ruleEngineRuleCodeLengthMinValue;"값의 길이가 최소 2자 이상이어야 합니다.";

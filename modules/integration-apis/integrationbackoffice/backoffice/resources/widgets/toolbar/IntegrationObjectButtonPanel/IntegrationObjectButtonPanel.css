@@ -1,0 +1,29 @@
+.yw-integrationbackoffice-filter-btn {
+    background: url("images/icon_filter_default.png");
+    background-image: url("images/icon_filter_default.png");
+    background-repeat: no-repeat;
+    height: 28px;
+    width: 28px;
+    display: inline-block;
+    padding: 0;
+    border: none;
+}
+
+.yw-integrationbackoffice-filter-btn:hover {
+    background: url("images/icon_filter_hover.png");
+    background-image: url("images/icon_filter_hover.png");
+}
+
+.yw-integrationbackoffice-filter-btn:disabled {
+    background: url("images/icon_filter_disabled.png");
+    background-image: url("images/icon_filter_disabled.png");
+}
+
+.yw-integrationbackoffice-filterMenu .z-menuitem-image {
+    border: none !important;
+    background: transparent !important;
+}
+
+.yw-integrationbackoffice-filterMenu .z-menuitem-icon {
+    color: white !important;
+}

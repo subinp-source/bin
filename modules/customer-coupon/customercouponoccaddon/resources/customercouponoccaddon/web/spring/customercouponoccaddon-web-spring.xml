@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+           
+    <context:component-scan base-package="de.hybris.platform.customercouponoccaddon"/>
+
+	<!-- Cache manager for addon -->
+
+	<alias name="defaultCustomercouponoccaddonCacheManager" alias="customercouponoccaddonCacheManager"/>
+	<bean id="defaultCustomercouponoccaddonCacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+		<property name="cacheManager" ref="customercouponoccaddonEhcache"/>
+	</bean>
+
+	<alias name="defaultCustomercouponoccaddonEhcache" alias="customercouponoccaddonEhcache"/>
+	<bean id="defaultCustomercouponoccaddonEhcache" class="de.hybris.platform.webservicescommons.cache.TenantAwareEhCacheManagerFactoryBean">
+		<property name="cacheNamePrefix" value="customercouponoccaddonCache_"/>
+		<property name="configLocation" value="/WEB-INF/cache/addons/customercouponoccaddon/ehcache.xml"/>
+	</bean>
+
+	<bean depends-on="wsCacheManagerList" parent="listMergeDirective">
+		<property name="add" ref="customercouponoccaddonCacheManager"/>
+	</bean>
+	
+	<bean parent="fieldMapper">
+		<property name="sourceClass" value="de.hybris.platform.core.servicelayer.data.PaginationData" />
+		<property name="destClass" value="de.hybris.platform.webservicescommons.dto.PaginationWsDTO"/>
+		<property name="fieldMapping">
+			<map>
+				<entry key="pageSize" value="count"/>
+				<entry key="totalNumberOfResults" value="totalCount"/>
+				<entry key="currentPage" value="page"/>
+				<entry key="numberOfPages" value="totalPages"/>
+			</map>
+		</property>
+	</bean>
+	
+	<bean parent="fieldSetLevelMapping">
+        <property name="dtoClass"
+                  value="de.hybris.platform.customercouponoccaddon.dto.CustomerCouponSearchResultWsDTO"/>
+        <property name="levelMapping">
+            <map>
+                <entry key="BASIC" value="coupons,sorts,pagination"/>
+				<entry key="DEFAULT" value="coupons(DEFAULT),sorts(DEFAULT),pagination(DEFAULT)"/>
+				<entry key="FULL" value="coupons(FULL),sorts(FULL),pagination(FULL)"/>
+            </map>
+        </property>
+    </bean>
+    
+    <bean parent="fieldSetLevelMapping">
+        <property name="dtoClass"
+                  value="de.hybris.platform.customercouponoccaddon.dto.CustomerCouponWsDTO"/>
+        <property name="levelMapping">
+            <map>
+                <entry key="BASIC" value="couponId,name,startDate,endDate,status,allProductsApplicable"/>
+				<entry key="DEFAULT" value="couponId,name,startDate,endDate,status,description,notificationOn,allProductsApplicable"/>
+				<entry key="FULL" value="couponId,name,startDate,endDate,status,description,notificationOn,allProductsApplicable"/>
+            </map>
+        </property>
+    </bean>
+	
+	<bean parent="fieldSetLevelMapping">
+        <property name="dtoClass"
+                  value="de.hybris.platform.customercouponoccaddon.dto.CustomerCoupon2CustomerWsDTO"/>
+        <property name="levelMapping">
+            <map>
+                <entry key="BASIC" value="coupon,customer"/>
+				<entry key="DEFAULT" value="coupon(DEFAULT),customer(DEFAULT)"/>
+				<entry key="FULL" value="coupon(FULL),customer(FULL)"/>
+            </map>
+        </property>
+    </bean>
+	
+	<bean parent="fieldSetLevelMapping">
+        <property name="dtoClass"
+                  value="de.hybris.platform.customercouponoccaddon.dto.CustomerCouponNotificationWsDTO"/>
+        <property name="levelMapping">
+            <map>
+                <entry key="BASIC" value="coupon,customer,status"/>
+				<entry key="DEFAULT" value="coupon(DEFAULT),customer(DEFAULT),status"/>
+				<entry key="FULL" value="coupon(FULL),customer(FULL),status"/>
+            </map>
+        </property>
+    </bean>
+    
+   
+	<bean id="customerCouponValidator" class="de.hybris.platform.webservicescommons.validators.CompositeValidator">
+		<property name="validators">
+			<list>
+				<ref bean="customerCouponCodeValidator"/>	
+				<ref bean="customerCouponSubscribleValidator"/>
+			</list>
+		</property>
+	</bean>
+
+</beans>

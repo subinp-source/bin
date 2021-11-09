@@ -1,0 +1,56 @@
+<div data-ng-if="ctrl.listIsEmpty()">
+    <!--
+        It's important to add the type=button. Otherwise HTML 5 will default it to type=submit, causing the generic
+        editor to submit the form whenever the panel opens.
+    -->
+    <button
+        id="catalog-aware-selector-add-item"
+        type="button"
+        data-ng-if="ctrl.editable"
+        class="fd-button fd-button--compact se-catalog-aware-selector__add-item-btn"
+        data-ng-click="ctrl.openEditingPanel()"
+    >
+        <span
+            translate="se.cms.catalogaware.newbutton.title"
+            translate-values="{catalogItemType: ctrl.catalogItemType}"
+            class="se-catalog-aware-selector__add-item-btn-text"
+        ></span>
+    </button>
+</div>
+
+<div data-ng-if="!ctrl.listIsEmpty()" class="se-catalog-aware-selector__content">
+    <div class="se-catalog-aware-selector__content__btn-wrapper" data-ng-if="ctrl.editable">
+        <button
+            type="button"
+            class="fd-button--light se-catalog-aware-selector__content__btn"
+            data-ng-click="ctrl.openEditingPanel()"
+        >
+            {{'se.cms.catalogaware.list.addmore' | translate}}
+        </button>
+    </div>
+
+    <se-editable-list
+        [id]="ctrl.id + '_list'"
+        [item-template-url]="ctrl.itemTemplate"
+        [(items)]="ctrl.itemsList"
+        [on-change]="ctrl.onListChange"
+        [editable]="ctrl.editable"
+        [(refresh)]="ctrl._refreshListWidget"
+        class="se-catalog-aware-selector__list"
+    >
+    </se-editable-list>
+</div>
+
+<se-item-selector-panel
+    data-panel-title="ctrl.currentOptions.panelTitle"
+    data-items-selected="ctrl.model"
+    data-get-catalogs="ctrl.getCatalogs"
+    data-items-fetch-strategy="ctrl.itemsFetchStrategy"
+    data-item-template="ctrl.itemTemplate"
+    data-on-change="ctrl.onPanelChange"
+    data-show-panel="ctrl.showPanel"
+    data-hide-panel="ctrl.closePanel"
+    data-catalog-item-type="ctrl.catalogItemType"
+    data-max-num-items="ctrl.maxNumItems"
+>
+</se-item-selector-panel>

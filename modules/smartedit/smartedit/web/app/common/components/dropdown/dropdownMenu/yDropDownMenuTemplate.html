@@ -1,0 +1,19 @@
+<div class="y-dropdown-more-menu" data-uib-dropdown>
+    <div
+        class="sap-icon--overflow y-dropdown-more-menu__toggle"
+        data-uib-dropdown-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="true"
+    ></div>
+
+    <ul class="se-y-dropdown-menu__list fd-menu__list" data-uib-dropdown-menu>
+        <li
+            data-ng-repeat="dropdownItem in $ctrl.clonedDropdownItems"
+            data-ng-if="dropdownItem.condition($ctrl.selectedItem)"
+            data-ng-class="dropdownItem.customCss"
+            class="se-dropdown-menu__item-wrapper"
+        >
+            <span data-ng-include="dropdownItem.templateUrl"></span>
+        </li>
+    </ul>
+</div>

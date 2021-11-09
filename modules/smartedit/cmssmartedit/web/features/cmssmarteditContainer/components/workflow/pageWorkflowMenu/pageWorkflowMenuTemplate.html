@@ -1,0 +1,77 @@
+<div data-ng-if="$ctrl.isReady">
+    <div data-ng-if="!$ctrl.pageHasWorkflow" has-operation-permission="'se.start.page.workflow'">
+        <!-- Workflow not started -->
+        <button
+            type="button"
+            class="btn toolbar-action--button"
+            data-ng-click="$ctrl.startWorkflow()"
+            id="smartEditPerspectiveToolbar_option_se.cms.startWorkflow_btn"
+            aria-expanded="false"
+        >
+            <span
+                class="toolbar-action-button__txt"
+                id="smartEditPerspectiveToolbar_option_se.cms.startWorkflow_btn_lbl"
+                data-translate="se.cms.workflow.toolbar.start.workflow"
+            ></span>
+        </button>
+    </div>
+
+    <div has-operation-permission="'se.view.page.workflowMenu'">
+        <!-- Workflow has started -->
+        <div
+            data-ng-if="$ctrl.pageHasWorkflow"
+            class="toolbar-action"
+            data-uib-dropdown
+            data-is-open="$ctrl.actionItem.isOpen"
+            data-auto-close="outsideClick"
+            data-item-key="{{ $ctrl.actionItem.key }}"
+            data-on-toggle="$ctrl.onDropdownToggle(open)"
+        >
+            <button
+                type="button"
+                class="toolbar-action--button btn-page-tasks"
+                data-uib-dropdown-toggle
+                aria-pressed="false"
+            >
+                <span class="sap-icon--workflow-tasks"></span>
+                <span
+                    class="toolbar-action--button--txt"
+                    data-translate="se.cms.workflow.toolbar.view.workflow.menu"
+                ></span>
+            </button>
+
+            <div
+                data-uib-dropdown-menu
+                class="btn-block toolbar-action--include se-page-workflow-menu"
+            >
+                <div class="" ng-if="$ctrl.actionItem.isOpen">
+                    <div class="se-page-workflow-menu__header">
+                        <div
+                            class="se-page-workflow-menu__header-text"
+                            data-translate="se.cms.workflow.toolbar.view.workflow.menu"
+                        ></div>
+                        <div class="se-page-workflow-menu__header-menu">
+                            <workflow-item-menu
+                                data-workflow-info="$ctrl.workflow"
+                            ></workflow-item-menu>
+                        </div>
+                    </div>
+                    <div class="se-version-toolbar-menu-content__body">
+                        <div class="se-page-workflow-menu-tabs">
+                            <div data-ng-if="!$ctrl.isComponentReady">
+                                <div class="spinner-sm spinner-light">Loading...</div>
+                            </div>
+                            <se-tabs
+                                data-ng-if="$ctrl.isComponentReady"
+                                [tabs-list]="$ctrl.tabsList"
+                                [model]="$ctrl"
+                                [num-tabs-displayed]="2"
+                            >
+                            </se-tabs>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

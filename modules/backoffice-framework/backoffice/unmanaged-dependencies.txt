@@ -1,0 +1,11 @@
+backoffice-core-20.11.0-RC6.jar
+backoffice-widgets-20.11.0-RC6.jar
+cockpitadmin-20.11.0-RC6.jar
+cockpitcore-20.11.0-RC6.jar
+cockpit-data-integration-20.11.0-RC6.jar
+cockpit-demo-widgets-20.11.0-RC6.jar
+cockpitframework-20.11.0-RC6.jar
+cockpit-module-aggregator-20.11.0-RC6.jar
+cockpit-standard-editors-20.11.0-RC6.jar
+cockpittesting-20.11.0-RC6.jar
+cockpitwidgets-20.11.0-RC6.jar

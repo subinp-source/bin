@@ -1,0 +1,76 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+
+$lang=en
+$defaultPromoGrp=testPromoGrp
+
+############################# CONDITIONS ##########################
+
+INSERT_UPDATE RuleConditionDefinition;id[unique=true];name[lang=$lang];priority;breadcrumb[lang=$lang];allowsChildren;translatorId;translatorParameters;categories(id)
+;y_qualifying_coupons;Coupon code;800;Coupon code from {coupons} coupon applied;false;ruleQualifyingCouponsConditionTranslator;;cart
+
+INSERT_UPDATE RuleConditionDefinitionParameter;definition(id)[unique=true];id[unique=true];priority;name[lang=$lang];description[lang=$lang];type;value;required[default=true]
+;y_qualifying_coupons;coupons;800;Qualifying coupons;Pre-configured coupons that can be used to trigger this promotion;List(ItemType(AbstractCoupon));;false
+
+INSERT_UPDATE RuleConditionDefinitionRuleTypeMapping;definition(id)[unique=true];ruleType(code)[default=PromotionSourceRule][unique=true]
+;y_qualifying_coupons;
+
+############################# ACTIONS ##########################
+
+INSERT_UPDATE RuleActionDefinitionCategory;id[unique=true];name[lang=$lang];priority
+;coupon;Coupon;1500
+
+INSERT_UPDATE RuleActionDefinition;id[unique=true];name[lang=$lang];priority;breadcrumb[lang=$lang];translatorId;translatorParameters;categories(id)
+;y_given_coupon;Free coupon;1500;Free coupon {value};ruleExecutableActionTranslator;actionId->ruleGiveCouponAction;coupon
+
+INSERT_UPDATE RuleActionDefinitionParameter;definition(id)[unique=true];id[unique=true];priority;name[lang=$lang];description[lang=$lang];type;value;required[default=true]
+;y_given_coupon;value;1000;Coupon code;Coupon code;ItemType(AbstractCoupon);;
+
+INSERT_UPDATE RuleActionDefinitionRuleTypeMapping;definition(id)[unique=true];ruleType(code)[default=PromotionSourceRule][unique=true]
+;y_given_coupon;
+
+############################# RULE GROUPS ##########################
+
+INSERT_UPDATE RuleGroup;code[unique=true];exclusive[default=false]
+;couponPromotionRuleGroup
+
+############################# RULES ##########################
+
+INSERT_UPDATE PromotionSourceRule;code[unique=true];priority;maxAllowedRuns;ruleGroup(code);conditions;actions;website(Identifier)[default=$defaultPromoGrp]
+;coupon_code_fixed_discount;25;1;couponPromotionRuleGroup;"[{""definitionId"":""y_qualifying_coupons"",""parameters"":{""coupons"":{""uuid"":""9644b8a6-ad94-4990-afca-2a132e1bd070"",""type"":""List(ItemType(AbstractCoupon))"",""value"":[""SUMMER69""]}},""children"":[]}]";"[{""definitionId"":""y_order_fixed_discount"",""parameters"":{""value"":{""uuid"":""b4dfe431-e526-42e2-bb08-0dea08f013db"",""type"":""Map(ItemType(Currency),java.math.BigDecimal)"",""value"":{""USD"":10}}}}]";
+;coupon_code_percentage_discount;25;1;couponPromotionRuleGroup;"[{""definitionId"":""y_qualifying_coupons"",""parameters"":{""coupons"":{""uuid"":""e3288128-09d2-40ff-b3b5-66498c903e1ba"",""type"":""List(ItemType(AbstractCoupon))"",""value"":[""WINTER16""]}},""children"":[]}]";"[{""definitionId"":""y_order_percentage_discount"",""parameters"":{""value"":{""uuid"":""f48a0433-01a3-44c4-9c69-f67f872eca26"",""type"":""java.math.BigDecimal"",""value"":10}}}]"
+;coupon_cart_threshold;25;1;couponPromotionRuleGroup;"[{""definitionId"":""y_qualifying_coupons"",""parameters"":{""coupons"":{""uuid"":""9644b8a6-ad94-4990-afca-2a132e1bd070"",""type"":""List(ItemType(AbstractCoupon))"",""value"":[""SUMMER69""]}},""children"":[]},{""definitionId"":""y_cart_total"",""parameters"":{""value"":{""uuid"":""b7da067e-e6cf-4da5-a1c2-129c1ca06e3c"",""type"":""Map(ItemType(Currency),java.math.BigDecimal)"",""value"":{""USD"":200}},""operator"":{""uuid"":""2d7de0e1-2a87-4878-8b32-f72a1ad2dfd1"",""type"":""Enum(de.hybris.platform.ruledefinitions.AmountOperator)"",""value"":""GREATER_THAN_OR_EQUAL""}},""children"":[]}]";"[{""definitionId"":""y_order_fixed_discount"",""parameters"":{""value"":{""uuid"":""b4dfe431-e526-42e2-bb08-0dea08f013db"",""type"":""Map(ItemType(Currency),java.math.BigDecimal)"",""value"":{""USD"":10}}}}]";
+;coupon_PowershotA480;25;1;couponPromotionRuleGroup;"[{""definitionId"":""y_qualifying_coupons"",""parameters"":{""coupons"":{""uuid"":""9644b8a6-ad94-4990-afca-2a132e1bd070"",""type"":""List(ItemType(AbstractCoupon))"",""value"":[""SUMMER69""]}},""children"":[]},{""definitionId"":""y_qualifying_products"",""parameters"":{""products_operator"":{""uuid"":""8c4601d9-f2a8-4fdb-ad92-d72ade10001f"",""type"":""Enum(de.hybris.platform.ruledefinitions.CollectionOperator)"",""value"":""CONTAINS_ANY""},""quantity"":{""uuid"":""76c312a2-8b80-40e7-ad19-d4aa4fbd320f"",""type"":""java.lang.Integer"",""value"":1},""operator"":{""uuid"":""044d83a0-ff33-4341-acc1-afce5df1ef19"",""type"":""Enum(de.hybris.platform.ruledefinitions.AmountOperator)"",""value"":""GREATER_THAN_OR_EQUAL""},""products"":{""uuid"":""fb3f00b5-b4b2-4e6c-8dde-c5d15eb3582b"",""type"":""List(ItemType(Product))"",""value"":[""1934794""]}},""children"":[]}]";"[{""definitionId"":""y_order_fixed_discount"",""parameters"":{""value"":{""uuid"":""b4dfe431-e526-42e2-bb08-0dea08f013db"",""type"":""Map(ItemType(Currency),java.math.BigDecimal)"",""value"":{""USD"":10}}}}]";
+;coupon_code_free_gift_order_threshold;160;1;couponPromotionRuleGroup;"[{""definitionId"":""y_qualifying_coupons"",""parameters"":{""coupons"":{""uuid"":""ff7280f8-3272-4ddb-9e92-d26a083ec432"",""type"":""List(ItemType(AbstractCoupon))"",""value"":[""CHRISTMAS16""]}},""children"":[]},{""definitionId"":""y_cart_total"",""parameters"":{""value"":{""uuid"":""b4959112-d22e-4bc3-a87c-80c4116bb778"",""type"":""Map(ItemType(Currency),java.math.BigDecimal)"",""value"":{""USD"":200}},""operator"":{""uuid"":""677a62d0-c8cd-4c47-af0b-91d19b6dad8c"",""type"":""Enum(de.hybris.platform.ruledefinitions.AmountOperator)"",""value"":""GREATER_THAN_OR_EQUAL""}},""children"":[]}]";"[{""definitionId"":""y_free_gift"",""parameters"":{""product"":{""uuid"":""5c9f025c-b351-46ee-bc49-662d87a54e56"",""type"":""ItemType(Product)"",""value"":""443175""},""quantity"":{""uuid"":""395a45d1-6f14-4ddd-ae48-d6ef8dc9c684"",""type"":""java.lang.Integer"",""value"":1}}}]";
+;coupon_code_percentage_discount_on_products;155;1;couponPromotionRuleGroup;"[{""definitionId"":""y_qualifying_coupons"",""parameters"":{""coupons"":{""uuid"":""baa9d67e-66ec-4989-b3c4-7589346d4bb2"",""type"":""List(ItemType(AbstractCoupon))"",""value"":[""BUYMORE16""]}},""children"":[]},{""definitionId"":""y_qualifying_categories"",""parameters"":{""quantity"":{""uuid"":""20fd1aab-396d-4f36-a397-7d11d4542009"",""type"":""java.lang.Integer"",""value"":1},""categories_operator"":{""uuid"":""504c05f5-9092-4827-9950-29b60dd03f3d"",""type"":""Enum(de.hybris.platform.ruledefinitions.CollectionOperator)"",""value"":""CONTAINS_ANY""},""excluded_categories"":{""uuid"":""671ae763-e0c7-4fb9-bb34-c6367f683511"",""type"":""List(ItemType(Category))""},""excluded_products"":{""uuid"":""7f1a0063-0625-437c-90c4-ec00b5e6a4d3"",""type"":""List(ItemType(Product))""},""categories"":{""uuid"":""fe873025-b08c-452c-a649-906cde3fab60"",""type"":""List(ItemType(Category))"",""value"":[""588""]},""operator"":{""uuid"":""6a1f11ef-8bc0-490d-aa69-6e9b70d26e4c"",""type"":""Enum(de.hybris.platform.ruledefinitions.AmountOperator)"",""value"":""GREATER_THAN_OR_EQUAL""}},""children"":[]}]";"[{""definitionId"":""y_order_entry_percentage_discount"",""parameters"":{""value"":{""uuid"":""7850ea3a-cd43-4a94-b12d-c2ef6b82942a"",""type"":""java.math.BigDecimal"",""value"":25}}}]";
+;order_threshold_free_coupon;180;1;couponPromotionRuleGroup;"[{""definitionId"":""y_cart_total"",""parameters"":{""value"":{""uuid"":""9b978694-b451-43b1-863c-bae4b887e002"",""type"":""Map(ItemType(Currency),java.math.BigDecimal)"",""value"":{""USD"":300}},""operator"":{""uuid"":""54d2aad7-38b1-4e74-9f76-d9723f9f8794"",""type"":""Enum(de.hybris.platform.ruledefinitions.AmountOperator)"",""value"":""GREATER_THAN_OR_EQUAL""}},""children"":[]}]";"[{""definitionId"":""y_given_coupon"",""parameters"":{""value"":{""uuid"":""e0d0c6c7-04d2-42f0-bc4f-2e2f71e671cc"",""type"":""ItemType(AbstractCoupon)"",""value"":""BUYMORE16""}}}]";
+;coupon_code_percentage_discount_on_products_MemCards;155;1;couponPromotionRuleGroup;"[{""definitionId"":""y_qualifying_categories"",""parameters"":{""quantity"":{""uuid"":""43fe316b-d7a8-4588-aca7-85d8d9d0f68e"",""type"":""java.lang.Integer"",""value"":1},""categories_operator"":{""uuid"":""b0546db3-61fa-45ab-9734-858caeede24f"",""type"":""Enum(de.hybris.platform.ruledefinitions.CollectionOperator)"",""value"":""CONTAINS_ANY""},""excluded_categories"":{""uuid"":""c36c33f2-832c-401b-98ce-58191519defc"",""type"":""List(ItemType(Category))""},""categories"":{""uuid"":""1a285be7-262f-4b50-a216-90b40e844a3f"",""type"":""List(ItemType(Category))"",""value"":[""902""]},""excluded_products"":{""uuid"":""0ce5e4a3-19ee-447c-b383-f97838f9a3b6"",""type"":""List(ItemType(Product))""},""operator"":{""uuid"":""6584d2d1-a77f-42a3-8500-f97d91996404"",""type"":""Enum(de.hybris.platform.ruledefinitions.AmountOperator)"",""value"":""GREATER_THAN_OR_EQUAL""}},""children"":[]}]";"[{""definitionId"":""y_order_entry_percentage_discount"",""parameters"":{""value"":{""uuid"":""cfa9bf24-178f-4a8c-9ac4-928a678af5df"",""type"":""java.math.BigDecimal"",""value"":25}}}]";electronicsPromoGrp
+
+UPDATE PromotionSourceRule;code[unique=true];name[lang=$lang];description[lang=$lang];messageFired[lang=$lang];
+;coupon_code_percentage_discount;Get 10% discount on the cart using a coupon;A percentage discount is added to the cart when a valid coupon code is entered;You have received {f48a0433-01a3-44c4-9c69-f67f872eca26}% discount on cart using the coupon code {e3288128-09d2-40ff-b3b5-66498c903e1ba}
+;coupon_code_free_gift_order_threshold;Get a memory card free using a coupon code for orders over $200;A free gift is added automatically to the cart when a valid coupon code is entered and the cart total meets the required threshold;You have received product {5c9f025c-b351-46ee-bc49-662d87a54e56} for free using the coupon code {ff7280f8-3272-4ddb-9e92-d26a083ec432} for spending over {b4959112-d22e-4bc3-a87c-80c4116bb778}
+;coupon_code_percentage_discount_on_products;Coupon code percentage discount on products;You have received {7850ea3a-cd43-4a94-b12d-c2ef6b82942a}% discount on products {e1d2f892-b03f-4889-92e5-748d111e269e} or categories {953551d1-6362-4048-931f-79a9e74208ca} using coupon code {baa9d67e-66ec-4989-b3c4-7589346d4bb2}
+;order_threshold_free_coupon;Get a discount coupon (BUYMORE16) for next purchase when spending $300 or more;A free Coupon is given away for next purchase when the cart total reaches a certain threshold;You have spent over {9b978694-b451-43b1-863c-bae4b887e002}, a discount coupon for next purchase will be awarded on placing the order
+;coupon_code_percentage_discount_on_products_MemCards;coupon_code_percentage_discount_on_products_MemCards;;;
+
+############################# COUPON DATA ##########################
+INSERT_UPDATE CodeGenerationConfiguration;name[unique=true];codeSeparator;
+;default-configuration;-;
+
+INSERT_UPDATE SingleCodeCoupon;couponId(id)[unique=true];maxRedemptionsPerCustomer;maxTotalRedemptions;active[default=true]
+;SUMMER69;1;10;
+;FALL16;1;100;
+;CHRISTMAS16;3;100;
+;WINTER16;2;15;
+;BUYMORE16;1;;
+
+INSERT_UPDATE MultiCodeCoupon;couponId(id)[unique=true];codeGenerationConfiguration(name);name[lang=$lang];active[default=true]
+;PROMO16;default-configuration;Coupon codes for email campaign
