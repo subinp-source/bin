@@ -7,8 +7,6 @@
       <root url="file://$PROJECT_DIR$/platform/resources/tanukiwrapper/lib" />
       <root url="file://$PROJECT_DIR$/platform/resources/tanukiwrapper/bin" />
       <root url="file://$PROJECT_DIR$/platform/bootstrap/bin" />
-      <root url="file://$PROJECT_DIR$/platform/tomcat/bin" />
-      <root url="file://$PROJECT_DIR$/platform/tomcat/lib" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
@@ -20,7 +18,5 @@
     <jarDirectory url="file://$PROJECT_DIR$/platform/resources/tanukiwrapper/lib" recursive="true" />
     <jarDirectory url="file://$PROJECT_DIR$/platform/resources/tomcat-8.5.64/bin" recursive="true" />
     <jarDirectory url="file://$PROJECT_DIR$/platform/resources/tomcat-8.5.64/lib" recursive="true" />
-    <jarDirectory url="file://$PROJECT_DIR$/platform/tomcat/bin" recursive="true" />
-    <jarDirectory url="file://$PROJECT_DIR$/platform/tomcat/lib" recursive="true" />
   </library>
 </component>
