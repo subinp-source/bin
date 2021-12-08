@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ce77eff8-ddc5-4f5b-bdd7-29759ed260de" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ant.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/consolestorage/flexible_search_region.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/consolestorage/solr_region.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/hybris_integration.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/hybris_integration.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/pituser.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/hybrisDeveloperSpecificProjectSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/hybrisDeveloperSpecificProjectSettings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Backoffice_Library.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Backoffice_Library.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Platform_Bootstrap.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Platform_Bootstrap.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Remote_debug.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Remote_debug.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/acceleratorocc.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/accountsummaryaddon.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/adminapi.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/admincockpit.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/assistedservicewebservices.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/b2bacceleratoraddon.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/b2bacceleratorfacades.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/b2bacceleratorservices.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/b2bapprovalprocess.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/b2bapprovalprocessfacades.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/b2bcommerce.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/b2bcommercebackoffice.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/b2bcommercefacades.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/b2bocc.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/b2bocctests.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/b2bordermanagementfacades.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/b2bordermanagementwebservices.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/b2bpunchout.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/b2bpunchoutaddon.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/b2bwebservicescommons.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/chinesecommercewebservicescommons.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/cmsbackoffice.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/cmscockpit.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/cmsocc.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/cmssmartedit.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/cmssmarteditwebservices.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/cmswebservices.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/cockpit.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/commerceorgaddon.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/commerceorgsamplesaddon.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/commercewebservices.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/commercewebservicestests.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/configurablebundlebackoffice.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/configurablebundleocc.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/configurablebundleocctests.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/consignmenttrackingbackoffice.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/consignmenttrackingmock.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/consignmenttrackingocc.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/couponbackoffice.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/couponwebservices.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/customercouponbackoffice.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/customercouponocc.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/customerinterestsocc.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/customersupportbackoffice.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/datahubadapter.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/datahubclient.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/dataimportcommons.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/entitlementbackoffice.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/entitlementfacades.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/entitlementservices.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/inboundservices.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/integrationbackoffice.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/integrationbackofficetest.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/integrationmonitoringbackoffice.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/integrationservices.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/kymaintegrationbackoffice.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/kymaintegrationservices.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/mediaconversion.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/mediaconversionbackoffice.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/merchandisingcmswebservices.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/merchandisingservicesbackoffice.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/merchandisingsmartedit.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/messagecentercsfacades.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/messagecentercsocc.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/messagecentercsservices.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/notificationocc.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/odata2services.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/odata2webservices.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/odata2webservicesfeaturetests.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/orbeonweb.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/ordermanagementwebservices.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/outboundservices.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/outboundsync.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/outboundsyncbackoffice.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/patches.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/patchesbackoffice.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/permissionsfacades.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/permissionswebservices.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/personalizationcmsbackoffice.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/personalizationcmsweb.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/personalizationpromotions.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/personalizationpromotionsbackoffice.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/personalizationpromotionssampledataaddon.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/personalizationpromotionssmartedit.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/personalizationpromotionsweb.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/personalizationsearch.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/personalizationsearchbackoffice.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/personalizationsearchsamplesaddon.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/personalizationsearchsmartedit.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/personalizationsearchweb.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/personalizationsmartedit.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/personalizationwebservices.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/powertoolsstore.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/previewpersonalizationweb.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/previewwebservices.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/promotionenginebackoffice.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/rulebuilderbackoffice.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/ruleenginebackoffice.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/sapproductconfigb2baddon.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/sapproductconfigb2bservices.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/sapproductconfigocc.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/sapproductconfigrules.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/sapproductconfigrulesbackoffice.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/sapproductconfigruntimemock.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/savedorderforms.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/savedorderformsocc.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/searchprovidercssearchbackoffice.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/searchprovidercssearchservices.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/secureportaladdon.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/smarteditwebservices.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/subscriptionbackoffice.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/subscriptionbundlebackoffice.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/subscriptionbundlefacades.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/subscriptionbundleservices.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/subscriptionfacades.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/subscriptionservices.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/textfieldconfiguratortemplatebackoffice.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/textfieldconfiguratortemplateocc.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/textfieldconfiguratortemplateocctests.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/ticketsystembackoffice.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/timedaccesspromotionenginebackoffice.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/timedaccesspromotionengineocc.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/trainingbackoffice.iml" beforeDir="false" afterPath="$PROJECT_DIR$/idea-module-files/trainingbackoffice.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/trainingcore.iml" beforeDir="false" afterPath="$PROJECT_DIR$/idea-module-files/trainingcore.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/trainingfacades.iml" beforeDir="false" afterPath="$PROJECT_DIR$/idea-module-files/trainingfacades.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/traininginitialdata.iml" beforeDir="false" afterPath="$PROJECT_DIR$/idea-module-files/traininginitialdata.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/trainingtest.iml" beforeDir="false" afterPath="$PROJECT_DIR$/idea-module-files/trainingtest.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/warehousing.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/warehousingbackoffice.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/warehousingfacades.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/warehousingwebservices.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/webhookbackoffice.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/webhookservices.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/xyformsbackoffice.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/xyformsweb.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/yacceleratorordermanagement.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/yaddon.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/ybackoffice.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/yempty.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/yocc.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/yocctests.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/yvoid.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea-module-files/ywebservices.iml" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="NamedScopeManager">
+    <scope name="[y] Custom" pattern="file[group:Custom]:*//*" />
+    <scope name="[y] Custom Type System Files" pattern="file[group:Custom]:*//*-items.xml" />
+    <scope name="[y] Custom Type System, Beans and Impex files" pattern="file[group:Custom]:*//*-items.xml||file[group:Custom]:*//*-beans.xml||file[group:Custom]:*//*.impex" />
+    <scope name="[y] Platform" pattern="file[group:Platform]:*//*" />
+    <scope name="[y] Hybris" pattern="file[group:Hybris]:*//*" />
+    <scope name="[y] Platform Hybris" pattern="file[group:Platform]:*//*||file[group:Hybris]:*//*" />
+    <scope name="[y] All Type System Files" pattern="file:*//*-items.xml" />
+  </component>
+  <component name="ProjectId" id="21xRfdP3UHIB0Xco5erfPOvgT1o" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="AntRunConfiguration">
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ce77eff8-ddc5-4f5b-bdd7-29759ed260de" name="Changes" comment="" />
+      <created>1638880863087</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1638880863087</updated>
+    </task>
+    <servers />
+  </component>
+</project>
