@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 08-Nov-2021, 4:51:25 PM                     ---
+ * --- Generated at 11-Dec-2021, 12:32:58 AM                    ---
  * ----------------------------------------------------------------
  */
 package com.hybris.backoffice.solrsearch.model;

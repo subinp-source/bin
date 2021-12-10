@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 08-Nov-2021, 4:51:25 PM                     ---
+ * --- Generated at 11-Dec-2021, 12:32:58 AM                    ---
  * ----------------------------------------------------------------
  *  
  * Copyright (c) 2021 SAP SE or an SAP affiliate company. All rights reserved.
@@ -25,6 +25,7 @@ public class GeneratedTrainingCoreConstants
 		public static final String DRIVERBASE = "DriverBase".intern();
 		public static final String ELECTRONICSCOLORVARIANTPRODUCT = "ElectronicsColorVariantProduct".intern();
 		public static final String SWATCHCOLORENUM = "SwatchColorEnum".intern();
+		public static final String TESTPROCESS = "TestProcess".intern();
 		public static final String VEHICLEBASE = "VehicleBase".intern();
 		public static final String VEHICLECOUNTCRONJOB = "VehicleCountCronJob".intern();
 	}

@@ -325,13 +325,16 @@
                       autocreate="true" generate="true">
 
             </itemtype>
+
+
+
+
+            <itemtype code="TestProcess" autocreate="true" generate="true"
+                      jaloclass="de.hybris.platform.testprocessing.jalo.TestProcess"
+                      extends="BusinessProcess">
+
+            </itemtype>
         </typegroup>
-
-
-
-
-        
-        
 
     </itemtypes>
 </items>

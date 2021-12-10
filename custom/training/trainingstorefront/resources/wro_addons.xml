@@ -45,11 +45,6 @@
       <css>/_ui/addons/customercouponaddon/responsive/common/css/customercouponaddon.css</css>
       <css>/_ui/addons/customercouponaddon/responsive/common/css/jquery-ui.min.css</css>
       <css>/_ui/addons/customercouponaddon/responsive/common/css/imported/assistedservicepromotionaddon.css</css>
-      <js>/_ui/addons/smarteditaddon/shared/common/js/webApplicationInjector.js</js>
-      <js>/_ui/addons/smarteditaddon/shared/common/js/reprocessPage.js</js>
-      <js>/_ui/addons/smarteditaddon/shared/common/js/adjustComponentRenderingToSE.js</js>
-      <js>/_ui/addons/smarteditaddon/responsive/common/js/smarteditaddon.js</js>
-      <css>/_ui/addons/smarteditaddon/responsive/common/css/smarteditaddon.css</css>
       <js>/_ui/addons/selectivecartsplitlistaddon/responsive/common/js/selectivecartsplitlistaddon.js</js>
       <css>/_ui/addons/selectivecartsplitlistaddon/responsive/common/css/selectivecartsplitlistaddon.css</css>
       <js>/_ui/addons/xyformsstorefrontcommons/responsive/common/js/xyformsstorefrontcommons.js</js>

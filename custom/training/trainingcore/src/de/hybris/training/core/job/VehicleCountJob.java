@@ -2,6 +2,7 @@ package de.hybris.training.core.job;
 
 import de.hybris.platform.cronjob.enums.CronJobResult;
 import de.hybris.platform.cronjob.enums.CronJobStatus;
+import de.hybris.platform.processengine.BusinessProcessService;
 import de.hybris.platform.servicelayer.cronjob.AbstractJobPerformable;
 import de.hybris.platform.servicelayer.cronjob.PerformResult;
 import de.hybris.platform.servicelayer.exceptions.ModelSavingException;
@@ -9,6 +10,7 @@ import de.hybris.platform.servicelayer.model.ModelService;
 import de.hybris.platform.site.BaseSiteService;
 import de.hybris.platform.solrfacetsearch.config.FacetSearchConfigService;
 import de.hybris.platform.solrfacetsearch.indexer.IndexerService;
+import de.hybris.platform.testprocessing.model.TestProcessModel;
 import de.hybris.platform.tx.Transaction;
 import de.hybris.training.core.Dao.VehicleCountDao;
 import de.hybris.training.core.model.VehicleBaseModel;
@@ -24,13 +26,25 @@ public class VehicleCountJob extends AbstractJobPerformable<VehicleCountCronJobM
     private IndexerService indexerService;
     private FacetSearchConfigService facetSearchConfigService;
     private BaseSiteService baseSiteService;
+    private BusinessProcessService businessProcessService;
 
+    public BusinessProcessService getBusinessProcessService() {
+        return businessProcessService;
+    }
+
+    public void setBusinessProcessService(BusinessProcessService businessProcessService) {
+        this.businessProcessService = businessProcessService;
+    }
 
     private final static Logger LOG = Logger.getLogger(VehicleCountJob.class.getName());
 
 
     @Override
     public PerformResult perform(final VehicleCountCronJobModel vehicleCountCronJobModel) {
+
+        final TestProcessModel testProcessModel = (TestProcessModel) getBusinessProcessService()
+                .createProcess("test-Process-" + System.currentTimeMillis(), "test-Process");
+        getBusinessProcessService().startProcess(testProcessModel);
 
 
         List<VehicleBaseModel> vehicle = vehicleCountDao.findAllVehicleCount();

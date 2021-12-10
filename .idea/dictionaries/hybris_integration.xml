@@ -8,11 +8,7 @@
       <w>acceleratorservices</w>
       <w>acceleratorstorefrontcommons</w>
       <w>adaptivesearch</w>
-      <w>adaptivesearchbackoffice</w>
-      <w>adaptivesearchfacades</w>
       <w>adaptivesearchsamplesaddon</w>
-      <w>adaptivesearchsolr</w>
-      <w>adaptivesearchwebservices</w>
       <w>addonsupport</w>
       <w>advancedsavedquery</w>
       <w>apiregistrybackoffice</w>
@@ -89,7 +85,6 @@
       <w>eventtrackingservices</w>
       <w>eventtrackingwsaddon</w>
       <w>extname</w>
-      <w>groovynature</w>
       <w>hac</w>
       <w>hybris</w>
       <w>impex</w>

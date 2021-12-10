@@ -553,12 +553,30 @@
 		<property name="indexerService" ref="indexerService" />
 		<property name="facetSearchConfigService" ref="facetSearchConfigService" />
 		<property name="baseSiteService" ref="baseSiteService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
 	</bean>
-	<bean id="VehicleRegistrationNumberInterceptor" class="de.hybris.training.core.interceptors.VehicleRegistrationNumberInterceptor"
+
+	<bean id="TestAction" class="de.hybris.training.core.actions.quote.TestAction" parent="abstractAction">
+
+	</bean>
+
+
+	<bean id="test-Process"
+		  class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/resources/trainingcore/processes/test-Process.xml"/>
+	</bean>
+	<!--<bean id="VehicleRegistrationNumberInterceptor" class="de.hybris.training.core.interceptors.VehicleRegistrationNumberInterceptor"
 		  autowire="byName"/>
 	<bean id="NewEventForRegistrationNumber" class="de.hybris.training.core.events.NewEventForRegistrationNumber" parent="abstractEventListener">
 
+	</bean>-->
+	<alias name="defaultHybrisApiDao" alias="hybrisApiDao"/>
+	<bean id="defaultHybrisApiDao" class="de.hybris.training.core.Dao.impl.HybrisApiDaoImpl" >
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+		<property name="modelService" ref="modelService"></property>
 	</bean>
+
+	<bean id="hybrisApiServices" class="de.hybris.training.core.services.HybrisApiServices"/>
 
 
 

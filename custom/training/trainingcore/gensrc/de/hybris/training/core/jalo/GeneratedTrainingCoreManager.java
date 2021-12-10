@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN! ---
- * --- Generated at 08-Nov-2021, 4:51:25 PM                     ---
+ * --- Generated at 11-Dec-2021, 12:32:58 AM                    ---
  * ----------------------------------------------------------------
  *  
  * Copyright (c) 2021 SAP SE or an SAP affiliate company. All rights reserved.
@@ -17,6 +17,7 @@ import de.hybris.platform.jalo.extension.Extension;
 import de.hybris.platform.jalo.link.Link;
 import de.hybris.platform.jalo.type.ComposedType;
 import de.hybris.platform.jalo.type.JaloGenericCreationException;
+import de.hybris.platform.testprocessing.jalo.TestProcess;
 import de.hybris.training.core.constants.TrainingCoreConstants;
 import de.hybris.training.core.jalo.ApparelProduct;
 import de.hybris.training.core.jalo.ApparelSizeVariantProduct;
@@ -207,6 +208,32 @@ public abstract class GeneratedTrainingCoreManager extends Extension
 	public ElectronicsColorVariantProduct createElectronicsColorVariantProduct(final Map attributeValues)
 	{
 		return createElectronicsColorVariantProduct( getSession().getSessionContext(), attributeValues );
+	}
+	
+	public TestProcess createTestProcess(final SessionContext ctx, final Map attributeValues)
+	{
+		try
+		{
+			ComposedType type = getTenant().getJaloConnection().getTypeManager().getComposedType( TrainingCoreConstants.TC.TESTPROCESS );
+			return (TestProcess)type.newInstance( ctx, attributeValues );
+		}
+		catch( JaloGenericCreationException e)
+		{
+			final Throwable cause = e.getCause();
+			throw (cause instanceof RuntimeException ?
+			(RuntimeException)cause
+			:
+			new JaloSystemException( cause, cause.getMessage(), e.getErrorCode() ) );
+		}
+		catch( JaloBusinessException e )
+		{
+			throw new JaloSystemException( e ,"error creating TestProcess : "+e.getMessage(), 0 );
+		}
+	}
+	
+	public TestProcess createTestProcess(final Map attributeValues)
+	{
+		return createTestProcess( getSession().getSessionContext(), attributeValues );
 	}
 	
 	public VehicleBase createVehicleBase(final SessionContext ctx, final Map attributeValues)
