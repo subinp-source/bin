@@ -1,7 +1,6 @@
 <component name="libraryTable">
   <library name="Backoffice Library">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/modules/adaptive-search/adaptivesearchbackoffice/resources/backoffice" />
       <root url="file://$PROJECT_DIR$/modules/api-registry/apiregistrybackoffice/resources/backoffice" />
       <root url="file://$PROJECT_DIR$/modules/backoffice-framework/backofficesolrsearch/resources/backoffice" />
       <root url="file://$PROJECT_DIR$/modules/base-commerce/basecommercebackoffice/resources/backoffice" />
@@ -17,7 +16,6 @@
     </CLASSES>
     <JAVADOC />
     <SOURCES />
-    <jarDirectory url="file://$PROJECT_DIR$/modules/adaptive-search/adaptivesearchbackoffice/resources/backoffice" recursive="true" />
     <jarDirectory url="file://$PROJECT_DIR$/modules/api-registry/apiregistrybackoffice/resources/backoffice" recursive="true" />
     <jarDirectory url="file://$PROJECT_DIR$/modules/backoffice-applications/pcmbackoffice/resources/backoffice" recursive="true" />
     <jarDirectory url="file://$PROJECT_DIR$/modules/backoffice-framework/backofficesolrsearch/resources/backoffice" recursive="true" />

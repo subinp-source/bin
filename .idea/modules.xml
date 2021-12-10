@@ -8,11 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/idea-module-files/acceleratorservices.iml" filepath="$PROJECT_DIR$/idea-module-files/acceleratorservices.iml" group="Hybris/core-accelerator" />
       <module fileurl="file://$PROJECT_DIR$/idea-module-files/acceleratorstorefrontcommons.iml" filepath="$PROJECT_DIR$/idea-module-files/acceleratorstorefrontcommons.iml" group="Hybris/core-accelerator" />
       <module fileurl="file://$PROJECT_DIR$/idea-module-files/adaptivesearch.iml" filepath="$PROJECT_DIR$/idea-module-files/adaptivesearch.iml" group="Hybris/adaptive-search" />
-      <module fileurl="file://$PROJECT_DIR$/idea-module-files/adaptivesearchbackoffice.iml" filepath="$PROJECT_DIR$/idea-module-files/adaptivesearchbackoffice.iml" group="Hybris/adaptive-search" />
-      <module fileurl="file://$PROJECT_DIR$/idea-module-files/adaptivesearchfacades.iml" filepath="$PROJECT_DIR$/idea-module-files/adaptivesearchfacades.iml" group="Hybris/adaptive-search" />
       <module fileurl="file://$PROJECT_DIR$/idea-module-files/adaptivesearchsamplesaddon.iml" filepath="$PROJECT_DIR$/idea-module-files/adaptivesearchsamplesaddon.iml" group="Hybris/adaptive-search" />
-      <module fileurl="file://$PROJECT_DIR$/idea-module-files/adaptivesearchsolr.iml" filepath="$PROJECT_DIR$/idea-module-files/adaptivesearchsolr.iml" group="Hybris/adaptive-search" />
-      <module fileurl="file://$PROJECT_DIR$/idea-module-files/adaptivesearchwebservices.iml" filepath="$PROJECT_DIR$/idea-module-files/adaptivesearchwebservices.iml" group="Hybris/adaptive-search" />
       <module fileurl="file://$PROJECT_DIR$/idea-module-files/addonsupport.iml" filepath="$PROJECT_DIR$/idea-module-files/addonsupport.iml" group="Hybris/core-accelerator" />
       <module fileurl="file://$PROJECT_DIR$/idea-module-files/advancedsavedquery.iml" filepath="$PROJECT_DIR$/idea-module-files/advancedsavedquery.iml" group="Platform" />
       <module fileurl="file://$PROJECT_DIR$/idea-module-files/apiregistrybackoffice.iml" filepath="$PROJECT_DIR$/idea-module-files/apiregistrybackoffice.iml" group="Hybris/api-registry" />
@@ -74,7 +70,6 @@
       <module fileurl="file://$PROJECT_DIR$/idea-module-files/eventtrackingpublisher.iml" filepath="$PROJECT_DIR$/idea-module-files/eventtrackingpublisher.iml" group="Hybris/event-tracking" />
       <module fileurl="file://$PROJECT_DIR$/idea-module-files/eventtrackingservices.iml" filepath="$PROJECT_DIR$/idea-module-files/eventtrackingservices.iml" group="Hybris/event-tracking" />
       <module fileurl="file://$PROJECT_DIR$/idea-module-files/eventtrackingwsaddon.iml" filepath="$PROJECT_DIR$/idea-module-files/eventtrackingwsaddon.iml" group="Hybris/event-tracking" />
-      <module fileurl="file://$PROJECT_DIR$/idea-module-files/groovynature.iml" filepath="$PROJECT_DIR$/idea-module-files/groovynature.iml" group="Hybris/platform" />
       <module fileurl="file://$PROJECT_DIR$/idea-module-files/hac.iml" filepath="$PROJECT_DIR$/idea-module-files/hac.iml" group="Platform" />
       <module fileurl="file://$PROJECT_DIR$/idea-module-files/impex.iml" filepath="$PROJECT_DIR$/idea-module-files/impex.iml" group="Platform" />
       <module fileurl="file://$PROJECT_DIR$/idea-module-files/maintenanceweb.iml" filepath="$PROJECT_DIR$/idea-module-files/maintenanceweb.iml" group="Platform" />
