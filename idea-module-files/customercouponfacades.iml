@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="OOTB" importedAsReadOnly="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/customer-coupon/customercouponfacades/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="acceleratorfacades" exported="" />
+    <orderEntry type="module" module-name="couponfacades" exported="" />
+    <orderEntry type="module" module-name="customercouponservices" exported="" />
+    <orderEntry type="module" module-name="notificationfacades" exported="" />
+    <orderEntry type="module" module-name="platform" exported="" />
+  </component>
+</module>

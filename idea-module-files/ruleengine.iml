@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="OOTB" importedAsReadOnly="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../modules/rule-engine/ruleengine/bin/ruleengineserver.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../modules/rule-engine/ruleengine/bin/ruleengineserver.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../modules/rule-engine/ruleengine/lib" recursive="true" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="platform" exported="" />
+  </component>
+</module>

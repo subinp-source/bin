@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="7c957359-30cd-440f-8fac-e5d60378498d" name="Changes" comment="new extension">
+      <change afterPath="$PROJECT_DIR$/idea-module-files/trainingcore.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/dictionaries/default_user.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/dictionaries/hybris_integration.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/dictionaries/hybris_integration.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/hybrisDeveloperSpecificProjectSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/hybrisDeveloperSpecificProjectSettings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="NamedScopeManager">
+    <scope name="[y] Custom" pattern="file[group:Custom]:*//*" />
+    <scope name="[y] Custom Type System Files" pattern="file[group:Custom]:*//*-items.xml" />
+    <scope name="[y] Custom Type System, Beans and Impex files" pattern="file[group:Custom]:*//*-items.xml||file[group:Custom]:*//*-beans.xml||file[group:Custom]:*//*.impex" />
+    <scope name="[y] Platform" pattern="file[group:Platform]:*//*" />
+    <scope name="[y] Hybris" pattern="file[group:Hybris]:*//*" />
+    <scope name="[y] Platform Hybris" pattern="file[group:Platform]:*//*||file[group:Hybris]:*//*" />
+    <scope name="[y] All Type System Files" pattern="file:*//*-items.xml" />
+  </component>
+  <component name="ProjectId" id="225C6kmn334hUnW2eDawFRRLYfA" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="settings.editor.selected.configurable" value="ImpexPlugin.ImpexConfigurable" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="AntRunConfiguration">
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7c957359-30cd-440f-8fac-e5d60378498d" name="Changes" comment="" />
+      <created>1639117890196</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1639117890196</updated>
+    </task>
+    <task id="LOCAL-00001" summary="new extension">
+      <created>1639118394360</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1639118394360</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="new extension" />
+    <option name="LAST_COMMIT_MESSAGE" value="new extension" />
+  </component>
+</project>

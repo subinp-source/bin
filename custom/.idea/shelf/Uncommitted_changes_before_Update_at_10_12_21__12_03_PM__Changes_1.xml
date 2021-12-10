@@ -1,0 +1,134 @@
+<changelist name="Uncommitted_changes_before_Update_at_10_12_21,_12_03_PM_[Changes]1" date="1639118034941" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_12_21,_12_03_PM_[Changes]1/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 10/12/21, 12:03 PM [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="../../../../project/hybris2011/hybris/bin/modules/integration-apis/outboundsyncbackoffice/resources/backoffice/outboundsyncbackoffice_bof.jar" />
+    <option name="AFTER_PATH" value="../../../../project/hybris2011/hybris/bin/modules/integration-apis/outboundsyncbackoffice/resources/backoffice/outboundsyncbackoffice_bof.jar" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_12_21,_12_03_PM_[Changes]1/outboundsyncbackoffice_bof.jar" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="../../../../project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/web/webroot/WEB-INF/lib/webfragmentExt_backofficesolrsearch.jar" />
+    <option name="AFTER_PATH" value="../../../../project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/web/webroot/WEB-INF/lib/webfragmentExt_backofficesolrsearch.jar" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_12_21,_12_03_PM_[Changes]1/webfragmentExt_backofficesolrsearch.jar" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="../../../../project/hybris2011/hybris/bin/modules/integration-apis/integrationbackofficetest/resources/backoffice/integrationbackofficetest_bof.jar" />
+    <option name="AFTER_PATH" value="../../../../project/hybris2011/hybris/bin/modules/integration-apis/integrationbackofficetest/resources/backoffice/integrationbackofficetest_bof.jar" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_12_21,_12_03_PM_[Changes]1/integrationbackofficetest_bof.jar" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="../../../../project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/web/webroot/WEB-INF/lib/webfragmentCore_backofficeRemoteTesting.jar" />
+    <option name="AFTER_PATH" value="../../../../project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/web/webroot/WEB-INF/lib/webfragmentCore_backofficeRemoteTesting.jar" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_12_21,_12_03_PM_[Changes]1/webfragmentCore_backofficeRemoteTesting.jar" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="../../../../project/hybris2011/hybris/bin/modules/cds-merchandising/merchandisingservicesbackoffice/resources/backoffice/merchandisingservicesbackoffice_bof.jar" />
+    <option name="AFTER_PATH" value="../../../../project/hybris2011/hybris/bin/modules/cds-merchandising/merchandisingservicesbackoffice/resources/backoffice/merchandisingservicesbackoffice_bof.jar" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_12_21,_12_03_PM_[Changes]1/merchandisingservicesbackoffice_bof.jar" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="../../../../project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/web/webroot/WEB-INF/lib/webfragmentCore_backofficeMobileFilter.jar" />
+    <option name="AFTER_PATH" value="../../../../project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/web/webroot/WEB-INF/lib/webfragmentCore_backofficeMobileFilter.jar" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_12_21,_12_03_PM_[Changes]1/webfragmentCore_backofficeMobileFilter.jar" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="../../../../project/hybris2011/hybris/bin/modules/rule-engine/rulebuilderbackoffice/resources/backoffice/rulebuilderbackoffice_bof.jar" />
+    <option name="AFTER_PATH" value="../../../../project/hybris2011/hybris/bin/modules/rule-engine/rulebuilderbackoffice/resources/backoffice/rulebuilderbackoffice_bof.jar" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_12_21,_12_03_PM_[Changes]1/rulebuilderbackoffice_bof.jar" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="../../../../project/hybris2011/hybris/bin/modules/integration-apis/integrationbackoffice/resources/backoffice/integrationbackoffice_bof.jar" />
+    <option name="AFTER_PATH" value="../../../../project/hybris2011/hybris/bin/modules/integration-apis/integrationbackoffice/resources/backoffice/integrationbackoffice_bof.jar" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_12_21,_12_03_PM_[Changes]1/integrationbackoffice_bof.jar" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="../../../../project/hybris2011/hybris/bin/custom/training/trainingbackoffice/resources/backoffice/trainingbackoffice_bof.jar" />
+    <option name="AFTER_PATH" value="../../../../project/hybris2011/hybris/bin/custom/training/trainingbackoffice/resources/backoffice/trainingbackoffice_bof.jar" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_12_21,_12_03_PM_[Changes]1/trainingbackoffice_bof.jar" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="../../../../project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/web/webroot/WEB-INF/lib/webfragmentCore_XSSFilter.jar" />
+    <option name="AFTER_PATH" value="../../../../project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/web/webroot/WEB-INF/lib/webfragmentCore_XSSFilter.jar" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_12_21,_12_03_PM_[Changes]1/webfragmentCore_XSSFilter.jar" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="../../../../project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/web/webroot/WEB-INF/lib/webfragmentCore_backofficeMediaFilterChain.jar" />
+    <option name="AFTER_PATH" value="../../../../project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/web/webroot/WEB-INF/lib/webfragmentCore_backofficeMediaFilterChain.jar" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_12_21,_12_03_PM_[Changes]1/webfragmentCore_backofficeMediaFilterChain.jar" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="../../../../project/hybris2011/hybris/bin/modules/sap-cloud-platform-extension-factory-integration/kymaintegrationbackoffice/resources/backoffice/kymaintegrationbackoffice_bof.jar" />
+    <option name="AFTER_PATH" value="../../../../project/hybris2011/hybris/bin/modules/sap-cloud-platform-extension-factory-integration/kymaintegrationbackoffice/resources/backoffice/kymaintegrationbackoffice_bof.jar" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_12_21,_12_03_PM_[Changes]1/kymaintegrationbackoffice_bof.jar" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="../../../../project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/web/webroot/WEB-INF/lib/webfragmentCore_requestContextFilter.jar" />
+    <option name="AFTER_PATH" value="../../../../project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/web/webroot/WEB-INF/lib/webfragmentCore_requestContextFilter.jar" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_12_21,_12_03_PM_[Changes]1/webfragmentCore_requestContextFilter.jar" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="../../../../project/hybris2011/hybris/bin/modules/rule-engine/ruleenginebackoffice/resources/backoffice/ruleenginebackoffice_bof.jar" />
+    <option name="AFTER_PATH" value="../../../../project/hybris2011/hybris/bin/modules/rule-engine/ruleenginebackoffice/resources/backoffice/ruleenginebackoffice_bof.jar" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_12_21,_12_03_PM_[Changes]1/ruleenginebackoffice_bof.jar" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="../../../../project/hybris2011/hybris/bin/modules/api-registry/apiregistrybackoffice/resources/backoffice/apiregistrybackoffice_bof.jar" />
+    <option name="AFTER_PATH" value="../../../../project/hybris2011/hybris/bin/modules/api-registry/apiregistrybackoffice/resources/backoffice/apiregistrybackoffice_bof.jar" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_12_21,_12_03_PM_[Changes]1/apiregistrybackoffice_bof.jar" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="../../../../project/hybris2011/hybris/bin/modules/promotion-engine/promotionenginebackoffice/resources/backoffice/promotionenginebackoffice_bof.jar" />
+    <option name="AFTER_PATH" value="../../../../project/hybris2011/hybris/bin/modules/promotion-engine/promotionenginebackoffice/resources/backoffice/promotionenginebackoffice_bof.jar" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_12_21,_12_03_PM_[Changes]1/promotionenginebackoffice_bof.jar" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="../../../../project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/web/webroot/WEB-INF/lib/webfragmentCore_backofficefilterchain.jar" />
+    <option name="AFTER_PATH" value="../../../../project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/web/webroot/WEB-INF/lib/webfragmentCore_backofficefilterchain.jar" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_12_21,_12_03_PM_[Changes]1/webfragmentCore_backofficefilterchain.jar" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="../../../../project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/web/webroot/WEB-INF/lib/webfragmentCore_characterEncodingFilter.jar" />
+    <option name="AFTER_PATH" value="../../../../project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/web/webroot/WEB-INF/lib/webfragmentCore_characterEncodingFilter.jar" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_12_21,_12_03_PM_[Changes]1/webfragmentCore_characterEncodingFilter.jar" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="../../../../project/hybris2011/hybris/bin/platform/bootstrap/bin/models.jar" />
+    <option name="AFTER_PATH" value="../../../../project/hybris2011/hybris/bin/platform/bootstrap/bin/models.jar" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_12_21,_12_03_PM_[Changes]1/models.jar" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="../../../../project/hybris2011/hybris/bin/modules/integration-apis/integrationmonitoringbackoffice/resources/backoffice/integrationmonitoringbackoffice_bof.jar" />
+    <option name="AFTER_PATH" value="../../../../project/hybris2011/hybris/bin/modules/integration-apis/integrationmonitoringbackoffice/resources/backoffice/integrationmonitoringbackoffice_bof.jar" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_12_21,_12_03_PM_[Changes]1/integrationmonitoringbackoffice_bof.jar" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="../../../../project/hybris2011/hybris/bin/modules/coupon/couponbackoffice/resources/backoffice/couponbackoffice_bof.jar" />
+    <option name="AFTER_PATH" value="../../../../project/hybris2011/hybris/bin/modules/coupon/couponbackoffice/resources/backoffice/couponbackoffice_bof.jar" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_12_21,_12_03_PM_[Changes]1/couponbackoffice_bof.jar" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="../../../../project/hybris2011/hybris/bin/modules/integration-apis/webhookbackoffice/resources/backoffice/webhookbackoffice_bof.jar" />
+    <option name="AFTER_PATH" value="../../../../project/hybris2011/hybris/bin/modules/integration-apis/webhookbackoffice/resources/backoffice/webhookbackoffice_bof.jar" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_12_21,_12_03_PM_[Changes]1/webhookbackoffice_bof.jar" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="../../../../project/hybris2011/hybris/bin/modules/configurator-complex-products/sapproductconfigrulesbackoffice/resources/backoffice/sapproductconfigrulesbackoffice_bof.jar" />
+    <option name="AFTER_PATH" value="../../../../project/hybris2011/hybris/bin/modules/configurator-complex-products/sapproductconfigrulesbackoffice/resources/backoffice/sapproductconfigrulesbackoffice_bof.jar" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_12_21,_12_03_PM_[Changes]1/sapproductconfigrulesbackoffice_bof.jar" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="../../../../project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/web/webroot/WEB-INF/lib/webfragmentCore_springSecurityFilterChain.jar" />
+    <option name="AFTER_PATH" value="../../../../project/hybris2011/hybris/bin/modules/backoffice-framework/backoffice/web/webroot/WEB-INF/lib/webfragmentCore_springSecurityFilterChain.jar" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_12_21,_12_03_PM_[Changes]1/webfragmentCore_springSecurityFilterChain.jar" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="../../../../project/hybris2011/hybris/bin/modules/base-commerce/promotionsbackoffice/resources/backoffice/promotionsbackoffice_bof.jar" />
+    <option name="AFTER_PATH" value="../../../../project/hybris2011/hybris/bin/modules/base-commerce/promotionsbackoffice/resources/backoffice/promotionsbackoffice_bof.jar" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_12_21,_12_03_PM_[Changes]1/promotionsbackoffice_bof.jar" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="../../../../project/hybris2011/hybris/bin/modules/search-services/searchbackoffice/resources/backoffice/searchbackoffice_bof.jar" />
+    <option name="AFTER_PATH" value="../../../../project/hybris2011/hybris/bin/modules/search-services/searchbackoffice/resources/backoffice/searchbackoffice_bof.jar" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_12_21,_12_03_PM_[Changes]1/searchbackoffice_bof.jar" />
+  </binary>
+</changelist>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="OOTB" importedAsReadOnly="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/stock-notification/stocknotificationfacades/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="customerinterestsfacades" exported="" />
+    <orderEntry type="module" module-name="notificationfacades" exported="" />
+    <orderEntry type="module" module-name="platform" exported="" />
+    <orderEntry type="module" module-name="stocknotificationservices" exported="" />
+  </component>
+</module>

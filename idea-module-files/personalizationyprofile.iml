@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module descriptorType="OOTB" importedAsReadOnly="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile/eclipsebin" />
+    <output-test url="file://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile/eclipsebin" />
+    <exclude-output />
+    <javadoc-paths>
+      <root url="https://download.hybris.com/api/2011/commercesuite" />
+    </javadoc-paths>
+    <content url="file://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile/acceleratoraddon/web/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile/acceleratoraddon/web/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile/acceleratoraddon/web/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile/acceleratoraddon/web/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile/acceleratoraddon/web/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile/acceleratoraddon/web/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile/backoffice/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile/commonweb/gensrc" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile/commonweb/groovytestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile/commonweb/scalasrc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile/commonweb/scalatestsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile/commonweb/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile/commonweb/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile/.externalToolBuilders" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile/eclipsebin" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile/jsTarget" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile/commonweb/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile/commonweb/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile/commonweb/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile/acceleratoraddon/web/addonsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile/acceleratoraddon/web/testclasses" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile/acceleratoraddon/web/commonwebsrc" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile/backoffice/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile/resources" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile/bin/personalizationyprofileserver.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../modules/personalization-integration/personalizationyprofile/bin/personalizationyprofileserver.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="apiregistryservices" exported="" />
+    <orderEntry type="module" module-name="personalizationintegration" exported="" />
+    <orderEntry type="module" module-name="personalizationintegrationbackoffice" exported="" />
+    <orderEntry type="module" module-name="platform" exported="" />
+    <orderEntry type="module" module-name="profileservices" exported="" />
+  </component>
+</module>
