@@ -8,5 +8,6 @@ import java.util.List;
 public interface HybrisApiDao extends Dao {
 
     List<DriverBaseModel> getDriverDetailsByName(String nameOfDriver);
+    List<DriverBaseModel> getDriverDetails();
 
 }

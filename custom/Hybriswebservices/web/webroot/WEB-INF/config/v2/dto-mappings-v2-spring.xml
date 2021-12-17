@@ -257,4 +257,31 @@
 			</map>
 		</property>
 	</bean>
+
+
+	<bean id="driverBaseFieldMapper" parent="fieldMapper">
+		<property name="sourceClass" value="de.hybris.platform.commercefacades.product.data.DriverBaseData"/>
+		<property name="destClass" value="de.hybris.platform.commercewebservicescommons.dto.driverbasestores.DriverBaseStoresWSDTO"/>
+	</bean>
+
+
+	<bean id="dealerBaseFieldMapper" parent="fieldMapper">
+		<property name="sourceClass" value="de.hybris.platform.commercefacades.DealerFolder.data.DealerBaseData"/>
+		<property name="destClass" value="de.hybris.platform.commercewebservicescommons.dto.dealerbasestores.DealerBaseStoresWSDTO"/>
+	</bean>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </beans>

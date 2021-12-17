@@ -182,4 +182,55 @@
 	</bean>
 
 	<bean id="genderData" class="de.hybris.training.facades.product.data.GenderData" scope="prototype"/>
+
+
+	<alias name="dealerValuePopulator" alias="commerceSearchResultProductPopulator"/>
+	<bean id="dealerValuePopulator"
+		  class="de.hybris.training.facades.populators.DealerValuePopulator"
+		  parent="variantCommerceSearchResultProductPopulator">
+	</bean>
+
+
+	<alias name="driverBaseStoresFacade" alias="driverBaseStoresFacade"/>
+	<bean id="driverBaseStoresFacade"
+		  class="de.hybris.training.facades.DriverBaseFacade.Impl.DriverBaseStoresFacadeImpl"
+		 >
+		<property name="storesconverter" ref="storesconverter"/>
+		<property name="hybrisApiServices" ref="hybrisApiServices"/>
+	</bean>
+	
+	<alias name="storesconverter" alias="storesconverter"/>
+	<bean id="storesconverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.commercefacades.product.data.DriverBaseData"/>
+		<property name="populators">
+			<list>
+				<ref bean="driverBaseDataPopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="driverBaseDataPopulator" class="de.hybris.training.facades.populators.DriverBaseDataPopulator"/>
+
+
+
+	<alias name="dealerBaseStoresFacade" alias="dealerBaseStoresFacade"/>
+	<bean id="dealerBaseStoresFacade"
+		  class="de.hybris.training.facades.DealerBaseFacade.Impl.DealerBaseStoresFacadeImpl"
+	>
+		<property name="storeconverter" ref="storeconverter"/>
+		<property name="dealerApiServices" ref="dealerApiServices"/>
+	</bean>
+
+	<alias name="storeconverter" alias="storeconverter"/>
+	<bean id="storeconverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.commercefacades.DealerFolder.data.DealerBaseData"/>
+		<property name="populators">
+			<list>
+				<ref bean="dealerBaseDataPopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="dealerBaseDataPopulator" class="de.hybris.training.facades.populators.DealerBaseDataPopulator"/>
+
 </beans>

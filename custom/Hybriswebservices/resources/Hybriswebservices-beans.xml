@@ -172,4 +172,38 @@
 		<property name="pagination" type="de.hybris.platform.commerceservices.search.pagedata.PaginationData"/>
 	</bean>
 
+
+
+
+	<bean class="de.hybris.platform.commercewebservicescommons.dto.driverbasestores.DriverBaseStoresWSDTO">
+		<property name="nameOfDriver" type="String"/>
+		<property name="experience" type="String"/>
+		<property name="driverId" type="String"/>
+	</bean>
+	<bean class="de.hybris.platform.commercewebservicescommons.dto.driverbasestores.DriverBaseStoresDataListWSDTO">
+		<property name="driverbasestores" type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.driverbasestores.DriverBaseStoresWSDTO>"/>
+	</bean>
+<bean class="de.hybris.training.queues.data.DriverBaseStoresDataList">
+	<property name="driverbasestores" type="java.util.List&lt;de.hybris.platform.commercefacades.product.data.DriverBaseData>"/>
+</bean>
+	<bean class="de.hybris.platform.commercewebservicescommons.dto.driverbasestores.DriverBaseStoresAllDataListWSDTO">
+		<property name="driverbasestores" type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.driverbasestores.DriverBaseStoresWSDTO>"/>
+	</bean>
+
+
+
+	<bean class="de.hybris.platform.commercewebservicescommons.dto.dealerbasestores.DealerBaseStoresWSDTO">
+		<property name="localizeName" type="String"/>
+		<property name="uniqueId" type="String"/>
+		<property name="address" type="String"/>
+	</bean>
+	<bean class="de.hybris.platform.commercewebservicescommons.dto.dealerbasestores.DealerBaseStoresAllDataListWSDTO">
+		<property name="dealerbasestores" type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.dealerbasestores.DealerBaseStoresWSDTO>"/>
+	</bean>
+	<bean class="de.hybris.training.queues.data.DealerBaseStoresDataList">
+		<property name="dealerbasestores" type="java.util.List&lt;de.hybris.platform.commercefacades.DealerFolder.data.DealerBaseData>"/>
+	</bean>
+
+
+
 </beans>

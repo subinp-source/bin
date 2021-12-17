@@ -17,6 +17,11 @@ public class HybrisApiServices {
         return storeModels;
     }
 
+    public List<DriverBaseModel> getAllDriverDetails(){
+        final List<DriverBaseModel> storeModels=hybrisApiDao.getDriverDetails();
+        return storeModels;
+    }
+
 
 
 

@@ -1,7 +1,7 @@
 /*
  * ----------------------------------------------------------------
  * --- WARNING: THIS FILE IS GENERATED AND WILL BE OVERWRITTEN!
- * --- Generated at 11-Dec-2021, 12:33:00 AM
+ * --- Generated at 15-Dec-2021, 3:07:45 PM
  * ----------------------------------------------------------------
  *
  * Copyright (c) 2021 SAP SE or an SAP affiliate company. All rights reserved.
@@ -193,6 +193,18 @@ public  class ProductData  implements Serializable
 	/** <i>Generated property</i> for <code>ProductData.genders</code> property defined at extension <code>trainingfacades</code>. */
 		
 	private List<GenderData> genders;
+
+	/** <i>Generated property</i> for <code>ProductData.vehicleRegistrationNumber</code> property defined at extension <code>trainingfacades</code>. */
+		
+	private String vehicleRegistrationNumber;
+
+	/** <i>Generated property</i> for <code>ProductData.driver</code> property defined at extension <code>trainingfacades</code>. */
+		
+	private String driver;
+
+	/** <i>Generated property</i> for <code>ProductData.dealer</code> property defined at extension <code>trainingfacades</code>. */
+		
+	private List dealer;
 
 	/** <i>Generated property</i> for <code>ProductData.timedAccessPromotion</code> property defined at extension <code>timedaccesspromotionenginefacades</code>. */
 		
@@ -591,6 +603,36 @@ public  class ProductData  implements Serializable
 	public List<GenderData> getGenders() 
 	{
 		return genders;
+	}
+	
+	public void setVehicleRegistrationNumber(final String vehicleRegistrationNumber)
+	{
+		this.vehicleRegistrationNumber = vehicleRegistrationNumber;
+	}
+
+	public String getVehicleRegistrationNumber() 
+	{
+		return vehicleRegistrationNumber;
+	}
+	
+	public void setDriver(final String driver)
+	{
+		this.driver = driver;
+	}
+
+	public String getDriver() 
+	{
+		return driver;
+	}
+	
+	public void setDealer(final List dealer)
+	{
+		this.dealer = dealer;
+	}
+
+	public List getDealer() 
+	{
+		return dealer;
 	}
 	
 	public void setTimedAccessPromotion(final PromotionData timedAccessPromotion)

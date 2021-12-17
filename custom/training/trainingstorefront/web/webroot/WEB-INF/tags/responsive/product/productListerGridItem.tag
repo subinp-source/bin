@@ -26,6 +26,7 @@
 		<div class="details">
 
 			<ycommerce:testId code="product_productName">
+
 				<a class="name" href="${fn:escapeXml(productUrl)}">
 					<c:out escapeXml="false" value="${ycommerce:sanitizeHTML(product.name)}" />
 				</a>
@@ -40,6 +41,12 @@
 			</c:if>
 			
 			<ycommerce:testId code="product_productPrice">
+            			<h5>${product.vehicleRegistrationNumber}</h5>
+                        			Dealer:<h5>${product.dealer}</h5>
+                        			Driver:<h5>${product.driver}</h5>
+                        			Dealer list:<c:forEach var="name" items="${product.dealer}">
+                                                    			<ul>${name}</ul>
+                                                    		</c:forEach>
 				<div class="price"><product:productListerItemPrice product="${product}"/></div>
 			</ycommerce:testId>
 			<c:forEach var="variantOption" items="${product.variantOptions}">

@@ -18,7 +18,6 @@
 <c:forEach var="tag" items="${product.tags}">
 	<c:set value="${productTagClasses} tag-${tag}" var="productTagClasses"/>
 </c:forEach>
-
 <li class="${fn:escapeXml(productTagClasses)}">
 	<ycommerce:testId code="test_searchPage_wholeProduct">
 		<a class="product__list--thumb" href="${fn:escapeXml(productUrl)}" title="${fn:escapeXml(product.name)}" >

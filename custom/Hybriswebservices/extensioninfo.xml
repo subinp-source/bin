@@ -14,6 +14,7 @@
                 		
         
         <requires-extension name="ordermanagementfacades"/>
+        <requires-extension name="trainingfacades"/>
                 		
         
         <coremodule generated="true" manager="de.hybris.platform.jalo.extension.GenericManager" packageroot="de.hybris.training"/>

@@ -570,6 +570,23 @@
 	<bean id="NewEventForRegistrationNumber" class="de.hybris.training.core.events.NewEventForRegistrationNumber" parent="abstractEventListener">
 
 	</bean>-->
+	<bean id="dealerValueProvider" class="de.hybris.training.core.search.solrfacetsearch.provider.impl.DealerValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+	</bean>
+
+	<bean id="vehicleRegistrationNumberProvider" class="de.hybris.training.core.search.solrfacetsearch.provider.impl.VehicleRegistrationNumberProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+	</bean>
+
+	<bean id="driverValueProvider" class="de.hybris.training.core.search.solrfacetsearch.provider.impl.DriverValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+	</bean>
+
+
+
+
+
+
 	<alias name="defaultHybrisApiDao" alias="hybrisApiDao"/>
 	<bean id="defaultHybrisApiDao" class="de.hybris.training.core.Dao.impl.HybrisApiDaoImpl" >
 		<property name="flexibleSearchService" ref="flexibleSearchService"/>
@@ -577,6 +594,14 @@
 	</bean>
 
 	<bean id="hybrisApiServices" class="de.hybris.training.core.services.HybrisApiServices"/>
+
+	<alias name="defaultDealerApiDao" alias="dealerApiDao"/>
+	<bean id="defaultDealerApiDao" class="de.hybris.training.core.Dao.impl.DealerApiDaoImpl" >
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+		<property name="modelService" ref="modelService"></property>
+	</bean>
+
+	<bean id="dealerApiServices" class="de.hybris.training.core.services.DealerApiServices"/>
 
 
 

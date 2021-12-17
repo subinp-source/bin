@@ -6,6 +6,9 @@
 
 	<bean class="de.hybris.platform.commercefacades.product.data.ProductData">
 		<property name="genders" type="java.util.List&lt;de.hybris.training.facades.product.data.GenderData>"/>
+		<property name="vehicleRegistrationNumber" type="String"/>
+		<property name="driver" type="String"/>
+		<property name="dealer" type="java.util.List"/>
 	</bean>
 
 	<bean class="de.hybris.training.facades.product.data.GenderData">
@@ -13,8 +16,24 @@
 		<property name="name" type="String"/>
 	</bean>
 
+	<bean class="de.hybris.platform.commercefacades.product.data.DriverBaseData">
+	<property name="nameOfDriver" type="String"/>
+	<property name="experience" type="String"/>
+		<property name="driverId" type="String"/>
+
+	</bean>
+
+
+	<bean class="de.hybris.platform.commercefacades.DealerFolder.data.DealerBaseData">
+		<property name="localizeName" type="String"/>
+		<property name="uniqueId" type="String"/>
+		<property name="address" type="String"/>
+
+	</bean>
+
 
 	<bean class="de.hybris.training.facades.product.data.VehicleBase">
 		<property name="vehicleDescription" type="String"/>
 	</bean>
+
 </beans>
