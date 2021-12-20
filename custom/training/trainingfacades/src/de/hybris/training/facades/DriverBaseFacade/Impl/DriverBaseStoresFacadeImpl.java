@@ -33,6 +33,12 @@ public class DriverBaseStoresFacadeImpl implements DriverBaseStoresFacade {
         return Converters.convertAll(driverBaseDataModel,getStoresconverter());
     }
 
+    @Override
+    public void removeDriver(String nameOfDriver) {
+        hybrisApiServices.removeDriverByName(nameOfDriver);
+    }
+
+
     public HybrisApiServices getHybrisApiServices() {
         return hybrisApiServices;
     }

@@ -16,6 +16,8 @@ public class HybrisApiDaoImpl extends AbstractItemDao implements HybrisApiDao {
     private static final Logger LOGGER=Logger.getLogger(HybrisApiDaoImpl.class);
     private static final String STORE_QUERY="SELECT {" + DriverBaseModel.PK + "} FROM{" + DriverBaseModel._TYPECODE + "} WHERE {" + DriverBaseModel.NAMEOFDRIVER +"}= ?nameOfDriver ";
     private static final String STORE_QUERY2="SELECT {pk} FROM {DriverBase}";
+    //private static final String STORE_QUERY3="SELECT * FROM {DriverBase} WHERE {nameOfDriver}='"+nameOfDriver+"'" ;
+
 
 
     @Override
@@ -34,6 +36,12 @@ public class HybrisApiDaoImpl extends AbstractItemDao implements HybrisApiDao {
     public List<DriverBaseModel> getDriverDetails() {
 
         final SearchResult<DriverBaseModel> stores =getFlexibleSearchService().search(STORE_QUERY2);
+        return stores.getResult()==null? Collections.emptyList():stores.getResult();
+    }
+
+    @Override
+    public List<DriverBaseModel> removeDriverInDao(String nameOfDriver) {
+        final SearchResult<DriverBaseModel> stores =getFlexibleSearchService().search("SELECT * FROM {DriverBase} WHERE {nameOfDriver}='"+nameOfDriver+"'" );
         return stores.getResult()==null? Collections.emptyList():stores.getResult();
     }
 }

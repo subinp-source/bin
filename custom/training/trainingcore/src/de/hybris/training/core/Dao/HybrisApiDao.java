@@ -10,4 +10,5 @@ public interface HybrisApiDao extends Dao {
     List<DriverBaseModel> getDriverDetailsByName(String nameOfDriver);
     List<DriverBaseModel> getDriverDetails();
 
+    List<DriverBaseModel> removeDriverInDao(String nameOfString);
 }

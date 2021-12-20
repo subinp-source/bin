@@ -9,4 +9,5 @@ public interface DriverBaseStoresFacade {
     public List<DriverBaseData> getDriverBaseDetails(final String nameOfDriver);
     public List<DriverBaseData> getAllDriverDetails();
 
+  public void removeDriver(String nameOfDriver);
 }
